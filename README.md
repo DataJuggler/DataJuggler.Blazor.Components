@@ -103,6 +103,16 @@ Example: FillWidth = 100
          
 The FillWidthPixels is used by the CSS for the inner graph.
 
+# Progress Bar Events
+
+    private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+       ...
+    }
+    
+This is the Tick event the Timer calls on every cycle. This method increments the FillWidth by the Increment value.
+If the value for Max is encountered, either the app will close if HideWhenFinished is true or reset if continuous is true.
+
 # ProgressBar Methods
 
 # Init
@@ -252,7 +262,7 @@ This property registers the parent with the ProgressBar, which enables the Progr
 
 # Timer
 
-   public Timer Timer { get; set; }
+    public Timer Timer { get; set; }
 
 The System.Timer Timer that is started when the Start method is called.
 
