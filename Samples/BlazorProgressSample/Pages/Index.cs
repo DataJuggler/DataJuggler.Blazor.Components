@@ -113,7 +113,7 @@ namespace BlazorProgressSample.Pages
             
             #region Refresh(string message)
             /// <summary>
-            /// This method Refresh
+            /// This method is called by the ProgressBar when as it refreshes.
             /// </summary>
             public void Refresh(string message)
             {
@@ -123,7 +123,7 @@ namespace BlazorProgressSample.Pages
 
             #region Register(ProgressBar progressBar)
             /// <summary>
-            /// This method Refresh
+            /// This method Registers the ProgressBar with this app.
             /// </summary>
             public void Register(ProgressBar progressBar)
             {

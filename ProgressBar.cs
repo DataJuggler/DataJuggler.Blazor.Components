@@ -182,6 +182,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'CurrentValue'.
             /// </summary>
+            [Parameter]
             public int CurrentValue
             {
                 get { return currentValue; }
@@ -396,7 +397,23 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set { visible = value; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if visible
+                    if (visible)
+                    {
+                        // set the value to inline-block
+                        display = "inline-block";
+                    }
+                    else
+                    {
+                        // set the value to none
+                        display = "none";
+                    }
+                }
             }
             #endregion
             
