@@ -1,0 +1,31 @@
+﻿@using BlazorStyled
+
+<Styled @bind-Classname="@ProgressBackground">
+    background-image: url('_content/DataJuggler.Blazor.Components/Images/RedProgressBase.png');
+    width: 644px;
+    height: 132px;
+    transform: scale(0.5);
+    transform-origin: left;   
+    border: 2px solid black;
+    display: @Display;
+    z-index: 1;
+</Styled>
+<Styled @bind-Classname="@PercentFillStyle">
+    background-image: url('_content/DataJuggler.Blazor.Components/Images/RedCell.png');
+    width: @FillWidthPixels;
+    max-width: @FillWidthPixels;
+    height: 30px;    
+    background-repeat: repeat-x;
+    z-index: 10;
+    position: relative;
+    left: 42px;
+    top: 45px;
+</Styled>
+
+@if  (Visible)
+{
+    <div class="@ProgressBackground">
+        <div class="@PercentFillStyle"></div>
+    </div>
+}
+

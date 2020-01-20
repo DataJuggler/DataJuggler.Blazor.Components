@@ -1,2 +1,2 @@
 # DataJuggler.Blazor.Components
-This project will eventually contain many components, but now it is only a ProgressBar and I am working on a Sprite Component to do simple animations.
+This is eventually going to include many components, but for now I am starting with a Progress Bar in its early stages.

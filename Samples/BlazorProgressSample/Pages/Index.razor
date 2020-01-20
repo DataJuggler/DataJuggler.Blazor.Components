@@ -1,0 +1,53 @@
+﻿@page "/"
+@using BlazorStyled
+@using DataJuggler.Blazor.Components
+
+<Styled @bind-Classname="@TextSize">
+    font-family: Verdana;
+    font-size: @FontSizePixels;
+    margin-top: -64px;
+</Styled>
+<Styled @bind-Classname="@AnimationStyle">
+   background-image: url('../images/RaceTrack.png');
+   width: 1280px;
+   height: 300px;
+   overflow: hidden;
+   transform: scale(0.5);
+   transform-origin: left;   
+   position: relative;
+   top: -64px;
+</Styled>
+
+<button class="button" @onclick="ShowProgressSimulation">Start</button>
+<button class="button moveleft48" @onclick="StopProgressSimulation">Stop</button>
+
+<div class="height200 moveup16">
+    <div class="small movedown8">(Run Without Debugging)</div>
+    <ProgressBar Subscriber=this Increment="5" Interval="50"
+    Continuous="false" HideWhenFinished="true"></ProgressBar>
+</div>
+<div class="height120">
+    <div class="@TextSize">
+        <h4>Font Size Sample</h4>
+        BlazorStyled Is Awesome! Adjust CSS With C#<br />
+        <button class="buttonwide" @onclick="MakeTextBigger">Make Text Bigger</button>
+        <button class="buttonwide moveleft80" @onclick="MakeTextSmaller">Make Text Smaller</button>
+    </div>
+</div>
+
+<div class="height160">
+<h4>Animation Sample</h4>
+<button class="buttonwide" @onclick="StartRace">Start Race</button>
+<button class="buttonwide moveleft80" @onclick="HideRace">Hide Race</button>
+@if  (ShowTrack)
+{
+    <div class="@AnimationStyle">
+          
+    </div>
+}
+</div>
+
+
+
+
+
