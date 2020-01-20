@@ -294,6 +294,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'Max'.
             /// </summary>
+            [Parameter]
             public int Max
             {
                 get { return max; }
@@ -394,6 +395,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'Visible'.
             /// </summary>
+            [Parameter]
             public bool Visible
             {
                 get { return visible; }
