@@ -224,7 +224,7 @@ This is also useful for debugging as it keeps the message chain down to single t
 
     public string PercentFillStyle { get; set; }
     
-This property is used as this is the string that is bound to the BlazorStyled CSS property for the innerfill.
+This property is the string that is bound to the BlazorStyled CSS property for the innerfill.
 
 # ProgressBackground
 
@@ -232,6 +232,8 @@ This property is used as this is the string that is bound to the BlazorStyled CS
     
 This is the string property bound to the BlazorStyled styles for the ProgressBar div.
 In future versions I imagine themes or other styles, or even an option to display the innter graph without the background.
+
+<img src="https://github.com/DataJuggler/DataJuggler.Blazor.Components/blob/master/wwwroot/Images/RedProgressBase.png">
 
 # Started
 
