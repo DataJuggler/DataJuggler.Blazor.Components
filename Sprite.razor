@@ -1,1 +1,17 @@
-﻿
+﻿@using BlazorStyled
+
+<Styled @bind-Classname="@SpriteStyle">
+    background-image: url('@ImageUrl');
+    width: @WidthPixels;
+    height: @HeightPixels;
+    position: @Position;
+    top: @YPositionPixels;
+    left: @XPositionPixels;
+    transform: scale(@Scale);
+    transform-origin: left;
+    display: @Display;
+</Styled>
+
+<div class="@SpriteStyle">
+    
+</div>

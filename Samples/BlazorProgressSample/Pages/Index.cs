@@ -7,19 +7,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using DataJuggler.UltimateHelper.Core;
 using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.RandomShuffler.Core;
 
 #endregion
 
 namespace BlazorProgressSample.Pages
 {
 
-    #region class Index
+    #region class Index : IProgressSubscriber, ISpriteSubscriber
     /// <summary>
     /// This class is the code behind for the Index page.
     /// </summary>
-    public partial class Index : IProgressSubscriber
+    public partial class Index : IProgressSubscriber, ISpriteSubscriber
+
     {
         
         #region Private Variables
@@ -31,6 +34,21 @@ namespace BlazorProgressSample.Pages
         private bool showTrack;
         private string redCarStyle;
         private string whiteCarStyle;
+        private int redCarPosition;
+        private int whiteCarPosition;
+        private Sprite redCar;
+        private Sprite whiteCar;
+        private RandomShuffler shuffler;
+        private bool redWins;
+        private bool whiteWins;
+        private bool tie;
+        private bool raceOver;
+        private const int FinishLine = 1120;
+        private const int FlagPosition = 1000;
+        private const int RedCarY = 60;
+        private const int WhiteCarY = 220;
+        private const int RedFlagY = 8;
+        private const int WhiteFlagY = 168;
         #endregion
 
         #region Constructor
@@ -47,6 +65,47 @@ namespace BlazorProgressSample.Pages
 
         #region Methods
    
+            #region CheckForWinner()
+            /// <summary>
+            /// This method Check For Winner
+            /// </summary>
+            public bool CheckForWinner()
+            {
+                // initial value
+                bool finished = false;    
+
+                // if Red finished
+                if ((RedCarPosition >= FinishLine) || (WhiteCarPosition >= FinishLine))
+                {   
+                    // finished
+                    finished = true;
+
+                    // Set Raceover to show the Race Again button
+                    RaceOver = true;
+
+                    // if the RedCarPosition
+                    if (RedCarPosition > WhiteCarPosition)
+                    {
+                        // Red is is 
+                        RedWins = true;
+                    }
+                    else if (WhiteCarPosition > RedCarPosition)
+                    {
+                        // Red is is 
+                        WhiteWins = true;
+                    }
+                    else
+                    {
+                        // It is a tie
+                        Tie = true;
+                    }
+                }
+
+                // return value
+                return finished;
+            }
+            #endregion
+            
             #region HideRace()
             /// <summary>
             /// This method Hide Race
@@ -111,6 +170,24 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region RaceAgain()
+            /// <summary>
+            /// This method Race Again
+            /// </summary>
+            public void RaceAgain()
+            {
+                // Reset all the values
+                RedCarPosition = 0;
+                WhiteCarPosition = 0;
+                WhiteWins = false;
+                RedWins = false;
+                RaceOver = false;
+
+                // Update the UI
+                StateHasChanged();
+            }
+            #endregion
+            
             #region Refresh(string message)
             /// <summary>
             /// This method is called by the ProgressBar when as it refreshes.
@@ -118,6 +195,46 @@ namespace BlazorProgressSample.Pages
             public void Refresh(string message)
             {
                 // not needed for this app
+                
+            }
+            #endregion
+
+            #region Refresh()
+            /// <summary>
+            /// This method is called by a Sprite when as it refreshes.
+            /// </summary>
+            public void Refresh()
+            {
+                if (HasShuffler)
+                {
+                    // pull the next red value
+                    int nextRedValue = Shuffler.PullNextItem();
+
+                    // pull the next White value
+                    int nextWhiteValue = Shuffler.PullNextItem();
+
+                    // Set the RedCarPosition
+                    RedCarPosition += nextRedValue;
+
+                    // Set the WhiteCarPosition
+                    WhiteCarPosition += nextWhiteValue;
+
+                    // Check For A Winner
+                    bool finished = CheckForWinner();
+
+                    // if finished
+                    if (finished)
+                    {
+                        // Stop the Timer
+                        RedCar.Stop();
+                    }
+
+                    // Update the UI
+                    InvokeAsync(() =>
+                    {
+                        StateHasChanged();
+                    });
+                }
             }
             #endregion
 
@@ -129,6 +246,30 @@ namespace BlazorProgressSample.Pages
             {
                 // store the ProgressBar
                 this.ProgressBar = progressBar;
+            }
+            #endregion
+
+            #region Register(Sprite sprite)
+            /// <summary>
+            /// This method Registers the ProgressBar with this app.
+            /// </summary>
+            public void Register(Sprite sprite)
+            {
+                // If the sprite object exists
+                if (NullHelper.Exists(sprite))
+                {
+                    // if this is the RedCar
+                    if (sprite.Name == "RedCar")
+                    {
+                        // Set the RedCar
+                        RedCar = sprite;
+                    }
+                    else 
+                    {
+                        // Set the WhiteCar
+                        WhiteCar = sprite;
+                    }
+                }
             }
             #endregion
             
@@ -147,14 +288,32 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
 
+            #region ShowRace()
+            /// <summary>
+            /// This method Show Race
+            /// </summary>
+            public void ShowRace()
+            {
+                // Start the race
+                ShowTrack = true;
+            }
+            #endregion
+            
             #region StartRace()
             /// <summary>
             /// This method Start Race
             /// </summary>
             public void StartRace()
             {
-                // Start the race
-                ShowTrack = true;
+                // if both cars exist
+                if (NullHelper.Exists(RedCar, WhiteCar))
+                {
+                    // Create a new instance of a 'RandomShuffler' object.
+                    Shuffler = new RandomShuffler(2, 12, 100, 3);
+
+                    // Start the timer on the RedCar
+                    RedCar.Start();
+                }
             }
             #endregion
             
@@ -234,6 +393,23 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region HasShuffler
+            /// <summary>
+            /// This property returns true if this object has a 'Shuffler'.
+            /// </summary>
+            public bool HasShuffler
+            {
+                get
+                {
+                    // initial value
+                    bool hasShuffler = (this.Shuffler != null);
+                    
+                    // return value
+                    return hasShuffler;
+                }
+            }
+            #endregion
+            
             #region ProgressBar
             /// <summary>
             /// This property gets or sets the value for 'ProgressBar'.
@@ -242,6 +418,39 @@ namespace BlazorProgressSample.Pages
             {
                 get { return progressBar; }
                 set { progressBar = value; }
+            }
+            #endregion
+            
+            #region RaceOver
+            /// <summary>
+            /// This property gets or sets the value for 'RaceOver'.
+            /// </summary>
+            public bool RaceOver
+            {
+                get { return raceOver; }
+                set { raceOver = value; }
+            }
+            #endregion
+            
+            #region RedCar
+            /// <summary>
+            /// This property gets or sets the value for 'RedCar'.
+            /// </summary>
+            public Sprite RedCar
+            {
+                get { return redCar; }
+                set { redCar = value; }
+            }
+            #endregion
+            
+            #region RedCarPosition
+            /// <summary>
+            /// This property gets or sets the value for 'RedCarPosition'.
+            /// </summary>
+            public int RedCarPosition
+            {
+                get { return redCarPosition; }
+                set { redCarPosition = value; }
             }
             #endregion
             
@@ -256,6 +465,17 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region RedWins
+            /// <summary>
+            /// This property gets or sets the value for 'RedWins'.
+            /// </summary>
+            public bool RedWins
+            {
+                get { return redWins; }
+                set { redWins = value; }
+            }
+            #endregion
+            
             #region ShowTrack
             /// <summary>
             /// This property gets or sets the value for 'ShowTrack'.
@@ -264,6 +484,17 @@ namespace BlazorProgressSample.Pages
             {
                 get { return showTrack; }
                 set { showTrack = value; }
+            }
+            #endregion
+            
+            #region Shuffler
+            /// <summary>
+            /// This property gets or sets the value for 'Shuffler'.
+            /// </summary>
+            public RandomShuffler Shuffler
+            {
+                get { return shuffler; }
+                set { shuffler = value; }
             }
             #endregion
             
@@ -278,6 +509,39 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region Tie
+            /// <summary>
+            /// This property gets or sets the value for 'Tie'.
+            /// </summary>
+            public bool Tie
+            {
+                get { return tie; }
+                set { tie = value; }
+            }
+            #endregion
+            
+            #region WhiteCar
+            /// <summary>
+            /// This property gets or sets the value for 'WhiteCar'.
+            /// </summary>
+            public Sprite WhiteCar
+            {
+                get { return whiteCar; }
+                set { whiteCar = value; }
+            }
+            #endregion
+            
+            #region WhiteCarPosition
+            /// <summary>
+            /// This property gets or sets the value for 'WhiteCarPosition'.
+            /// </summary>
+            public int WhiteCarPosition
+            {
+                get { return whiteCarPosition; }
+                set { whiteCarPosition = value; }
+            }
+            #endregion
+            
             #region WhiteCarStyle
             /// <summary>
             /// This property gets or sets the value for 'WhiteCarStyle'.
@@ -286,6 +550,17 @@ namespace BlazorProgressSample.Pages
             {
                 get { return whiteCarStyle; }
                 set { whiteCarStyle = value; }
+            }
+            #endregion
+            
+            #region WhiteWins
+            /// <summary>
+            /// This property gets or sets the value for 'WhiteWins'.
+            /// </summary>
+            public bool WhiteWins
+            {
+                get { return whiteWins; }
+                set { whiteWins = value; }
             }
             #endregion
             

@@ -37,12 +37,35 @@
 
 <div class="height160">
 <h4>Animation Sample</h4>
-<button class="buttonwide" @onclick="StartRace">Start Race</button>
-<button class="buttonwide moveleft80" @onclick="HideRace">Hide Race</button>
+<button class="buttonwide" @onclick="ShowRace">Show Race</button>
+
 @if  (ShowTrack)
 {
+    <button class="buttonwide moveleft80" @onclick="StartRace">Start Race</button>
+    <button class="buttonwide moveleft160" @onclick="HideRace">Hide Race</button>
+    @if (RaceOver)
+    {
+        <button class="buttonwide moveleft240" @onclick="RaceAgain">Race Again</button>
+    }
     <div class="@AnimationStyle">
-          
+        <Sprite ImageUrl="../images/RedCar.png" Name="RedCar" Position="fixed" 
+        Height="30" Subscriber=this Width="96" ZIndex="10" XPosition="@RedCarPosition" YPosition="@RedCarY"
+        Scale="1.4" Interval="50"></Sprite>        
+        <Sprite ImageUrl="../images/WhiteCar.png" Name="WhiteCar" Position="fixed"
+        Height="30" Subscriber=this Width="96" ZIndex="10" XPosition="@WhiteCarPosition" YPosition="@WhiteCarY"
+        Scale="1.4"></Sprite>
+        @if  (RedWins)
+        {
+            <Sprite ImageUrl="../images/CheckeredFlag.png" Name="CheckeredFlag" Position="fixed"
+            Height="128" Width="128" Visible="true" ZIndex="20" XPosition=@FlagPosition YPosition="@RedFlagY"
+            Scale="1"></Sprite>
+        }
+        else if (WhiteWins)
+        {
+            <Sprite ImageUrl="../images/CheckeredFlag.png" Name="CheckeredFlag" Position="fixed"
+            Height="128" Width="128" Visible="true" ZIndex="20" XPosition=@FlagPosition YPosition="@WhiteFlagY"
+            Scale="1"></Sprite>
+        }
     </div>
 }
 </div>

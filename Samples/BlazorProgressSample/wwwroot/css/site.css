@@ -1,5 +1,12 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+.redcar
+{
+    background-image: url('../Images/RedCar.png');
+    width: 96px;
+    height: 30px;
+}
+
 .fontsample 
 {
     font-family: Verdana;
@@ -19,6 +26,7 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 a, .btn-link {

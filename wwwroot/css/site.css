@@ -71,6 +71,16 @@
     position: relative;
     left: -80px;
 }
+.moveleft160
+{
+    position: relative;
+    left: -160px;
+}
+.moveleft240
+{
+    position: relative;
+    left: -240px;
+}
 .progresstest
 {
     background-image: url('../Images/RedProgressBase.png');
