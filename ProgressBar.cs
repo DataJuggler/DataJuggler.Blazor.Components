@@ -35,6 +35,7 @@ namespace DataJuggler.Blazor.Components
         private bool notificaitonInProgress;
         private bool continuous;
         private bool hideWhenFinished;
+        private double scale;
         private IProgressSubscriber subscriber;
         #endregion
 
@@ -119,6 +120,7 @@ namespace DataJuggler.Blazor.Components
                 Interval = 100;    
                 Increment = 1;
                 Max = 552;
+                Scale = .5;
                 HideWhenFinished = true;
             }
             #endregion
@@ -343,6 +345,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return progressBackground; }
                 set { progressBackground = value; }
+            }
+            #endregion
+            
+            #region Scale
+            /// <summary>
+            /// This property gets or sets the value for 'Scale'.
+            /// </summary>
+            [Parameter]
+            public double Scale
+            {
+                get { return scale; }
+                set { scale = value; }
             }
             #endregion
             

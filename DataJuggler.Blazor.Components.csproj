@@ -18,7 +18,13 @@ This project uses a really awesome project called BlazorStyled by Chanen Braunst
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled</PackageTags>
-    <PackageReleaseNotes>This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
+    <PackageReleaseNotes>1.0.2 - I added Scale property to the ProgressBar to make it easy to adjust the size.
+
+1.0.1 - I added a Sprite component.
+
+1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
