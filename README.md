@@ -289,7 +289,21 @@ I created a new Sprite component that allows you to set properties for images.
 
 # Sprite Methods
 
-See the Progress Bar Methods above as they are exactly the same except the StartAtValue does not exist.
+    # Init
+    
+    The Init method sets the Default values for the control
+    
+    # Start
+    
+    The Start method starts the Timer and sets the Elapsed event.
+    
+    # Stop
+    
+    Stops the timer and future messages.
+    
+I have another project planned for Animation called DataJuggler.Blazor.Animation. In that class I have speced out an AnimationManager in my mind, but for now I only create a Timer on one Sprite, and I use the Refresh messages to move Sprites around.
+
+Eventually I would like this to be more automated where you give it a Start X,Y and an End X,Y position and a path could be firued out, but baby steps.
 
 # Sprite Properties
 
