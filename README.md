@@ -12,9 +12,9 @@ Install Package DataJuggler.Blazor.Components
 @using DataJuggler.Blazor.Components.Interfaces;
 
 # Partial Class (code behind)
-using Microsoft.AspNetCore.Components;
-using DataJuggler.Blazor.Components;
-using DataJuggler.Blazor.Components.Interfaces;
+using Microsoft.AspNetCore.Components;<br>
+using DataJuggler.Blazor.Components;<br>
+using DataJuggler.Blazor.Components.Interfaces;<br>
 
 # Component in a razor app
 <ProgressBar Subscriber=this Increment="5" Interval="50"
@@ -236,6 +236,12 @@ This is also useful for debugging as it keeps the message chain down to single t
     
 This property is the string that is bound to the BlazorStyled CSS property for the innerfill.
 
+# Position
+
+    public string Position { get; set; }
+    
+This property is set on the BlazorStyled CSS Class for position. Fixed, Absolute and Relative are the 3 I know, there may be more.
+
 # ProgressBackground
 
     public string ProgressBackground { get; set; }
@@ -244,6 +250,10 @@ This is the string property bound to the BlazorStyled styles for the ProgressBar
 In future versions I imagine themes or other styles, or even an option to display the innter graph without the background.
 
 <img src="https://github.com/DataJuggler/DataJuggler.Blazor.Components/blob/master/wwwroot/Images/RedProgressBase.png">
+
+# Scale
+
+I added a double value for Scale that allows to control how big the ProgressBar displays. The default is .5.
 
 # Started
 
@@ -273,7 +283,90 @@ The System.Timer Timer that is started when the Start method is called.
     
 This property sets the @Display value to either inline-block if true (visible), or none if false (invisible).
 
+# Sprite Component
 
+I created a new Sprite component that allows you to set properties for images.
+
+# Sprite Methods
+
+    # Init
+    
+    The Init method sets the Default values for the control
+    
+    # Start
+    
+    The Start method starts the Timer and sets the Elapsed event.
+    
+    # Stop
+    
+    Stops the timer and future messages.
+    
+I have another project planned for Animation called DataJuggler.Blazor.Animation. In that class I have speced out an AnimationManager in my mind, but for now I only create a Timer on one Sprite, and I use the Refresh messages to move Sprites around.
+
+Eventually I would like this to be more automated where you give it a Start X,Y and an End X,Y position and a path could be firued out, but baby steps.
+
+# Sprite Properties
+
+Many of the properties are identical to the ProgressBar, only the differences are listed here.
+
+# Height
+
+    [Parameter]
+    public int Height { get; set; }
+
+The height in pixels.
+
+# HeightPixels
+
+    public string HeightPixels { get; set; }
+    
+This value is set by the setter for Height. The string px is appended to the end.
+
+Example: Height: 80
+HeightPixels: 80px.
+
+# ImageUrl
+
+    [Parameter]
+    public string ImageUrl
+    
+ This value is set as the background image for the Div.
+
+# Name
+ 
+    [Parameter]
+    public string Name
+    
+The name helps distinquish Sprites from other Sprites.
+
+# SpriteStyle
+
+    public string SpriteStyle { get; set; }
+    
+This property is used as the CSS class for BlazorStyle.
+
+# Width
+
+    [Parameter]
+    public int Width { get; set; }
+    
+This property sets the WidthPixels property, which in turns sets the Width of the component.
+
+# WidthPixels
+
+    public string WidthPixels { get; set; }
+    
+This value is set when you set the Width property.
+
+Example: <br>
+Width: 900
+WidthPixels: 900px;
+
+Most of the other properties should be the same as the ProgressBar.
+
+
+    
+    
 
 
 
