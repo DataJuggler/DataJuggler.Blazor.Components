@@ -12,9 +12,9 @@ Install Package DataJuggler.Blazor.Components
 @using DataJuggler.Blazor.Components.Interfaces;
 
 # Partial Class (code behind)
-using Microsoft.AspNetCore.Components;
-using DataJuggler.Blazor.Components;
-using DataJuggler.Blazor.Components.Interfaces;
+using Microsoft.AspNetCore.Components;<br>
+using DataJuggler.Blazor.Components;<br>
+using DataJuggler.Blazor.Components.Interfaces;<br>
 
 # Component in a razor app
 <ProgressBar Subscriber=this Increment="5" Interval="50"
