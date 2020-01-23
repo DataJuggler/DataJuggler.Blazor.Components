@@ -1,5 +1,9 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+.colorblack 
+{
+    color: black;
+}
 .redcar
 {
     background-image: url('../Images/RedCar.png');
