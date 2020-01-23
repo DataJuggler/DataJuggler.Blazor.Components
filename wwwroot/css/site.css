@@ -66,6 +66,21 @@
     position: relative;
     left: -48px;
 }
+.moveleft56
+{
+    position: relative;
+    left: -56px;
+}
+.moveleft60
+{
+    position: relative;
+    left: -60px;
+}
+.moveleft76
+{
+    position: relative;
+    left: -76px;
+}
 .moveleft80
 {
     position: relative;
@@ -90,6 +105,12 @@
     transform-origin: left;   
     border: 2px solid black;
     display: inline-block;
+}
+.width20
+{
+    width: 20px;
+    min-width: 20px;
+    max-width: 20px;
 }
 
 html, body {

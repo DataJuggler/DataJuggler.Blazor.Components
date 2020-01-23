@@ -20,11 +20,14 @@
 
 <button class="button" @onclick="ShowProgressSimulation">Start</button>
 <button class="button moveleft48" @onclick="StopProgressSimulation">Stop</button>
-
+<span class="fontsample moveleft80">Continuous</span>
+<input class="moveleft76 movedown2" type="checkbox" @bind-value="@Continuous" />
+<span class="fontsample moveleft60">Hide When Finished</span>
+<input class="moveleft56 movedown2" type="checkbox" @bind-value="@HideWhenFinished" />
 <div class="height200 moveup16">
     <div class="small movedown8">(Run Without Debugging)</div>
-    <ProgressBar Subscriber=this Increment="5" Interval="50" Scale=".5"
-    Continuous="false" HideWhenFinished="true"></ProgressBar>
+    <ProgressBar Subscriber=this Increment="3" Interval="50" Scale=".5"
+    Continuous="@Continuous" HideWhenFinished="@HideWhenFinished"></ProgressBar>
 </div>
 <div class="height120">
     <div class="@TextSize">

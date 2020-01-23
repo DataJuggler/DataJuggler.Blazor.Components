@@ -13,10 +13,20 @@
     font-size: 12px;
     color: midnightblue;
 }
+.movedown2
+{
+    position: relative;
+    top: 2px;
+}
 .movedown8
 {
     position: relative;
     top: 8px;
+}
+.moveright4
+{
+    position: relative;
+    left: 4px;
 }
 .moveup16
 {

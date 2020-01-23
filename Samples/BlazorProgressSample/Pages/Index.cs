@@ -43,6 +43,8 @@ namespace BlazorProgressSample.Pages
         private bool whiteWins;
         private bool tie;
         private bool raceOver;
+        private bool continuous;
+        private bool hideWhenFinished;
         private const int FinishLine = 1120;
         private const int FlagPosition = 1000;
         private const int RedCarY = 60;
@@ -347,6 +349,17 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region Continuous
+            /// <summary>
+            /// This property gets or sets the value for 'Continuous'.
+            /// </summary>
+            public bool Continuous
+            {
+                get { return continuous; }
+                set { continuous = value; }
+            }
+            #endregion
+            
             #region FontSize
             /// <summary>
             /// This property gets or sets the value for 'FontSize'.
@@ -407,6 +420,17 @@ namespace BlazorProgressSample.Pages
                     // return value
                     return hasShuffler;
                 }
+            }
+            #endregion
+            
+            #region HideWhenFinished
+            /// <summary>
+            /// This property gets or sets the value for 'HideWhenFinished'.
+            /// </summary>
+            public bool HideWhenFinished
+            {
+                get { return hideWhenFinished; }
+                set { hideWhenFinished = value; }
             }
             #endregion
             
