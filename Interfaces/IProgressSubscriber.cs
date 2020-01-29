@@ -2,28 +2,28 @@
 namespace DataJuggler.Blazor.Components.Interfaces
 {
 
-    #region interface ISpriteSubscriber
+    #region interface IProgressSubscriber
     /// <summary>
-    /// This interface is used by the AnimationManager to notifiy callers that a refresh occurred.
+    /// This interface is used by the ProgressManager to notifiy callers that a refresh is needed.
     /// </summary>
-    public interface ISpriteSubscriber
+    public interface IProgressSubscriber
     {
 
         #region Methods
             
-            #region Refresh()
+            #region Refresh(string message)
             /// <summary>
             /// This method will call StateHasChanged to refresh the UI
             /// </summary>
-            void Refresh();
+            void Refresh(string message);
             #endregion
 
-            #region Register(Sprite sprite)
+            #region Register(ProgressBar progressBar)
             /// <summary>
-            /// This method is called by the Sprite to a subscriber so it can register with the subscriber, and 
+            /// This method is called by the ProgressBar to a subscriber so it can register with the subscriber, and 
             /// receiver events after that.
             /// </summary>
-            void Register(Sprite sprite);
+            void Register(ProgressBar progressBar);
         #endregion
 
         #endregion
