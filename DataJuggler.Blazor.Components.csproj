@@ -18,13 +18,28 @@ This project uses a really awesome project called BlazorStyled by Chanen Braunst
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled</PackageTags>
-    <PackageReleaseNotes>1.0.2 - I added Scale property to the ProgressBar to make it easy to adjust the size.
+    <PackageReleaseNotes>1.0.7 -After removing BlazorComponentBase class, OnComponentRegistered was no longer needed, so I removed it.
+
+1.0.6 - BlazorComponentBase class didn't seem to work as I expected, so I killed it.
+
+1.0.5 - I created a new BlazorComponentBase class and added a new method to IBlazorComponentParent called OnComponentRegistered.
+
+1.0.4 - I created two new classes NamedParameter and Message. 
+A message contains a Text property a collection (Generic List) of NamedParameters.
+
+This is a breaking change of the ReceiveData methods for the IBlazorComponent and IBlazorComponent parent .
+Now is the time to break anything.
+
+
+1.0.3 - I added two generic interfaces for IBlazorComponent and IBlazorComponent interface.
+
+1.0.2 - I added Scale property to the ProgressBar to make it easy to adjust the size.
 
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <Version>1.0.7</Version>
+    <AssemblyVersion>1.0.7.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
