@@ -6,12 +6,9 @@
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="1.1.0" />
+    <PackageReference Include="DataJuggler.Blazor.Components" Version="1.0.7" />
     <PackageReference Include="DataJuggler.RandomShuffler.Core" Version="1.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\DataJuggler.Blazor.Components.csproj" />
   </ItemGroup>
 
 </Project>
