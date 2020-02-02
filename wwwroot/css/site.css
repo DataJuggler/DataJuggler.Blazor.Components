@@ -18,7 +18,7 @@
     transition: all 0.2s;
     width: 120px;
     height: 48px;
-    background-image: url('../images/buttons/blackbutton.jpg');
+    background-image: url('../images/buttons/blackbutton.jpg');    
     transform: scale(0.5);
     transform-origin: left;    
 }

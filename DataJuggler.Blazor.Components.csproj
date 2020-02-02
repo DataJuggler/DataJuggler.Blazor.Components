@@ -7,9 +7,7 @@
     <Authors>DataJuggler</Authors>
     <Description>This will eventually contain more components, but for now it is just a Progress Bar as well and I am starting working on a Sprite component to perform simple animations.
 
-This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.
-
-</Description>
+This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.</Description>
     <Copyright>2020 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
@@ -18,7 +16,9 @@ This project uses a really awesome project called BlazorStyled by Chanen Braunst
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled</PackageTags>
-    <PackageReleaseNotes>1.0.7 -After removing BlazorComponentBase class, OnComponentRegistered was no longer needed, so I removed it.
+    <PackageReleaseNotes>1.1.0 - I didn't like my first progressbar as once I started testing in a real world environment it looked very choppy and was a little too futuristic to be used in most apps. This new look is pretty clean and their is a Theme option now for Squares or Circles.
+
+1.0.7 -After removing BlazorComponentBase class, OnComponentRegistered was no longer needed, so I removed it.
 
 1.0.6 - BlazorComponentBase class didn't seem to work as I expected, so I killed it.
 
@@ -38,7 +38,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.0.7</Version>
+    <Version>1.1.0</Version>
     <AssemblyVersion>1.0.7.0</AssemblyVersion>
   </PropertyGroup>
 

@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using BlazorStyled
 @using DataJuggler.Blazor.Components
+@using DataJuggler.Blazor.Components.Interfaces
 
 <Styled @bind-Classname="@TextSize">
     font-family: Verdana;
@@ -19,16 +20,25 @@
    top: -64px;
 </Styled>
 
-<button class="button" @onclick="ShowProgressSimulation">Start</button>
-<button class="button moveleft48" @onclick="StopProgressSimulation">Stop</button>
-<span class="fontsample moveleft80">Continuous</span>
-<input class="moveleft76 movedown2" type="checkbox" @bind-value="@Continuous" />
-<span class="fontsample moveleft60">Hide When Finished</span>
-<input class="moveleft56 movedown2" type="checkbox" @bind-value="@HideWhenFinished" />
-<div class="height200 moveup16">
-    <div class="small movedown8">(Run Without Debugging)</div>
-    <ProgressBar Subscriber=this Increment="5" Interval="40" Scale=".4"
-    Continuous="@Continuous" HideWhenFinished="@HideWhenFinished"></ProgressBar>
+<div>
+    <button class="button" @onclick="ShowProgressSimulation">Start</button>
+    <button class="button moveleft48" @onclick="StopProgressSimulation">Stop</button>
+    <span class="fontsample moveleft80">Show Background</span>
+    <input class="moveleft80 movedown2" type="checkbox" @bind-value="@ShowBackground" />
+    <span class="fontsample moveleft72">Background Scale</span>
+    <input type="text" @bind="@BackgroundScale" class="maxwidth40 moveleft72" />
+    <span class="fontsample moveleft60">Bubble Scale</span>
+    <input type="text" @bind="@BubbleScale" class="maxwidth40 moveleft60" />
+</div>
+<div>
+    <span class="small">(Run Without Debugging)</span>
+</div>
+<div class="height200 movedown16">
+    <ProgressBar ShowBackground="@ShowBackground" Subscriber=this Increment="40" Interval="500"
+        BackgroundScale="@BackgroundScale" BubbleScale="@BubbleScale" BackgroundWidth="272" 
+        BackgroundHeight="60" BubbleOffSet="16"
+        Theme="DataJuggler.Blazor.Components.Enumerations.ThemeEnum.Spheres">
+    </ProgressBar>
 </div>
 <div class="height120">
     <div class="@TextSize">

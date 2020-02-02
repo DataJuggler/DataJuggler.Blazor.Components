@@ -1,31 +1,40 @@
 ﻿@using BlazorStyled
 
 <Styled @bind-Classname="@ProgressBackground">
-    background-image: url('_content/DataJuggler.Blazor.Components/Images/RedProgressBase.png');
-    width: 644px;
-    height: 132px;
-    transform: scale(@Scale);
+    background-image: url('@BackgroundImageUrl');
+    width: @BackgroundWidthPixels;
+    height: @BackgroundHeightPixels;
+    transform: scale(@BackgroundScale);
     transform-origin: left;   
     border: 2px solid black;
     display: @Display;
     z-index: 1;
+    
 </Styled>
-<Styled @bind-Classname="@PercentFillStyle">
-    background-image: url('_content/DataJuggler.Blazor.Components/Images/RedCell.png');
-    width: @FillWidthPixels;
-    max-width: @FillWidthPixels;
-    height: 30px;    
-    background-repeat: repeat-x;
+<Styled @bind-Classname="@BubbleStyle">
+    background-image: url('@BubbleImageUrl');
+    width: 48px;
+    height: 48px;    
+    background-repeat: no-repeat;
+    transform: scale(@BubbleScale);
+    transform-origin: left;   
     z-index: 10;
-    position: relative;
-    left: 42px;
-    top: 45px;
+    position:@BubblePosition;
+    left: @BubbleLeftPixels;
+    top: @BubbleTopPixels;
 </Styled>
 
 @if  (Visible)
 {
-    <div class="@ProgressBackground">
-        <div class="@PercentFillStyle"></div>
-    </div>
+    @if (ShowBackground)
+    {
+        <div class="@ProgressBackground">
+            <div class="@BubbleStyle"></div>
+        </div>
+    }
+    else
+    {
+        <div class="@BubbleStyle"></div>
+    }
 }
 

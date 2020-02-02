@@ -43,14 +43,15 @@ namespace BlazorProgressSample.Pages
         private bool whiteWins;
         private bool tie;
         private bool raceOver;
-        private bool continuous;
-        private bool hideWhenFinished;
+        private bool showBackground;
         private const int FinishLine = 1120;
         private const int FlagPosition = 1000;
         private const int RedCarY = 60;
         private const int WhiteCarY = 220;
         private const int RedFlagY = 8;
         private const int WhiteFlagY = 168;
+        private double bubbleScale;
+        private double backgroundScale;
         #endregion
 
         #region Constructor
@@ -127,6 +128,8 @@ namespace BlazorProgressSample.Pages
             {
                 // Default values
                 this.FontSize = 12;
+                BackgroundScale = 1;
+                BubbleScale = .6;
             }
             #endregion
             
@@ -247,7 +250,7 @@ namespace BlazorProgressSample.Pages
             public void Register(ProgressBar progressBar)
             {
                 // store the ProgressBar
-                this.ProgressBar = progressBar;
+                this.ProgressBar = progressBar;                
             }
             #endregion
 
@@ -349,14 +352,25 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
-            #region Continuous
+            #region BackgroundScale
             /// <summary>
-            /// This property gets or sets the value for 'Continuous'.
+            /// This property gets or sets the value for 'BackgroundScale'.
             /// </summary>
-            public bool Continuous
+            public double BackgroundScale
             {
-                get { return continuous; }
-                set { continuous = value; }
+                get { return backgroundScale; }
+                set { backgroundScale = value; }
+            }
+            #endregion
+            
+            #region BubbleScale
+            /// <summary>
+            /// This property gets or sets the value for 'BubbleScale'.
+            /// </summary>
+            public double BubbleScale
+            {
+                get { return bubbleScale; }
+                set { bubbleScale = value; }
             }
             #endregion
             
@@ -423,17 +437,6 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
-            #region HideWhenFinished
-            /// <summary>
-            /// This property gets or sets the value for 'HideWhenFinished'.
-            /// </summary>
-            public bool HideWhenFinished
-            {
-                get { return hideWhenFinished; }
-                set { hideWhenFinished = value; }
-            }
-            #endregion
-            
             #region ProgressBar
             /// <summary>
             /// This property gets or sets the value for 'ProgressBar'.
@@ -497,6 +500,17 @@ namespace BlazorProgressSample.Pages
             {
                 get { return redWins; }
                 set { redWins = value; }
+            }
+            #endregion
+            
+            #region ShowBackground
+            /// <summary>
+            /// This property gets or sets the value for 'ShowBackground'.
+            /// </summary>
+            public bool ShowBackground
+            {
+                get { return showBackground; }
+                set { showBackground = value; }
             }
             #endregion
             

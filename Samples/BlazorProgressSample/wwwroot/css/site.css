@@ -17,6 +17,11 @@
     font-size: 12px;
     color: midnightblue;
 }
+.maxwidth40
+{
+    width: 40px;
+    max-width: 40px;
+}
 .movedown2
 {
     position: relative;
@@ -26,6 +31,21 @@
 {
     position: relative;
     top: 8px;
+}
+.movedown16
+{
+    position: relative;
+    top: 16px;
+}
+.moveleft60
+{
+    position: relative;
+    left: -60px;
+}
+.moveleft72
+{
+    position: relative;
+    left: -72px;
 }
 .moveright4
 {
