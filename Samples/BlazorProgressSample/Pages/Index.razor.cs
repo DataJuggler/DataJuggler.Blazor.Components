@@ -130,6 +130,7 @@ namespace BlazorProgressSample.Pages
                 this.FontSize = 12;
                 BackgroundScale = 1;
                 BubbleScale = .6;
+                ShowBackground = true;
             }
             #endregion
             
