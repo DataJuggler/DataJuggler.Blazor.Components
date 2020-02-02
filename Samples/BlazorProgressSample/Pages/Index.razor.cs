@@ -251,7 +251,7 @@ namespace BlazorProgressSample.Pages
             public void Register(ProgressBar progressBar)
             {
                 // store the ProgressBar
-                this.ProgressBar = progressBar;                
+                this.ProgressBar = progressBar;  
             }
             #endregion
 

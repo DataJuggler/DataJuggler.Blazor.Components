@@ -16,7 +16,9 @@ This project uses a really awesome project called BlazorStyled by Chanen Braunst
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled</PackageTags>
-    <PackageReleaseNotes>1.1.0 - I didn't like my first progressbar as once I started testing in a real world environment it looked very choppy and was a little too futuristic to be used in most apps. This new look is pretty clean and their is a Theme option now for Squares or Circles.
+    <PackageReleaseNotes>1.1.1 - The new ProgressBar now has a Theme for Circles or Squares. Also, I updated the Nuget packages to multi-target so .Net Standard and .Net Core can use them, without having to use the .Net Framework classes.
+
+1.1.0 - I didn't like my first progressbar as once I started testing in a real world environment it looked very choppy and was a little too futuristic to be used in most apps. This new look is pretty clean and their is a Theme option now for Squares or Circles.
 
 1.0.7 -After removing BlazorComponentBase class, OnComponentRegistered was no longer needed, so I removed it.
 
@@ -38,8 +40,8 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.1.0</Version>
-    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <Version>1.1.1</Version>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -59,7 +61,8 @@ Now is the time to break anything.
 
 
   <ItemGroup>
-    <PackageReference Include="BlazorStyled" Version="1.1.0" />
+    <PackageReference Include="BlazorStyled" Version="1.2.0" />
+    <PackageReference Include="DataJuggler.RandomShuffler.Core" Version="1.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.1" />
   </ItemGroup>

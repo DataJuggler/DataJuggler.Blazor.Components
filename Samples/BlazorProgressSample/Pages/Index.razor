@@ -24,7 +24,7 @@
     <button class="button" @onclick="ShowProgressSimulation">Start</button>
     <button class="button moveleft48" @onclick="StopProgressSimulation">Stop</button>
     <span class="fontsample moveleft80">Show Background</span>
-    <input class="moveleft80 movedown2" type="checkbox" @bind-value="@ShowBackground" />
+    <input class="moveleft80 movedown2" type="checkbox" checked="checked" @bind-value="@ShowBackground" />
     <span class="fontsample moveleft72">Background Scale</span>
     <input type="text" @bind="@BackgroundScale" class="maxwidth40 moveleft72" />
     <span class="fontsample moveleft60">Bubble Scale</span>
@@ -34,7 +34,7 @@
     <span class="small">(Run Without Debugging)</span>
 </div>
 <div class="height200 movedown16">
-    <ProgressBar ShowBackground="@ShowBackground" Subscriber=this Increment="40" Interval="500"
+    <ProgressBar ShowBackground="@ShowBackground" Subscriber=this Increment="40" Interval="1500"
         BackgroundScale="@BackgroundScale" BubbleScale="@BubbleScale" BackgroundWidth="272" 
         BackgroundHeight="60" BubbleOffSet="16"
         Theme="DataJuggler.Blazor.Components.Enumerations.ThemeEnum.Spheres">

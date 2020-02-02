@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Components;
 using System.Timers;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Enumerations;
+using DataJuggler.RandomShuffler.Core;
 
 #endregion
 
@@ -55,6 +56,7 @@ namespace DataJuggler.Blazor.Components
         private double bubbleScale;
         private int bubbleOffSet;
         private bool inProgress;
+        private DataJuggler.RandomShuffler.Core.RandomShuffler shuffler;
         private ThemeEnum theme;
         #endregion
 
@@ -91,8 +93,15 @@ namespace DataJuggler.Blazor.Components
                             // Increase the value
                             this.CurrentValue += this.Increment;
 
+                            // if the end has been reached
+                            if ((CurrentValue) >= Max)
+                            {  
+                                // Start over
+                                CurrentValue = 0;
+                            }
+
                             // Get the image number (1 - 6)
-                            int imageNumber = CurrentValue / Increment;
+                            int imageNumber = GetImageNumber();
 
                             // verify the image number is in range 
                             if ((imageNumber >= 1) && (imageNumber <= 6))
@@ -110,9 +119,18 @@ namespace DataJuggler.Blazor.Components
                                 }
                             }
                             else
-                            {
-                                // show the first image
-                                BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image1.png";
+                            {  
+                                // if Spheres
+                                if (Theme == ThemeEnum.Spheres)
+                                {
+                                    // show the first image
+                                    BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Sphere1.png";
+                                }
+                                else
+                                {
+                                    // show the first image
+                                    BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image1.png";
+                                }
                             }
 
                             // if there is currently a subscriber
@@ -123,13 +141,6 @@ namespace DataJuggler.Blazor.Components
 
                                 // send a message to the subscriber
                                 subscriber.Refresh(message);
-                            }
-
-                            // if the end has been reached
-                            if (CurrentValue >= Max)
-                            {  
-                                // Start over
-                                CurrentValue = 0;
                             }
 
                             //// Notify the UI thread to update
@@ -157,6 +168,34 @@ namespace DataJuggler.Blazor.Components
 
         #region Methods
 
+            #region GetImageNumber()
+            /// <summary>
+            /// This method returns the Image Number
+            /// </summary>
+            public int GetImageNumber()
+            {
+                // initial value
+                int imageNumber = 1;
+
+                // if the value for HasShuffler is true
+                if (HasShuffler)
+                {
+                    // if there are not any more items
+                    if (Shuffler.RandomIntStorage.Count == 0)
+                    {
+                        // Recreate the Shuffler
+                        Shuffler = new DataJuggler.RandomShuffler.Core.RandomShuffler(1, 6, 1, 10);
+                    }
+
+                    // pull the next shuffler
+                    imageNumber = Shuffler.PullNextItem();
+                }
+
+                // return value
+                return imageNumber;
+            }
+            #endregion
+            
             #region Init()
             /// <summary>
             /// This method performs initializations for this object.
@@ -167,16 +206,17 @@ namespace DataJuggler.Blazor.Components
                 BackgroundImageUrl = "_content/DataJuggler.Blazor.Components/Images/DarkBackground.png";
                 BackgroundHeight = 64;
                 BackgroundWidth = 320;
-                BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image1.png";
+                BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image6.png";
                 BubblePosition = "relative";
                 BackgroundPosition = "relative";
-                CurrentValue = 0;
+                CurrentValue =  (Increment - BubbleOffSet) * 6;
                 BubbleTop = 4;
                 Interval = 500;    
                 Increment = 16;
                 BubbleOffSet = 8;
                 BackgroundScale = 1;
                 BubbleScale = .6;
+                Shuffler = new DataJuggler.RandomShuffler.Core.RandomShuffler(1, 6, 1, 10);
             }
             #endregion
 
@@ -519,6 +559,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasShuffler
+            /// <summary>
+            /// This property returns true if this object has a 'Shuffler'.
+            /// </summary>
+            public bool HasShuffler
+            {
+                get
+                {
+                    // initial value
+                    bool hasShuffler = (this.Shuffler != null);
+                    
+                    // return value
+                    return hasShuffler;
+                }
+            }
+            #endregion
+            
             #region HasSubscriber
             /// <summary>
             /// This property returns true if this object has a 'Subscriber'.
@@ -639,6 +696,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return showBackground; }
                 set { showBackground = value; }
+            }
+            #endregion
+            
+            #region Shuffler
+            /// <summary>
+            /// This property gets or sets the value for 'Shuffler'.
+            /// </summary>
+            public DataJuggler.RandomShuffler.Core.RandomShuffler Shuffler
+            {
+                get { return shuffler; }
+                set { shuffler = value; }
             }
             #endregion
             
