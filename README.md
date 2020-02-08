@@ -125,21 +125,11 @@ Call this method to Start the timer. This is used where the graph increments on 
 
 public void Start(int startAtValue = 0)
 
-# StartAtValue
-This optional parameter defaults to zero, but can be set manually to resume a long process perhaps.
-
 # Stop
 
 This method stops the timer and all future events (already in progress events may finish before stopping)
 
 # ProgressBar Properties
-
-# Continuous
-
-    [Parameter]
-    public bool Continuous { get; set; }
-    
-If true, the progressbar will reset back to zero if the Max value is encountered.
 
 # CurrentValue
 
@@ -185,22 +175,14 @@ Set this property by setting the FilWidth integer value else you are in uncharte
 
 This read only property returns true if the ProgressBar has a Subscriber.
 
-# HideWhenFinished
-
-    [Parameter]
-    public bool HideWhenFinished { get; set; }
-    
-If true, the ProgressBar will close when this value reaches the Max
-
 # Increment
 
     [Parameter]
     public bool Increment { get; set; }
     
-This value sets how many pixels will be added to FillWidth value on every timer event.
-Setting this value to higher makes this progress bar fill faster.
+This value sets how many pixels left the next bubble will be.
 
-The default value is 1 if not set.
+This value is set by the Increment times the number of times Refresh was called.
 
 # Interval
 
@@ -223,18 +205,6 @@ The Default Value is 552.
     
 This property is used internally by the ProgressBar to make sure only one thread of notifications is sent to the Client at a time.
 This is also useful for debugging as it keeps the message chain down to single threads.
-
-# PercentFill
-
-    public int PercentFill { get; set; }
-    
-# This property has not been implemented yet. It may be used in a future version.
-
-# PercentFillStyle
-
-    public string PercentFillStyle { get; set; }
-    
-This property is the string that is bound to the BlazorStyled CSS property for the innerfill.
 
 # Position
 
