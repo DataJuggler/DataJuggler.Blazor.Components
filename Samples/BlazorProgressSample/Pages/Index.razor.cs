@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Components;
 using DataJuggler.UltimateHelper.Core;
 using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.RandomShuffler.Core;
 
 #endregion
@@ -51,6 +52,8 @@ namespace BlazorProgressSample.Pages
         private const int RedFlagY = 8;
         private const int WhiteFlagY = 168;
         private double bubbleScale;
+        private bool useSquares;
+        private ThemeEnum progressTheme;
         private double backgroundScale;
         #endregion
 
@@ -131,6 +134,7 @@ namespace BlazorProgressSample.Pages
                 BackgroundScale = 1;
                 BubbleScale = .6;
                 ShowBackground = true;
+                ProgressTheme = ThemeEnum.Spheres;
             }
             #endregion
             
@@ -449,6 +453,17 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region ProgressTheme
+            /// <summary>
+            /// This property gets or sets the value for 'ProgressTheme'.
+            /// </summary>
+            public ThemeEnum ProgressTheme
+            {
+                get { return progressTheme; }
+                set { progressTheme = value; }
+            }
+            #endregion
+            
             #region RaceOver
             /// <summary>
             /// This property gets or sets the value for 'RaceOver'.
@@ -556,6 +571,32 @@ namespace BlazorProgressSample.Pages
             {
                 get { return tie; }
                 set { tie = value; }
+            }
+            #endregion
+            
+            #region UseSquares
+            /// <summary>
+            /// This property gets or sets the value for 'UseSquares'.
+            /// </summary>
+            public bool UseSquares
+            {
+                get { return useSquares; }
+                set 
+                { 
+                    useSquares = value;
+
+                    // if the value for useSquares is true
+                    if (useSquares)
+                    {
+                        // Use Squares
+                        ProgressTheme = ThemeEnum.Squares;
+                    }
+                    else
+                    {
+                        // Use Spheres
+                        ProgressTheme = ThemeEnum.Spheres;
+                    }
+                }
             }
             #endregion
             

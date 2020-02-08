@@ -28,6 +28,7 @@ namespace DataJuggler.Blazor.Components
         private string backgroundHeightPixels;
         private string backgroundWidthPixels;
         private string backgroundImageUrl;
+        private string backgroundColor;
         private int currentValue;
         private Timer timer;
         private int increment;
@@ -260,6 +261,18 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
 
+            #region BackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'BackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public string BackgroundColor
+            {
+                get { return backgroundColor; }
+                set { backgroundColor = value; }
+            }
+            #endregion
+            
             #region BackgroundHeight
             /// <summary>
             /// This property gets or sets the value for 'BackgroundHeight'.

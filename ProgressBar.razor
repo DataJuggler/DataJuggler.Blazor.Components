@@ -2,14 +2,14 @@
 
 <Styled @bind-Classname="@ProgressBackground">
     background-image: url('@BackgroundImageUrl');
+    background-color: @BackgroundColor;
     width: @BackgroundWidthPixels;
     height: @BackgroundHeightPixels;
     transform: scale(@BackgroundScale);
     transform-origin: left;   
     border: 2px solid black;
     display: @Display;
-    z-index: 1;
-    
+    z-index: 1;    
 </Styled>
 <Styled @bind-Classname="@BubbleStyle">
     background-image: url('@BubbleImageUrl');
