@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.1;netcoreapp3.1</TargetFrameworks>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
-    <Description>This will eventually contain more components, but for now it is just a Progress Bar as well and I am starting working on a Sprite component to perform simple animations.
+    <Description>This will eventually contain more components, but for now it is just a Progress Bar and a Sprite.
 
-This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.</Description>
+This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.
+
+Also, new to version 1.3 is a new really cool progress bar that uses all CSS by 
+http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://firchow.net/</Description>
     <Copyright>2020 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
@@ -15,8 +18,33 @@ This project uses a really awesome project called BlazorStyled by Chanen Braunst
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
-    <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled</PackageTags>
-    <PackageReleaseNotes>1.1.2 - I added a BackgroundColor property. To use it, you must set BackgroundImage to an empty string to override DarkBackground image.
+    <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
+    <PackageReleaseNotes>1.3.3 - I added 3 new Parameters:
+Size: Size, Small - Medium - Large - Medium is default
+Color: Blue, Green or Orange, Blue is Default
+Theme: Light or Dark, and I chose Dark as default
+
+Also, two properties for Text:
+OverrideThemeColorForText - defaults to false.
+If true, and a TextColor is provided, the TextColor will be used instead of the Theme color for Text.
+
+TextColor - The color to use for Text.
+
+
+1.3.2 - This actually works now. I am working on the documentation now for the new features.
+
+1.3.1 - I included the div for progresscontainer, which is meant to be used by the client, or I may expose a class for it soon.
+
+1.3.0 - My progress bar went from little league to the minors with this upgrade. I found a pure CSS way, and it works really well. Themes and more are coming, this is the first release, so it is back in beta.
+
+1.2.1 - I realzied my ValidationComponent had a lot of code specific to my project PixelDatabase.Net, so I removed it for now. I will update it again later.
+
+1.2.0 - I added a new component called a ValidationComponent.
+I also removed the ProgressBar from the Sprite Interface.
+I will update the Progress Bar in the near future, as I found a pure CSS way that is pretty cool.
+
+
+1.1.2 - I added a BackgroundColor property. To use it, you must set BackgroundImage to an empty string to override DarkBackground image.
 
 1.1.1 - The new ProgressBar now has a Theme for Circles or Squares. Also, I updated the Nuget packages to multi-target so .Net Standard and .Net Core can use them, without having to use the .Net Framework classes.
 
@@ -42,8 +70,8 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.1.2</Version>
-    <AssemblyVersion>1.1.2.0</AssemblyVersion>
+    <Version>1.3.3</Version>
+    <AssemblyVersion>1.3.3.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -63,10 +91,9 @@ Now is the time to break anything.
 
 
   <ItemGroup>
-    <PackageReference Include="BlazorStyled" Version="1.2.0" />
-    <PackageReference Include="DataJuggler.RandomShuffler.Core" Version="1.2.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.1" />
+    <PackageReference Include="BlazorStyled" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.3" />
   </ItemGroup>
 
 </Project>

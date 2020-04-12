@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 using System.Timers;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Enumerations;
-using DataJuggler.RandomShuffler.Core;
+using System.Text;
 
 #endregion
 
@@ -29,7 +29,6 @@ namespace DataJuggler.Blazor.Components
         private string backgroundWidthPixels;
         private string backgroundImageUrl;
         private string backgroundColor;
-        private int currentValue;
         private Timer timer;
         private int increment;
         private int interval;
@@ -38,8 +37,6 @@ namespace DataJuggler.Blazor.Components
         private bool visible;
         private bool notificaitonInProgress;
         private double scale;
-        private string bubbleStyle;
-        private string bubbleImageUrl;
         private IProgressSubscriber subscriber;
         private bool showBackground;
         private string backgroundPosition;
@@ -47,18 +44,21 @@ namespace DataJuggler.Blazor.Components
         private int backgroundTop;
         private string backgroundLeftPixels;
         private string backgroundTopPixels;
-        private string bubblePosition;
-        private int bubbleLeft;
-        private int bubbleTop;
+        private string progressStyle;
         private int max;
-        private string bubbleLeftPixels;
-        private string bubbleTopPixels;
         private double backgroundScale;
-        private double bubbleScale;
-        private int bubbleOffSet;
         private bool inProgress;
-        private DataJuggler.RandomShuffler.Core.RandomShuffler shuffler;
+        private int percent;
+        private string percentString;
+        private int extraPercent;
+        private int closeAtExtraPercent;
+        private bool clientHandledIncrement;
+        private string textColor;
+        private string textColorStyle;
+        private SizeEnum size;
+        private ColorEnum color;
         private ThemeEnum theme;
+        private bool overrideThemeColorForText;
         #endregion
 
         #region Constructor
@@ -89,48 +89,28 @@ namespace DataJuggler.Blazor.Components
                         InProgress = true;
 
                         // Set the CurrentValue
-                        if ((this.CurrentValue <= Max) && (Increment > 0))
+                        if ((this.Percent <= Max) && (Increment >= 0))
                         {
                             // Increase the value
-                            this.CurrentValue += this.Increment;
+                            this.Percent += this.Increment;
 
                             // if the end has been reached
-                            if ((CurrentValue) >= Max)
+                            if (Percent >= Max)
                             {  
-                                // Start over
-                                CurrentValue = 0;
-                            }
+                                // Cap at Max
+                                Percent = Max;
 
-                            // Get the image number (1 - 6)
-                            int imageNumber = GetImageNumber();
+                                // Set to 1
+                                ExtraPercent += 1;   
 
-                            // verify the image number is in range 
-                            if ((imageNumber >= 1) && (imageNumber <= 6))
-                            {
-                                // if using Spheres
-                                if (Theme == ThemeEnum.Spheres)
+                                // if we have reached the end
+                                if ((CloseAtExtraPercent > 0) && (ExtraPercent > CloseAtExtraPercent))
                                 {
-                                    // set the first image
-                                    BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Sphere" + imageNumber + ".png";
-                                }
-                                else
-                                {
-                                    // set the first image
-                                    BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image" + imageNumber + ".png";
-                                }
-                            }
-                            else
-                            {  
-                                // if Spheres
-                                if (Theme == ThemeEnum.Spheres)
-                                {
-                                    // show the first image
-                                    BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Sphere1.png";
-                                }
-                                else
-                                {
-                                    // show the first image
-                                    BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image1.png";
+                                    // Stop this object
+                                    Stop();
+
+                                    // Hide this control
+                                    Visible = false;
                                 }
                             }
 
@@ -138,7 +118,7 @@ namespace DataJuggler.Blazor.Components
                             if (HasSubscriber)
                             {
                                 // build a message to send
-                                string message = "CurrentValue: " + CurrentValue.ToString();
+                                string message = "Percent: " + Percent.ToString();
 
                                 // send a message to the subscriber
                                 subscriber.Refresh(message);
@@ -169,34 +149,6 @@ namespace DataJuggler.Blazor.Components
 
         #region Methods
 
-            #region GetImageNumber()
-            /// <summary>
-            /// This method returns the Image Number
-            /// </summary>
-            public int GetImageNumber()
-            {
-                // initial value
-                int imageNumber = 1;
-
-                // if the value for HasShuffler is true
-                if (HasShuffler)
-                {
-                    // if there are not any more items
-                    if (Shuffler.RandomIntStorage.Count == 0)
-                    {
-                        // Recreate the Shuffler
-                        Shuffler = new DataJuggler.RandomShuffler.Core.RandomShuffler(1, 6, 1, 10);
-                    }
-
-                    // pull the next shuffler
-                    imageNumber = Shuffler.PullNextItem();
-                }
-
-                // return value
-                return imageNumber;
-            }
-            #endregion
-            
             #region Init()
             /// <summary>
             /// This method performs initializations for this object.
@@ -206,21 +158,102 @@ namespace DataJuggler.Blazor.Components
                 // Set Defaults
                 BackgroundImageUrl = "_content/DataJuggler.Blazor.Components/Images/DarkBackground.png";
                 BackgroundHeight = 64;
-                BackgroundWidth = 320;
-                BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image6.png";
-                BubblePosition = "relative";
+                BackgroundWidth = 64;
                 BackgroundPosition = "relative";
-                CurrentValue =  (Increment - BubbleOffSet) * 6;
-                BubbleTop = 4;
-                Interval = 500;    
-                Increment = 16;
-                BubbleOffSet = 8;
+                Interval = 25;    
+                Increment = 2;
                 BackgroundScale = 1;
-                BubbleScale = .6;
-                Shuffler = new DataJuggler.RandomShuffler.Core.RandomShuffler(1, 6, 1, 10);
+                Max = 100;
+                ShowBackground = false;
+                CloseAtExtraPercent = 12;
+                Color = ColorEnum.Blue;
+                Size = SizeEnum.Medium;
+                Theme = ThemeEnum.Dark;
+                Scale = 1.0;
+                OverrideThemeColorForText = false;
             }
             #endregion
 
+            #region SetProgressStyle()
+            /// <summary>
+            /// This method Set Progress Style
+            /// </summary>
+            public void SetProgressStyle()
+            {
+                // Create a new instance of a 'StringBuilder' object.
+                StringBuilder sb = new StringBuilder("c100 p");
+
+                // Append the percent value
+                sb.Append(percent);
+
+                // Update version 1.3.3, on 4.12.2020: 
+                if (Theme == ThemeEnum.Dark)
+                {
+                    // Now set ProgressStyle
+                    sb.Append(" dark");
+                }
+                
+                // if Large
+                if (Size == SizeEnum.Large)
+                {
+                    // append big
+                    sb.Append(" big");
+                }
+                else if (Size == SizeEnum.Small)
+                {
+                    // append big
+                    sb.Append(" small");
+                }
+                else
+                {
+                    // nothing needed for Medium
+                }
+
+                // if the TextColor exists
+                bool dontSetTextColor = ((HasTextColor) && (OverrideThemeColorForText));
+                
+                // if Green
+                if (Color == ColorEnum.Green)
+                {
+                    // append green
+                    sb.Append(" green");
+
+                    // if the value for dontSetTextColor is false
+                    if (!dontSetTextColor)
+                    {
+                        // Set the TextColor
+                        TextColor = "Green";
+                    }
+                }
+                else if (Color == ColorEnum.Orange)
+                {
+                    // append green
+                    sb.Append(" orange");
+
+                    // if the value for dontSetTextColor is false
+                    if (!dontSetTextColor)
+                    {
+                        // Set the TextColor
+                        TextColor = "Orange";
+                    }
+                }
+                else
+                {
+                    // Blue is the default
+
+                     // if the value for dontSetTextColor is false
+                    if (!dontSetTextColor)
+                    {
+                        // Set the TextColor
+                        TextColor = "RoyalBlue";
+                    }
+                }
+
+                // Set the new value for ProgressStyle
+                ProgressStyle = sb.ToString();
+            }
+            #endregion
+            
             #region Start(int startAtValue = 0)
             /// <summary>
             /// This method Starts the timer progressing
@@ -229,7 +262,7 @@ namespace DataJuggler.Blazor.Components
             {
                 // The progress has started
                 Started = true;
-                CurrentValue = startAtValue;
+                Percent = startAtValue;
                 Visible = true;
                 Timer = new Timer();
                 Timer.Interval = this.Interval;
@@ -426,138 +459,39 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region BubbleImageUrl
+            #region ClientHandledIncrement
             /// <summary>
-            /// This property gets or sets the value for 'BubbleImageUrl'.
-            /// </summary>
-            public string BubbleImageUrl
-            {
-                get { return bubbleImageUrl; }
-                set { bubbleImageUrl = value; }
-            }
-            #endregion
-            
-            #region BubbleLeft
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleLeft'.
-            /// </summary>
-            public int BubbleLeft
-            {
-                get { return bubbleLeft; }
-                set 
-                { 
-                    // set the value
-                    bubbleLeft = value;
-
-                    // Set the value for BubbleLeftPixels
-                    BubbleLeftPixels = bubbleLeft.ToString() + "px";
-                }
-            }
-            #endregion
-            
-            #region BubbleLeftPixels
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleLeftPixels'.
-            /// </summary>
-            public string BubbleLeftPixels
-            {
-                get { return bubbleLeftPixels; }
-                set { bubbleLeftPixels = value; }
-            }
-            #endregion
-            
-            #region BubbleOffSet
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleOffSet'.
+            /// This property gets or sets the value for 'ClientHandledIncrement'.
             /// </summary>
             [Parameter]
-            public int BubbleOffSet
+            public bool ClientHandledIncrement
             {
-                get { return bubbleOffSet; }
-                set { bubbleOffSet = value; }
+                get { return clientHandledIncrement; }
+                set { clientHandledIncrement = value; }
             }
             #endregion
             
-            #region BubblePosition
+            #region CloseAtExtraPercent
             /// <summary>
-            /// This property gets or sets the value for 'BubblePosition'.
-            /// </summary>
-            public string BubblePosition
-            {
-                get { return bubblePosition; }
-                set { bubblePosition = value; }
-            }
-            #endregion
-            
-            #region BubbleScale
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleScale'.
+            /// This property gets or sets the value for 'CloseAtExtraPercent'.
             /// </summary>
             [Parameter]
-            public double BubbleScale
+            public int CloseAtExtraPercent
             {
-                get { return bubbleScale; }
-                set { bubbleScale = value; }
+                get { return closeAtExtraPercent; }
+                set { closeAtExtraPercent = value; }
             }
             #endregion
             
-            #region BubbleStyle
+            #region Color
             /// <summary>
-            /// This property gets or sets the value for 'BubbleStyle'.
-            /// </summary>
-            public string BubbleStyle
-            {
-                get { return bubbleStyle; }
-                set { bubbleStyle = value; }
-            }
-            #endregion
-            
-            #region BubbleTop
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleTop'.
+            /// This property gets or sets the value for 'Color'.
             /// </summary>
             [Parameter]
-            public int BubbleTop
+            public ColorEnum Color
             {
-                get { return bubbleTop; }
-                set 
-                { 
-                    // set the value
-                    bubbleTop = value;
-
-                    // Set the value for BubbleTopPixels
-                    BubbleTopPixels = bubbleTop.ToString() + "px";
-                }
-            }
-            #endregion
-            
-            #region BubbleTopPixels
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleTopPixels'.
-            /// </summary>
-            public string BubbleTopPixels
-            {
-                get { return bubbleTopPixels; }
-                set { bubbleTopPixels = value; }
-            }
-            #endregion
-            
-            #region CurrentValue
-            /// <summary>
-            /// This property gets or sets the value for 'CurrentValue'.
-            /// </summary>
-            [Parameter]
-            public int CurrentValue
-            {
-                get { return currentValue; }
-                set
-                {
-                    // set the value
-                    currentValue = value;
-
-                    // Kind of redundant these two properties
-                    BubbleLeft = currentValue + BubbleOffSet;
-                }
+                get { return color; }
+                set { color = value; }
             }
             #endregion
             
@@ -572,20 +506,14 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region HasShuffler
+            #region ExtraPercent
             /// <summary>
-            /// This property returns true if this object has a 'Shuffler'.
+            /// This property gets or sets the value for 'ExtraPercent'.
             /// </summary>
-            public bool HasShuffler
+            public int ExtraPercent
             {
-                get
-                {
-                    // initial value
-                    bool hasShuffler = (this.Shuffler != null);
-                    
-                    // return value
-                    return hasShuffler;
-                }
+                get { return extraPercent; }
+                set { extraPercent = value; }
             }
             #endregion
             
@@ -606,6 +534,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasTextColor
+            /// <summary>
+            /// This property returns true if the 'TextColor' exists.
+            /// </summary>
+            public bool HasTextColor
+            {
+                get
+                {
+                    // initial value
+                    bool hasTextColor = (!String.IsNullOrEmpty(this.TextColor));
+                    
+                    // return value
+                    return hasTextColor;
+                }
+            }
+            #endregion
+            
             #region Increment
             /// <summary>
             /// This property gets or sets the value for 'Increment'.
@@ -614,13 +559,7 @@ namespace DataJuggler.Blazor.Components
             public int Increment
             {
                 get { return increment; }
-                set 
-                { 
-                    increment = value;
-
-                    // set the value for Max
-                    Max = increment * 6;
-                }
+                set { increment = value; }
             }
             #endregion
             
@@ -668,6 +607,64 @@ namespace DataJuggler.Blazor.Components
                 set { notificaitonInProgress = value; }
             }
             #endregion
+
+            #region OverrideThemeColorForText
+            /// <summary>
+            /// This property gets or sets the value for 'OverrideThemeColorForText'.
+            /// </summary>
+            [Parameter]
+            public bool OverrideThemeColorForText
+            {
+                get { return overrideThemeColorForText; }
+                set { overrideThemeColorForText = value; }
+            }
+            #endregion
+            
+            #region Percent
+            /// <summary>
+            /// This property gets or sets the value for 'Percent'.
+            /// </summary>
+            public int Percent
+            {
+                get { return percent; }
+                set 
+                {
+                    // if less than zero
+                    if (value < 0)
+                    {
+                        // set to 0
+                        value = 0;
+                    }
+
+                    // if greater than 100
+                    if (value > 100)
+                    {
+                        // set to 100
+                        value = 100;
+                    }
+
+                    // set the value
+                    percent = value;
+
+                    // Set the ProgressStyle string
+                    SetProgressStyle();
+
+                    // Set the percentString value
+                    PercentString = percent.ToString() + "%";
+                }
+            }
+            #endregion
+            
+            #region PercentString
+            /// <summary>
+            /// This property gets or sets the value for 'PercentString'.
+            /// </summary>
+            public string PercentString
+            {
+                get { return percentString; }
+                set { percentString = value; }
+            }
+            #endregion
             
             #region ProgressBackground
             /// <summary>
@@ -677,6 +674,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return progressBackground; }
                 set { progressBackground = value; }
+            }
+            #endregion
+            
+            #region ProgressStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ProgressStyle'.
+            /// </summary>
+            public string ProgressStyle
+            {
+                get { return progressStyle; }
+                set { progressStyle = value; }
             }
             #endregion
             
@@ -694,7 +702,6 @@ namespace DataJuggler.Blazor.Components
                     scale = value;
 
                     // Set Both At Once By Setting This Property
-                    BubbleScale = scale;
                     BackgroundScale = scale;
                 }
             }
@@ -712,14 +719,15 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Shuffler
+            #region Size
             /// <summary>
-            /// This property gets or sets the value for 'Shuffler'.
+            /// This property gets or sets the value for 'Size'.
             /// </summary>
-            public DataJuggler.RandomShuffler.Core.RandomShuffler Shuffler
+            [Parameter]
+            public SizeEnum Size
             {
-                get { return shuffler; }
-                set { shuffler = value; }
+                get { return size; }
+                set { size = value; }
             }
             #endregion
             
@@ -757,6 +765,29 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TextColor
+            /// <summary>
+            /// This property gets or sets the value for 'TextColor'.
+            /// </summary>
+            [Parameter]
+            public string TextColor
+            {
+                get { return textColor; }
+                set { textColor = value; }
+            }
+            #endregion
+            
+            #region TextColorStyle
+            /// <summary>
+            /// This property gets or sets the value for 'TextColorStyle'.
+            /// </summary>
+            public string TextColorStyle
+            {
+                get { return textColorStyle; }
+                set { textColorStyle = value; }
+            }
+            #endregion
+            
             #region Theme
             /// <summary>
             /// This property gets or sets the value for 'Theme'.
@@ -769,17 +800,8 @@ namespace DataJuggler.Blazor.Components
                 { 
                     theme = value;
 
-                    // if theme is Spheres
-                    if (theme == ThemeEnum.Spheres)
-                    {
-                        // Set the value for BubbleImageUrl to use Image1
-                        BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Sphere1.png";
-                    }
-                    else
-                    {
-                        // Set the value for BubbleImageUrl to use Image1
-                        BubbleImageUrl = "_content/DataJuggler.Blazor.Components/Images/Image1.png";
-                    }
+                    // Set the string that makes up the CSS
+                    SetProgressStyle();
                 }
             }
             #endregion

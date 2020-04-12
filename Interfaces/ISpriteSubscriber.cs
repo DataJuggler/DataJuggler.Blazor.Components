@@ -31,12 +31,7 @@ namespace DataJuggler.Blazor.Components.Interfaces
 
         #region Properties
 
-            #region ProgressBar
-            /// <summary>
-            /// This is used so the ProgressBar is stored and available to the Subscriber after Registering
-            /// </summary>
-            ProgressBar ProgressBar { get; set; }
-            #endregion
+            
 
         #endregion
 

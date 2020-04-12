@@ -23,7 +23,6 @@ namespace BlazorProgressSample.Pages
     /// This class is the code behind for the Index page.
     /// </summary>
     public partial class Index : IProgressSubscriber, ISpriteSubscriber
-
     {
         
         #region Private Variables
