@@ -1,13 +1,25 @@
-﻿@using BlazorStyled
-
-<Styled @bind-Classname="@TextColorStyle">
-    color: @TextColor;
-</Styled> 
+﻿
+<style>
+    .textpercent
+    {
+        color: @TextColor !important;
+        height: 3vh;
+        line-height: 3vh;
+        font-size: 2.2vh;
+    }
+</style>
 
 @if  (Visible)
 {  
     <div class=@ProgressStyle>
-        <span class="@TextColorStyle">@PercentString</span>
+        @if (OverrideThemeColorForText)
+        {  
+            <span class="textpercent">@PercentString</span>
+        }
+        else
+        {
+            <span>@PercentString</span>
+        }
         <div class="slice">
             <div class="bar"></div>
             <div class="fill"></div>

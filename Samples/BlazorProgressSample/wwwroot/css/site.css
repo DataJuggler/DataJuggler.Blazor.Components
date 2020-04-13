@@ -1,66 +1,35 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-.colorblack 
+.blackbutton
 {
-    color: black;
+    width: 12%;
+    height: 4.8vh;
+    background-size: 100% 100%;
+    background-image: url('../Images/BlackButton.png');
+    background-repeat: no-repeat;
+    color: white;
+    line-height: 2.0vh;
+    font-family: Verdana, Arial;
+    font-size: 2vh;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
 }
-.redcar
+.height200
 {
-    background-image: url('../Images/RedCar.png');
-    width: 96px;
-    height: 30px;
+    display: block;
+    height: 26vh;
+    width: 80%;
+    margin-bottom: 2vh;
 }
-
-.fontsample 
+.progresscontainer
 {
-    font-family: Verdana;
-    font-size: 12px;
-    color: midnightblue;
-}
-.maxwidth40
-{
-    width: 40px;
-    max-width: 40px;
-}
-.movedown2
-{
-    position: relative;
-    top: 2px;
-}
-.movedown3
-{
-    position: relative;
-    top: 3px;
-}
-.movedown8
-{
-    position: relative;
-    top: 8px;
-}
-.movedown16
-{
-    position: relative;
-    top: 16px;
-}
-.moveleft60
-{
-    position: relative;
-    left: -60px;
-}
-.moveleft72
-{
-    position: relative;
-    left: -72px;
-}
-.moveright4
-{
-    position: relative;
-    left: 4px;
-}
-.moveup16
-{
-    position: relative;
-    top: -16px;
+    position: fixed;
+    left: 24%;
+    top: 16vh;
+    transform: scale(.8);
+    transform-origin: left;
 }
 
 html, body {

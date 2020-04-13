@@ -19,7 +19,12 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.3.3 - I added 3 new Parameters:
+    <PackageReleaseNotes>1.3.5 - I added a SetClientHandledIncrement method so I can turn this value on or off from outside the component.
+
+1.3.4 - I got this working finally. The property Important was needed to make the text color override.
+I actually am not using BlazorStyled for the Progress Bar now, which makes setup just add the Nuget package and the Css reference to Circles.css, which is easier for everyone.
+
+1.3.3 - I added 3 new Parameters:
 Size: Size, Small - Medium - Large - Medium is default
 Color: Blue, Green or Orange, Blue is Default
 Theme: Light or Dark, and I chose Dark as default
@@ -70,8 +75,8 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.3.3</Version>
-    <AssemblyVersion>1.3.3.0</AssemblyVersion>
+    <Version>1.3.5</Version>
+    <AssemblyVersion>1.3.5.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

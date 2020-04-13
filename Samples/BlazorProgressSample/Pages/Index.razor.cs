@@ -50,10 +50,9 @@ namespace BlazorProgressSample.Pages
         private const int WhiteCarY = 220;
         private const int RedFlagY = 8;
         private const int WhiteFlagY = 168;
-        private double bubbleScale;
-        private bool useSquares;
         private ThemeEnum progressTheme;
         private double backgroundScale;
+        private bool showProgress;
         #endregion
 
         #region Constructor
@@ -131,9 +130,8 @@ namespace BlazorProgressSample.Pages
                 // Default values
                 this.FontSize = 12;
                 BackgroundScale = 1;
-                BubbleScale = .6;
                 ShowBackground = true;
-                ProgressTheme = ThemeEnum.Spheres;
+                ProgressTheme = ThemeEnum.Dark;
             }
             #endregion
             
@@ -203,8 +201,12 @@ namespace BlazorProgressSample.Pages
             /// </summary>
             public void Refresh(string message)
             {
-                // not needed for this app
-                
+                if ((HasProgressBar) && (ProgressBar.Percent >= 100))
+                {
+                    ProgressBar.Stop();
+
+                    ShowProgress = false;                    
+                }
             }
             #endregion
 
@@ -308,6 +310,23 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region StartProgress()
+            /// <summary>
+            /// This method Start Progress
+            /// </summary>
+            public void StartProgress()
+            {
+                // if the value for HasProgressBar is true
+                if (HasProgressBar)
+                {
+                    ShowProgress = true;
+
+                    // Start
+                    ProgressBar.Start();
+                }
+            }
+            #endregion
+            
             #region StartRace()
             /// <summary>
             /// This method Start Race
@@ -364,17 +383,6 @@ namespace BlazorProgressSample.Pages
             {
                 get { return backgroundScale; }
                 set { backgroundScale = value; }
-            }
-            #endregion
-            
-            #region BubbleScale
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleScale'.
-            /// </summary>
-            public double BubbleScale
-            {
-                get { return bubbleScale; }
-                set { bubbleScale = value; }
             }
             #endregion
             
@@ -529,6 +537,27 @@ namespace BlazorProgressSample.Pages
             }
             #endregion
             
+            #region ShowProgress
+            /// <summary>
+            /// This property gets or sets the value for 'ShowProgress'.
+            /// </summary>
+            public bool ShowProgress
+            {
+                get { return showProgress; }
+                set { showProgress = value; }
+            }
+            #endregion
+            
+            #region StartProgress(object sender, EventArgs e)
+            /// <summary>
+            /// This event is fired when Start Progress
+            /// </summary>
+            public void StartProgress(object sender, EventArgs e)
+            {
+                
+            }
+            #endregion
+            
             #region ShowTrack
             /// <summary>
             /// This property gets or sets the value for 'ShowTrack'.
@@ -570,32 +599,6 @@ namespace BlazorProgressSample.Pages
             {
                 get { return tie; }
                 set { tie = value; }
-            }
-            #endregion
-            
-            #region UseSquares
-            /// <summary>
-            /// This property gets or sets the value for 'UseSquares'.
-            /// </summary>
-            public bool UseSquares
-            {
-                get { return useSquares; }
-                set 
-                { 
-                    useSquares = value;
-
-                    // if the value for useSquares is true
-                    if (useSquares)
-                    {
-                        // Use Squares
-                        ProgressTheme = ThemeEnum.Squares;
-                    }
-                    else
-                    {
-                        // Use Spheres
-                        ProgressTheme = ThemeEnum.Spheres;
-                    }
-                }
             }
             #endregion
             

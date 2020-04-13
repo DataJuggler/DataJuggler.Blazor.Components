@@ -91,6 +91,9 @@ namespace DataJuggler.Blazor.Components
                         // Set the CurrentValue
                         if ((this.Percent <= Max) && (Increment >= 0))
                         {
+                            // test only
+                            string textColor = TextColor;
+
                             // Increase the value
                             this.Percent += this.Increment;
 
@@ -174,6 +177,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region SetClientHandledIncrement(bool clientHandledIncrementValue)
+            /// <summary>
+            /// This method Set Client Handled Increment
+            /// </summary>
+            public void SetClientHandledIncrement(bool clientHandledIncrementValue)
+            {
+                // Set the value
+                ClientHandledIncrement = clientHandledIncrementValue;
+            }
+            #endregion
+            
             #region SetProgressStyle()
             /// <summary>
             /// This method Set Progress Style
