@@ -5,11 +5,14 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
-    <Description>This will eventually contain more components, but for now it is just a Progress Bar and a Sprite.
+    <Description>A collection of components to make building a Blazor project simpler. So far only a ProgressBar, Sprite and a Validation component.
 
 This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.
 
-Also, new to version 1.3 is a new really cool progress bar that uses all CSS by 
+New version 1.4
+Validation Component
+
+New to version 1.3 is a new really cool progress bar that uses all CSS by 
 http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://firchow.net/</Description>
     <Copyright>2020 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
@@ -19,7 +22,14 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.3.5 - I added a SetClientHandledIncrement method so I can turn this value on or off from outside the component.
+    <PackageReleaseNotes>1.4.2 - I added a new property called CheckBoxVerticalPosition to the ValidationControl. This is only applicable
+when CheckBoxMode = true.
+
+1.4.1 - I fixed the images for UniqueImageUrl and TakenImageUrl to be embedded in the component.
+
+1.4.0 - I added a new ValidationComponent.
+
+1.3.5 - I added a SetClientHandledIncrement method so I can turn this value on or off from outside the component.
 
 1.3.4 - I got this working finally. The property Important was needed to make the text color override.
 I actually am not using BlazorStyled for the Progress Bar now, which makes setup just add the Nuget package and the Css reference to Circles.css, which is easier for everyone.
@@ -75,8 +85,8 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.3.5</Version>
-    <AssemblyVersion>1.3.5.0</AssemblyVersion>
+    <Version>1.4.2</Version>
+    <AssemblyVersion>1.4.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -97,6 +107,7 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="2.2.0" />
+    <PackageReference Include="DataJuggler.UltimateHelper.Core" Version="1.2.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.3" />
   </ItemGroup>

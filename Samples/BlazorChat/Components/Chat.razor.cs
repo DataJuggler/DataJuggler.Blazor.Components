@@ -1,0 +1,411 @@
+﻿
+
+#region using statements
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using DataJuggler.RandomShuffler.Core;
+using DataJuggler.UltimateHelper.Core;
+using ObjectLibrary.BusinessObjects;
+using DataJuggler.Blazor.Components;
+using DataJuggler.Blazor.Components.Interfaces;
+using Microsoft.AspNetCore.Components;
+
+#endregion
+
+namespace BlazorChat.Components
+{
+
+    #region class Chat
+    /// <summary>
+    /// This component is used to demonstrate a Chat sample.
+    /// </summary>
+    public partial class Chat : IBlazorComponent, IDisposable
+    {
+        
+        #region Private Variables
+        private User user;
+        private string name;
+        private string subscriberName;
+        private Guid id;
+        private bool connected;
+        private string messageText;
+        private IBlazorComponentParent parent;
+        private List<string> names;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Create a new instance of a Chat object
+        /// </summary>
+        public Chat()
+        {
+            // Create a Guid
+            this.Id = Guid.Empty;            
+        }
+        #endregion
+
+        #region Methods
+  
+            #region BroadCastMessage()
+            /// <summary>
+            /// This method Broad Cast Message
+            /// </summary>
+            public void BroadCastMessage()
+            {
+                // If the MessageText string exists
+                if (TextHelper.Exists(MessageText))
+                {
+                    // Create a new instance of a 'SubscriberMessage' object.                    
+                    SubscriberMessage message = new SubscriberMessage();
+
+                    // Set the message properties
+                    message.Text = MessageText;
+                    message.ToName = "Room";
+                    message.ToId = Guid.Empty;
+                    message.FromId = Id;
+                    message.FromName = Name;
+                    message.Sent = DateTime.Now;
+                    
+                    //  Send this message to all clients
+                    SubscriberService.BroadcastMessage(message);
+
+                    // Erase the Text
+                    MessageText = "";
+                }
+            }
+            #endregion
+            
+            #region Dispose()
+            /// <summary>
+            /// This method Dispose
+            /// </summary>
+            public void Dispose()
+            {
+                // If the SubscriberService object exists
+                if (NullHelper.Exists(SubscriberService))
+                {
+                    // Unsubscribe from the service
+                    SubscriberService.Unsubscribe(Id);
+                }
+            }
+            #endregion
+            
+            #region JoinAsGuest()
+            /// <summary>
+            /// This event is fired when Join As Guest
+            /// </summary>
+            public void JoinAsGuest()
+            {
+                // create a shuffler
+                RandomShuffler shuffler = new RandomShuffler(1, 10000, 3); 
+
+                // Create a new instance of an 'User' object.
+                this.User = new User();
+
+                // Set the name
+                user.Name = "Guest" + shuffler.PullNextItem();
+
+                // Set the SubscriberName
+                SubscriberName = user.Name;
+
+                // Register with the server
+                RegisterWithServer();
+            }
+            #endregion
+
+            #region Listen(SubscriberMessage message)
+            /// <summary>
+            /// This method Listen
+            /// </summary>
+            public void Listen(SubscriberMessage message)
+            {
+                // if the message exists
+                if (NullHelper.Exists(message))
+                {
+                    // if the message contains Joined the conversation
+                    if ((message.Text.Contains("joined the conversation")) || (message.Text.Contains("left the conversation")))
+                    {   
+                        // Get the Names again
+                        this.Names = SubscriberService.GetSubscriberNames();
+
+                        // Update the UI
+                        Refresh();
+                    }
+                    else
+                    {
+                        // Write to the console for now
+                        Console.WriteLine(message.Text);
+                    }
+                }
+            }
+            #endregion
+            
+            #region ReceiveData(Message message)
+            /// <summary>
+            /// method returns the Data
+            /// </summary>
+            public void ReceiveData(Message message)
+            {
+                // If the message object exists
+                if (NullHelper.Exists(message))
+                {
+                    // if the message is Logged In User Is Set
+                    if (TextHelper.IsEqual(message.Text, "Logged In User Is Set"))
+                    {
+                        // Set the User
+                        User = ParentIndexPage.LoggedInUser;
+
+                        // if the value for HasUser is true
+                        if (HasUser)
+                        {
+                            // Set the SubscriberName for them
+                            SubscriberName = User.Name;
+                        }
+                    }
+                }
+
+                // Update
+                Refresh();
+            }
+            #endregion
+            
+            #region Refresh()
+            /// <summary>
+            /// This method is called by a Sprite when as it refreshes.
+            /// </summary>
+            public void Refresh()
+            {
+                // Update the UI
+                InvokeAsync(() =>
+                {
+                    // Refresh
+                    StateHasChanged();
+                });
+            }
+            #endregion
+
+            #region RegisterWithServer()
+            /// <summary>
+            /// This event registers with the chat server
+            /// </summary>
+            public void RegisterWithServer()
+            {
+                SubscriberCallback callback = new SubscriberCallback(SubscriberName);
+                callback.Callback = Listen;
+                callback.Name = SubscriberName;
+
+                // Get a message back
+                SubscriberMessage message = SubscriberService.Subscribe(callback);
+
+                // if message.Text exists and equals Subscribed
+                if ((NullHelper.Exists(message)) && (message.HasText) && (TextHelper.IsEqual(message.Text, "Subscribed")))
+                {   
+                    // Set to true
+                    Connected = true;
+
+                    // Set the Id the Server assigned
+                    this.Id = message.ToId;
+                }
+
+                // Convert the Subscribers to Names
+                this.Names = SubscriberService.GetSubscriberNames();
+
+                // get the count
+                int count = NumericHelper.ParseInteger(message.Data.ToString(), 0, -1);
+
+                // if there are two people online or more
+                if (count > 1)
+                {
+                    // send a message to everyone else this user has joined
+                    SubscriberMessage newMessage = new SubscriberMessage();
+
+                    // set the text
+                    newMessage.FromId = Id;
+                    newMessage.FromName = SubscriberName;
+                    newMessage.Text = SubscriberName + " has joined the conversation.";
+                    newMessage.ToId = Guid.Empty;
+                    newMessage.ToName = "Room";
+                    
+                    // Send the message
+                    SubscriberService.BroadcastMessage(newMessage);
+                }
+
+                // Update
+                Refresh();
+            }
+            #endregion
+
+        #endregion
+
+        #region Properties
+            
+            #region Connected
+            /// <summary>
+            /// This property gets or sets the value for 'Connected'.
+            /// </summary>
+            public bool Connected
+            {
+                get { return connected; }
+                set { connected = value; }
+            }
+            #endregion
+            
+            #region HasParent
+            /// <summary>
+            /// This property returns true if this object has a 'Parent'.
+            /// </summary>
+            public bool HasParent
+            {
+                get
+                {
+                    // initial value
+                    bool hasParent = (this.Parent != null);
+                    
+                    // return value
+                    return hasParent;
+                }
+            }
+            #endregion
+            
+            #region HasParentIndexPage
+            /// <summary>
+            /// This property returns true if this object has a 'ParentIndexPage'.
+            /// </summary>
+            public bool HasParentIndexPage
+            {
+                get
+                {
+                    // initial value
+                    bool hasParentIndexPage = (this.ParentIndexPage != null);
+                    
+                    // return value
+                    return hasParentIndexPage;
+                }
+            }
+            #endregion
+            
+            #region HasUser
+            /// <summary>
+            /// This property returns true if this object has an 'User'.
+            /// </summary>
+            public bool HasUser
+            {
+                get
+                {
+                    // initial value
+                    bool hasUser = (this.User != null);
+                    
+                    // return value
+                    return hasUser;
+                }
+            }
+            #endregion
+            
+            #region Id
+            /// <summary>
+            /// This property gets or sets the value for 'Id'.
+            /// </summary>
+            public Guid Id
+            {
+                get { return id; }
+                set { id = value; }
+            }
+            #endregion
+            
+            #region MessageText
+            /// <summary>
+            /// This property gets or sets the value for 'MessageText'.
+            /// </summary>
+            public string MessageText
+            {
+                get { return messageText; }
+                set { messageText = value; }
+            }
+            #endregion
+            
+            #region Name
+            /// <summary>
+            /// This property gets or sets the value for 'Name'.
+            /// </summary>
+            public string Name
+            {
+                get { return name; }
+                set { name = value; }
+            }
+            #endregion
+            
+            #region Names
+            /// <summary>
+            /// This property gets or sets the value for 'Names'.
+            /// </summary>
+            public List<string> Names
+            {
+                get { return names; }
+                set { names = value; }
+            }
+            #endregion
+            
+            #region Parent
+            /// <summary>
+            /// This property gets or sets the value for 'Parent'.
+            /// </summary>
+            [Parameter]
+            public IBlazorComponentParent Parent
+            {
+                get { return parent; }
+                set 
+                { 
+                    // set the value
+                    parent = value;
+
+                    // Register with the parent
+                    parent.Register(this);
+                }
+            }
+            #endregion
+
+            #region ParentIndexPage
+            /// <summary>
+            /// This read only property returns the value for 'ParentIndexPage'.
+            /// </summary>
+            public Pages.Index ParentIndexPage
+            {
+                get
+                {
+                    // cast the parent as an Index page
+                    return this.Parent as Pages.Index;
+                }
+            }
+            #endregion
+            
+            #region SubscriberName
+            /// <summary>
+            /// This property gets or sets the value for 'SubscriberName'.
+            /// </summary>
+            public string SubscriberName
+            {
+                get { return subscriberName; }
+                set { subscriberName = value; }
+            }
+            #endregion
+            
+            #region User
+            /// <summary>
+            /// This property gets or sets the value for 'User'.
+            /// </summary>
+            public User User
+            {
+                get { return user; }
+                set { user = value; }
+            }        
+            #endregion
+
+        #endregion
+
+    }
+    #endregion
+
+}

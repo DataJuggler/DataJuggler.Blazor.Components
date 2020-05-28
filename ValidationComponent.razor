@@ -1,0 +1,57 @@
+﻿@using BlazorStyled 
+
+<Styled @bind-Classname="@LabelStyle">
+    color: @LabelColor;
+    display: inline-block;
+    width: 20%;
+    min-width: 20%;
+    text-align: right !important;
+    justify-content: right;
+    position: relative;
+    top: 1vh;
+    left: -6.4%;
+</Styled>
+<Styled @bind-Classname="@TextBoxStyle">
+    background-color: @TextBoxBackColor;
+    position: relative;
+    left: -6%;
+</Styled>
+<Styled @bind-Classname="@CheckBoxStyle">
+    background-color: @TextBoxBackColor;
+    position: relative;
+    left: -6%;
+    top: @CheckBoxVerticalStyle;
+    position: relative;    
+</Styled>
+<Styled @bind-Classname="@ImageStyle">
+    background-image: url('@ImageUrl');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 100% 100%;
+    width: 3%;
+    height: 2.4vh;
+    display: inline-block;
+    z-index: 10;    
+    position: relative;
+    left: -6.4% !important;
+    transform: scale(@ImageScale);
+    transform-origin: left;
+</Styled>
+
+<div class="signupcontrols">
+    
+    @if (CheckBoxMode)
+    {  
+        <span class="@LabelStyle">@Caption:</span>    
+        <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+    }
+    else
+    { 
+        <span class="@LabelStyle">@Caption:</span>
+        <input class="@TextBoxStyle" type=@InputType @bind="@Text" />
+    }
+    @if (ShowImage)
+    {
+        <div class="@ImageStyle"></div>
+    }
+</div>

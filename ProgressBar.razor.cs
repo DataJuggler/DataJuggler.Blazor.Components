@@ -8,6 +8,7 @@ using System.Timers;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Enumerations;
 using System.Text;
+using System.Threading.Tasks;
 
 #endregion
 

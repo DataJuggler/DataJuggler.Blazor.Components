@@ -1,0 +1,101 @@
+﻿@namespace BlazorChat.Components
+@using DataJuggler.UltimateHelper.Core 
+@using DataJuggler.Blazor.Components 
+
+<div class="signupcontainer">
+    <div class="signupcontrols">
+        Sign Up For Free
+        <div class="bigline"></div>
+
+        <ValidationComponent Name="UserNameComponent" Parent=this
+            Caption="User Name" IsRequired="true" MinimumLength="5"
+            MaximumLength="20" IsUniqueCallbackRequired="true"             
+            ValidationMessage="User Name Must Be Between 5 And 20 Characters">
+        </ValidationComponent> 
+        <ValidationComponent Name="NameComponent" Parent=this
+            Caption="Name" IsRequired="false" MaximumLength="50" 
+            IsUniqueCallbackRequired="false">
+        </ValidationComponent>
+        <ValidationComponent Name="EmailAddressComponent" Parent=this
+            IsUniqueCallbackRequired="true" Caption="Email Address" MaximumLength="80"            
+            IsRequired="true" ValidationMessage="You must enter a valid email address">
+        </ValidationComponent>
+        <ValidationComponent Name="PasswordComponent" Parent=this
+            Caption="Password" IsRequired="true" MaximumLength="20" 
+            MinimumLength="8" IsUniqueCallbackRequired="false"
+            PasswordMode="true" ValidationMessage="You must enter a password.">
+        </ValidationComponent>
+        <ValidationComponent Name="ConfirmPasswordComponent" Parent=this
+            Caption="Confirm Password" IsRequired="true" MaximumLength="20" 
+            MinimumLength="8" IsUniqueCallbackRequired="false"
+            PasswordMode="true" ValidationMessage="You must enter a confirm password.">
+        </ValidationComponent>
+    </div>
+    <div class="signupbuttons">
+        <br />
+        <button class="greenbutton" @onclick="SignUp">
+            <span class="moveup">Sign Up</span>
+        </button>
+        <button class="greenbutton" @onclick="Cancel">
+            <span class="moveup">Cancel</span>
+        </button>
+    </div>
+    <div class="rightpanelsignup">
+        <div class="bigline"></div>
+        <div class="signupcontrols">            
+            Why Sign Up?
+        </div>
+        <ul class="signuplist">
+            As a member you can blah blah blah.
+        </ul>
+        <ul class="signuplist">
+            Premium members can really blah blah blah.
+        </ul>
+        <ul class="signuplist">
+            Gain access to extra blah blah blah features.
+        </ul>
+        <ul class="signuplist">
+            Any text you feel like adding here. No extra charge per letter.
+        </ul>
+        <div class="bigline"></div>
+        <ul class="signuplist">
+            Thank you for signing up.,
+        </ul>
+        <div class="smallline"></div>
+    </div>
+    <div class="signupdisclaimer movedown3">
+        <div class="signupcontrols">
+                Privacy Policy<br />
+            </div>
+            <ul class="signuplist">
+                I will never sell your information to anyone for any reason, for less than 1 million dollars.
+            </ul>
+    </div>
+</div>
+@if (TextHelper.Exists(ValidationMessage))
+{
+    <div class="validationmessage2">
+        @ValidationMessage
+    </div>
+ }
+ 
+ @if (ShowProgress)
+ { 
+     <div class="progresscontainer2">
+         <div class=@ProgressStyle>
+            <span class="text-white">@PercentString</span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>
+     </div>
+}
+ <Sprite Subscriber=this Visible="true" Interval="50" Position="fixed" 
+         XPosition="-200" YPosition="-200" Width="100" Height="100">
+ </Sprite>
+
+
+
+
+                   

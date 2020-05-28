@@ -1,0 +1,64 @@
+﻿@namespace BlazorChat.Components
+@using DataJuggler.UltimateHelper.Core 
+@using DataJuggler.Blazor.Components 
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+
+<div class="logincontainer">
+    <div class="signupcontrols">
+        Sign In With Your User Name or Email Address
+        <div class="bigline"></div>
+        <ValidationComponent Name="UserNameComponent" Parent=this
+             Caption="User Name" IsRequired="false" MinimumLength="5"
+             MaximumLength="20" IsUniqueCallbackRequired="true">
+        </ValidationComponent> 
+        <ValidationComponent Name="EmailAddressComponent" Parent=this
+             Caption="Email Address" IsRequired="false" MaximumLength="80"             
+             IsUniqueCallbackRequired="true">
+        </ValidationComponent>
+        <ValidationComponent Name="PasswordComponent" Parent=this
+             Caption="Password" IsRequired="true" MaximumLength="20" 
+             MinimumLength="8" IsUniqueCallbackRequired="false"
+             PasswordMode="true" ValidationMessage="You must enter a password.">
+        </ValidationComponent>        
+        <ValidationComponent Name="RememberLoginComponent" Parent=this
+             Caption="Remember" IsRequired="false" MaximumLength="0" CheckBoxMode="true"
+             MinimumLength="0" IsUniqueCallbackRequired="false" CheckBoxVerticalPosition="1.4">
+        </ValidationComponent>
+    </div>
+    <br />
+    <div class="signupbuttons">
+        <button class="greenbutton4" @onclick="LoginButton_Click">
+            <span class="moveup">Login</span>
+        </button>
+        <button class="greenbutton4" @onclick="Cancel">
+            <span class="moveup">Cancel</span>
+        </button>
+    </div>
+</div>
+@if (TextHelper.Exists(ValidationMessage))
+{
+    <div class="validationmessage2">
+        @ValidationMessage
+    </div>
+ }
+ @if (ShowProgress)
+ { 
+     <div class="progresscontainer">
+         <div class=@ProgressStyle>
+            <span class="text-white">@PercentString</span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>
+     </div>
+}
+ <Sprite Subscriber=this Visible="true" Interval="50" Position="fixed" 
+         XPosition="-200" YPosition="-200" Width="100" Height="100">
+ </Sprite>
+
+
+
+
+
+                   

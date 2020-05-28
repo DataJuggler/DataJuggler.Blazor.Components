@@ -1,0 +1,56 @@
+﻿@page "/"
+@using BlazorStyled
+@using DataJuggler.Blazor.Components
+@using DataJuggler.Blazor.Components.Interfaces
+@using DataJuggler.UltimateHelper.Core
+@using BlazorChat.Enumerations
+@using BlazorChat.Components
+@using Microsoft.AspNetCore.ProtectedBrowserStorage
+@inject IJSRuntime JSRuntime
+@inject ProtectedLocalStorage ProtectedLocalStore
+
+<div class="height200">
+    <h2 class="headertext">Blazor Chat</h2>
+</div>
+
+<div class="rightpanel">
+    
+    @if (HasLoggedInUser)
+    {
+        <div class="welcome">Welcome @LoggedInUser.UserName</div>
+        <button class="greenbutton2">
+            <span class="moveup4" @onclick="SignOutButton_Click">Sign Out</span>
+        </button>
+    }
+    else
+    { 
+        <button class="greenbutton2">
+            <span class="moveup4" @onclick="LoginButton_Click">Login</span>
+        </button>
+        <button class="greenbutton3">
+            <span class="moveup4" @onclick="SignUpButton_Click">Join Free</span>
+        </button>
+    }
+
+    @if (ScreenType == ScreenTypeEnum.Join)
+    { 
+        <Join Parent=this></Join>
+    }
+    else if (ScreenType == ScreenTypeEnum.Login)
+    {
+        <Login Parent=this></Login>
+    }
+    else
+    {
+        <Chat Parent=this></Chat>
+        @if (TextHelper.Exists(Message))
+        {  
+            <div class="message">
+                @Message
+            </div>
+        }
+    }    
+</div>
+
+
+
