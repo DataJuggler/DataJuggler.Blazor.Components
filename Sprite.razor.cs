@@ -46,6 +46,7 @@ namespace DataJuggler.Blazor.Components
         private double scale;
         private string position;
         private ISpriteSubscriber subscriber;
+        private double opacity;
         #endregion
 
         #region Constructor
@@ -249,6 +250,34 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return notificaitonInProgress; }
                 set { notificaitonInProgress = value; }
+            }
+            #endregion
+            
+            #region Opacity
+            /// <summary>
+            /// This property gets or sets the value for 'Opacity'.
+            /// The values are 1 fully visible to 0 transparent.
+            /// </summary>
+            [Parameter]
+            public double Opacity
+            {
+                get { return opacity; }
+                set 
+                { 
+                    // if greater than 1
+                    if (value > 1)
+                    {
+                        // set to 1
+                        value = 1;
+                    }
+                    else if (value < 0)
+                    {
+                        // set to 0
+                        value = 0;
+                    }
+
+                    opacity = value;
+                }
             }
             #endregion
             

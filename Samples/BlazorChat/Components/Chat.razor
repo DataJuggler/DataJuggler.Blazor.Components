@@ -7,7 +7,7 @@
     @if (Connected)
     {
         <div class="chatroom2">
-                      
+                              
         </div>
         <div class="whoseonlist">            
             @if (ListHelper.HasOneOrMoreItems(Names))
@@ -20,7 +20,7 @@
             <textarea class="typedtext" @bind="MessageText"></textarea>
             <button class="greenbutton8" @onclick="BroadCastMessage">Broadcast</button>
             <div class="privatemessageinfo">
-                Click a name to send<br /> a private message.
+                Click a name to send<br />a private message.
             </div>
         </div> 
     }

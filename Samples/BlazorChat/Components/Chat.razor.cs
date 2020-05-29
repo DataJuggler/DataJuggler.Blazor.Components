@@ -33,6 +33,7 @@ namespace BlazorChat.Components
         private bool connected;
         private string messageText;
         private IBlazorComponentParent parent;
+        private List<SubscriberMessage> messages;
         private List<string> names;
         #endregion
 
@@ -136,8 +137,8 @@ namespace BlazorChat.Components
                     }
                     else
                     {
-                        // Write to the console for now
-                        Console.WriteLine(message.Text);
+                        // Add this message
+                        Messages.Add(message);
                     }
                 }
             }
@@ -312,6 +313,17 @@ namespace BlazorChat.Components
             {
                 get { return id; }
                 set { id = value; }
+            }
+            #endregion
+            
+            #region Messages
+            /// <summary>
+            /// This property gets or sets the value for 'Messages'.
+            /// </summary>
+            public List<SubscriberMessage> Messages
+            {
+                get { return messages; }
+                set { messages = value; }
             }
             #endregion
             

@@ -22,7 +22,11 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.4.2 - I added a new property called CheckBoxVerticalPosition to the ValidationControl. This is only applicable
+    <PackageReleaseNotes>1.4.4 - I forgot to add the Opacity property to the sprity. Oops.
+
+1.4.3 - I added an Opacity property to the Sprity component. 
+
+1.4.2 - I added a new property called CheckBoxVerticalPosition to the ValidationControl. This is only applicable
 when CheckBoxMode = true.
 
 1.4.1 - I fixed the images for UniqueImageUrl and TakenImageUrl to be embedded in the component.
@@ -85,8 +89,8 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.4.2</Version>
-    <AssemblyVersion>1.4.1.0</AssemblyVersion>
+    <Version>1.4.4</Version>
+    <AssemblyVersion>1.4.3.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
