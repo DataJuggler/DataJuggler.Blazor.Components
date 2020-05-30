@@ -6,6 +6,22 @@ using System.Threading.Tasks;
 namespace BlazorChat.Enumerations
 {
 
+    #region BubbleColorEnum : int
+    /// <summary>
+    /// This theme is used to determine which image url to show.
+    /// </summary>
+    public enum BubbleColorEnum : int
+    {
+        NotSet = 0,
+        Blue = 1,
+        Green = 2,
+        Orange = 3,
+        Purple = 4,
+        Red = 5,
+        Yellow = 6
+    }
+    #endregion
+
     #region ScreenTypeEnum : int
     /// <summary>
     /// This enum is used to determine which part of the screen is visible at any time
@@ -15,30 +31,6 @@ namespace BlazorChat.Enumerations
         Main = 0,
         Join = 1,
         Login = 2
-    }
-    #endregion
-
-    #region StartGameOptionEnum : int
-    /// <summary>
-    /// This enum is used to determine who should go first on a new game.
-    /// </summary>
-    public enum StartGameOptionEnum : int
-    {
-        Random_First_Move = 0,
-        Player_Goes_First = 1,
-        Computer_Goes_First = 2
-    }
-    #endregion
-
-    #region TurnEnum : int
-    /// <summary>
-    /// This enum is used to set whose turn it is to move
-    /// </summary>
-    public enum TurnEnum : int
-    {
-        GameNotStarted = -1,
-        ComputerTurn = 0,
-        PlayerTurn = 1
     }
     #endregion
 

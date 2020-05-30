@@ -45,8 +45,8 @@ namespace BlazorChat.Components
         /// </summary>
         public Chat()
         {
-            // Create a Guid
-            this.Id = Guid.Empty;            
+            // Perform initializations for this object
+            Init();
         }
         #endregion
 
@@ -128,6 +128,20 @@ namespace BlazorChat.Components
             }
             #endregion
             
+            #region Init()
+            /// <summary>
+            /// This method performs initializations for this object.
+            /// </summary>
+            public void Init()
+            {
+                // Create a Guid
+                this.Id = Guid.Empty;
+
+                // Create a new collection of 'SubscriberMessage' objects.
+                Messages = new List<SubscriberMessage>();
+            }
+            #endregion
+            
             #region JoinAsGuest()
             /// <summary>
             /// This event is fired when Join As Guest
@@ -173,6 +187,9 @@ namespace BlazorChat.Components
                     {
                         // Add this message
                         Messages.Add(message);
+
+                        // Update the UI
+                        Refresh();
                     }
                 }
             }

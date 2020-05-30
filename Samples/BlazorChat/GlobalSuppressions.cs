@@ -6,3 +6,4 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "<Pending>", Scope = "member", Target = "~M:BlazorChat.Pages.Index.OnAfterRenderAsync(System.Boolean)~System.Threading.Tasks.Task")]
+[assembly: SuppressMessage("Style", "IDE0059:Unnecessary assignment of a value", Justification = "<Pending>", Scope = "member", Target = "~M:BlazorChat.Components.Join.ReceiveData(DataJuggler.Blazor.Components.Message)")]

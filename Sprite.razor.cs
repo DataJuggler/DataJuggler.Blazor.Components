@@ -36,9 +36,9 @@ namespace DataJuggler.Blazor.Components
         private string display;
         private bool visible;
         private int height;
-        private string heightPixels;
-        private string widthPixels;
         private int width;
+        private string widthStyle;
+        private string heightStyle;
         private string name;
         private bool notificaitonInProgress;        
         private string imageUrl;
@@ -189,20 +189,20 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     height = value;
 
-                    // Set the value of HeightPixels
-                    HeightPixels = height.ToString() + "px";
+                    // Set the value of HeightStyle
+                    HeightStyle = height.ToString() + "vh";
                 }
             }
             #endregion
             
-            #region HeightPixels
+            #region HeightStyle
             /// <summary>
-            /// This property gets or sets the value for 'HeightPixels'.
+            /// This property gets or sets the value for 'HeightStyle'.
             /// </summary>
-            public string HeightPixels
+            public string HeightStyle
             {
-                get { return heightPixels; }
-                set { heightPixels = value; }
+                get { return heightStyle; }
+                set { heightStyle = value; }
             }
             #endregion
             
@@ -402,20 +402,20 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     width = value;
 
-                    // set the value of WidthPixels
-                    WidthPixels = width.ToString() + "px";
+                    // set the value of WidthStyle
+                    WidthStyle = width.ToString() + "%";
                 }
             }
             #endregion
             
-            #region WidthPixels
+            #region WidthStyle
             /// <summary>
-            /// This property gets or sets the value for 'WidthPixels'.
+            /// This property gets or sets the value for 'WidthStyle'.
             /// </summary>
-            public string WidthPixels
+            public string WidthStyle
             {
-                get { return widthPixels; }
-                set { widthPixels = value; }
+                get { return widthStyle; }
+                set { widthStyle = value; }
             }
             #endregion
             
