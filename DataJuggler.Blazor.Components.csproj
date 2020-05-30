@@ -22,7 +22,11 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.4.4 - I forgot to add the Opacity property to the sprity. Oops.
+    <PackageReleaseNotes>1.4.5 - I changed the XPosition and YPosition values to set XPositionStyle and YPositionStyle instead of
+XPositionPixels and YPositionPixels, because I changed the value to use % for X and vh for Y to make
+it scale better. Using px makes cites appear differently depending on zoom values.
+
+1.4.4 - I forgot to add the Opacity property to the sprity. Oops.
 
 1.4.3 - I added an Opacity property to the Sprity component. 
 
@@ -89,8 +93,8 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.4.4</Version>
-    <AssemblyVersion>1.4.3.0</AssemblyVersion>
+    <Version>1.4.5</Version>
+    <AssemblyVersion>1.4.5.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

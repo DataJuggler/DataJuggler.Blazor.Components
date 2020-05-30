@@ -26,11 +26,11 @@ namespace DataJuggler.Blazor.Components
         private string spriteStyle;
         private Timer timer;
         private int xIncrement;
-        private int xPosition;
-        private string xPositionPixels;
         private int yIncrement;
+        private int xPosition;
         private int yPosition;
-        private string yPositionPixels;
+        private string xPositionStyle;
+        private string yPositionStyle;
         private int interval;
         private bool started;
         private string display;
@@ -443,20 +443,20 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     xPosition = value;
 
-                    // set the return value
-                    XPositionPixels = XPosition.ToString() + "px";
+                    // set the string value
+                    XPositionStyle = XPosition.ToString() + "%";
                 }
             }
             #endregion
             
-            #region XPositionPixels
+            #region XPositionStyle
             /// <summary>
-            /// This property gets or sets the value for 'XPositionPixels'.
+            /// This property gets or sets the value for 'XPositionStyle'.
             /// </summary>
-            public string XPositionPixels
+            public string XPositionStyle
             {
-                get { return xPositionPixels; }
-                set { xPositionPixels = value; }
+                get { return xPositionStyle; }
+                set { xPositionStyle = value; }
             }
             #endregion
             
@@ -484,20 +484,20 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     yPosition = value;
 
-                    // set the return value
-                    YPositionPixels = YPosition.ToString() + "px";
+                    // set the string value for position
+                    YPositionStyle = YPosition.ToString() + "vh";
                 }
             }
             #endregion
             
-            #region YPositionPixels
+            #region YPositionStyle
             /// <summary>
-            /// This property gets or sets the value for 'YPositionPixels'.
+            /// This property gets or sets the value for 'YPositionStyle'.
             /// </summary>
-            public string YPositionPixels
+            public string YPositionStyle
             {
-                get { return yPositionPixels; }
-                set { yPositionPixels = value; }
+                get { return yPositionStyle; }
+                set { yPositionStyle = value; }
             }
             #endregion
             

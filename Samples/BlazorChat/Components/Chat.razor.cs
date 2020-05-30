@@ -12,6 +12,7 @@ using ObjectLibrary.BusinessObjects;
 using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 #endregion
 
@@ -22,7 +23,7 @@ namespace BlazorChat.Components
     /// <summary>
     /// This component is used to demonstrate a Chat sample.
     /// </summary>
-    public partial class Chat : IBlazorComponent, IDisposable
+    public partial class Chat : IBlazorComponent, IBlazorComponentParent, IDisposable
     {
         
         #region Private Variables
@@ -34,6 +35,7 @@ namespace BlazorChat.Components
         private string messageText;
         private IBlazorComponentParent parent;
         private List<SubscriberMessage> messages;
+        private List<IBlazorComponent> children;
         private List<string> names;
         #endregion
 
@@ -91,6 +93,38 @@ namespace BlazorChat.Components
                     // Unsubscribe from the service
                     SubscriberService.Unsubscribe(Id);
                 }
+            }
+            #endregion
+            
+            #region FindChildByName(string name)
+            /// <summary>
+            /// method returns the Child By Name
+            /// </summary>
+            public IBlazorComponent FindChildByName(string name)
+            {
+                // initial value
+                IBlazorComponent child = null;
+
+                // if the value for HasChildren is true
+                if (HasChildren)
+                {
+                    // Iterate the collection of IBlazorComponent objects
+                    foreach (IBlazorComponent tempChild in Children)
+                    {
+                        // if this is the item being sought
+                        if (TextHelper.IsEqual(tempChild.Name, name))
+                        {
+                            // set the return value
+                            child = tempChild;
+
+                            // break out of the loop
+                            break;
+                        }
+                    }
+                }
+
+                // return value
+                return child;
             }
             #endregion
             
@@ -188,6 +222,16 @@ namespace BlazorChat.Components
             }
             #endregion
 
+            #region Register(IBlazorComponent component)
+            /// <summary>
+            /// method returns the
+            /// </summary>
+            public void Register(IBlazorComponent component)
+            {
+                
+            }
+            #endregion
+            
             #region RegisterWithServer()
             /// <summary>
             /// This event registers with the chat server
@@ -239,9 +283,46 @@ namespace BlazorChat.Components
             }
             #endregion
 
+            #region RemoveMessage(SubscriberMessage message)
+            /// <summary>
+            /// This method Remove Message
+            /// </summary>
+            public void RemoveMessage(SubscriberMessage message)
+            {
+                try
+                {
+                    // if the message exist
+                    if (HasMessages)
+                    {
+                        // remove this message
+                        Messages.Remove(message);
+
+                        // Update the UI
+                        Refresh();
+                    }
+                }
+                catch (Exception error)
+                {
+                    // log the error to the console for now
+                    DebugHelper.WriteDebugError("RemoveMessage", "Chat.razor.cs", error);
+                }
+            }
+            #endregion
+            
         #endregion
 
         #region Properties
+            
+            #region Children
+            /// <summary>
+            /// This property gets or sets the value for 'Children'.
+            /// </summary>
+            public List<IBlazorComponent> Children
+            {
+                get { return children; }
+                set { children = value; }
+            }
+            #endregion
             
             #region Connected
             /// <summary>
@@ -251,6 +332,40 @@ namespace BlazorChat.Components
             {
                 get { return connected; }
                 set { connected = value; }
+            }
+            #endregion
+            
+            #region HasChildren
+            /// <summary>
+            /// This property returns true if this object has a 'Children'.
+            /// </summary>
+            public bool HasChildren
+            {
+                get
+                {
+                    // initial value
+                    bool hasChildren = (this.Children != null);
+                    
+                    // return value
+                    return hasChildren;
+                }
+            }
+            #endregion
+            
+            #region HasMessages
+            /// <summary>
+            /// This property returns true if this object has a 'Messages'.
+            /// </summary>
+            public bool HasMessages
+            {
+                get
+                {
+                    // initial value
+                    bool hasMessages = (this.Messages != null);
+                    
+                    // return value
+                    return hasMessages;
+                }
             }
             #endregion
             

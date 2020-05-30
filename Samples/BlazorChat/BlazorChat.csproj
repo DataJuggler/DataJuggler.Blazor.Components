@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="2.2.0" />
-    <PackageReference Include="DataJuggler.Blazor.Components" Version="1.4.2" />
+    <PackageReference Include="DataJuggler.Blazor.Components" Version="1.4.4" />
     <PackageReference Include="DataJuggler.Core.Cryptography" Version="1.0.11" />
     <PackageReference Include="DataJuggler.RandomShuffler.Core" Version="1.2.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.4" />

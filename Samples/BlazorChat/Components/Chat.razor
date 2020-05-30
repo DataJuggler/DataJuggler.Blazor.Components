@@ -1,4 +1,5 @@
 ﻿@using DataJuggler.UltimateHelper.Core
+@using BlazorChat.Components
 @implements IDisposable
 @inject Services.SubscriberService SubscriberService
 
@@ -7,7 +8,14 @@
     @if (Connected)
     {
         <div class="chatroom2">
-                              
+            @if (ListHelper.HasOneOrMoreItems(Messages))
+            {
+                foreach (SubscriberMessage message in messages)
+                {
+                    <SpeechBubble Parent="this" Message="message">
+                    </SpeechBubble>
+                }
+            }
         </div>
         <div class="whoseonlist">            
             @if (ListHelper.HasOneOrMoreItems(Names))
