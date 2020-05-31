@@ -1,26 +1,28 @@
 ﻿@using DataJuggler.Blazor.Components
 @using BlazorStyled
 
-
+<Styled @bind-Classname="@BubbleStyle">
+    background-image: url('../Images/Bubbles/SpeechBubbleBlue.png');
+    background-size: 100% 100%;
+    position: relative;
+    left: 0%;
+    top: 0vh;
+    width: 32%;
+    height: 10vh;
+</Styled>
 <Styled @bind-Classname="@TextStyle">
     font-family: Verdana, Arial;    
-    color: limegreen;
     line-height: 2.4vh;
     vertical-align: central;
     font-size: 2.0vh;
     color: limegreen;
-    position: fixed;
-    left: @TextLeftStyle;
-    top: @TextTopStyle;
+    position: relative;
+    left: 6%;
+    top: 2.5vh;
     width: 16%;
-    height: 16vh;
-    opacity: @Opacity;
+    height: auto;
 </Styled>
 
-<div class="@TextStyle">
-    @Text
-    <Sprite Subscriber="this" Opacity="@Opacity" Position="fixed"
-            XPosition="@XPosition" YPosition="@YPosition" Height="12" Width="12"
-            ImageUrl="@ImageUrl" Interval="100">
-    </Sprite>
+<div class="@BubbleStyle">
+    <span class="@TextStyle">@Text</span>
 </div>

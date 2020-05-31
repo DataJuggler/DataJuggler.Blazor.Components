@@ -2,6 +2,7 @@
 
 #region using statements
 
+using DataJuggler.Blazor.Components;
 using DataJuggler.UltimateHelper.Core;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace BlazorChat.Services
         #region Private Variables
         private int count;
         private Guid serverId;
+        private List<SubscriberMessage> messages;
         private List<SubscriberCallback> subscribers;
         #endregion
         
@@ -37,6 +39,7 @@ namespace BlazorChat.Services
             // Create a new Guid
             this.ServerId = Guid.NewGuid();
             Subscribers = new List<SubscriberCallback>();
+            Messages = new List<SubscriberMessage>();
         }
         #endregion
         
@@ -51,11 +54,27 @@ namespace BlazorChat.Services
             {
                 // if the value for HasSubscribers is true
                 if ((HasSubscribers) && (NullHelper.Exists(message)))
-                {   
+                {
+                    // if this is a System Message
+                    if (!message.IsSystemMessage)
+                    {
+                        // if there are already messages
+                        if (ListHelper.HasOneOrMoreItems(messages))
+                        {
+                            // Insert at the top
+                            Messages.Insert(0, message);
+                        }
+                        else
+                        {
+                            // Add this message
+                            Messages.Add(message);
+                        }
+                    }
+
                     // Iterate the collection of SubscriberCallback objects
                     foreach (SubscriberCallback subscriber in Subscribers)
                     {
-                        // if the Callback exists
+                        // Send to everyone but this user
                         if ((subscriber.HasCallback) && (subscriber.Id != message.FromId))
                         {
                             // to do: Add if not blocked
@@ -63,8 +82,22 @@ namespace BlazorChat.Services
                             // send the message
                             subscriber.Callback(message);
                         }
-                    }
+                    }                    
                 }
+            }
+            #endregion
+            
+            #region GetMessages()
+            /// <summary>
+            /// This method returns a list of Messages
+            /// </summary>
+            public List<SubscriberMessage> GetBroadcastMessages()
+            {
+                // initial value
+                List<SubscriberMessage> messages = this.Messages.Take(10).ToList();
+                
+                // return value
+                return messages;
             }
             #endregion
             
@@ -158,6 +191,7 @@ namespace BlazorChat.Services
                         message.Text = callback.Name + " has left the conversation.";
                         message.ToId = Guid.Empty;
                         message.ToName = "Room";
+                        message.IsSystemMessage = true;
 
                         // Broadcast the message to everyone
                         BroadcastMessage(message);
@@ -195,6 +229,17 @@ namespace BlazorChat.Services
                     // return value
                     return hasSubscribers;
                 }
+            }
+            #endregion
+            
+            #region Messages
+            /// <summary>
+            /// This property gets or sets the value for 'Messages'.
+            /// </summary>
+            public List<SubscriberMessage> Messages
+            {
+                get { return messages; }
+                set { messages = value; }
             }
             #endregion
             

@@ -58,25 +58,36 @@ namespace BlazorChat.Components
             /// </summary>
             public void BroadCastMessage()
             {
-                // If the MessageText string exists
-                if (TextHelper.Exists(MessageText))
+                try
                 {
-                    // Create a new instance of a 'SubscriberMessage' object.                    
-                    SubscriberMessage message = new SubscriberMessage();
+                    // If the MessageText string exists
+                    if (TextHelper.Exists(MessageText))
+                    {
+                        // Create a new instance of a 'SubscriberMessage' object.                    
+                        SubscriberMessage message = new SubscriberMessage();
 
-                    // Set the message properties
-                    message.Text = MessageText;
-                    message.ToName = "Room";
-                    message.ToId = Guid.Empty;
-                    message.FromId = Id;
-                    message.FromName = Name;
-                    message.Sent = DateTime.Now;
+                        // Set the message properties
+                        message.Text = MessageText;
+                        message.ToName = "Room";
+                        message.ToId = Guid.Empty;
+                        message.FromId = Id;
+                        message.FromName = Name;
+                        message.Sent = DateTime.Now;
                     
-                    //  Send this message to all clients
-                    SubscriberService.BroadcastMessage(message);
+                        //  Send this message to all clients
+                        SubscriberService.BroadcastMessage(message);
 
-                    // Erase the Text
-                    MessageText = "";
+                        // Deliver the message to this client, without being Broadcast
+                        Listen(message);
+
+                        // Erase the Text
+                        MessageText = "";
+                    }
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("BroadCastMessage", "Chat.razor.cs", error);
                 }
             }
             #endregion
@@ -136,9 +147,6 @@ namespace BlazorChat.Components
             {
                 // Create a Guid
                 this.Id = Guid.Empty;
-
-                // Create a new collection of 'SubscriberMessage' objects.
-                Messages = new List<SubscriberMessage>();
             }
             #endregion
             
@@ -174,8 +182,8 @@ namespace BlazorChat.Components
                 // if the message exists
                 if (NullHelper.Exists(message))
                 {
-                    // if the message contains Joined the conversation
-                    if ((message.Text.Contains("joined the conversation")) || (message.Text.Contains("left the conversation")))
+                    // if the message is a SystemMessage
+                    if (message.IsSystemMessage)
                     {   
                         // Get the Names again
                         this.Names = SubscriberService.GetSubscriberNames();
@@ -184,12 +192,12 @@ namespace BlazorChat.Components
                         Refresh();
                     }
                     else
-                    {
-                        // Add this message
-                        Messages.Add(message);
+                    {  
+                        // Get the Messages
+                        this.Messages = SubscriberService.GetBroadcastMessages();
 
                         // Update the UI
-                        Refresh();
+                        Refresh();                   
                     }
                 }
             }
@@ -290,6 +298,7 @@ namespace BlazorChat.Components
                     newMessage.Text = SubscriberName + " has joined the conversation.";
                     newMessage.ToId = Guid.Empty;
                     newMessage.ToName = "Room";
+                    newMessage.IsSystemMessage = true;
                     
                     // Send the message
                     SubscriberService.BroadcastMessage(newMessage);
@@ -297,32 +306,6 @@ namespace BlazorChat.Components
 
                 // Update
                 Refresh();
-            }
-            #endregion
-
-            #region RemoveMessage(SubscriberMessage message)
-            /// <summary>
-            /// This method Remove Message
-            /// </summary>
-            public void RemoveMessage(SubscriberMessage message)
-            {
-                try
-                {
-                    // if the message exist
-                    if (HasMessages)
-                    {
-                        // remove this message
-                        Messages.Remove(message);
-
-                        // Update the UI
-                        Refresh();
-                    }
-                }
-                catch (Exception error)
-                {
-                    // log the error to the console for now
-                    DebugHelper.WriteDebugError("RemoveMessage", "Chat.razor.cs", error);
-                }
             }
             #endregion
             

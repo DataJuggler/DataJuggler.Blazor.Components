@@ -10,9 +10,10 @@
         <div class="chatroom2">
             @if (ListHelper.HasOneOrMoreItems(Messages))
             {
-                foreach (SubscriberMessage message in messages)
+                foreach (SubscriberMessage message in Messages)
                 {
-                    <SpeechBubble Parent="this" Message="message">
+                    <SpeechBubble Parent="this" Message=message>
+
                     </SpeechBubble>
                 }
             }

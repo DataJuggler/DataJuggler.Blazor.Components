@@ -28,6 +28,7 @@ namespace BlazorChat
         private object data;
         private string valid;
         private DateTime sent;
+        private bool isSystemMessage;
         private string invalidReason;
         #endregion
 
@@ -94,6 +95,17 @@ namespace BlazorChat
             }
             #endregion
 
+            #region IsSystemMessage
+            /// <summary>
+            /// This property gets or sets the value for 'IsSystemMessage'.
+            /// </summary>
+            public bool IsSystemMessage
+            {
+                get { return isSystemMessage; }
+                set { isSystemMessage = value; }
+            }
+            #endregion
+            
             #region Sent
             /// <summary>
             /// This property gets or sets the value for 'Sent'.
