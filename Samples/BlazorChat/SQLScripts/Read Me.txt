@@ -1,0 +1,73 @@
+﻿Step 1: In SQL Server Management Studio, create a database named BlazorChat.
+
+Step 2: Create a System Environment Variable with the following values:
+
+Name: BlazorChat
+
+Value: Paste in the connection string to your app. 
+
+My connection to SQL Server Express looks like this using Windows Authentication
+
+Data Source=[ServerName]\SQLExpress;Initial Catalog=BlazorChat;Integrated Security=True
+
+Replace ServerName with the name of your SQL Server Instance. The easiest way to get your server name is login
+to SQL Server Management Studio, and copy the User Name it tries to log you in with, if you have it saved.
+
+Step 3: Run the App. I use Chrome as my main debugging app for Visual Studio, then I launch an Edge
+and a Fire Fox instance if I want 3 users to test on my local machine.
+
+Known issues:
+
+1. You must login, create a user and click Remember password. Then login as that user so it remembers you,
+and then start the app again. This is my highest priority to fix this, I just got busy finishing everything else
+first. I will remove this once this is fixed.
+2. I don't really like my chat 'Bubbles', the ones I have now are my second attempt as my first attempt 
+involved bubbles with more of a 'Dialog Balloon' like a comic, but it didn't look good. I will play around
+with some designs now that I have it sort of working.
+3. I added a dispose method, and in theory when the user closers their browser, this should unsubscribe.
+A few days ago I had a power failure during a storm, and I am failry sure during a hard close no code is going to
+execute with power to the browser, so a "Remove If Idle" method is probably needed, where each user
+would be pinged periodically and if there wasn't a response they are removed from the list of Subscribers.
+
+Version 1 was a prototype.
+
+
+I am sure there are probably plenty of bugs once others start using this. 
+I will publish it to my server soon with a live sample. 
+
+Suggestions for version 2.0:
+1. I was thinking of making the bubbles a little more like a Twitter post, where a user could post a link or image,
+with maybe some like, Up / Down votes or Stars or something to rate posts.
+2. The current version only shows the last 10 messages. I didn't do anything involving private messages and priority,
+I just get the last 10 messages and show them if they are public, or to or from for private messages.
+3. I might save the messages to the database if I ever wanted to expand it to be not just a demo.
+4. I stubbed out a Blocked user list for users, but didn't do anything with it. Perhaps a 'Vote Off The Island' if
+a user is rude, abusive or a spammer.
+
+Mainly this was a demo. I strated to use GRPC, but every sample I tried with 2 way communication was overkill
+considering all I needed was to talk to a client that is on the same server as another. 
+
+Once I learned how to do a ConfigurationServices.AddSingleton():
+
+services.AddSingleton<SubscriberService>();        
+
+And then I inject this into my Chat component:
+
+@inject Services.SubscriberService SubscriberService
+
+This was all I needed to send messages to all users. 
+
+If you inspect the project, one of the more interesting parts is the 'Listen' method, which is set 
+in the RegisterWithServer method. The Listen method is a callback and that is how the server
+tells the client it is time to get new messages.
+
+Let me know your thoughts, comments, suggestions etc. in the comments on the BlazorChat
+video, which I am making now and my time machine is broken so I have to post it first.
+
+To Do: Publish url to cool video.
+
+
+
+
+
+
