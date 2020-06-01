@@ -51,8 +51,9 @@
     top: 18vh;
     left: 5%;
     width: 76%;
-    height: 64vh;
+    height: 64vh;    
     background-color: black;
+    overflow-y: auto;
 }
 .computername
 {
@@ -562,6 +563,9 @@
     position: absolute;
     bottom: 0px;
     right: 0px;
+    font-family: Verdana, Arial;
+    line-height: 1.8vh;
+    font-size: 1.8vh;
 }
 .validationmessage
 {

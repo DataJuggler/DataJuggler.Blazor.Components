@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataJuggler.Blazor.Components;
-using DataJuggler.Blazor.Components.Interfaces;
 using Microsoft.AspNetCore.Components;
 using DataJuggler.RandomShuffler;
 using DataJuggler.RandomShuffler.Core;
@@ -22,21 +20,22 @@ namespace BlazorChat.Components
     /// <summary>
     /// This class is used to display SubscriberMessages.
     /// </summary>
-    public partial class SpeechBubble : IBlazorComponent
+    public partial class SpeechBubble
     {
         
         #region Private Variables
         private string name;
-        private IBlazorComponentParent parent;
-        private double opacity;
         private int xPosition;
         private int yPosition;
-        private BubbleColorEnum bubbleColor;
         private SubscriberMessage message;
-        private string imageUrl;
         private string textStyle;
         private string text;        
         private string bubbleStyle;
+        private string imageUrl;
+        private string from;
+        private string messageHeader;
+        private string textAlign;
+        private string leftStyle;
         #endregion
 
         #region Constructor
@@ -45,24 +44,13 @@ namespace BlazorChat.Components
         /// </summary>
         public SpeechBubble()
         {
-            // Start and 1 and it goes backwards
-            this.Opacity = 1;                
+            // Start and 1 and it goes backwards                        
             XPosition = 0;
             YPosition = 0;
         }
         #endregion
         
         #region Methods
-            
-            #region ReceiveData(Message message)
-            /// <summary>
-            /// method returns the Data
-            /// </summary>
-            public void ReceiveData(Message message)
-            {
-                // not sure if anything is needed for this
-            }
-            #endregion
             
             #region Refresh()
             /// <summary>
@@ -77,28 +65,7 @@ namespace BlazorChat.Components
         #endregion
 
         #region Properties
-            
-            #region BubbleColor
-            /// <summary>
-            /// This property gets or sets the value for 'BubbleColor'.
-            /// </summary>
-            public BubbleColorEnum BubbleColor
-            {
-                get { return bubbleColor; }
-                set 
-                {
-                    // set the value
-                    bubbleColor = value;
-
-                    // set the bubbleUrl
-                    string bubbleUrl = value.ToString() + ".png";
-
-                    // Set the ImageUrl
-                    ImageUrl = "../Images/Bubbles/SpeechBubble" + bubbleUrl;
-                }
-            }
-            #endregion
-            
+                       
             #region BubbleStyle
             /// <summary>
             /// This property gets or sets the value for 'BubbleStyle'.
@@ -107,6 +74,17 @@ namespace BlazorChat.Components
             {
                 get { return bubbleStyle; }
                 set { bubbleStyle = value; }
+            }
+            #endregion
+            
+            #region From
+            /// <summary>
+            /// This property gets or sets the value for 'From'.
+            /// </summary>
+            public string From
+            {
+                get { return from; }
+                set { from = value; }
             }
             #endregion
             
@@ -127,40 +105,6 @@ namespace BlazorChat.Components
             }
             #endregion
             
-            #region HasParent
-            /// <summary>
-            /// This property returns true if this object has a 'Parent'.
-            /// </summary>
-            public bool HasParent
-            {
-                get
-                {
-                    // initial value
-                    bool hasParent = (this.Parent != null);
-                    
-                    // return value
-                    return hasParent;
-                }
-            }
-            #endregion
-            
-            #region HasParentChat
-            /// <summary>
-            /// This property returns true if this object has a 'ParentChat'.
-            /// </summary>
-            public bool HasParentChat
-            {
-                get
-                {
-                    // initial value
-                    bool hasParentChat = (this.ParentChat != null);
-                    
-                    // return value
-                    return hasParentChat;
-                }
-            }
-            #endregion
-            
             #region ImageUrl
             /// <summary>
             /// This property gets or sets the value for 'ImageUrl'.
@@ -169,6 +113,17 @@ namespace BlazorChat.Components
             {
                 get { return imageUrl; }
                 set { imageUrl = value; }
+            }
+            #endregion
+            
+            #region LeftStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LeftStyle'.
+            /// </summary>
+            public string LeftStyle
+            {
+                get { return leftStyle; }
+                set { leftStyle = value; }
             }
             #endregion
             
@@ -189,6 +144,14 @@ namespace BlazorChat.Components
                     {
                         // Set the text
                         Text = message.Text;
+                        From = message.FromName;
+
+                         // Use 4 percent
+                        LeftStyle = "4%";
+                        TextAlign = "left";
+
+                        // Set the ImageUrl
+                        ImageUrl = message.ImageUrl;
                     }
                     else
                     {
@@ -196,6 +159,17 @@ namespace BlazorChat.Components
                         Text = "";
                     }
                 }
+            }
+            #endregion
+            
+            #region MessageHeader
+            /// <summary>
+            /// This property gets or sets the value for 'MessageHeader'.
+            /// </summary>
+            public string MessageHeader
+            {
+                get { return messageHeader; }
+                set { messageHeader = value; }
             }
             #endregion
             
@@ -210,67 +184,6 @@ namespace BlazorChat.Components
             }
             #endregion
             
-            #region Opacity
-            /// <summary>
-            /// This property gets or sets the value for 'Opacity'.
-            /// </summary>
-            public double Opacity
-            {
-                get { return opacity; }
-                set { opacity = value; }
-            }
-            #endregion
-            
-            #region Parent
-            /// <summary>
-            /// This property gets or sets the value for 'Parent'.
-            /// </summary>
-            [Parameter]
-            public IBlazorComponentParent Parent
-            {
-                get { return parent; }
-                set 
-                {
-                    // set the value
-                    parent = value;
-
-                    // if the Parent exists
-                    if (HasParent)
-                    {
-                        // Register with the parent
-                        parent.Register(this);
-
-                        // create a Shuffler
-                        RandomShuffler shuffler = new RandomShuffler(1, 6, 10, 10);
-
-                        // get the bubbleColor
-                        BubbleColorEnum bubbleColor = (BubbleColorEnum) shuffler.PullNextItem();
-
-                        // Set the ImageUrl
-                        this.ImageUrl = "../Images/Bubbles" + bubbleColor.ToString() + ".png";
-                    }
-               }
-            }
-            #endregion
-
-            #region ParentChat
-            /// <summary>
-            /// This is used to get a reference to the hosting Chat component
-            /// by casting the Parent as a Chat object.
-            /// </summary>
-            public Chat ParentChat
-            {
-                get
-                {
-                    // initial value
-                    Chat chat = this.Parent as Chat;
-
-                    // return value
-                    return chat;
-                }
-            }
-            #endregion
-            
             #region Text
             /// <summary>
             /// This property gets or sets the value for 'Text'.
@@ -279,6 +192,17 @@ namespace BlazorChat.Components
             {
                 get { return text; }
                 set { text = value; }
+            }
+            #endregion
+            
+            #region TextAlign
+            /// <summary>
+            /// This property gets or sets the value for 'TextAlign'.
+            /// </summary>
+            public string TextAlign
+            {
+                get { return textAlign; }
+                set { textAlign = value; }
             }
             #endregion
             

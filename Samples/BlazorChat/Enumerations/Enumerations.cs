@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿
 namespace BlazorChat.Enumerations
 {
 
     #region BubbleColorEnum : int
     /// <summary>
-    /// This theme is used to determine which image url to show.
+    /// This enum is used to determine which url to show
     /// </summary>
     public enum BubbleColorEnum : int
     {
         NotSet = 0,
-        Blue = 1,
-        Green = 2,
-        Orange = 3,
-        Purple = 4,
-        Red = 5,
-        Yellow = 6
+        BlueGreen = 1,        
+        BlueRed = 2,
+        GreenBlue = 3,
+        GreenRed = 4,
+        RedBlue = 5,
+        RedGreen = 6,
     }
     #endregion
 

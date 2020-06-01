@@ -12,6 +12,7 @@ using ObjectLibrary.BusinessObjects;
 using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using Microsoft.AspNetCore.Components;
+using BlazorChat.Enumerations;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 #endregion
@@ -37,6 +38,7 @@ namespace BlazorChat.Components
         private List<SubscriberMessage> messages;
         private List<IBlazorComponent> children;
         private List<string> names;
+        private RandomShuffler shuffler;
         #endregion
 
         #region Constructor
@@ -71,9 +73,12 @@ namespace BlazorChat.Components
                         message.ToName = "Room";
                         message.ToId = Guid.Empty;
                         message.FromId = Id;
-                        message.FromName = Name;
+                        message.FromName = SubscriberName;
                         message.Sent = DateTime.Now;
-                    
+                        
+                        // Set the 
+                        message.BubbleColor = (BubbleColorEnum) Shuffler.PullNextItem();    
+
                         //  Send this message to all clients
                         SubscriberService.BroadcastMessage(message);
 
@@ -147,6 +152,9 @@ namespace BlazorChat.Components
             {
                 // Create a Guid
                 this.Id = Guid.Empty;
+
+                // Create a Shuffler
+                Shuffler = new RandomShuffler(1, 6, 1, 10);
             }
             #endregion
             
@@ -156,9 +164,6 @@ namespace BlazorChat.Components
             /// </summary>
             public void JoinAsGuest()
             {
-                // create a shuffler
-                RandomShuffler shuffler = new RandomShuffler(1, 10000, 3); 
-
                 // Create a new instance of an 'User' object.
                 this.User = new User();
 
@@ -403,6 +408,23 @@ namespace BlazorChat.Components
             }
             #endregion
             
+            #region HasShuffler
+            /// <summary>
+            /// This property returns true if this object has a 'Shuffler'.
+            /// </summary>
+            public bool HasShuffler
+            {
+                get
+                {
+                    // initial value
+                    bool hasShuffler = (this.Shuffler != null);
+                    
+                    // return value
+                    return hasShuffler;
+                }
+            }
+            #endregion
+            
             #region HasUser
             /// <summary>
             /// This property returns true if this object has an 'User'.
@@ -505,6 +527,17 @@ namespace BlazorChat.Components
                     // cast the parent as an Index page
                     return this.Parent as Pages.Index;
                 }
+            }
+            #endregion
+            
+            #region Shuffler
+            /// <summary>
+            /// This property gets or sets the value for 'Shuffler'.
+            /// </summary>
+            public RandomShuffler Shuffler
+            {
+                get { return shuffler; }
+                set { shuffler = value; }
             }
             #endregion
             

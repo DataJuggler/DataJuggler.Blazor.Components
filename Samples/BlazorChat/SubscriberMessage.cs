@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlazorChat.Enumerations;
 
 #endregion
 
@@ -30,10 +31,49 @@ namespace BlazorChat
         private DateTime sent;
         private bool isSystemMessage;
         private string invalidReason;
+        private BubbleColorEnum bubbleColor;
+        private string imageUrl;
+        #endregion
+
+        #region Methods
+
+            #region SetImageUrl()
+            /// <summary>
+            /// This method Set Image Url
+            /// </summary>
+            public void SetImageUrl()
+            {
+                // as long as the BubbleColor is set this will work
+                if (BubbleColor != BubbleColorEnum.NotSet)
+                {  
+                    // Set the ImageUrl
+                    ImageUrl = "../Images/Bubbles/" + BubbleColor.ToString() + ".png";
+                }
+            }
+            #endregion
+            
         #endregion
 
         #region Properties
 
+            #region BubbleColor
+            /// <summary>
+            /// This property gets or sets the value for 'BubbleColor'.
+            /// </summary>
+            public BubbleColorEnum BubbleColor
+            {
+                get { return bubbleColor; }
+                set 
+                {
+                    // set the bubbleColor
+                    bubbleColor = value;
+
+                    // Set the ImageUrl
+                    SetImageUrl();
+                }
+            }
+            #endregion
+            
             #region Data
             /// <summary>
             /// This property gets or sets the value for 'Data'.
@@ -84,6 +124,17 @@ namespace BlazorChat
             }
             #endregion
             
+            #region ImageUrl
+            /// <summary>
+            /// This property gets or sets the value for 'ImageUrl'.
+            /// </summary>
+            public string ImageUrl
+            {
+                get { return imageUrl; }
+                set { imageUrl = value; }
+            }
+            #endregion
+            
             #region InvalidReason
             /// <summary>
             /// This property gets or sets the value for 'InvalidReason'.
@@ -94,7 +145,7 @@ namespace BlazorChat
                 set { invalidReason = value; }
             }
             #endregion
-
+            
             #region IsSystemMessage
             /// <summary>
             /// This property gets or sets the value for 'IsSystemMessage'.

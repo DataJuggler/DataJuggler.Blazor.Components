@@ -102,7 +102,7 @@ namespace BlazorChat.Pages
                 BackgroundScale = 1;
                 ShowBackground = true;
                 ProgressTheme = ThemeEnum.Dark;
-                Message = "Welcome To Blazor Chat.";               
+                Message = "Welcome To Blazor Chat";               
             }
             #endregion
 

@@ -7,6 +7,7 @@ using DataJuggler.UltimateHelper.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BlazorChat.Enumerations;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -57,7 +58,7 @@ namespace BlazorChat.Services
                 {
                     // if this is a System Message
                     if (!message.IsSystemMessage)
-                    {
+                    {  
                         // if there are already messages
                         if (ListHelper.HasOneOrMoreItems(messages))
                         {
