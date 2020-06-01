@@ -88,14 +88,35 @@ namespace BlazorChat.Services
             }
             #endregion
             
-            #region GetMessages()
+            #region FindSubscriber(Guid id)
+            /// <summary>
+            /// This method returns the Subscriber
+            /// </summary>
+            public SubscriberCallback FindSubscriber(Guid id)
+            {
+                // initial value
+                SubscriberCallback subscriber = null;
+
+                // if the id Guid is set and the Subscribers exist
+                if ((id != Guid.Empty) && (HasSubscribers))
+                {
+                    // Set the return value
+                    subscriber = Subscribers.FirstOrDefault(x => x.Id == id);
+                }
+                
+                // return value
+                return subscriber;
+            }
+            #endregion
+            
+            #region GetMessages(Guid id)
             /// <summary>
             /// This method returns a list of Messages
             /// </summary>
-            public List<SubscriberMessage> GetBroadcastMessages()
+            public List<SubscriberMessage> GetBroadcastMessages(Guid id)
             {
                 // initial value
-                List<SubscriberMessage> messages = this.Messages.Take(10).ToList();
+                List<SubscriberMessage> messages = this.Messages.Where(x => ((!x.IsPrivate) || (x.FromId == id) || (x.ToId == id))).Take(10).ToList();
                 
                 // return value
                 return messages;
@@ -106,30 +127,47 @@ namespace BlazorChat.Services
             /// <summary>
             /// This method returns a list of Subscriber Names ()
             /// </summary>
-            public List<string> GetSubscriberNames()
+            public List<SubscriberCallback> GetSubscriberNames()
             {
                 // initial value
-                List<string> subscriberNames = null;
+                List<SubscriberCallback> subscriberNames = null;
 
                 // if the value for HasSubscribers is true
                 if (HasSubscribers)
                 {
-                    // create the return value
-                    subscriberNames = new List<string>();
-
-                    // Get the SubscriberNamesl in alphabetical order
-                    List<SubscriberCallback> sortedNames = Subscribers.OrderBy(x => x.Name).ToList();
-
-                    // Iterate the collection of SubscriberService objects
-                    foreach (SubscriberCallback subscriber in sortedNames)
-                    {
-                        // Add this name
-                        subscriberNames.Add(subscriber.Name);
-                    }
+                    // Set The return value in alphabetical order
+                    subscriberNames = Subscribers.OrderBy(x => x.Name).ToList();
                 }
                 
                 // return value
                 return subscriberNames;
+            }
+            #endregion
+            
+            #region SendPrivateMessage(SubscriberCallback subscriber, SubscriberMessage message)
+            /// <summary>
+            /// This method Send Private Message
+            /// </summary>
+            public void SendPrivateMessage(SubscriberCallback subscriber, SubscriberMessage message)
+            {
+                // if the message and the subscriber exists and the subscriber has a callback
+                if ((NullHelper.Exists(message, subscriber)) && (subscriber.HasCallback))
+                {
+                    // if there are already messages
+                    if (ListHelper.HasOneOrMoreItems(messages))
+                    {
+                        // Insert at the top
+                        Messages.Insert(0, message);
+                    }
+                    else
+                    {
+                        // Add this message
+                        Messages.Add(message);
+                    }
+
+                    // Send the message to the user
+                    subscriber.Callback(message);
+                }
             }
             #endregion
             

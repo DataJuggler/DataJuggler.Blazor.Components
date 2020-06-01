@@ -37,7 +37,7 @@ namespace BlazorChat.Components
         private IBlazorComponentParent parent;
         private List<SubscriberMessage> messages;
         private List<IBlazorComponent> children;
-        private List<string> names;
+        private List<SubscriberCallback> names;
         private RandomShuffler shuffler;
         #endregion
 
@@ -52,48 +52,40 @@ namespace BlazorChat.Components
         }
         #endregion
 
+        #region Evnets
+    
+            #region SendPrivateMessageClicked(EventArgs args, Guid toId)
+            /// <summary>
+            /// This method is used to send a Private message to a user
+            /// </summary>
+            /// <param name="args"></param>
+            /// <param name="toName"></param>
+            private void SendPrivateMessageClicked(EventArgs args, Guid toId)
+            {
+                // Attempt to find the subscriber
+                SubscriberCallback subscriber = SubscriberService.FindSubscriber(toId);
+
+                // If the subscriber object exists
+                if (NullHelper.Exists(subscriber))
+                {
+                     // Send a message
+                    SendMessage(true, subscriber);
+                }
+            }
+            #endregion
+        
+        #endregion
+
         #region Methods
-  
+
             #region BroadCastMessage()
             /// <summary>
             /// This method Broad Cast Message
             /// </summary>
             public void BroadCastMessage()
             {
-                try
-                {
-                    // If the MessageText string exists
-                    if (TextHelper.Exists(MessageText))
-                    {
-                        // Create a new instance of a 'SubscriberMessage' object.                    
-                        SubscriberMessage message = new SubscriberMessage();
-
-                        // Set the message properties
-                        message.Text = MessageText;
-                        message.ToName = "Room";
-                        message.ToId = Guid.Empty;
-                        message.FromId = Id;
-                        message.FromName = SubscriberName;
-                        message.Sent = DateTime.Now;
-                        
-                        // Set the 
-                        message.BubbleColor = (BubbleColorEnum) Shuffler.PullNextItem();    
-
-                        //  Send this message to all clients
-                        SubscriberService.BroadcastMessage(message);
-
-                        // Deliver the message to this client, without being Broadcast
-                        Listen(message);
-
-                        // Erase the Text
-                        MessageText = "";
-                    }
-                }
-                catch (Exception error)
-                {
-                    // for debugging only
-                    DebugHelper.WriteDebugError("BroadCastMessage", "Chat.razor.cs", error);
-                }
+                // Send a message
+                SendMessage(false);
             }
             #endregion
             
@@ -199,7 +191,7 @@ namespace BlazorChat.Components
                     else
                     {  
                         // Get the Messages
-                        this.Messages = SubscriberService.GetBroadcastMessages();
+                        this.Messages = SubscriberService.GetBroadcastMessages(this.Id);
 
                         // Update the UI
                         Refresh();                   
@@ -311,6 +303,92 @@ namespace BlazorChat.Components
 
                 // Update
                 Refresh();
+            }
+            #endregion
+            
+            #region SendMessage(bool isPrivate = false, SubscriberCallback subscriber = null)
+            /// <summary>
+            /// This method Send Message
+            /// </summary>
+            public void SendMessage(bool isPrivate = false, SubscriberCallback subscriber = null)
+            {  
+                // Create a new instance of a 'SubscriberMessage' object.                    
+                SubscriberMessage message = null;
+
+                // Create a new instance of a 'SubscriberMessage' object.                    
+                message = new SubscriberMessage();
+                message.Text = MessageText;
+                message.FromId = Id;
+                message.FromName = SubscriberName;
+
+                // Set the Time
+                message.Sent = DateTime.Now;
+        
+                // Set the 
+                message.BubbleColor = (BubbleColorEnum) Shuffler.PullNextItem();    
+
+                try
+                {
+                    // If the MessageText string exists
+                    if (TextHelper.Exists(MessageText))
+                    {
+                        // if this is a private message
+                        if ((isPrivate) && (NullHelper.Exists(subscriber)) && (subscriber.HasCallback))
+                        {
+                             // Set the ToName
+                            message.ToName = subscriber.Name;
+                            message.ToId = subscriber.Id;
+                            
+                            // This is a private message
+                            message.IsPrivate = true;
+                            
+                            //  Send this message to all clients
+                            SubscriberService.SendPrivateMessage(subscriber, message);
+                        }
+                        else
+                        {
+                            // Set the ToName
+                            message.ToName = "Room";
+                            message.ToId = Guid.Empty;
+                            
+                            //  Send this message to all clients
+                            SubscriberService.BroadcastMessage(message);
+                        }
+
+                        // Erase the Text
+                        MessageText = "";
+
+                        // Deliver the message to this client, without being Broadcast
+                        Listen(message);
+                    }
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("BroadCastMessage", "Chat.razor.cs", error);
+                }
+            }
+            #endregion
+            
+            #region SendPrivateMessage(Guid toId)
+            /// <summary>
+            /// This method Send Private Message
+            /// </summary>
+            public void SendPrivateMessage(Guid toId)
+            {
+                // if the toId is set
+                if (toId != Guid.Empty)
+                {
+                    // Attempt to find the subscriber
+                    SubscriberCallback subscriber = SubscriberService.FindSubscriber(toId);
+
+                    // If the subscriber object exists
+                    if (NullHelper.Exists(subscriber))
+                    {
+                        // Send the private message
+                        SendMessage(true, subscriber);
+                    }
+                }
             }
             #endregion
             
@@ -490,7 +568,7 @@ namespace BlazorChat.Components
             /// <summary>
             /// This property gets or sets the value for 'Names'.
             /// </summary>
-            public List<string> Names
+            public List<SubscriberCallback> Names
             {
                 get { return names; }
                 set { names = value; }

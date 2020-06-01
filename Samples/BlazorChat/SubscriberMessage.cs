@@ -33,6 +33,7 @@ namespace BlazorChat
         private string invalidReason;
         private BubbleColorEnum bubbleColor;
         private string imageUrl;
+        private bool isPrivate;
         #endregion
 
         #region Methods
@@ -143,6 +144,17 @@ namespace BlazorChat
             {
                 get { return invalidReason; }
                 set { invalidReason = value; }
+            }
+            #endregion
+            
+            #region IsPrivate
+            /// <summary>
+            /// This property gets or sets the value for 'IsPrivate'.
+            /// </summary>
+            public bool IsPrivate
+            {
+                get { return isPrivate; }
+                set { isPrivate = value; }
             }
             #endregion
             

@@ -20,9 +20,9 @@
         <div class="whoseonlist">            
             @if (ListHelper.HasOneOrMoreItems(Names))
             {  
-                @foreach (string name in Names)
+                @foreach (SubscriberCallback callback in Names)
                 {
-                    <button class="listbutton">@name</button><br />
+                    <button class="listbutton" @onclick="(Action<EventArgs>) (args => SendPrivateMessageClicked(args, callback.Id))">@callback.Name</button><br />
                 }
             }
             <textarea class="typedtext" @bind="MessageText"></textarea>

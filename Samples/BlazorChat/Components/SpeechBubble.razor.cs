@@ -76,7 +76,7 @@ namespace BlazorChat.Components
                 set { bubbleStyle = value; }
             }
             #endregion
-            
+
             #region From
             /// <summary>
             /// This property gets or sets the value for 'From'.
@@ -85,6 +85,30 @@ namespace BlazorChat.Components
             {
                 get { return from; }
                 set { from = value; }
+            }
+            #endregion
+
+            #region FullFrom
+            /// <summary>
+            /// This read only property appends the word [Private] if the message is private
+            /// </summary>
+            private string FullFrom
+            {
+                get
+                {
+                    // initial value
+                    string fullFrom = From;
+
+                    // if the Message exists and is private
+                    if ((HasMessage) && (Message.IsPrivate))
+                    {
+                        // Set the text as private
+                        fullFrom = From + " [Private]";
+                    }
+
+                    // return value
+                    return fullFrom;
+                }
             }
             #endregion
             
@@ -156,7 +180,7 @@ namespace BlazorChat.Components
                     else
                     {
                         // Erase
-                        Text = "";
+                        Text = ""; 
                     }
                 }
             }

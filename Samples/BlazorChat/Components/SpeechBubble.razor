@@ -24,6 +24,7 @@
     max-width: 84%;
     width: 84%;
     height: auto;
+    min-height: 8vh;
     margin-left: 2%;
     margin-top: 2%;
     text-align: left;
@@ -40,7 +41,14 @@
 </Styled>
 
 <div class="@BubbleStyle">
-    <div class="@MessageHeader">@From</div>
+    @if ((HasMessage) && (Message.IsPrivate))
+    { 
+        <div class="@MessageHeader">@FullFrom</div>
+    }
+    else
+    {
+        <div class="@MessageHeader">@From</div>
+    }
     <div class="@TextStyle">
         <span>@Text</span>
     </div>
