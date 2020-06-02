@@ -365,6 +365,19 @@
     top: 20vh;
     left: 4%;
 }
+.loginorjointochat
+{
+    background-image: url('../Images/SignUpToChat.png');
+    width: 48%;
+    height: 40vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    top: 30vh;
+    left: 26%;
+}
 .message
 {
     font-family: Verdana, Arial;

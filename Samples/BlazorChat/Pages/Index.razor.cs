@@ -52,7 +52,7 @@ namespace BlazorChat.Pages
         /// This constructor runs at Startup to perform initializations.
         /// </summary>
         public Index()
-        {
+        { 
             // Perform initializations for this object
             Init();
         }
@@ -151,7 +151,7 @@ namespace BlazorChat.Pages
 
                                 // If the user object exists
                                 if (NullHelper.Exists(user))
-                                {
+                                {  
                                     // get the key
                                     string key = EnvironmentVariableHelper.GetEnvironmentVariableValue("FiveByFiveGame");
 
@@ -336,6 +336,25 @@ namespace BlazorChat.Pages
 
                 // Update the UI
                 Refresh();
+
+                // if the MainComponent exists
+                if (screenType == ScreenTypeEnum.Main)
+                {
+                    // if the value for HasChatComponent is true
+                    if ((HasChatComponent) && (HasLoggedInUser))
+                    {
+                        // Create a message
+                        Message message = new Message();
+
+                        // Set the Text
+                        message.Text = "Logged In User Is Set";
+
+                        // Send the message to the Chat component
+                        ChatComponent.ReceiveData(message);
+                    }
+                }
+
+                
             }
             #endregion
             
@@ -362,8 +381,18 @@ namespace BlazorChat.Pages
                 // Log Out The User
                 LoggedInUser = null;
 
+                // if the Chat component exists
+                if (HasChatComponent)
+                {
+                    // Sign out of the Chat component
+                    ChatComponent.SignOut();
+                }
+
                 // Remove the items in Local Storage
                 await RemovedLocalStoreItems();
+
+                // Reset back to main which it was probably already on
+                ScreenType = ScreenTypeEnum.Main;
 
                 // update the UI
                 Refresh();

@@ -241,6 +241,9 @@ namespace BlazorChat.Components
 
                     // Process the Login
                     bool started = await StartProcessLogin();
+
+                    // Now start the Timer in the invisible sprite. 
+                    // The Refresh method gets called every time the Interval of the Sprite elapses.
                     
                     // if the InvisiibleSprite exists
                     if ((HasInvisibleSprite) && (started))
@@ -302,9 +305,6 @@ namespace BlazorChat.Components
                                 await HandleRememberPassword();
                             }
 
-                            // Return to the Main Screen
-                            ParentIndexPage.SetupScreen(ScreenTypeEnum.Main);
-
                             // Update the login information for this user
                             user.LastLoginDate = DateTime.Now;
 
@@ -313,6 +313,12 @@ namespace BlazorChat.Components
 
                             // Save the user
                             bool saved = await UserService.SaveUser(ref user);
+
+                            // Set the Logged In User
+                            ParentIndexPage.LoggedInUser = user;
+
+                            // Return to the Main Screen, and now you can enter chat
+                            ParentIndexPage.SetupScreen(ScreenTypeEnum.Main);
                         }
                     }
                 }

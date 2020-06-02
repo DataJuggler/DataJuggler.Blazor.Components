@@ -52,14 +52,14 @@ namespace BlazorChat.Components
         }
         #endregion
 
-        #region Evnets
+        #region Events
     
             #region SendPrivateMessageClicked(EventArgs args, Guid toId)
             /// <summary>
             /// This method is used to send a Private message to a user
             /// </summary>
             /// <param name="args"></param>
-            /// <param name="toName"></param>
+            /// <param name="toId"></param>
             private void SendPrivateMessageClicked(EventArgs args, Guid toId)
             {
                 // Attempt to find the subscriber
@@ -150,26 +150,6 @@ namespace BlazorChat.Components
             }
             #endregion
             
-            #region JoinAsGuest()
-            /// <summary>
-            /// This event is fired when Join As Guest
-            /// </summary>
-            public void JoinAsGuest()
-            {
-                // Create a new instance of an 'User' object.
-                this.User = new User();
-
-                // Set the name
-                user.Name = "Guest" + shuffler.PullNextItem();
-
-                // Set the SubscriberName
-                SubscriberName = user.Name;
-
-                // Register with the server
-                RegisterWithServer();
-            }
-            #endregion
-
             #region Listen(SubscriberMessage message)
             /// <summary>
             /// This method Listen
@@ -389,6 +369,21 @@ namespace BlazorChat.Components
                         SendMessage(true, subscriber);
                     }
                 }
+            }
+            #endregion
+            
+            #region SignOut()
+            /// <summary>
+            /// This method Sign Out the user
+            /// </summary>
+            public void SignOut()
+            {
+                // Sign out
+                this.SubscriberName = "";
+                this.User = null;
+
+                // Update the UI
+                Refresh();
             }
             #endregion
             
