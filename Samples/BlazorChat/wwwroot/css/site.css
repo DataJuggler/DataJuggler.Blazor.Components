@@ -38,12 +38,13 @@
 }
 .chatroom
 {
+    background-image: url('../Images/HouseRules.png');
+    background-size: 100% 100%;
     position: fixed;
     top: 18vh;
-    left: 5%;
+    left: 12%;
     width: 76%;
     height: 64vh;
-    background-color: green;
 }
 .chatroom2
 {
