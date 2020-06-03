@@ -1,4 +1,4 @@
-USE [MemberSample]
+USE [BlazorSample]
 GO
 /****** Object:  Table [dbo].[User]    Script Date: 6/1/2020 5:53:11 PM ******/
 SET ANSI_NULLS ON
