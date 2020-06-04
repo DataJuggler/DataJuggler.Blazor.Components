@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Components;
 using DataJuggler.RandomShuffler;
 using DataJuggler.RandomShuffler.Core;
 using BlazorChat.Enumerations;
+using DataJuggler.UltimateHelper.Core;
+using DataJuggler.UltimateHelper.Core.Objects;
 
 #endregion
 
@@ -36,6 +38,7 @@ namespace BlazorChat.Components
         private string messageHeader;
         private string textAlign;
         private string leftStyle;
+        private string htmlText;
         #endregion
 
         #region Constructor
@@ -52,6 +55,27 @@ namespace BlazorChat.Components
         
         #region Methods
             
+            #region ContainsLink()
+            /// <summary>
+            /// This method returns the Link Start
+            /// </summary>
+            public bool ContainsLink(string text)
+            {
+                // initial value
+                bool containsLink = false;
+                
+                // not an href already
+                if ((TextHelper.Exists(text)) && (!text.Contains("<a href")))
+                {
+                    // set the return value
+                    containsLink = ((text.Contains("http") || (text.Contains("https"))));
+                }
+
+                // return value
+                return containsLink;
+            }
+            #endregion
+            
             #region Refresh()
             /// <summary>
             /// method Refresh
@@ -59,6 +83,91 @@ namespace BlazorChat.Components
             public void Refresh()
             {
                 
+            }
+            #endregion
+            
+            #region ReplaceLinksWithHref(ApplicationLogicComponent)
+            /// <summary>
+            /// This method returns the Links With Href
+            /// </summary>
+            public string ReplaceLinksWithHref(string text)
+            {
+                // initial value
+                string formattedText = text;
+
+                // delimiters
+                char[] delimiters = { ' ', '\n', };
+
+                // If the text string exists
+                if (ContainsLink(text))
+                {
+                    // if the NewLine is not found
+                    if (!text.Contains(Environment.NewLine))
+                    {
+                        // The parsing on lines isn't working, this is a good hack till
+                        // I rewrite the parser to be more robust someday
+                        text = text.Replace("\n", Environment.NewLine);
+                    }
+
+                    // just in case, fix for the hack
+                    text = text.Replace("\r\r", "\r");
+
+                    // Get the text lines
+                    List<TextLine> lines = WordParser.GetTextLines(text);
+
+                    // If the lines collection exists and has one or more items
+                    if (ListHelper.HasOneOrMoreItems(lines))
+                    {
+                        // iterate the textLines
+                        foreach(TextLine line in lines)
+                        {
+                            // Get the words - parse only on space
+                            List<Word> words = WordParser.GetWords(line.Text, delimiters);
+                    
+                            // If the words collection exists and has one or more items
+                            if (ListHelper.HasOneOrMoreItems(words))
+                            {
+                                // iterate each word
+                                foreach (Word word in words)
+                                {
+                                    // if this is a link
+                                    if (StartsWithLink(word.Text))
+                                    {
+                                        // set the word as a href
+                                        string temp = "<a href=" + word.Text + " target=_blank>" + word.Text + "</a>";
+
+                                        // Replace out the word with the link
+                                        formattedText = formattedText.Replace(word.Text, temp);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                // return value
+                return formattedText;
+            }
+            #endregion
+            
+            #region StartsWithLink(string text)
+            /// <summary>
+            /// This method returns the With Link
+            /// </summary>
+            public bool StartsWithLink(string text)
+            {
+                // initial value
+                bool startsWithLink = false;
+
+                 // not an href already
+                if (TextHelper.Exists(text))
+                {
+                    // set the return value
+                    startsWithLink = ((text.StartsWith("http") || (text.StartsWith("https"))));
+                }
+                
+                // return value
+                return startsWithLink;
             }
             #endregion
             
@@ -126,6 +235,17 @@ namespace BlazorChat.Components
                     // return value
                     return hasMessage;
                 }
+            }
+            #endregion
+            
+            #region HtmlText
+            /// <summary>
+            /// This property gets or sets the value for 'HtmlText'.
+            /// </summary>
+            public string HtmlText
+            {
+                get { return htmlText; }
+                set { htmlText = value; }
             }
             #endregion
             
@@ -215,7 +335,14 @@ namespace BlazorChat.Components
             public string Text
             {
                 get { return text; }
-                set { text = value; }
+                set 
+                { 
+                    // set the value
+                    text = value;
+
+                    // set the value for htemlText
+                    htmlText = ReplaceLinksWithHref(text);
+                }
             }
             #endregion
             

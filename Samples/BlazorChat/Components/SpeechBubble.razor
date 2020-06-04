@@ -50,6 +50,6 @@
         <div class="@MessageHeader">@From</div>
     }
     <div class="@TextStyle">
-        <span>@Text</span>
+        <span>@(((MarkupString)HtmlText).Sanitize())</span>
     </div>
 </div>
