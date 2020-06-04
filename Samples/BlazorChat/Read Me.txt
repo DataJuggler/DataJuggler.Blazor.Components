@@ -1,3 +1,5 @@
-﻿Please see the Read Me in the SQLScripts folder. 
+﻿Blazor Chat has been moved to its own repo.
 
-I was afraid you wouldn't find it hidden there, so this is here to help you find it.
+https://github.com/DataJuggler/BlazorChat.
+
+Sorry for the trouble, but it is easier for me to maintain a project if I isolate it.
