@@ -52,17 +52,6 @@ public partial class Index : IProgressSubscriber
         // store the ProgressBar
         this.ProgressBar = progressBar;
     }
-    
-# ProgressBar Property
-
-This property is stored after the Register method is called by the ProgressBar.
-
-    /// <summary>
-    /// This property gets or sets the value for 'ProgressBar'.
-    /// </summary>
-    public ProgressBar ProgressBar { get; set; }
-
-The IProgressSubscriber interface allows the ProgressBar and its host to talk to each other.
 
 # BlazorStyled Setup
 Blazor Styled is a great component and the code and documentation are available here:
@@ -335,7 +324,15 @@ WidthPixels: 900px;
 Most of the other properties should be the same as the ProgressBar.
 
 
+# ProgressBar
+It took me 3 attempts to get a progress bar I actually like, and I owe to Percentage Circle CSS:
+
+    CSS Percentage Circle
+    Author: Andre Firchow
     
+    http://circle.firchow.net/
+    
+
     
 
 
