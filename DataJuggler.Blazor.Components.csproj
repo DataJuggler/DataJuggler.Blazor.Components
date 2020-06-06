@@ -22,7 +22,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.4.10 - I was not using the Css classes that were in this library, except for the circle.scss, so I removed them.
+    <PackageReleaseNotes>1.4.11 - For some reason I added Open and Close curly brackets to a BlazorStyled Class.
+Oops. Time for bed soon.
+
+1.4.10 - I was not using the Css classes that were in this library, except for the circle.scss, so I removed them.
 I also added some properties for the ValidationControl to help style it outside of this component.
 
 1.4.9 - I added CheckBoxXPostion and CheckBoxYPostion and got rid of CheckBoxVerticalPosition.
@@ -107,9 +110,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.4.10</Version>
-    <AssemblyVersion>1.4.10.0</AssemblyVersion>
-    <FileVersion>1.4.10.0</FileVersion>
+    <Version>1.4.11</Version>
+    <AssemblyVersion>1.4.11.0</AssemblyVersion>
+    <FileVersion>1.4.11.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
