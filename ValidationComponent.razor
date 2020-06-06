@@ -19,8 +19,8 @@
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
     position: relative;
-    left: -6%;
-    top: @CheckBoxVerticalStyle;
+    left: @CheckBoxXStyle;
+    top: @CheckBoxYStyle;
     position: relative;    
 </Styled>
 <Styled @bind-Classname="@ImageStyle">
@@ -37,8 +37,18 @@
     transform: scale(@ImageScale);
     transform-origin: left;
 </Styled>
+<Styled @bind-Classname="@ValidationControlStyle">
+{
+    line-height: 3.2vh;
+    font-size: @FontSizeStyle;
+    font-family: Arial, Verdana;    
+    margin-top: 2vh;
+    margin-left: 2%;
+    margin-bottom: 1vh;
+}
+</Styled>
 
-<div class="signupcontrols">
+<div class="@ValidationControlStyle">
     
     @if (CheckBoxMode)
     {  

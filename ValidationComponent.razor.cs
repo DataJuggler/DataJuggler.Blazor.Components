@@ -57,8 +57,14 @@ namespace DataJuggler.Blazor.Components
         private bool checkBoxValue;
         private string checkBoxStyle;
         private double imageScale;
-        private double checkBoxVerticalPosition;
-        private string checkBoxVerticalStyle;
+        private double checkBoxXPosition;
+        private string checkBoxXStyle;
+        private double checkBoxYPosition;
+        private string checkBoxYStyle;
+        private string validationControlStyle;
+        private double fontSize;
+        private string fontSizeStyle;
+        private string fontSizeUnit;
         private IBlazorComponentParent parent;
         #endregion
         
@@ -68,20 +74,35 @@ namespace DataJuggler.Blazor.Components
         /// </summary>
         public ValidationComponent()
         {
-            // Set Default Values
-            LabelColor = "LemonChiffon";
-            TextBoxBackColor = "White";
-            InputType = "text";
-            Text = "";
-            IsUnique = true;
-            ImageScale = 1.6;
-            TakenImageUrl = "_content/DataJuggler.Blazor.Components/Images/Failure.png";
-            UniqueImageUrl = "_content/DataJuggler.Blazor.Components/Images/Success.png";
+            // Perform initializations for this object
+            Init();
         }
         #endregion
 
         #region Methods
 
+            #region Init()
+            /// <summary>
+            /// This method  This method performs initializations for this object.
+            /// </summary>
+            public void Init()
+            {
+                // Set Default Values
+                LabelColor = "LemonChiffon";
+                TextBoxBackColor = "White";
+                InputType = "text";
+                Text = "";
+                IsUnique = true;
+                ImageScale = 1.6;
+                TakenImageUrl = "_content/DataJuggler.Blazor.Components/Images/Failure.png";
+                UniqueImageUrl = "_content/DataJuggler.Blazor.Components/Images/Success.png";
+                CheckBoxXPosition = -6;
+                CheckBoxYPosition = 1.28;
+                FontSizeUnit = "vh";
+                FontSize = 2.4;
+            }
+            #endregion
+            
             #region ReceiveData(Message message)
             /// <summary>
             /// method returns the Data
@@ -332,33 +353,103 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxVerticalPosition
+            #region CheckBoxXPosition
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxVerticalPosition'.
+            /// This property gets or sets the value for 'CheckBoxXPosition'.
             /// </summary>
             [Parameter]
-            public double CheckBoxVerticalPosition
+            public double CheckBoxXPosition
             {
-                get { return checkBoxVerticalPosition; }
+                get { return checkBoxXPosition; }
                 set 
-                {
+                { 
                     // set the value
-                    checkBoxVerticalPosition = value;
+                    checkBoxXPosition = value;
 
-                    // set the value for checkBoxVerticalStyle
-                    checkBoxVerticalStyle = checkBoxVerticalPosition.ToString() + "vh";
+                    // set the style value
+                    checkBoxXStyle = checkBoxXPosition.ToString() + "%";
                 }
             }
             #endregion
             
-            #region CheckBoxVerticalStyle
+            #region CheckBoxXStyle
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxVerticalStyle'.
+            /// This property gets or sets the value for 'CheckBoxXStyle'.
             /// </summary>
-            public string CheckBoxVerticalStyle
+            public string CheckBoxXStyle
             {
-                get { return checkBoxVerticalStyle; }
-                set { checkBoxVerticalStyle = value; }
+                get { return checkBoxXStyle; }
+                set { checkBoxXStyle = value; }
+            }
+            #endregion
+            
+            #region CheckBoxYPosition
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxYPosition'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxYPosition
+            {
+                get { return checkBoxYPosition; }
+                set 
+                {
+                    // set the value
+                    checkBoxYPosition = value;
+
+                    // Set the checkBoxYStyle
+                    checkBoxYStyle = checkBoxYPosition.ToString() + "vh";
+                }
+            }
+            #endregion
+            
+            #region CheckBoxYStyle
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxYStyle'.
+            /// </summary>
+            public string CheckBoxYStyle
+            {
+                get { return checkBoxYStyle; }
+                set { checkBoxYStyle = value; }
+            }
+            #endregion
+            
+            #region FontSize
+            /// <summary>
+            /// This property gets or sets the value for 'FontSize'.
+            /// </summary>
+            [Parameter]
+            public double FontSize
+            {
+                get { return fontSize; }
+                set 
+                {
+                    fontSize = value;
+
+                    fontSizeStyle = fontSize.ToString() + fontSizeUnit;
+                }
+            }
+            #endregion
+            
+            #region FontSizeStyle
+            /// <summary>
+            /// This property gets or sets the value for 'FontSizeStyle'.
+            /// </summary>
+            public string FontSizeStyle
+            {
+                get { return fontSizeStyle; }
+                set { fontSizeStyle = value; }
+            }
+            #endregion
+            
+            #region FontSizeUnit
+            /// <summary>
+            /// This property gets or sets the value for 'FontSizeUnit'.
+            /// </summary>
+            [Parameter]
+            public string FontSizeUnit
+            {
+                get { return fontSizeUnit; }
+                set { fontSizeUnit = value; }
             }
             #endregion
             
@@ -777,6 +868,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return uniqueImageUrl; }
                 set { uniqueImageUrl = value; }
+            }
+            #endregion
+            
+            #region ValidationControlStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ValidationControlStyle'.
+            /// </summary>
+            public string ValidationControlStyle
+            {
+                get { return validationControlStyle; }
+                set { validationControlStyle = value; }
             }
             #endregion
             

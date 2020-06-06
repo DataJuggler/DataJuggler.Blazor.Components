@@ -22,7 +22,18 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.4.6 - I made a breaking change to the Sprie component, but now when you set Sprite.Height or Width, it translates to HeightStyle = Height + "vh" and setting Width sets WidthStyle to Width + "%".
+    <PackageReleaseNotes>1.4.10 - I was not using the Css classes that were in this library, except for the circle.scss, so I removed them.
+I also added some properties for the ValidationControl to help style it outside of this component.
+
+1.4.9 - I added CheckBoxXPostion and CheckBoxYPostion and got rid of CheckBoxVerticalPosition.
+Sorry for the incovenience if you upgraded.
+
+1.4.8 - This is the same as 1.4.6. I have to update the control more carefully because I broke everything.
+I really hope this works.
+
+1.4.7 - Rolled Back Due To Errors Found After Publish
+
+1.4.6 - I made a breaking change to the Sprie component, but now when you set Sprite.Height or Width, it translates to HeightStyle = Height + "vh" and setting Width sets WidthStyle to Width + "%".
 Previously it was set to HeightPixels and WidthPixels, and this causes zoom differences in a site.
 
 1.4.5 - I changed the XPosition and YPosition values to set XPositionStyle and YPositionStyle instead of
@@ -96,8 +107,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.4.6</Version>
-    <AssemblyVersion>1.4.6.0</AssemblyVersion>
+    <Version>1.4.10</Version>
+    <AssemblyVersion>1.4.10.0</AssemblyVersion>
+    <FileVersion>1.4.10.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
