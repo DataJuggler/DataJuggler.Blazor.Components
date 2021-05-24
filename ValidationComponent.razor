@@ -9,12 +9,14 @@
     justify-content: right;
     position: relative;
     top: 1vh;
+    vertical-align: top;
     left: -6.4%;
 </Styled>
 <Styled @bind-Classname="@TextBoxStyle">
     background-color: @TextBoxBackColor;
     position: relative;
     left: -6%;
+    width: @TextBoxWidthPercent;
 </Styled>
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
@@ -44,18 +46,21 @@
     margin-top: 2vh;
     margin-left: 2%;
     margin-bottom: 1vh;
+    width: @WidthPercent;
 </Styled>
 
 <div class="@ValidationControlStyle">
-    
+    <span class="@LabelStyle">@Caption:</span>    
     @if (CheckBoxMode)
     {  
-        <span class="@LabelStyle">@Caption:</span>    
         <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
     }
+    else if (Multiline)
+    {
+        <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" />
+    }
     else
-    { 
-        <span class="@LabelStyle">@Caption:</span>
+    {  
         <input class="@TextBoxStyle" type=@InputType @bind="@Text" />
     }
     @if (ShowImage)

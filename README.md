@@ -1,7 +1,8 @@
 # DataJuggler.Blazor.Components
-This is eventually going to include many components, but for now I am starting with a Progress Bar in its early stages.
+This class consists of a ProgressBar, SpriteComponent and a ValidationComponent.
 
-The ProgressBar is a work in progress and more of a prototype at this point, but it is ready for demo projects or samples.
+The ValidationComponent is a multi-use component that allows you to build data entry
+screens quickly. 
 
 Below is a quick sample to get you started using it.
 

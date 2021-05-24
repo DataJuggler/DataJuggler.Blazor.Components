@@ -1,20 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;netcoreapp3.1</TargetFrameworks>
+    <TargetFramework>net5.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
-    <Description>A collection of components to make building a Blazor project simpler. So far only a ProgressBar, Sprite and a Validation component.
+    <Description>A collection of components to make building a Blazor project simpler. So far only a ProgressBar, Sprite and a Validation component, now for .Net 5.0
 
 This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.
+New Version 1.5
+.Net 5.0 is the only supported version going forward.
+
+Version 1.5.1: I accidently marked this project as depreciated, when I was having a temporary problem with my BlazorFileUpload component converting it to .Net 5. That has been resolved. 
+
+Version 1.5.0 - I updated to .Net 5.
 
 New version 1.4
 Validation Component
 
 New to version 1.3 is a new really cool progress bar that uses all CSS by 
 http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://firchow.net/</Description>
-    <Copyright>2020 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
+    <Copyright>2021 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
     <PackageIcon>Logo Black.png</PackageIcon>
@@ -22,7 +28,21 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.4.11 - For some reason I added Open and Close curly brackets to a BlazorStyled Class.
+    <PackageReleaseNotes>1.5.8: I added a property 'TextBoxWidth', which is a double and set the value for TextBoxWidthPercent, a string.
+
+1.5.7: I added a Width property to the ValidationComponent. This value is in percentage, and it defaults to 80 percent. Not sure if 80 is the right value or not. I also changed the Text-Align property to top for the label. This may need to be a Parameter.
+
+1.5.6: I forgot to add the Parameter tag to the Multiline propery.
+
+1.5.5: I added a Multiline propery to for description or long text fields
+
+1.5.4: I added the tag Parameter to the ValidationComponent.LabelColor and TextBoxBackColor.
+
+1.5.2: I had a problem publishing a .Net 5 project, trying again.
+
+1.5.0: .Net 5.0 conversion of Nuget packages and Target Framework.
+
+1.4.11 - For some reason I added Open and Close curly brackets to a BlazorStyled Class.
 Oops. Time for bed soon.
 
 1.4.10 - I was not using the Css classes that were in this library, except for the circle.scss, so I removed them.
@@ -110,16 +130,16 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.4.11</Version>
-    <AssemblyVersion>1.4.11.0</AssemblyVersion>
-    <FileVersion>1.4.11.0</FileVersion>
+    <Version>1.5.8</Version>
+    <AssemblyVersion>1.5.8.0</AssemblyVersion>
+    <FileVersion>1.5.8.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Samples\**" />
     <Content Remove="Samples\**" />
     <EmbeddedResource Remove="Samples\**" />
-    <None Remove="Samples\**" />
+    <None Remove="Samples\**" />    
     <None Include="License\License.txt">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -132,10 +152,10 @@ Now is the time to break anything.
 
 
   <ItemGroup>
-    <PackageReference Include="BlazorStyled" Version="2.2.0" />
-    <PackageReference Include="DataJuggler.UltimateHelper.Core" Version="1.2.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.4" />
+    <PackageReference Include="BlazorStyled" Version="3.1.0" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="1.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

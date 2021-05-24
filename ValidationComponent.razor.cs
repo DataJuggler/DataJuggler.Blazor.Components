@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components;
-using DataJuggler.UltimateHelper.Core;
+using DataJuggler.UltimateHelper;
 
 #endregion
 
@@ -44,6 +44,7 @@ namespace DataJuggler.Blazor.Components
         private int maximumInteger;
         private int minimumDouble;
         private int maximumDouble;
+        private bool multiline;
         private string validationMessage;
         private string invalidReason;
         private bool isUniqueCallbackRequired;
@@ -65,7 +66,11 @@ namespace DataJuggler.Blazor.Components
         private double fontSize;
         private string fontSizeStyle;
         private string fontSizeUnit;
-        private IBlazorComponentParent parent;
+        private double width;
+        private string widthPercent;
+        private double textBoxWidth;
+        private string textBoxWidthPercent;
+        private IBlazorComponentParent parent;        
         #endregion
         
         #region Constructor
@@ -100,6 +105,8 @@ namespace DataJuggler.Blazor.Components
                 CheckBoxYPosition = 1.28;
                 FontSizeUnit = "vh";
                 FontSize = 2.4;
+                Width = 80;
+                TextBoxWidth = 80;
             }
             #endregion
             
@@ -658,6 +665,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'LabelColor'.
             /// </summary>
+            [Parameter]
             public string LabelColor
             {
                 get { return labelColor; }
@@ -745,6 +753,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return minimumLength; }
                 set { minimumLength = value; }
+            }
+            #endregion
+            
+            #region Multiline
+            /// <summary>
+            /// This property gets or sets the value for 'Multiline'.
+            /// </summary>
+            [Parameter]
+            public bool Multiline
+            {
+                get { return multiline; }
+                set { multiline = value; }
             }
             #endregion
             
@@ -841,6 +861,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'TextBoxBackColor'.
             /// </summary>
+            [Parameter]
             public string TextBoxBackColor
             {
                 get { return textBoxBackColor; }
@@ -859,6 +880,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region TextBoxWidth
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxWidth'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxWidth
+            {
+                get { return textBoxWidth; }
+                set 
+                {
+                    // set the value
+                    textBoxWidth = value;
+
+                    // set the value
+                    TextBoxWidthPercent = textBoxWidth + "%";
+                }
+            }
+            #endregion
+            
+            #region TextBoxWidthPercent
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxWidthPercent'.
+            /// </summary>
+            public string TextBoxWidthPercent
+            {
+                get { return textBoxWidthPercent; }
+                set { textBoxWidthPercent = value; }
+            }
+            #endregion
+            
             #region UniqueImageUrl
             /// <summary>
             /// This property gets or sets the value for 'UniqueImageUrl'.
@@ -891,6 +942,35 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return validationMessage; }
                 set { validationMessage = value; }
+            }
+            #endregion
+            
+            #region Width
+            /// <summary>
+            /// This property gets or sets the value for 'Width'.
+            /// </summary>
+            [Parameter]
+            public double Width
+            {
+                get { return width; }
+                set 
+                { 
+                    width = value;
+
+                    // set the value for widthPercent
+                    widthPercent = width + "%";
+                }
+            }
+            #endregion
+            
+            #region WidthPercent
+            /// <summary>
+            /// This property gets or sets the value for 'WidthPercent'.
+            /// </summary>
+            public string WidthPercent
+            {
+                get { return widthPercent; }
+                set { widthPercent = value; }
             }
             #endregion
             

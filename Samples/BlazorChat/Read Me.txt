@@ -1,5 +1,0 @@
-﻿Blazor Chat has been moved to its own repo.
-
-https://github.com/DataJuggler/BlazorChat.
-
-Sorry for the trouble, but it is easier for me to maintain a project if I isolate it.
