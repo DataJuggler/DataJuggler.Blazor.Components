@@ -106,7 +106,7 @@ namespace DataJuggler.Blazor.Components
                 FontSizeUnit = "vh";
                 FontSize = 2.4;
                 Width = 80;
-                TextBoxWidth = 80;
+                TextBoxWidth = 30;
             }
             #endregion
             
