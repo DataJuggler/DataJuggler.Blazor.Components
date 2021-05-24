@@ -72,6 +72,8 @@ namespace DataJuggler.Blazor.Components
         private string widthPercent;
         private double textBoxWidth;
         private string textBoxWidthPercent;
+        private double textBoxHeight;
+        private string textBoxHeightPercent;
         private double defaultTextBoxHeight;
         private double multilineTextBoxHeight;
         private IBlazorComponentParent parent;        
@@ -110,7 +112,8 @@ namespace DataJuggler.Blazor.Components
                 FontSizeUnit = "vh";
                 FontSize = 2.4;
                 Width = 80;
-                Height = 3;
+                Height = 3.2;
+                TextBoxHeight = Height;
                 DefaultTextBoxHeight = 3.2;
                 MultilineTextBoxHeight = 8;
                 TextBoxWidth = 30;
@@ -828,6 +831,9 @@ namespace DataJuggler.Blazor.Components
                     {
                         Height = DefaultTextBoxHeight;
                     }
+
+                    // Set the height of the textbox
+                    TextBoxHeight = Height;
                 }
             }
             #endregion
@@ -942,6 +948,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxBackColor; }
                 set { textBoxBackColor = value; }
+            }
+            #endregion
+            
+            #region TextBoxHeight
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxHeight'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxHeight
+            {
+                get { return textBoxHeight; }
+                set
+                {
+                    // set the value
+                    textBoxHeight = value;
+
+                    // Set the value for the vertical height which the css uses
+                    TextBoxHeightPercent = textBoxHeight + "vh";
+                }
+            }
+            #endregion
+            
+            #region TextBoxHeightPercent
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxHeightPercent'.
+            /// </summary>
+            public string TextBoxHeightPercent
+            {
+                get { return textBoxHeightPercent; }
+                set { textBoxHeightPercent = value; }
             }
             #endregion
             
