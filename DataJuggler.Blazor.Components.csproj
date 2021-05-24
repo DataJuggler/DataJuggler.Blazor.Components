@@ -28,7 +28,11 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.5.8: I added a property 'TextBoxWidth', which is a double and set the value for TextBoxWidthPercent, a string.
+    <PackageReleaseNotes>1.5.10: I added a Height property. This is needed when Multiline is set to true. I also added a DefaultTextBoxHeight and MultilineTextBoxHeight. These have default values of 3.2 and 8 for now as I test, but can be set in your implementation. When setting Multiline to true, I needed a value to change the height to.
+
+1.5.9: I changed the default TextBoxWidth to 30 from 76, which messed up existing users
+
+1.5.8: I added a property 'TextBoxWidth', which is a double and set the value for TextBoxWidthPercent, a string.
 
 1.5.7: I added a Width property to the ValidationComponent. This value is in percentage, and it defaults to 80 percent. Not sure if 80 is the right value or not. I also changed the Text-Align property to top for the label. This may need to be a Parameter.
 
@@ -130,9 +134,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.5.9</Version>
-    <AssemblyVersion>1.5.8.0</AssemblyVersion>
-    <FileVersion>1.5.8.0</FileVersion>
+    <Version>1.5.10</Version>
+    <AssemblyVersion>1.5.10.0</AssemblyVersion>
+    <FileVersion>1.5.10.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

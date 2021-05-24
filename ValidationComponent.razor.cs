@@ -66,10 +66,14 @@ namespace DataJuggler.Blazor.Components
         private double fontSize;
         private string fontSizeStyle;
         private string fontSizeUnit;
+        private double height;
+        private string heightPercent;
         private double width;
         private string widthPercent;
         private double textBoxWidth;
         private string textBoxWidthPercent;
+        private double defaultTextBoxHeight;
+        private double multilineTextBoxHeight;
         private IBlazorComponentParent parent;        
         #endregion
         
@@ -106,6 +110,9 @@ namespace DataJuggler.Blazor.Components
                 FontSizeUnit = "vh";
                 FontSize = 2.4;
                 Width = 80;
+                Height = 3;
+                DefaultTextBoxHeight = 3.2;
+                MultilineTextBoxHeight = 8;
                 TextBoxWidth = 30;
             }
             #endregion
@@ -420,6 +427,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DefaultTextBoxHeight
+            /// <summary>
+            /// This property gets or sets the value for 'DefaultTextBoxHeight'.
+            /// </summary>
+            [Parameter]
+            public double DefaultTextBoxHeight
+            {
+                get { return defaultTextBoxHeight; }
+                set { defaultTextBoxHeight = value; }
+            }
+            #endregion
+            
             #region FontSize
             /// <summary>
             /// This property gets or sets the value for 'FontSize'.
@@ -508,6 +527,36 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return hasUniqueImageUrl;
                 }
+            }
+            #endregion
+            
+            #region Height
+            /// <summary>
+            /// This property gets or sets the value for 'Height'.
+            /// </summary>
+            [Parameter]
+            public double Height
+            {
+                get { return height; }
+                set
+                {
+                    // set the value
+                    height = value;
+                    
+                    // Append vh for vertical height
+                    HeightPercent = height + "vh";
+                }
+            }
+            #endregion
+            
+            #region HeightPercent
+            /// <summary>
+            /// This property gets or sets the value for 'HeightPercent'.
+            /// </summary>
+            public string HeightPercent
+            {
+                get { return heightPercent; }
+                set { heightPercent = value; }
             }
             #endregion
             
@@ -759,12 +808,39 @@ namespace DataJuggler.Blazor.Components
             #region Multiline
             /// <summary>
             /// This property gets or sets the value for 'Multiline'.
+            /// Use the Height and Width properties to set the size.
             /// </summary>
             [Parameter]
             public bool Multiline
             {
                 get { return multiline; }
-                set { multiline = value; }
+                set 
+                { 
+                    multiline = value;
+
+                    // if the value for multiline is true
+                    if (multiline)
+                    {
+                        // Use the multiline TextBoxHeight
+                        Height = MultilineTextBoxHeight;
+                    }
+                    else
+                    {
+                        Height = DefaultTextBoxHeight;
+                    }
+                }
+            }
+            #endregion
+            
+            #region MultilineTextBoxHeight
+            /// <summary>
+            /// This property gets or sets the value for 'MultilineTextBoxHeight'.
+            /// </summary>
+            [Parameter]
+            public double MultilineTextBoxHeight
+            {
+                get { return multilineTextBoxHeight; }
+                set { multilineTextBoxHeight = value; }
             }
             #endregion
             
