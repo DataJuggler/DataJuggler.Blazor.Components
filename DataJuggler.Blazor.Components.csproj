@@ -28,7 +28,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.5.11: The Height property needed a TextBoxHeight property also.
+    <PackageReleaseNotes>1.5.12: Add the TextBoxHeight didn't do anything, since I forgot to apply it to the TextBoxCSS. Now fixed.
+
+1.5.11: The Height property needed a TextBoxHeight property also.
 
 1.5.10: I added a Height property. This is needed when Multiline is set to true. I also added a DefaultTextBoxHeight and MultilineTextBoxHeight. These have default values of 3.2 and 8 for now as I test, but can be set in your implementation. When setting Multiline to true, I needed a value to change the height to.
 
@@ -136,9 +138,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.5.11</Version>
-    <AssemblyVersion>1.5.11.0</AssemblyVersion>
-    <FileVersion>1.5.11.0</FileVersion>
+    <Version>1.5.12</Version>
+    <AssemblyVersion>1.5.12.0</AssemblyVersion>
+    <FileVersion>1.5.12.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
