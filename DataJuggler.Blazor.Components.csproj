@@ -28,7 +28,11 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.5.12: Add the TextBoxHeight didn't do anything, since I forgot to apply it to the TextBoxCSS. Now fixed.
+    <PackageReleaseNotes>1.6.0: Added two new methods:
+SetTextValue
+SetCheckBoxValue
+
+1.5.12: Add the TextBoxHeight didn't do anything, since I forgot to apply it to the TextBoxCSS. Now fixed.
 
 1.5.11: The Height property needed a TextBoxHeight property also.
 
@@ -138,7 +142,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.5.14</Version>
+    <Version>1.6.0</Version>
     <AssemblyVersion>1.5.12.0</AssemblyVersion>
     <FileVersion>1.5.12.0</FileVersion>
   </PropertyGroup>

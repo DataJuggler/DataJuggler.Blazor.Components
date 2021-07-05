@@ -197,6 +197,21 @@ namespace DataJuggler.Blazor.Components
                 });
             }
             #endregion
+
+            #region SetCheckBoxValue(bool isChecked)
+            /// <summary>
+            /// This method Sets the CheckBoxValue
+            /// </summary>
+            public void SetCheckBoxValue(bool isChecked)
+            {
+                // if CheckBoxMode
+                if (this.CheckBoxMode)
+                {
+                    // Set the value
+                    this.CheckBoxValue = isChecked;
+                }
+            }
+            #endregion
             
             #region SetInputType()
             /// <summary>
@@ -218,6 +233,17 @@ namespace DataJuggler.Blazor.Components
                     // Set the InputType
                     inputType = "checkbox";
                 }
+            }
+            #endregion
+            
+            #region SetTextValue(string text)
+            /// <summary>
+            /// This method Sets the Text Value
+            /// </summary>
+            public void SetTextValue(string text)
+            {
+                // Set the value
+                this.Text = text;
             }
             #endregion
             
