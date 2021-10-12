@@ -16,7 +16,7 @@ using DataJuggler.UltimateHelper;
 namespace DataJuggler.Blazor.Components
 {
 
-    #region class ValidationComponent
+    #region class ValidationComponent : IBlazorComponent
     /// <summary>
     /// The validation component is just a way to display a valid or not valid to make the UI
     /// appear different.
@@ -31,8 +31,7 @@ namespace DataJuggler.Blazor.Components
         private string textBoxStyle;
         private bool isValid;
         private string caption;
-        private string text;
-        private string name;
+        private string text;        
         private bool isRequired;
         private bool isIntegerRequired;
         private bool isDoubleRequired;
@@ -76,7 +75,8 @@ namespace DataJuggler.Blazor.Components
         private string textBoxHeightPercent;
         private double defaultTextBoxHeight;
         private double multilineTextBoxHeight;
-        private IBlazorComponentParent parent;        
+        private string name;
+        private IBlazorComponentParent parent;
         #endregion
         
         #region Constructor

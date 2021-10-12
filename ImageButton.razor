@@ -1,0 +1,22 @@
+﻿@using BlazorStyled
+
+<Styled @bind-Classname="ButtonContainerStyle">
+    position: relative;
+    left: @LeftStyle;
+    top: @TopStyle;
+</Styled>
+<Styled @bind-Classname="ButtonStyle">
+    background-image: url('@ImageUrl');    
+    background-size: 100% 100%;
+    display: inline-block;
+    outline: none;
+    border: none;    
+    background-repeat: no-repeat;
+    background-color: transparent;    
+    width: @WidthStyle;
+    height: @HeightStyle;
+</Styled>
+
+<div class="imagebuttoncontainer @ButtonContainerStyle">
+    <button class="@ButtonStyle" @onclick="ButtonClicked">@ButtonText</button>    
+</div>

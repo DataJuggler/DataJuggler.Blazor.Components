@@ -29,6 +29,21 @@ namespace DataJuggler.Blazor.Components.Enumerations
         Large = 3
     }
     #endregion
+
+    #region TextSizeEnum : int
+    /// <summary>
+    /// This enum is used to set which size to render the progress bar.
+    /// There is also a Scale property which can be used in conjunction.
+    /// </summary>
+    public enum TextSizeEnum : int
+    {
+        Extra_Small = 1,
+        Small = 2,
+        Medium = 3,
+        Large = 4,
+        Extra_Large = 5
+    }
+    #endregion
     
     #region ThemeEnum : int
     /// <summary>

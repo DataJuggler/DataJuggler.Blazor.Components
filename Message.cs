@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using DataJuggler.Blazor.Components.Interfaces;
 
 #endregion
 
@@ -20,6 +21,7 @@ namespace DataJuggler.Blazor.Components
 
         #region Private Variables
         private string text;
+        private IBlazorComponent sender;
         private List<NamedParameter> parameters;
         #endregion
 
@@ -53,6 +55,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasSender
+            /// <summary>
+            /// This property returns true if this object has a 'Sender'.
+            /// </summary>
+            public bool HasSender
+            {
+                get
+                {
+                    // initial value
+                    bool hasSender = (this.Sender != null);
+                    
+                    // return value
+                    return hasSender;
+                }
+            }
+            #endregion
+            
             #region HasText
             /// <summary>
             /// This property returns true if the 'Text' exists.
@@ -78,6 +97,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return parameters; }
                 set { parameters = value; }
+            }
+            #endregion
+            
+            #region Sender
+            /// <summary>
+            /// This property gets or sets the value for 'Sender'.
+            /// </summary>
+            public IBlazorComponent Sender
+            {
+                get { return sender; }
+                set { sender = value; }
             }
             #endregion
             
