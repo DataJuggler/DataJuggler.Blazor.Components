@@ -81,6 +81,9 @@ namespace DataJuggler.Blazor.Components
                 // if the Parent exists
                 if (HasParent)
                 {
+                    // Set the TextSize
+                    SetTextSize(ButtonText);
+
                     // Create a new instance of a 'Message' object.
                     Message message = new Message();
 
@@ -302,6 +305,59 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region SetTextSize(string selectedTextSizeText)
+            /// <summary>
+            /// Set Text Size
+            /// </summary>
+            public void SetTextSize(string selectedTextSizeText)
+            {
+                // Default value
+                TextSizeEnum textSize = TextSizeEnum.Medium;
+
+                // If the selectedTextSizeText string exists
+                if (TextHelper.Exists(selectedTextSizeText))
+                {
+                    switch (selectedTextSizeText)
+                    {
+                        case "Extra Small":
+
+                            // Set the value
+                            textSize = TextSizeEnum.Extra_Small;
+
+                            // required
+                            break;
+
+                         case "Small":
+
+                            // Set the value
+                            textSize = TextSizeEnum.Small;
+
+                            // required
+                            break;
+
+                         case "Large":
+
+                            // Set the value
+                            textSize = TextSizeEnum.Large;
+
+                            // required
+                            break;
+
+                        case "Extra Large":
+
+                            // Set the value
+                            textSize = TextSizeEnum.Extra_Large;
+
+                            // required
+                            break;
+                    }
+                }
+
+                // set the value
+                TextSize = textSize;
+            }
+            #endregion
+            
         #endregion
 
         #region Properties
@@ -652,7 +708,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Extra_Small:
 
                             // Set the value
-                            textSizeStyle = 1.4 + "vh";
+                            TextSizeStyle = 1.2 + "vh";
 
                             // required
                             break;
@@ -660,7 +716,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Small:
 
                             // Set the value
-                            textSizeStyle = 1.8 + "vh";
+                            TextSizeStyle = 1.5 + "vh";
 
                             // required
                             break;
@@ -668,7 +724,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Medium:
 
                             // Set the value
-                            textSizeStyle = 2.2 + "vh";
+                            TextSizeStyle = 1.8 + "vh";
 
                             // required
                             break;
@@ -676,7 +732,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Large:
 
                             // Set the value
-                            textSizeStyle = 2.6 + "vh";
+                            TextSizeStyle = 2.1 + "vh";
 
                             // required
                             break;
@@ -684,7 +740,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Extra_Large:
 
                             // Set the value
-                            textSizeStyle = 3.0 + "vh";
+                            TextSizeStyle = 2.4 + "vh";
 
                             // required
                             break;
