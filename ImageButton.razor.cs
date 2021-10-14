@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
+using DataJuggler.Blazor.Components.Enumerations;
 
 #endregion
 
@@ -37,9 +38,14 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private string heightStyle;
         private string widthStyle;
+        private string buttonTextAlign;
         private IBlazorComponentParent parent;
         private ButtonClickedHandler clickHandler;
         private List<IBlazorComponent> children;
+        private string buttonTextAlignStyle;
+        private int zIndex;
+        private TextSizeEnum textSize;
+        private string textSizeStyle;
         #endregion
 
         #region Constructor
@@ -53,6 +59,8 @@ namespace DataJuggler.Blazor.Components
             Height = 100;
             Left = 0;
             Top = 0;
+            ZIndex = 5;
+            ButtonTextAlign = "center";
         }
         #endregion
 
@@ -130,6 +138,29 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonText; }
                 set { buttonText = value; }
+            }
+            #endregion
+            
+            #region ButtonTextAlign
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonTextAlign'.
+            /// </summary>
+            [Parameter]
+            public string ButtonTextAlign
+            {
+                get { return buttonTextAlign; }
+                set { buttonTextAlign = value; }
+            }
+            #endregion
+            
+            #region ButtonTextAlignStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonTextAlignStyle'.
+            /// </summary>
+            public string ButtonTextAlignStyle
+            {
+                get { return buttonTextAlignStyle; }
+                set { buttonTextAlignStyle = value; }
             }
             #endregion
             
@@ -250,6 +281,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'Left'.
             /// </summary>
+            [Parameter]
             public double Left
             {
                 get { return left; }
@@ -309,10 +341,81 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TextSize
+            /// <summary>
+            /// This property gets or sets the value for 'TextSize'.
+            /// </summary>
+            [Parameter]
+            public TextSizeEnum TextSize
+            {
+                get { return textSize; }
+                set 
+                { 
+                    // set the value
+                    textSize = value;
+
+                    switch (value)
+                    {
+                        case TextSizeEnum.Extra_Small:
+
+                            // Set the value
+                            TextSizeStyle = 1.2 + "vh";
+
+                            // required
+                            break;
+
+                        case TextSizeEnum.Small:
+
+                            // Set the value
+                            TextSizeStyle = 1.5 + "vh";
+
+                            // required
+                            break;
+
+                        case TextSizeEnum.Medium:
+
+                            // Set the value
+                            TextSizeStyle = 1.8 + "vh";
+
+                            // required
+                            break;
+
+                        case TextSizeEnum.Large:
+
+                            // Set the value
+                            TextSizeStyle = 2.1 + "vh";
+
+                            // required
+                            break;
+
+                        case TextSizeEnum.Extra_Large:
+
+                            // Set the value
+                            TextSizeStyle = 2.4 + "vh";
+
+                            // required
+                            break;
+                    }
+                }
+            }
+            #endregion
+            
+            #region TextSizeStyle
+            /// <summary>
+            /// This property gets or sets the value for 'TextSizeStyle'.
+            /// </summary>
+            public string TextSizeStyle
+            {
+                get { return textSizeStyle; }
+                set { textSizeStyle = value; }
+            }
+            #endregion
+            
             #region Top
             /// <summary>
             /// This property gets or sets the value for 'Top'.
             /// </summary>
+            [Parameter]
             public double Top
             {
                 get { return top; }
@@ -364,6 +467,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return widthStyle; }
                 set { widthStyle = value; }
+            }
+            #endregion
+            
+            #region ZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'ZIndex'.
+            /// </summary>
+            [Parameter]
+            public int ZIndex
+            {
+                get { return zIndex; }
+                set { zIndex = value; }
             }
             #endregion
             

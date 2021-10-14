@@ -3,20 +3,34 @@
 <Styled @bind-Classname="ButtonContainerStyle">
     position: relative;
     left: @LeftStyle;
-    top: @TopStyle;
+    top: @TopStyle;    
+    z-index: @ZIndex;   
 </Styled>
 <Styled @bind-Classname="ButtonStyle">
     background-image: url('@ImageUrl');    
     background-size: 100% 100%;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     outline: none;
     border: none;    
     background-repeat: no-repeat;
     background-color: transparent;    
     width: @WidthStyle;
     height: @HeightStyle;
+    white-space: nowrap;
+    font-size: @TextSizeStyle;
+    vertical-align: central;
+</Styled>
+<Styled @bind-Classname="ButtonStyle" PseudoClass="PseudoClasses.Focus">
+    outline: none;
+</Styled>
+<Styled @bind-Classname="ButtonTextAlignStyle">
+    text-align: @ButtonTextAlign;
 </Styled>
 
 <div class="imagebuttoncontainer @ButtonContainerStyle">
-    <button class="@ButtonStyle" @onclick="ButtonClicked">@ButtonText</button>    
+    <button class="@ButtonStyle" @onclick="ButtonClicked">
+        <span class="@ButtonTextAlignStyle">@ButtonText</span>
+    </button>    
 </div>

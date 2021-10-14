@@ -28,7 +28,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>1.6.0: Added two new methods:
+    <PackageReleaseNotes>10.14.2021
+Version 1.6.2: I did some more testing and the ComboBox and ImageButtons had some improvements made.
+
+1.6.0: Added two new methods to the ValidationComponent:
 SetTextValue
 SetCheckBoxValue
 
@@ -142,9 +145,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.6.0</Version>
-    <AssemblyVersion>1.5.12.0</AssemblyVersion>
-    <FileVersion>1.5.12.0</FileVersion>
+    <Version>1.6.2</Version>
+    <AssemblyVersion>1.6.2.0</AssemblyVersion>
+    <FileVersion>1.6.2.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -166,8 +169,8 @@ Now is the time to break anything.
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="1.6.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.11" />
   </ItemGroup>
 
 </Project>

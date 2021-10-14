@@ -1,18 +1,24 @@
 ﻿@using DataJuggler.UltimateHelper
 @using BlazorStyled
-@using Microsoft.AspNetCore.Components.Web.Virtualization 
+@using DataJuggler.Blazor.Components.Enumerations
 
 <Styled @bind-Classname="Grid">
-    display: grid;
+    display: @DisplayStyle;
     grid-template-columns: @LabelSizeStyle 1fr;
     grid-column-gap: 2px;
-    height: 100vh;
-    width: 100%;
+    height: @HeightStyle;
+    width: @WidthStyle;
     font-size: @TextSizeStyle;
+    position: @Position;
+    left: @LeftStyle;
+    top: @TopStyle;
+    z-index: 10;
 </Styled>
 <Styled @bind-Classname="LabelStyle">
     font-size: @TextSizeStyle;
     text-align: right;
+    color: @LabelColor;
+    white-space: nowrap;
 </Styled>
 <Styled @bind-Classname="ComboBoxStyle">    
     height: 100vh;
@@ -20,28 +26,37 @@
     font-size: @TextSizeStyle;
     place-content: start;
     overflow: hidden;
+    text-align: left;   
 </Styled>
 <Styled @bind-Classname="ListItemStyle">    
     font-family: Verdana;
     font-size: @TextSizeStyle;
     text-align: left;
     background-color: white;
-    width: 160%;    
+    width: 160%;
+    z-index: 20;
 </Styled>
 <Styled @bind-Classname="NoPadding">    
     margin: 0;
     padding: 0;
 </Styled>
+<Styled @bind-Classname="VerticalCenter">
+    display: flex;
+    justify-content: left;
+    align-items: center;
+</Styled>
 
 <div class="@Grid">
     <div class="column @LabelStyle">@LabelText</div>   
     <div class="column @ComboBoxStyle">
-        <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Name="ComboBoxButton"
-                     Height="4" Width="100" ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
+        <div class="@VerticalCenter">
+            <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Name="ComboBoxButton" TextSize="TextSizeEnum.Large"
+                         Height="4" Width="220" ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
+        </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
          { 
             <div class="@ListItemStyle">
-                <select class="form-control" name="ListBox" size="5" id="ComboBoxListBox" @onchange="SelectionChanged">
+                <select class="form-control" name="ListBox" size="@VisibleCount" id="ComboBoxListBox" @onchange="SelectionChanged">
                     @foreach (Item item in Items)
                     {      
                         <option class="@NoPadding">@item.Text</option>
