@@ -63,8 +63,7 @@ namespace DataJuggler.Blazor.Components
         private string checkBoxYStyle;
         private string validationControlStyle;
         private double fontSize;
-        private string fontSizeStyle;
-        private string fontSizeUnit;
+        private string fontSizeStyle;        
         private double height;
         private string heightPercent;
         private double width;
@@ -76,6 +75,14 @@ namespace DataJuggler.Blazor.Components
         private double defaultTextBoxHeight;
         private double multilineTextBoxHeight;
         private string name;
+        private double left;
+        private double top;
+        private string leftStyle;
+        private string topStyle;
+        private string fontSizeHorizontalUnit;
+        private string fontSizeVerticalUnit;
+        private double labelWidth;
+        private string labelWidthStyle;
         private IBlazorComponentParent parent;
         #endregion
         
@@ -99,6 +106,8 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Set Default Values
+                FontSizeVerticalUnit = "vh";
+                FontSizeHorizontalUnit = "%";
                 LabelColor = "LemonChiffon";
                 TextBoxBackColor = "White";
                 InputType = "text";
@@ -109,14 +118,16 @@ namespace DataJuggler.Blazor.Components
                 UniqueImageUrl = "_content/DataJuggler.Blazor.Components/Images/Success.png";
                 CheckBoxXPosition = -6;
                 CheckBoxYPosition = 1.28;
-                FontSizeUnit = "vh";
                 FontSize = 2.4;
                 Width = 80;
                 Height = 3.2;
                 TextBoxHeight = Height;
                 DefaultTextBoxHeight = 3.2;
                 MultilineTextBoxHeight = 8;
-                TextBoxWidth = 30;
+                TextBoxWidth = 30;                
+                Top = .2;
+                Left = -6;
+                LabelWidth = 20;
             }
             #endregion
             
@@ -478,10 +489,24 @@ namespace DataJuggler.Blazor.Components
                 get { return fontSize; }
                 set 
                 {
+                    // set the value
                     fontSize = value;
 
-                    fontSizeStyle = fontSize.ToString() + fontSizeUnit;
+                    // Set to vh or the unit set
+                    fontSizeStyle = fontSize.ToString() + FontSizeVerticalUnit;
                 }
+            }
+            #endregion
+            
+            #region FontSizeHorizontalUnit
+            /// <summary>
+            /// This property gets or sets the value for 'FontSizeHorizontalUnit'.
+            /// </summary>
+            [Parameter]
+            public string FontSizeHorizontalUnit
+            {
+                get { return fontSizeHorizontalUnit; }
+                set { fontSizeHorizontalUnit = value; }
             }
             #endregion
             
@@ -496,15 +521,15 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region FontSizeUnit
+            #region FontSizeVerticalUnit
             /// <summary>
-            /// This property gets or sets the value for 'FontSizeUnit'.
+            /// This property gets or sets the value for 'FontSizeVerticalUnit'.
             /// </summary>
             [Parameter]
-            public string FontSizeUnit
+            public string FontSizeVerticalUnit
             {
-                get { return fontSizeUnit; }
-                set { fontSizeUnit = value; }
+                get { return fontSizeVerticalUnit; }
+                set { fontSizeVerticalUnit = value; }
             }
             #endregion
             
@@ -716,12 +741,6 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     isValid = value;
 
-                    if (this.Name == "UserNameComponent")
-                    {
-                        // breakpoint only
-                        isValid = value;
-                    }
-
                     // if valid
                     if (isValid)
                     {
@@ -759,6 +778,65 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelStyle; }
                 set { labelStyle = value; }
+            }
+            #endregion
+
+            #region LabelWidth
+            /// <summary>
+            /// This property gets or sets the value for 'LabelWidth'.
+            /// </summary>
+            [Parameter]
+            public double LabelWidth
+            {
+                get { return labelWidth; }
+                set 
+                { 
+                    // set the value
+                    labelWidth = value;
+
+                    // Add % or the default unit
+                    LabelWidthStyle = labelWidth + FontSizeHorizontalUnit;
+                }
+            }
+            #endregion
+            
+            #region LabelWidthStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelWidthStyle'.
+            /// </summary>
+            public string LabelWidthStyle
+            {
+                get { return labelWidthStyle; }
+                set { labelWidthStyle = value; }
+            }
+            #endregion
+            
+            #region Left
+            /// <summary>
+            /// This property gets or sets the value for 'Left'.
+            /// </summary>
+            [Parameter]
+            public double Left
+            {
+                get { return left; }
+                set 
+                { 
+                    left = value;
+
+                    // set the value for leftStyle
+                    leftStyle = left + "%";
+                }
+            }
+            #endregion
+            
+            #region LeftStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LeftStyle'.
+            /// </summary>
+            public string LeftStyle
+            {
+                get { return leftStyle; }
+                set { leftStyle = value; }
             }
             #endregion
             
@@ -1045,6 +1123,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxWidthPercent; }
                 set { textBoxWidthPercent = value; }
+            }
+            #endregion
+
+            #region Top
+            /// <summary>
+            /// This property gets or sets the value for 'Top'.
+            /// </summary>
+            [Parameter]
+            public double Top
+            {
+                get { return top; }
+                set 
+                { 
+                    // set the value for top
+                    top = value;
+
+                    // set the value for topStyle
+                    TopStyle = top + "vh";
+                }
+            }
+            #endregion
+
+            #region TopStyle
+            /// <summary>
+            /// This property gets or sets the value for 'TopStyle'.
+            /// </summary>
+            public string TopStyle
+            {
+                get { return topStyle; }
+                set { topStyle = value; }
             }
             #endregion
             

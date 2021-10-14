@@ -3,28 +3,29 @@
 <Styled @bind-Classname="@LabelStyle">
     color: @LabelColor;
     display: inline-block;
-    width: 20%;
-    min-width: 20%;
+    width: @LabelWidthStyle;
+    min-width: @LabelWidthStyle;
     text-align: right !important;
     justify-content: right;
     position: relative;
-    top: .2vh;
+    top: @TopStyle;
     vertical-align: top;
-    left: -6.4%;
+    left: @LeftStyle;
 </Styled>
 <Styled @bind-Classname="@TextBoxStyle">
     background-color: @TextBoxBackColor;
     position: relative;
-    left: -6%;
+    left: @LeftStyle;
     width: @TextBoxWidthPercent;
     Height: @TextBoxHeightPercent;
+    top: @TopStyle;
 </Styled>
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
     position: relative;
     left: @CheckBoxXStyle;
     top: @CheckBoxYStyle;
-    position: relative;    
+    position: relative;
 </Styled>
 <Styled @bind-Classname="@ImageStyle">
     background-image: url('@ImageUrl');
