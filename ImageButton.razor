@@ -5,6 +5,9 @@
     left: @LeftStyle;
     top: @TopStyle;    
     z-index: @ZIndex;   
+    display: @VisibleStyle;
+    outline: none;
+    border: none;
 </Styled>
 <Styled @bind-Classname="ButtonStyle">
     background-image: url('@ImageUrl');    
@@ -22,7 +25,7 @@
     font-size: @TextSizeStyle;
     vertical-align: central;
 </Styled>
-<Styled @bind-Classname="ButtonStyle" PseudoClass="PseudoClasses.Focus">
+<Styled @bind-Classname="ButtonStyleHover" PseudoClass="PseudoClasses.Focus">
     outline: none;
     border: none;
 </Styled>
@@ -30,8 +33,8 @@
     text-align: @ButtonTextAlign;
 </Styled>
 
-<div class="imagebuttoncontainer @ButtonContainerStyle">
-    <button class="@ButtonStyle" @onclick="ButtonClicked">
+<div class="imagebuttoncontainer @ButtonContainerStyle @ButtonStyleHover">
+    <button class="@ButtonStyle @ButtonStyleHover" @onclick="ButtonClicked">
         <span class="@ButtonTextAlignStyle">@ButtonText</span>
     </button>    
 </div>

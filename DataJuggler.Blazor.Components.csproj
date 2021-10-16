@@ -28,7 +28,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>10.14.2021
+    <PackageReleaseNotes>10.16.2021
+Version 1.6.4: I added a SetVisible method and a Visible parameter to the ImageButton.
+
+10.14.2021
 Version 1.6.3: Added Top and Left properties to the ValidationComponent.
 
 10.14.2021
@@ -148,9 +151,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.6.3</Version>
-    <AssemblyVersion>1.6.3.0</AssemblyVersion>
-    <FileVersion>1.6.3.0</FileVersion>
+    <Version>1.6.4</Version>
+    <AssemblyVersion>1.6.4.0</AssemblyVersion>
+    <FileVersion>1.6.4.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

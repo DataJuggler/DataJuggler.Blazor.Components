@@ -25,6 +25,7 @@ namespace DataJuggler.Blazor.Components
 
         #region Private Variables
         private string buttonStyle;
+        private string buttonStyleHover;
         private string buttonContainerStyle;
         private string imageUrl;
         private string buttonText;
@@ -46,6 +47,8 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private TextSizeEnum textSize;
         private string textSizeStyle;
+        private bool visible;
+        private string visibleStyle;
         #endregion
 
         #region Constructor
@@ -60,6 +63,7 @@ namespace DataJuggler.Blazor.Components
             Left = 0;
             Top = 0;
             ZIndex = 5;
+            Visible = true;
             ButtonTextAlign = "center";
         }
         #endregion
@@ -88,6 +92,17 @@ namespace DataJuggler.Blazor.Components
             public void ReceiveData(Message message)
             {
                 // not used in this component
+            }
+            #endregion
+            
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// Set Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // store
+                Visible = visible;
             }
             #endregion
             
@@ -126,6 +141,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonStyle; }
                 set { buttonStyle = value; }
+            }
+            #endregion
+            
+            #region ButtonStyleHover
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonStyleHover'.
+            /// </summary>
+            public string ButtonStyleHover
+            {
+                get { return buttonStyleHover; }
+                set { buttonStyleHover = value; }
             }
             #endregion
             
@@ -438,6 +464,45 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return topStyle; }
                 set { topStyle = value; }
+            }
+            #endregion
+            
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set 
+                { 
+                    // set the value
+                    visible = value;
+
+                    // if true
+                    if (visible)
+                    {
+                        // Default to inline block
+                        VisibleStyle = "inline-block";
+                    }
+                    else
+                    {
+                        // Hide
+                        VisibleStyle = "none";
+                    }
+                }
+            }
+            #endregion
+            
+            #region VisibleStyle
+            /// <summary>
+            /// This property gets or sets the value for 'VisibleStyle'.
+            /// </summary>
+            public string VisibleStyle
+            {
+                get { return visibleStyle; }
+                set { visibleStyle = value; }
             }
             #endregion
             
