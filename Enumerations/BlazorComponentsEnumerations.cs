@@ -5,6 +5,34 @@ using System.Text;
 namespace DataJuggler.Blazor.Components.Enumerations
 {
 
+    #region AdjustmentTypeEnum : int
+    /// <summary>
+    /// This enum is the choices for the types of Adjustments for now
+    /// </summary>
+    public enum AdjustmentTypeEnum : int
+    {
+        NotSet = 0,
+        X = 1,
+        Y = 2,
+        Rotation = 3,
+        Opacity = 4
+    }
+    #endregion
+
+    #region AdjustmentStatusEnum
+    /// <summary>
+    /// This enumeration represents the states of Adjustment
+    /// </summary>
+    public enum AdjustmentStatusEnum
+    {
+        Rejected = -1,
+        NotApplied = 0,
+        InProgress = 1,
+        Applied = 2,
+        AppliedAndCompleted = 3
+    }
+    #endregion
+
     #region ColorEnum : int
     /// <summary>
     /// This enum is used to set which type of images to show.

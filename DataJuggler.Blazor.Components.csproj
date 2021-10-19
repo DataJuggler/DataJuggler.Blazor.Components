@@ -28,7 +28,12 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>10.16.2021
+    <PackageReleaseNotes>10.19.2021
+Version 1.6.5: I started working on Animating sprites. The current implentation has too much flickering. I read about ways to double buffer and smooth it out, but for now it was just an idea I wanted to add to my new project
+Blazor.Excelerate. If my animation could have been done in a few hours I would have included, but
+for now I will just publish it and make this a 'nice to have feature if I ever get bored'.
+
+10.16.2021
 Version 1.6.4: I added a SetVisible method and a Visible parameter to the ImageButton.
 
 10.14.2021
@@ -151,9 +156,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.6.4</Version>
-    <AssemblyVersion>1.6.4.0</AssemblyVersion>
-    <FileVersion>1.6.4.0</FileVersion>
+    <Version>1.6.5</Version>
+    <AssemblyVersion>1.6.5.0</AssemblyVersion>
+    <FileVersion>1.6.5.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
