@@ -1,5 +1,17 @@
 # DataJuggler.Blazor.Components
-This class consists of a ProgressBar, SpriteComponent and a ValidationComponent.
+This class consists of a ProgressBar, Sprite, ValidationComponent and now a ComboBox.
+
+Update 10.22.2021:
+
+I just released a full working sample here:
+https://github.com/DataJuggler/Blazor.Excelerate
+
+And a live exmaple is here:
+https://excelerate.datajuggler.com
+
+Blazor Excelerate is used to code generate C# classes from an Excel header row.
+
+--
 
 The ValidationComponent is a multi-use component that allows you to build data entry
 screens quickly. 
