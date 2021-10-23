@@ -1,7 +1,7 @@
 ﻿@using BlazorStyled
 
 <Styled @bind-Classname="ButtonContainerStyle">
-    position: relative;
+    position: @Position;
     left: @LeftStyle;
     top: @TopStyle;    
     z-index: @ZIndex;   
@@ -25,16 +25,30 @@
     font-size: @TextSizeStyle;
     vertical-align: central;
 </Styled>
-<Styled @bind-Classname="ButtonStyleHover" PseudoClass="PseudoClasses.Focus">
-    outline: none;
-    border: none;
-</Styled>
 <Styled @bind-Classname="ButtonTextAlignStyle">
     text-align: @ButtonTextAlign;
 </Styled>
 
-<div class="imagebuttoncontainer @ButtonContainerStyle @ButtonStyleHover">
-    <button class="@ButtonStyle @ButtonStyleHover" @onclick="ButtonClicked">
+<style>
+    .imagebutton
+    {
+        outline: none;
+        border: none;
+    }
+    .imagebutton:focus
+    {
+        outline: none !important;
+        border: none !important;
+    }
+    .imagebutton:hover
+    {
+        outline: none;
+        border: none;
+    }
+</style>
+
+<div class="@ButtonContainerStyle">
+    <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked">
         <span class="@ButtonTextAlignStyle">@ButtonText</span>
     </button>    
 </div>

@@ -24,8 +24,7 @@ namespace DataJuggler.Blazor.Components
     {
 
         #region Private Variables
-        private string buttonStyle;
-        private string buttonStyleHover;
+        private string buttonStyle;        
         private string buttonContainerStyle;
         private string imageUrl;
         private string buttonText;
@@ -49,6 +48,7 @@ namespace DataJuggler.Blazor.Components
         private string textSizeStyle;
         private bool visible;
         private string visibleStyle;
+        private string position;
         #endregion
 
         #region Constructor
@@ -141,17 +141,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonStyle; }
                 set { buttonStyle = value; }
-            }
-            #endregion
-            
-            #region ButtonStyleHover
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonStyleHover'.
-            /// </summary>
-            public string ButtonStyleHover
-            {
-                get { return buttonStyleHover; }
-                set { buttonStyleHover = value; }
             }
             #endregion
             
@@ -364,6 +353,18 @@ namespace DataJuggler.Blazor.Components
                         Parent.Register(this);  
                     }
                 }
+            }
+            #endregion
+            
+            #region Position
+            /// <summary>
+            /// This property gets or sets the value for 'Position'.
+            /// </summary>
+            [Parameter]
+            public string Position
+            {
+                get { return position; }
+                set { position = value; }
             }
             #endregion
             

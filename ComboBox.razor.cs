@@ -61,6 +61,9 @@ namespace DataJuggler.Blazor.Components
         private string labelColor;
         private int visibleCount;
         private string verticalCenter;
+        private int zIndex;
+        private int buttonZIndex;
+        private int listItemZIndex;
         #endregion
 
         #region Constructor
@@ -82,6 +85,9 @@ namespace DataJuggler.Blazor.Components
             Width = 100;
             Position = "relative";
             VisibleCount = 5;
+            ZIndex = 10;
+            ButtonZIndex = 10;
+            ListItemZIndex = 20;
 
             // Set so the image is set
             Expanded = false;
@@ -451,6 +457,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ButtonZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonZIndex'.
+            /// </summary>
+            [Parameter]
+            public int ButtonZIndex
+            {
+                get { return buttonZIndex; }
+                set { buttonZIndex = value; }
+            }
+            #endregion
+            
             #region Children
             /// <summary>
             /// This property gets or sets the value for 'Children'.
@@ -773,6 +791,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ListItemZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemZIndex'.
+            /// </summary>
+            [Parameter]
+            public int ListItemZIndex
+            {
+                get { return listItemZIndex; }
+                set { listItemZIndex = value; }
+            }
+            #endregion
+            
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.
@@ -1027,6 +1057,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return widthStyle; }
                 set { widthStyle = value; }
+            }
+            #endregion
+            
+            #region ZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'ZIndex'.
+            /// </summary>
+            [Parameter]
+            public int ZIndex
+            {
+                get { return zIndex; }
+                set { zIndex = value; }
             }
             #endregion
             

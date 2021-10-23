@@ -83,6 +83,8 @@ namespace DataJuggler.Blazor.Components
         private string fontSizeVerticalUnit;
         private double labelWidth;
         private string labelWidthStyle;
+        private int zIndex;
+        private string position;
         private IBlazorComponentParent parent;
         #endregion
         
@@ -1008,6 +1010,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Position
+            /// <summary>
+            /// This property gets or sets the value for 'Position'.
+            /// </summary>
+            [Parameter]
+            public string Position
+            {
+                get { return position; }
+                set { position = value; }
+            }
+            #endregion
+            
             #region ShowImage
             /// <summary>
             /// This property gets or sets the value for 'ShowImage'.
@@ -1217,6 +1231,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return widthPercent; }
                 set { widthPercent = value; }
+            }
+            #endregion
+            
+            #region ZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'ZIndex'.
+            /// </summary>
+            [Parameter]
+            public int ZIndex
+            {
+                get { return zIndex; }
+                set { zIndex = value; }
             }
             #endregion
             
