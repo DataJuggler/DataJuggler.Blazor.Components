@@ -5,7 +5,7 @@
 <Styled @bind-Classname="Grid">
     display: @DisplayStyle;
     grid-template-columns: @LabelSizeStyle 1fr;
-    grid-column-gap: 2px;
+    grid-column-gap: .12%;
     height: @HeightStyle;
     width: @WidthStyle;
     font-size: @TextSizeStyle;
@@ -17,6 +17,7 @@
 <Styled @bind-Classname="LabelStyle">
     font-size: @TextSizeStyle;
     text-align: right;
+    margin-right: @LabelMarginRightStyle !important;
     color: @LabelColor;
     white-space: nowrap;
 </Styled>
@@ -32,9 +33,10 @@
     font-family: Verdana;
     font-size: @TextSizeStyle;
     text-align: left;
-    background-color: white;
-    width: 160%;
-    z-index: @ListItemZIndex;
+    background-color: white; 
+    width: 120%;
+    position: relative;
+    left: @LabelMarginRightListStyle;
 </Styled>
 <Styled @bind-Classname="NoPadding">    
     margin: 0;
@@ -50,9 +52,9 @@
     <div class="column @LabelStyle">@LabelText</div>   
     <div class="column @ComboBoxStyle">
         <div class="@VerticalCenter">
-            <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Name="ComboBoxButton" TextSize="TextSizeEnum.Large"
-                ZIndex="@ButtonZIndex" Height="4" Width="220" ImageUrl="@ButtonUrl" Parent="this">
-            </ImageButton>
+            <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Width="@ButtonWidth"
+                 Name="ComboBoxButton" TextSize="TextSizeEnum.Large" Position="relative" Left="@LabelMarginRight"
+                 ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
          { 

@@ -62,8 +62,13 @@ namespace DataJuggler.Blazor.Components
         private int visibleCount;
         private string verticalCenter;
         private int zIndex;
-        private int buttonZIndex;
-        private int listItemZIndex;
+        private double labelMarginRight;
+        private string labelMarginRightStyle;
+        private double labelMarginRightList;
+        private string labelMarginRightListStyle;
+        private double listItemWidth;
+        private string listItemWidthStyle;
+        private double buttonWidth;        
         #endregion
 
         #region Constructor
@@ -85,10 +90,12 @@ namespace DataJuggler.Blazor.Components
             Width = 100;
             Position = "relative";
             VisibleCount = 5;
-            ZIndex = 10;
-            ButtonZIndex = 10;
-            ListItemZIndex = 20;
-
+            ZIndex = 0;
+            LabelMarginRight = 1.6;
+            LabelMarginRightList = 1.6;
+            ButtonWidth = 200;
+            ListItemWidth = 120;            
+            
             // Set so the image is set
             Expanded = false;
         }
@@ -143,7 +150,7 @@ namespace DataJuggler.Blazor.Components
                 if ((buttonNumber == 1) && (HasComboBoxButton))
                 {
                     // Set the value for expanded or not
-                    Expanded = !Expanded;
+                    Expanded = !Expanded;                    
                 }
 
                 // Update the UI
@@ -457,15 +464,15 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ButtonZIndex
+            #region ButtonWidth
             /// <summary>
-            /// This property gets or sets the value for 'ButtonZIndex'.
+            /// This property gets or sets the value for 'ButtonWidth'.
             /// </summary>
             [Parameter]
-            public int ButtonZIndex
+            public double ButtonWidth
             {
-                get { return buttonZIndex; }
-                set { buttonZIndex = value; }
+                get { return buttonWidth; }
+                set { buttonWidth = value; }
             }
             #endregion
             
@@ -699,6 +706,64 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelMarginRight
+            /// <summary>
+            /// This property gets or sets the value for 'LabelMarginRight'.
+            /// </summary>
+            [Parameter]
+            public double LabelMarginRight
+            {
+                get { return labelMarginRight; }
+                set 
+                {
+                    labelMarginRight = value;
+
+                    // set the CSS value
+                    LabelMarginRightStyle = labelMarginRight + "%";
+                }
+            }
+            #endregion
+            
+            #region LabelMarginRightList
+            /// <summary>
+            /// This property gets or sets the value for 'LabelMarginRightList'.
+            /// </summary>
+             [Parameter]
+            public double LabelMarginRightList
+            {
+                get { return labelMarginRightList; }
+                set 
+                { 
+                    labelMarginRightList = value;
+
+                    // Set the value
+                    labelMarginRightListStyle = labelMarginRightList + "%";
+                }
+            }
+            #endregion
+            
+            #region LabelMarginRightListStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelMarginRightListStyle'.
+            /// </summary>
+            public string LabelMarginRightListStyle
+            {
+                get { return labelMarginRightListStyle; }
+                set { labelMarginRightListStyle = value; }
+            }
+            #endregion
+            
+            #region LabelMarginRightStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelMarginRightStyle'.
+            /// </summary>
+            public string LabelMarginRightStyle
+            {
+                get { return labelMarginRightStyle; }
+                set { labelMarginRightStyle = value; }
+            }
+            #endregion
+            
             #region LabelSize
             /// <summary>
             /// This property gets or sets the value for 'LabelSize'.
@@ -791,15 +856,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ListItemZIndex
+            #region ListItemWidth
             /// <summary>
-            /// This property gets or sets the value for 'ListItemZIndex'.
+            /// This property gets or sets the value for 'ListItemWidth'.
             /// </summary>
-            [Parameter]
-            public int ListItemZIndex
+            public double ListItemWidth
             {
-                get { return listItemZIndex; }
-                set { listItemZIndex = value; }
+                get { return listItemWidth; }
+                set 
+                { 
+                    listItemWidth = value;
+
+                    // Set the value
+                    ListItemWidthStyle = listItemWidth + "%";
+                }
+            }
+            #endregion
+            
+            #region ListItemWidthStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemWidthStyle'.
+            /// </summary>
+            public string ListItemWidthStyle
+            {
+                get { return listItemWidthStyle; }
+                set { listItemWidthStyle = value; }
             }
             #endregion
             

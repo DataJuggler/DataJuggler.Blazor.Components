@@ -82,6 +82,9 @@ namespace DataJuggler.Blazor.Components
         private string fontSizeHorizontalUnit;
         private string fontSizeVerticalUnit;
         private double labelWidth;
+        private double labelFontSize;
+        private string labelFontSizeStyle;
+        private string labelFontSizeUnit;
         private string labelWidthStyle;
         private int zIndex;
         private string position;
@@ -121,15 +124,18 @@ namespace DataJuggler.Blazor.Components
                 CheckBoxXPosition = -6;
                 CheckBoxYPosition = 1.28;
                 FontSize = 2.4;
-                Width = 80;
+                Width = 40;
                 Height = 3.2;
                 TextBoxHeight = Height;
                 DefaultTextBoxHeight = 3.2;
                 MultilineTextBoxHeight = 8;
-                TextBoxWidth = 30;                
+                TextBoxWidth = 30;      
+                Position = "relative";
                 Top = .2;
                 Left = -6;
                 LabelWidth = 20;
+                LabelFontSize = 12;
+                LabelFontSizeUnit = "px";
             }
             #endregion
             
@@ -769,6 +775,47 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelColor; }
                 set { labelColor = value; }
+            }
+            #endregion
+            
+            #region LabelFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSize'.
+            /// </summary>
+            public double LabelFontSize
+            {
+                get { return labelFontSize; }
+                set 
+                { 
+                    // Set the value
+                    labelFontSize = value;
+
+                    // Set hte LabelFontSizeStyle
+                    LabelFontSizeStyle = labelFontSize + LabelFontSizeUnit;
+                }
+            }
+            #endregion
+            
+            #region LabelFontSizeStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSizeStyle'.
+            /// </summary>
+            public string LabelFontSizeStyle
+            {
+                get { return labelFontSizeStyle; }
+                set { labelFontSizeStyle = value; }
+            }
+            #endregion
+            
+            #region LabelFontSizeUnit
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSizeUnit'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontSizeUnit
+            {
+                get { return labelFontSizeUnit; }
+                set { labelFontSizeUnit = value; }
             }
             #endregion
             
