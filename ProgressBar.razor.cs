@@ -104,7 +104,7 @@ namespace DataJuggler.Blazor.Components
                                 // Cap at Max
                                 Percent = Max;
 
-                                // Set to 1
+                                // Add 1
                                 ExtraPercent += 1;   
 
                                 // if we have reached the end
