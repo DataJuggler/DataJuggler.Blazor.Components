@@ -1,5 +1,5 @@
 # DataJuggler.Blazor.Components
-This class consists of a ProgressBar, Sprite, ValidationComponent and now a ComboBox.
+This class consists of an ImageButton, ProgressBar, Sprite, ValidationComponent and now a ComboBox.
 
 Update 10.22.2021:
 
