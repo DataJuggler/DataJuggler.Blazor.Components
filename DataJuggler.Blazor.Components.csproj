@@ -7,6 +7,12 @@
     <Authors>DataJuggler</Authors>
     <Description>A collection of components to make building a Blazor project simpler. So far only a ProgressBar, Sprite and a Validation component, now for .Net 5.0
 
+A live demo is available at https://excelerate.datajuggler.com
+
+And the code for Blazor Excelerate is here:
+https://github.com/DataJuggler/Blazor.Excelerate
+
+
 This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.
 New Version 1.5
 .Net 5.0 is the only supported version going forward.
@@ -21,7 +27,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>10.24.2021
+    <PackageReleaseNotes>11.1.2021
+Version 1.7.1: DataJuggler.UltimateHelper was updated, so I updated this project. No code changes.
+
+10.24.2021
 Version 1.7.0: I updated to version 1.7 since I added a bunch of properties to many components.
 
 10.23.2021
@@ -165,9 +174,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.7.0</Version>
-    <AssemblyVersion>1.7.0.0</AssemblyVersion>
-    <FileVersion>1.7.0.0</FileVersion>
+    <Version>1.7.1</Version>
+    <AssemblyVersion>1.7.1.0</AssemblyVersion>
+    <FileVersion>1.7.1.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -188,7 +197,7 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="1.6.7" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="1.6.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.11" />
   </ItemGroup>
