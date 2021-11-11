@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
@@ -22,12 +22,22 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <Copyright>2021 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
-    <PackageIcon>Logo Black.png</PackageIcon>
+    <PackageIcon>Merge Boxes Small.png</PackageIcon>
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>11.7.2021
+    <PackageReleaseNotes>
+		11.10.2021: I updated to version 6.0. I tried to multi-target version 5.0 and version 6.0, but 
+		AspNet.Core.Components version 6.0 does not let you target .Net5.0.
+		
+		I want to take advantage of any speed improvements for 64 bit for 
+		PixelDatabase.Net website (https://pixeldatabase.net), so I am updating to 6.0.
+		
+		Version 1.7.2 is the last .Net 5.0 version most likely. Sorry for any inconvenience, but I usually
+		only do new development on the latest unless I have a client that can't upgrade.
+		
+		11.7.2021
 Version 1.7.2: The Nuget package DataJuggler.UltimateHelper was updated, so I released a new version of this
 component.
 
@@ -178,9 +188,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>1.7.2</Version>
-    <AssemblyVersion>1.7.1.0</AssemblyVersion>
-    <FileVersion>1.7.1.0</FileVersion>
+    <Version>2.0</Version>
+    <AssemblyVersion>2.0.0</AssemblyVersion>
+    <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -192,7 +202,7 @@ Now is the time to break anything.
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="wwwroot\Images\Logo Black.png">
+    <None Include="..\..\..\Graphics\Merge Boxes Small.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
@@ -201,9 +211,9 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="1.6.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.11" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.11" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="1.7.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
   </ItemGroup>
 
 </Project>
