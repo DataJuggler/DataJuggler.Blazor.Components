@@ -1,11 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
-    <Description>A collection of components to make building a Blazor project simpler. So far only a ProgressBar, Sprite and a Validation component, now for .Net 5.0
+    <Description>A collection of components to make building a Blazor project simpler. 
+This project consists of an ImageButton, ProgressBar, Sprite, Validation component, 
+and ComboBox. This version is for .Net 5.0.
+
+A version exists for .Net 6.0, version 2.0, but .Net 6.0 is not ready at this time as two
+of my projects only work in .Net 5.0.
+
+To make it simpler, I changed the version number to 5.0, to the match the framework.
 
 A live demo is available at https://excelerate.datajuggler.com
 
@@ -28,7 +35,12 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>
-		11.10.2021: I updated to version 6.0. I tried to multi-target version 5.0 and version 6.0, but 
+		11.11.2021: 
+		Version 5.0.0: Changed back to .Net 5.0, and changed the version number to match. .Net 6.0 is not ready
+		for production at this time (for my projects, which is all that matters).
+		
+		11.10.2021
+		Version 2.0.0: I updated to version 6.0. I tried to multi-target version 5.0 and version 6.0, but 
 		AspNet.Core.Components version 6.0 does not let you target .Net5.0.
 		
 		I want to take advantage of any speed improvements for 64 bit for 
@@ -188,7 +200,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>2.0</Version>
+    <Version>5.0.0</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
@@ -212,8 +224,8 @@ Now is the time to break anything.
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="1.7.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.12" />
   </ItemGroup>
 
 </Project>
