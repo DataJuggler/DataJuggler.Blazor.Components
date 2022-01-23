@@ -7,26 +7,20 @@
     <Authors>DataJuggler</Authors>
     <Description>A collection of components to make building a Blazor project simpler. 
 This project consists of an ImageButton, ProgressBar, Sprite, Validation component, 
-and ComboBox. This version is for .Net 5.0.
-
-A version exists for .Net 6.0, version 2.0, but .Net 6.0 is not ready at this time as two
-of my projects only work in .Net 5.0.
-
-To make it simpler, I changed the version number to 5.0, to the match the framework.
+and ComboBox. This version is for .Net 6.0.
 
 A live demo is available at https://excelerate.datajuggler.com
 
 And the code for Blazor Excelerate is here:
 https://github.com/DataJuggler/Blazor.Excelerate
 
-
 This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.
 New Version 1.5
-.Net 5.0 is the only supported version going forward.
+.NET 6.0 is the only supported version going forward.
 
 New to version 1.3 is a new really cool progress bar that uses all CSS by 
 http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://firchow.net/</Description>
-    <Copyright>2021 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
+    <Copyright>2022 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
     <PackageIcon>Merge Boxes Small.png</PackageIcon>
@@ -35,6 +29,8 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>
+		1.23.2022: Version 6.0.0 has been released, which now targets .NET6.
+		
 		11.11.2021: 
 		Version 5.0.0: Changed back to .Net 5.0, and changed the version number to match. .Net 6.0 is not ready
 		for production at this time (for my projects, which is all that matters).
