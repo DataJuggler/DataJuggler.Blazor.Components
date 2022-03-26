@@ -29,6 +29,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>
+		3.26.2022: Twitter barred me, so I removed the Twitter button from two of my sites, plus Bootstreap from all of
+		my packages and libraries. I don't use it. Motivated me to build a site to put them out of a business.
+		
 		1.23.2022: Version 6.0.0 has been released, which now targets .NET6.
 		
 		11.11.2021: 
@@ -196,7 +199,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>6.0.0</Version>
+    <Version>6.0.1</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
   </PropertyGroup>
