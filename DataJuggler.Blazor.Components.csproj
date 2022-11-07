@@ -1,22 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
     <Description>A collection of components to make building a Blazor project simpler. 
 This project consists of an ImageButton, ProgressBar, Sprite, Validation component, 
-and ComboBox. This version is for .Net 6.0.
+and ComboBox. I am working on a Grid that you can enter EditMode and edit items.
+
+This version is for .Net 7.0. 
 
 A live demo is available at https://excelerate.datajuggler.com
 
 And the code for Blazor Excelerate is here:
 https://github.com/DataJuggler/Blazor.Excelerate
 
-This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), which makes it simple to dynamically alter CSS values using Blazor.
-New Version 1.5
-.NET 6.0 is the only supported version going forward.
+This project uses a really awesome project called BlazorStyled by Chanen Braunstein (I think I spelled that right), 
+which makes it simple to dynamically alter CSS values using Blazor.
+.NET 7.0 is the only supported version going forward.
 
 New to version 1.3 is a new really cool progress bar that uses all CSS by 
 http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://firchow.net/</Description>
@@ -28,27 +30,31 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>
-		3.26.2022: Twitter barred me, so I removed the Twitter button from two of my sites, plus Bootstreap from all of
-		my packages and libraries. I don't use it. Motivated me to build a site to put them out of a business.
+    <PackageReleaseNotes>11.8.2022: I am working on a Grid. The grid is a work in progress.
+
+10.20.2022: This version has been updated to .NET7.
+11.03.2022: I am working on a .NET 7 version. This includes a new Grid component.
+
+3.26.2022: Twitter barred me, so I removed the Twitter button from two of my sites, plus Bootstreap from all of
+my packages and libraries. I don't use it. Motivated me to build a site to put them out of a business.
 		
-		1.23.2022: Version 6.0.0 has been released, which now targets .NET6.
+1.23.2022: Version 6.0.0 has been released, which now targets .NET6.
+	
+11.11.2021: 
+Version 5.0.0: Changed back to .Net 5.0, and changed the version number to match. .Net 6.0 is not ready
+for production at this time (for my projects, which is all that matters).
 		
-		11.11.2021: 
-		Version 5.0.0: Changed back to .Net 5.0, and changed the version number to match. .Net 6.0 is not ready
-		for production at this time (for my projects, which is all that matters).
+11.10.2021
+Version 2.0.0: I updated to version 6.0. I tried to multi-target version 5.0 and version 6.0, but 
+AspNet.Core.Components version 6.0 does not let you target .Net5.0.
 		
-		11.10.2021
-		Version 2.0.0: I updated to version 6.0. I tried to multi-target version 5.0 and version 6.0, but 
-		AspNet.Core.Components version 6.0 does not let you target .Net5.0.
+I want to take advantage of any speed improvements for 64 bit for 
+PixelDatabase.Net website (https://pixeldatabase.net), so I am updating to 6.0.
 		
-		I want to take advantage of any speed improvements for 64 bit for 
-		PixelDatabase.Net website (https://pixeldatabase.net), so I am updating to 6.0.
+Version 1.7.2 is the last .Net 5.0 version most likely. Sorry for any inconvenience, but I usually
+only do new development on the latest unless I have a client that can't upgrade.
 		
-		Version 1.7.2 is the last .Net 5.0 version most likely. Sorry for any inconvenience, but I usually
-		only do new development on the latest unless I have a client that can't upgrade.
-		
-		11.7.2021
+11.7.2021
 Version 1.7.2: The Nuget package DataJuggler.UltimateHelper was updated, so I released a new version of this
 component.
 
@@ -199,9 +205,10 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>6.0.1</Version>
+    <Version>7.0.3-rc1</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
@@ -222,6 +229,14 @@ Now is the time to break anything.
     <WarningLevel>5</WarningLevel>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;BL0007;</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;BL0007;</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Samples\**" />
     <Content Remove="Samples\**" />
@@ -240,9 +255,8 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="6.0.2" />    
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.1" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="7.0.2-rc1" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.0.0-rc1" />
   </ItemGroup>
 
 </Project>

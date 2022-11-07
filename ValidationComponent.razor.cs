@@ -428,7 +428,7 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     checkBoxXPosition = value;
 
-                    // set the style value
+                    // set the headerStyle value
                     checkBoxXStyle = checkBoxXPosition.ToString() + "%";
                 }
             }

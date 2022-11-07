@@ -1,0 +1,31 @@
+﻿@namespace Goals.Components
+@using DataJuggler.UltimateHelper
+@using DataJuggler.Excelerate;
+@using BlazorStyled
+
+<Styled @bind-Classname="HeaderStyle">
+    color: @TextColorName
+</Styled>
+<Styled @bind-Classname="ColumnStyle">
+    display: inline;
+</Styled>
+
+@if (ShowHeader)
+{
+    <div class="@HeaderStyle">
+        @HeaderText
+    </div>
+}
+
+@if ((ShowColumnHeaders) && (HasColumns))
+{
+    // iterate each column
+    foreach (Column column in Columns)
+    {
+        <span class="@ColumnStyle">@column.ColumnName</span>
+    }
+}
+
+
+
+

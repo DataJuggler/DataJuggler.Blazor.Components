@@ -191,7 +191,7 @@ namespace DataJuggler.Blazor.Components
             
             #region SetProgressStyle()
             /// <summary>
-            /// This method Set Progress Style
+            /// This method Set Progress HeaderStyle
             /// </summary>
             public void SetProgressStyle()
             {

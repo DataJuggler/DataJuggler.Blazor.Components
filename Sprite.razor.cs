@@ -929,7 +929,7 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     rotation = value;
 
-                    // set the style
+                    // set the headerStyle
                     RotationStyle = rotationStyle + "deg";
                 }
             }

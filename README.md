@@ -1,5 +1,8 @@
 # DataJuggler.Blazor.Components
 This class consists of an ImageButton, ProgressBar, Sprite, ValidationComponent and now a ComboBox.
+I am working on a Grid.
+
+Update 11.8.2022: DataJuggler.Excelerate has been added to add Rows and Columns for the Grid.
 
 Update 10.22.2021:
 

@@ -655,7 +655,7 @@ namespace DataJuggler.Blazor.Components
                 { 
                     height = value;
 
-                    // Set the height style string
+                    // Set the height headerStyle string
                     HeightStyle = height + "vh";
                 }
             }
