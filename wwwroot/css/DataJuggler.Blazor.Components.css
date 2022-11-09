@@ -16795,19 +16795,19 @@
 }
 .textalignleft
 {
-    text-align: left;
+    text-align: left !important;
 }
 .textalignright
 {
-    text-align: right;
+    text-align: right !important;
 }
 .textaligncenter
 {
-    text-align: center;
+    text-align: center !important;
 }
 .textdonotwrap
 {
-    white-space: nowrap !important;
+    white-space: nowrap !important;    
 }
 .width0
 {
