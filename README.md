@@ -25,76 +25,76 @@ This will make all the classes in the file available to your project.
 # Background Color
 Background color is in the format backgroundcolor + the known color name.
 
-.backgroundcolorskyblue
-{
-    background-color: skyblue;
-}
+    .backgroundcolorskyblue
+    {
+        background-color: skyblue;
+    }
 
 # Foreground Color
 Background color is in the format color + the known color name.
 
-.colorforestgreen
-{
-    color: forestgreen;
-}
+    .colorforestgreen
+    {
+        color: forestgreen;
+    }
 
 # Height
 Height is in the format height + the height value in pixels
 
 Height values range from 0 - 1,000.
 
-.height75
-{
-    height: 75px;
-    min-height: 75px;
-    max-height: 75px;
-}
+    .height75
+    {
+        height: 75px;
+        min-height: 75px;
+        max-height: 75px;
+    }
 
 # Width
 Width is in the format width + the width value in pixels
 
 Width values range from 0 - 1,000.
 
-.width596
-{
-    width: 596px;
-    min-width: 596px;
-    max-width: 596px;
-}
+    .width596
+    {
+        width: 596px;
+        min-width: 596px;
+        max-width: 596px;
+    }
 
 # Margin
 Margin is in the format margin + direction (top, left, bottom, right) + the margin value in pixels:
 
 Margin ranges from 0 - 600
 
-.marginleft200
-{
-    margin-left: 200px;
-}
+    .marginleft200
+    {
+        margin-left: 200px;
+    }
 
-.marginright12
-{
-    margin-right: 12px;
-}
+    .marginright12
+    {
+        margin-right: 12px;
+    }
 
 A few extras:
 
-.textalignleft
-{
-    text-align: left;
-}
-.textalignright
-{
-    text-align: right;
-}
-.textaligncenter
-{
-    text-align: center;
-}
-.textdonotwrap
-{
-    white-space: nowrap !important;
-}
+    .textalignleft
+    {
+        text-align: left;
+    }
+    .textalignright
+    {
+        text-align: right;
+    }
+    .textaligncenter
+    {
+        text-align: center;
+    }
+    .textdonotwrap
+    {
+        white-space: nowrap !important;
+    }
 
 I find these classes useful for Blazor components, because you can combine them and it saves creating inline styles.
 
