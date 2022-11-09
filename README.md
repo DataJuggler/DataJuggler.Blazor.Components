@@ -2,7 +2,105 @@
 This class consists of an ImageButton, ProgressBar, Sprite, ValidationComponent and now a ComboBox.
 I am working on a Grid.
 
-Update 11.8.2022: DataJuggler.Excelerate has been added to add Rows and Columns for the Grid.
+Update 11.8.2022: This project has been updated to .NET 7.
+
+DataJuggler.Excelerate has been added to add Rows and Columns for the Grid.
+
+I also added a new CSS file:
+
+# DataJuggler.Blazor.Components.css
+
+https://github.com/DataJuggler/DataJuggler.Blazor.Components/blob/master/wwwroot/css/DataJuggler.Blazor.Components.css
+
+DataJuggler.Blazor.Components.css has classes that I find useful in styling blazor components.
+
+To use this file, after adding Nuget package DataJuggler.Blazor.Components, add the following link to your _layout.cshtml file:
+
+    <link href="~/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
+    
+This will make all the classes in the file available to your project.
+
+# Examples:
+
+# Background Color
+Background color is in the format backgroundcolor + the known color name.
+
+.backgroundcolorskyblue
+{
+    background-color: skyblue;
+}
+
+# Foreground Color
+Background color is in the format color + the known color name.
+
+.colorforestgreen
+{
+    color: forestgreen;
+}
+
+# Height
+Height is in the format height + the height value in pixels
+
+Height values range from 0 - 1,000.
+
+.height75
+{
+    height: 75px;
+    min-height: 75px;
+    max-height: 75px;
+}
+
+# Width
+Width is in the format width + the width value in pixels
+
+Width values range from 0 - 1,000.
+
+.width596
+{
+    width: 596px;
+    min-width: 596px;
+    max-width: 596px;
+}
+
+# Margin
+Margin is in the format margin + direction (top, left, bottom, right) + the margin value in pixels:
+
+Margin ranges from 0 - 600
+
+.marginleft200
+{
+    margin-left: 200px;
+}
+
+.marginright12
+{
+    margin-right: 12px;
+}
+
+A few extras:
+
+.textalignleft
+{
+    text-align: left;
+}
+.textalignright
+{
+    text-align: right;
+}
+.textaligncenter
+{
+    text-align: center;
+}
+.textdonotwrap
+{
+    white-space: nowrap !important;
+}
+
+I find these classes useful for Blazor components, because you can combine them and it saves creating inline styles.
+
+    # Excample of multiple classes applied to an element.
+    column2.ClassName = "width120 textalignleft marginleft4 colorwhite";
+
 
 Update 10.22.2021:
 
