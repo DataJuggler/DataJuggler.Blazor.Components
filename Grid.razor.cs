@@ -29,11 +29,9 @@ namespace Goals.Components
         private bool showHeader;
         private string headerText;
         private string name;
-        private IBlazorComponentParent parent;
-        private Color textColor;
-        private string headerStyle;
-        private bool showColumnHeaders;
-        private string columnStyle;
+        private IBlazorComponentParent parent;        
+        private string headerClassName;
+        private bool showColumnHeaders;        
         #endregion
 
         #region Constructor
@@ -42,8 +40,7 @@ namespace Goals.Components
         /// </summary>
         public Grid()
         {
-            // Default value
-            TextColor = Color.LightGray;
+            
         }
         #endregion
 
@@ -111,17 +108,6 @@ namespace Goals.Components
             }
             #endregion
             
-            #region ColumnStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ColumnStyle'.
-            /// </summary>
-            public string ColumnStyle
-            {
-                get { return columnStyle; }
-                set { columnStyle = value; }
-            }
-            #endregion
-            
             #region HasColumns
             /// <summary>
             /// This property returns true if this object has a 'Columns'.
@@ -173,14 +159,32 @@ namespace Goals.Components
             }
             #endregion
 
-            #region HeaderStyle
+            #region HasRows
             /// <summary>
-            /// This property gets or sets the value for 'HeaderStyle'.
+            /// This property returns true if this object has a 'Rows'.
             /// </summary>
-            public string HeaderStyle
+            public bool HasRows
             {
-                get { return headerStyle; }
-                set { headerStyle = value; }
+                get
+                {
+                    // initial value
+                    bool hasRows = (this.Rows != null);
+                    
+                    // return value
+                    return hasRows;
+                }
+            }
+            #endregion
+            
+            #region HeaderClassName
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderClassName'.
+            /// </summary>
+            [Parameter]
+            public string HeaderClassName
+            {
+                get { return headerClassName; }
+                set { headerClassName = value; }
             }
             #endregion
             
@@ -263,36 +267,6 @@ namespace Goals.Components
             {
                 get { return showHeader; }
                 set { showHeader = value; }
-            }
-            #endregion
-            
-            #region TextColor
-            /// <summary>
-            /// This property gets or sets the value for 'TextColor'.
-            /// </summary>
-            [Parameter]
-            public Color TextColor
-            {
-                get { return textColor; }
-                set { textColor = value; }
-            }
-            #endregion
-            
-            #region TextColorName
-            /// <summary>
-            /// This read only property returns the name of the TextColor ToString().
-            /// </summary>
-            public string TextColorName
-            {
-                
-                get
-                {
-                    // initial value
-                    string textColorName = TextColor.Name;                   
-                    
-                    // return value
-                    return textColorName;
-                }
             }
             #endregion
             

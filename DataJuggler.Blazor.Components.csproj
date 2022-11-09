@@ -30,7 +30,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>11.8.2022: I am working on a Grid. The grid is a work in progress.
+    <PackageReleaseNotes>11.8.2022: This project has been updated to .NET 7.
+Use a 6.x version for .NET 6.
+
+11.8.2022: I am working on a Grid. The grid is a work in progress.
 
 10.20.2022: This version has been updated to .NET7.
 11.03.2022: I am working on a .NET 7 version. This includes a new Grid component.
@@ -205,7 +208,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.0.3-rc1</Version>
+    <Version>7.0.3</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
     <Nullable>disable</Nullable>
@@ -255,8 +258,8 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="7.0.2-rc1" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.0.0-rc1" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="7.0.4" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

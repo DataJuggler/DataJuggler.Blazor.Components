@@ -1,18 +1,10 @@
 ﻿@namespace Goals.Components
 @using DataJuggler.UltimateHelper
 @using DataJuggler.Excelerate;
-@using BlazorStyled
-
-<Styled @bind-Classname="HeaderStyle">
-    color: @TextColorName
-</Styled>
-<Styled @bind-Classname="ColumnStyle">
-    display: inline;
-</Styled>
 
 @if (ShowHeader)
 {
-    <div class="@HeaderStyle">
+    <div class="@HeaderClassName">
         @HeaderText
     </div>
 }
@@ -21,9 +13,30 @@
 {
     // iterate each column
     foreach (Column column in Columns)
-    {
-        <span class="@ColumnStyle">@column.ColumnName</span>
+    {  
+        <div class="@column.ClassName">@column.ColumnName</div>
     }
+}
+
+@if (HasRows)
+{  
+
+    @foreach (Row row in Rows)
+    {
+        // if the row has columns
+        if (row.HasColumns)
+        {
+            <div class="@row.ClassName">
+
+            @foreach (Column column in row.Columns)
+            {
+                <div class="@column.ClassName">@column.ColumnText</div>
+            }
+            </div>
+            <br />
+        }
+    }
+    
 }
 
 
