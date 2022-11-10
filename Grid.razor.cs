@@ -1,10 +1,7 @@
-﻿
-
+﻿           
 #region using statements
 
 using System;
-using System.Drawing;
-using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using System.Collections.Generic;
 using DataJuggler.Excelerate;
@@ -13,7 +10,7 @@ using DataJuggler.UltimateHelper;
 
 #endregion
 
-namespace Goals.Components
+namespace DataJuggler.Blazor.Components
 {
 
     #region class Grid
@@ -31,7 +28,8 @@ namespace Goals.Components
         private string name;
         private IBlazorComponentParent parent;        
         private string headerClassName;
-        private bool showColumnHeaders;        
+        private bool showColumnHeaders;
+        private bool editMode;
         #endregion
 
         #region Constructor
@@ -46,6 +44,28 @@ namespace Goals.Components
 
         #region Methods
 
+            #region OnDoubleClick(Row row)
+            /// <summary>
+            /// On Double Click
+            /// </summary>
+            public void OnDoubleClick(Row row)
+            {
+                // if the row exists
+                if (NullHelper.Exists(row))
+                {
+                    // Set the row into EditMode so the edit control is displayed.
+                    // to do: Figure out the Edit Control.
+                    row.EditMode = true;
+
+                    // turn on EditMode
+                    EditMode = true;
+                }
+
+                // Update the page in EditMode
+                Refresh();
+            }
+            #endregion
+            
             #region ReceiveData(Message message)
             /// <summary>
             /// method returns the Data
@@ -105,6 +125,17 @@ namespace Goals.Components
             {
                 get { return columns; }
                 set { columns = value; }
+            }
+            #endregion
+            
+            #region EditMode
+            /// <summary>
+            /// This property gets or sets the value for 'EditMode'.
+            /// </summary>
+            public bool EditMode
+            {
+                get { return editMode; }
+                set { editMode = value; }
             }
             #endregion
             

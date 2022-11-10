@@ -1159,6 +1159,10 @@
 {
     color: rebeccapurple;
 }
+.cursorpointer
+{
+    cursor: pointer;
+}
 .displayinline
 {
     display: inline;
