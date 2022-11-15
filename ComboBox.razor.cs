@@ -68,7 +68,8 @@ namespace DataJuggler.Blazor.Components
         private string labelMarginRightListStyle;
         private double listItemWidth;
         private string listItemWidthStyle;
-        private double buttonWidth;        
+        private double buttonWidth;
+        private string className;
         #endregion
 
         #region Constructor
@@ -484,6 +485,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return children; }
                 set { children = value; }
+            }
+            #endregion
+            
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
             }
             #endregion
             
