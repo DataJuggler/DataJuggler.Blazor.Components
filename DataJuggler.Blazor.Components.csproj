@@ -7,7 +7,10 @@
     <Authors>DataJuggler</Authors>
     <Description>A collection of components to make building a Blazor project simpler. 
 This project consists of an ImageButton, ProgressBar, Sprite, Validation component, 
-and ComboBox. I am working on a Grid that you can enter EditMode and edit items.
+and ComboBox. The Grid is working, but very new and subject to change.
+
+The CSS file DataJuggler.Blazor.Components.css contains many useful classes to help style 
+and position objects.
 
 This version is for .Net 7.0. 
 
@@ -35,6 +38,18 @@ I am working on being able to edit in place. I should have a demo project ready 
 
 11.8.2022: This project has been updated to .NET 7.
 Use a 6.x version for .NET 6.
+
+11.15.2022: The Grid is working. I will publish some examples after I finish my clients project.
+Also updates the CSS file with values of: 
+
+down(0 - 1000)
+left(0 - 1000)
+right(0 - 1000)
+up(0 - 1000)
+
+Example:
+down7
+right400
 
 11.8.2022: I am working on a Grid. The grid is a work in progress.
 
@@ -211,7 +226,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.0.4</Version>
+    <Version>7.0.6</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
     <Nullable>disable</Nullable>
@@ -261,7 +276,7 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="7.0.9" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="7.0.16" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="7.0.0" />
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿@namespace DataJuggler.Blazor.Components
 @using DataJuggler.UltimateHelper
 @using DataJuggler.Excelerate;
+@using DataJuggler.Blazor.Components
 
 @if (ShowHeader)
 {
@@ -30,9 +31,14 @@
 
             @foreach (Column column in row.Columns)
             {
-                if (row.EditMode)
+                
+                if ((row.EditMode) && (!column.ReadOnly))
                 {
-                    
+                    <div class="displayinline">
+                    <ValidationComponent Name=column.ColumnName Width=column.Width Height=column.Height 
+                        RowId=row.Id ColumnId=column.Id ZIndex="20" SetFocusOnFirstRender=column.SetFocusOnFirstRender
+                        Parent=this></ValidationComponent>
+                    </div>
                 }
                 else
                 {

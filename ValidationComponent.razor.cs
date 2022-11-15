@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components;
 using DataJuggler.UltimateHelper;
+using Microsoft.AspNetCore.Components.Web;
 
 #endregion
 
@@ -89,6 +90,13 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private string position;
         private IBlazorComponentParent parent;
+        private EventCallback onKeyUp;
+        private string className;
+        private bool setFocusOnFirstRender;
+        // This are only used when inside a Grid
+        private Guid rowId;
+        private Guid columnId;
+        private ElementReference innerControl;
         #endregion
         
         #region Constructor
@@ -102,7 +110,56 @@ namespace DataJuggler.Blazor.Components
         }
         #endregion
 
+        #region Events            
+            
+        #endregion
+
         #region Methods
+
+            #region Enter(KeyboardEventArgs e)
+            /// <summary>
+            /// event is fired when Enter
+            /// </summary>
+            public void Enter(KeyboardEventArgs e)
+            {
+                if (e.Code == "Enter" || e.Code == "NumpadEnter")
+                {
+                    // if the ParentGrid exists
+                    if (HasParentGrid)
+                    { 
+                        // Create a message
+                        Message message = new Message();
+
+                        // Set the message text
+                        message.Text = "EnterPressed";
+
+                        // Create a new instance of a 'NamedParameter' object.
+                        NamedParameter parameter = new NamedParameter();
+
+                        // Set the name of the object calling
+                        parameter.Name = this.Name;
+
+                        // if the value for HasParentGrid is true
+                        if (HasParentGrid)
+                        {
+                            // Send in the Ids to help find what was just saved
+                            parameter.ColumnId = ColumnId;
+                            parameter.RowId = RowId;
+                            parameter.GridName = ParentGrid.Name;
+                        }
+
+                        // Set the value
+                        parameter.Value = Text;
+
+                        // Add this parameter
+                        message.Parameters.Add(parameter);
+
+                        // notify the parent
+                        Parent.ReceiveData(message);                        
+                    }                    
+                }
+            }
+            #endregion
 
             #region Init()
             /// <summary>
@@ -136,6 +193,9 @@ namespace DataJuggler.Blazor.Components
                 LabelWidth = 20;
                 LabelFontSize = 12;
                 LabelFontSizeUnit = "px";
+
+                // Just being explicit
+                SetFocusOnFirstRender = false;
             }
             #endregion
             
@@ -229,6 +289,17 @@ namespace DataJuggler.Blazor.Components
                     // Set the value
                     this.CheckBoxValue = isChecked;
                 }
+            }
+            #endregion
+            
+            #region SetFocus()
+            /// <summary>
+            /// method Set Focus
+            /// </summary>
+            public async void SetFocus()
+            {
+                // Set focus to the control
+                await InnerControl.FocusAsync();
             }
             #endregion
             
@@ -475,6 +546,30 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
+            }
+            #endregion
+            
+            #region ColumnId
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnId'.
+            /// </summary>
+            [Parameter]
+            public Guid ColumnId
+            {
+                get { return columnId; }
+                set { columnId = value; }
+            }
+            #endregion
+            
             #region DefaultTextBoxHeight
             /// <summary>
             /// This property gets or sets the value for 'DefaultTextBoxHeight'.
@@ -554,6 +649,23 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return hasParent;
+                }
+            }
+            #endregion
+            
+            #region HasParentGrid
+            /// <summary>
+            /// This property returns true if this object has a 'ParentGrid'.
+            /// </summary>
+            public bool HasParentGrid
+            {
+                get
+                {
+                    // initial value
+                    bool hasParentGrid = (this.ParentGrid != null);
+                    
+                    // return value
+                    return hasParentGrid;
                 }
             }
             #endregion
@@ -653,6 +765,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return imageUrl; }
                 set { imageUrl = value; }
+            }
+            #endregion
+            
+            #region InnerControl
+            /// <summary>
+            /// This property gets or sets the value for 'InnerControl'.
+            /// </summary>
+            public ElementReference InnerControl
+            {
+                get { return innerControl; }
+                set { innerControl = value; }
             }
             #endregion
             
@@ -1038,6 +1161,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ParentGrid
+            /// <summary>
+            /// This read only property returns the value of ParentGrid from the object Parent.
+            /// </summary>
+            public Grid ParentGrid
+            {
+                
+                get
+                {
+                    // initial value
+                    Grid parentGrid = null;
+                    
+                    // if Parent exists
+                    if (HasParent)
+                    {
+                        // set the return value
+                        parentGrid = Parent as Grid;
+                    }
+                    
+                    // return value
+                    return parentGrid;
+                }
+            }
+            #endregion
+            
             #region PasswordMode
             /// <summary>
             /// This property gets or sets the value for 'PasswordMode'.
@@ -1066,6 +1214,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return position; }
                 set { position = value; }
+            }
+            #endregion
+            
+            #region RowId
+            /// <summary>
+            /// This property gets or sets the value for 'RowId'.
+            /// </summary>
+            [Parameter]
+            public Guid RowId
+            {
+                get { return rowId; }
+                set { rowId = value; }
+            }
+            #endregion
+            
+            #region SetFocusOnFirstRender
+            /// <summary>
+            /// This property gets or sets the value for 'SetFocusOnFirstRender'.
+            /// </summary>
+            [Parameter]
+            public bool SetFocusOnFirstRender
+            {
+                get { return setFocusOnFirstRender; }
+                set { setFocusOnFirstRender = value; }
             }
             #endregion
             

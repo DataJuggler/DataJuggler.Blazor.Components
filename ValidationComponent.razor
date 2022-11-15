@@ -54,19 +54,19 @@
     z-index: @ZIndex;    
 </Styled>
 
-<div class="@ValidationControlStyle">
+<div class="@ValidationControlStyle @ClassName">
     <span class="@LabelStyle">@Caption:</span>    
     @if (CheckBoxMode)
-    {  
+    {
         <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
     }
     else if (Multiline)
     {
-        <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" />
+        <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" />
     }
     else
-    {  
-        <input class="@TextBoxStyle" type=@InputType @bind="@Text" />
+    {
+        <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" @ref="InnerControl"  />
     }
     @if (ShowImage)
     {

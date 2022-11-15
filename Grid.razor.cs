@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using DataJuggler.Excelerate;
 using Microsoft.AspNetCore.Components;
 using DataJuggler.UltimateHelper;
+using DataJuggler.Blazor.Components.Util;
+using Microsoft.AspNetCore.Components.Web;
+using DataJuggler.Cryptography;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -17,7 +21,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class represents a Grid to display and edit column values.
     /// </summary>
-    public partial class Grid : IBlazorComponent
+    public partial class Grid : ComponentBase, IBlazorComponent, IBlazorComponentParent
     {
         
         #region Private Variables
@@ -30,6 +34,11 @@ namespace DataJuggler.Blazor.Components
         private string headerClassName;
         private bool showColumnHeaders;
         private bool editMode;
+        private Row editRow;
+        private Guid editRowId;
+        private string className;
+        private ValidationComponent setFocusEditor;
+        private List<IBlazorComponent> children;
         #endregion
 
         #region Constructor
@@ -38,12 +47,57 @@ namespace DataJuggler.Blazor.Components
         /// </summary>
         public Grid()
         {
-            
+            // Create
+            Children = new List<IBlazorComponent>();
         }
         #endregion
 
-        #region Methods
+        #region Events
 
+            #region Enter(KeyboardEventArgs e)
+            /// <summary>
+            /// event is fired when Enter
+            /// </summary>
+            public void Enter(KeyboardEventArgs e)
+            {
+                if (e.Code == "Enter" || e.Code == "NumpadEnter")
+                {
+                    // Exit
+                    EditMode = false;
+
+                    // if the value for HasEditRow is true
+                    if (HasEditRow)
+                    {
+                        // Set to false
+                        EditRow.EditMode = false;
+
+                        // Reload the screen to exit read only mode
+                        Refresh();
+                    }
+                }
+            }
+            #endregion
+
+            #region OnAfterRenderAsync(bool firstRender)
+            /// <summary>
+            /// This method is used to verify a user
+            /// </summary>
+            /// <param name="firstRender"></param>
+            /// <returns></returns>
+            protected async override Task OnAfterRenderAsync(bool firstRender)
+            {  
+                // if the value for HasSetFocusEditor is true
+                if (HasSetFocusEditor)
+                {
+                    // Set Focus
+                    SetFocusEditor.SetFocus();
+                }
+
+                // call the base
+                await base.OnAfterRenderAsync(firstRender);
+            }
+            #endregion
+            
             #region OnDoubleClick(Row row)
             /// <summary>
             /// On Double Click
@@ -65,6 +119,24 @@ namespace DataJuggler.Blazor.Components
                 Refresh();
             }
             #endregion
+
+        #endregion
+
+        #region Methods
+
+            #region FindChildByName(string name)
+            /// <summary>
+            /// method returns the Child By Name
+            /// </summary>
+            public IBlazorComponent FindChildByName(string name)
+            {
+                // attempt to find the IBlazorComponent by name.
+                IBlazorComponent component = ComponentHelper.FindChildByName(Children, name);
+
+                // return value
+                return component;
+            }
+            #endregion
             
             #region ReceiveData(Message message)
             /// <summary>
@@ -73,28 +145,38 @@ namespace DataJuggler.Blazor.Components
             public void ReceiveData(Message message)
             {
                 // If the message object exists
-                if ((NullHelper.Exists(message)) && (message.HasParameters))
+                if (NullHelper.Exists(message))
                 {
-                    // iterate the parameters
-                    foreach (NamedParameter parameter in message.Parameters)
+                    if ((message.Text == "EnterPressed") && (HasParent))
                     {
-                        // if this is the Rows collection
-                        if (parameter.Name == "Rows")
+                        // raise this up to the parent to Save
+                        Parent.ReceiveData(message);
+                    }
+                    else if (message.HasParameters)
+                    {
+                        // iterate the parameters
+                        foreach (NamedParameter parameter in message.Parameters)
                         {
-                            // cast the value as a List of Row objects.
-                            Rows = parameter.Value as List<Row>;
-                        }
+                            // if this is the Rows collection
+                            if (parameter.Name == "Rows")
+                            {
+                                // cast the value as a List of Row objects.
+                                Rows = parameter.Value as List<Row>;
+                            }
 
-                        // if this is the Columns collection
-                        if (parameter.Name == "Columns")
-                        {
-                            // cast the value as a List of Row objects.
-                            Columns = parameter.Value as List<Column>;
+                            // if this is the Columns collection
+                            if (parameter.Name == "Columns")
+                            {
+                                // cast the value as a List of Row objects.
+                                Columns = parameter.Value as List<Column>;
+                            }                           
                         }
                     }
                     
                     // Display the Data
                     Refresh();
+
+                    
                 }
             }
             #endregion
@@ -113,10 +195,58 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region Register(IBlazorComponent component)
+            /// <summary>
+            /// This method is used to keep track of the current editors.
+            /// When Save is called, these editors have to be removed.
+            /// </summary>
+            public void Register(IBlazorComponent component)
+            {
+                // If the component object exists
+                if (NullHelper.Exists(component, Children))
+                {
+                    // Add this oobject
+                    Children.Add(component);
+
+                    // Test if this is a ValidationComponent
+                    ValidationComponent validationComponent = component as ValidationComponent;
+
+                    // if this is the control to set focus to
+                    if ((NullHelper.Exists(validationComponent)) && (validationComponent.SetFocusOnFirstRender))
+                    {
+                        // Set the SetFocusEditor
+                        SetFocusEditor = validationComponent;
+                    }
+                }
+            }
+            #endregion
+            
         #endregion
 
         #region Properties
 
+            #region Children
+            /// <summary>
+            /// This property gets or sets the value for 'Children'.
+            /// </summary>
+            public List<IBlazorComponent> Children
+            {
+                get { return children; }
+                set { children = value; }
+            }
+            #endregion
+            
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
+            }
+            #endregion
+            
             #region Columns
             /// <summary>
             /// This property gets or sets the value for 'Columns'.
@@ -139,6 +269,28 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region EditRow
+            /// <summary>
+            /// This property gets or sets the value for 'EditRow'.
+            /// </summary>
+            public Row EditRow
+            {
+                get { return editRow; }
+                set { editRow = value; }
+            }
+            #endregion
+            
+            #region EditRowId
+            /// <summary>
+            /// This property gets or sets the value for 'EditRowId'.
+            /// </summary>
+            public Guid EditRowId
+            {
+                get { return editRowId; }
+                set { editRowId = value; }
+            }
+            #endregion
+            
             #region HasColumns
             /// <summary>
             /// This property returns true if this object has a 'Columns'.
@@ -156,6 +308,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
           
+            #region HasEditRow
+            /// <summary>
+            /// This property returns true if this object has an 'EditRow'.
+            /// </summary>
+            public bool HasEditRow
+            {
+                get
+                {
+                    // initial value
+                    bool hasEditRow = (this.EditRow != null);
+                    
+                    // return value
+                    return hasEditRow;
+                }
+            }
+            #endregion
+            
             #region HasHeaderText
             /// <summary>
             /// This property returns true if the 'HeaderText' exists.
@@ -203,6 +372,23 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return hasRows;
+                }
+            }
+            #endregion
+            
+            #region HasSetFocusEditor
+            /// <summary>
+            /// This property returns true if this object has a 'SetFocusEditor'.
+            /// </summary>
+            public bool HasSetFocusEditor
+            {
+                get
+                {
+                    // initial value
+                    bool hasSetFocusEditor = (this.SetFocusEditor != null);
+                    
+                    // return value
+                    return hasSetFocusEditor;
                 }
             }
             #endregion
@@ -278,6 +464,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetFocusEditor
+            /// <summary>
+            /// This property gets or sets the value for 'SetFocusEditor'.
+            /// </summary>
+            public ValidationComponent SetFocusEditor
+            {
+                get { return setFocusEditor; }
+                set { setFocusEditor = value; }
+            }
+            #endregion
+            
             #region ShowColumnHeaders
             /// <summary>
             /// This property gets or sets the value for 'ShowColumnHeaders'.
@@ -298,9 +495,9 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return showHeader; }
                 set { showHeader = value; }
-            }
+            }        
             #endregion
-            
+
         #endregion
 
     }
