@@ -22,7 +22,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is designed to make a DropDownList easier to work with.
     /// </summary>
-    public partial class ComboBox : IBlazorComponent, IBlazorComponentParent
+    public partial class ComboBox : ComponentBase, IBlazorComponent, IBlazorComponentParent
     {
         
         #region Private Variables
@@ -278,7 +278,10 @@ namespace DataJuggler.Blazor.Components
                         Item item = new Item();
                         item.Text = tempItem.ToString();
                         item.Id = Items.Count + 1;
+                        Items.Add(item);
                     }
+
+                    SelectedItem = Items[0];
 
                     // Update Async
                     Refresh();
