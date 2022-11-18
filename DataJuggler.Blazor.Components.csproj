@@ -33,7 +33,18 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>11.16.2022: A newer veresion of DataJuggler.Excelerate was updated.
+    <PackageReleaseNotes>11.18.2022: I am working on the ComboBox. I added a new theme for Black. It might not be working right,
+so use with caution at the moment.
+
+11.16.2022 C - I am working on the ImageButton and the ComboBox which uses the ImageButton.
+Things might change in the near future as I work through them.
+
+11.18.2022: I finally have the ComboBox working. More samples coming soon.
+
+11.16.2022 B: I changed WidthStyle to be a read only property. For some reason I am having trouble
+getting the ComboBox to show up in a new project. 
+
+11.16.2022: A newer veresion of DataJuggler.Excelerate was updated.
 
 11.15.2022: I added a Grid and updated the CSS file DataJuggler.Blazor.Components.
 
@@ -230,7 +241,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.0.8</Version>
+    <Version>7.0.16</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
     <Nullable>disable</Nullable>

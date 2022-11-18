@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Components;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using DataJuggler.Blazor.Components.Enumerations;
+using System.Drawing;
 
 #endregion
 
@@ -37,7 +38,6 @@ namespace DataJuggler.Blazor.Components
         private double height;
         private double width;
         private string heightStyle;
-        private string widthStyle;
         private string buttonTextAlign;
         private IBlazorComponentParent parent;
         private ButtonClickedHandler clickHandler;
@@ -49,6 +49,9 @@ namespace DataJuggler.Blazor.Components
         private bool visible;
         private string visibleStyle;
         private string position;
+        private string unit;
+        private double labelWidth;
+        private Color textColor;
         #endregion
 
         #region Constructor
@@ -58,12 +61,13 @@ namespace DataJuggler.Blazor.Components
         public ImageButton()
         {
             // default
-            Width = 100;
-            Height = 100;
+            Unit = "px";            
+            Width = 200;
+            Height = 200;
             Left = 0;
             Top = 0;
             ZIndex = 5;
-            Visible = true;
+            Visible = true;            
             ButtonTextAlign = "center";
         }
         #endregion
@@ -287,11 +291,46 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public string ImageUrl
             {
-                get { return imageUrl; }
-                set { imageUrl = value; }
+                get 
+                {
+                    return imageUrl;
+                }
+                set 
+                { 
+                    imageUrl = value;
+                }
             }
             #endregion
 
+            #region LabelWidth
+            /// <summary>
+            /// This property gets or sets the value for 'LabelWidth'.
+            /// </summary>
+            public double LabelWidth
+            {
+                get { return labelWidth; }
+                set { labelWidth = value; }
+            }
+            #endregion
+            
+            #region LabelWidthStyle
+            /// <summary>
+            /// This read only property returns the value of LabelWidthStyle from the object LabelWidth.
+            /// </summary>
+            public string LabelWidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string labelWidthStyle = LabelWidth + Unit;
+                    
+                    // return value
+                    return labelWidthStyle;
+                }
+            }
+            #endregion
+            
             #region Left
             /// <summary>
             /// This property gets or sets the value for 'Left'.
@@ -365,6 +404,31 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return position; }
                 set { position = value; }
+            }
+            #endregion
+            
+            #region TextColor
+            /// <summary>
+            /// This property gets or sets the value for 'TextColor'.
+            /// </summary>
+            [Parameter]
+            public Color TextColor
+            {
+                get { return textColor; }
+                set { textColor = value; }
+            }
+            #endregion
+
+            #region TextColorName
+            /// <summary>
+            /// This read only property returns the name from the 'TextColor'.
+            /// </summary>            
+            public string TextColorName
+            {
+                get 
+                {
+                    return textColor.Name;
+                }
             }
             #endregion
             
@@ -468,6 +532,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Unit
+            /// <summary>
+            /// This property gets or sets the value for 'Unit'.
+            /// </summary>
+            [Parameter]
+            public string Unit
+            {
+                get { return unit; }
+                set { unit = value; }
+            }
+            #endregion
+            
             #region Visible
             /// <summary>
             /// This property gets or sets the value for 'Visible'.
@@ -518,9 +594,6 @@ namespace DataJuggler.Blazor.Components
                 set 
                 { 
                     width = value;
-
-                    // set the string 
-                    widthStyle = width + "%";
                 }
             }
             #endregion
@@ -531,8 +604,14 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string WidthStyle
             {
-                get { return widthStyle; }
-                set { widthStyle = value; }
+                get
+                {
+                    // initial value
+                    string widthStyle = width + unit;
+
+                    // return value
+                    return widthStyle;
+                }
             }
             #endregion
             

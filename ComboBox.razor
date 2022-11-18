@@ -3,39 +3,40 @@
 @using DataJuggler.Blazor.Components.Enumerations
 
 <Styled @bind-Classname="Grid">
-    display: @DisplayStyle;
-    grid-template-columns: @LabelSizeStyle 1fr;
-    grid-column-gap: .12%;
+    display: @DisplayStyle;    
     height: @HeightStyle;
+    min-width: @WidthStyle;
     width: @WidthStyle;
     font-size: @TextSizeStyle;
     position: @Position;
     left: @LeftStyle;
     top: @TopStyle;
-    z-index: @ZIndex;
+    z-index: @ZIndex;   
 </Styled>
 <Styled @bind-Classname="LabelStyle">
     font-size: @TextSizeStyle;
     text-align: right;
     margin-right: @LabelMarginRightStyle !important;
-    color: @LabelColor;
+    color: @LabelColorName;    
     white-space: nowrap;
+    width: @LabelWidthStyle;
 </Styled>
 <Styled @bind-Classname="ComboBoxStyle">    
-    height: 100vh;
-    width: 100%;    
+    height: @HeightStyle;
+    width: @WidthStyle    
     font-size: @TextSizeStyle;
     place-content: start;
     overflow: hidden;
-    text-align: left;   
+    text-align: center;   
 </Styled>
 <Styled @bind-Classname="ListItemStyle">    
     font-family: Verdana;
     font-size: @TextSizeStyle;
     text-align: left;
-    background-color: white; 
-    width: 120%;
+    background-color: @ListBackgroundColorName;
+    width: @WidthStyle;
     position: relative;
+    color: @ListItemTextColorName;
     left: @LabelMarginRightListStyle;
 </Styled>
 <Styled @bind-Classname="NoPadding">    
@@ -43,18 +44,19 @@
     padding: 0;
 </Styled>
 <Styled @bind-Classname="VerticalCenter">
-    display: flex;
+    display: inline-block;
     justify-content: left;
     align-items: center;
+    width: 100%;
 </Styled>
 
 <div class="@Grid">
-    <div class="column @LabelStyle">@LabelText</div>   
-    <div class="column @ComboBoxStyle">
+    <div class="@LabelStyle">@LabelText</div>   
+    <div class="@ComboBoxStyle">
         <div class="@VerticalCenter">
-            <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Width="@ButtonWidth"
+            <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Unit="@Unit" Width="@Width"
                  Name="ComboBoxButton" TextSize="TextSizeEnum.Large" Position="relative" Left="@LabelMarginRight"
-                 ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
+                 ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
          { 

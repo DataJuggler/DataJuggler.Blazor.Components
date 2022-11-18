@@ -90,7 +90,6 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private string position;
         private IBlazorComponentParent parent;
-        private EventCallback onKeyUp;
         private string className;
         private bool setFocusOnFirstRender;
         // This are only used when inside a Grid

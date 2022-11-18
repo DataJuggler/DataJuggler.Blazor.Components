@@ -7,12 +7,13 @@
     z-index: @ZIndex;   
     display: @VisibleStyle;
     outline: none;
-    border: none;
+    border: none;    
+    width: @WidthStyle;    
 </Styled>
 <Styled @bind-Classname="ButtonStyle">
     background-image: url('@ImageUrl');    
     background-size: 100% 100%;
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     outline: none;
@@ -23,6 +24,7 @@
     height: @HeightStyle;
     white-space: nowrap;
     font-size: @TextSizeStyle;
+    color: @TextColorName;
     vertical-align: central;
 </Styled>
 <Styled @bind-Classname="ButtonTextAlignStyle">

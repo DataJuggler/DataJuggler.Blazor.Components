@@ -79,8 +79,9 @@ namespace DataJuggler.Blazor.Components.Enumerations
     /// </summary>
     public enum ThemeEnum : int
     {
-        Light = 0,
-        Dark = 1
+        Black = 0,
+        Dark = 1,
+        Blue = 2
     }
     #endregion
 
