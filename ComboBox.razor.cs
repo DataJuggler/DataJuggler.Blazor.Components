@@ -386,6 +386,21 @@ namespace DataJuggler.Blazor.Components
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxDark.png";
                     }
                 }
+                else if (theme == ThemeEnum.Brown)
+                {
+                    // Dark Blue
+                    ButtonTextColor = Color.White;
+                    ListBackgroundColor = Color.Brown;
+
+                    if (Expanded)
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBrownOpen.png";
+                    }
+                    else
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBrown.png";
+                    }
+                }
                 else
                 {
                     // black

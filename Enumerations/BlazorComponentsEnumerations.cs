@@ -81,7 +81,8 @@ namespace DataJuggler.Blazor.Components.Enumerations
     {
         Black = 0,
         Dark = 1,
-        Blue = 2
+        Blue = 2,
+        Brown = 3
     }
     #endregion
 
