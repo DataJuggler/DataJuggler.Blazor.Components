@@ -34,7 +34,8 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>11.19.2022: The ComboBox was ignoring the TextColor when you Expand or Close the ComboBox.
-I added a bool property for Rendered. The first pass I change the text color. 
+I added a bool property for Rendered. The first pass I change the text color. Also, the TextSize
+was just changed to use "em" instead of "vh", so the text size will change with zoom.
 
 11.18.2022: I am working on the ComboBox. I added a new theme for Black. It might not be working right,
 so use with caution at the moment.
@@ -244,7 +245,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.1.1</Version>
+    <Version>7.1.2</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
     <Nullable>disable</Nullable>

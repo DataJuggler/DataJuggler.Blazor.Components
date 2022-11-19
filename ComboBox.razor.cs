@@ -1201,7 +1201,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Extra_Small:
 
                             // Set the value
-                            TextSizeStyle = 1.2 + "vh";
+                            TextSizeStyle = .6 + "em";
 
                             // required
                             break;
@@ -1209,7 +1209,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Small:
 
                             // Set the value
-                            TextSizeStyle = 1.5 + "vh";
+                            TextSizeStyle = .8 + "em";
 
                             // required
                             break;
@@ -1217,7 +1217,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Medium:
 
                             // Set the value
-                            TextSizeStyle = 1.8 + "vh";
+                            TextSizeStyle = 1 + "em";
 
                             // required
                             break;
@@ -1225,7 +1225,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Large:
 
                             // Set the value
-                            TextSizeStyle = 2.1 + "vh";
+                            TextSizeStyle = 1.2 + "em";
 
                             // required
                             break;
@@ -1233,7 +1233,7 @@ namespace DataJuggler.Blazor.Components
                         case TextSizeEnum.Extra_Large:
 
                             // Set the value
-                            TextSizeStyle = 2.4 + "vh";
+                            TextSizeStyle = 1.4 + "em";
 
                             // required
                             break;
