@@ -74,6 +74,7 @@ namespace DataJuggler.Blazor.Components
         private Color buttonTextColor;
         private Color listItemTextColor;
         private Color listBackgroundColor;
+        private bool rendered;
         #endregion
 
         #region Constructor
@@ -358,9 +359,13 @@ namespace DataJuggler.Blazor.Components
                 // if Blue Mode
                 if (theme == ThemeEnum.Blue)
                 {
-                    // Dark Blue
-                    ButtonTextColor = Color.Navy;
-                    ListBackgroundColor = Color.AliceBlue;
+                    // only set the TextColor on the first pass
+                    if (!rendered)
+                    {
+                        // Dark Blue
+                        ButtonTextColor = Color.Navy;
+                        ListBackgroundColor = Color.AliceBlue;
+                    }
 
                     if (Expanded)
                     {
@@ -373,9 +378,13 @@ namespace DataJuggler.Blazor.Components
                 }
                 else if (theme == ThemeEnum.Dark)
                 {
-                    // Dark Blue
-                    ButtonTextColor = Color.White;
-                    ListBackgroundColor = Color.Brown;
+                    // only set the TextColor on the first pass
+                    if (!rendered)
+                    {
+                        // Dark Blue
+                        ButtonTextColor = Color.White;
+                        ListBackgroundColor = Color.Brown;
+                    }
 
                     if (Expanded)
                     {
@@ -388,9 +397,13 @@ namespace DataJuggler.Blazor.Components
                 }
                 else if (theme == ThemeEnum.Brown)
                 {
-                    // Dark Blue
-                    ButtonTextColor = Color.White;
-                    ListBackgroundColor = Color.Brown;
+                    // only set the TextColor on the first pass
+                    if (!rendered)
+                    {
+                        // Dark Blue
+                        ButtonTextColor = Color.White;
+                        ListBackgroundColor = Color.Brown;
+                    }
 
                     if (Expanded)
                     {
@@ -403,9 +416,13 @@ namespace DataJuggler.Blazor.Components
                 }
                 else
                 {
-                    // black
-                    ButtonTextColor = Color.White;
-                    ListBackgroundColor = Color.DarkGray;
+                    // only set the TextColor on the first pass
+                    if (!rendered)
+                    {
+                        // black
+                        ButtonTextColor = Color.White;
+                        ListBackgroundColor = Color.DarkGray;
+                    }
 
                     if (Expanded)
                     {
@@ -416,6 +433,9 @@ namespace DataJuggler.Blazor.Components
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                     }
                 }
+
+                // Used to keep track if the text color should be reset
+                Rendered = true;
             }
             #endregion
             
@@ -1126,6 +1146,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return position; }
                 set { position = value; }
+            }
+            #endregion
+            
+            #region Rendered
+            /// <summary>
+            /// This property gets or sets the value for 'Rendered'.
+            /// </summary>
+            public bool Rendered
+            {
+                get { return rendered; }
+                set { rendered = value; }
             }
             #endregion
             
