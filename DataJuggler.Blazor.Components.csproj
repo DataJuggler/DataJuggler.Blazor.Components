@@ -33,7 +33,11 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>11.19.2022: The ComboBox was ignoring the TextColor when you Expand or Close the ComboBox.
+    <PackageReleaseNotes>11.21.2022: I added two properties to the Grid component:
+ExternalId - an Id such as a Table Id or other ways to identify how to save the data.
+ExternalIdDescription - A string to help identify the ExternalId.
+
+11.19.2022: The ComboBox was ignoring the TextColor when you Expand or Close the ComboBox.
 I added a bool property for Rendered. The first pass I change the text color. Also, the TextSize for
 the ComboBox and the ImageButton was just changed to use "em" instead of "vh".
 The text size should change with zoom.
@@ -246,7 +250,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.1.4</Version>
+    <Version>7.1.5</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
     <Nullable>disable</Nullable>

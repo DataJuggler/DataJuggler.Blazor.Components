@@ -39,6 +39,8 @@ namespace DataJuggler.Blazor.Components
         private string className;
         private ValidationComponent setFocusEditor;
         private List<IBlazorComponent> children;
+        private int externalId;
+        private string externalIdDescription;
         #endregion
 
         #region Constructor
@@ -250,7 +252,7 @@ namespace DataJuggler.Blazor.Components
             #region Columns
             /// <summary>
             /// This property gets or sets the value for 'Columns'.
-            /// </summary>
+            /// </summary>            
             public List<Column> Columns
             {
                 get { return columns; }
@@ -288,6 +290,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return editRowId; }
                 set { editRowId = value; }
+            }
+            #endregion
+            
+            #region ExternalId
+            /// <summary>
+            /// This property gets or sets the value for 'ExternalId'.
+            /// </summary>
+            [Parameter]
+            public int ExternalId
+            {
+                get { return externalId; }
+                set { externalId = value; }
+            }
+            #endregion
+            
+            #region ExternalIdDescription
+            /// <summary>
+            /// This property gets or sets the value for 'ExternalIdDescription'.
+            /// </summary>
+            [Parameter]
+            public string ExternalIdDescription
+            {
+                get { return externalIdDescription; }
+                set { externalIdDescription = value; }
             }
             #endregion
             
