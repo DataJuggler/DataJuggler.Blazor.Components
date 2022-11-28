@@ -33,7 +33,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>11.21.2022: I added two properties to the Grid component:
+    <PackageReleaseNotes>11.28.2022: I added the property Sender = this to the Grid when the Enter Key is pressed.
+
+11.21.2022: I added two properties to the Grid component:
 ExternalId - an Id such as a Table Id or other ways to identify how to save the data.
 ExternalIdDescription - A string to help identify the ExternalId.
 
@@ -250,7 +252,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.1.5</Version>
+    <Version>7.1.6</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
     <Nullable>disable</Nullable>

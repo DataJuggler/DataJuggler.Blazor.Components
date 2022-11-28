@@ -151,6 +151,9 @@ namespace DataJuggler.Blazor.Components
                 {
                     if ((message.Text == "EnterPressed") && (HasParent))
                     {
+                        // Set the Sender
+                        message.Sender = this;
+
                         // raise this up to the parent to Save
                         Parent.ReceiveData(message);
                     }
@@ -176,9 +179,7 @@ namespace DataJuggler.Blazor.Components
                     }
                     
                     // Display the Data
-                    Refresh();
-
-                    
+                    Refresh();                    
                 }
             }
             #endregion
