@@ -34,7 +34,8 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>11.29.2022: I am attempting to have the grid go into edit mode in the same location as the cell being edited.
-I am testing hitting Escape to have the grid exit edit mode.
+I am testing hitting Escape to have the grid exit edit mode. I have the grid exiting Edit Mode, but a call to
+the parent that displays the data seems necessary.
 
 11.28.2022: I added the property Sender = this to the Grid when the Enter Key is pressed.
 I also set the SetFocus part to be in a Try Catch in case it is able to trap the error caused by SetFocus
@@ -257,7 +258,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.1.9</Version>
+    <Version>7.1.10</Version>
     <AssemblyVersion>2.0.0</AssemblyVersion>
     <FileVersion>2.0.0</FileVersion>
     <Nullable>disable</Nullable>

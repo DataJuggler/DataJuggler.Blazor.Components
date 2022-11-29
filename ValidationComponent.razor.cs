@@ -130,7 +130,7 @@ namespace DataJuggler.Blazor.Components
                         SendMessageToParent("EnterPressed");      
                     }                    
                 }
-                else if (e.Code == "Esc")
+                else if (e.Code == "Escape")
                 {
                     // Inform the Parent Escape was hit
                     SendMessageToParent("EscapePressed");      
@@ -268,6 +268,9 @@ namespace DataJuggler.Blazor.Components
 
                     // Set the message text
                     message.Text = messageText;
+
+                    // Set the Sender
+                    message.Sender = this;
 
                     // Create a new instance of a 'NamedParameter' object.
                     NamedParameter parameter = new NamedParameter();
