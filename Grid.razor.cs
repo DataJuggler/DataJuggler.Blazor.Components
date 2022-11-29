@@ -87,12 +87,20 @@ namespace DataJuggler.Blazor.Components
             /// <param name="firstRender"></param>
             /// <returns></returns>
             protected async override Task OnAfterRenderAsync(bool firstRender)
-            {  
-                // if the value for HasSetFocusEditor is true
-                if (HasSetFocusEditor)
+            {
+                try
                 {
-                    // Set Focus
-                    SetFocusEditor.SetFocus();
+                    // if the value for HasSetFocusEditor is true
+                    if (HasSetFocusEditor)
+                    {
+                        // Set Focus
+                        SetFocusEditor.SetFocus();
+                    }
+                }
+                catch (Exception error)
+                {
+                    // Attempt to trap
+                    DebugHelper.WriteDebugError("OnAfterRenderAsync", "Grid.razor.cs", error);
                 }
 
                 // call the base
