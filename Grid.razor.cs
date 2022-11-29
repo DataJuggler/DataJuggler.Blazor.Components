@@ -165,6 +165,17 @@ namespace DataJuggler.Blazor.Components
                         // raise this up to the parent to Save
                         Parent.ReceiveData(message);
                     }
+                    else if ((message.Text == "EscapePressed") && (HasParent))
+                    {
+                        // Set the Sender
+                        SetFocusEditor = null;
+
+                        // raise this up to the parent to Save
+                        Parent.ReceiveData(message);
+
+                        // Escape exists editor mode
+                        Refresh();
+                    }
                     else if (message.HasParameters)
                     {
                         // iterate the parameters

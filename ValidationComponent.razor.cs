@@ -126,36 +126,14 @@ namespace DataJuggler.Blazor.Components
                     // if the ParentGrid exists
                     if (HasParentGrid)
                     { 
-                        // Create a message
-                        Message message = new Message();
-
-                        // Set the message text
-                        message.Text = "EnterPressed";
-
-                        // Create a new instance of a 'NamedParameter' object.
-                        NamedParameter parameter = new NamedParameter();
-
-                        // Set the name of the object calling
-                        parameter.Name = this.Name;
-
-                        // if the value for HasParentGrid is true
-                        if (HasParentGrid)
-                        {
-                            // Send in the Ids to help find what was just saved
-                            parameter.ColumnId = ColumnId;
-                            parameter.RowId = RowId;
-                            parameter.GridName = ParentGrid.Name;
-                        }
-
-                        // Set the value
-                        parameter.Value = Text;
-
-                        // Add this parameter
-                        message.Parameters.Add(parameter);
-
-                        // notify the parent
-                        Parent.ReceiveData(message);                        
+                        // Inform the Parent
+                        SendMessageToParent("EnterPressed");      
                     }                    
+                }
+                else if (e.Code == "Esc")
+                {
+                    // Inform the Parent Escape was hit
+                    SendMessageToParent("EscapePressed");      
                 }
             }
             #endregion
@@ -276,6 +254,48 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region SendMessageToParent(string messageText)
+            /// <summary>
+            /// Sends a Message To the Parent
+            /// </summary>
+            public void SendMessageToParent(string messageText)
+            {
+                // if the value for HasParent is true
+                if (HasParent)
+                {
+                    // Create a message
+                    Message message = new Message();
+
+                    // Set the message text
+                    message.Text = messageText;
+
+                    // Create a new instance of a 'NamedParameter' object.
+                    NamedParameter parameter = new NamedParameter();
+
+                    // Set the name of the object calling
+                    parameter.Name = this.Name;
+
+                    // if the value for HasParentGrid is true
+                    if (HasParentGrid)
+                    {
+                        // Send in the Ids to help find what was just saved
+                        parameter.ColumnId = ColumnId;
+                        parameter.RowId = RowId;
+                        parameter.GridName = ParentGrid.Name;
+                    }
+
+                    // Set the value
+                    parameter.Value = Text;
+
+                    // Add this parameter
+                    message.Parameters.Add(parameter);
+
+                    // notify the parent
+                    Parent.ReceiveData(message);                  
+                }
+            }
+            #endregion
+            
             #region SetCheckBoxValue(bool isChecked)
             /// <summary>
             /// This method Sets the CheckBoxValue
