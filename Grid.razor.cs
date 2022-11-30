@@ -170,10 +170,23 @@ namespace DataJuggler.Blazor.Components
                         // Set the Sender
                         SetFocusEditor = null;
 
+                        // Exit edit mode
+                        EditMode = false;
+
+                        // if the EditRow exists
+                        if (HasEditRow)
+                        {
+                            // Exit EditMode
+                            EditRow.EditMode = false;
+
+                            // Erase
+                            EditRow = null;
+                        }
+
                         // raise this up to the parent to Save
                         Parent.ReceiveData(message);
 
-                        // Escape exists editor mode
+                        // Escape = exit editor mode
                         Refresh();
                     }
                     else if (message.HasParameters)
