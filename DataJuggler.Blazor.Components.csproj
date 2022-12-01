@@ -33,7 +33,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>11.30.2022: I added some code to the validation component that should set focus to existing text when you
+    <PackageReleaseNotes>12.1.2022: I fixed the ValidationComponent to send an EnterPressed message to a parent. Before it would
+only send the message if in a grid.
+
+11.30.2022: I added some code to the validation component that should set focus to existing text when you
 set focus to the text in a textbox when you enter it. Not sure if I can make this a toggleable feature.
 I also updated the way Escape is handled in the grid. I also changed the CSS so the textbox appears inline
 at closer to the place where the read only display control was. Need to make this a parameter.
@@ -263,7 +266,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.1.14</Version>
+    <Version>7.1.15</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>

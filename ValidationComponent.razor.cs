@@ -123,12 +123,12 @@ namespace DataJuggler.Blazor.Components
             {
                 if (e.Code == "Enter" || e.Code == "NumpadEnter")
                 {
-                    // if the ParentGrid exists
-                    if (HasParentGrid)
+                    // if the Parent exists
+                    if (HasParent)
                     { 
                         // Inform the Parent
                         SendMessageToParent("EnterPressed");      
-                    }                    
+                    }                            
                 }
                 else if (e.Code == "Escape")
                 {
