@@ -12,7 +12,10 @@ and ComboBox. The Grid is working, but very new and subject to change.
 The CSS file DataJuggler.Blazor.Components.css contains many useful classes to help style 
 and position objects.
 
-This version is for .Net 7.0. 
+This version is for .Net 7.0.
+
+Update 12.1.2022: The Grid and the ValidationComponent both support double click to edit in place.
+The ReceieveData method receives messages for EnterPressed and EscapePressed.
 
 A live demo is available at https://excelerate.datajuggler.com
 
@@ -34,7 +37,8 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>12.1.2022: I fixed the ValidationComponent to send an EnterPressed message to a parent. Before it would
-only send the message if in a grid.
+only send the message if in a grid. I have the edit in place working for a client's project with both the grid
+and the ValidationComponent. 
 
 11.30.2022: I added some code to the validation component that should set focus to existing text when you
 set focus to the text in a textbox when you enter it. Not sure if I can make this a toggleable feature.
@@ -266,7 +270,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.1.15</Version>
+    <Version>7.2.0</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>

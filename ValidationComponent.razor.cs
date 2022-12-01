@@ -320,8 +320,16 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public async void SetFocus()
             {
-                // Set focus to the control
-                await InnerControl.FocusAsync();
+                try
+                {
+                    // Set focus to the control
+                    await InnerControl.FocusAsync();
+                }
+                catch (Exception error)
+                {
+                    // for debugging only for now
+                    DebugHelper.WriteDebugError("SetFocus", "ValidationComponent.cs", error);
+                }
             }
             #endregion
             
