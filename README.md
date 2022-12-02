@@ -37,6 +37,8 @@ color(color name)
 Example: colormidnightblue.
 Set the forecolor to a .NET named color.
 
+displayblock, displayinline, displaylineblock, displaynone.
+
 down(0 - 1000)
 Example: down16
 Move the element 16 pixels down. (CSS is top: 16px).

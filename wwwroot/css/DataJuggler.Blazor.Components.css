@@ -1163,6 +1163,10 @@
 {
     cursor: pointer;
 }
+.displaynone
+{
+    display: none;
+}
 .displayinline
 {
     display: inline;

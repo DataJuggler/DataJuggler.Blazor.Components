@@ -37,7 +37,7 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>12.2.2022: Attempting to have the ValidationComponent also SelectAll when it gets focus. Making it easier
-to change existing text.
+to change existing text. I also added a css class named displaynone, to hide elements.
 
 12.1.2022: I fixed the ValidationComponent to send an EnterPressed message to a parent. Before it would
 only send the message if in a grid. I have the edit in place working for a client's project with both the grid
@@ -273,7 +273,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.2.1</Version>
+    <Version>7.2.2</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>
