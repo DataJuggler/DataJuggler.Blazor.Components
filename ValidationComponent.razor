@@ -66,7 +66,7 @@
     }
     else
     {
-        <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+        <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
     }
     @if (ShowImage)
     {
