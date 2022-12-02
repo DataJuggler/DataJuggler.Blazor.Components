@@ -96,6 +96,8 @@ namespace DataJuggler.Blazor.Components
         private Guid rowId;
         private Guid columnId;
         private ElementReference innerControl;
+        private bool visible;
+        private string display;
         #endregion
         
         #region Constructor
@@ -170,6 +172,7 @@ namespace DataJuggler.Blazor.Components
                 LabelWidth = 20;
                 LabelFontSize = 12;
                 LabelFontSizeUnit = "px";
+                Display = "inline-block";
 
                 // Just being explicit
                 SetFocusOnFirstRender = false;
@@ -609,6 +612,49 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return defaultTextBoxHeight; }
                 set { defaultTextBoxHeight = value; }
+            }
+            #endregion
+            
+            #region Display
+            /// <summary>
+            /// This property gets or sets the value for 'Display'.
+            /// This property will be used, unless Visible = false, then DisplayNone will be used.
+            /// </summary>
+            [Parameter]
+            public string Display
+            {
+                get { return display; }
+                set { display = value; }
+            }
+            #endregion
+            
+            #region DisplayStyle
+            /// <summary>
+            /// This read only property returns the value of Display, unless Visible = false.
+            /// </summary>
+            public string DisplayStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string displayStyle = "";
+                    
+                    // if the value for Visible is true
+                    if (Visible)
+                    {
+                        // set the return value
+                        displayStyle = Display;
+                    }
+                    else
+                    {
+                        // Invisible
+                        displayStyle = "none";
+                    }
+                    
+                    // return value
+                    return displayStyle;
+                }
             }
             #endregion
             
@@ -1451,6 +1497,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return validationMessage; }
                 set { validationMessage = value; }
+            }
+            #endregion
+            
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set { visible = value; }
             }
             #endregion
             
