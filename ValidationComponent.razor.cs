@@ -173,6 +173,7 @@ namespace DataJuggler.Blazor.Components
                 LabelFontSize = 12;
                 LabelFontSizeUnit = "px";
                 Display = "inline-block";
+                Visible = true;
 
                 // Just being explicit
                 SetFocusOnFirstRender = false;
