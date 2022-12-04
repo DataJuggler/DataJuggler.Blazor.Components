@@ -36,7 +36,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.4.2022 B: I realized there can be more than one column needing to be edited, so I added Column.EditMode.
+    <PackageReleaseNotes>12.5.2022 C: I updated DataJuggler.Excelerate to the latest version which includes Row.FindColumnById.
+
+12.4.2022 B: I realized there can be more than one column needing to be edited, so I added Column.EditMode.
 Only the column with Column.EditMode will show.
 
 12.4.2022: I changed how the grid works for entering EditMode. The grid now uses EditorText property
@@ -335,7 +337,7 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="7.1.3" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="7.1.4" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="7.0.0" />
   </ItemGroup>
 
