@@ -36,7 +36,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.3.2022: I realized today I did not have Visible defaulting to true on the ValidationComponent.
+    <PackageReleaseNotes>12.4.2022: I changed how the grid works for entering EditMode. The grid now uses EditorText property
+instead of Column.ColumnText when entering Edit Mode. If EditText is not set, EditorText returns ColumnText.
+
+12.3.2022: I realized today I did not have Visible defaulting to true on the ValidationComponent.
 
 12.2.2022: Attempting to have the ValidationComponent also SelectAll when it gets focus. Making it easier
 to change existing text. I also added a property Visible and a Property for Display. The css class 
@@ -278,7 +281,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.2.4</Version>
+    <Version>7.2.5</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>
@@ -329,7 +332,7 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="7.1.0" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="7.1.1" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="7.0.0" />
   </ItemGroup>
 
