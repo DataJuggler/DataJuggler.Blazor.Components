@@ -33,7 +33,7 @@
             @foreach (Column column in row.Columns)
             {
                 
-                if ((row.EditMode) && (!column.ReadOnly))
+                if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
                 {
                     <div class="displayinline right128 up64">
                     <ValidationComponent Name=column.ColumnName Width=column.Width Height=column.Height 
@@ -43,7 +43,7 @@
                 }
                 else
                 {
-                    <div class="@column.ClassName" @ondblclick="() => OnDoubleClick(row)">@column.ColumnText</div>
+                    <div class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
                 }
             }
             </div>

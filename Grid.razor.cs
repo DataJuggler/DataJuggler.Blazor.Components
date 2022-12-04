@@ -108,15 +108,28 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region OnDoubleClick(Row row)
+            #region OnDoubleClick(Row row, int columnNumber)
             /// <summary>
             /// On Double Click
             /// </summary>
-            public void OnDoubleClick(Row row)
+            public void OnDoubleClick(Row row, int columnNumber)
             {
                 // if the row exists
                 if (NullHelper.Exists(row))
                 {
+                    // Find the column
+                    Column column = row.FindColumnByNumber(columnNumber);
+
+                    // If the column object exists
+                    if (NullHelper.Exists(column))
+                    {
+                        // Set the column to focus
+                        column.SetFocusOnFirstRender = true;
+
+                        // Set the column to EditMode
+                        column.EditMode = true;
+                    }
+
                     // Set the row into EditMode so the edit control is displayed.
                     // to do: Figure out the Edit Control.
                     row.EditMode = true;
