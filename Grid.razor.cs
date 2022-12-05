@@ -52,6 +52,7 @@ namespace DataJuggler.Blazor.Components
         {
             // Create
             Children = new List<IBlazorComponent>();
+            EditZIndex = 40;
         }
         #endregion
 
