@@ -36,7 +36,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.5.2022 C: I updated DataJuggler.Excelerate to the latest version which includes Row.FindColumnById.
+    <PackageReleaseNotes>12.5.2022: I added an EditZIndex property to the grid. So the validation component used to edit has a z index.
+
+12.4.2022 C: I updated DataJuggler.Excelerate to the latest version which includes Row.FindColumnById.
 
 12.4.2022 B: I realized there can be more than one column needing to be edited, so I added Column.EditMode.
 Only the column with Column.EditMode will show.
@@ -286,7 +288,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.2.7</Version>
+    <Version>7.2.8</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>

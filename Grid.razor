@@ -37,7 +37,7 @@
                 {
                     <div class="displayinline right128 up64">
                     <ValidationComponent Name=column.ColumnName Width=column.Width Height=column.Height 
-                        RowId=row.Id ColumnId=column.Id ZIndex="20" SetFocusOnFirstRender=column.SetFocusOnFirstRender
+                        RowId=row.Id ColumnId=column.Id ZIndex="@EditZIndex" SetFocusOnFirstRender=column.SetFocusOnFirstRender
                         Text="@column.EditorText"  Parent=this></ValidationComponent>
                     </div>
                 }
