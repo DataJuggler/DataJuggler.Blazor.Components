@@ -86,6 +86,7 @@ namespace DataJuggler.Blazor.Components
         private bool setFocusOnFirstRender;
         private bool showCaption;
         private string unit;
+        private string heightUnit;
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;
@@ -790,10 +791,29 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     string heightStyle = Height + unit;
+
+                    // If the HeightUnit string exists
+                    if (TextHelper.Exists(HeightUnit))
+                    {
+                        // Use the HeightUnit
+                        heightStyle = Height + HeightUnit;
+                    }
                     
                     // return value
                     return heightStyle;
                 }
+            }
+            #endregion
+            
+            #region HeightUnit
+            /// <summary>
+            /// This property gets or sets the value for 'HeightUnit'.
+            /// </summary>
+            [Parameter]
+            public string HeightUnit
+            {
+                get { return heightUnit; }
+                set { heightUnit = value; }
             }
             #endregion
             
@@ -1398,7 +1418,18 @@ namespace DataJuggler.Blazor.Components
             public string Unit
             {
                 get { return unit; }
-                set { unit = value; }
+                set 
+                {
+                    // set the unit
+                    unit = value;
+
+                    // if the unit is percent, % doesn't work for height.
+                    if (unit == "%")
+                    {
+                        // Set to vh
+                        HeightUnit = "vh";
+                    }
+                }
             }
             #endregion
             
