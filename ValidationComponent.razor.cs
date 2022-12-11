@@ -69,8 +69,7 @@ namespace DataJuggler.Blazor.Components
         private double width;        
         private double textBoxWidth;
         private string textBoxWidthPercent;
-        private double textBoxHeight;
-        private string textBoxHeightPercent;
+        private double textBoxHeight;        
         private double defaultTextBoxHeight;
         private double multilineTextBoxHeight;
         private string name;
@@ -1397,21 +1396,25 @@ namespace DataJuggler.Blazor.Components
                 {
                     // set the value
                     textBoxHeight = value;
-
-                    // Set the value for the vertical height which the css uses
-                    TextBoxHeightPercent = textBoxHeight + "vh";
                 }
             }
             #endregion
             
-            #region TextBoxHeightPercent
+            #region TextBoxHeightStyle
             /// <summary>
-            /// This property gets or sets the value for 'TextBoxHeightPercent'.
+            /// This read only property returns the value of TextBoxHeightStyle from the object TextBoxHeight.
             /// </summary>
-            public string TextBoxHeightPercent
+            public string TextBoxHeightStyle
             {
-                get { return textBoxHeightPercent; }
-                set { textBoxHeightPercent = value; }
+                
+                get
+                {
+                    // initial value
+                    string textBoxHeightStyle = TextBoxHeight + Unit;                
+                    
+                    // return value
+                    return textBoxHeightStyle;
+                }
             }
             #endregion
             
@@ -1434,28 +1437,28 @@ namespace DataJuggler.Blazor.Components
             public double TextBoxWidth
             {
                 get { return textBoxWidth; }
-                set 
-                {
-                    // set the value
-                    textBoxWidth = value;
+                set { textBoxWidth = value;}
+            }
+            #endregion
 
-                    // set the value
-                    TextBoxWidthPercent = textBoxWidth + "%";
+            #region TextBoxWidthStyle2
+            /// <summary>
+            /// This read only property returns the value of TextBoxWidthStyle2 from the object TextBoxWidthStyle.
+            /// </summary>
+            public string TextBoxWidthStyle2
+            {
+                
+                get
+                {
+                    // initial value
+                    string textBoxWidthStyle2 = TextBoxWidth + Unit;
+                    
+                    // return value
+                    return textBoxWidthStyle2;
                 }
             }
             #endregion
             
-            #region TextBoxWidthPercent
-            /// <summary>
-            /// This property gets or sets the value for 'TextBoxWidthPercent'.
-            /// </summary>
-            public string TextBoxWidthPercent
-            {
-                get { return textBoxWidthPercent; }
-                set { textBoxWidthPercent = value; }
-            }
-            #endregion
-
             #region Top
             /// <summary>
             /// This property gets or sets the value for 'Top'.
@@ -1556,6 +1559,13 @@ namespace DataJuggler.Blazor.Components
                 set 
                 { 
                     width = value;
+
+                    // if the value for ShowCaption is false
+                    if (!ShowCaption)
+                    {
+                        // Set the TextBoxWidth
+                        TextBoxWidth = width;
+                    }
                 }
             }
             #endregion
