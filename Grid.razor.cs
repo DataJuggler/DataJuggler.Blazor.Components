@@ -40,8 +40,7 @@ namespace DataJuggler.Blazor.Components
         private ValidationComponent setFocusEditor;
         private List<IBlazorComponent> children;
         private int externalId;
-        private string externalIdDescription;
-        private int editZIndex;
+        private string externalIdDescription;        
         #endregion
 
         #region Constructor
@@ -52,7 +51,6 @@ namespace DataJuggler.Blazor.Components
         {
             // Create
             Children = new List<IBlazorComponent>();
-            EditZIndex = 40;
         }
         #endregion
 
@@ -338,18 +336,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return editRowId; }
                 set { editRowId = value; }
-            }
-            #endregion
-            
-            #region EditZIndex
-            /// <summary>
-            /// This property gets or sets the value for 'EditZIndex'.
-            /// </summary>
-            [Parameter]
-            public int EditZIndex
-            {
-                get { return editZIndex; }
-                set { editZIndex = value; }
             }
             #endregion
             
