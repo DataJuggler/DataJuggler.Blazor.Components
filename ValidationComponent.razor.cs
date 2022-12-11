@@ -94,7 +94,8 @@ namespace DataJuggler.Blazor.Components
         private Guid columnId;
         private ElementReference innerControl;
         private bool visible;
-        private string display;        
+        private string display;
+        private bool sendAllTextToParent;
         #endregion
         
         #region Constructor
@@ -133,6 +134,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Inform the Parent Escape was hit
                     SendMessageToParent("EscapePressed");      
+                }
+                
+                // if SendAllTextToParent
+                if (SendAllTextToParent)
+                {
+                    // Send to the parent
+                    SendMessageToParent("text: " + e.Code);
                 }
             }
             #endregion
@@ -1313,6 +1321,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return rowId; }
                 set { rowId = value; }
+            }
+            #endregion
+            
+            #region SendAllTextToParent
+            /// <summary>
+            /// This property gets or sets the value for 'SendAllTextToParent'.
+            /// </summary>
+            [Parameter]
+            public bool SendAllTextToParent
+            {
+                get { return sendAllTextToParent; }
+                set { sendAllTextToParent = value; }
             }
             #endregion
             
