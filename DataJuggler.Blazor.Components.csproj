@@ -38,6 +38,8 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>12.10.2022: I added a ShowCaption parameter to the ValidationComponent. If the Caption parameter is set,
 ShowCaption is set to true, else the caption will not show.
+I also changed the way Width and Height work. Now there is a Unit (string) property, and HeightStyle &amp; WidthStyle.
+These two read only properties return Height + Unit and Width + Unit.
 
 12.5.2022: I added an EditZIndex property to the grid. So the validation component used to edit has a z index.
 
@@ -291,7 +293,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.2.10</Version>
+    <Version>7.2.11</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>

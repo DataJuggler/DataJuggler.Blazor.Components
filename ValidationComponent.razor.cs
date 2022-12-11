@@ -65,10 +65,8 @@ namespace DataJuggler.Blazor.Components
         private string validationControlStyle;
         private double fontSize;
         private string fontSizeStyle;        
-        private double height;
-        private string heightPercent;
-        private double width;
-        private string widthPercent;
+        private double height;        
+        private double width;        
         private double textBoxWidth;
         private string textBoxWidthPercent;
         private double textBoxHeight;
@@ -92,13 +90,14 @@ namespace DataJuggler.Blazor.Components
         private IBlazorComponentParent parent;
         private string className;
         private bool setFocusOnFirstRender;
+        private bool showCaption;
+        private string unit;
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;
         private ElementReference innerControl;
         private bool visible;
-        private string display;
-        private bool showCaption;
+        private string display;        
         #endregion
         
         #region Constructor
@@ -175,6 +174,7 @@ namespace DataJuggler.Blazor.Components
                 LabelFontSizeUnit = "px";
                 Display = "inline-block";
                 Visible = true;
+                Unit = "px";
 
                 // Just being explicit
                 SetFocusOnFirstRender = false;
@@ -797,25 +797,25 @@ namespace DataJuggler.Blazor.Components
             public double Height
             {
                 get { return height; }
-                set
-                {
-                    // set the value
-                    height = value;
-                    
-                    // Append vh for vertical height
-                    HeightPercent = height + "vh";
-                }
+                set {height = value;}
             }
             #endregion
             
-            #region HeightPercent
+            #region HeightStyle
             /// <summary>
-            /// This property gets or sets the value for 'HeightPercent'.
+            /// This read only property returns the value of Height + Unit
             /// </summary>
-            public string HeightPercent
+            public string HeightStyle
             {
-                get { return heightPercent; }
-                set { heightPercent = value; }
+                
+                get
+                {
+                    // initial value
+                    string heightStyle = Height + unit;
+                    
+                    // return value
+                    return heightStyle;
+                }
             }
             #endregion
             
@@ -1498,6 +1498,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Unit
+            /// <summary>
+            /// This property gets or sets the value for 'Unit'.
+            /// </summary>
+            [Parameter]
+            public string Unit
+            {
+                get { return unit; }
+                set { unit = value; }
+            }
+            #endregion
+            
             #region ValidationControlStyle
             /// <summary>
             /// This property gets or sets the value for 'ValidationControlStyle'.
@@ -1544,21 +1556,25 @@ namespace DataJuggler.Blazor.Components
                 set 
                 { 
                     width = value;
-
-                    // set the value for widthPercent
-                    widthPercent = width + "%";
                 }
             }
             #endregion
             
-            #region WidthPercent
+            #region WidthStyle
             /// <summary>
-            /// This property gets or sets the value for 'WidthPercent'.
+            /// This read only property returns the value of Width + Unit
             /// </summary>
-            public string WidthPercent
+            public string WidthStyle
             {
-                get { return widthPercent; }
-                set { widthPercent = value; }
+                
+                get
+                {
+                    // initial value
+                    string widthStyle = Width + Unit;
+                    
+                    // return value
+                    return widthStyle;
+                }
             }
             #endregion
             
