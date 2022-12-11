@@ -99,6 +99,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetTextColor(Color color)
+            /// <summary>
+            /// method returns the Text Color
+            /// </summary>
+            public void SetTextColor(Color color)
+            {
+                // Set the value
+                TextColor = color;
+            }
+            #endregion
+            
             #region SetVisible(bool visible)
             /// <summary>
             /// Set Visible
