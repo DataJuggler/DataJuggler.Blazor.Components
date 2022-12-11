@@ -98,6 +98,20 @@ namespace DataJuggler.Blazor.Components
                 // not used in this component
             }
             #endregion
+
+            #region Refresh()
+            /// <summary>
+            /// method Refresh
+            /// </summary>
+            public void Refresh()
+            {
+                // Update the UI
+                InvokeAsync(() =>
+                {
+                    StateHasChanged();
+                });
+            }
+            #endregion
             
             #region SetTextColor(Color color)
             /// <summary>
@@ -107,6 +121,9 @@ namespace DataJuggler.Blazor.Components
             {
                 // Set the value
                 TextColor = color;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -118,6 +135,9 @@ namespace DataJuggler.Blazor.Components
             {
                 // store
                 Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             

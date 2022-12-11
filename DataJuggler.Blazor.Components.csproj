@@ -41,7 +41,7 @@ TextBoxHeight / Width and a Control Height / Width. Now the Height &amp; Width i
 I added a HeightUnit property. I also added two parameter properties: ExternalId and ExternalIdDescription.
 NamedParameter also added the same two properties, and the values are set when the Enter key is pressed.
 A added a 'SendAllTextToParent' boolean property to the ValidationComponent. I also added a method
-SetTextColor.
+SetTextColor. I added a Refresh method to the ImageButton.
 
 12.10.2022: I added a ShowCaption parameter to the ValidationComponent. If the Caption parameter is set,
 ShowCaption is set to true, else the caption will not show.
@@ -300,7 +300,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.2.20</Version>
+    <Version>7.2.21</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>
