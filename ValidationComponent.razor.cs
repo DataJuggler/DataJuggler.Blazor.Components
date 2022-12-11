@@ -67,11 +67,6 @@ namespace DataJuggler.Blazor.Components
         private string fontSizeStyle;        
         private double height;        
         private double width;        
-        private double textBoxWidth;
-        private string textBoxWidthPercent;
-        private double textBoxHeight;        
-        private double defaultTextBoxHeight;
-        private double multilineTextBoxHeight;
         private string name;
         private double left;
         private double top;
@@ -159,12 +154,9 @@ namespace DataJuggler.Blazor.Components
                 CheckBoxXPosition = -6;
                 CheckBoxYPosition = 1.28;
                 FontSize = 2.4;
+                Unit = "px";
                 Width = 40;
-                Height = 3.2;
-                TextBoxHeight = Height;
-                DefaultTextBoxHeight = 3.2;
-                MultilineTextBoxHeight = 8;
-                TextBoxWidth = 30;      
+                Height = 16;                
                 Position = "relative";
                 Top = .2;
                 Left = -6;
@@ -173,7 +165,6 @@ namespace DataJuggler.Blazor.Components
                 LabelFontSizeUnit = "px";
                 Display = "inline-block";
                 Visible = true;
-                Unit = "px";
 
                 // Just being explicit
                 SetFocusOnFirstRender = false;
@@ -608,18 +599,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return columnId; }
                 set { columnId = value; }
-            }
-            #endregion
-            
-            #region DefaultTextBoxHeight
-            /// <summary>
-            /// This property gets or sets the value for 'DefaultTextBoxHeight'.
-            /// </summary>
-            [Parameter]
-            public double DefaultTextBoxHeight
-            {
-                get { return defaultTextBoxHeight; }
-                set { defaultTextBoxHeight = value; }
             }
             #endregion
             
@@ -1180,33 +1159,7 @@ namespace DataJuggler.Blazor.Components
                 set 
                 { 
                     multiline = value;
-
-                    // if the value for multiline is true
-                    if (multiline)
-                    {
-                        // Use the multiline TextBoxHeight
-                        Height = MultilineTextBoxHeight;
-                    }
-                    else
-                    {
-                        Height = DefaultTextBoxHeight;
-                    }
-
-                    // Set the height of the textbox
-                    TextBoxHeight = Height;
                 }
-            }
-            #endregion
-            
-            #region MultilineTextBoxHeight
-            /// <summary>
-            /// This property gets or sets the value for 'MultilineTextBoxHeight'.
-            /// </summary>
-            [Parameter]
-            public double MultilineTextBoxHeight
-            {
-                get { return multilineTextBoxHeight; }
-                set { multilineTextBoxHeight = value; }
             }
             #endregion
             
@@ -1384,40 +1337,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region TextBoxHeight
-            /// <summary>
-            /// This property gets or sets the value for 'TextBoxHeight'.
-            /// </summary>
-            [Parameter]
-            public double TextBoxHeight
-            {
-                get { return textBoxHeight; }
-                set
-                {
-                    // set the value
-                    textBoxHeight = value;
-                }
-            }
-            #endregion
-            
-            #region TextBoxHeightStyle
-            /// <summary>
-            /// This read only property returns the value of TextBoxHeightStyle from the object TextBoxHeight.
-            /// </summary>
-            public string TextBoxHeightStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string textBoxHeightStyle = TextBoxHeight + Unit;                
-                    
-                    // return value
-                    return textBoxHeightStyle;
-                }
-            }
-            #endregion
-            
             #region TextBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'TextBoxStyle'.
@@ -1427,37 +1346,7 @@ namespace DataJuggler.Blazor.Components
                 get { return textBoxStyle; }
                 set { textBoxStyle = value; }
             }
-            #endregion
-
-            #region TextBoxWidth
-            /// <summary>
-            /// This property gets or sets the value for 'TextBoxWidth'.
-            /// </summary>
-            [Parameter]
-            public double TextBoxWidth
-            {
-                get { return textBoxWidth; }
-                set { textBoxWidth = value;}
-            }
-            #endregion
-
-            #region TextBoxWidthStyle2
-            /// <summary>
-            /// This read only property returns the value of TextBoxWidthStyle2 from the object TextBoxWidthStyle.
-            /// </summary>
-            public string TextBoxWidthStyle2
-            {
-                
-                get
-                {
-                    // initial value
-                    string textBoxWidthStyle2 = TextBoxWidth + Unit;
-                    
-                    // return value
-                    return textBoxWidthStyle2;
-                }
-            }
-            #endregion
+            #endregion            
             
             #region Top
             /// <summary>
@@ -1556,17 +1445,7 @@ namespace DataJuggler.Blazor.Components
             public double Width
             {
                 get { return width; }
-                set 
-                { 
-                    width = value;
-
-                    // if the value for ShowCaption is false
-                    if (!ShowCaption)
-                    {
-                        // Set the TextBoxWidth
-                        TextBoxWidth = width;
-                    }
-                }
+                set { width = value;}
             }
             #endregion
             

@@ -36,7 +36,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.10.2022: I added a ShowCaption parameter to the ValidationComponent. If the Caption parameter is set,
+    <PackageReleaseNotes>12.11.2022: I changed the way Height &amp; Width work again. I over complicated this at first by having
+TextBoxHeight / Width and a Control Height / Width. Now the Height &amp; Width is applied to the TextBox.
+
+12.10.2022: I added a ShowCaption parameter to the ValidationComponent. If the Caption parameter is set,
 ShowCaption is set to true, else the caption will not show.
 I also changed the way Width and Height work. Now there is a Unit (string) property, and HeightStyle &amp; WidthStyle.
 These two read only properties return Height + Unit and Width + Unit.
@@ -293,7 +296,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.2.12</Version>
+    <Version>7.2.14</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>
