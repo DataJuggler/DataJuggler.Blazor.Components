@@ -26,6 +26,8 @@ namespace DataJuggler.Blazor.Components
         private string gridName;
         private Guid rowId;
         private Guid columnId;
+        private int externalId;
+        private string externalIdDescription;
         #endregion
 
         #region Properties
@@ -38,6 +40,28 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return columnId; }
                 set { columnId = value; }
+            }
+            #endregion
+            
+            #region ExternalId
+            /// <summary>
+            /// This property gets or sets the value for 'ExternalId'.
+            /// </summary>            
+            public int ExternalId
+            {
+                get { return externalId; }
+                set { externalId = value; }
+            }
+            #endregion
+            
+            #region ExternalIdDescription
+            /// <summary>
+            /// This property gets or sets the value for 'ExternalIdDescription'.
+            /// </summary>
+            public string ExternalIdDescription
+            {
+                get { return externalIdDescription; }
+                set { externalIdDescription = value; }
             }
             #endregion
             

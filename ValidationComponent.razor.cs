@@ -285,6 +285,10 @@ namespace DataJuggler.Blazor.Components
                         parameter.GridName = ParentGrid.Name;
                     }
 
+                    // 12.11.2022: Added these to provide more info to clients.
+                    parameter.ExternalId = ExternalId;
+                    parameter.ExternalIdDescription = ExternalIdDescription;
+
                     // Set the value
                     parameter.Value = Text;
 
