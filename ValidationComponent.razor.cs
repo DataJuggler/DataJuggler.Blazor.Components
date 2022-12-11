@@ -98,6 +98,7 @@ namespace DataJuggler.Blazor.Components
         private ElementReference innerControl;
         private bool visible;
         private string display;
+        private bool showCaption;
         #endregion
         
         #region Constructor
@@ -474,7 +475,14 @@ namespace DataJuggler.Blazor.Components
             public string Caption
             {
                 get { return caption; }
-                set { caption = value; }
+                set 
+                {
+                    // set the value
+                    caption = value;
+
+                    // Show the Caption, if the Caption is set.
+                    ShowCaption = TextHelper.Exists(caption);
+                }
             }
             #endregion
             
@@ -1315,6 +1323,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return setFocusOnFirstRender; }
                 set { setFocusOnFirstRender = value; }
+            }
+            #endregion
+            
+            #region ShowCaption
+            /// <summary>
+            /// This property gets or sets the value for 'ShowCaption'.
+            /// </summary>
+            [Parameter]
+            public bool ShowCaption
+            {
+                get { return showCaption; }
+                set { showCaption = value; }
             }
             #endregion
             

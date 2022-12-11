@@ -56,7 +56,10 @@
 </Styled>
 
 <div class="@ValidationControlStyle @ClassName">
-    <span class="@LabelStyle">@Caption:</span>    
+    @if (ShowCaption)
+    {
+        <span class="@LabelStyle">@Caption:</span>
+    }
     @if (CheckBoxMode)
     {
         <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
