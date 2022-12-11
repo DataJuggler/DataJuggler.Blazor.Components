@@ -87,6 +87,8 @@ namespace DataJuggler.Blazor.Components
         private bool showCaption;
         private string unit;
         private string heightUnit;
+        private int externalId;
+        private string externalIdDescription;
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;
@@ -643,6 +645,30 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return displayStyle;
                 }
+            }
+            #endregion
+            
+            #region ExternalId
+            /// <summary>
+            /// This property gets or sets the value for 'ExternalId'.
+            /// </summary>
+            [Parameter]
+            public int ExternalId
+            {
+                get { return externalId; }
+                set { externalId = value; }
+            }
+            #endregion
+            
+            #region ExternalIdDescription
+            /// <summary>
+            /// This property gets or sets the value for 'ExternalIdDescription'.
+            /// </summary>
+            [Parameter]
+            public string ExternalIdDescription
+            {
+                get { return externalIdDescription; }
+                set { externalIdDescription = value; }
             }
             #endregion
             
