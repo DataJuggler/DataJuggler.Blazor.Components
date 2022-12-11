@@ -6184,6 +6184,14 @@
     position: relative;
     top: 1000px;
 }
+.floatleft
+{
+    float: left;
+}
+.floatright
+{
+    float: right;
+}
 .height0
 {
     height: 0px;
