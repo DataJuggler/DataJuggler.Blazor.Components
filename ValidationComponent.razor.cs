@@ -27,6 +27,7 @@ namespace DataJuggler.Blazor.Components
         
         #region Private Variables
         private string labelColor;
+        private string labelClassName;
         private string textBoxBackColor;
         private string labelStyle;
         private string textBoxStyle;
@@ -1007,6 +1008,18 @@ namespace DataJuggler.Blazor.Components
                         TextBoxBackColor = "Tomato";
                     }
                 }
+            }
+            #endregion
+            
+            #region LabelClassName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelClassName'.
+            /// </summary>
+            [Parameter]
+            public string LabelClassName
+            {
+                get { return labelClassName; }
+                set { labelClassName = value; }
             }
             #endregion
             
