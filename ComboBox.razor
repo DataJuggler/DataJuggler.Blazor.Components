@@ -55,7 +55,7 @@
     <div class="@ComboBoxStyle">
         <div class="@VerticalCenter">
             <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Unit="@Unit" Width="@Width"
-                 Name="ComboBoxButton" TextSize="TextSizeEnum.Large" Position="relative" Left="@LabelMarginRight"
+                 Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@LabelMarginRight"
                  ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
