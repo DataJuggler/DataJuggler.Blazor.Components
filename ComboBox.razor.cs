@@ -524,6 +524,17 @@ namespace DataJuggler.Blazor.Components
                 TextSize = textSize;
             }
             #endregion
+
+            #region SetTextSize(TextSizeEnum textSize)
+            /// <summary>
+            /// Sets the text size
+            /// </summary>
+            public void SetTextSize(TextSizeEnum textSize)
+            {
+                // set the value
+                TextSize = textSize;
+            }
+            #endregion
             
             #region SetVisible(bool visible)
             /// <summary>
