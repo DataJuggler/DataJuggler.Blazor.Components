@@ -20,7 +20,7 @@ namespace DataJuggler.Blazor.Components.Interfaces
 
             #region ReceiveData(Message message)
             /// <summary>
-            /// This method is used to send data from a child component to the parent component or page.
+            /// This method is used to send Data from a child component to the parent component or page.
             /// </summary>
             /// <param name="data"></param>
             void ReceiveData(Message message);

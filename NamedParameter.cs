@@ -15,7 +15,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is used to send parameter values by name.
     /// This class is used by IBlazorComponent and IBlazorComponentParent objects to 
-    /// send data between the parent and child components and / or pages.
+    /// send Data between the parent and child components and / or pages.
     /// </summary>
     public class NamedParameter
     {

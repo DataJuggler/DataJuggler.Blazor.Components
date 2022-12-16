@@ -14,7 +14,7 @@ namespace DataJuggler.Blazor.Components
 
     #region class Message
     /// <summary>
-    /// This class is used to send data between a IBlazorComponent and an IBlazorComponentParent.
+    /// This class is used to send Data between a IBlazorComponent and an IBlazorComponentParent.
     /// </summary>
     public class Message
     {
