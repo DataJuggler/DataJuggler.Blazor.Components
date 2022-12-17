@@ -98,6 +98,7 @@ namespace DataJuggler.Blazor.Components
         private string display;
         private bool sendAllTextToParent;
         private bool autoComplete;
+        private double labelTop;
         #endregion
         
         #region Constructor
@@ -1125,6 +1126,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region LabelTop
+            /// <summary>
+            /// This property gets or sets the value for 'LabelTop'.
+            /// </summary>
+            [Parameter]
+            public double LabelTop
+            {
+                get { return labelTop; }
+                set { labelTop = value; }
+            }
+            #endregion
+            
+            #region LabelTopStyle
+            /// <summary>
+            /// This read only property returns the value of LabelTopStyle from the object LabelTop.
+            /// </summary>
+            public string LabelTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string labelTopStyle = LabelTop + HeightUnit;
+                    
+                    // return value
+                    return labelTopStyle;
+                }
+            }
+            #endregion
+            
             #region LabelWidth
             /// <summary>
             /// This property gets or sets the value for 'LabelWidth'.
@@ -1483,7 +1514,7 @@ namespace DataJuggler.Blazor.Components
                     top = value;
 
                     // set the value for topStyle
-                    TopStyle = top + "vh";
+                    TopStyle = top + HeightUnit;
                 }
             }
             #endregion
