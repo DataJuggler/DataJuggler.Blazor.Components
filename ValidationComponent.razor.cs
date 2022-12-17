@@ -97,6 +97,7 @@ namespace DataJuggler.Blazor.Components
         private bool visible;
         private string display;
         private bool sendAllTextToParent;
+        private bool autoComplete;
         #endregion
         
         #region Constructor
@@ -473,6 +474,43 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
 
+            #region AutoComplete
+            /// <summary>
+            /// This property gets or sets the value for 'AutoComplete'.
+            /// </summary>
+            [Parameter]
+            public bool AutoComplete
+            {
+                get { return autoComplete; }
+                set { autoComplete = value; }
+            }
+            #endregion
+            
+            #region AutoCompleteEnabled
+            /// <summary>
+            /// This read only property returns the value of AutoCompleteEnabled from the object AutoComplete.
+            /// </summary>
+            public string AutoCompleteEnabled
+            {
+                
+                get
+                {
+                    // initial value
+                    string autoCompleteEnabled = "enabled";
+
+                    // if not AutoComplete
+                    if (!AutoComplete)
+                    {
+                        // set the value
+                        autoCompleteEnabled = "disabled";
+                    }
+                    
+                    // return value
+                    return autoCompleteEnabled;
+                }
+            }
+            #endregion
+            
             #region Caption
             /// <summary>
             /// This property gets or sets the value for 'Caption'.

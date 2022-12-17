@@ -38,7 +38,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.16.2022: The ComboBox was defaulting to TextSizeEnum.Large. I fixed this to
+    <PackageReleaseNotes>12.17.2022: I added an AutoComplete parameter to the ValidationComponent.
+Trying to prevent browsers from filling in forms if you set this to false.
+
+12.16.2022: The ComboBox was defaulting to TextSizeEnum.Large. I fixed this to
 use the TextSize default setting of Medium. 
 
 12.11.2022: I changed the way Height &amp; Width work again for the ValidationComponent. I over complicated this at first by having
@@ -307,7 +310,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.2.30</Version>
+    <Version>7.2.32</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>

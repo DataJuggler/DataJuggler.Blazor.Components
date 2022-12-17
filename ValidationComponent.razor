@@ -2,8 +2,9 @@
 
 <Styled @bind-Classname="@LabelStyle">
     color: @LabelColor;
-    display: inline-block;
+    display: inline;
     width: @LabelWidthStyle;
+    height: @HeightStyle;
     min-width: @LabelWidthStyle;
     text-align: right !important;
     justify-content: right;
@@ -53,27 +54,29 @@
     top: @TopStyle;
 </Styled>
 
-<div class="@ValidationControlStyle @ClassName">
-    @if (ShowCaption)
-    {
-        <div class="displayinlineblock @LabelClassName">
-            <span class="@LabelStyle">@Caption:</span>
-        </div>
-    }
-    @if (CheckBoxMode)
-    {
-        <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
-    }
-    else if (Multiline)
-    {
-        <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" />
-    }
-    else
-    {
-        <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
-    }
-    @if (ShowImage)
-    {
-        <div class="@ImageStyle"></div>
-    }
+<div class="@ValidationControlStyle">
+    <div class="@ClassName">
+        @if (ShowCaption)
+        {
+            <div class="displayinlineblock @LabelClassName">
+                <span class="@LabelStyle">@Caption:</span>
+            </div>
+        }
+        @if (CheckBoxMode)
+        {
+            <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+        }
+        else if (Multiline)
+        {
+            <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" AutoCompleteType="@AutoCompleteEnabled" />
+        }
+        else
+        {
+            <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" AutoCompleteType="@AutoCompleteEnabled" />
+        }
+        @if (ShowImage)
+        {
+            <div class="@ImageStyle"></div>
+        }
+    </div>
 </div>
