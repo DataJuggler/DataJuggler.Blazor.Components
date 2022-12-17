@@ -100,6 +100,7 @@ namespace DataJuggler.Blazor.Components
         private bool autoComplete;
         private double labelTop;
         private string fontSizeUnit;
+        private string backgroundColor;
         #endregion
         
         #region Constructor
@@ -180,6 +181,7 @@ namespace DataJuggler.Blazor.Components
                 Display = "inline-block";
                 Visible = true;
                 LabelBackgroundColor = "transparent";
+                BackgroundColor = "transparent";
 
                 // Just being explicit
                 SetFocusOnFirstRender = false;
@@ -510,6 +512,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return autoCompleteEnabled;
                 }
+            }
+            #endregion
+            
+            #region BackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'BackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public string BackgroundColor
+            {
+                get { return backgroundColor; }
+                set { backgroundColor = value; }
             }
             #endregion
             
