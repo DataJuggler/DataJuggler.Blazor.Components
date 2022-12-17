@@ -496,13 +496,13 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string autoCompleteEnabled = "enabled";
+                    string autoCompleteEnabled = "on";
 
                     // if not AutoComplete
                     if (!AutoComplete)
                     {
                         // set the value
-                        autoCompleteEnabled = "disabled";
+                        autoCompleteEnabled = "off";
                     }
                     
                     // return value

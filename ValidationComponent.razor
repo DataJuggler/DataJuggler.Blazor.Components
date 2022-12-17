@@ -2,7 +2,7 @@
 
 <Styled @bind-Classname="@LabelStyle">
     color: @LabelColor;
-    display: inline;
+    display: @Display;
     width: @LabelWidthStyle;
     height: @HeightStyle;
     min-width: @LabelWidthStyle;
@@ -18,6 +18,7 @@
     background-color: @TextBoxBackColor;   
     width: @WidthStyle;
     Height: @HeightStyle;    
+    display: @Display;
 </Styled>
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
@@ -41,6 +42,7 @@
     transform-origin: left;
 </Styled>
 <Styled @bind-Classname="@ValidationControlStyle">
+    display: @DisplayStyle;
     line-height: 3.2vh;
     font-size: @FontSizeStyle;
     font-family: Arial, Verdana;    
@@ -58,9 +60,10 @@
     <div class="@ClassName">
         @if (ShowCaption)
         {
-            <div class="displayinlineblock @LabelClassName">
-                <span class="@LabelStyle">@Caption:</span>
+            <div class="@LabelStyle">
+                <span class="displayinline @LabelClassName">@Caption:</span>
             </div>
+            
         }
         @if (CheckBoxMode)
         {
@@ -72,7 +75,7 @@
         }
         else
         {
-            <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" AutoCompleteType="@AutoCompleteEnabled" />
+            <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" autocomplete="@AutoCompleteEnabled" />
         }
         @if (ShowImage)
         {
