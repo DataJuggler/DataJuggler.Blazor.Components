@@ -11,6 +11,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components.Web;
+using System.Drawing;
 
 #endregion
 
@@ -28,6 +29,7 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private string labelColor;
         private string labelClassName;
+        private string labelBackgroundColor;
         private string textBoxBackColor;
         private string labelStyle;
         private string textBoxStyle;
@@ -72,9 +74,7 @@ namespace DataJuggler.Blazor.Components
         private double left;
         private double top;
         private string leftStyle;
-        private string topStyle;
-        private string fontSizeHorizontalUnit;
-        private string fontSizeVerticalUnit;
+        private string topStyle;        
         private double labelWidth;
         private double labelFontSize;
         private string labelFontSizeStyle;
@@ -99,6 +99,7 @@ namespace DataJuggler.Blazor.Components
         private bool sendAllTextToParent;
         private bool autoComplete;
         private double labelTop;
+        private string fontSizeUnit;
         #endregion
         
         #region Constructor
@@ -155,8 +156,6 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Set Default Values
-                FontSizeVerticalUnit = "vh";
-                FontSizeHorizontalUnit = "%";
                 LabelColor = "LemonChiffon";
                 TextBoxBackColor = "White";
                 InputType = "text";
@@ -167,8 +166,9 @@ namespace DataJuggler.Blazor.Components
                 UniqueImageUrl = "_content/DataJuggler.Blazor.Components/Images/Success.png";
                 CheckBoxXPosition = -6;
                 CheckBoxYPosition = 1.28;
-                FontSize = 2.4;
+                FontSize = 12;
                 Unit = "px";
+                FontSizeUnit="px";
                 Width = 40;
                 Height = 16;                
                 Position = "relative";
@@ -179,6 +179,7 @@ namespace DataJuggler.Blazor.Components
                 LabelFontSizeUnit = "px";
                 Display = "inline-block";
                 Visible = true;
+                LabelBackgroundColor = "transparent";
 
                 // Just being explicit
                 SetFocusOnFirstRender = false;
@@ -738,23 +739,11 @@ namespace DataJuggler.Blazor.Components
                     fontSize = value;
 
                     // Set to vh or the unit set
-                    fontSizeStyle = fontSize.ToString() + FontSizeVerticalUnit;
+                    fontSizeStyle = fontSize.ToString() + FontSizeUnit;
                 }
             }
             #endregion
-            
-            #region FontSizeHorizontalUnit
-            /// <summary>
-            /// This property gets or sets the value for 'FontSizeHorizontalUnit'.
-            /// </summary>
-            [Parameter]
-            public string FontSizeHorizontalUnit
-            {
-                get { return fontSizeHorizontalUnit; }
-                set { fontSizeHorizontalUnit = value; }
-            }
-            #endregion
-            
+           
             #region FontSizeStyle
             /// <summary>
             /// This property gets or sets the value for 'FontSizeStyle'.
@@ -766,15 +755,15 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region FontSizeVerticalUnit
+            #region FontSizeUnit
             /// <summary>
-            /// This property gets or sets the value for 'FontSizeVerticalUnit'.
+            /// This property gets or sets the value for 'FontSizeUnit'.
             /// </summary>
             [Parameter]
-            public string FontSizeVerticalUnit
+            public string FontSizeUnit
             {
-                get { return fontSizeVerticalUnit; }
-                set { fontSizeVerticalUnit = value; }
+                get { return fontSizeUnit; }
+                set { fontSizeUnit = value; }
             }
             #endregion
             
@@ -1050,6 +1039,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelBackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'LabelBackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public string LabelBackgroundColor
+            {
+                get { return labelBackgroundColor; }
+                set { labelBackgroundColor = value; }
+            }
+            #endregion
+            
             #region LabelClassName
             /// <summary>
             /// This property gets or sets the value for 'LabelClassName'.
@@ -1170,7 +1171,7 @@ namespace DataJuggler.Blazor.Components
                     labelWidth = value;
 
                     // Add % or the default unit
-                    LabelWidthStyle = labelWidth + FontSizeHorizontalUnit;
+                    LabelWidthStyle = labelWidth + LabelFontSizeUnit;
                 }
             }
             #endregion
@@ -1199,7 +1200,7 @@ namespace DataJuggler.Blazor.Components
                     left = value;
 
                     // set the value for leftStyle
-                    leftStyle = left + "%";
+                    leftStyle = left + Unit;
                 }
             }
             #endregion
