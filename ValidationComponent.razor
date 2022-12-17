@@ -9,17 +9,14 @@
     justify-content: right;
     position: relative;
     top: @TopStyle;
-    vertical-align: top;
+    vertical-align: middle;
     left: @LeftStyle;
     font-size: @LabelFontSizeStyle;
 </Styled>
 <Styled @bind-Classname="@TextBoxStyle">
-    background-color: @TextBoxBackColor;
-    position: relative;
-    left: @LeftStyle;
+    background-color: @TextBoxBackColor;   
     width: @WidthStyle;
-    Height: @HeightStyle;
-    top: @TopStyle;
+    Height: @HeightStyle;    
 </Styled>
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
@@ -51,12 +48,17 @@
     margin-bottom: 1vh;    
     z-index: @ZIndex;    
     display: @DisplayStyle;
+    position: relative;    
+    left: @LeftStyle;
+    top: @TopStyle;
 </Styled>
 
 <div class="@ValidationControlStyle @ClassName">
     @if (ShowCaption)
     {
-        <span class="@LabelStyle @LabelClassName">@Caption:</span>
+        <div class="displayinlineblock @LabelClassName">
+            <span class="@LabelStyle">@Caption:</span>
+        </div>
     }
     @if (CheckBoxMode)
     {
