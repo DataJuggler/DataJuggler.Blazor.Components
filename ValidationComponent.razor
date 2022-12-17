@@ -60,29 +60,37 @@
 </Styled>
 
 <div class="@ValidationControlStyle">
-    <div class="@ClassName">
+    <div class="@ClassName row">
         @if (ShowCaption)
         {
             <div class="@LabelStyle">
-                <span class="displayinline @LabelClassName">@Caption:</span>
+                <span class="column @LabelClassName">@Caption:</span>
             </div>
             
         }
         @if (CheckBoxMode)
         {
-            <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+            <span class="column">
+                <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+            </span>
         }
         else if (Multiline)
         {
-            <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" AutoCompleteType="@AutoCompleteEnabled" />
+            <span class="column">
+                <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" AutoCompleteType="@AutoCompleteEnabled" />
+            </span>
         }
         else
         {
-            <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" autocomplete="@AutoCompleteEnabled" />
+            <span class="column">
+                <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" autocomplete="@AutoCompleteEnabled" />
+            </span>
         }
         @if (ShowImage)
         {
-            <div class="@ImageStyle"></div>
+            <span class="column">
+                <span class="@ImageStyle"></span>
+            </span>
         }
     </div>
 </div>

@@ -1159,6 +1159,10 @@
 {
     color: rebeccapurple;
 }
+.column
+{
+    float: left;
+}
 .cursorpointer
 {
     cursor: pointer;
@@ -31823,6 +31827,16 @@
 {
     position: relative;
     left: 1000px;
+}
+.row
+{
+    display: flex;
+}
+.row::after
+{
+    content: "";
+    display: table;
+    clear: both;
 }
 .textalignleft
 {
