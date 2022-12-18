@@ -1161,7 +1161,7 @@
 }
 .column
 {
-    float: left;
+    display: table-cell;
 }
 .cursorpointer
 {

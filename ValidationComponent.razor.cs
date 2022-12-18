@@ -2,16 +2,11 @@
 
 #region using statements
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
 using DataJuggler.Blazor.Components.Interfaces;
-using DataJuggler.Blazor.Components;
 using DataJuggler.UltimateHelper;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using System.Drawing;
+using System;
 
 #endregion
 
@@ -29,6 +24,9 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private string labelColor;
         private string labelClassName;
+        private string textBoxClassName;
+        private string checkBoxClassName;
+        private string imageClassName;
         private string labelBackgroundColor;
         private string textBoxBackColor;
         private string labelStyle;
@@ -78,8 +76,7 @@ namespace DataJuggler.Blazor.Components
         private double labelWidth;
         private double labelFontSize;
         private string labelFontSizeStyle;
-        private string labelFontSizeUnit;
-        private string labelWidthStyle;
+        private string labelFontSizeUnit;        
         private int zIndex;
         private string position;
         private IBlazorComponentParent parent;
@@ -89,18 +86,23 @@ namespace DataJuggler.Blazor.Components
         private string unit;
         private string heightUnit;
         private int externalId;
-        private string externalIdDescription;
-        // This are only used when inside a Grid
-        private Guid rowId;
-        private Guid columnId;
+        private string externalIdDescription;        
         private ElementReference innerControl;
         private bool visible;
         private string display;
         private bool sendAllTextToParent;
-        private bool autoComplete;
         private double labelTop;
         private string fontSizeUnit;
         private string backgroundColor;
+        private double imageWidth;
+        private string imageBackColor;
+        private double marginLeft;
+        private string column1;
+        private string column2;
+        private string column3;
+        // This are only used when inside a Grid
+        private Guid rowId;
+        private Guid columnId;
         #endregion
         
         #region Constructor
@@ -157,14 +159,14 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Set Default Values
-                LabelColor = "LemonChiffon";
+                LabelColor = "Black";
                 TextBoxBackColor = "White";
                 InputType = "text";
                 Text = "";
                 IsUnique = true;
                 ImageScale = 1.6;
-                TakenImageUrl = "_content/DataJuggler.Blazor.Components/Images/Failure.png";
-                UniqueImageUrl = "_content/DataJuggler.Blazor.Components/Images/Success.png";
+                TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";
+                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
                 CheckBoxXPosition = -6;
                 CheckBoxYPosition = 1.28;
                 FontSize = 12;
@@ -173,15 +175,25 @@ namespace DataJuggler.Blazor.Components
                 Width = 40;
                 Height = 16;                
                 Position = "relative";
-                Top = .2;
-                Left = -6;
+                Top = 0;
+                Left = 0;
                 LabelWidth = 20;
+                ImageWidth = 10;
                 LabelFontSize = 12;
-                LabelFontSizeUnit = "px";
                 Display = "inline-block";
-                Visible = true;
+                Visible = true;                
                 LabelBackgroundColor = "transparent";
                 BackgroundColor = "transparent";
+                ImageBackColor = "transparent";
+
+                // Default values needed
+                HeightUnit = "px";
+                Height= 24;
+                Unit = "%";
+                Width= 30;
+                LabelWidth= 30;
+                LabelColor="Black";
+                MarginLeft = 1.2;
 
                 // Just being explicit
                 SetFocusOnFirstRender = false;
@@ -477,44 +489,7 @@ namespace DataJuggler.Blazor.Components
         #endregion
 
         #region Properties
-
-            #region AutoComplete
-            /// <summary>
-            /// This property gets or sets the value for 'AutoComplete'.
-            /// </summary>
-            [Parameter]
-            public bool AutoComplete
-            {
-                get { return autoComplete; }
-                set { autoComplete = value; }
-            }
-            #endregion
-            
-            #region AutoCompleteEnabled
-            /// <summary>
-            /// This read only property returns the value of AutoCompleteEnabled from the object AutoComplete.
-            /// </summary>
-            public string AutoCompleteEnabled
-            {
-                
-                get
-                {
-                    // initial value
-                    string autoCompleteEnabled = "on";
-
-                    // if not AutoComplete
-                    if (!AutoComplete)
-                    {
-                        // set the value
-                        autoCompleteEnabled = "off";
-                    }
-                    
-                    // return value
-                    return autoCompleteEnabled;
-                }
-            }
-            #endregion
-            
+   
             #region BackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'BackgroundColor'.
@@ -543,6 +518,18 @@ namespace DataJuggler.Blazor.Components
                     // Show the Caption, if the Caption is set.
                     ShowCaption = TextHelper.Exists(caption);
                 }
+            }
+            #endregion
+            
+            #region CheckBoxClassName
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxClassName'.
+            /// </summary>
+            [Parameter]
+            public string CheckBoxClassName
+            {
+                get { return checkBoxClassName; }
+                set { checkBoxClassName = value; }
             }
             #endregion
             
@@ -657,6 +644,39 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return className; }
                 set { className = value; }
+            }
+            #endregion
+            
+            #region Column1
+            /// <summary>
+            /// This property gets or sets the value for 'Column1'.
+            /// </summary>
+            public string Column1
+            {
+                get { return column1; }
+                set { column1 = value; }
+            }
+            #endregion
+            
+            #region Column2
+            /// <summary>
+            /// This property gets or sets the value for 'Column2'.
+            /// </summary>
+            public string Column2
+            {
+                get { return column2; }
+                set { column2 = value; }
+            }
+            #endregion
+            
+            #region Column3
+            /// <summary>
+            /// This property gets or sets the value for 'Column3'.
+            /// </summary>
+            public string Column3
+            {
+                get { return column3; }
+                set { column3 = value; }
             }
             #endregion
             
@@ -898,6 +918,30 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ImageBackColor
+            /// <summary>
+            /// This property gets or sets the value for 'ImageBackColor'.
+            /// </summary>
+            [Parameter]
+            public string ImageBackColor
+            {
+                get { return imageBackColor; }
+                set { imageBackColor = value; }
+            }
+            #endregion
+            
+            #region ImageClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ImageClassName'.
+            /// </summary>
+            [Parameter]
+            public string ImageClassName
+            {
+                get { return imageClassName; }
+                set { imageClassName = value; }
+            }
+            #endregion
+            
             #region ImageScale
             /// <summary>
             /// This property gets or sets the value for 'ImageScale'.
@@ -929,6 +973,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return imageUrl; }
                 set { imageUrl = value; }
+            }
+            #endregion
+            
+            #region ImageWidth
+            /// <summary>
+            /// This property gets or sets the value for 'ImageWidth'.
+            /// </summary>
+            [Parameter]
+            public double ImageWidth
+            {
+                get { return imageWidth; }
+                set { imageWidth = value; }
+            }
+            #endregion
+            
+            #region ImageWidthStyle
+            /// <summary>
+            /// This read only property returns the value of ImageWidthStyle from the object ImageWidth.
+            /// </summary>
+            public string ImageWidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string imageWidthStyle = ImageWidth + "%";
+                    
+                    // return value
+                    return imageWidthStyle;
+                }
             }
             #endregion
             
@@ -1093,6 +1167,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'LabelFontSize'.
             /// </summary>
+            [Parameter]
             public double LabelFontSize
             {
                 get { return labelFontSize; }
@@ -1179,14 +1254,7 @@ namespace DataJuggler.Blazor.Components
             public double LabelWidth
             {
                 get { return labelWidth; }
-                set 
-                { 
-                    // set the value
-                    labelWidth = value;
-
-                    // Add % or the default unit
-                    LabelWidthStyle = labelWidth + LabelFontSizeUnit;
-                }
+                set { labelWidth = value; }
             }
             #endregion
             
@@ -1196,8 +1264,12 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string LabelWidthStyle
             {
-                get { return labelWidthStyle; }
-                set { labelWidthStyle = value; }
+                get
+                {
+                    string labelWidthStyle = LabelWidth + "%";
+
+                    return labelWidthStyle;
+                }
             }
             #endregion
             
@@ -1227,6 +1299,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return leftStyle; }
                 set { leftStyle = value; }
+            }
+            #endregion
+            
+            #region MarginLeft
+            /// <summary>
+            /// This property gets or sets the value for 'MarginLeft'.
+            /// </summary>
+            [Parameter]
+            public double MarginLeft
+            {
+                get { return marginLeft; }
+                set { marginLeft = value; }
+            }
+            #endregion
+            
+            #region MarginLeftStyle
+            /// <summary>
+            /// This read only property returns the value of MarginLeftStyle from the object MarginLeft.
+            /// </summary>
+            public string MarginLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string marginLeftStyle = MarginLeft + Unit;
+
+                    // return value
+                    return marginLeftStyle;
+                }
             }
             #endregion
             
@@ -1504,6 +1606,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TextBoxClassName
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxClassName'.
+            /// </summary>
+            [Parameter]
+            public string TextBoxClassName
+            {
+                get { return textBoxClassName; }
+                set { textBoxClassName = value; }
+            }
+            #endregion
+            
             #region TextBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'TextBoxStyle'.
@@ -1514,6 +1628,57 @@ namespace DataJuggler.Blazor.Components
                 set { textBoxStyle = value; }
             }
             #endregion            
+            
+            #region TextBoxWidth
+            /// <summary>
+            /// This read only property returns the value of TextBoxWidth from the object TextBoxWidth.
+            /// The TextBoxWidth is 100% of the Width of the container - LabelWidth if ShowCaption is true
+            /// - ImageWidth if ShowImage is true.
+            /// </summary>
+            public double TextBoxWidth
+            {
+                
+                get
+                {
+                    // initial value
+                    double textBoxWidth = 100 - MarginLeft;
+
+                    // if the value for ShowCaption is true
+                    if (ShowCaption)
+                    {
+                        // Subtract the label width
+                        textBoxWidth -= LabelWidth;
+                    }
+
+                    // if the value for ShowImage is true
+                    if (ShowImage)
+                    {
+                        // Subtract the image width
+                        textBoxWidth -= ImageWidth;
+                    }
+                    
+                    // return value
+                    return textBoxWidth;
+                }
+            }
+            #endregion
+            
+            #region TextBoxWidthStyle
+            /// <summary>
+            /// This read only property returns the value of TextBoxWidthStyle; from the object TextBoxWidthStyle.
+            /// </summary>
+            public string TextBoxWidthStyle
+            {  
+                get
+                {
+                    // initial value
+                    string textBoxWidthStyle = TextBoxWidth + "%";
+                    
+                    // return value
+                    return textBoxWidthStyle;
+                }
+            }
+            #endregion
             
             #region Top
             /// <summary>
@@ -1565,18 +1730,7 @@ namespace DataJuggler.Blazor.Components
             public string Unit
             {
                 get { return unit; }
-                set 
-                {
-                    // set the unit
-                    unit = value;
-
-                    // if the unit is percent, % doesn't work for height.
-                    if (unit == "%")
-                    {
-                        // Set to vh
-                        HeightUnit = "vh";
-                    }
-                }
+                set {unit = value;}
             }
             #endregion
             

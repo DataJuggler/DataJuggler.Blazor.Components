@@ -1,96 +1,94 @@
-﻿@using BlazorStyled 
+﻿@namespace DataJuggler.Blazor.Components
+@using BlazorStyled 
 
-<Styled @bind-Classname="@LabelStyle">
-    color: @LabelColor;
-    background-color: @LabelBackgroundColor;
-    display: @Display;
+<Styled @bind-Classname="@Column1">
+    float: left;
     width: @LabelWidthStyle;
-    height: @HeightStyle;
-    min-width: @LabelWidthStyle;
-    text-align: right !important;    
-    position: relative;
-    top: @TopStyle;    
-    left: @LeftStyle;
-    font-size: @LabelFontSizeStyle;
-    float: left;
+    height: 100%;
+    background-color: @LabelBackgroundColor;
+    color: @LabelColor;
 </Styled>
-<Styled @bind-Classname="@TextBoxStyle">
-    background-color: @TextBoxBackColor;   
-    width: @WidthStyle;
-    Height: @HeightStyle;    
-    display: @Display;    
+<Styled @bind-Classname="@Column2">
     float: left;
+    width: @TextBoxWidthStyle;
+    height: 100%;
+    background-color: red;
+    margin-left: @MarginLeftStyle;
+</Styled>
+<Styled @bind-Classname="@Column3">
+    float: left;
+    width: @ImageWidthStyle;
+    height: 100%;    
+    background-color: @ImageBackColor;
+</Styled>
+<Styled @bind-Classname="@TextBoxStyle">        
+    background-color: @TextBoxBackColor;
+    height: @HeightStyle;
+    line-height: @HeightStyle;
 </Styled>
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
-    position: relative;
+    position: @Position;
     left: @CheckBoxXStyle;
-    top: @CheckBoxYStyle;
-    position: relative;
+    top: @CheckBoxYStyle;    
 </Styled>
 <Styled @bind-Classname="@ImageStyle">
     background-image: url('@ImageUrl');
     background-repeat: no-repeat;
     background-color: transparent;
-    background-size: 100% 100%;
-    width: 3%;
-    height: 2.4vh;
-    display: inline-block;
-    z-index: 10;    
-    position: relative;
-    left: -6.4% !important;
+    background-size: 100% 100%;    
     transform: scale(@ImageScale);
     transform-origin: left;
+    width: @ImageWidthStyle;
+    height: 100%;
 </Styled>
 <Styled @bind-Classname="@ValidationControlStyle">
-    display: @DisplayStyle;
-    line-height: 3.2vh;
-    font-size: @FontSizeStyle;
-    font-family: Arial, Verdana;    
-    margin-top: 2vh;
-    margin-left: 2%;
-    margin-bottom: 1vh;    
-    z-index: @ZIndex;    
-    display: @DisplayStyle;
-    position: relative;    
+    width: @WidthStyle;
+    position: @Position;
     left: @LeftStyle;
     top: @TopStyle;
-    width: @WidthStyle;
+    height: @HeightStyle;
     background-color: @BackgroundColor;
+    z-index: @ZIndex;
+    clear:both;
 </Styled>
 
-<div class="@ValidationControlStyle">
-    <div class="@ClassName row">
+@if (Visible)
+{
+    <div class="@ValidationControlStyle">
         @if (ShowCaption)
         {
-            <div class="@LabelStyle">
-                <span class="column @LabelClassName">@Caption:</span>
+            <div class="@Column1">
+                <div class="@LabelClassName">@Caption:</div>
             </div>
-            
         }
-        @if (CheckBoxMode)
-        {
-            <span class="column">
-                <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
-            </span>
-        }
-        else if (Multiline)
-        {
-            <span class="column">
-                <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" AutoCompleteType="@AutoCompleteEnabled" />
-            </span>
-        }
-        else
-        {
-            <span class="column">
-                <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" autocomplete="@AutoCompleteEnabled" />
-            </span>
-        }
+        <div class="@Column2">
+            @if (CheckBoxMode)
+            {
+                <div class="@CheckBoxClassName">
+                    <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+                </div>
+            }
+            else if (Multiline)
+            {
+                <div class="@TextBoxClassName">
+                    <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" />
+                </div>
+            }
+            else
+            {
+                <span class="column">
+                    <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                </span>
+            }
+        </div>
         @if (ShowImage)
         {
-            <span class="column">
-                <span class="@ImageStyle"></span>
-            </span>
+            <div class="@Column3">
+                <div class="@ImageClassName">
+                    <div class="@ImageStyle"></div>
+                </div>
+            </div>
         }
     </div>
-</div>
+}
