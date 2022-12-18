@@ -169,9 +169,7 @@ namespace DataJuggler.Blazor.Components
                 CheckBoxYPosition = 1.28;
                 FontSize = 12;
                 Unit = "px";
-                FontSizeUnit="px";
-                Width = 40;
-                Height = 16;                
+                FontSizeUnit="px";                               
                 Position = "relative";
                 Top = 0;
                 Left = 0;
@@ -183,6 +181,7 @@ namespace DataJuggler.Blazor.Components
                 LabelBackgroundColor = "transparent";
                 BackgroundColor = "transparent";
                 ImageBackColor = "transparent";
+                TextBoxBackColor = "white";
 
                 // Default values needed
                 HeightUnit = "px";
