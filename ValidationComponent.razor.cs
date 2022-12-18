@@ -70,9 +70,7 @@ namespace DataJuggler.Blazor.Components
         private double width;        
         private string name;
         private double left;
-        private double top;
-        private string leftStyle;
-        private string topStyle;        
+        private double top;                
         private double labelWidth;
         private double labelFontSize;
         private string labelFontSizeStyle;
@@ -1281,13 +1279,7 @@ namespace DataJuggler.Blazor.Components
             public double Left
             {
                 get { return left; }
-                set 
-                { 
-                    left = value;
-
-                    // set the value for leftStyle
-                    leftStyle = left + Unit;
-                }
+                set { left = value; }
             }
             #endregion
             
@@ -1297,8 +1289,14 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string LeftStyle
             {
-                get { return leftStyle; }
-                set { leftStyle = value; }
+                get
+                {
+                    // initial value
+                    string leftStyle = Left + Unit;
+
+                    // return value
+                    return leftStyle;
+                }
             }
             #endregion
             
@@ -1688,14 +1686,7 @@ namespace DataJuggler.Blazor.Components
             public double Top
             {
                 get { return top; }
-                set 
-                { 
-                    // set the value for top
-                    top = value;
-
-                    // set the value for topStyle
-                    TopStyle = top + HeightUnit;
-                }
+                set { top = value; }
             }
             #endregion
 
@@ -1705,8 +1696,14 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string TopStyle
             {
-                get { return topStyle; }
-                set { topStyle = value; }
+                get
+                {
+                    // initial value
+                    string topStyle = Top + HeightUnit;
+
+                    // Set the value
+                    return topStyle;
+                }
             }
             #endregion
             

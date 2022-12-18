@@ -38,7 +38,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.18.2022: I finally fixed the ValidationComponent. You should be able to just
+    <PackageReleaseNotes>12.18.2022 B: I accidently left a color red in I was using for placement issues.
+
+12.18.2022: I finally fixed the ValidationComponent. You should be able to just
 create one and set a few properties and have them line up correctly now.
 
 12.17.2022: I added an AutoComplete parameter to the ValidationComponent.
@@ -315,7 +317,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.3.7</Version>
+    <Version>7.3.9</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>
@@ -341,11 +343,11 @@ Now is the time to break anything.
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;BL0007;IDE0059;IDE0017;IDE0090;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;BL0007;IDE0059;IDE0017;IDE0090;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
