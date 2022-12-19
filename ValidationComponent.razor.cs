@@ -64,16 +64,14 @@ namespace DataJuggler.Blazor.Components
         private double checkBoxYPosition;
         private string checkBoxYStyle;
         private string validationControlStyle;
-        private double fontSize;
-        private string fontSizeStyle;        
+        private double fontSize;        
         private double height;        
         private double width;        
         private string name;
         private double left;
         private double top;                
         private double labelWidth;
-        private double labelFontSize;
-        private string labelFontSizeStyle;
+        private double labelFontSize;        
         private string labelFontSizeUnit;        
         private int zIndex;
         private string position;
@@ -157,43 +155,37 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Set Default Values
-                LabelColor = "Black";
-                TextBoxBackColor = "White";
+                BackgroundColor = "transparent";
+                Display = "inline-block";
                 InputType = "text";
-                Text = "";
+                LabelColor = "Black";
                 IsUnique = true;
-                ImageScale = 1.6;
-                TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";
-                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
+                ImageScale = 1.6;                
                 CheckBoxXPosition = -6;
                 CheckBoxYPosition = 1.28;
                 FontSize = 12;
                 Unit = "px";
-                FontSizeUnit="px";                               
-                Position = "relative";
-                Top = 0;
-                Left = 0;
-                LabelWidth = 20;
-                ImageWidth = 10;
-                LabelFontSize = 12;
-                Display = "inline-block";
-                Visible = true;                
-                LabelBackgroundColor = "transparent";
-                BackgroundColor = "transparent";
-                ImageBackColor = "transparent";
-                TextBoxBackColor = "white";
-
-                // Default values needed
-                HeightUnit = "px";
+                FontSizeUnit="px";
                 Height= 24;
-                Unit = "%";
-                Width= 30;
-                LabelWidth= 30;
+                HeightUnit = "px";
+                ImageBackColor = "transparent";
+                ImageWidth = 10;
+                LabelBackgroundColor = "transparent";
                 LabelColor="Black";
+                LabelWidth= 30;
+                LabelFontSize = 12;
+                LabelFontSizeUnit = "px";
+                Left = 0;
                 MarginLeft = 1.2;
-
-                // Just being explicit
-                SetFocusOnFirstRender = false;
+                Position = "relative";
+                TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";                
+                Text = "";
+                TextBoxBackColor = "white";                
+                Top = 0;
+                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
+                Unit = "%";
+                Visible = true;
+                Width= 30;
             }
             #endregion
             
@@ -764,14 +756,7 @@ namespace DataJuggler.Blazor.Components
             public double FontSize
             {
                 get { return fontSize; }
-                set 
-                {
-                    // set the value
-                    fontSize = value;
-
-                    // Set to vh or the unit set
-                    fontSizeStyle = fontSize.ToString() + FontSizeUnit;
-                }
+                set {fontSize = value; }
             }
             #endregion
            
@@ -781,8 +766,14 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string FontSizeStyle
             {
-                get { return fontSizeStyle; }
-                set { fontSizeStyle = value; }
+                get
+                {
+                    // set the return value
+                    string fontSizeStyle = FontSize + FontSizeUnit;
+
+                    // return value
+                    return fontSizeStyle;
+                }
             }
             #endregion
             
@@ -1168,14 +1159,7 @@ namespace DataJuggler.Blazor.Components
             public double LabelFontSize
             {
                 get { return labelFontSize; }
-                set 
-                { 
-                    // Set the value
-                    labelFontSize = value;
-
-                    // Set hte LabelFontSizeStyle
-                    LabelFontSizeStyle = labelFontSize + LabelFontSizeUnit;
-                }
+                set { labelFontSize = value; }
             }
             #endregion
             
@@ -1185,8 +1169,14 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string LabelFontSizeStyle
             {
-                get { return labelFontSizeStyle; }
-                set { labelFontSizeStyle = value; }
+                get 
+                {
+                    // set the return value
+                    string labelFontSizeStyle = LabelFontSize + LabelFontSizeUnit;
+
+                    // return value
+                    return labelFontSizeStyle;
+                }
             }
             #endregion
             
