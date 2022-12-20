@@ -46,8 +46,7 @@ namespace DataJuggler.Blazor.Components
         private const string ComboBoxButtonName = "ComboBoxButton";
         private ImageButton comboBoxButton;
         private string noPadding;
-        private bool visible;
-        private string displayStyle;
+        private bool visible;        
         private double left;
         private double top;
         private string leftStyle;
@@ -74,7 +73,7 @@ namespace DataJuggler.Blazor.Components
         private Color buttonTextColor;
         private Color listItemTextColor;
         private Color listBackgroundColor;
-        private bool rendered;
+        private bool rendered;        
         #endregion
 
         #region Constructor
@@ -100,8 +99,7 @@ namespace DataJuggler.Blazor.Components
             ZIndex = 0;
             LabelMarginRight = 0;
             LabelMarginRightList = 0;            
-            ListItemWidth = 120;
-            DisplayStyle = "inline-block";
+            ListItemWidth = 120;            
             TextAlign = "center";            
             
             // Set so the image is set
@@ -659,8 +657,20 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string DisplayStyle
             {
-                get { return displayStyle; }
-                set { displayStyle = value; }
+                get
+                {
+                    // set the return value
+                    string displayStyle = "inline-block";
+
+                    if (!Visible)
+                    {
+                        // set to none
+                        displayStyle = "none";
+                    }
+
+                    // return value
+                    return displayStyle;
+                }
             }
             #endregion
             
@@ -1185,6 +1195,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ShowLabel
+            /// <summary>
+            /// This property gets or sets the value for 'ShowLabel'.
+            /// </summary>            
+            public bool ShowLabel
+            {
+                get
+                {
+                    // set the return value
+                    bool showLabel = TextHelper.Exists(LabelText);
+
+                    // return value
+                    return showLabel;
+                }
+            }
+            #endregion
+            
             #region TextAlign
             /// <summary>
             /// This property gets or sets the value for 'TextAlign'.
@@ -1346,23 +1373,7 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set 
-                {
-                    // set the value
-                    visible = value;
-
-                    // if visible is true
-                    if (visible)
-                    {
-                        // Show
-                        DisplayStyle = "inline-block";
-                    }
-                    else
-                    {
-                        // hide
-                        DisplayStyle = "none";
-                    }
-                }
+                set {visible = value; }
             }
             #endregion
             
