@@ -101,7 +101,7 @@ namespace DataJuggler.Blazor.Components
             LabelMarginRight = 0;
             LabelMarginRightList = 0;            
             ListItemWidth = 120;
-            DisplayStyle = "block";
+            DisplayStyle = "inline-block";
             TextAlign = "center";            
             
             // Set so the image is set
@@ -1355,7 +1355,7 @@ namespace DataJuggler.Blazor.Components
                     if (visible)
                     {
                         // Show
-                        DisplayStyle = "block";
+                        DisplayStyle = "inline-block";
                     }
                     else
                     {
@@ -1375,6 +1375,31 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return visibleCount; }
                 set { visibleCount = value; }
+            }
+            #endregion
+            
+            #region VisibleStyle
+            /// <summary>
+            /// This read only property returns the value of VisibleStyle from the object Visible.
+            /// </summary>
+            public string VisibleStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string visibleStyle = "visible";
+                    
+                    // if the value for Visible is false
+                    if (!Visible)
+                    {
+                        // set to invisible
+                        visibleStyle = "hidden";
+                    }
+
+                    // return value
+                    return visibleStyle;
+                }
             }
             #endregion
             
