@@ -544,6 +544,9 @@ namespace DataJuggler.Blazor.Components
             {
                 // store
                 Visible = visible;
+
+                // Update the UI
+                Refresh();
             }
             #endregion
             
