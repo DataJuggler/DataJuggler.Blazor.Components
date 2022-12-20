@@ -27,6 +27,7 @@
     height: @HeightStyle;
     line-height: @HeightStyle;
     font-size: @FontSizeStyle;
+    width: @TextBoxWidthStyle;
 </Styled>
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
@@ -79,7 +80,7 @@
             }
             else
             {
-                <span class="column">
+                <span class="@TextBoxClassName">
                     <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
                 </span>
             }

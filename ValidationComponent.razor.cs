@@ -1659,7 +1659,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string textBoxWidthStyle = TextBoxWidth + "%";
+                    string textBoxWidthStyle = TextBoxWidth + Unit;
                     
                     // return value
                     return textBoxWidthStyle;
