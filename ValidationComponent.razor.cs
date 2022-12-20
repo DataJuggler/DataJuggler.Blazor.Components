@@ -96,6 +96,7 @@ namespace DataJuggler.Blazor.Components
         private string column1;
         private string column2;
         private string column3;
+        private double textBoxWidth;
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;
@@ -164,6 +165,7 @@ namespace DataJuggler.Blazor.Components
                 CheckBoxXPosition = -6;
                 CheckBoxYPosition = 1.28;
                 FontSize = 12;
+                TextBoxWidth = 120;
                 Unit = "px";
                 FontSizeUnit="px";
                 Height= 24;
@@ -1618,35 +1620,13 @@ namespace DataJuggler.Blazor.Components
             
             #region TextBoxWidth
             /// <summary>
-            /// This read only property returns the value of TextBoxWidth from the object TextBoxWidth.
-            /// The TextBoxWidth is 100% of the Width of the container - LabelWidth if ShowCaption is true
-            /// - ImageWidth if ShowImage is true.
+            /// This property gets or sets the value for 'TextBoxWidth'.
             /// </summary>
+            [Parameter]
             public double TextBoxWidth
             {
-                
-                get
-                {
-                    // initial value
-                    double textBoxWidth = 100 - MarginLeft;
-
-                    // if the value for ShowCaption is true
-                    if (ShowCaption)
-                    {
-                        // Subtract the label width
-                        textBoxWidth -= LabelWidth;
-                    }
-
-                    // if the value for ShowImage is true
-                    if (ShowImage)
-                    {
-                        // Subtract the image width
-                        textBoxWidth -= ImageWidth;
-                    }
-                    
-                    // return value
-                    return textBoxWidth;
-                }
+                get { return textBoxWidth; }
+                set { textBoxWidth = value; }
             }
             #endregion
             
