@@ -3,8 +3,7 @@
 @using DataJuggler.Blazor.Components.Enumerations
 
 <Styled @bind-Classname="Grid">
-    display: @DisplayStyle;
-    visibility: @VisibleStyle;
+    display: inline-block;
     height: @HeightStyle;
     min-width: @WidthStyle;
     width: @WidthStyle;
@@ -39,6 +38,7 @@
     position: relative;
     color: @ListItemTextColorName;
     left: @LabelMarginRightListStyle;
+    z-index: @ZIndex;
 </Styled>
 <Styled @bind-Classname="NoPadding">    
     margin: 0;
@@ -51,16 +51,20 @@
     width: 100%;
 </Styled>
 
-<div class="@Grid">
-    <div class="@LabelStyle">@LabelText</div>   
+
+<div class="@Grid" hidden="@Visible">
+    @if (ShowLabel)
+    {
+        <div class="@LabelStyle">@LabelText</div>
+    }
     <div class="@ComboBoxStyle">
         <div class="@VerticalCenter">
             <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Unit="@Unit" Width="@Width"
-                 Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@LabelMarginRight"
-                 ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
+                    Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@LabelMarginRight"
+                    ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
-         { 
+            { 
             <div class="@ListItemStyle">
                 <select class="form-control" name="ListBox" size="@VisibleCount" id="ComboBoxListBox" @onchange="SelectionChanged">
                     @foreach (Item item in Items)
@@ -70,5 +74,5 @@
                 </select>
             </div>
         }
-  </div>
+    </div>
 </div>

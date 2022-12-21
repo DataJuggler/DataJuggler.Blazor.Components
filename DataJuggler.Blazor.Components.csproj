@@ -38,7 +38,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.19.2022: I am cleaning up the ValidationComponent.
+    <PackageReleaseNotes>12.21.2022: Trying another way to do visibibility of the ComboBox.
+
+12.19.2022: I am cleaning up the ValidationComponent.
 
 12.18.2022 B: I accidently left a color red in I was using for placement issues.
 
@@ -319,7 +321,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.3.19</Version>
+    <Version>7.3.23</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>

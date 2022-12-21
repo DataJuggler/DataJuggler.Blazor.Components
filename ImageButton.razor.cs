@@ -135,9 +135,6 @@ namespace DataJuggler.Blazor.Components
             {
                 // store
                 Visible = visible;
-
-                // Update
-                Refresh();
             }
             #endregion
             
@@ -583,34 +580,7 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set 
-                { 
-                    // set the value
-                    visible = value;
-
-                    // if true
-                    if (visible)
-                    {
-                        // Default to inline block
-                        VisibleStyle = "inline-block";
-                    }
-                    else
-                    {
-                        // Hide
-                        VisibleStyle = "none";
-                    }
-                }
-            }
-            #endregion
-            
-            #region VisibleStyle
-            /// <summary>
-            /// This property gets or sets the value for 'VisibleStyle'.
-            /// </summary>
-            public string VisibleStyle
-            {
-                get { return visibleStyle; }
-                set { visibleStyle = value; }
+                set { visible = value; }
             }
             #endregion
             

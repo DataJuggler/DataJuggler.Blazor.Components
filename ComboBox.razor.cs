@@ -542,9 +542,6 @@ namespace DataJuggler.Blazor.Components
             {
                 // store
                 Visible = visible;
-
-                // Update the UI
-                Refresh();
             }
             #endregion
             
@@ -648,29 +645,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return comboBoxStyle; }
                 set { comboBoxStyle = value; }
-            }
-            #endregion
-            
-            #region DisplayStyle
-            /// <summary>
-            /// This property gets or sets the value for 'DisplayStyle'.
-            /// </summary>
-            public string DisplayStyle
-            {
-                get
-                {
-                    // set the return value
-                    string displayStyle = "inline-block";
-
-                    if (!Visible)
-                    {
-                        // set to none
-                        displayStyle = "none";
-                    }
-
-                    // return value
-                    return displayStyle;
-                }
             }
             #endregion
             
@@ -1373,7 +1347,7 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set {visible = value; }
+                set { visible = value; }
             }
             #endregion
             
@@ -1386,31 +1360,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return visibleCount; }
                 set { visibleCount = value; }
-            }
-            #endregion
-            
-            #region VisibleStyle
-            /// <summary>
-            /// This read only property returns the value of VisibleStyle from the object Visible.
-            /// </summary>
-            public string VisibleStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string visibleStyle = "visible";
-                    
-                    // if the value for Visible is false
-                    if (!Visible)
-                    {
-                        // set to invisible
-                        visibleStyle = "hidden";
-                    }
-
-                    // return value
-                    return visibleStyle;
-                }
             }
             #endregion
             

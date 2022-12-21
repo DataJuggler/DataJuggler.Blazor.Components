@@ -5,7 +5,7 @@
     left: @LeftStyle;
     top: @TopStyle;    
     z-index: @ZIndex;   
-    display: @VisibleStyle;
+    display: inline-block;
     outline: none;
     border: none;    
     width: @WidthStyle;    
@@ -50,7 +50,7 @@
 </style>
 
 <div class="@ButtonContainerStyle">
-    <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked">
+    <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked" hidden="@Visible">
         <span class="@ButtonTextAlignStyle">@ButtonText</span>
     </button>    
 </div>

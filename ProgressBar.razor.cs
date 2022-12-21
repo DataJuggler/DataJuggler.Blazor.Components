@@ -33,8 +33,7 @@ namespace DataJuggler.Blazor.Components
         private Timer timer;
         private int increment;
         private int interval;
-        private bool started;
-        private string display;
+        private bool started;        
         private bool visible;
         private bool notificaitonInProgress;
         private double scale;
@@ -510,17 +509,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Display
-            /// <summary>
-            /// This property gets or sets the value for 'Display'.
-            /// </summary>
-            public string Display
-            {
-                get { return display; }
-                set { display = value; }
-            }
-            #endregion
-            
             #region ExtraPercent
             /// <summary>
             /// This property gets or sets the value for 'ExtraPercent'.
@@ -840,23 +828,7 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set 
-                {
-                    // set the value
-                    visible = value;
-
-                    // if visible
-                    if (visible)
-                    {
-                        // set the value to inline-block
-                        display = "inline-block";
-                    }
-                    else
-                    {
-                        // set the value to none
-                        display = "none";
-                    }
-                }
+                set {visible = value; }
             }
             #endregion
             
