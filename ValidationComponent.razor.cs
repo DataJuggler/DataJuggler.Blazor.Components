@@ -392,8 +392,8 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public bool Validate()
             {
-                // initial value
-                bool isValid = false;
+                // initial value (Defaulting to true)
+                bool isValid = true;
 
                 // if an integer value is required
                 if (IsIntegerRequired)
