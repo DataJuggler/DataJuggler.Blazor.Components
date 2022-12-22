@@ -73,7 +73,8 @@ namespace DataJuggler.Blazor.Components
         private Color buttonTextColor;
         private Color listItemTextColor;
         private Color listBackgroundColor;
-        private bool rendered;        
+        private bool rendered;
+        private string displayStyle;
         #endregion
 
         #region Constructor
@@ -91,7 +92,7 @@ namespace DataJuggler.Blazor.Components
             Visible = true;
             Left = 0;
             Top = 0;
-            Height = 6;
+            Height = 60;
             Unit = "px";
             Width = 120;
             Position = "relative";
@@ -645,6 +646,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return comboBoxStyle; }
                 set { comboBoxStyle = value; }
+            }
+            #endregion
+            
+            #region DisplayStyle
+            /// <summary>
+            /// This property gets or sets the value for 'DisplayStyle'.
+            /// </summary>
+            public string DisplayStyle
+            {
+                get { return displayStyle; }
+                set { displayStyle = value; }
             }
             #endregion
             
@@ -1347,7 +1359,21 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set { visible = value; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if visible
+                    if (visible)
+                    {
+                        DisplayStyle = "inline-block";
+                    }
+                    else
+                    {
+                        DisplayStyle = "none";
+                    }
+                }
             }
             #endregion
             
