@@ -978,7 +978,7 @@ namespace DataJuggler.Blazor.Components
                     left = value;
 
                     // set the value for leftStyle
-                    leftStyle = left + "%";
+                    leftStyle = left + Unit;
                 }
             }
             #endregion
