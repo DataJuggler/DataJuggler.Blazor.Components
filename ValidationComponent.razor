@@ -25,9 +25,10 @@
 <Styled @bind-Classname="@TextBoxStyle">        
     background-color: @TextBoxBackColor;
     height: @HeightStyle;
-    line-height: @HeightStyle;
+    line-height: 2vh;
     font-size: @FontSizeStyle;
     width: @TextBoxWidthStyle;
+    overflow: hidden;
 </Styled>
 <Styled @bind-Classname="@CheckBoxStyle">
     background-color: @TextBoxBackColor;
@@ -75,7 +76,7 @@
             else if (Multiline)
             {
                 <div class="@TextBoxClassName">
-                    <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" />
+                    <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
                 </div>
             }
             else

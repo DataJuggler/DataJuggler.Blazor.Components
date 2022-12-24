@@ -97,9 +97,10 @@ namespace DataJuggler.Blazor.Components
         private string column2;
         private string column3;
         private double textBoxWidth;
+        private int rows;
         // This are only used when inside a Grid
         private Guid rowId;
-        private Guid columnId;
+        private Guid columnId;        
         #endregion
         
         #region Constructor
@@ -188,6 +189,7 @@ namespace DataJuggler.Blazor.Components
                 Unit = "%";
                 Visible = true;
                 Width= 30;
+                Rows = 3;
             }
             #endregion
             
@@ -1509,6 +1511,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return rowId; }
                 set { rowId = value; }
+            }
+            #endregion
+            
+            #region Rows
+            /// <summary>
+            /// This property gets or sets the value for 'Rows'.
+            /// </summary>
+            [Parameter]
+            public int Rows
+            {
+                get { return rows; }
+                set { rows = value; }
             }
             #endregion
             
