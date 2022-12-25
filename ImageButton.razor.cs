@@ -226,6 +226,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ClickHandler'.
             /// </summary>
+            [Parameter]
             public ButtonClickedHandler ClickHandler
             {
                 get { return clickHandler; }

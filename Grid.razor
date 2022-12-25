@@ -32,7 +32,10 @@
 
             @foreach (Column column in row.Columns)
             {
-                
+                if (column.IsImageButton)
+                {
+                    <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl" Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber ButtonText="@column.ColumnText" Parent="this"></ImageButton>
+                }
                 if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
                 {
                     <div class="displayinline @column.ClassName">

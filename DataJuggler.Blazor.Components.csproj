@@ -38,7 +38,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>12.21.2022: Trying another way to do visibibility of the ComboBox.
+    <PackageReleaseNotes>v7.4.1
+12.25.2022: I am testing a button for a column in the grid. 
+
+12.21.2022: Trying another way to do visibibility of the ComboBox.
 
 12.19.2022: I am cleaning up the ValidationComponent.
 
@@ -321,7 +324,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.4.0</Version>
+    <Version>7.4.2</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>
@@ -372,7 +375,7 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="7.1.8" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="7.1.9" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="7.0.0" />
   </ItemGroup>
 

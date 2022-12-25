@@ -40,7 +40,9 @@ namespace DataJuggler.Blazor.Components
         private ValidationComponent setFocusEditor;
         private List<IBlazorComponent> children;
         private int externalId;
-        private string externalIdDescription;        
+        private string externalIdDescription;
+        private List<ImageButton> buttons;
+        private ButtonClickedHandler buttonClickHandler;
         #endregion
 
         #region Constructor
@@ -51,6 +53,7 @@ namespace DataJuggler.Blazor.Components
         {
             // Create
             Children = new List<IBlazorComponent>();
+            Buttons = new List<ImageButton>();
         }
         #endregion
 
@@ -146,7 +149,7 @@ namespace DataJuggler.Blazor.Components
         #endregion
 
         #region Methods
-
+            
             #region FindChildByName(string name)
             /// <summary>
             /// method returns the Child By Name
@@ -256,14 +259,27 @@ namespace DataJuggler.Blazor.Components
                     // Add this oobject
                     Children.Add(component);
 
-                    // Test if this is a ValidationComponent
-                    ValidationComponent validationComponent = component as ValidationComponent;
-
-                    // if this is the control to set focus to
-                    if ((NullHelper.Exists(validationComponent)) && (validationComponent.SetFocusOnFirstRender))
+                    if (component is ValidationComponent)
                     {
-                        // Set the SetFocusEditor
-                        SetFocusEditor = validationComponent;
+                        // Test if this is a ValidationComponent
+                        ValidationComponent validationComponent = component as ValidationComponent;
+
+                        // if this is the control to set focus to
+                        if ((NullHelper.Exists(validationComponent)) && (validationComponent.SetFocusOnFirstRender))
+                        {
+                            // Set the SetFocusEditor
+                            SetFocusEditor = validationComponent;
+                        }
+                    }
+                    else if (component is ImageButton)
+                    {
+                        // cast the IBlazorComponent as an ImageButton
+                        ImageButton button = component as ImageButton;
+
+                        
+
+                        // Add this button
+                        Buttons.Add(button);
                     }
                 }
             }
@@ -273,6 +289,17 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
 
+            #region Buttons
+            /// <summary>
+            /// This property gets or sets the value for 'Buttons'.
+            /// </summary>
+            public List<ImageButton> Buttons
+            {
+                get { return buttons; }
+                set { buttons = value; }
+            }
+            #endregion
+            
             #region Children
             /// <summary>
             /// This property gets or sets the value for 'Children'.
@@ -292,6 +319,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return className; }
                 set { className = value; }
+            }
+            #endregion
+            
+            #region ButtonClickHandler
+            /// <summary>
+            /// This property gets or sets the value for 'ClickHandler'.
+            /// </summary>
+            public ButtonClickedHandler ButtonClickHandler
+            {
+                get { return buttonClickHandler; }
+                set { buttonClickHandler = value; }
             }
             #endregion
             
@@ -360,6 +398,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return externalIdDescription; }
                 set { externalIdDescription = value; }
+            }
+            #endregion
+            
+            #region HasButtons
+            /// <summary>
+            /// This property returns true if this object has a 'Buttons'.
+            /// </summary>
+            public bool HasButtons
+            {
+                get
+                {
+                    // initial value
+                    bool hasButtons = (this.Buttons != null);
+                    
+                    // return value
+                    return hasButtons;
+                }
             }
             #endregion
             
