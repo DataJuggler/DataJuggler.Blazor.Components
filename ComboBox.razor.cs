@@ -83,28 +83,8 @@ namespace DataJuggler.Blazor.Components
         /// </summary>
         public ComboBox()
         {
-            // Default to 30% for the lable, the rest goes to the ComboBox            
-            Theme = ThemeEnum.Black;
-            ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
-            ButtonText = "[Button Text]";
-            TextSize = TextSizeEnum.Medium;
-            Children = new List<IBlazorComponent>();
-            Visible = true;
-            Left = 0;
-            Top = 0;
-            Height = 60;
-            Unit = "px";
-            Width = 120;
-            Position = "relative";
-            VisibleCount = 5;
-            ZIndex = 0;
-            LabelMarginRight = 0;
-            LabelMarginRightList = 0;            
-            ListItemWidth = 120;            
-            TextAlign = "center";            
-            
-            // Set so the image is set
-            Expanded = false;
+           // Perform initializations for this object
+           Init();
         }
         #endregion
 
@@ -196,6 +176,38 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region Init()
+            /// <summary>
+            ///  This method performs initializations for this object.
+            /// </summary>
+            public void Init()
+            {
+                 // Default to 30% for the lable, the rest goes to the ComboBox            
+                Theme = ThemeEnum.Black;
+                ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
+                ButtonText = "[Button Text]";
+                TextSize = TextSizeEnum.Medium;
+                Children = new List<IBlazorComponent>();
+                Visible = true;
+                Left = 0;
+                Top = 0;
+                Height = 60;
+                Unit = "px";
+                Width = 120;
+                Position = "relative";
+                VisibleCount = 5;
+                ZIndex = 0;
+                LabelMarginRight = 0;
+                LabelMarginRightList = 0;            
+                ListItemWidth = 120;            
+                TextAlign = "center";
+                Items = new List<Item>();
+            
+                // Set so the image is set
+                Expanded = false;
+            }
+            #endregion
+            
             #region LoadItems(Type enumType)
             /// <summary>
             /// This method loads a combobox with the enum values

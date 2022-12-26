@@ -51,9 +51,8 @@ namespace DataJuggler.Blazor.Components
         /// </summary>
         public Grid()
         {
-            // Create
-            Children = new List<IBlazorComponent>();
-            Buttons = new List<ImageButton>();
+            // Perform initializations for this object
+            Init();
         }
         #endregion
 
@@ -161,6 +160,18 @@ namespace DataJuggler.Blazor.Components
 
                 // return value
                 return component;
+            }
+            #endregion
+            
+            #region Init()
+            /// <summary>
+            ///  This method performs initializations for this object.
+            /// </summary>
+            public void Init()
+            {
+                // Create
+                Children = new List<IBlazorComponent>();
+                Buttons = new List<ImageButton>();
             }
             #endregion
             

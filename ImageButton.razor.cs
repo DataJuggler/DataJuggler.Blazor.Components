@@ -60,15 +60,8 @@ namespace DataJuggler.Blazor.Components
         /// </summary>
         public ImageButton()
         {
-            // default
-            Unit = "px";            
-            Width = 200;
-            Height = 200;
-            Left = 0;
-            Top = 0;
-            ZIndex = 5;
-            Visible = true;            
-            ButtonTextAlign = "center";
+            // Perform initializations for this object
+            Init();
         }
         #endregion
 
@@ -86,6 +79,24 @@ namespace DataJuggler.Blazor.Components
                     // Notify the handler
                     ClickHandler(ButtonNumber, ButtonText);
                 }
+            }
+            #endregion
+            
+            #region Init()
+            /// <summary>
+            ///  This method performs initializations for this object.
+            /// </summary>
+            public void Init()
+            {
+                // default
+                Unit = "px";            
+                Width = 200;
+                Height = 200;
+                Left = 0;
+                Top = 0;
+                ZIndex = 5;
+                Visible = true;            
+                ButtonTextAlign = "center";
             }
             #endregion
             
