@@ -38,7 +38,11 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>v7.4.1
+    <PackageReleaseNotes>v7.4.6
+12.26.2022: The button in the grid didn't work first attempt. May try again later. I removed
+the Parameter tag from the ImageButton ClickHandler property.
+
+v7.4.1
 12.25.2022: I am testing a button for a column in the grid. 
 
 12.21.2022: Trying another way to do visibibility of the ComboBox.
@@ -324,7 +328,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.4.3</Version>
+    <Version>7.4.5</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>

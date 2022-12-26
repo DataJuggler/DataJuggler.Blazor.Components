@@ -34,7 +34,9 @@
             {
                 if (column.IsImageButton)
                 {
-                    <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl" Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber ButtonText="@column.ColumnText" Parent="this"></ImageButton>
+                    <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl" 
+                    Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="Button"
+                    ButtonText="@column.ColumnText" Visible=true Parent="this"></ImageButton>
                 }
                 else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
                 {
