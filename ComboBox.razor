@@ -14,6 +14,7 @@
     z-index: @ZIndex;   
 </Styled>
 <Styled @bind-Classname="LabelStyle">
+    display: inline-block;
     font-size: @TextSizeStyle;
     text-align: right;
     margin-right: @LabelMarginRightStyle !important;
@@ -22,10 +23,12 @@
     width: @LabelWidthStyle;
 </Styled>
 <Styled @bind-Classname="ComboBoxStyle">    
+    display: inline-block;
     height: @HeightStyle;
     width: @WidthStyle    
     font-size: @TextSizeStyle;
     place-content: start;
+    left: 0px;
     overflow: hidden;
     text-align: center;   
 </Styled>
@@ -36,7 +39,7 @@
     width: @ListItemWidthStyle;
     position: relative;
     color: @ListItemTextColorName;
-    left: @LeftStyle;
+    left: 0px;
     font-size: @TextSizeStyle;
     z-index: @ZIndex;
 </Styled>
@@ -61,7 +64,8 @@
         <div class="@VerticalCenter">
             <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Unit="@Unit" Width="@Width"
                     Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@LabelMarginRight"
-                    ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this"></ImageButton>
+                    ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this">
+            </ImageButton>
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
             { 

@@ -893,7 +893,7 @@ namespace DataJuggler.Blazor.Components
                     labelMarginRight = value;
 
                     // set the CSS value
-                    LabelMarginRightStyle = labelMarginRight + "%";
+                    LabelMarginRightStyle = labelMarginRight + Unit;
                 }
             }
             #endregion
@@ -911,7 +911,7 @@ namespace DataJuggler.Blazor.Components
                     labelMarginRightList = value;
 
                     // Set the value
-                    labelMarginRightListStyle = labelMarginRightList + "%";
+                    labelMarginRightListStyle = labelMarginRightList + Unit;
                 }
             }
             #endregion
