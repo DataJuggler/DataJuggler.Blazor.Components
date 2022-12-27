@@ -201,7 +201,7 @@ namespace DataJuggler.Blazor.Components
                 ZIndex = 0;
                 LabelMarginRight = 0;
                 LabelMarginRightList = 0;            
-                ListItemWidth = 120;            
+                ListItemWidth = 160;          
                 TextAlign = "center";
                 Items = new List<Item>();
                 
