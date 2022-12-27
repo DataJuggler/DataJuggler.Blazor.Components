@@ -75,6 +75,8 @@ namespace DataJuggler.Blazor.Components
         private Color listBackgroundColor;
         private bool rendered;
         private string displayStyle;
+        private double listItemFontSize;
+        private string listItemFontUnit;
         #endregion
 
         #region Constructor
@@ -202,6 +204,8 @@ namespace DataJuggler.Blazor.Components
                 ListItemWidth = 120;            
                 TextAlign = "center";
                 Items = new List<Item>();
+                ListItemFontSize = 12;
+                ListItemFontUnit = "px";
             
                 // Set so the image is set
                 Expanded = false;
@@ -1033,6 +1037,48 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return listBackgroundColorName;
                 }
+            }
+            #endregion
+            
+            #region ListItemFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemFontSize'.
+            /// </summary>
+            [Parameter]
+            public double ListItemFontSize
+            {
+                get { return listItemFontSize; }
+                set { listItemFontSize = value; }
+            }
+            #endregion
+            
+            #region ListItemFontSizeStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemFontSizeStyle from the object ListItemFontSize.
+            /// </summary>
+            public string ListItemFontSizeStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string listItemFontSizeStyle = ListItemFontSize + ListItemFontUnit;
+                    
+                    // return value
+                    return listItemFontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region ListItemFontUnit
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemFontUnit'.
+            /// </summary>
+            [Parameter]
+            public string ListItemFontUnit
+            {
+                get { return listItemFontUnit; }
+                set { listItemFontUnit = value; }
             }
             #endregion
             
