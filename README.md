@@ -1,9 +1,4 @@
-To see a live example, visit
-
-Blazor Excelerate
-https://excelerate.datajuggler.com
-
-The code for the above site is available here:
+My server is currently down. Here is a sample project.
 https://github.com/DataJuggler/Blazor.Excelerate
 
 The following components are in this project:
