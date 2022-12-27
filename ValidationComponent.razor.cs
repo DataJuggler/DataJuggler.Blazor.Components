@@ -385,6 +385,9 @@ namespace DataJuggler.Blazor.Components
             {
                 // Set the value
                 this.Text = text;
+
+                // Update
+                Refresh();
             }
             #endregion
             
