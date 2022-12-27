@@ -46,8 +46,7 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private TextSizeEnum textSize;
         private string textSizeStyle;
-        private bool visible;
-        private string visibleStyle;
+        private bool visible;        
         private string position;
         private string unit;
         private double labelWidth;

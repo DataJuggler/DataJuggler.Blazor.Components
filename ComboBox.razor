@@ -3,7 +3,7 @@
 @using DataJuggler.Blazor.Components.Enumerations
 
 <Styled @bind-Classname="Grid">
-    display: @DisplayStyle;
+    display: inline-block;
     height: 16px;
     min-width: @WidthStyle;
     width: @WidthStyle;
@@ -37,7 +37,7 @@
     position: relative;
     color: @ListItemTextColorName;
     left: @ListItemWidthStyle;
-    font-size: @ListItemFontSizeStyle;
+    font-size: @TextSizeStyle;
     z-index: @ZIndex;
 </Styled>
 <Styled @bind-Classname="NoPadding">    

@@ -75,8 +75,7 @@ namespace DataJuggler.Blazor.Components
         private Color listBackgroundColor;
         private bool rendered;
         private string displayStyle;
-        private double listItemFontSize;
-        private string listItemFontUnit;
+        private string heightUnit;
         #endregion
 
         #region Constructor
@@ -195,6 +194,7 @@ namespace DataJuggler.Blazor.Components
                 Top = 0;
                 Height = 60;
                 Unit = "px";
+                HeightUnit = "px";
                 Width = 120;
                 Position = "relative";
                 VisibleCount = 5;
@@ -204,9 +204,7 @@ namespace DataJuggler.Blazor.Components
                 ListItemWidth = 120;            
                 TextAlign = "center";
                 Items = new List<Item>();
-                ListItemFontSize = 12;
-                ListItemFontUnit = "px";
-            
+                
                 // Set so the image is set
                 Expanded = false;
             }
@@ -328,7 +326,7 @@ namespace DataJuggler.Blazor.Components
 
             #region Register(IBlazorComponent component)
             /// <summary>
-            /// method returns the
+            /// method registers the ComboBoxButton
             /// </summary>
             public void Register(IBlazorComponent component)
             {
@@ -336,7 +334,7 @@ namespace DataJuggler.Blazor.Components
                 this.Children.Add(component);
 
                 // if this is the Button registering
-                if (TextHelper.IsEqual(component.Name, ComboBoxButtonName))
+                if (component is ImageButton)
                 {
                     // Store the ComboBoxButton
                     ComboBoxButton = component as ImageButton;
@@ -802,7 +800,7 @@ namespace DataJuggler.Blazor.Components
                     height = value;
 
                     // Set the height headerStyle string
-                    HeightStyle = height + "vh";
+                    HeightStyle = height + HeightUnit;
                 }
             }
             #endregion
@@ -815,6 +813,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return heightStyle; }
                 set { heightStyle = value; }
+            }
+            #endregion
+            
+            #region HeightUnit
+            /// <summary>
+            /// This property gets or sets the value for 'HeightUnit'.
+            /// </summary>
+            [Parameter]
+            public string HeightUnit
+            {
+                get { return heightUnit; }
+                set { heightUnit = value; }
             }
             #endregion
             
@@ -1040,48 +1050,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ListItemFontSize
-            /// <summary>
-            /// This property gets or sets the value for 'ListItemFontSize'.
-            /// </summary>
-            [Parameter]
-            public double ListItemFontSize
-            {
-                get { return listItemFontSize; }
-                set { listItemFontSize = value; }
-            }
-            #endregion
-            
-            #region ListItemFontSizeStyle
-            /// <summary>
-            /// This read only property returns the value of ListItemFontSizeStyle from the object ListItemFontSize.
-            /// </summary>
-            public string ListItemFontSizeStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string listItemFontSizeStyle = ListItemFontSize + ListItemFontUnit;
-                    
-                    // return value
-                    return listItemFontSizeStyle;
-                }
-            }
-            #endregion
-            
-            #region ListItemFontUnit
-            /// <summary>
-            /// This property gets or sets the value for 'ListItemFontUnit'.
-            /// </summary>
-            [Parameter]
-            public string ListItemFontUnit
-            {
-                get { return listItemFontUnit; }
-                set { listItemFontUnit = value; }
-            }
-            #endregion
-            
             #region ListItemStyle
             /// <summary>
             /// This property gets or sets the value for 'ListItemStyle'.
@@ -1135,7 +1103,7 @@ namespace DataJuggler.Blazor.Components
                     listItemWidth = value;
 
                     // Set the value
-                    ListItemWidthStyle = listItemWidth + "%";
+                    ListItemWidthStyle = listItemWidth + Unit;
                 }
             }
             #endregion
