@@ -76,6 +76,8 @@ namespace DataJuggler.Blazor.Components
         private bool rendered;
         private string displayStyle;
         private string heightUnit;
+        private double comboBoxLeft;
+        private double listItemLeft;
         #endregion
 
         #region Constructor
@@ -201,7 +203,7 @@ namespace DataJuggler.Blazor.Components
                 ZIndex = 0;
                 LabelMarginRight = 0;
                 LabelMarginRightList = 0;            
-                ListItemWidth = 160;          
+                ListItemWidth = 120;            
                 TextAlign = "center";
                 Items = new List<Item>();
                 
@@ -652,6 +654,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ComboBoxLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ComboBoxLeft'.
+            /// </summary>
+            [Parameter]
+            public double ComboBoxLeft
+            {
+                get { return comboBoxLeft; }
+                set { comboBoxLeft = value; }
+            }
+            #endregion
+            
+            #region ComboBoxLeftStyle
+            /// <summary>
+            /// This read only property returns the value of ComboBoxLeftStyle from the object ComboBoxLeft.
+            /// </summary>
+            public string ComboBoxLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string comboBoxLeftStyle = ComboBoxLeft + unit;
+                    
+                    // return value
+                    return comboBoxLeftStyle;
+                }
+            }
+            #endregion
+            
             #region ComboBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxStyle'.
@@ -1046,6 +1078,36 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return listBackgroundColorName;
+                }
+            }
+            #endregion
+            
+            #region ListItemLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemLeft'.
+            /// </summary>
+            [Parameter]
+            public double ListItemLeft
+            {
+                get { return listItemLeft; }
+                set { listItemLeft = value; }
+            }
+            #endregion
+            
+            #region ListItemLeftStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemLeftStyle from the object ListItemLeft.
+            /// </summary>
+            public string ListItemLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string listItemLeftStyle = ListItemLeft + unit;
+                    
+                    // return value
+                    return listItemLeftStyle;
                 }
             }
             #endregion
