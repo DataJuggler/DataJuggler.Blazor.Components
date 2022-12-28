@@ -78,7 +78,7 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;
         private double comboBoxLeft;
         private double listItemLeft;
-        private double buttonLeft;
+        private double buttonLeft;        
         #endregion
 
         #region Constructor
@@ -1170,6 +1170,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ListItemWidth'.
             /// </summary>
+            [Parameter]
             public double ListItemWidth
             {
                 get { return listItemWidth; }
@@ -1501,6 +1502,13 @@ namespace DataJuggler.Blazor.Components
                 set 
                 { 
                     width = value;
+
+                    // if the ListItemWidth is less than the width
+                    if (ListItemWidth < width)
+                    {
+                        // Set the ListItemWidth to the width of the button
+                        ListItemWidth = width;
+                    }
                 }
             }
             #endregion

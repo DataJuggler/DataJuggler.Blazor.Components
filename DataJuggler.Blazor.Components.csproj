@@ -38,7 +38,12 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>v7.4.18: Float Left didn't work, so the 7.4.18-RC1 is removed.
+    <PackageReleaseNotes>Dec 28, 2022
+v7.4.19-rc1: I am expirementing with Position Sticky for the button. The button is moving on me and I am trying
+to prevent that.
+
+Dec 27, 2022
+v7.4.18: Float Left didn't work, so the 7.4.18-RC1 is removed.
 
 v7.4.6
 12.26.2022: The button in the grid didn't work first attempt. May try again later. I removed
@@ -330,7 +335,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.4.18</Version>
+    <Version>7.4.20</Version>
     <AssemblyVersion>7.1.14</AssemblyVersion>
     <FileVersion>7.1.14</FileVersion>
     <Nullable>disable</Nullable>
