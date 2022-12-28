@@ -41,7 +41,7 @@
     color: @ListItemTextColorName;
     left: 0px;
     font-size: @TextSizeStyle;
-    z-index: @ZIndex;
+    z-index: @ZIndex;    
 </Styled>
 <Styled @bind-Classname="NoPadding">    
     margin: 0;
@@ -63,20 +63,20 @@
     <div class="@ComboBoxStyle">
         <div class="@VerticalCenter">
             <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Unit="@Unit" Width="@Width"
-                    Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@LabelMarginRight"
+                    Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@ButtonLeft"
                     ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this">
             </ImageButton>
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
-            { 
-            <div class="@ListItemStyle">
-                <select class="form-control" name="ListBox" size="@VisibleCount" id="ComboBoxListBox" @onchange="SelectionChanged">
+        {
+        <div class="@ListItemStyle">
+            <select class="form-control" name="ListBox" size="@VisibleCount" id="ComboBoxListBox" @onchange="SelectionChanged">
                     @foreach (Item item in Items)
-                    {      
+                    {
                         <option class="@NoPadding">@item.Text</option>
                     }
-                </select>
-            </div>
+            </select>
+        </div>
         }
     </div>
 </div>

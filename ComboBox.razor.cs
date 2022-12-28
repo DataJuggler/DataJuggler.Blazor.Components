@@ -78,6 +78,7 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;
         private double comboBoxLeft;
         private double listItemLeft;
+        private double buttonLeft;
         #endregion
 
         #region Constructor
@@ -566,6 +567,18 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
 
+            #region ButtonLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonLeft'.
+            /// </summary>
+            [Parameter]
+            public double ButtonLeft
+            {
+                get { return buttonLeft; }
+                set { buttonLeft = value; }
+            }
+            #endregion
+            
             #region ButtonText
             /// <summary>
             /// This property gets or sets the value for 'ButtonText'.
