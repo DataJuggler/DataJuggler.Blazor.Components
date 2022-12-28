@@ -13,6 +13,7 @@ using DataJuggler.UltimateHelper;
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using System.Drawing;
+using OfficeOpenXml.FormulaParsing.ExpressionGraph.FunctionCompilers;
 
 #endregion
 
@@ -78,7 +79,9 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;
         private double comboBoxLeft;
         private double listItemLeft;
-        private double buttonLeft;        
+        private double buttonLeft;
+        private double listItemTop;
+        private double expandedButtonLeft;
         #endregion
 
         #region Constructor
@@ -574,7 +577,19 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public double ButtonLeft
             {
-                get { return buttonLeft; }
+                get 
+                {
+                    double left = buttonLeft;
+
+                    // if expanded and the value is different for ExpandedButtonLeft
+                    if ((expanded) && (buttonLeft != expandedButtonLeft))
+                    {
+                        // use ExpandedButtonLeft
+                        left = ExpandedButtonLeft;
+                    }
+
+                    return buttonLeft;
+                }
                 set { buttonLeft = value; }
             }
             #endregion
@@ -733,6 +748,21 @@ namespace DataJuggler.Blazor.Components
                     // The button image changes on Expanded and Theme.
                     SetupComponent();
                 }
+            }
+            #endregion
+            
+            #region ExpandedButtonLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ExpandedButtonLeft'.
+            /// This property is the left of the button when the control is expanded.
+            /// The reason for this is one of my projects the button shifts right about 4 pixels.
+            /// Kind of hack, but if it works I will leave it till I can solve the why it shifts.
+            /// </summary>
+            [Parameter]
+            public double ExpandedButtonLeft
+            {
+                get { return expandedButtonLeft; }
+                set { expandedButtonLeft = value; }
             }
             #endregion
             
@@ -1162,6 +1192,36 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return listItemTextColorName;
+                }
+            }
+            #endregion
+            
+            #region ListItemTop
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemTop'.
+            /// </summary>
+            [Parameter]
+            public double ListItemTop
+            {
+                get { return listItemTop; }
+                set { listItemTop = value; }
+            }
+            #endregion
+            
+            #region ListItemTopStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemTopStyle from the object ListItemTop.
+            /// </summary>
+            public string ListItemTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string listItemTopStyle = ListItemTop + Unit;
+                    
+                    // return value
+                    return listItemTopStyle;
                 }
             }
             #endregion

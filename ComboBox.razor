@@ -39,7 +39,8 @@
     width: @ListItemWidthStyle;
     position: relative;
     color: @ListItemTextColorName;
-    left: 0px;
+    left: @ListItemLeftStyle;
+    top: @ListItemTopStyle;
     font-size: @TextSizeStyle;
     z-index: @ZIndex;    
 </Styled>
@@ -49,8 +50,7 @@
 </Styled>
 <Styled @bind-Classname="VerticalCenter">
     display: inline-block;
-    justify-content: left;
-    align-items: center;
+    justify-content: left;    
     width: 100%;
 </Styled>
 
