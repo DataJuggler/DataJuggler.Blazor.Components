@@ -1260,8 +1260,9 @@ namespace DataJuggler.Blazor.Components
             {
                 get
                 {
-                    string labelWidthStyle = LabelWidth + "%";
+                    string labelWidthStyle = LabelWidth + Unit;
 
+                    // return value
                     return labelWidthStyle;
                 }
             }

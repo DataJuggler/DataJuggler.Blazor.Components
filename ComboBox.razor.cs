@@ -58,7 +58,7 @@ namespace DataJuggler.Blazor.Components
         private string position;
         private Color labelColor;
         private int visibleCount;
-        private string verticalCenter;
+        private string buttonStyle;
         private int zIndex;
         private double labelMarginRight;
         private string labelMarginRightStyle;
@@ -379,7 +379,7 @@ namespace DataJuggler.Blazor.Components
                 if (theme == ThemeEnum.Blue)
                 {
                     // only set the TextColor on the first pass
-                    if (!rendered)
+                    if (!Rendered)
                     {
                         // Dark Blue
                         ButtonTextColor = Color.Navy;
@@ -398,7 +398,7 @@ namespace DataJuggler.Blazor.Components
                 else if (theme == ThemeEnum.Dark)
                 {
                     // only set the TextColor on the first pass
-                    if (!rendered)
+                    if (!Rendered)
                     {
                         // Dark Blue
                         ButtonTextColor = Color.White;
@@ -417,7 +417,7 @@ namespace DataJuggler.Blazor.Components
                 else if (theme == ThemeEnum.Brown)
                 {
                     // only set the TextColor on the first pass
-                    if (!rendered)
+                    if (!Rendered)
                     {
                         // Dark Blue
                         ButtonTextColor = Color.White;
@@ -436,7 +436,7 @@ namespace DataJuggler.Blazor.Components
                 else
                 {
                     // only set the TextColor on the first pass
-                    if (!rendered)
+                    if (!Rendered)
                     {
                         // black
                         ButtonTextColor = Color.White;
@@ -453,7 +453,14 @@ namespace DataJuggler.Blazor.Components
                     }
                 }
 
-                // Used to keep track if the text color should be reset
+                // if the Button exists
+                if (HasComboBoxButton)
+                {
+                    // Update the Button
+                    ComboBoxButton.Refresh();
+                }
+
+                // Set Rendered to true
                 Rendered = true;
             }
             #endregion
@@ -593,6 +600,17 @@ namespace DataJuggler.Blazor.Components
                 set { buttonLeft = value; }
             }
             #endregion
+
+            #region ButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonStyle'.
+            /// </summary>
+            public string ButtonStyle
+            {
+                get { return buttonStyle; }
+                set { buttonStyle = value; }
+            }
+            #endregion
             
             #region ButtonText
             /// <summary>
@@ -635,7 +653,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-            
+
             #region ButtonUrl
             /// <summary>
             /// This property gets or sets the value for 'ButtonUrl'.
@@ -1499,17 +1517,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
-            }
-            #endregion
-            
-            #region VerticalCenter
-            /// <summary>
-            /// This property gets or sets the value for 'VerticalCenter'.
-            /// </summary>
-            public string VerticalCenter
-            {
-                get { return verticalCenter; }
-                set { verticalCenter = value; }
             }
             #endregion
             
