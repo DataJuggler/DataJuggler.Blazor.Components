@@ -98,6 +98,10 @@ namespace DataJuggler.Blazor.Components
         private string column3;
         private double textBoxWidth;
         private int rows;
+        private double column1Width;
+        private double column2Width;
+        private double column3Width;
+
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;        
@@ -187,6 +191,9 @@ namespace DataJuggler.Blazor.Components
                 Top = 0;
                 UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
                 Unit = "%";
+                Column1Width = 30;
+                Column2Width = 50;
+                Column3Width = 20;
                 Visible = true;
                 Width= 30;
                 Rows = 3;
@@ -654,6 +661,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Column1Width
+            /// <summary>
+            /// This property gets or sets the value for 'Column1Width'.
+            /// </summary>
+            [Parameter]
+            public double Column1Width
+            {
+                get { return column1Width; }
+                set { column1Width = value; }
+            }
+            #endregion
+            
+            #region Column1WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column1Width + Unit
+            /// </summary>
+            public string Column1WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column1WidthStyle = Column1Width + Unit;
+                    
+                    // return value
+                    return column1WidthStyle;
+                }
+            }
+            #endregion
+            
             #region Column2
             /// <summary>
             /// This property gets or sets the value for 'Column2'.
@@ -665,6 +702,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Column2Width
+            /// <summary>
+            /// This property gets or sets the value for 'Column2Width'.
+            /// </summary>
+            [Parameter]
+            public double Column2Width
+            {
+                get { return column2Width; }
+                set { column2Width = value; }
+            }
+            #endregion
+
+            #region Column2WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column2Width + Unit
+            /// </summary>
+            public string Column2WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column2WidthStyle = Column2Width + Unit;
+                    
+                    // return value
+                    return column2WidthStyle;
+                }
+            }
+            #endregion
+            
             #region Column3
             /// <summary>
             /// This property gets or sets the value for 'Column3'.
@@ -673,6 +740,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return column3; }
                 set { column3 = value; }
+            }
+            #endregion
+            
+            #region Column3Width
+            /// <summary>
+            /// This property gets or sets the value for 'Column3Width'.
+            /// </summary>
+            [Parameter]
+            public double Column3Width
+            {
+                get { return column3Width; }
+                set { column3Width = value; }
+            }
+            #endregion
+
+            #region Column3WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column3Width + Unit
+            /// </summary>
+            public string Column3WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column3WidthStyle = Column3Width + Unit;
+                    
+                    // return value
+                    return column3WidthStyle;
+                }
             }
             #endregion
             

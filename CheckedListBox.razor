@@ -1,0 +1,13 @@
+﻿
+
+@if (Visible)
+{
+    if (HasItems)
+    {
+        // iterate the items
+        foreach (Item item in Items)
+        {
+            <input type="checkbox" @bind=item.ItemChecked />
+        }
+    }
+}

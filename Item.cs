@@ -23,6 +23,7 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private int id;
         private string text;
+        private bool itemChecked;
         #endregion
 
         #region Properties
@@ -35,6 +36,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return id; }
                 set { id = value; }
+            }
+            #endregion
+            
+            #region ItemChecked
+            /// <summary>
+            /// This property gets or sets the value for 'ItemChecked'.
+            /// </summary>
+            public bool ItemChecked
+            {
+                get { return itemChecked; }
+                set { itemChecked = value; }
             }
             #endregion
             

@@ -3,24 +3,26 @@
 
 <Styled @bind-Classname="@Column1">
     float: left;
-    width: @LabelWidthStyle;
     height: 100%;
     background-color: @LabelBackgroundColor;
     color: @LabelColor;
     font-size: @LabelFontSizeStyle;
     text-align: right;
+    width: @Column1WidthStyle;
 </Styled>
 <Styled @bind-Classname="@Column2">
     float: left;
     width: @TextBoxWidthStyle;
     height: 100%;    
     margin-left: @MarginLeftStyle;
+    width: @Column2WidthStyle;
 </Styled>
 <Styled @bind-Classname="@Column3">
     float: left;
     width: @ImageWidthStyle;
     height: 100%;    
     background-color: @ImageBackColor;
+    width: @Column3WidthStyle;
 </Styled>
 <Styled @bind-Classname="@TextBoxStyle">        
     background-color: @TextBoxBackColor;
@@ -57,42 +59,54 @@
     clear:both;    
 </Styled>
 
+<style>
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+
 @if (Visible)
 {
-    <div class="@ValidationControlStyle">
-        @if (ShowCaption)
-        {
-            <div class="@Column1">
-                <div class="@LabelClassName">@Caption</div>
+    <div class="row">
+        <div class="@ValidationControlStyle">
+            @if (ShowCaption)
+            {
+                <div class="@Column1">
+                    <div class="@LabelClassName">@Caption</div>
+                </div>
+            }
+            <div class="@Column2">
+                @if (CheckBoxMode)
+                {
+                    <div class="@CheckBoxClassName">
+                        <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+                    </div>
+                }
+                else if (Multiline)
+                {
+                    <div class="@TextBoxClassName">
+                        <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
+                    </div>
+                }
+                else
+                {
+                    <span class="@TextBoxClassName">
+                        <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                    </span>
+                }
             </div>
-        }
-        <div class="@Column2">
-            @if (CheckBoxMode)
+            @if (ShowImage)
             {
-                <div class="@CheckBoxClassName">
-                    <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+                <div class="@Column3">
+                    <div class="@ImageClassName">
+                        <div class="@ImageStyle"></div>
+                    </div>
                 </div>
-            }
-            else if (Multiline)
-            {
-                <div class="@TextBoxClassName">
-                    <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
-                </div>
-            }
-            else
-            {
-                <span class="@TextBoxClassName">
-                    <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
-                </span>
             }
         </div>
-        @if (ShowImage)
-        {
-            <div class="@Column3">
-                <div class="@ImageClassName">
-                    <div class="@ImageStyle"></div>
-                </div>
-            </div>
-        }
     </div>
 }

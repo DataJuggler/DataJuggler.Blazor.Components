@@ -38,7 +38,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>Dec 28, 2022
+    <PackageReleaseNotes>January 21, 2023: I was having a problem with Nuget packages being built. Not sure what broke.
+Testing again.
+
+Dec 28, 2022
 v7.4.19-rc1: I am expirementing with Position Sticky for the button. The button is moving on me and I am trying
 to prevent that.
 
@@ -335,9 +338,9 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.5.0</Version>
-    <AssemblyVersion>7.1.14</AssemblyVersion>
-    <FileVersion>7.1.14</FileVersion>
+    <Version>7.5.6</Version>
+    <AssemblyVersion>7.5.5</AssemblyVersion>
+    <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
