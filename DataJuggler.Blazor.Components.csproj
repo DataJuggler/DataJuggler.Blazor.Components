@@ -38,7 +38,9 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>January 21, 2023: I was having a problem with Nuget packages being built. Not sure what broke.
+    <PackageReleaseNotes>Feb. 1, 2023: I updated the CSS class with a clear class.
+
+January 21, 2023: I was having a problem with Nuget packages being built. Not sure what broke.
 Testing again.
 
 Dec 28, 2022
