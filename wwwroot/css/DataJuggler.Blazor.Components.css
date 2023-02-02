@@ -578,7 +578,10 @@
 {
     background-color: rebeccapurple;
 }
-
+.clear
+{
+    clear: both;
+}
 .colortransparent
 {
     color: transparent;
