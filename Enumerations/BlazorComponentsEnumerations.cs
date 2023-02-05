@@ -67,9 +67,11 @@ namespace DataJuggler.Blazor.Components.Enumerations
     {
         Extra_Small = 1,
         Small = 2,
-        Medium = 3,
-        Large = 4,
-        Extra_Large = 5
+        SmallMedium = 3,
+        Medium = 4,
+        MediumLarge = 5,
+        Large = 6,
+        Extra_Large = 7
     }
     #endregion
     

@@ -369,6 +369,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region SetTextSizeStyle(textSizeStyle)
+            /// <summary>
+            /// Set Text Size Style. Examples: 12px, 2vh, .75em
+            /// </summary>
+            public void SetTextSizeStyle(string textSizeStyle)
+            {
+                // Store the value
+                TextSizeStyle = textSizeStyle;
+            }
+            #endregion
+            
             #region SetupComponent()
             /// <summary>
             /// Set Button Image
@@ -1421,10 +1432,26 @@ namespace DataJuggler.Blazor.Components
                             // required
                             break;
 
+                        case TextSizeEnum.SmallMedium:
+
+                            // Set the value
+                            TextSizeStyle = .9 + "em";
+
+                            // required
+                            break;
+
                         case TextSizeEnum.Medium:
 
                             // Set the value
                             TextSizeStyle = 1 + "em";
+
+                            // required
+                            break;
+
+                        case TextSizeEnum.MediumLarge:
+
+                            // Set the value
+                            TextSizeStyle = 1.1 + "em";
 
                             // required
                             break;
@@ -1453,6 +1480,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'TextSizeStyle'.
             /// </summary>
+            [Parameter]
             public string TextSizeStyle
             {
                 get { return textSizeStyle; }
