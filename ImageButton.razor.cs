@@ -501,10 +501,26 @@ namespace DataJuggler.Blazor.Components
                             // required
                             break;
 
+                        case TextSizeEnum.SmallMedium:
+
+                            // Set the value
+                            TextSizeStyle = .9 + "em";
+
+                            // required
+                            break;
+
                         case TextSizeEnum.Medium:
 
                             // Set the value
                             TextSizeStyle = 1 + "em";
+
+                            // required
+                            break;
+
+                        case TextSizeEnum.MediumLarge:
+
+                            // Set the value
+                            TextSizeStyle = 1.1 + "em";
 
                             // required
                             break;

@@ -31,7 +31,7 @@ namespace DataJuggler.Blazor.Components
         private List<Item> items;
         private Item selectedItem;
         private string name;
-        private string labelText;
+        private string labelText;        
         private string grid;
         private string labelStyle;
         private string comboBoxStyle;        
@@ -79,9 +79,12 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;
         private double comboBoxLeft;
         private double listItemLeft;
-        private double buttonLeft;
+        private double buttonLeft;        
         private double listItemTop;
-        private double expandedButtonLeft;
+        private double expandedButtonLeft;      
+        private double buttonTop;
+        private string labelBackColor;
+        private Color comboBoxBackColor;
         #endregion
 
         #region Constructor
@@ -210,6 +213,8 @@ namespace DataJuggler.Blazor.Components
                 ListItemWidth = 120;            
                 TextAlign = "center";
                 Items = new List<Item>();
+                LabelBackColor = "transparent";
+                ComboBoxBackColor = Color.Transparent;
                 
                 // Set so the image is set
                 Expanded = false;
@@ -665,6 +670,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ButtonTop
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonTop'.
+            /// </summary>
+            [Parameter]
+            public double ButtonTop
+            {
+                get { return buttonTop; }
+                set { buttonTop = value; }
+            }
+            #endregion
+            
             #region ButtonUrl
             /// <summary>
             /// This property gets or sets the value for 'ButtonUrl'.
@@ -697,6 +714,19 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return className; }
                 set { className = value; }
+            }
+            #endregion
+            
+            #region ComboBoxBackColor
+            /// <summary>
+            /// This property gets or sets the value for 'ComboBoxBackColor'.
+            /// This is used for helping position the ComboBox.
+            /// </summary>
+            [Parameter]
+            public Color ComboBoxBackColor
+            {
+                get { return comboBoxBackColor; }
+                set { comboBoxBackColor = value; }
             }
             #endregion
             
@@ -954,6 +984,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region LabelBackColor
+            /// <summary>
+            /// This property gets or sets the value for 'LabelBackColor'.
+            /// </summary>
+            [Parameter]
+            public string LabelBackColor
+            {
+                get { return labelBackColor; }
+                set { labelBackColor = value; }
+            }
+            #endregion
+            
             #region LabelColor
             /// <summary>
             /// This property gets or sets the value for 'LabelColor'.
@@ -1634,6 +1676,78 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return zIndex; }
                 set { zIndex = value; }
+            }
+            #endregion
+
+            #region ZIndexMinus
+            /// <summary>
+            /// This read only property returns the value of Minus 10.
+            /// </summary>
+            public int ZIndexMinus
+            {
+                
+                get
+                {
+                    // initial value
+                    int zIndexMinus =ZIndex - 10;
+                    
+                    // return value
+                    return zIndexMinus;
+                }
+            }
+            #endregion
+
+            #region ZIndexMinusStyle
+            /// <summary>
+            /// This read only property returns the value of ZIndexMinus Minus 10.
+            /// </summary>
+            public string ZIndexMinusStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string zIndexMinus = ZIndexMinus.ToString();
+                    
+                    // return value
+                    return zIndexMinus;
+                }
+            }
+            #endregion
+            
+            #region ZIndexPlus
+            /// <summary>
+            /// This read only property returns the value of ZIndexPlus Plus 10.
+            /// </summary>
+            public int ZIndexPlus
+            {
+                
+                get
+                {
+                    // initial value
+                    int zIndexPlus = ZIndex + 10;
+                    
+                    // return value
+                    return zIndexPlus;
+                }
+            }
+            #endregion
+
+            #region ZIndexPlusStyle
+            /// <summary>
+            /// This read only property returns the value of ZIndexPlus Plus 10.
+            /// </summary>
+            public string ZIndexPlusStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string zIndexPlus = ZIndexPlus.ToString();
+                    
+                    // return value
+                    return zIndexPlus;
+                }
             }
             #endregion
             
