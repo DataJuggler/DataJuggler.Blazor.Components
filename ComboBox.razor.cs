@@ -395,6 +395,9 @@ namespace DataJuggler.Blazor.Components
                             // set the selecteted item
                             selectedItem = item;
 
+                            // Set the ButtonText
+                            ButtonText = selectedItem.ToString().Replace("_", " ");
+
                             // break out of the loop
                             break;
                         }
@@ -405,6 +408,9 @@ namespace DataJuggler.Blazor.Components
                             {
                                 // set the selecteted item
                                 selectedItem = item;
+
+                                // Set the ButtonText
+                                ButtonText = selectedItem.ToString().Replace("_", " ");
 
                                 // break out of the loop
                                 break;
