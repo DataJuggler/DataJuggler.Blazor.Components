@@ -374,6 +374,37 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region SetSelectedItem(string text)
+            /// <summary>
+            /// returns the Selected Item
+            /// </summary>
+            public Item SetSelectedItem(string text)
+            {
+                // initial value
+                Item selectedItem = null;
+
+                // If the text string exists
+                if ((TextHelper.Exists(text)) && (HasItems))
+                {
+                    // Iterate the collection of Item objects
+                    foreach (Item item in Items)
+                    {
+                        if (TextHelper.IsEqual(item.Text, text))
+                        {   
+                            // set the selecteted item
+                            selectedItem = item;
+
+                            // break out of the loop
+                            break;
+                        }
+                    }
+                }
+                
+                // return value
+                return selectedItem;
+            }
+            #endregion
+            
             #region SetTextSizeStyle(textSizeStyle)
             /// <summary>
             /// Set Text Size Style. Examples: 12px, 2vh, .75em
