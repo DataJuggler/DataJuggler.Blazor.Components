@@ -389,6 +389,7 @@ namespace DataJuggler.Blazor.Components
                     // Iterate the collection of Item objects
                     foreach (Item item in Items)
                     {
+                        // if a direct match
                         if (TextHelper.IsEqual(item.Text, text))
                         {   
                             // set the selecteted item
@@ -396,6 +397,18 @@ namespace DataJuggler.Blazor.Components
 
                             // break out of the loop
                             break;
+                        }
+                        else if (TextHelper.Exists(item.Text))
+                        {
+                            // if a match with the underscores replaced as a space
+                            if (TextHelper.IsEqual(item.Text.Replace("_", " "), text))
+                            {
+                                // set the selecteted item
+                                selectedItem = item;
+
+                                // break out of the loop
+                                break;
+                            }
                         }
                     }
                 }
