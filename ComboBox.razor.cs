@@ -127,6 +127,9 @@ namespace DataJuggler.Blazor.Components
                 // Set the selectedItem
                 ButtonText = selectedItem.Value.ToString();
 
+                // Set the SelectedItem
+                SetSelectedItem(ButtonText);
+
                 // if the Parent exists
                 if (HasParent)
                 {
