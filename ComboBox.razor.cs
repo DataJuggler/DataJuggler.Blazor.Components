@@ -395,6 +395,9 @@ namespace DataJuggler.Blazor.Components
                             // set the selecteted item
                             selectedItem = item;
 
+                            // Set the property
+                            SelectedItem = item;
+
                             // Set the ButtonText
                             ButtonText = selectedItem.Text.Replace("_", " ");
 
@@ -408,6 +411,9 @@ namespace DataJuggler.Blazor.Components
                             {
                                 // set the selecteted item
                                 selectedItem = item;
+
+                                // Set the property
+                                SelectedItem = item;
 
                                 // Set the ButtonText
                                 ButtonText = selectedItem.Text.Replace("_", " ");
