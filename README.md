@@ -7,9 +7,29 @@ Code Generate C# Classes From Excel Header Rows
 Sample project Demo
 https://github.com/DataJuggler/Blazor.Excelerate
 
-The following components are in this project:
-
 Getting Started:
+
+# Important
+
+This project has a dependency on BlazorStyled by Chanan:
+
+Nuget: BlazorStyled
+
+Source
+https://github.com/chanan/BlazorStyled
+
+Add a Nuget package reference to BlazorStyled
+
+You must register BlazorStyled in your project in Program.cs:
+
+    using BlazorStyled;
+
+    builder.Services.AddRazorPages();
+    builder.Services.AddServerSideBlazor();
+    
+    // Register BlazorStyled
+    builder.Services.AddBlazorStyled();
+
 
 One of my favorite things of this project is the DataJuggler.Blazor.Componets.css file.
 
@@ -559,10 +579,10 @@ WidthPixels: 900px;
 ComboBox Example
 
     <ComboBox Name="DelimiterControl" Parent="this" Unit="px" Width="160" HeightUnit="vh" Height="3.6" LabelText="Delimiter:" LabelWidth=54 ZIndex=20
-        Left="10" Theme="ThemeEnum.Brown" LabelColor="Color.Black" ButtonTextColor="Color.LemonChiffon" ButtonLeft=36 ButtonTop=-2.8
+        Left="10" Theme="ThemeEnum.Brown" LabelLeft="-16" LabelColor="Color.Black" ButtonTextColor="Color.LemonChiffon" ButtonLeft=36 ButtonTop=-2.8
         TextSize="TextSizeEnum.SmallMedium" ListItemLeft="56" ListItemTop="-24"></ComboBox>
 
-Most of the other properties should be the same as the ProgressBar.
+
 
 
 # ProgressBar
