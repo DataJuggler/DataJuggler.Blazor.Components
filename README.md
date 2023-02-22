@@ -1,4 +1,10 @@
-My server is currently down. Here is a sample project.
+Live Demo and opensource project
+
+Blazor Excelerate
+https://excelerate.datajuggler.com 
+Code Generate C# Classes From Excel Header Rows
+
+Sample project Demo
 https://github.com/DataJuggler/Blazor.Excelerate
 
 The following components are in this project:
