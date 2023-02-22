@@ -1,4 +1,10 @@
-My server is currently down. Here is a sample project.
+Live Demo and opensource Blazor project:
+
+Blazor Excelerate
+https://excelerate.datajuggler.com 
+Code Generate C# Classes From Excel Header Rows
+
+Sample project Demo
 https://github.com/DataJuggler/Blazor.Excelerate
 
 The following components are in this project:
@@ -222,7 +228,7 @@ Update 10.22.2021:
 I just released a full working sample here:
 https://github.com/DataJuggler/Blazor.Excelerate
 
-And a live exmaple is here:
+And a live example is here:
 https://excelerate.datajuggler.com
 
 Blazor Excelerate is used to code generate C# classes from an Excel header row.
@@ -549,6 +555,12 @@ This value is set when you set the Width property.
 Example: <br>
 Width: 900
 WidthPixels: 900px;
+
+ComboBox Example
+
+    <ComboBox Name="DelimiterControl" Parent="this" Unit="px" Width="160" HeightUnit="vh" Height="3.6" LabelText="Delimiter:" LabelWidth=54 ZIndex=20
+        Left="10" Theme="ThemeEnum.Brown" LabelColor="Color.Black" ButtonTextColor="Color.LemonChiffon" ButtonLeft=36 ButtonTop=-2.8
+        TextSize="TextSizeEnum.SmallMedium" ListItemLeft="56" ListItemTop="-24"></ComboBox>
 
 Most of the other properties should be the same as the ProgressBar.
 
