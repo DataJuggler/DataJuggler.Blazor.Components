@@ -85,6 +85,7 @@ namespace DataJuggler.Blazor.Components
         private double buttonTop;
         private string labelBackColor;
         private Color comboBoxBackColor;
+        private string labelClassName;
         #endregion
 
         #region Constructor
@@ -1052,6 +1053,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelBackColor; }
                 set { labelBackColor = value; }
+            }
+            #endregion
+            
+            #region LabelClassName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelClassName'.
+            /// </summary>
+            [Parameter]
+            public string LabelClassName
+            {
+                get { return labelClassName; }
+                set { labelClassName = value; }
             }
             #endregion
             
