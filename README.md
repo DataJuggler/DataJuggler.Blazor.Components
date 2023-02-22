@@ -578,7 +578,7 @@ WidthPixels: 900px;
 
 ## ComboBox Example
 
-    <ComboBox Name="DelimiterControl" Parent="this" Unit="px" Width="160" HeightUnit="vh" Height="3.6" LabelText="Delimiter:" LabelWidth=54 ZIndex=20
+    <ComboBox Name="ComboBoxControl" Parent="this" Unit="px" Width="160" HeightUnit="vh" Height="3.6" LabelText="Delimiter:" LabelWidth=54 ZIndex=20
         Left="10" Theme="ThemeEnum.Brown" LabelLeft="-16" LabelColor="Color.Black" ButtonTextColor="Color.LemonChiffon" ButtonLeft=36 ButtonTop=-2.8
         TextSize="TextSizeEnum.SmallMedium" ListItemLeft="56" ListItemTop="-24"></ComboBox>
 
