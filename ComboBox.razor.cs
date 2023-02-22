@@ -43,8 +43,7 @@ namespace DataJuggler.Blazor.Components
         private string buttonText;
         private string imagePath;
         private string listItemStyle;
-        private List<IBlazorComponent> children;
-        private const string ComboBoxButtonName = "ComboBoxButton";
+        private List<IBlazorComponent> children;        
         private ImageButton comboBoxButton;
         private string noPadding;
         private bool visible;        
@@ -88,6 +87,7 @@ namespace DataJuggler.Blazor.Components
         private string labelClassName;
         private double labelLeft;
         private double labelTop;
+        private string labelUnit;
         #endregion
 
         #region Constructor
@@ -221,6 +221,7 @@ namespace DataJuggler.Blazor.Components
                 Items = new List<Item>();
                 LabelBackColor = "transparent";
                 ComboBoxBackColor = Color.Transparent;
+                LabelUnit = "px";
                 
                 // Set so the image is set
                 Expanded = false;
@@ -1112,6 +1113,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelLeftStyle
+            /// <summary>
+            /// This read only property returns the value of LabelLeftStyle from the object LabelLeft.
+            /// </summary>
+            public string LabelLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string labelLeftStyle = LabelLeft + LabelUnit;
+                    
+                    // return value
+                    return labelLeftStyle;
+                }
+            }
+            #endregion
+            
             #region LabelMarginRight
             /// <summary>
             /// This property gets or sets the value for 'LabelMarginRight'.
@@ -1202,6 +1221,37 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelTop; }
                 set { labelTop = value; }
+            }
+            #endregion
+
+            #region LabelTopStyle
+            /// <summary>
+            /// This read only property returns the value of LabelTopStyle from the object LabelTop.
+            /// </summary>            
+            public string LabelTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string labelTopStyle = LabelTop + LabelUnit;
+                    
+                    // return value
+                    return labelTopStyle;
+                }
+            }
+            #endregion
+            
+            #region LabelUnit
+            /// <summary>
+            /// This property gets or sets the value for 'LabelUnit'.
+            /// This property is used with LabelLeft and LabelTop
+            /// </summary>
+            [Parameter]
+            public string LabelUnit
+            {
+                get { return labelUnit; }
+                set { labelUnit = value; }
             }
             #endregion
             
