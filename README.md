@@ -1,4 +1,4 @@
-Live Demo and opensource project
+Live Demo and opensource Blazor project:
 
 Blazor Excelerate
 https://excelerate.datajuggler.com 
