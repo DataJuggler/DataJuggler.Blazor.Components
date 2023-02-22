@@ -86,6 +86,8 @@ namespace DataJuggler.Blazor.Components
         private string labelBackColor;
         private Color comboBoxBackColor;
         private string labelClassName;
+        private double labelLeft;
+        private double labelTop;
         #endregion
 
         #region Constructor
@@ -1098,6 +1100,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelLeft
+            /// <summary>
+            /// This property gets or sets the value for 'LabelLeft'.
+            /// </summary>
+            [Parameter]
+            public double LabelLeft
+            {
+                get { return labelLeft; }
+                set { labelLeft = value; }
+            }
+            #endregion
+            
             #region LabelMarginRight
             /// <summary>
             /// This property gets or sets the value for 'LabelMarginRight'.
@@ -1179,6 +1193,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region LabelTop
+            /// <summary>
+            /// This property gets or sets the value for 'LabelTop'.
+            /// </summary>
+            [Parameter]
+            public double LabelTop
+            {
+                get { return labelTop; }
+                set { labelTop = value; }
+            }
+            #endregion
+            
             #region LabelWidth
             /// <summary>
             /// This property gets or sets the value for 'LabelWidth'.

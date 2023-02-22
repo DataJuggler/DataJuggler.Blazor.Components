@@ -38,7 +38,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>Feb. 1, 2023: I updated the CSS class with a clear class.
+    <PackageReleaseNotes>Feb. 22, 2023: I added LabelClassName to the ComboBox.
+I also added LabelLeft and LabelTop to the ComboBox.
+
+Feb. 1, 2023: I updated the CSS class with a clear class.
 
 January 21, 2023: I was having a problem with Nuget packages being built. Not sure what broke.
 Testing again.
@@ -340,7 +343,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.6.2</Version>
+    <Version>7.6.3</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
