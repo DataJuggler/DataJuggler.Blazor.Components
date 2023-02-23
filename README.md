@@ -105,7 +105,7 @@ Set the width, min-width and max-width in pixels. In this example 640.
 ### Example
 
     <ValidationComponent Name="ResultsControl" Caption="Results:" Parent="this" Unit="px" Column1Width="64" Column2Width="480" TextBoxWidth="480" 
-        LabelClassName="down8" Left="0" MarginLeft="4" Multiline=true HeightUnit="vh" Height="20" Top=-10 LabelFontSizeUnit="em" 
+        LabelClassName="down8" Left="0" MarginLeft="4" Multiline=true HeightUnit="vh" Height="20" Top=0 LabelFontSizeUnit="em" 
         LabelFontSize=".8"></ValidationComponent>
 
 This componet can serve as a CheckBox, a TextBox or a TextArea.
