@@ -1,3 +1,10 @@
+News 3.8.2023: Nuget package DataJuggler.Blazor.Components reached 40,000 installs today.
+
+In honor of this (not) high paying achievement, I made a video on how to use these components:
+
+Build A Complete Blazor Site In One Hour (sort of)
+
+
 Live Demo and opensource Blazor project:
 
 Blazor Excelerate
