@@ -300,7 +300,11 @@ public partial class Index : IProgressSubscriber
     /// </summary>
     public void Refresh(string message)
     {
-        // your UI can response to this message if needed. 
+        // Update the UI
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
     }
 
 # Register
