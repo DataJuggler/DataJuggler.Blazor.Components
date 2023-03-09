@@ -18,8 +18,6 @@ Nuget: BlazorStyled
 Source
 https://github.com/chanan/BlazorStyled
 
-Add a Nuget package reference to BlazorStyled
-
 You must register BlazorStyled in your project in Program.cs:
 
     using BlazorStyled;
