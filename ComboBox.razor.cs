@@ -131,7 +131,7 @@ namespace DataJuggler.Blazor.Components
                 ButtonText = selectedItem.Value.ToString();
 
                 // Set the SelectedItem
-                SetSelectedItem(ButtonText);
+                SetSelectedItem(ButtonText, false);
 
                 // if the Parent exists
                 if (HasParent)
@@ -381,11 +381,11 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region SetSelectedItem(string text)
+            #region SetSelectedItem(string text, bool refresh = true)
             /// <summary>
             /// returns the Selected Item
             /// </summary>
-            public Item SetSelectedItem(string text)
+            public Item SetSelectedItem(string text, bool refresh = true)
             {
                 // initial value
                 Item selectedItem = null;
@@ -408,6 +408,13 @@ namespace DataJuggler.Blazor.Components
                             // Set the ButtonText
                             ButtonText = selectedItem.Text.Replace("_", " ");
 
+                            // if the value for refresh is true
+                            if (refresh)
+                            {
+                                // Update this object
+                                Refresh();
+                            }
+
                             // break out of the loop
                             break;
                         }
@@ -424,6 +431,13 @@ namespace DataJuggler.Blazor.Components
 
                                 // Set the ButtonText
                                 ButtonText = selectedItem.Text.Replace("_", " ");
+
+                                // if the value for refresh is true
+                                if (refresh)
+                                {
+                                    // Update this object
+                                    Refresh();
+                                }
 
                                 // break out of the loop
                                 break;
