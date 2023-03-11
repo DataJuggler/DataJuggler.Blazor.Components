@@ -1,3 +1,10 @@
+News 3.8.2023: Nuget package DataJuggler.Blazor.Components reached 40,000 installs today.
+
+In honor of this (not) high paying achievement, I made a video on how to use these components:
+
+Build A Complete Blazor Site In One Hour (sort of)
+https://youtu.be/4LxlEh9toRU
+
 Live Demo and opensource Blazor project:
 
 Blazor Excelerate
@@ -17,8 +24,6 @@ Nuget: BlazorStyled
 
 Source
 https://github.com/chanan/BlazorStyled
-
-Add a Nuget package reference to BlazorStyled
 
 You must register BlazorStyled in your project in Program.cs:
 
@@ -300,7 +305,11 @@ public partial class Index : IProgressSubscriber
     /// </summary>
     public void Refresh(string message)
     {
-        // your UI can response to this message if needed. 
+        // Update the UI
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
     }
 
 # Register
@@ -586,7 +595,7 @@ WidthPixels: 900px;
 
     <ComboBox Name="ComboBoxControl" Parent="this" Unit="px" Width="160" HeightUnit="vh" Height="3.6" LabelText="Select:" LabelWidth=54 ZIndex=20
         Left="10" Theme="ThemeEnum.Brown" LabelLeft="-16" LabelColor="Color.Black" ButtonTextColor="Color.LemonChiffon" ButtonLeft=36 ButtonTop=-2.8
-        TextSize="TextSizeEnum.SmallMedium" ListItemLeft="56" ListItemTop="-24"></ComboBox>
+        TextSize="TextSizeEnum.SmallMedium" ListItemLeft="56" ListItemTop="0"></ComboBox>
 
 
 
