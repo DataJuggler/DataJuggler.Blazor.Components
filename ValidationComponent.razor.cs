@@ -161,6 +161,7 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Set Default Values
+                Caption = "";
                 BackgroundColor = "transparent";
                 Display = "inline-block";
                 InputType = "text";
@@ -194,9 +195,9 @@ namespace DataJuggler.Blazor.Components
                 Column1Width = 30;
                 Column2Width = 50;
                 Column3Width = 20;
+                Rows = 3;
                 Visible = true;
                 Width= 30;
-                Rows = 3;
             }
             #endregion
             
@@ -1345,7 +1346,22 @@ namespace DataJuggler.Blazor.Components
             public double LabelWidth
             {
                 get { return labelWidth; }
-                set { labelWidth = value; }
+                set 
+                {
+                    // set the value
+                    labelWidth = value;
+
+                    // if a Caption is set
+                    if (ShowCaption)
+                    {
+                        // if the Column is not as big
+                        if (Column1Width < labelWidth)
+                        {
+                            // Set
+                            Column1Width = labelWidth;
+                        }
+                    }
+                }
             }
             #endregion
             

@@ -38,7 +38,11 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>Feb. 22, 2023: I added LabelClassName to the ComboBox.
+    <PackageReleaseNotes>May 7, 2023: While working on a project, I noticed the LabelWidth doesn't work if the Column1Width is
+too small. I added code to LabelWidth to set Column1Width if it is too narrow. The order parameters
+are set can affect this. I also realized LabelTop was not used, so I added LabelTop to Column1 (CssClass).
+
+Feb. 22, 2023: I added LabelClassName to the ComboBox.
 I also added LabelLeft and LabelTop to the ComboBox.
 
 Feb. 1, 2023: I updated the CSS class with a clear class.
@@ -343,7 +347,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.7.2</Version>
+    <Version>7.7.3</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
@@ -394,8 +398,8 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="7.1.9" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.1.1" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="7.2.12" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.1.2" />
   </ItemGroup>
 
 
