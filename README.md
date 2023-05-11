@@ -1,4 +1,17 @@
-News 3.8.2023: Nuget package DataJuggler.Blazor.Components reached 40,000 installs today.
+News 
+
+5.10.2023: New sample project and video released
+
+Blazor Gallery<br>
+https://github.com/DataJuggler/BLazorGallery
+
+New Video<br>
+How to Create a Blazor SQL Server Image Gallery In 5 Minutes<br>
+https://youtu.be/yQz1dqYiy2g
+
+5.8.2023: Nuget package DataJuggler.Blazor.Components reached 50,000 installs today.
+
+3.8.2023: Nuget package DataJuggler.Blazor.Components reached 40,000 installs today.
 
 In honor of this (not) high paying achievement, I made a video on how to use these components:
 
