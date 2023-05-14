@@ -1,4 +1,17 @@
-News 3.8.2023: Nuget package DataJuggler.Blazor.Components reached 40,000 installs today.
+News 
+
+5.10.2023: New sample project and video released
+
+Blazor Gallery<br>
+https://github.com/DataJuggler/BLazorGallery
+
+New Video<br>
+How to Create a Blazor SQL Server Image Gallery In 5 Minutes<br>
+https://youtu.be/yQz1dqYiy2g
+
+5.8.2023: Nuget package DataJuggler.Blazor.Components reached 50,000 installs today.
+
+3.8.2023: Nuget package DataJuggler.Blazor.Components reached 40,000 installs today.
 
 In honor of this (not) high paying achievement, I made a video on how to use these components:
 
@@ -34,6 +47,24 @@ You must register BlazorStyled in your project in Program.cs:
     
     // Register BlazorStyled
     builder.Services.AddBlazorStyled();
+    
+# New Video - 50,000 Nuget Installs
+
+BuildCopy https://github.com/DataJuggler/BuildCopy
+
+BuildCopy will copy the files from a Visual Studio solution to an output folder. In this case, the output folder is ProjectTemplates\Working\Templates. BuildCopy also allows you to set ignore folders, so I do not copy the .vs, .git, .bin, .obj, .templateconfig and a few others.
+
+Here is a video showing you how to setup this project, build the data tier for Blazor Gallery, and build your own DataTier.Net projects.
+
+How To Create A Nuget Package For A Blazor Site
+https://youtu.be/K5WbNKUPDGs
+
+Want To Help Contribute to this project?
+Volunteer to take the instructions from the video and write them out as step by step. Bonus with images and screen shots.
+
+If you think this project is worth the price, please leave a star and / or subscribe to my YouTube channel: https://youtube.com/DataJuggler
+
+Thanks
 
 
 One of my favorite things of this project is the DataJuggler.Blazor.Componets.css file.
@@ -146,9 +177,6 @@ I will update this document and create new sample projects when I get time.
 
 If you have any questions, please feel free to ask on Git Hub:
 https://github.com/DataJuggler/DataJuggler.Blazor.Components/Issues
-
-
-
 
 # DataJuggler.Blazor.Components
 This class consists of an ImageButton, ProgressBar, Sprite, ValidationComponent and now a ComboBox.
