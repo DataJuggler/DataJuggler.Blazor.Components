@@ -38,7 +38,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>May 7, 2023: While working on a project, I noticed the LabelWidth doesn't work if the Column1Width is
+    <PackageReleaseNotes>May 12, 2023: I updated the validation message to do a replace on Caption if it has colons in it. So you
+can say User Name 'XYZ' is already taken, without it appearing 'User Name: 'XYZ'. 
+
+May 7, 2023: While working on a project, I noticed the LabelWidth doesn't work if the Column1Width is
 too small. I added code to LabelWidth to set Column1Width if it is too narrow. The order parameters
 are set can affect this. I also realized LabelTop was not used, so I added LabelTop to Column1 (CssClass).
 

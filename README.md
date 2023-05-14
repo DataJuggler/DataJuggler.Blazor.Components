@@ -1,9 +1,42 @@
-News 
+News
+
+5.14.2023: Blazor Gallery is now a Nuget package.<br>
+Blazor Gallory is a working sample project that uses the Validation Component and Sprite and
+comes with a Login Component and a Join component.
+
+To create a new Blazor Gallery project, you can either 
+
+Clone Blazor Gallery
+
+Blazor Gallery<br>
+https://github.com/DataJuggler/BLazorGallery<br>
+
+Or
+
+Create a project from a Nuget package
+
+Install Nuget Package Using dotnet CLI
+
+    dotnet new install DataJuggler.BlazorGallery
+
+Create a project, change to the directory you wish to create your project
+
+    cd c:\Temp
+
+Create Project Using dotnet CLI
+
+    dotnet new DataJuggler.BlazorGallery
+
+Blazor Gallery requires SQL Server or SQL Server Express, and I show how to set it up in the video below.
+
+Since the video below was made, Blazor Gallery now has (homemade) routing.
+You can create public galleries in the format (domain)/Gallery/User/Folder.
+This allows users to share thier portfolios using a url like (domain)/Gallery/Julia/WeddingPics.
 
 5.10.2023: New sample project and video released
 
 Blazor Gallery<br>
-https://github.com/DataJuggler/BLazorGallery
+https://github.com/DataJuggler/BLazorGallery<br>
 
 New Video<br>
 How to Create a Blazor SQL Server Image Gallery In 5 Minutes<br>
