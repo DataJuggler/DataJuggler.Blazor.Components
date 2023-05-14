@@ -471,7 +471,7 @@ namespace DataJuggler.Blazor.Components
                         isValid = false;
 
                         // Set the validiation message
-                        this.ValidationMessage = "This " + this.Caption + " is already taken. Please login if this is you.";
+                        this.ValidationMessage = "This " + this.Caption.Replace(":", "") + " is already taken. Please login if this is you.";
                     }
 
                     // Set the value
