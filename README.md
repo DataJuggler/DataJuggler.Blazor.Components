@@ -1,5 +1,8 @@
 News
 
+June 2, 2023: I added an Enabled property and a method SetEnabled to the validation component.
+If Enabled is false, disabled will appear in the input objects and be read only.
+
 5.14.2023: Blazor Gallery is now a Nuget package.<br>
 Blazor Gallory is a working sample project that uses the Validation Component and Sprite and
 comes with a Login Component and a Join component.

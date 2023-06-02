@@ -101,6 +101,7 @@ namespace DataJuggler.Blazor.Components
         private double column1Width;
         private double column2Width;
         private double column3Width;
+        private bool enabled;
 
         // This are only used when inside a Grid
         private Guid rowId;
@@ -198,6 +199,7 @@ namespace DataJuggler.Blazor.Components
                 Rows = 3;
                 Visible = true;
                 Width= 30;
+                Enabled = true;
             }
             #endregion
             
@@ -340,6 +342,17 @@ namespace DataJuggler.Blazor.Components
                     // Set the value
                     this.CheckBoxValue = isChecked;
                 }
+            }
+            #endregion
+            
+            #region SetEnabled(bool enable)
+            /// <summary>
+            /// Set Enabled
+            /// </summary>
+            public void SetEnabled(bool enable)
+            {
+                // store
+                Enabled = enable;
             }
             #endregion
             
@@ -786,6 +799,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Disabled
+            /// <summary>
+            /// This read only property returns Disabled if 
+            /// </summary>
+            public string Disabled
+            {
+                
+                get
+                {
+                    // initial value
+                    string disabled = "";
+
+                    // if the value for Enabled is false
+                    if (!Enabled)
+                    {
+                        // set the string to disabled
+                        disabled = "disabled";
+                    }
+                    
+                    // return value
+                    return disabled;
+                }
+            }
+            #endregion
+            
             #region Display
             /// <summary>
             /// This property gets or sets the value for 'Display'.
@@ -826,6 +864,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return displayStyle;
                 }
+            }
+            #endregion
+            
+            #region Enabled
+            /// <summary>
+            /// This property gets or sets the value for 'Enabled'.
+            /// </summary>
+            [Parameter]
+            public bool Enabled
+            {
+                get { return enabled; }
+                set { enabled = value; }
             }
             #endregion
             

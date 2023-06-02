@@ -38,7 +38,10 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>May 12, 2023: I updated the validation message to do a replace on Caption if it has colons in it. So you
+    <PackageReleaseNotes>June 2, 2023: I added an Enabled property and a method SetEnabled to the validation component.
+If Enabled is false, disabled will appear in the input objects and be read only.
+
+May 12, 2023: I updated the validation message to do a replace on Caption if it has colons in it. So you
 can say User Name 'XYZ' is already taken, without it appearing 'User Name: 'XYZ'. 
 
 May 7, 2023: While working on a project, I noticed the LabelWidth doesn't work if the Column1Width is
@@ -350,7 +353,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.7.4</Version>
+    <Version>7.7.5</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>

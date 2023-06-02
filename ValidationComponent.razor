@@ -85,19 +85,19 @@
                 @if (CheckBoxMode)
                 {
                     <div class="@CheckBoxClassName">
-                        <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+                        <input disabled="@Disabled" class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
                     </div>
                 }
                 else if (Multiline)
                 {
                     <div class="@TextBoxClassName">
-                        <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
+                        <textarea disabled="@Disabled" class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
                     </div>
                 }
                 else
                 {
                     <span class="@TextBoxClassName">
-                        <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                        <input disabled="@Disabled" class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
                     </span>
                 }
             </div>
