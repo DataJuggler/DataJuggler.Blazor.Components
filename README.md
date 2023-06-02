@@ -3,64 +3,37 @@ News
 June 2, 2023: I added an Enabled property and a method SetEnabled to the validation component.
 If Enabled is false, disabled will appear in the input objects and be read only.
 
-5.14.2023: Blazor Gallery is now a Nuget package.<br>
-Blazor Gallory is a working sample project that uses the Validation Component and Sprite and
-comes with a Login Component and a Join component.
-
-To create a new Blazor Gallery project, you can either 
-
-Clone Blazor Gallery
-
-Blazor Gallery<br>
-https://github.com/DataJuggler/BLazorGallery<br>
-
-Or
-
-Create a project from a Nuget package
-
-Install Nuget Package Using dotnet CLI
-
-    dotnet new install DataJuggler.BlazorGallery
-
-Create a project, change to the directory you wish to create your project
-
-    cd c:\Temp
-
-Create Project Using dotnet CLI
-
-    dotnet new DataJuggler.BlazorGallery
-
-Blazor Gallery requires SQL Server or SQL Server Express, and I show how to set it up in the video below.
-
-Since the video below was made, Blazor Gallery now has (homemade) routing.
-You can create public galleries in the format (domain)/Gallery/User/Folder.
-This allows users to share thier portfolios using a url like (domain)/Gallery/Julia/WeddingPics.
-
-5.10.2023: New sample project and video released
-
-Blazor Gallery<br>
-https://github.com/DataJuggler/BLazorGallery<br>
-
-New Video<br>
-How to Create a Blazor SQL Server Image Gallery In 5 Minutes<br>
-https://youtu.be/yQz1dqYiy2g
-
 5.8.2023: Nuget package DataJuggler.Blazor.Components reached 50,000 installs today.
 
 3.8.2023: Nuget package DataJuggler.Blazor.Components reached 40,000 installs today.
 
-In honor of this (not) high paying achievement, I made a video on how to use these components:
+# Sample Projects
 
-Build A Complete Blazor Site In One Hour (sort of)
-https://youtu.be/4LxlEh9toRU
+I created a new project that uses the ValidationComponent.
 
-Live Demo and opensource Blazor project:
+# Blazor Gallery
+
+Live Demo
+
+Blazor Gallery<br>
+https://blazorgallery.com 
+
+Blazor Gallery Source<br>
+https://github.com/DataJuggler/BlazorGallery
+
+# Video
+Blazor Gallery Deserves A Star<br>
+[![Blazor Gallery Deserves A Star Video](https://img.youtube.com/vi/HAMgeaCuvHY/0.jpg)](https://www.youtube.com/watch?v=HAMgeaCuvHY)
+
+# Blazor Excelerate
+
+Live Demo
 
 Blazor Excelerate
 https://excelerate.datajuggler.com 
 Code Generate C# Classes From Excel Header Rows
 
-Sample project Demo
+Blazor Excelerate Source
 https://github.com/DataJuggler/Blazor.Excelerate
 
 Getting Started:
