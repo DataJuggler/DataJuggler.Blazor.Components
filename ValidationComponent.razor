@@ -85,19 +85,40 @@
                 @if (CheckBoxMode)
                 {
                     <div class="@CheckBoxClassName">
-                        <input disabled="@Disabled" class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+                        @if (Enabled)
+                        {
+                            <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+                        }
+                        else
+                        {
+                            <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" disabled />
+                        }                        
                     </div>
                 }
                 else if (Multiline)
                 {
                     <div class="@TextBoxClassName">
-                        <textarea disabled="@Disabled" class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
+                        @if (Enabled)
+                        {
+                            <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
+                        }
+                        else
+                        {
+                            <textarea class="@TextBoxStyle" disabled type=@InputType @bind="@Text"  />
+                        }                        
                     </div>
                 }
                 else
                 {
                     <span class="@TextBoxClassName">
-                        <input disabled="@Disabled" class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                        @if (Enabled)
+                        {
+                            <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                        }
+                        else
+                        {
+                            <input class="@TextBoxStyle" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
+                        }
                     </span>
                 }
             </div>

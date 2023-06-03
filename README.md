@@ -1,5 +1,7 @@
 News
 
+June 3, 2023: My first attempt at Disabled for the Validation Component was wrong. I think my fix will work. Testing now.
+
 June 2, 2023: I added an Enabled property and a method SetEnabled to the validation component.
 If Enabled is false, disabled will appear in the input objects and be read only.
 

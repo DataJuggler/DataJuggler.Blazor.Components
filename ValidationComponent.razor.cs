@@ -799,31 +799,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Disabled
-            /// <summary>
-            /// This read only property returns Disabled if 
-            /// </summary>
-            public string Disabled
-            {
-                
-                get
-                {
-                    // initial value
-                    string disabled = "";
-
-                    // if the value for Enabled is false
-                    if (!Enabled)
-                    {
-                        // set the string to disabled
-                        disabled = "disabled";
-                    }
-                    
-                    // return value
-                    return disabled;
-                }
-            }
-            #endregion
-            
             #region Display
             /// <summary>
             /// This property gets or sets the value for 'Display'.
