@@ -585,6 +585,20 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region Refresh()
+            /// <summary>
+            /// method Refresh
+            /// </summary>
+            public void Refresh()
+            {
+                // Update the UI
+                InvokeAsync(() =>
+                {
+                    StateHasChanged();
+                });
+            }
+            #endregion
+
             #region SetRotationIncrement(double rotationIncrement)
             /// <summary>
             /// Set Y Increment
@@ -593,6 +607,20 @@ namespace DataJuggler.Blazor.Components
             {
                 // store
                 RotationIncrement = rotationIncrement;
+            }
+            #endregion
+            
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// Set Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // set the value
+                Visible = visible;
+
+                // update the UI
+                Refresh();
             }
             #endregion
             
@@ -631,17 +659,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region Stop
+            #region Stop(bool hide = true)
             /// <summary>
             /// method Stops the Timer
             /// </summary>
-            public void Stop()
+            public void Stop(bool hide = true)
             {
                 // if the value for HasTimer is true
                 if (HasTimer)
                 {
                    // Stop the Timer
                    Timer.Stop();
+
+                   // if the value for hide is true
+                   if (hide)
+                   {
+                        // hide
+                        Visible = false;
+                   }
                 }
             }
             #endregion
