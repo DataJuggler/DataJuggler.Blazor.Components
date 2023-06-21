@@ -1,5 +1,7 @@
 News
 
+June 21, 2023: I updated DataJuggler.UltimateHelper.
+
 June 3, 2023 B: I updated the Sprite component to have a SetVisible and optional parameter for Hide
 when you call Stop.
 
@@ -81,7 +83,7 @@ If you think this project is worth the price, please leave a star and / or subsc
 Thanks
 
 
-One of my favorite things of this project is the DataJuggler.Blazor.Componets.css file.
+One of my favorite parts of this project is the DataJuggler.Blazor.Componets.css file.
 
 After adding nuget package DataJuggler.Blazor.Componets Nuget package, add the folloing line to
 your _layout.cshtml file in your Blazor project:
