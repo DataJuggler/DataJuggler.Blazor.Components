@@ -75,7 +75,7 @@ You must register BlazorStyled in your project in Program.cs:
     // Register BlazorStyled
     builder.Services.AddBlazorStyled();
     
-# New Video - 50,000 Nuget Installs
+# New Video - 50,000 NuGet Installs
 
 BuildCopy https://github.com/DataJuggler/BuildCopy
 
@@ -83,7 +83,7 @@ BuildCopy will copy the files from a Visual Studio solution to an output folder.
 
 Here is a video showing you how to setup this project, build the data tier for Blazor Gallery, and build your own DataTier.Net projects.
 
-How To Create A Nuget Package For A Blazor Site
+How To Create A NuGet Package For A Blazor Site
 https://youtu.be/K5WbNKUPDGs
 
 Want To Help Contribute to this project?
