@@ -1,5 +1,16 @@
 News
 
+July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a ValidationComponent
+below a ComboBox, so hopefully this fixes it. I also added a ComboBoxWidth parameter property on the ComboBox.
+
+July 6, 2023: I added an AutoComplete property, which defaults to false.
+The reason for this is browsers like to fill in values, and the browser is confusing Email Address and User Name fields.
+
+July 2, 2023: I removed the floats from the ValidationComponent. This will probably break
+some existing users, but I am trying to make the control more consistant to work with.
+I also added a MarginBottom property. Use this in conjunction with the HeightUnit, which
+defaults to px (pixels) and the MarginBottom is set to 8 by default. 
+
 June 21, 2023: I updated DataJuggler.UltimateHelper.
 
 June 3, 2023 B: I updated the Sprite component to have a SetVisible and optional parameter for Hide

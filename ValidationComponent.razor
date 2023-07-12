@@ -2,7 +2,7 @@
 @using BlazorStyled 
 
 <Styled @bind-Classname="@Column1">
-    float: left;
+    display: inline-block;
     height: 100%;
     background-color: @LabelBackgroundColor;
     color: @LabelColor;
@@ -13,14 +13,14 @@
     top: @LabelTopStyle;
 </Styled>
 <Styled @bind-Classname="@Column2">
-    float: left;
+    display: inline-block;
     width: @TextBoxWidthStyle;
     height: 100%;    
     margin-left: @MarginLeftStyle;
     width: @Column2WidthStyle;
 </Styled>
-<Styled @bind-Classname="@Column3">
-    float: left;
+<Styled @bind-Classname="@Column3">    
+    display: inline-block;
     width: @ImageWidthStyle;
     height: 100%;    
     background-color: @ImageBackColor;
@@ -58,7 +58,10 @@
     height: @HeightStyle;
     background-color: @BackgroundColor;
     z-index: @ZIndex;
-    clear:both;    
+</Styled>
+<Styled @bind-Classname="@BottomMarginClass">
+    width: @WidthStyle;
+    height: @MarginBottomStyle;
 </Styled>
 
 <style>
@@ -87,11 +90,11 @@
                     <div class="@CheckBoxClassName">
                         @if (Enabled)
                         {
-                            <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" />
+                            <input class="@CheckBoxStyle" type=@InputType checked="@CheckBoxValue" />
                         }
                         else
                         {
-                            <input class="@CheckBoxStyle" type=@InputType @bind="@CheckBoxValue" disabled />
+                            <input class="@CheckBoxStyle" type=@InputType checked="@CheckBoxValue" disabled />
                         }                        
                     </div>
                 }
@@ -113,11 +116,11 @@
                     <span class="@TextBoxClassName">
                         @if (Enabled)
                         {
-                            <input class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                            <input class="@TextBoxStyle" autocomplete="@AutoCompleteStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
                         }
                         else
                         {
-                            <input class="@TextBoxStyle" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
+                            <input class="@TextBoxStyle" autocomplete="off" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
                         }
                     </span>
                 }
@@ -132,4 +135,5 @@
             }
         </div>
     </div>
+    <div class="@BottomMarginClass"></div>
 }

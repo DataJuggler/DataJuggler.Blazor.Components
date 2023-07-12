@@ -4,13 +4,14 @@
 
 <Styled @bind-Classname="Grid">
     display: block;
-    height: 16px;
+    height: @HeightStyle;
     justify-content: left;
     min-width: @WidthStyle;
     width: @WidthStyle;
     font-size: @TextSizeStyle;
     position: @Position;
-    left: @LeftStyle;        
+    left: @LeftStyle;
+    Top: @TopStyle;
 </Styled>
 <Styled @bind-Classname="LabelStyle">
     display: inline-block;
@@ -21,20 +22,22 @@
     color: @LabelColorName;    
     white-space: nowrap;
     width: @LabelWidthStyle;
-    float: left;
+    min-width: @LabelWidthStyle;
+    max-width: @LabelWidthStyle;
     z-index: @ZIndexMinusStyle;
-    position: relative;
+    position: @LabelPosition;
     left: @LabelLeftStyle;
     top: @LabelTopStyle;
 </Styled>
 <Styled @bind-Classname="ComboBoxStyle">    
     display: inline-block;
     height: @HeightStyle;
-    width: @WidthStyle    
+    width: @ComboBoxWidthStyle;
+    min-width: @ComboBoxWidthStyle;
+    max-width: @ComboBoxWidthStyle;
     font-size: @TextSizeStyle;    
     justify-content: left;
-    text-align: center;   
-    float: left;    
+    text-align: center;    
     z-index: @ZIndex;
     background-color: @ComboBoxBackColor;
 </Styled>
@@ -43,7 +46,7 @@
     text-align: left;
     background-color: @ListBackgroundColorName;
     width: @ListItemWidthStyle;
-    position: relative;
+    position: @listItemPosition;
     color: @ListItemTextColorName;
     left: @ListItemLeftStyle;
     top: @ListItemTopStyle;
@@ -59,11 +62,10 @@
     justify-content: left;    
     text-align: center;
     width: 100%;
-    position: relative;    
-    left: 0px;
-    top: 0px;
+    position: @ButtonPosition;
+    left: @ButtonLeftStyle;
+    top: @ButtonTopStyle;
 </Styled>
-
  
 <div class="@Grid">    
     @if (ShowLabel)
@@ -73,9 +75,9 @@
     <div class="@ComboBoxStyle">
         <div class="@ButtonStyle">
             <ImageButton ButtonNumber="1" ButtonText="@ButtonText" Height="4" Unit="@Unit" Width="@Width"
-                    Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@ButtonLeft" Top=@ButtonTop
-                    ZIndex="ZIndexPlus"
-                    ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" ImageUrl="@ButtonUrl" Parent="this">
+                Name="ComboBoxButton" TextSize="@TextSize" Position="relative" Left="@ButtonLeft" Top=@ButtonTop
+                ZIndex="ZIndexPlus" ButtonTextAlign="@TextAlign" TextColor="@ButtonTextColor" 
+                ImageUrl="@ButtonUrl" Parent="this">
             </ImageButton>
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))

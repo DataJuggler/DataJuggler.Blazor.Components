@@ -102,6 +102,10 @@ namespace DataJuggler.Blazor.Components
         private double column2Width;
         private double column3Width;
         private bool enabled;
+        private double marginBottom;
+        private string bottomMarginClass;
+        private bool autoComplete;
+        private string invalidLabelColor;
 
         // This are only used when inside a Grid
         private Guid rowId;
@@ -162,6 +166,7 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Set Default Values
+                AutoComplete = false;
                 Caption = "";
                 BackgroundColor = "transparent";
                 Display = "inline-block";
@@ -169,8 +174,8 @@ namespace DataJuggler.Blazor.Components
                 LabelColor = "Black";
                 IsUnique = true;
                 ImageScale = 1.6;                
-                CheckBoxXPosition = -6;
-                CheckBoxYPosition = 1.28;
+                CheckBoxXPosition = 0;
+                CheckBoxYPosition = 0;
                 FontSize = 12;
                 TextBoxWidth = 120;
                 Unit = "px";
@@ -179,6 +184,7 @@ namespace DataJuggler.Blazor.Components
                 HeightUnit = "px";
                 ImageBackColor = "transparent";
                 ImageWidth = 10;
+                InvalidLabelColor = "Tomato";
                 LabelBackgroundColor = "transparent";
                 LabelColor="Black";
                 LabelWidth= 30;
@@ -186,6 +192,7 @@ namespace DataJuggler.Blazor.Components
                 LabelFontSizeUnit = "px";
                 Left = 0;
                 MarginLeft = 1.2;
+                MarginBottom = 8;
                 Position = "relative";
                 TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";                
                 Text = "";
@@ -337,10 +344,13 @@ namespace DataJuggler.Blazor.Components
             public void SetCheckBoxValue(bool isChecked)
             {
                 // if CheckBoxMode
-                if (this.CheckBoxMode)
+                if (CheckBoxMode)
                 {
                     // Set the value
-                    this.CheckBoxValue = isChecked;
+                    CheckBoxValue = isChecked;
+
+                    // Update the UI
+                    Refresh();
                 }
             }
             #endregion
@@ -398,6 +408,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetInvalidLabelColor(string invalidColor)
+            /// <summary>
+            /// Set Invalid Label Color
+            /// </summary>
+            public void SetInvalidLabelColor(string invalidColor)
+            {
+                // Set the color to be set for invalid
+                InvalidLabelColor = invalidColor;
+            }
+            #endregion
+            
             #region SetTextValue(string text)
             /// <summary>
             /// This method Sets the Text Value
@@ -406,9 +427,6 @@ namespace DataJuggler.Blazor.Components
             {
                 // Set the value
                 this.Text = text;
-
-                // Update
-                Refresh();
             }
             #endregion
             
@@ -507,6 +525,42 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
    
+            #region AutoComplete
+            /// <summary>
+            /// This property gets or sets the value for 'Autocomplete'.
+            /// </summary>
+            [Parameter]
+            public bool AutoComplete
+            {
+                get { return autoComplete; }
+                set { autoComplete = value; }
+            }
+            #endregion
+            
+            #region AutoCompleteStyle
+            /// <summary>
+            /// This read only property returns the value of AutoCompleteStyle from the object AutoComplete.
+            /// </summary>
+            public string AutoCompleteStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string autoCompleteStyle = "off";
+                    
+                    if (AutoComplete)
+                    {
+                        // Set to On if AutoComplete is truned on.
+                        autoCompleteStyle = "on";
+                    }
+                    
+                    // return value
+                    return autoCompleteStyle;
+                }
+            }
+            #endregion
+            
             #region BackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'BackgroundColor'.
@@ -516,6 +570,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return backgroundColor; }
                 set { backgroundColor = value; }
+            }
+            #endregion
+            
+            #region BottomMarginClass
+            /// <summary>
+            /// This property gets or sets the value for 'BottomMarginClass'.
+            /// </summary>
+            public string BottomMarginClass
+            {
+                get { return bottomMarginClass; }
+                set { bottomMarginClass = value; }
             }
             #endregion
             
@@ -1146,6 +1211,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region InvalidLabelColor
+            /// <summary>
+            /// This property gets or sets the value for 'InvalidLabelColor'.
+            /// </summary>
+            [Parameter]
+            public string InvalidLabelColor
+            {
+                get { return invalidLabelColor; }
+                set { invalidLabelColor = value; }
+            }
+            #endregion
+            
             #region InvalidReason
             /// <summary>
             /// This property gets or sets the value for 'InvalidReason'.
@@ -1232,7 +1309,7 @@ namespace DataJuggler.Blazor.Components
                     if (isValid)
                     {
                         // Set for valid
-                        LabelColor = "LemonChiffon";
+                        LabelColor = InvalidLabelColor;
                         TextBoxBackColor = "White";
                     }
                     else
@@ -1431,6 +1508,36 @@ namespace DataJuggler.Blazor.Components
 
                     // return value
                     return leftStyle;
+                }
+            }
+            #endregion
+            
+            #region MarginBottom
+            /// <summary>
+            /// This property gets or sets the value for 'MarginBottom'.
+            /// </summary>
+            [Parameter]
+            public double MarginBottom
+            {
+                get { return marginBottom; }
+                set { marginBottom = value; }
+            }
+            #endregion
+            
+            #region MarginBottomStyle
+            /// <summary>
+            /// This read only property returns the value of MarginBottomStyle from the object MarginBottom.
+            /// </summary>
+            public string MarginBottomStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string marginBottomStyle = MarginBottom + HeightUnit;
+                    
+                    // return value
+                    return marginBottomStyle;
                 }
             }
             #endregion

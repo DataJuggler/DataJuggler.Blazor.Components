@@ -88,6 +88,10 @@ namespace DataJuggler.Blazor.Components
         private double labelLeft;
         private double labelTop;
         private string labelUnit;
+        private double comboBoxWidth;        
+        private string buttonPosition;
+        private string labelPosition;
+        private string listItemPosition;
         #endregion
 
         #region Constructor
@@ -200,6 +204,7 @@ namespace DataJuggler.Blazor.Components
             {
                  // Default to 30% for the lable, the rest goes to the ComboBox            
                 Theme = ThemeEnum.Black;
+                ButtonPosition = "relative";
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonText = "[Button Text]";
                 TextSize = TextSizeEnum.Medium;
@@ -211,6 +216,7 @@ namespace DataJuggler.Blazor.Components
                 Unit = "px";
                 HeightUnit = "px";
                 Width = 120;
+                ComboBoxWidth = 120;
                 Position = "relative";
                 VisibleCount = 5;
                 ZIndex = 0;
@@ -222,6 +228,8 @@ namespace DataJuggler.Blazor.Components
                 LabelBackColor = "transparent";
                 ComboBoxBackColor = Color.Transparent;
                 LabelUnit = "px";
+                ListItemPosition = "relative";
+                LabelPosition = "relative";
                 
                 // Set so the image is set
                 Expanded = false;
@@ -694,6 +702,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ButtonLeftStyle
+            /// <summary>
+            /// This read only property returns the value of ButtonLeftStyle from the object ButtonLeft.
+            /// </summary>
+            public string ButtonLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string buttonLeftStyle = ButtonLeft + Unit;
+                    
+                    // return value
+                    return buttonLeftStyle;
+                }
+            }
+            #endregion
+            
+            #region ButtonPosition
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonPosition'.
+            /// </summary>
+            [Parameter]
+            public string ButtonPosition
+            {
+                get { return buttonPosition; }
+                set { buttonPosition = value; }
+            }
+            #endregion
+            
             #region ButtonStyle
             /// <summary>
             /// This property gets or sets the value for 'ButtonStyle'.
@@ -756,6 +794,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonTop; }
                 set { buttonTop = value; }
+            }
+            #endregion
+            
+            #region ButtonTopStyle
+            /// <summary>
+            /// This read only property returns the value of ButtonTopStyle from the object ButtonTop.
+            /// </summary>
+            public string ButtonTopStyle
+            {                
+                get
+                {
+                    // initial value
+                    string buttonTopStyle = ButtonTop + HeightUnit;
+                    
+                    // return value
+                    return buttonTopStyle;
+                }
             }
             #endregion
             
@@ -856,6 +911,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return comboBoxStyle; }
                 set { comboBoxStyle = value; }
+            }
+            #endregion
+            
+            #region ComboBoxWidth
+            /// <summary>
+            /// This property gets or sets the value for 'ComboBoxWidth'.
+            /// </summary>
+            [Parameter]
+            public double ComboBoxWidth
+            {
+                get { return comboBoxWidth; }
+                set { comboBoxWidth = value; }
+            }
+            #endregion
+            
+            #region ComboBoxWidthStyle
+            /// <summary>
+            /// This read only property returns the value of ComboBoxWidthStyle from the object ComboBoxWidth.
+            /// </summary>
+            public string ComboBoxWidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string comboBoxWidthStyle = ComboBoxWidth + Unit;
+                    
+                    // return value
+                    return comboBoxWidthStyle;
+                }
             }
             #endregion
             
@@ -1203,6 +1288,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelPosition
+            /// <summary>
+            /// This property gets or sets the value for 'LabelPosition'.
+            /// </summary>
+            [Parameter]
+            public string LabelPosition
+            {
+                get { return labelPosition; }
+                set { labelPosition = value; }
+            }
+            #endregion
+            
             #region LabelStyle
             /// <summary>
             /// This property gets or sets the value for 'LabelStyle'.
@@ -1248,7 +1345,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string labelTopStyle = LabelTop + LabelUnit;
+                    string labelTopStyle = LabelTop + HeightUnit;
                     
                     // return value
                     return labelTopStyle;
@@ -1388,6 +1485,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ListItemPosition
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemPosition'.
+            /// </summary>
+            [Parameter]
+            public string ListItemPosition
+            {
+                get { return listItemPosition; }
+                set { listItemPosition = value; }
+            }
+            #endregion
+            
             #region ListItemStyle
             /// <summary>
             /// This property gets or sets the value for 'ListItemStyle'.
@@ -1451,7 +1560,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string listItemTopStyle = ListItemTop + Unit;
+                    string listItemTopStyle = ListItemTop + HeightUnit;
                     
                     // return value
                     return listItemTopStyle;
@@ -1724,7 +1833,7 @@ namespace DataJuggler.Blazor.Components
                     top = value;
 
                     // set the value for topStyle
-                    TopStyle = top + "vh";
+                    TopStyle = top + HeightUnit;
                 }
             }
             #endregion

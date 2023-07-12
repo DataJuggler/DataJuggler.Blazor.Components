@@ -38,61 +38,73 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
-    <PackageReleaseNotes>June 3, 2023 B: I updated the Sprite component to have a SetVisible and optional parameter for Hide
-when you call Stop.
+    <PackageReleaseNotes>
+		July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a ValidationComponent
+		below a ComboBox, so hopefully this fixes it. I also added a ComboBoxWidth parameter property on the ComboBox.
 
-June 3, 2023: My first attempt at Disabled for the Validation Component was wrong. I think my fix will work. Testing now.
+		July 6, 2023: I added an AutoComplete property, which defaults to false.
+		The reason for this is browsers like to fill in values, and the browser is confusing Email Address and User Name fields.
 
-June 2, 2023: I added an Enabled property and a method SetEnabled to the validation component.
-If Enabled is false, disabled will appear in the input objects and be read only.
+		July 2, 2023: I removed the floats from the ValidationComponent. This will probably break
+		some existing users, but I am trying to make the control more consistant to work with.
+		I also added a MarginBottom property. Use this in conjunction with the HeightUnit, which
+		defaults to px (pixels) and the MarginBottom is set to 8 by default.
 
-May 12, 2023: I updated the validation message to do a replace on Caption if it has colons in it. So you
-can say User Name 'XYZ' is already taken, without it appearing 'User Name: 'XYZ'. 
+		June 3, 2023 B: I updated the Sprite component to have a SetVisible and optional parameter for Hide
+		when you call Stop.
 
-May 7, 2023: While working on a project, I noticed the LabelWidth doesn't work if the Column1Width is
-too small. I added code to LabelWidth to set Column1Width if it is too narrow. The order parameters
-are set can affect this. I also realized LabelTop was not used, so I added LabelTop to Column1 (CssClass).
+		June 3, 2023: My first attempt at Disabled for the Validation Component was wrong. I think my fix will work. Testing now.
 
-Feb. 22, 2023: I added LabelClassName to the ComboBox.
-I also added LabelLeft and LabelTop to the ComboBox.
+		June 2, 2023: I added an Enabled property and a method SetEnabled to the validation component.
+		If Enabled is false, disabled will appear in the input objects and be read only.
 
-Feb. 1, 2023: I updated the CSS class with a clear class.
+		May 12, 2023: I updated the validation message to do a replace on Caption if it has colons in it. So you
+		can say User Name 'XYZ' is already taken, without it appearing 'User Name: 'XYZ'.
 
-January 21, 2023: I was having a problem with Nuget packages being built. Not sure what broke.
-Testing again.
+		May 7, 2023: While working on a project, I noticed the LabelWidth doesn't work if the Column1Width is
+		too small. I added code to LabelWidth to set Column1Width if it is too narrow. The order parameters
+		are set can affect this. I also realized LabelTop was not used, so I added LabelTop to Column1 (CssClass).
 
-Dec 28, 2022
-v7.4.19-rc1: I am expirementing with Position Sticky for the button. The button is moving on me and I am trying
-to prevent that.
+		Feb. 22, 2023: I added LabelClassName to the ComboBox.
+		I also added LabelLeft and LabelTop to the ComboBox.
 
-Dec 27, 2022
-v7.4.18: Float Left didn't work, so the 7.4.18-RC1 is removed.
+		Feb. 1, 2023: I updated the CSS class with a clear class.
 
-v7.4.6
-12.26.2022: The button in the grid didn't work first attempt. May try again later. I removed
-the Parameter tag from the ImageButton ClickHandler property.
+		January 21, 2023: I was having a problem with Nuget packages being built. Not sure what broke.
+		Testing again.
 
-v7.4.1
-12.25.2022: I am testing a button for a column in the grid. 
+		Dec 28, 2022
+		v7.4.19-rc1: I am expirementing with Position Sticky for the button. The button is moving on me and I am trying
+		to prevent that.
 
-12.21.2022: Trying another way to do visibibility of the ComboBox.
+		Dec 27, 2022
+		v7.4.18: Float Left didn't work, so the 7.4.18-RC1 is removed.
 
-12.19.2022: I am cleaning up the ValidationComponent.
+		v7.4.6
+		12.26.2022: The button in the grid didn't work first attempt. May try again later. I removed
+		the Parameter tag from the ImageButton ClickHandler property.
 
-12.18.2022 B: I accidently left a color red in I was using for placement issues.
+		v7.4.1
+		12.25.2022: I am testing a button for a column in the grid.
 
-12.18.2022: I finally fixed the ValidationComponent. You should be able to just
-create one and set a few properties and have them line up correctly now.
+		12.21.2022: Trying another way to do visibibility of the ComboBox.
 
-12.17.2022: I added an AutoComplete parameter to the ValidationComponent.
-Trying to prevent browsers from filling in forms if you set this to false.
-Also added Float Left to the Label and TextBox so that they stay inline better.
+		12.19.2022: I am cleaning up the ValidationComponent.
+
+		12.18.2022 B: I accidently left a color red in I was using for placement issues.
+
+		12.18.2022: I finally fixed the ValidationComponent. You should be able to just
+		create one and set a few properties and have them line up correctly now.
+
+		12.17.2022: I added an AutoComplete parameter to the ValidationComponent.
+		Trying to prevent browsers from filling in forms if you set this to false.
+		Also added Float Left to the Label and TextBox so that they stay inline better.
 
 
-12.16.2022: The ComboBox was defaulting to TextSizeEnum.Large. I fixed this to
-use the TextSize default setting of Medium. 
+		12.16.2022: The ComboBox was defaulting to TextSizeEnum.Large. I fixed this to
+		use the TextSize default setting of Medium.
 
-12.11.2022: I changed the way Height &amp; Width work again for the ValidationComponent. I over complicated this at first by having
+		12.11.2022: I changed the way Height &amp; Width work again for the ValidationComponent. I over complicated this at first by having
 TextBoxHeight / Width and a Control Height / Width. Now the Height &amp; Width is applied to the TextBox.
 I added a HeightUnit property. I also added two parameter properties: ExternalId and ExternalIdDescription.
 NamedParameter also added the same two properties, and the values are set when the Enter key is pressed.
@@ -358,7 +370,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.7.9</Version>
+    <Version>7.9.3</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
