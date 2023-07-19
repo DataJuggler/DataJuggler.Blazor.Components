@@ -1,5 +1,7 @@
 News
 
+July 18, 2023: I fixed the checkbox component. The binding wasn't working when I thought I fixed it last time.
+
 July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a ValidationComponent
 below a ComboBox, so hopefully this fixes it. I also added a ComboBoxWidth parameter property on the ComboBox.
 

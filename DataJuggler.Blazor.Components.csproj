@@ -39,6 +39,8 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>
+		July 18, 2023: I fixed the checkbox component. The binding wasn't working when I thought I fixed it last time.
+
 		July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a ValidationComponent
 		below a ComboBox, so hopefully this fixes it. I also added a ComboBoxWidth parameter property on the ComboBox.
 
@@ -370,7 +372,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.9.5</Version>
+    <Version>7.9.6</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
