@@ -106,7 +106,7 @@ namespace DataJuggler.Blazor.Components
         private string bottomMarginClass;
         private bool autoComplete;
         private string invalidLabelColor;
-
+        
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;        
@@ -128,7 +128,7 @@ namespace DataJuggler.Blazor.Components
         #endregion
 
         #region Methods
-
+    
             #region Enter(KeyboardEventArgs e)
             /// <summary>
             /// event is fired when Enter

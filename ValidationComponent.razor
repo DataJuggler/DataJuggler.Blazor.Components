@@ -90,7 +90,7 @@
                     <div class="@CheckBoxClassName">
                         @if (Enabled)
                         {
-                            <input class="@CheckBoxStyle" type=@InputType checked="@CheckBoxValue" />
+                            <input class="@CheckBoxStyle" @bind="@CheckBoxValue" type=@InputType checked="@CheckBoxValue" />
                         }
                         else
                         {
