@@ -1,5 +1,11 @@
 News
 
+July 22, 2023: More updates  to NuGet package DataJuggler.Excelerate, and I need this update for my project 
+Blazor Excelerate
+
+July 21, 2023: I updated NuGet package DataJuggler.Excelerate, and I need this update for my project 
+Blazor Excelerate
+
 July 18, 2023: I fixed the checkbox component. The binding wasn't working when I thought I fixed it last time.
 
 July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a ValidationComponent
