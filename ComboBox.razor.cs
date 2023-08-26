@@ -119,36 +119,8 @@ namespace DataJuggler.Blazor.Components
                 // if the TextSize button was clicked
                 if ((buttonNumber == 1) && (HasComboBoxButton))
                 {
-                    // If the CheckedListComponent and the Items collections both exist
-                    if ((HasCheckedListComponent) && (HasItems))
-                    {
-                        // Get the selected items
-                        List<Item> selectedItems = CheckedListComponent.SelectedItems;
-
-                        // first unselect everything
-                        foreach (Item item in Items)
-                        {   
-                            // unselect
-                            item.ItemChecked = false;
-                        }
-
-                        // If the selectedItems collection exists and has one or more items
-                        if (ListHelper.HasOneOrMoreItems(selectedItems))
-                        {
-                            foreach (Item item in selectedItems)
-                            {
-                                // attempt to find this item
-                                Item temp = CheckedListComponent.FindItemById(item.Id);
-
-                                // If the temp object exists
-                                if (NullHelper.Exists(temp))
-                                {
-                                    // set to true
-                                    temp.ItemChecked = true;
-                                }
-                            }
-                        }
-                    }
+                    // Store the selections (checked boxes) before hiding
+                    StoreSelections();
 
                     // Set the value for expanded or not
                     Expanded = !Expanded;
@@ -730,6 +702,45 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region StoreSelections()
+            /// <summary>
+            /// Store Selections
+            /// </summary>
+            public void StoreSelections()
+            {
+                // If the CheckedListComponent and the Items collections both exist
+                if ((HasCheckedListComponent) && (HasItems))
+                {
+                    // Get the selected items
+                    List<Item> selectedItems = CheckedListComponent.SelectedItems;
+
+                    // first unselect everything
+                    foreach (Item item in Items)
+                    {   
+                        // unselect
+                        item.ItemChecked = false;
+                    }
+
+                    // If the selectedItems collection exists and has one or more items
+                    if (ListHelper.HasOneOrMoreItems(selectedItems))
+                    {
+                        foreach (Item item in selectedItems)
+                        {
+                            // attempt to find this item
+                            Item temp = CheckedListComponent.FindItemById(item.Id);
+
+                            // If the temp object exists
+                            if (NullHelper.Exists(temp))
+                            {
+                                // set to true
+                                temp.ItemChecked = true;
+                            }
+                        }
+                    }
+                }
+            }
+            #endregion
+            
         #endregion
             
         #region Properties

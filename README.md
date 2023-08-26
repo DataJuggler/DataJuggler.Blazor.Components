@@ -106,7 +106,6 @@ If you think this project is worth the price, please leave a star and / or subsc
 
 Thanks
 
-
 One of my favorite parts of this project is the DataJuggler.Blazor.Componets.css file.
 
 After adding nuget package DataJuggler.Blazor.Componets Nuget package, add the folloing line to
@@ -219,8 +218,16 @@ If you have any questions, please feel free to ask on Git Hub:
 https://github.com/DataJuggler/DataJuggler.Blazor.Components/Issues
 
 # DataJuggler.Blazor.Components
-This class consists of an ImageButton, ProgressBar, Sprite, ValidationComponent and now a ComboBox.
-I am working on a Grid.
+This class consists of an ImageButton, ProgressBar, Sprite, ValidationComponent, ComboBox,
+CheckedListBox and a Grid.
+
+# CheckedListBox
+
+Update 8.26.2023: If you need to hide the CheckedListBox, before hiding you need to store
+the selections. Look at the code for the ComboBox.ButtonClickedEvent to see an example where
+it calls StoreSelections. This checks the Items in memory if the checkboxes have been checked.
+I have tried doing this dynamically as the items are checked, and had numeroius problems.
+
 
 Update 11.8.2022: This project has been updated to .NET 7.
 
