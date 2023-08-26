@@ -39,8 +39,13 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>
+		August 26, 2023: In celebration of 75,000 NuGet installs, I added two new features.
+		First, I created a CheckedListBox component. I also added a new feature to the ComboBox,
+		and that new features is a CheckedListMode. The combobox now supports check boxes and
+		multiple selections.
+
 		August 13, 2023: DataJuggler.UltimateHelper and DataJuggler.Excelerate were updated.
-		
+
 		July 22, 2023: More updates  to NuGet package DataJuggler.Excelerate, and I need this update for my project
 		Blazor Excelerate
 
