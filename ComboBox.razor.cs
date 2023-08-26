@@ -1815,6 +1815,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region SelectedItems
+            /// <summary>
+            /// This read only property returns the value of SelectedItems from the object CheckedListComponent.
+            /// </summary>
+            public List<Item> SelectedItems
+            {
+                
+                get
+                {
+                    // initial value
+                    List<Item> selectedItems = null;
+                    
+                    // if CheckedListComponent exists
+                    if (HasCheckedListComponent)
+                    {
+                        // set the return value
+                        selectedItems = CheckedListComponent.SelectedItems;
+                    }
+                    
+                    // return value
+                    return selectedItems;
+                }
+            }
+            #endregion
+            
             #region ShowLabel
             /// <summary>
             /// This property gets or sets the value for 'ShowLabel'.
