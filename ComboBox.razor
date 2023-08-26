@@ -3,7 +3,7 @@
 @using DataJuggler.Blazor.Components.Enumerations
 
 <Styled @bind-Classname="Grid">
-    display: block;
+    display: @DisplayStyle;
     height: @HeightStyle;
     justify-content: left;
     min-width: @WidthStyle;
@@ -46,6 +46,7 @@
     text-align: left;
     background-color: @ListBackgroundColorName;
     width: @ListItemWidthStyle;
+    height: @HeightStyle;
     position: @listItemPosition;
     color: @ListItemTextColorName;
     left: @ListItemLeftStyle;
@@ -82,14 +83,24 @@
         </div>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
         {
-        <div class="@ListItemStyle">
-            <select class="form-control" name="ListBox" size="@VisibleCount" id="ComboBoxListBox" @onchange="SelectionChanged">
-                    @foreach (Item item in Items)
-                    {
-                        <option class="@NoPadding">@item.Text</option>
-                    }
-            </select>
-        </div>
+            @if (CheckListMode)
+            {
+                <div class="@ListItemStyle">
+                    <CheckedListBox Parent="this" HeightUnit="@HeightUnit" Height="@Height" 
+                        Width="@ListItemWidth" ListItemHeight="@ListItemHeight"></CheckedListBox>                
+                </div>
+            }
+            else
+            {
+                <div class="@ListItemStyle">
+                    <select class="form-control" name="ListBox" size="@VisibleCount" id="ComboBoxListBox" @onchange="SelectionChanged">
+                        @foreach (Item item in Items)
+                        {
+                            <option class="@NoPadding">@item.Text</option>
+                        }
+                    </select>
+                </div>
+            }
         }
     </div>    
 </div>

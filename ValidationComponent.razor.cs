@@ -106,7 +106,7 @@ namespace DataJuggler.Blazor.Components
         private string bottomMarginClass;
         private bool autoComplete;
         private string invalidLabelColor;
-        
+       
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;        
@@ -198,8 +198,7 @@ namespace DataJuggler.Blazor.Components
                 Text = "";
                 TextBoxBackColor = "white";                
                 Top = 0;
-                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
-                Unit = "%";
+                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";                
                 Column1Width = 30;
                 Column2Width = 50;
                 Column3Width = 20;

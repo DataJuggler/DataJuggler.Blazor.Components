@@ -7,7 +7,7 @@
     <Authors>DataJuggler</Authors>
     <Description>A collection of components to make building a Blazor project simpler. 
 This project consists of an ImageButton, ProgressBar, Sprite, Validation component, 
-and ComboBox, and a grid. The Grid is working, but very new. Examples coming soon, but
+and ComboBox, a CheckedListBox and a grid. The Grid is working, but very new. Examples coming soon, but
 I have to get paying work done first.
 
 
@@ -380,7 +380,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.10.1</Version>
+    <Version>7.12.0</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
@@ -432,7 +432,7 @@ Now is the time to break anything.
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
     <PackageReference Include="DataJuggler.Excelerate" Version="7.4.4" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.2.1" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.2.2" />
   </ItemGroup>
 
 

@@ -28,85 +28,88 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
-        private List<Item> items;
-        private Item selectedItem;
-        private string name;
-        private string labelText;        
-        private string grid;
-        private string labelStyle;
-        private string comboBoxStyle;        
-        private TextSizeEnum textSize;
-        private string textSizeStyle;
-        private bool expanded;
-        private IBlazorComponentParent parent;
-        private string buttonUrl;
-        private string buttonText;
-        private string imagePath;
-        private string listItemStyle;
-        private List<IBlazorComponent> children;        
-        private ImageButton comboBoxButton;
-        private string noPadding;
-        private bool visible;        
-        private double left;
-        private double top;
-        private string leftStyle;
-        private string topStyle;
-        private double height;
-        private double width;
-        private string heightStyle;        
-        private string position;
-        private Color labelColor;
-        private int visibleCount;
+        private double buttonLeft;
+        private string buttonPosition;
         private string buttonStyle;
-        private int zIndex;
+        private string buttonText;
+        private Color buttonTextColor;
+        private double buttonTop;
+        private string buttonUrl;
+        private CheckedListBox checkedListComponent;
+        private bool checkListMode;
+        private List<IBlazorComponent> children;
+        private string className;
+        private Color comboBoxBackColor;
+        private ImageButton comboBoxButton;
+        private double comboBoxLeft;
+        private string comboBoxStyle;
+        private double comboBoxWidth;
+        private string displayStyle;
+        private bool expanded;
+        private double expandedButtonLeft;
+        private string grid;
+        private double height;
+        private string heightStyle;
+        private string heightUnit;
+        private string imagePath;
+        private List<Item> items;
+        private string labelBackColor;
+        private string labelClassName;
+        private Color labelColor;
+        private double labelLeft;
         private double labelMarginRight;
-        private string labelMarginRightStyle;
         private double labelMarginRightList;
         private string labelMarginRightListStyle;
-        private double listItemWidth;
-        private string listItemWidthStyle;        
-        private string className;
-        private double labelWidth;
-        private string unit;
-        private ThemeEnum theme;
-        private string textAlign;
-        private Color buttonTextColor;
-        private Color listItemTextColor;
-        private Color listBackgroundColor;
-        private bool rendered;
-        private string displayStyle;
-        private string heightUnit;
-        private double comboBoxLeft;
-        private double listItemLeft;
-        private double buttonLeft;        
-        private double listItemTop;
-        private double expandedButtonLeft;      
-        private double buttonTop;
-        private string labelBackColor;
-        private Color comboBoxBackColor;
-        private string labelClassName;
-        private double labelLeft;
+        private string labelMarginRightStyle;
+        private string labelPosition;
+        private string labelStyle;
+        private string labelText;
         private double labelTop;
         private string labelUnit;
-        private double comboBoxWidth;        
-        private string buttonPosition;
-        private string labelPosition;
+        private double labelWidth;
+        private double left;
+        private string leftStyle;
+        private Color listBackgroundColor;
+        private double listItemHeight;
+        private double listItemLeft;
         private string listItemPosition;
+        private string listItemStyle;
+        private Color listItemTextColor;
+        private double listItemTop;
+        private double listItemWidth;
+        private string listItemWidthStyle;
+        private string name;
+        private string noPadding;
+        private IBlazorComponentParent parent;
+        private string position;
+        private bool rendered;
+        private Item selectedItem;
+        private string textAlign;
+        private TextSizeEnum textSize;
+        private string textSizeStyle;
+        private ThemeEnum theme;
+        private double top;
+        private string topStyle;
+        private string unit;
+        private bool visible;
+        private int visibleCount;
+        private double width;
+        private int zIndex;
         #endregion
-
+        
         #region Constructor
         /// <summary>
         /// Create a new instance of a ComboBox object
         /// </summary>
         public ComboBox()
         {
-           // Perform initializations for this object
-           Init();
+            // Perform initializations for this object
+            Init();
         }
         #endregion
-
+        
         #region Events
-
+            
             #region ButtonClicked(int buttonNumber, string buttonText)
             /// <summary>
             /// Button Clicked
@@ -116,53 +119,84 @@ namespace DataJuggler.Blazor.Components
                 // if the TextSize button was clicked
                 if ((buttonNumber == 1) && (HasComboBoxButton))
                 {
-                    // Set the value for expanded or not
-                    Expanded = !Expanded;                    
-                }
+                    // If the CheckedListComponent and the Items collections both exist
+                    if ((HasCheckedListComponent) && (HasItems))
+                    {
+                        // Get the selected items
+                        List<Item> selectedItems = CheckedListComponent.SelectedItems;
 
+                        // first unselect everything
+                        foreach (Item item in Items)
+                        {   
+                            // unselect
+                            item.ItemChecked = false;
+                        }
+
+                        // If the selectedItems collection exists and has one or more items
+                        if (ListHelper.HasOneOrMoreItems(selectedItems))
+                        {
+                            foreach (Item item in selectedItems)
+                            {
+                                // attempt to find this item
+                                Item temp = CheckedListComponent.FindItemById(item.Id);
+
+                                // If the temp object exists
+                                if (NullHelper.Exists(temp))
+                                {
+                                    // set to true
+                                    temp.ItemChecked = true;
+                                }
+                            }
+                        }
+                    }
+
+                    // Set the value for expanded or not
+                    Expanded = !Expanded;
+                }
+                
                 // Update the UI
                 Refresh();
             }
             #endregion
-
+            
             #region SelectionChanged(ChangeEventArgs selectedItem)
             /// <summary>
             /// event is fired when On Change
-            /// </summary>            
+            /// </summary>
             public void SelectionChanged(ChangeEventArgs selectedItem)
-            {  
+            {
                 // Set the selectedItem
                 ButtonText = selectedItem.Value.ToString();
-
+                
                 // Set the SelectedItem
                 SetSelectedItem(ButtonText, false);
-
+                
                 // if the Parent exists
                 if (HasParent)
                 {
                     // Create a new instance of a 'Message' object.
                     Message message = new Message();
-
+                    
                     // Notify the parent
                     message.Text = ButtonText;
-
+                    
                     // Set who the message is from
                     message.Sender = this;
-
+                    
                     // Send the parent a message the selection changed
                     Parent.ReceiveData(message);
                 }
-
+                
                 // No longer expanded
                 Expanded = false;
-
+                
                 // Update everything
                 Refresh();
             }
             #endregion
-
+            
         #endregion
-
+        
         #region Methods
             
             #region FindChildByName(string name)
@@ -173,18 +207,18 @@ namespace DataJuggler.Blazor.Components
             {
                 // initial value
                 IBlazorComponent child = null;
-
+                
                 // if the value for HasChildren is true
                 if (HasChildren)
                 {
                     foreach (IBlazorComponent tempChild in Children)
                     {
-                        // if this is the item being sought                        
+                        // if this is the item being sought
                         if (TextHelper.IsEqual(tempChild.Name, name))
                         {
                             // set the return value
                             child = tempChild;
-
+                            
                             // break out of loop
                             break;
                         }
@@ -195,14 +229,14 @@ namespace DataJuggler.Blazor.Components
                 return child;
             }
             #endregion
-
+            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
             /// </summary>
             public void Init()
             {
-                 // Default to 30% for the lable, the rest goes to the ComboBox            
+                // Default to 30% for the lable, the rest goes to the ComboBox
                 Theme = ThemeEnum.Black;
                 ButtonPosition = "relative";
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
@@ -221,18 +255,60 @@ namespace DataJuggler.Blazor.Components
                 VisibleCount = 5;
                 ZIndex = 0;
                 LabelMarginRight = 0;
-                LabelMarginRightList = 0;            
-                ListItemWidth = 120;            
+                LabelMarginRightList = 0;
+                ListItemWidth = 120;
                 TextAlign = "center";
                 Items = new List<Item>();
                 LabelBackColor = "transparent";
                 ComboBoxBackColor = Color.Transparent;
                 LabelUnit = "px";
                 ListItemPosition = "relative";
+                ListItemHeight = 32;
                 LabelPosition = "relative";
                 
                 // Set so the image is set
                 Expanded = false;
+            }
+            #endregion
+            
+            #region LoadItems(List<T> items, bool addEmptyRowAtTop = false)
+            /// <summary>
+            /// This method loads a list of any type
+            /// </summary>
+            public void LoadItems<T>(List<T> items, bool addEmptyRowAtTop = false)
+            {
+                // clear the list
+                this.Items = new List<Item>();
+                
+                // if the list exists
+                if ((items != null) && (items.Count > 0))
+                {
+                    // if addEmptyRowAtTop is true
+                    if (addEmptyRowAtTop)
+                    {
+                        // Add the empty item
+                        Item item = new Item();
+                        item.Text = "";
+                        item.Id = 0;
+                        
+                        // Add this item
+                        Items.Add(item);
+                    }
+                    
+                    // iterate the list
+                    foreach (object tempItem in items)
+                    {
+                        Item item = new Item();
+                        item.Text = tempItem.ToString();
+                        item.Id = Items.Count + 1;
+                        Items.Add(item);
+                    }
+                    
+                    SelectedItem = Items[0];
+                    
+                    // Update Async
+                    Refresh();
+                }
             }
             #endregion
             
@@ -248,17 +324,17 @@ namespace DataJuggler.Blazor.Components
                 string itemValue = "";
                 int index = -1;
                 string formattedName = "";
-
+                
                 // clear the list
                 this.Items = new List<Item>();
-
+                
                 // verifyh the object is an emum
                 if (enumType.IsEnum)
                 {
                     // get the names from the enum
                     names = Enum.GetNames(enumType);
                     values = Enum.GetValues(enumType);
-
+                    
                     // if there are one or more names
                     if ((names != null) && (names.Length > 0) && (values != null) && (values.Length == names.Length))
                     {
@@ -267,114 +343,57 @@ namespace DataJuggler.Blazor.Components
                         {
                             // increment index
                             index++;
-
+                            
                             // set the itemValue
                             itemValue = values.GetValue(index).ToString();
-
+                            
                             // replace out any underscores with spaces
                             formattedName = name.Replace("_", " ");
-
+                            
                             // Create the item
                             Item item = new Item();
-
+                            
                             // Get the value
                             item.Id = NumericHelper.ParseInteger(itemValue, 0, 0);
-
+                            
                             // Set the name with any underscores out
                             item.Text = formattedName;
-
+                            
                             // add this item
                             this.Items.Add(item);
                         }
-
+                        
                         // Update Async
                         Refresh();
                     }
                 }
             }
             #endregion
-
-            #region LoadItems<T>(List<T> items, bool addEmptyRowAtTop = false)
-            /// <summary>
-            /// This method loads a list of any type 
-            /// </summary>
-            public void LoadItems<T>(List<T> items, bool addEmptyRowAtTop = false)
-            {
-                // clear the list
-                this.Items = new List<Item>();
-
-                // if the list exists
-                if ((items != null) && (items.Count > 0))
-                {
-                    // if addEmptyRowAtTop is true
-                    if (addEmptyRowAtTop)
-                    {
-                        // Add the empty item
-                        Item item = new Item();
-                        item.Text = "";
-                        item.Id = 0;
-
-                        // Add this item
-                        Items.Add(item);
-                    }
-
-                    // iterate the list
-                    foreach (object tempItem in items)
-                    {
-                        Item item = new Item();
-                        item.Text = tempItem.ToString();
-                        item.Id = Items.Count + 1;
-                        Items.Add(item);
-                    }
-
-                    SelectedItem = Items[0];
-
-                    // Update Async
-                    Refresh();
-                }
-            }
-            #endregion
-
+            
             #region ReceiveData(Message message)
             /// <summary>
             /// method returns the Data
             /// </summary>
             public void ReceiveData(Message message)
             {
-                // if a message exists
-                if (NullHelper.Exists(message))
-                { 
-                    // Refresh
-                    Refresh();
-                }
-            }
-            #endregion
-
-            #region Register(IBlazorComponent component)
-            /// <summary>
-            /// method registers the ComboBoxButton
-            /// </summary>
-            public void Register(IBlazorComponent component)
-            {
-                // Add this item
-                this.Children.Add(component);
-
-                // if this is the Button registering
-                if (component is ImageButton)
+                // If the 'message' object and the 'checkedListComponent' objects both exist.
+                if (NullHelper.Exists(message, checkedListComponent))
                 {
-                    // Store the ComboBoxButton
-                    ComboBoxButton = component as ImageButton;
-
-                    // if the value for HasComboBoxButton is true
-                    if (HasComboBoxButton)
+                    // if it is the CheckedListBox
+                    if (message.Text == "SendItems")
                     {
-                        // Setup the click handler
-                        ComboBoxButton.ClickHandler = ButtonClicked;
+                        // set the items
+                        CheckedListComponent.SetItems(Items);
+                    }
+                    else
+                    {
+                        // Refresh
+                        Refresh();
                     }
                 }
             }
             #endregion
-
+            
             #region Refresh()
             /// <summary>
             /// method Refresh
@@ -385,10 +404,80 @@ namespace DataJuggler.Blazor.Components
                 InvokeAsync(() =>
                 {
                     StateHasChanged();
-                });
+                    });
+                }
+                #endregion
+                
+            #region Register(IBlazorComponent component)
+            /// <summary>
+            /// method registers the ComboBoxButton
+            /// </summary>
+            public void Register(IBlazorComponent component)
+            {
+                // Add this item
+                this.Children.Add(component);
+                    
+                // if this is the Button registering
+                if (component is ImageButton)
+                {
+                    // Store the ComboBoxButton
+                    ComboBoxButton = component as ImageButton;
+                        
+                    // if the value for HasComboBoxButton is true
+                    if (HasComboBoxButton)
+                    {
+                        // Setup the click handler
+                        ComboBoxButton.SetClickHandler(ButtonClicked);
+                    }
+                }
+                else if (component is CheckedListBox)
+                {
+                    // store
+                    CheckedListComponent = component as CheckedListBox;
+
+                    // if the value for HasCheckedListComponent is true
+                    if (HasCheckedListComponent)
+                    {
+                        // Set the Items
+                        CheckedListComponent.SetItems(Items);
+                    }
+                }
             }
             #endregion
-
+                
+            #region SetButtonText(string buttonText)
+            /// <summary>
+            /// Set Button Text
+            /// </summary>
+            public void SetButtonText(string buttonText)
+            {
+                // Store the buttonText
+                ButtonText = buttonText;
+            }
+            #endregion
+                
+            #region SetLeft(int left)
+            /// <summary>
+            /// Set Left
+            /// </summary>
+            public void SetLeft(int left)
+            {
+                // store
+                Left = left;
+            }
+            #endregion
+                
+            #region SetPosition(string position)
+            /// <summary>
+            /// Set Position
+            /// </summary>
+            public void SetPosition(string position)
+            {
+                // store
+                Position = position;
+            }
+            #endregion
+                
             #region SetSelectedItem(string text, bool refresh = true)
             /// <summary>
             /// returns the Selected Item
@@ -397,7 +486,7 @@ namespace DataJuggler.Blazor.Components
             {
                 // initial value
                 Item selectedItem = null;
-
+                    
                 // If the text string exists
                 if ((TextHelper.Exists(text)) && (HasItems))
                 {
@@ -406,23 +495,23 @@ namespace DataJuggler.Blazor.Components
                     {
                         // if a direct match
                         if (TextHelper.IsEqual(item.Text, text))
-                        {   
+                        {
                             // set the selecteted item
                             selectedItem = item;
-
+                                
                             // Set the property
                             SelectedItem = item;
-
+                                
                             // Set the ButtonText
                             ButtonText = selectedItem.Text.Replace("_", " ");
-
+                                
                             // if the value for refresh is true
                             if (refresh)
                             {
                                 // Update this object
                                 Refresh();
                             }
-
+                                
                             // break out of the loop
                             break;
                         }
@@ -433,33 +522,97 @@ namespace DataJuggler.Blazor.Components
                             {
                                 // set the selecteted item
                                 selectedItem = item;
-
+                                    
                                 // Set the property
                                 SelectedItem = item;
-
+                                    
                                 // Set the ButtonText
                                 ButtonText = selectedItem.Text.Replace("_", " ");
-
+                                    
                                 // if the value for refresh is true
                                 if (refresh)
                                 {
                                     // Update this object
                                     Refresh();
                                 }
-
+                                    
                                 // break out of the loop
                                 break;
                             }
                         }
                     }
                 }
-                
+                    
                 // return value
                 return selectedItem;
             }
             #endregion
-            
-            #region SetTextSizeStyle(textSizeStyle)
+                
+            #region SetTextSize(TextSizeEnum textSize)
+            /// <summary>
+            /// Sets the text size
+            /// </summary>
+            public void SetTextSize(TextSizeEnum textSize)
+            {
+                // set the value
+                TextSize = textSize;
+            }
+            #endregion
+                
+            #region SetTextSize(string selectedTextSizeText)
+            /// <summary>
+            /// Set Text Size
+            /// </summary>
+            public void SetTextSize(string selectedTextSizeText)
+            {
+                // Default value
+                TextSizeEnum textSize = TextSizeEnum.Medium;
+                    
+                    // If the selectedTextSizeText string exists
+                    if (TextHelper.Exists(selectedTextSizeText))
+                    {
+                        switch (selectedTextSizeText)
+                        {
+                            case "Extra Small":
+                            
+                            // Set the value
+                            textSize = TextSizeEnum.Extra_Small;
+                            
+                            // required
+                            break;
+                            
+                            case "Small":
+                            
+                            // Set the value
+                            textSize = TextSizeEnum.Small;
+                            
+                            // required
+                            break;
+                            
+                            case "Large":
+                            
+                            // Set the value
+                            textSize = TextSizeEnum.Large;
+                            
+                            // required
+                            break;
+                            
+                            case "Extra Large":
+                            
+                            // Set the value
+                            textSize = TextSizeEnum.Extra_Large;
+                            
+                            // required
+                            break;
+                        }
+                    }
+                    
+                    // set the value
+                    TextSize = textSize;
+                }
+                #endregion
+                
+            #region SetTextSizeStyle(string textSizeStyle)
             /// <summary>
             /// Set Text Size Style. Examples: 12px, 2vh, .75em
             /// </summary>
@@ -469,7 +622,7 @@ namespace DataJuggler.Blazor.Components
                 TextSizeStyle = textSizeStyle;
             }
             #endregion
-            
+                
             #region SetupComponent()
             /// <summary>
             /// Set Button Image
@@ -486,7 +639,7 @@ namespace DataJuggler.Blazor.Components
                         ButtonTextColor = Color.Navy;
                         ListBackgroundColor = Color.AliceBlue;
                     }
-
+                        
                     if (Expanded)
                     {
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxOpen.png";
@@ -505,7 +658,7 @@ namespace DataJuggler.Blazor.Components
                         ButtonTextColor = Color.White;
                         ListBackgroundColor = Color.Brown;
                     }
-
+                        
                     if (Expanded)
                     {
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxOpenDark.png";
@@ -524,7 +677,7 @@ namespace DataJuggler.Blazor.Components
                         ButtonTextColor = Color.White;
                         ListBackgroundColor = Color.Brown;
                     }
-
+                        
                     if (Expanded)
                     {
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBrownOpen.png";
@@ -543,7 +696,7 @@ namespace DataJuggler.Blazor.Components
                         ButtonTextColor = Color.White;
                         ListBackgroundColor = Color.DarkGray;
                     }
-
+                        
                     if (Expanded)
                     {
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlackOpen.png";
@@ -553,116 +706,19 @@ namespace DataJuggler.Blazor.Components
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                     }
                 }
-
+                    
                 // if the Button exists
                 if (HasComboBoxButton)
                 {
                     // Update the Button
                     ComboBoxButton.Refresh();
                 }
-
+                    
                 // Set Rendered to true
                 Rendered = true;
             }
             #endregion
-            
-            #region SetButtonText(string buttonText)
-            /// <summary>
-            /// Set Button Text
-            /// </summary>
-            public void SetButtonText(string buttonText)
-            {
-                // Store the buttonText
-                ButtonText = buttonText;
-            }
-            #endregion
-            
-            #region SetLeft(int left)
-            /// <summary>
-            /// Set Left
-            /// </summary>
-            public void SetLeft(int left)
-            {
-                // store
-                Left = left;
-            }
-            #endregion
-            
-            #region SetPosition(string position)
-            /// <summary>
-            /// Set Position
-            /// </summary>
-            public void SetPosition(string position)
-            {
-                // store
-                Position = position;
-            }
-            #endregion
-            
-            #region SetTextSize(string selectedTextSizeText)
-            /// <summary>
-            /// Set Text Size
-            /// </summary>
-            public void SetTextSize(string selectedTextSizeText)
-            {
-                // Default value
-                TextSizeEnum textSize = TextSizeEnum.Medium;
-
-                // If the selectedTextSizeText string exists
-                if (TextHelper.Exists(selectedTextSizeText))
-                {
-                    switch (selectedTextSizeText)
-                    {
-                        case "Extra Small":
-
-                            // Set the value
-                            textSize = TextSizeEnum.Extra_Small;
-
-                            // required
-                            break;
-
-                         case "Small":
-
-                            // Set the value
-                            textSize = TextSizeEnum.Small;
-
-                            // required
-                            break;
-
-                         case "Large":
-
-                            // Set the value
-                            textSize = TextSizeEnum.Large;
-
-                            // required
-                            break;
-
-                        case "Extra Large":
-
-                            // Set the value
-                            textSize = TextSizeEnum.Extra_Large;
-
-                            // required
-                            break;
-                    }
-                }
-
-                // set the value
-                TextSize = textSize;
-            }
-            #endregion
-
-            #region SetTextSize(TextSizeEnum textSize)
-            /// <summary>
-            /// Sets the text size
-            /// </summary>
-            public void SetTextSize(TextSizeEnum textSize)
-            {
-                // set the value
-                TextSize = textSize;
-            }
-            #endregion
-            
+                
             #region SetVisible(bool visible)
             /// <summary>
             /// Set Visible
@@ -673,11 +729,11 @@ namespace DataJuggler.Blazor.Components
                 Visible = visible;
             }
             #endregion
-            
+                
         #endregion
-
+            
         #region Properties
-
+                
             #region ButtonLeft
             /// <summary>
             /// This property gets or sets the value for 'ButtonLeft'.
@@ -685,41 +741,41 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public double ButtonLeft
             {
-                get 
+                get
                 {
                     double left = buttonLeft;
-
+                        
                     // if expanded and the value is different for ExpandedButtonLeft
                     if ((expanded) && (buttonLeft != expandedButtonLeft))
                     {
                         // use ExpandedButtonLeft
                         left = ExpandedButtonLeft;
                     }
-
+                        
                     return buttonLeft;
                 }
                 set { buttonLeft = value; }
             }
             #endregion
-
+                
             #region ButtonLeftStyle
             /// <summary>
             /// This read only property returns the value of ButtonLeftStyle from the object ButtonLeft.
             /// </summary>
             public string ButtonLeftStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string buttonLeftStyle = ButtonLeft + Unit;
-                    
+                        
                     // return value
                     return buttonLeftStyle;
                 }
             }
             #endregion
-            
+                
             #region ButtonPosition
             /// <summary>
             /// This property gets or sets the value for 'ButtonPosition'.
@@ -731,7 +787,7 @@ namespace DataJuggler.Blazor.Components
                 set { buttonPosition = value; }
             }
             #endregion
-            
+                
             #region ButtonStyle
             /// <summary>
             /// This property gets or sets the value for 'ButtonStyle'.
@@ -742,7 +798,7 @@ namespace DataJuggler.Blazor.Components
                 set { buttonStyle = value; }
             }
             #endregion
-            
+                
             #region ButtonText
             /// <summary>
             /// This property gets or sets the value for 'ButtonText'.
@@ -754,7 +810,7 @@ namespace DataJuggler.Blazor.Components
                 set { buttonText = value; }
             }
             #endregion
-            
+                
             #region ButtonTextColor
             /// <summary>
             /// This property gets or sets the value for 'ButtonTextColor'.
@@ -766,25 +822,25 @@ namespace DataJuggler.Blazor.Components
                 set { buttonTextColor = value; }
             }
             #endregion
-            
+                
             #region ButtonTextColorName
             /// <summary>
             /// This read only property returns the value of Name of the ButtonTextColor
             /// </summary>
             public string ButtonTextColorName
             {
-                
+                    
                 get
                 {
                     // initial value
                     string buttonTextColorName = ButtonTextColor.Name;
-                    
+                        
                     // return value
                     return buttonTextColorName;
                 }
             }
             #endregion
-
+                
             #region ButtonTop
             /// <summary>
             /// This property gets or sets the value for 'ButtonTop'.
@@ -796,24 +852,24 @@ namespace DataJuggler.Blazor.Components
                 set { buttonTop = value; }
             }
             #endregion
-            
+                
             #region ButtonTopStyle
             /// <summary>
             /// This read only property returns the value of ButtonTopStyle from the object ButtonTop.
             /// </summary>
             public string ButtonTopStyle
-            {                
+            {
                 get
                 {
                     // initial value
                     string buttonTopStyle = ButtonTop + HeightUnit;
-                    
+                        
                     // return value
                     return buttonTopStyle;
                 }
             }
             #endregion
-            
+                
             #region ButtonUrl
             /// <summary>
             /// This property gets or sets the value for 'ButtonUrl'.
@@ -825,7 +881,30 @@ namespace DataJuggler.Blazor.Components
                 set { buttonUrl = value; }
             }
             #endregion
-            
+                
+            #region CheckedListComponent
+            /// <summary>
+            /// This property gets or sets the value for 'CheckedListComponent'.
+            /// </summary>
+            public CheckedListBox CheckedListComponent
+            {
+                get { return checkedListComponent; }
+                set { checkedListComponent = value; }
+            }
+            #endregion
+                
+            #region CheckListMode
+            /// <summary>
+            /// This property gets or sets the value for 'CheckListMode'.
+            /// </summary>
+            [Parameter]
+            public bool CheckListMode
+            {
+                get { return checkListMode; }
+                set { checkListMode = value; }
+            }
+            #endregion
+                
             #region Children
             /// <summary>
             /// This property gets or sets the value for 'Children'.
@@ -836,7 +915,7 @@ namespace DataJuggler.Blazor.Components
                 set { children = value; }
             }
             #endregion
-            
+                
             #region ClassName
             /// <summary>
             /// This property gets or sets the value for 'ClassName'.
@@ -848,7 +927,7 @@ namespace DataJuggler.Blazor.Components
                 set { className = value; }
             }
             #endregion
-            
+                
             #region ComboBoxBackColor
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxBackColor'.
@@ -861,7 +940,7 @@ namespace DataJuggler.Blazor.Components
                 set { comboBoxBackColor = value; }
             }
             #endregion
-            
+                
             #region ComboBoxButton
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxButton'.
@@ -872,7 +951,7 @@ namespace DataJuggler.Blazor.Components
                 set { comboBoxButton = value; }
             }
             #endregion
-            
+                
             #region ComboBoxLeft
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxLeft'.
@@ -884,25 +963,25 @@ namespace DataJuggler.Blazor.Components
                 set { comboBoxLeft = value; }
             }
             #endregion
-            
+                
             #region ComboBoxLeftStyle
             /// <summary>
             /// This read only property returns the value of ComboBoxLeftStyle from the object ComboBoxLeft.
             /// </summary>
             public string ComboBoxLeftStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string comboBoxLeftStyle = ComboBoxLeft + unit;
-                    
+                        
                     // return value
                     return comboBoxLeftStyle;
                 }
             }
             #endregion
-            
+                
             #region ComboBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxStyle'.
@@ -913,7 +992,7 @@ namespace DataJuggler.Blazor.Components
                 set { comboBoxStyle = value; }
             }
             #endregion
-            
+                
             #region ComboBoxWidth
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxWidth'.
@@ -925,25 +1004,25 @@ namespace DataJuggler.Blazor.Components
                 set { comboBoxWidth = value; }
             }
             #endregion
-            
+                
             #region ComboBoxWidthStyle
             /// <summary>
             /// This read only property returns the value of ComboBoxWidthStyle from the object ComboBoxWidth.
             /// </summary>
             public string ComboBoxWidthStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string comboBoxWidthStyle = ComboBoxWidth + Unit;
-                    
+                        
                     // return value
                     return comboBoxWidthStyle;
                 }
             }
             #endregion
-            
+                
             #region DisplayStyle
             /// <summary>
             /// This property gets or sets the value for 'DisplayStyle'.
@@ -954,7 +1033,7 @@ namespace DataJuggler.Blazor.Components
                 set { displayStyle = value; }
             }
             #endregion
-            
+                
             #region Expanded
             /// <summary>
             /// This property gets or sets the value for 'Expanded'.
@@ -962,16 +1041,16 @@ namespace DataJuggler.Blazor.Components
             public bool Expanded
             {
                 get { return expanded; }
-                set 
-                { 
+                set
+                {
                     expanded = value;
-
+                        
                     // The button image changes on Expanded and Theme.
                     SetupComponent();
                 }
             }
             #endregion
-            
+                
             #region ExpandedButtonLeft
             /// <summary>
             /// This property gets or sets the value for 'ExpandedButtonLeft'.
@@ -986,7 +1065,7 @@ namespace DataJuggler.Blazor.Components
                 set { expandedButtonLeft = value; }
             }
             #endregion
-            
+                
             #region Grid
             /// <summary>
             /// This property gets or sets the value for 'Grid'.
@@ -997,7 +1076,24 @@ namespace DataJuggler.Blazor.Components
                 set { grid = value; }
             }
             #endregion
-            
+                
+            #region HasCheckedListComponent
+            /// <summary>
+            /// This property returns true if this object has a 'CheckedListComponent'.
+            /// </summary>
+            public bool HasCheckedListComponent
+            {
+                get
+                {
+                    // initial value
+                    bool hasCheckedListComponent = (this.CheckedListComponent != null);
+                        
+                    // return value
+                    return hasCheckedListComponent;
+                }
+            }
+            #endregion
+                
             #region HasChildren
             /// <summary>
             /// This property returns true if this object has a 'Children'.
@@ -1008,13 +1104,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     bool hasChildren = (this.Children != null);
-                    
+                        
                     // return value
                     return hasChildren;
                 }
             }
             #endregion
-            
+                
             #region HasComboBoxButton
             /// <summary>
             /// This property returns true if this object has a 'ComboBoxButton'.
@@ -1025,13 +1121,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     bool hasComboBoxButton = (this.ComboBoxButton != null);
-                    
+                        
                     // return value
                     return hasComboBoxButton;
                 }
             }
             #endregion
-            
+                
             #region HasItems
             /// <summary>
             /// This property returns true if this object has an 'Items'.
@@ -1042,13 +1138,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     bool hasItems = (this.Items != null);
-                    
+                        
                     // return value
                     return hasItems;
                 }
             }
             #endregion
-            
+                
             #region HasParent
             /// <summary>
             /// This property returns true if this object has a 'Parent'.
@@ -1059,13 +1155,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     bool hasParent = (this.Parent != null);
-                    
+                        
                     // return value
                     return hasParent;
                 }
             }
             #endregion
-            
+                
             #region HasSelectedItem
             /// <summary>
             /// This property returns true if this object has a 'SelectedItem'.
@@ -1076,13 +1172,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     bool hasSelectedItem = (this.SelectedItem != null);
-                    
+                        
                     // return value
                     return hasSelectedItem;
                 }
             }
             #endregion
-            
+                
             #region Height
             /// <summary>
             /// This property gets or sets the value for 'Height'.
@@ -1091,16 +1187,16 @@ namespace DataJuggler.Blazor.Components
             public double Height
             {
                 get { return height; }
-                set 
-                { 
+                set
+                {
                     height = value;
-
+                        
                     // Set the height headerStyle string
                     HeightStyle = height + HeightUnit;
                 }
             }
             #endregion
-            
+                
             #region HeightStyle
             /// <summary>
             /// This property gets or sets the value for 'HeightStyle'.
@@ -1111,7 +1207,7 @@ namespace DataJuggler.Blazor.Components
                 set { heightStyle = value; }
             }
             #endregion
-            
+                
             #region HeightUnit
             /// <summary>
             /// This property gets or sets the value for 'HeightUnit'.
@@ -1123,7 +1219,7 @@ namespace DataJuggler.Blazor.Components
                 set { heightUnit = value; }
             }
             #endregion
-            
+                
             #region ImagePath
             /// <summary>
             /// This property gets or sets the value for 'ImagePath'.
@@ -1134,18 +1230,29 @@ namespace DataJuggler.Blazor.Components
                 set { imagePath = value; }
             }
             #endregion
-            
+                
             #region Items
             /// <summary>
             /// This property gets or sets the value for 'Items'.
             /// </summary>
-            public List<Item> Items 
+            public List<Item> Items
             {
                 get { return items; }
-                set { items = value; }
+                set
+                {
+                    // set the value
+                    items = value;
+                        
+                    // if the value for HasCheckedListComponent is true
+                    if (HasCheckedListComponent)
+                    {
+                        // Set the items
+                        CheckedListComponent.SetItems(items);
+                    }
+                }
             }
             #endregion
-
+                
             #region LabelBackColor
             /// <summary>
             /// This property gets or sets the value for 'LabelBackColor'.
@@ -1157,7 +1264,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelBackColor = value; }
             }
             #endregion
-            
+                
             #region LabelClassName
             /// <summary>
             /// This property gets or sets the value for 'LabelClassName'.
@@ -1169,7 +1276,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelClassName = value; }
             }
             #endregion
-            
+                
             #region LabelColor
             /// <summary>
             /// This property gets or sets the value for 'LabelColor'.
@@ -1181,25 +1288,25 @@ namespace DataJuggler.Blazor.Components
                 set { labelColor = value; }
             }
             #endregion
-            
+                
             #region LabelColorName
             /// <summary>
             /// This read only property returns the value of LabelColorName from the object LabelColor.
             /// </summary>
             public string LabelColorName
             {
-                
+                    
                 get
                 {
                     // initial value
                     string labelColorName = LabelColor.Name;
-                    
+                        
                     // return value
                     return labelColorName;
                 }
             }
             #endregion
-            
+                
             #region LabelLeft
             /// <summary>
             /// This property gets or sets the value for 'LabelLeft'.
@@ -1211,25 +1318,25 @@ namespace DataJuggler.Blazor.Components
                 set { labelLeft = value; }
             }
             #endregion
-            
+                
             #region LabelLeftStyle
             /// <summary>
             /// This read only property returns the value of LabelLeftStyle from the object LabelLeft.
             /// </summary>
             public string LabelLeftStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string labelLeftStyle = LabelLeft + LabelUnit;
-                    
+                        
                     // return value
                     return labelLeftStyle;
                 }
             }
             #endregion
-            
+                
             #region LabelMarginRight
             /// <summary>
             /// This property gets or sets the value for 'LabelMarginRight'.
@@ -1238,34 +1345,34 @@ namespace DataJuggler.Blazor.Components
             public double LabelMarginRight
             {
                 get { return labelMarginRight; }
-                set 
+                set
                 {
                     labelMarginRight = value;
-
+                        
                     // set the CSS value
                     LabelMarginRightStyle = labelMarginRight + Unit;
                 }
             }
             #endregion
-            
+                
             #region LabelMarginRightList
             /// <summary>
             /// This property gets or sets the value for 'LabelMarginRightList'.
             /// </summary>
-             [Parameter]
+            [Parameter]
             public double LabelMarginRightList
             {
                 get { return labelMarginRightList; }
-                set 
-                { 
+                set
+                {
                     labelMarginRightList = value;
-
+                        
                     // Set the value
                     labelMarginRightListStyle = labelMarginRightList + Unit;
                 }
             }
             #endregion
-            
+                
             #region LabelMarginRightListStyle
             /// <summary>
             /// This property gets or sets the value for 'LabelMarginRightListStyle'.
@@ -1276,7 +1383,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelMarginRightListStyle = value; }
             }
             #endregion
-            
+                
             #region LabelMarginRightStyle
             /// <summary>
             /// This property gets or sets the value for 'LabelMarginRightStyle'.
@@ -1287,7 +1394,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelMarginRightStyle = value; }
             }
             #endregion
-            
+                
             #region LabelPosition
             /// <summary>
             /// This property gets or sets the value for 'LabelPosition'.
@@ -1299,7 +1406,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelPosition = value; }
             }
             #endregion
-            
+                
             #region LabelStyle
             /// <summary>
             /// This property gets or sets the value for 'LabelStyle'.
@@ -1310,7 +1417,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelStyle = value; }
             }
             #endregion
-            
+                
             #region LabelText
             /// <summary>
             /// This property gets or sets the value for 'LabelText'.
@@ -1322,7 +1429,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelText = value; }
             }
             #endregion
-
+                
             #region LabelTop
             /// <summary>
             /// This property gets or sets the value for 'LabelTop'.
@@ -1334,25 +1441,25 @@ namespace DataJuggler.Blazor.Components
                 set { labelTop = value; }
             }
             #endregion
-
+                
             #region LabelTopStyle
             /// <summary>
             /// This read only property returns the value of LabelTopStyle from the object LabelTop.
-            /// </summary>            
+            /// </summary>
             public string LabelTopStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string labelTopStyle = LabelTop + HeightUnit;
-                    
+                        
                     // return value
                     return labelTopStyle;
                 }
             }
             #endregion
-            
+                
             #region LabelUnit
             /// <summary>
             /// This property gets or sets the value for 'LabelUnit'.
@@ -1365,7 +1472,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelUnit = value; }
             }
             #endregion
-            
+                
             #region LabelWidth
             /// <summary>
             /// This property gets or sets the value for 'LabelWidth'.
@@ -1377,25 +1484,25 @@ namespace DataJuggler.Blazor.Components
                 set { labelWidth = value; }
             }
             #endregion
-            
+                
             #region LabelWidthStyle
             /// <summary>
             /// This read only property returns the value of LabelWidth + Unit
             /// </summary>
             public string LabelWidthStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string labelWidthStyle = labelWidth + unit;
-                    
+                        
                     // return value
                     return labelWidthStyle;
                 }
             }
             #endregion
-            
+                
             #region Left
             /// <summary>
             /// This property gets or sets the value for 'Left'.
@@ -1404,16 +1511,16 @@ namespace DataJuggler.Blazor.Components
             public double Left
             {
                 get { return left; }
-                set 
-                { 
+                set
+                {
                     left = value;
-
+                        
                     // set the value for leftStyle
                     leftStyle = left + Unit;
                 }
             }
             #endregion
-            
+                
             #region LeftStyle
             /// <summary>
             /// This property gets or sets the value for 'LeftStyle'.
@@ -1424,7 +1531,7 @@ namespace DataJuggler.Blazor.Components
                 set { leftStyle = value; }
             }
             #endregion
-            
+                
             #region ListBackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'ListBackgroundColor'.
@@ -1436,22 +1543,34 @@ namespace DataJuggler.Blazor.Components
                 set { listBackgroundColor = value; }
             }
             #endregion
-            
+                
             #region ListBackgroundColorName
             /// <summary>
             /// This read only property returns the value of ListBackgroundColorName from the object ListBackgroundColor.
             /// </summary>
             public string ListBackgroundColorName
             {
-                
+                    
                 get
                 {
                     // initial value
                     string listBackgroundColorName = ListBackgroundColor.Name;
-                    
+                        
                     // return value
                     return listBackgroundColorName;
                 }
+            }
+            #endregion
+                
+            #region ListItemHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemHeight'.
+            /// </summary>
+            [Parameter]
+            public double ListItemHeight
+            {
+                get { return listItemHeight; }
+                set { listItemHeight = value; }
             }
             #endregion
             
@@ -1466,25 +1585,25 @@ namespace DataJuggler.Blazor.Components
                 set { listItemLeft = value; }
             }
             #endregion
-            
+                
             #region ListItemLeftStyle
             /// <summary>
             /// This read only property returns the value of ListItemLeftStyle from the object ListItemLeft.
             /// </summary>
             public string ListItemLeftStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string listItemLeftStyle = ListItemLeft + unit;
-                    
+                        
                     // return value
                     return listItemLeftStyle;
                 }
             }
             #endregion
-            
+                
             #region ListItemPosition
             /// <summary>
             /// This property gets or sets the value for 'ListItemPosition'.
@@ -1496,7 +1615,7 @@ namespace DataJuggler.Blazor.Components
                 set { listItemPosition = value; }
             }
             #endregion
-            
+                
             #region ListItemStyle
             /// <summary>
             /// This property gets or sets the value for 'ListItemStyle'.
@@ -1507,7 +1626,7 @@ namespace DataJuggler.Blazor.Components
                 set { listItemStyle = value; }
             }
             #endregion
-            
+                
             #region ListItemTextColor
             /// <summary>
             /// This property gets or sets the value for 'ListItemTextColor'.
@@ -1519,25 +1638,25 @@ namespace DataJuggler.Blazor.Components
                 set { listItemTextColor = value; }
             }
             #endregion
-            
+                
             #region ListItemTextColorName
             /// <summary>
             /// This read only property returns the value of ListItemTextColorName from the object ListItemTextColor.
             /// </summary>
             public string ListItemTextColorName
             {
-                
+                    
                 get
                 {
                     // initial value
                     string listItemTextColorName = ListItemTextColor.Name;
-                    
+                        
                     // return value
                     return listItemTextColorName;
                 }
             }
             #endregion
-            
+                
             #region ListItemTop
             /// <summary>
             /// This property gets or sets the value for 'ListItemTop'.
@@ -1549,25 +1668,25 @@ namespace DataJuggler.Blazor.Components
                 set { listItemTop = value; }
             }
             #endregion
-            
+                
             #region ListItemTopStyle
             /// <summary>
             /// This read only property returns the value of ListItemTopStyle from the object ListItemTop.
             /// </summary>
             public string ListItemTopStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string listItemTopStyle = ListItemTop + HeightUnit;
-                    
+                        
                     // return value
                     return listItemTopStyle;
                 }
             }
             #endregion
-            
+                
             #region ListItemWidth
             /// <summary>
             /// This property gets or sets the value for 'ListItemWidth'.
@@ -1576,16 +1695,16 @@ namespace DataJuggler.Blazor.Components
             public double ListItemWidth
             {
                 get { return listItemWidth; }
-                set 
-                { 
+                set
+                {
                     listItemWidth = value;
-
+                        
                     // Set the value
                     ListItemWidthStyle = listItemWidth + Unit;
                 }
             }
             #endregion
-            
+                
             #region ListItemWidthStyle
             /// <summary>
             /// This property gets or sets the value for 'ListItemWidthStyle'.
@@ -1596,7 +1715,7 @@ namespace DataJuggler.Blazor.Components
                 set { listItemWidthStyle = value; }
             }
             #endregion
-            
+                
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.
@@ -1608,7 +1727,7 @@ namespace DataJuggler.Blazor.Components
                 set { name = value; }
             }
             #endregion
-            
+                
             #region NoPadding
             /// <summary>
             /// This property gets or sets the value for 'NoPadding'.
@@ -1619,7 +1738,7 @@ namespace DataJuggler.Blazor.Components
                 set { noPadding = value; }
             }
             #endregion
-            
+                
             #region OnChange
             /// <summary>
             /// This event is used to clients can get a notification when a selection was made
@@ -1627,7 +1746,7 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public EventCallback<ChangeEventArgs> OnChange { get; set; }
             #endregion
-
+                
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.
@@ -1636,11 +1755,11 @@ namespace DataJuggler.Blazor.Components
             public IBlazorComponentParent Parent
             {
                 get { return parent; }
-                set 
+                set
                 {
                     // set the value
                     parent = value;
-
+                        
                     // if the value for HasParent is true
                     if (HasParent)
                     {
@@ -1650,7 +1769,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-            
+                
             #region Position
             /// <summary>
             /// This property gets or sets the value for 'Position'.
@@ -1662,7 +1781,7 @@ namespace DataJuggler.Blazor.Components
                 set { position = value; }
             }
             #endregion
-            
+                
             #region Rendered
             /// <summary>
             /// This property gets or sets the value for 'Rendered'.
@@ -1673,7 +1792,7 @@ namespace DataJuggler.Blazor.Components
                 set { rendered = value; }
             }
             #endregion
-            
+                
             #region SelectedItem
             /// <summary>
             /// This property gets or sets the value for 'SelectedItem'.
@@ -1684,24 +1803,24 @@ namespace DataJuggler.Blazor.Components
                 set { selectedItem = value; }
             }
             #endregion
-            
+                
             #region ShowLabel
             /// <summary>
             /// This property gets or sets the value for 'ShowLabel'.
-            /// </summary>            
+            /// </summary>
             public bool ShowLabel
             {
                 get
                 {
                     // set the return value
                     bool showLabel = TextHelper.Exists(LabelText);
-
+                        
                     // return value
                     return showLabel;
                 }
             }
             #endregion
-            
+                
             #region TextAlign
             /// <summary>
             /// This property gets or sets the value for 'TextAlign'.
@@ -1713,7 +1832,7 @@ namespace DataJuggler.Blazor.Components
                 set { textAlign = value; }
             }
             #endregion
-            
+                
             #region TextSize
             /// <summary>
             /// This property gets or sets the value for 'TextSize'.
@@ -1722,73 +1841,73 @@ namespace DataJuggler.Blazor.Components
             public TextSizeEnum TextSize
             {
                 get { return textSize; }
-                set 
-                { 
+                set
+                {
                     // set the value
                     textSize = value;
-
+                        
                     switch (value)
                     {
                         case TextSizeEnum.Extra_Small:
-
-                            // Set the value
-                            TextSizeStyle = .6 + "em";
-
-                            // required
-                            break;
-
+                            
+                        // Set the value
+                        TextSizeStyle = .6 + "em";
+                            
+                        // required
+                        break;
+                            
                         case TextSizeEnum.Small:
-
-                            // Set the value
-                            TextSizeStyle = .8 + "em";
-
-                            // required
-                            break;
-
+                            
+                        // Set the value
+                        TextSizeStyle = .8 + "em";
+                            
+                        // required
+                        break;
+                            
                         case TextSizeEnum.SmallMedium:
-
-                            // Set the value
-                            TextSizeStyle = .9 + "em";
-
-                            // required
-                            break;
-
+                            
+                        // Set the value
+                        TextSizeStyle = .9 + "em";
+                            
+                        // required
+                        break;
+                            
                         case TextSizeEnum.Medium:
-
-                            // Set the value
-                            TextSizeStyle = 1 + "em";
-
-                            // required
-                            break;
-
+                            
+                        // Set the value
+                        TextSizeStyle = 1 + "em";
+                            
+                        // required
+                        break;
+                            
                         case TextSizeEnum.MediumLarge:
-
-                            // Set the value
-                            TextSizeStyle = 1.1 + "em";
-
-                            // required
-                            break;
-
+                            
+                        // Set the value
+                        TextSizeStyle = 1.1 + "em";
+                            
+                        // required
+                        break;
+                            
                         case TextSizeEnum.Large:
-
-                            // Set the value
-                            TextSizeStyle = 1.2 + "em";
-
-                            // required
-                            break;
-
+                            
+                        // Set the value
+                        TextSizeStyle = 1.2 + "em";
+                            
+                        // required
+                        break;
+                            
                         case TextSizeEnum.Extra_Large:
-
-                            // Set the value
-                            TextSizeStyle = 1.4 + "em";
-
-                            // required
-                            break;
+                            
+                        // Set the value
+                        TextSizeStyle = 1.4 + "em";
+                            
+                        // required
+                        break;
                     }
                 }
             }
             #endregion
-            
+                
             #region TextSizeStyle
             /// <summary>
             /// This property gets or sets the value for 'TextSizeStyle'.
@@ -1800,25 +1919,25 @@ namespace DataJuggler.Blazor.Components
                 set { textSizeStyle = value; }
             }
             #endregion
-
+                
             #region Theme
             /// <summary>
             /// This property gets or sets the value for 'Theme'.
             /// </summary>
-            [Parameter]    
+            [Parameter]
             public ThemeEnum Theme
             {
                 get { return theme; }
                 set
                 {
                     theme = value;
-
+                        
                     // Set the ButtonImage, TextColor, etc.
                     SetupComponent();
                 }
             }
             #endregion
-            
+                
             #region Top
             /// <summary>
             /// This property gets or sets the value for 'Top'.
@@ -1827,17 +1946,17 @@ namespace DataJuggler.Blazor.Components
             public double Top
             {
                 get { return top; }
-                set 
-                { 
+                set
+                {
                     // set the value for top
                     top = value;
-
+                        
                     // set the value for topStyle
                     TopStyle = top + HeightUnit;
                 }
             }
             #endregion
-            
+                
             #region TopStyle
             /// <summary>
             /// This property gets or sets the value for 'TopStyle'.
@@ -1848,7 +1967,7 @@ namespace DataJuggler.Blazor.Components
                 set { topStyle = value; }
             }
             #endregion
-            
+                
             #region Unit
             /// <summary>
             /// This property gets or sets the value for 'Unit'.
@@ -1860,7 +1979,7 @@ namespace DataJuggler.Blazor.Components
                 set { unit = value; }
             }
             #endregion
-            
+                
             #region Visible
             /// <summary>
             /// This property gets or sets the value for 'Visible'.
@@ -1869,11 +1988,11 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set 
+                set
                 {
                     // set the value
                     visible = value;
-
+                        
                     // if visible
                     if (visible)
                     {
@@ -1886,7 +2005,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-            
+                
             #region VisibleCount
             /// <summary>
             /// This property gets or sets the value for 'VisibleCount'.
@@ -1898,7 +2017,7 @@ namespace DataJuggler.Blazor.Components
                 set { visibleCount = value; }
             }
             #endregion
-            
+                
             #region Width
             /// <summary>
             /// This property gets or sets the value for 'Width'.
@@ -1907,10 +2026,10 @@ namespace DataJuggler.Blazor.Components
             public double Width
             {
                 get { return width; }
-                set 
-                { 
+                set
+                {
                     width = value;
-
+                        
                     // if the ListItemWidth is less than the width
                     if (ListItemWidth < width)
                     {
@@ -1920,7 +2039,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-            
+                
             #region WidthStyle
             /// <summary>
             /// This property gets or sets the value for 'WidthStyle'.
@@ -1931,13 +2050,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // set the value
                     string widthStyle = width + unit;
-
+                        
                     // return value
                     return widthStyle;
                 }
             }
             #endregion
-            
+                
             #region ZIndex
             /// <summary>
             /// This property gets or sets the value for 'ZIndex'.
@@ -1949,82 +2068,82 @@ namespace DataJuggler.Blazor.Components
                 set { zIndex = value; }
             }
             #endregion
-
+                
             #region ZIndexMinus
             /// <summary>
             /// This read only property returns the value of Minus 10.
             /// </summary>
             public int ZIndexMinus
             {
-                
+                    
                 get
                 {
                     // initial value
                     int zIndexMinus =ZIndex - 10;
-                    
+                        
                     // return value
                     return zIndexMinus;
                 }
             }
             #endregion
-
+                
             #region ZIndexMinusStyle
             /// <summary>
             /// This read only property returns the value of ZIndexMinus Minus 10.
             /// </summary>
             public string ZIndexMinusStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string zIndexMinus = ZIndexMinus.ToString();
-                    
+                        
                     // return value
                     return zIndexMinus;
                 }
             }
             #endregion
-            
+                
             #region ZIndexPlus
             /// <summary>
             /// This read only property returns the value of ZIndexPlus Plus 10.
             /// </summary>
             public int ZIndexPlus
             {
-                
+                    
                 get
                 {
                     // initial value
                     int zIndexPlus = ZIndex + 10;
-                    
+                        
                     // return value
                     return zIndexPlus;
                 }
             }
             #endregion
-
+                
             #region ZIndexPlusStyle
             /// <summary>
             /// This read only property returns the value of ZIndexPlus Plus 10.
             /// </summary>
             public string ZIndexPlusStyle
             {
-                
+                    
                 get
                 {
                     // initial value
                     string zIndexPlus = ZIndexPlus.ToString();
-                    
+                        
                     // return value
                     return zIndexPlus;
                 }
             }
             #endregion
-            
+                
         #endregion
-        
+            
     }
     #endregion
-
+    
 }

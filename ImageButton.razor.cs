@@ -122,6 +122,17 @@ namespace DataJuggler.Blazor.Components
                 });
             }
             #endregion
+
+            #region SetClickHandler(ButtonClickedHandler clickHandler)
+            /// <summary>
+            /// Set Click Handler
+            /// </summary>
+            public void SetClickHandler(ButtonClickedHandler clickHandler)
+            {
+                // Store the clickHandler
+                ClickHandler = clickHandler;
+            }
+            #endregion
             
             #region SetTextColor(Color color)
             /// <summary>
@@ -236,6 +247,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ClickHandler'.
             /// </summary>            
+            [Parameter]
             public ButtonClickedHandler ClickHandler
             {
                 get { return clickHandler; }

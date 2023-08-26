@@ -1,5 +1,10 @@
 News
 
+August 26, 2023: In celebration of 75,000 NuGet installs, I added two new features.
+First, I created a CheckedListBox component. I also added a new feature to the ComboBox,
+and that new features is a CheckedListMode. The combobox now supports check boxes and 
+multiple selections.
+
 July 22, 2023: More updates  to NuGet package DataJuggler.Excelerate, and I need this update for my project 
 Blazor Excelerate
 

@@ -90,12 +90,15 @@
                     <div class="@CheckBoxClassName">
                         @if (Enabled)
                         {
-                            <input class="@CheckBoxStyle" @bind="@CheckBoxValue" type=@InputType checked="@CheckBoxValue" />
+                            <input class="@CheckBoxStyle" @bind="@CheckBoxValue" type=@InputType checked="@CheckBoxValue" />                            
                         }
                         else
                         {
-                            <input class="@CheckBoxStyle" type=@InputType checked="@CheckBoxValue" disabled />
-                        }                        
+                            <input class="@CheckBoxStyle" type=@InputType checked="@CheckBoxValue" disabled />@Text
+                        }
+                        <span class="displayinlineblock">
+                            @Text
+                        </span>
                     </div>
                 }
                 else if (Multiline)

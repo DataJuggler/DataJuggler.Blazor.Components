@@ -23,6 +23,8 @@ namespace DataJuggler.Blazor.Components
         private string text;
         private IBlazorComponent sender;
         private List<NamedParameter> parameters;
+        private int id;
+        private bool checkedValue;
         #endregion
 
         #region Constructor
@@ -38,6 +40,17 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
 
+            #region CheckedValue
+            /// <summary>
+            /// This property gets or sets the value for 'CheckedValue'.
+            /// </summary>
+            public bool CheckedValue
+            {
+                get { return checkedValue; }
+                set { checkedValue = value; }
+            }
+            #endregion
+            
             #region HasParameters
             /// <summary>
             /// This property returns true if this object has a 'Parameters'.
@@ -86,6 +99,17 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return hasText;
                 }
+            }
+            #endregion
+            
+            #region Id
+            /// <summary>
+            /// This property gets or sets the value for 'Id'.
+            /// </summary>
+            public int Id
+            {
+                get { return id; }
+                set { id = value; }
             }
             #endregion
             

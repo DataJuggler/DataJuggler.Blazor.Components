@@ -2,11 +2,7 @@
 
 #region using statements
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataJuggler.Blazor.Components.Util;
 
 #endregion
 
@@ -24,10 +20,37 @@ namespace DataJuggler.Blazor.Components
         private int id;
         private string text;
         private bool itemChecked;
+        private string name;        
         #endregion
-
+        
+        #region Constructors
+            
+            #region Constructor
+            /// <summary>
+            /// Create a new instance of a 'Item' object.
+            /// </summary>
+            public Item()
+            {
+            }
+            #endregion
+            
+            #region Constructor
+            /// <summary>
+            /// Create a new instance of a 'Item' object.
+            /// </summary>
+            public Item(int id, string name, string text)
+            {
+                // store args
+                Id = id;
+                Name = name;
+                Text = text;
+            }
+            #endregion
+            
+        #endregion
+        
         #region Properties
-
+            
             #region Id
             /// <summary>
             /// This property gets or sets the value for 'Id'.
@@ -50,6 +73,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Name
+            /// <summary>
+            /// This property gets or sets the value for 'Name'.
+            /// </summary>
+            public string Name
+            {
+                get { return name; }
+                set { name = value; }
+            }
+            #endregion
+            
             #region Text
             /// <summary>
             /// This property gets or sets the value for 'Text'.
@@ -62,7 +96,6 @@ namespace DataJuggler.Blazor.Components
             #endregion
             
         #endregion
-
         
     }
     #endregion
