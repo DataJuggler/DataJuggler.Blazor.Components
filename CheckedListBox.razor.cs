@@ -904,6 +904,7 @@ namespace DataJuggler.Blazor.Components
                                     Item item = new Item();
                                     item.Id = checkBox.ExternalId;
                                     item.Name = checkBox.Name;
+                                    item.Text = checkBox.Text;
                                     item.ItemChecked = true;
                                         
                                     // Add this item
