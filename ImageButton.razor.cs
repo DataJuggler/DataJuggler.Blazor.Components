@@ -51,6 +51,7 @@ namespace DataJuggler.Blazor.Components
         private string unit;
         private double labelWidth;
         private Color textColor;
+        private string heightUnit;
         #endregion
 
         #region Constructor
@@ -88,7 +89,8 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // default
-                Unit = "px";            
+                Unit = "px";
+                HeightUnit = "px";
                 Width = 200;
                 Height = 200;
                 Left = 0;
@@ -318,7 +320,8 @@ namespace DataJuggler.Blazor.Components
                 {
                     height = value;
 
-                    heightStyle = height + "vh";
+                    // Set the CSS Value 
+                    heightStyle = height + HeightUnit;
                 }
             }
             #endregion
@@ -331,6 +334,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return heightStyle; }
                 set { heightStyle = value; }
+            }
+            #endregion
+            
+            #region HeightUnit
+            /// <summary>
+            /// This property gets or sets the value for 'HeightUnit'.
+            /// </summary>
+            [Parameter]
+            public string HeightUnit
+            {
+                get { return heightUnit; }
+                set { heightUnit = value; }
             }
             #endregion
             
