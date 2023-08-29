@@ -1,5 +1,11 @@
 News
 
+August 29, 2023: 
+
+New Video: DataJuggler.Blazor.Components reaches 75,000 Installs
+https://youtu.be/WkcwQ9kOfw4
+In this short video I show a demo of code generating classes from Blazor Excelerate.
+
 August 26, 2023: In celebration of 75,000 NuGet installs, I added two new features.
 First, I created a CheckedListBox component. I also added a new feature to the ComboBox,
 and that new features is a CheckedListMode. The combobox now supports check boxes and 
