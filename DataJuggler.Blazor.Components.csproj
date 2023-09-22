@@ -437,7 +437,7 @@ Now is the time to break anything.
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
     <PackageReference Include="DataJuggler.Excelerate" Version="7.4.6" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.2.2" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.2.4" />
   </ItemGroup>
 
 
