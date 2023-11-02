@@ -1,5 +1,8 @@
 News
 
+Version 7.12.8
+November 2, 2023: I added a ClassName parameter to the Grid
+
 August 29, 2023: 
 
 New Video: DataJuggler.Blazor.Components reaches 75,000 Installs
