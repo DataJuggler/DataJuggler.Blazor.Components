@@ -1,5 +1,8 @@
 News
 
+# 100,000 Installs
+It has been only 9 weeks 75,000 was reached, and now it passed 100K! I am making a new video for how to use the Grid, but I may wait until .NET 8 comes out next week.
+
 Version 7.12.8
 November 2, 2023: I added a ClassName parameter to the Grid
 
