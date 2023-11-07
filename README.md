@@ -1,5 +1,12 @@
 News
 
+Version 7.13.0
+Novermber 7, 2023: DataJuggler.Blazor.Components passed 100,000 Downloads
+I updated the Grid and created a new sample project to demo the Grid.
+
+The sample project is called BubbleReportWeb
+https://github.com/DataJuggler/BubbleReportWeb
+
 Version 7.12.8
 November 2, 2023: I added a ClassName parameter to the Grid
 
@@ -221,7 +228,214 @@ To see an example of registering components, see the project Blazor Excelerate l
 at the top of this document. Look for a method called Register. Once registered then your
 components can talk to each other using the ReceiveData method and by passing Message objects.
 
-I will update this document and create new sample projects when I get time.
+# Update 11.7.2023: I just published a new project to Demo Grids
+https://github.com/DataJuggler/BubbleReportWeb
+
+This is a sample mark up for a grid. The parent of the grid must implement DataJuggler.Blazor.IComponentParent
+
+    <Grid Name="TopStreaksStockGrid" ClassName="grid" Unit="px" Width="310" HeightUnit="px" Height=278
+        ShowHeader="true" HeaderText = "Top Streak Stocks" HeaderClassName = "width320 textaligncenter"
+        ShowColumnHeaders=true Parent="this" Left="40" Top=-24 FontSize="12"></Grid>
+
+Notice the property Parent="this" on the bottom line. This is how the grid is registered with the parent.
+
+View the code for the BubbleReportWeb above, and view the code for Index.razor.cs. The Register method has multiple grid properties.
+
+    private Grid topStreakGrid;
+
+    /// <summary>
+    /// This property gets or sets the value for 'TopStreakGrid'.
+    /// </summary>
+    public Grid TopStreakGrid
+    {
+        get { return topStreakGrid; }
+        set { topStreakGrid = value; }
+    }
+
+One important thing to note, is the grid works best when you register DataJuggler.Blazor.Components.css in your project like this:
+    
+    <link href="~/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
+
+The above CSS class is included with NuGet package DataJuggler.Blazor.Components
+
+The grid can be loaded via code in the OnAfterRenderAsync event:
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        // if the TopStreakGrid exists
+        if (HasTopStreakGrid)
+        {
+            // create the rows
+            List<Row> rows = CreateRowsForTopStreakStocks();
+            
+            // Set the Row
+            TopStreakGrid.Rows = rows;
+            
+            // Refresh the Grid
+            TopStreakGrid.Refresh();
+        }
+    }
+
+# Loading Grid Rows and Columns
+
+In this example, I added two using statements to avoid the conflict between DataJuggler.Excelerate.Row and DataJuggler.Excelerate.Column
+OfficeOpenXml.Row and OfficeOpenXml.Column. DataJuggler.Blazor.Excelerate is installed when you add DataJuggler.Blazor.Components
+to a project via NuGet.
+
+Note: The Gateway class listed below is created when you create a project via DataTier.Net. You can use EntityFramework or another ORM
+if you prefer. I like DataTier.Net because it uses all stored procedures.
+
+DataTier.Net (Optional)
+https://github.com/DataJuggler/DataTier.Net
+
+    using Row = DataJuggler.Excelerate.Row;
+    using Column = DataJuggler.Excelerate.Column;
+
+    /// <summary>
+    /// returns a list of Rows For Top Streak Stocks
+    /// </summary>
+    public List<Row> CreateRowsForTopStreakStocks()
+    {
+        // initial value
+        List<Row> rows = new List<Row>();
+        
+        // Load the Gateway
+        Gateway gateway = new Gateway(Connection.Name);
+        
+        // Load the topStocks
+        List<TopStreakStocks> topStocks = gateway.LoadTopStreakStocks();
+        
+        // If the topStocks collection exists and has one or more items
+        if (ListHelper.HasOneOrMoreItems(topStocks))
+        {
+            // Create Column and set properties
+            Column column = new Column();
+            column.Caption = "Symbol";
+            column.ColumnName = "Symbol";
+            column.Index = 0;
+            column.ColumnNumber = 1;
+            column.ColumnText = "Symbol";
+            column.Width = 48;
+            column.Height = 16;
+            column.ClassName = "displayinlineblock width48 colorwhite textalignleft down4 right16 fontsize12";
+            
+            // Add this column
+            TopStreakGrid.Columns.Add(column);
+            
+            // Create Column and set properties
+            Column column2 = new Column();
+            column2.Caption = "Name";
+            column2.ColumnName = "Name";
+            column2.Index = 1;
+            column2.ColumnNumber = 2;
+            column2.ColumnText = column2.Caption;
+            column2.Width = 140;
+            column2.Height = 16;
+            column2.ClassName = "displayinlineblock width140 colorwhite textalignleft down4 right16 fontsize12";
+            
+            // Add Column 2 to the header row
+            TopStreakGrid.Columns.Add(column2);
+            
+            // Create Column and set properties
+            Column column3 = new Column();
+            column3.Caption = "Last";
+            column3.ColumnName = "LastClose";
+            column3.Index = 2;
+            column3.ColumnNumber = 3;
+            column3.ColumnText = column3.Caption;
+            column3.Width = 48;
+            column3.Height = 16;
+            column3.ClassName = "displayinlineblock width48 colorwhite textalignleft down4 right30 fontsize12";
+            
+            // Add this column
+            TopStreakGrid.Columns.Add(column3);
+            
+            // Create Column and set properties
+            Column column4 = new Column();
+            column4.Caption = "Streak";
+            column4.ColumnName = "Streak";
+            column4.Index = 3;
+            column4.ColumnNumber = 4;
+            column4.ColumnText = column4.Caption;
+            column4.Width = 48;
+            column4.Height = 16;
+            column4.ClassName = "displayinlineblock width48 colorwhite textalignleft down4 right16 fontsize12";
+            
+            // Add this column
+            TopStreakGrid.Columns.Add(column4);
+            
+            foreach (TopStreakStocks topStock in topStocks)
+            {
+                // Create a row
+                DataJuggler.Excelerate.Row row = new DataJuggler.Excelerate.Row();
+                row.ClassName = "textdonotwrap width448 height16 marginbottom0 down8";
+                
+                // Create Column and set properties
+                column = new Column();
+                column.Caption = "Symbol";
+                column.ColumnName = "Symbol";
+                column.Index = 0;
+                column.ColumnNumber = 1;
+                column.ColumnText = topStock.Symbol;
+                column.Unit = "px";
+                column.Width = 48;
+                column.Height = 16;
+                column.ClassName = "displayinlineblock width48 colorwhite textalignleft right16 fontsize12";
+                
+                // Add this column
+                row.Columns.Add(column);
+                
+                // Create Column and set properties
+                column2 = new Column();
+                column2.Caption = "Name";
+                column2.ColumnName = "Name";
+                column2.Index = 1;
+                column2.ColumnNumber = 2;
+                column2.ColumnText = topStock.ShortName.ToString();
+                column2.Width = 140;
+                column2.Height = 16;
+                column2.ClassName = "displayinlineblock width140 colorwhite textalignleft right16 fontsize12";
+                
+                // Add this column
+                row.Columns.Add(column2);
+                
+                // Create Column and set properties
+                column3 = new Column();
+                column3.Caption = "Last Close";
+                column3.ColumnName = "LastPrice";
+                column3.Index = 2;
+                column3.ColumnNumber = 3;
+                column3.ColumnText = topStock.LastClose.ToString("C");
+                column3.Width = 48;
+                column3.Height = 16;
+                column3.ClassName = "displayinlineblock width48 colorwhite textalignright right8 fontsize12";
+                
+                // Add this column
+                row.Columns.Add(column3);
+                
+                // Create Column and set properties
+                column4 = new Column();
+                column4.Caption = "Streak";
+                column4.ColumnName = "Streak";
+                column4.Index = 3;
+                column4.ColumnNumber = 4;
+                column4.ColumnValue = topStock.Streak;
+                column4.ColumnText = topStock.Streak.ToString();
+                column4.Width = 48;
+                column4.Height = 16;
+                column4.ClassName = "displayinlineblock width48 colorwhite textaligncenter right16 fontsize12";
+                
+                // Add this column
+                row.Columns.Add(column4);
+                
+                // Add this row
+                rows.Add(row);
+            }
+        }
+        
+        // return value
+        return rows;
+    }
 
 If you have any questions, please feel free to ask on Git Hub:
 https://github.com/DataJuggler/DataJuggler.Blazor.Components/Issues

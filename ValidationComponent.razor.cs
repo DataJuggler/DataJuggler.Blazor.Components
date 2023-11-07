@@ -176,9 +176,10 @@ namespace DataJuggler.Blazor.Components
                 ImageScale = 1.6;                
                 CheckBoxXPosition = 0;
                 CheckBoxYPosition = 0;
-                FontSize = 12;
+                
                 TextBoxWidth = 120;
                 Unit = "px";
+                FontSize = 12;
                 FontSizeUnit="px";
                 Height= 24;
                 HeightUnit = "px";
@@ -1496,7 +1497,7 @@ namespace DataJuggler.Blazor.Components
             
             #region LeftStyle
             /// <summary>
-            /// This property gets or sets the value for 'LeftStyle'.
+            /// This property returns the value for 'LeftStyle'.
             /// </summary>
             public string LeftStyle
             {
@@ -1923,7 +1924,7 @@ namespace DataJuggler.Blazor.Components
 
             #region TopStyle
             /// <summary>
-            /// This property gets or sets the value for 'TopStyle'.
+            /// This property returns the value for 'TopStyle'.
             /// </summary>
             public string TopStyle
             {

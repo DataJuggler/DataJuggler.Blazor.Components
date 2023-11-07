@@ -11,6 +11,7 @@ using DataJuggler.Blazor.Components.Util;
 using Microsoft.AspNetCore.Components.Web;
 using DataJuggler.Cryptography;
 using System.Threading.Tasks;
+using System.Drawing;
 
 #endregion
 
@@ -43,6 +44,17 @@ namespace DataJuggler.Blazor.Components
         private string externalIdDescription;
         private List<ImageButton> buttons;
         private ButtonClickedHandler buttonClickHandler;
+        private string gridStyle;
+        private Color gridBackColor;
+        private double height;
+        private string heightUnit;
+        private double fontSize;        
+        private string fontSizeUnit;
+        private double width;        
+        private double left;
+        private double top;                        
+        private string position;
+        private string unit;
         #endregion
 
         #region Constructor
@@ -170,8 +182,16 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Create
+                Position = "relative";
                 Children = new List<IBlazorComponent>();
                 Buttons = new List<ImageButton>();
+                Columns = new List<Column>();
+                HeightUnit = "px";
+                Height = 240;
+                FontSize = 12;
+                FontSizeUnit="px";
+                Unit = "px";
+                Width = 400;                
             }
             #endregion
             
@@ -413,6 +433,70 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region FontSize
+            /// <summary>
+            /// This property gets or sets the value for 'FontSize'.
+            /// </summary>
+            [Parameter]
+            public double FontSize
+            {
+                get { return fontSize; }
+                set { fontSize = value; }
+            }
+            #endregion
+            
+            #region FontSizeStyle
+            /// <summary>
+            /// This property gets or sets the value for 'FontSizeStyle'.
+            /// </summary>
+            public string FontSizeStyle
+            {
+                get
+                {
+                    // set the return value
+                    string fontSizeStyle = FontSize + FontSizeUnit;
+
+                    // return value
+                    return fontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region FontSizeUnit
+            /// <summary>
+            /// This property gets or sets the value for 'FontSizeUnit'.
+            /// </summary>
+            [Parameter]
+            public string FontSizeUnit
+            {
+                get { return fontSizeUnit; }
+                set { fontSizeUnit = value; }
+            }
+            #endregion
+            
+            #region GridBackColor
+            /// <summary>
+            /// This property gets or sets the value for 'GridBackColor'.
+            /// </summary>
+            [Parameter]
+            public Color GridBackColor
+            {
+                get { return gridBackColor; }
+                set { gridBackColor = value; }
+            }
+            #endregion
+            
+            #region GridStyle
+            /// <summary>
+            /// This property gets or sets the value for 'GridStyle'.
+            /// </summary>
+            public string GridStyle
+            {
+                get { return gridStyle; }
+                set { gridStyle = value; }
+            }
+            #endregion
+            
             #region HasButtons
             /// <summary>
             /// This property returns true if this object has a 'Buttons'.
@@ -556,6 +640,84 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Height
+            /// <summary>
+            /// This property gets or sets the value for 'Height'.
+            /// </summary>
+            [Parameter]
+            public double Height
+            {
+                get { return height; }
+                set { height = value; }
+            }
+            #endregion
+
+            #region HeightStyle
+            /// <summary>
+            /// This read only property returns the value of Height + Unit
+            /// </summary>
+            public string HeightStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string heightStyle = Height + HeightUnit;
+
+                    // If the HeightUnit string exists
+                    if (TextHelper.Exists(HeightUnit))
+                    {
+                        // Use the HeightUnit
+                        heightStyle = Height + HeightUnit;
+                    }
+                    
+                    // return value
+                    return heightStyle;
+                }
+            }
+            #endregion
+
+            #region HeightUnit
+            /// <summary>
+            /// This property gets or sets the value for 'HeightUnit'.
+            /// </summary>
+            [Parameter]
+            public string HeightUnit
+            {
+                get { return heightUnit; }
+                set { heightUnit = value; }
+            }
+            #endregion
+            
+            #region Left
+            /// <summary>
+            /// This property gets or sets the value for 'Left'.
+            /// </summary>
+            [Parameter]
+            public double Left
+            {
+                get { return left; }
+                set { left = value; }
+            }
+            #endregion
+            
+            #region LeftStyle
+            /// <summary>
+            /// This property returns the value for 'LeftStyle'.
+            /// </summary>
+            public string LeftStyle
+            {
+                get
+                {
+                    // initial value
+                    string leftStyle = Left + Unit;
+
+                    // return value
+                    return leftStyle;
+                }
+            }
+            #endregion
+
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.
@@ -592,6 +754,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Position
+            /// <summary>
+            /// This property gets or sets the value for 'Position'.
+            /// </summary>
+            [Parameter]
+            public string Position
+            {
+                get { return position; }
+                set { position = value; }
+            }
+            #endregion
+            
             #region Rows
             /// <summary>
             /// This property gets or sets the value for 'Rows'.
@@ -618,6 +792,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ShowColumnHeaders'.
             /// </summary>
+            [Parameter]
             public bool ShowColumnHeaders
             {
                 get { return showColumnHeaders; }
@@ -637,6 +812,76 @@ namespace DataJuggler.Blazor.Components
             }        
             #endregion
 
+            #region Top
+            /// <summary>
+            /// This property gets or sets the value for 'Top'.
+            /// </summary>
+            [Parameter]
+            public double Top
+            {
+                get { return top; }
+                set { top = value; }
+            }
+            #endregion
+            
+            #region TopStyle
+            /// <summary>
+            /// This property returns the value for 'TopStyle'.
+            /// </summary>
+            public string TopStyle
+            {
+                get
+                {
+                    // initial value
+                    string topStyle = Top + HeightUnit;
+
+                    // Set the value
+                    return topStyle;
+                }
+            }
+            #endregion
+
+            #region Unit
+            /// <summary>
+            /// This property gets or sets the value for 'Unit'.
+            /// </summary>
+            [Parameter]
+            public string Unit
+            {
+                get { return unit; }
+                set { unit = value; }
+            }
+            #endregion
+            
+            #region Width
+            /// <summary>
+            /// This property gets or sets the value for 'Width'.
+            /// </summary>
+            [Parameter]
+            public double Width
+            {
+                get { return width; }
+                set { width = value; }
+            }
+            #endregion
+
+            #region WidthStyle
+            /// <summary>
+            /// This read only property returns the value of WidthStyle
+            /// </summary>
+            public string WidthStyle
+            {  
+                get
+                {
+                    // initial value
+                    string widthStyle = Width + Unit;
+                    
+                    // return value
+                    return widthStyle;
+                }
+            }
+            #endregion
+            
         #endregion
 
     }
