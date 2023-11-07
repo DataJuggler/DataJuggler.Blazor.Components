@@ -10,14 +10,14 @@ This project consists of an ImageButton, ProgressBar, Sprite, Validation compone
 and ComboBox, a CheckedListBox and a grid. The Grid is working, but very new. Examples coming soon, but
 I have to get paying work done first.
 
-
 The CSS file DataJuggler.Blazor.Components.css contains many useful classes to help style 
 and position objects.
 
 This version is for .Net 7.0.
 
-Update 12.1.2022: The Grid and the ValidationComponent both support double click to edit in place.
-The ReceieveData method receives messages for EnterPressed and EscapePressed.
+Version 7.13.5
+Novermber 7, 2023: DataJuggler.Blazor.Components passed 100,000 Downloads
+I updated the Grid and created a new sample project to demo the Grid.
 
 A live demo is available at https://excelerate.datajuggler.com
 
@@ -39,6 +39,16 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>
+		Version 7.13.5
+		Novermber 7, 2023: DataJuggler.Blazor.Components passed 100,000 Downloads
+		I updated the Grid and created a new sample project to demo the Grid.
+
+		The sample project is called BubbleReportWeb
+		https://github.com/DataJuggler/BubbleReportWeb
+
+		Version 7.12.8
+		November 2, 2023: I added a ClassName parameter to the Grid
+
 		August 26, 2023: In celebration of 75,000 NuGet installs, I added two new features.
 		First, I created a CheckedListBox component. I also added a new feature to the ComboBox,
 		and that new features is a CheckedListMode. The combobox now supports check boxes and

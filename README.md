@@ -1,6 +1,6 @@
 News
 
-Version 7.13.0
+Version 7.13.5
 Novermber 7, 2023: DataJuggler.Blazor.Components passed 100,000 Downloads
 I updated the Grid and created a new sample project to demo the Grid.
 
