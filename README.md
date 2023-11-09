@@ -1,5 +1,10 @@
 News
 
+# 11.8.2023 New Video For 100,000 Installs
+
+How To Use DataJuggler.Blazor.Components Grid
+https://youtu.be/_qDo9pNT5a8
+
 Version 7.13.5
 Novermber 7, 2023: DataJuggler.Blazor.Components passed 100,000 Downloads
 I updated the Grid and created a new sample project to demo the Grid.
