@@ -1,6 +1,12 @@
 News
 
+# 11.10.2023: I added a Label
+
+The Label privides a simple way to display text.
+
 # 11.8.2023 New Video For 100,000 Installs
+
+Version 7.13.7
 
 How To Use DataJuggler.Blazor.Components Grid
 https://youtu.be/_qDo9pNT5a8
