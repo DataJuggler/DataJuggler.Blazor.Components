@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
@@ -12,7 +12,11 @@ ComboBox, a CheckedListBox, Grid and a Label. The Label is new, and has only bee
 The CSS file DataJuggler.Blazor.Components.css contains many useful classes to help style 
 and position objects.
 
-This version is for .Net 7.0.
+This version is for .Net 8.0.
+
+Version 8.0.0
+This project has been updated to .NET 8. Use a 7.x version for .NET 7.
+All new development will be on the .NET 8 version.
 
 Version 7.13.5
 Novermber 7, 2023: DataJuggler.Blazor.Components passed 100,000 Downloads
@@ -404,7 +408,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>7.14.0</Version>
+    <Version>8.0.0</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
@@ -455,8 +459,8 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="BlazorStyled" Version="3.1.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="7.4.6" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="7.2.4" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="8.0.0" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="8.0.0" />
   </ItemGroup>
 
 

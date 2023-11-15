@@ -1,5 +1,9 @@
 News
 
+# 11.15.2023 I updated the project to .NET 8
+
+For .NET 7, use a 7.x version.
+
 # 11.10.2023: I added a Label
 
 The Label provides a simple way to display text.
