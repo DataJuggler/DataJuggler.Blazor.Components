@@ -42,6 +42,8 @@ http://circle.firchow.net/ by Andre Firchow, and his blog is here: http://fircho
     <RepositoryType>Git - Git Hub</RepositoryType>
     <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,BlazorStyled,ValidationComponent</PackageTags>
     <PackageReleaseNotes>
+		Version 8.0.0: This project has been updated to .NET 8. 
+		
 		Version 7.14.0: I added a Label component.
 		
 		Version 7.13.7: Updated the Read Me with information about the new video.
