@@ -10,7 +10,7 @@ using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using DataJuggler.Cryptography;
-using DataJuggler.Net7.Delegates;
+using DataJuggler.NET8.Delegates;
 using DataJuggler.UltimateHelper;
 using DataJuggler.UltimateHelper.Objects;
 using Microsoft.AspNetCore.Components;
