@@ -1,5 +1,8 @@
 News
 
+# 12.18.2023 I fixed a bug with the ValidationComponent
+If is valid is true, I set the label to the invalid label color. This is now fixed.
+
 # 11.15.2023 I updated the project to .NET 8
 
 For .NET 7, use a 7.x version.

@@ -1309,7 +1309,7 @@ namespace DataJuggler.Blazor.Components
                     if (isValid)
                     {
                         // Set for valid
-                        LabelColor = InvalidLabelColor;
+                        LabelColor = "Black";
                         TextBoxBackColor = "White";
                     }
                     else
