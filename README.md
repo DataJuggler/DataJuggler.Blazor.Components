@@ -1,6 +1,6 @@
 News
 
-12.26.2023: I updated DataJuggler.NET8 and DataJuggler.Excelerate Nuget packages.
+# 12.26.2023: I updated DataJuggler.NET8 and DataJuggler.Excelerate Nuget packages.
 
 # 12.18.2023 I fixed a bug with the ValidationComponent
 If is valid is true, I set the label to the invalid label color. This is now fixed.
