@@ -1,5 +1,7 @@
 News
 
+# 12.27.2023: I added the !important attribute to the ListItemZIndex CSS.
+
 # 12.26.2023: I updated DataJuggler.NET8 and DataJuggler.Excelerate Nuget packages.
 
 # 12.18.2023 I fixed a bug with the ValidationComponent
