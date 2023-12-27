@@ -76,7 +76,7 @@ namespace DataJuggler.Blazor.Components
         private string listItemStyle;
         private Color listItemTextColor;
         private double listItemTop;
-        private double listItemWidth;
+        private double listItemWidth;        
         private string listItemWidthStyle;
         private string name;
         private string noPadding;
@@ -95,6 +95,7 @@ namespace DataJuggler.Blazor.Components
         private int visibleCount;
         private double width;
         private int zIndex;
+        private string listItemHeightStyle;
         #endregion
         
         #region Constructor
@@ -1572,7 +1573,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-                
+            
             #region ListItemHeight
             /// <summary>
             /// This property gets or sets the value for 'ListItemHeight'.
@@ -1581,7 +1582,24 @@ namespace DataJuggler.Blazor.Components
             public double ListItemHeight
             {
                 get { return listItemHeight; }
-                set { listItemHeight = value; }
+                set
+                {
+                    listItemHeight = value;
+
+                    // Set the value
+                    ListItemHeightStyle = listItemHeight + HeightUnit;
+                }
+            }
+            #endregion
+            
+            #region ListItemHeightStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemHeightStyle'.
+            /// </summary>
+            public string ListItemHeightStyle
+            {
+                get { return listItemHeightStyle; }
+                set { listItemHeightStyle = value; }
             }
             #endregion
             
