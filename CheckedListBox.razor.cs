@@ -64,6 +64,7 @@ namespace DataJuggler.Blazor.Components
         private int visibleCount;
         private double width;
         private int zIndex;
+        private string checkedItemStyle;
         #endregion
         
         #region Constructor
@@ -371,6 +372,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region CheckedItemStyle
+            /// <summary>
+            /// This property gets or sets the value for 'CheckedItemStyle'.
+            /// </summary>
+            public string CheckedItemStyle
+            {
+                get { return checkedItemStyle; }
+                set { checkedItemStyle = value; }
+            }
+            #endregion
+            
             #region CheckedListBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'CheckedListBoxStyle'.

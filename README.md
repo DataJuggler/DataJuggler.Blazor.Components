@@ -1,5 +1,7 @@
 News
 
+# 12.28.2023: I fixed a bug with the CheckedListBox where the ListItemHeight was wrong.
+
 # 12.27.2023: I added the !important attribute to the ListItemZIndex CSS and ListItemHeight and CheckedListHeight.
 
 # 12.26.2023: I updated DataJuggler.NET8 and DataJuggler.Excelerate Nuget packages.
