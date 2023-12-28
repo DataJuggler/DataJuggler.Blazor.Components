@@ -96,6 +96,7 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private int zIndex;
         private string listItemHeightStyle;
+        private double checkedListheight;
         #endregion
         
         #region Constructor
@@ -905,6 +906,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region CheckedListheight
+            /// <summary>
+            /// This property gets or sets the value for 'CheckedListheight'.
+            /// </summary>
+            [Parameter]
+            public double CheckedListheight
+            {
+                get { return checkedListheight; }
+                set { checkedListheight = value; }
+            }
+            #endregion
+            
             #region CheckListMode
             /// <summary>
             /// This property gets or sets the value for 'CheckListMode'.

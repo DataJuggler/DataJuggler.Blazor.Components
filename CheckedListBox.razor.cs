@@ -619,6 +619,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ListBackgroundColor'.
             /// </summary>
+            [Parameter]
             public Color ListBackgroundColor
             {
                 get { return listBackgroundColor; }
@@ -678,6 +679,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ListItemLeft'.
             /// </summary>
+            [Parameter]
             public double ListItemLeft
             {
                 get { return listItemLeft; }
@@ -759,6 +761,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ListItemTop'.
             /// </summary>
+            [Parameter]
             public double ListItemTop
             {
                 get { return listItemTop; }
