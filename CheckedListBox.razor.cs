@@ -44,6 +44,7 @@ namespace DataJuggler.Blazor.Components
         private double left;
         private string leftStyle;
         private Color listBackgroundColor;
+        private Color listItemBackgroundColor;
         private double listItemHeight;
         private double listItemLeft;
         private string listItemPosition;
@@ -202,6 +203,7 @@ namespace DataJuggler.Blazor.Components
                 VisibleCount = 5;
                 Items = new List<Item>();
                 ListItemPosition = "relative";
+                ListItemBackgroundColor = Color.White;
             }
             #endregion
 
@@ -650,6 +652,36 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     string listBackgroundColorName = ListBackgroundColor.Name;
+                        
+                    // return value
+                    return listBackgroundColorName;
+                }
+            }
+            #endregion
+            
+            #region ListItemBackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemBackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public Color ListItemBackgroundColor
+            {
+                get { return listItemBackgroundColor; }
+                set { listItemBackgroundColor = value; }
+            }
+            #endregion
+
+            #region ListItemBackgroundColorName
+            /// <summary>
+            /// This read only property returns the value of listItemBackgroundColor from the object ListBackgroundColor.
+            /// </summary>
+            public string ListItemBackgroundColorName
+            {
+                    
+                get
+                {
+                    // initial value
+                    string listBackgroundColorName = listItemBackgroundColor.Name;
                         
                     // return value
                     return listBackgroundColorName;
