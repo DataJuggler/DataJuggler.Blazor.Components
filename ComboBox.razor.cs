@@ -75,6 +75,7 @@ namespace DataJuggler.Blazor.Components
         private string listItemPosition;
         private string listItemStyle;
         private Color listItemTextColor;
+        private Color listItemBackgroundColor;
         private double listItemTop;
         private double listItemWidth;        
         private string listItemWidthStyle;
@@ -239,6 +240,7 @@ namespace DataJuggler.Blazor.Components
                 ListItemPosition = "relative";
                 ListItemHeight = 32;
                 LabelPosition = "relative";
+                ListItemBackgroundColor = Color.White;
                 
                 // Set so the image is set
                 Expanded = false;
@@ -1584,6 +1586,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return listBackgroundColorName;
                 }
+            }
+            #endregion
+            
+            #region ListItemBackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemBackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public Color ListItemBackgroundColor
+            {
+                get { return listItemBackgroundColor; }
+                set { listItemBackgroundColor = value; }
             }
             #endregion
             
