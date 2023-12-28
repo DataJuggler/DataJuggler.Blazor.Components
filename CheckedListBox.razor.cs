@@ -204,6 +204,7 @@ namespace DataJuggler.Blazor.Components
                 Items = new List<Item>();
                 ListItemPosition = "relative";
                 ListItemBackgroundColor = Color.White;
+                ListBackgroundColor = Color.White;
             }
             #endregion
 

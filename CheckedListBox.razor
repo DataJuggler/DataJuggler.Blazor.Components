@@ -2,37 +2,38 @@
 @using BlazorStyled
 
 <Styled @bind-Classname="CheckedListBoxStyle">
+    background-color: @ListBackgroundColor;
     display: @DisplayStyle;
+    font-size: @TextSizeStyle;
     height: @HeightStyle;
     justify-content: left;
-    min-width: @WidthStyle;
-    width: @WidthStyle;
-    height: @HeightStyle;
-    font-size: @TextSizeStyle;
-    position: @Position;
+    min-width: @WidthStyle;    
     left: @LeftStyle;
     Top: @TopStyle;
     margin-top: 0;
     margin-bottom: 0;
     padding-top: 0;
     padding-bottom: 0;
+    position: @Position;
+    width: @WidthStyle;
 </Styled>
 <Styled @bind-Classname="ListItemStyle">
-    font-family: Verdana;
-    text-align: left;
     background-color: @ListBackgroundColorName;
-    width: @ListItemWidthStyle;
-    height: @ListItemHeightStyle;
-    position: @listItemPosition;
     color: @ListItemTextColorName;
-    left: @ListItemLeftStyle;
-    top: @ListItemTopStyle;
-    font-size: @TextSizeStyle;
-    z-index: @ZIndex;
-    margin-top: 0;
+    font-family: Verdana;
+    font-size: @TextSizeStyle;        
+    height: @ListItemHeightStyle;    
+    left: @ListItemLeftStyle;    
     margin-bottom: 0;
-    padding-top: 0;
+    margin-top: 0;    
+    max-height: @ListItemHeightStyle;
     padding-bottom: 0;
+    padding-top: 0;
+    position: @listItemPosition;    
+    text-align: left;
+    top: @ListItemTopStyle;
+    width: @ListItemWidthStyle;
+    z-index: @ZIndex;
 </Styled>
 
 <div class="@CheckedListBoxStyle">
