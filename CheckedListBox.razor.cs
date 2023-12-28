@@ -274,9 +274,9 @@ namespace DataJuggler.Blazor.Components
                 InvokeAsync(() =>
                 {
                     StateHasChanged();
-                    });
-                }
-                #endregion
+                });
+            }
+            #endregion
                 
             #region Register(IBlazorComponent component)
             /// <summary>

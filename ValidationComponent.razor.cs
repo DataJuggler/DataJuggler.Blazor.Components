@@ -205,7 +205,7 @@ namespace DataJuggler.Blazor.Components
                 Column3Width = 20;
                 Rows = 3;
                 Visible = true;
-                Width= 30;
+                Width= 80;
                 Enabled = true;
             }
             #endregion
@@ -701,7 +701,7 @@ namespace DataJuggler.Blazor.Components
                     checkBoxYPosition = value;
 
                     // Set the checkBoxYStyle
-                    checkBoxYStyle = checkBoxYPosition.ToString() + "vh";
+                    checkBoxYStyle = checkBoxYPosition.ToString() + HeightUnit;
                 }
             }
             #endregion

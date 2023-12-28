@@ -12,6 +12,10 @@
     position: @Position;
     left: @LeftStyle;
     Top: @TopStyle;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 </Styled>
 <Styled @bind-Classname="ListItemStyle">
     font-family: Verdana;
@@ -25,18 +29,22 @@
     top: @ListItemTopStyle;
     font-size: @TextSizeStyle;
     z-index: @ZIndex;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 </Styled>
 
 <div class="@CheckedListBoxStyle">
     @if (HasItems)
     {
-        <div class="@ListItemStyle">            
+        <div class="row @ListItemStyle">            
             @foreach (Item item in Items)
             {
                 <ValidationComponent CheckBoxMode=true Parent="this" Name="@item.Name" Unit="@Unit"
                     Column1Width="@Width" Column2Width="@Width" CheckBoxValue = "@item.ItemChecked"
                     HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@Width"
-                    Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" Top="0"
+                    Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" Top="@ListItemTop"                    
                     Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
                 </ValidationComponent>
             }
