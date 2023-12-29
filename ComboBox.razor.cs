@@ -101,6 +101,8 @@ namespace DataJuggler.Blazor.Components
         private double checkedListheight;
         private double comboBoxHeight;
         private string comboBoxHeightStyle;
+        private double labelFontSize;        
+        private string labelFontSizeUnit;     
         #endregion
         
         #region Constructor
@@ -1364,6 +1366,47 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return labelColorName;
                 }
+            }
+            #endregion
+
+            #region LabelFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSize'.
+            /// </summary>
+            [Parameter]
+            public double LabelFontSize
+            {
+                get { return labelFontSize; }
+                set { labelFontSize = value; }
+            }
+            #endregion
+            
+            #region LabelFontSizeStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSizeStyle'.
+            /// </summary>
+            public string LabelFontSizeStyle
+            {
+                get 
+                {
+                    // set the return value
+                    string labelFontSizeStyle = LabelFontSize + LabelFontSizeUnit;
+
+                    // return value
+                    return labelFontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region LabelFontSizeUnit
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSizeUnit'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontSizeUnit
+            {
+                get { return labelFontSizeUnit; }
+                set { labelFontSizeUnit = value; }
             }
             #endregion
                 
