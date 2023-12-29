@@ -2,21 +2,14 @@
 
 #region using statements
 
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Threading.Tasks;
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
-using DataJuggler.Cryptography;
-using DataJuggler.NET8.Delegates;
 using DataJuggler.UltimateHelper;
-using DataJuggler.UltimateHelper.Objects;
 using Microsoft.AspNetCore.Components;
-using OfficeOpenXml.Drawing.Chart;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -66,6 +59,7 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private int zIndex;
         private string checkedItemStyle;
+        private string listItemClassName;
         #endregion
         
         #region Constructor
@@ -519,7 +513,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-                
+            
             #region HasParent
             /// <summary>
             /// This property returns true if this object has a 'Parent'.
@@ -687,6 +681,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return listBackgroundColorName;
                 }
+            }
+            #endregion
+            
+            #region ListItemClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemClassName'.
+            /// </summary>
+            [Parameter]
+            public string ListItemClassName
+            {
+                get { return listItemClassName; }
+                set { listItemClassName = value; }
             }
             #endregion
             

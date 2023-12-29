@@ -71,6 +71,7 @@ namespace DataJuggler.Blazor.Components
         private string leftStyle;
         private Color listBackgroundColor;
         private double listItemHeight;
+        private string listItemClassName;
         private double listItemLeft;
         private string listItemPosition;
         private string listItemStyle;
@@ -238,9 +239,10 @@ namespace DataJuggler.Blazor.Components
                 ComboBoxBackColor = Color.Transparent;
                 LabelUnit = "px";
                 ListItemPosition = "relative";
-                ListItemHeight = 32;
+                ListItemHeight = 16;
                 LabelPosition = "relative";
                 ListItemBackgroundColor = Color.White;
+                ListItemClassName="height16";
                 
                 // Set so the image is set
                 Expanded = false;
@@ -1598,6 +1600,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemBackgroundColor; }
                 set { listItemBackgroundColor = value; }
+            }
+            #endregion
+            
+            #region ListItemClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemClassName'.
+            /// </summary>
+            [Parameter]
+            public string ListItemClassName
+            {
+                get { return listItemClassName; }
+                set { listItemClassName = value; }
             }
             #endregion
             

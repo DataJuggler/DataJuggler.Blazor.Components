@@ -410,7 +410,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>8.0.16</Version>
+    <Version>8.1.0</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
@@ -444,9 +444,13 @@ Now is the time to break anything.
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
     <Compile Remove="Samples\**" />
+    <Content Remove="bin\**" />
     <Content Remove="Samples\**" />
+    <EmbeddedResource Remove="bin\**" />
     <EmbeddedResource Remove="Samples\**" />
+    <None Remove="bin\**" />
     <None Remove="Samples\**" />    
     <None Include="License\License.txt">
       <Pack>True</Pack>

@@ -24,8 +24,7 @@
     font-size: @TextSizeStyle;        
     height: @ListItemHeightStyle;    
     left: @ListItemLeftStyle;    
-    margin-bottom: 0;
-    margin-top: 0;    
+    margin-bottom: 0;    
     max-height: @ListItemHeightStyle;
     padding-bottom: 0;
     padding-top: 0;
@@ -34,21 +33,27 @@
     top: @ListItemTopStyle;
     width: @ListItemWidthStyle;
     z-index: @ZIndex;
+    overflow: clip;
+</Styled>
+<Styled @bind-Classname="CheckedItemStyle">
+    height: 16px !important;
+    max-height: 16px !important;
+    overflow: clip;
 </Styled>
 
 <div class="@CheckedListBoxStyle">
     @if (HasItems)
-    {
-        <div class="row @ListItemStyle">            
-            @foreach (Item item in Items)
-            {
-                <ValidationComponent CheckBoxMode=true Parent="this" Name="@item.Name" Unit="@Unit"
-                    Column1Width="@Width" Column2Width="@Width" CheckBoxValue = "@item.ItemChecked"
-                    HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@Width"
-                    Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" Top="@ListItemTop"                    
-                    Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
-                </ValidationComponent>
-            }
-        </div>
+    {  
+        @foreach (Item item in Items)
+        {
+            <div class="row @ListItemStyle">
+            <ValidationComponent CheckBoxMode=true Parent="this" Name="@item.Name" Unit="@Unit"
+                Column1Width="@Width" Column2Width="@Width" CheckBoxValue = "@item.ItemChecked"
+                HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@Width"
+                Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" ClassName="@ListItemClassName"           
+                Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
+            </ValidationComponent>
+            </div>
+        }
     }
 </div>
