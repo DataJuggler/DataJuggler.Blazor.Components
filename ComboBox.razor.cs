@@ -99,6 +99,8 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private string listItemHeightStyle;
         private double checkedListheight;
+        private double comboBoxHeight;
+        private string comboBoxHeightStyle;
         #endregion
         
         #region Constructor
@@ -981,6 +983,35 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region ComboBoxHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ComboBoxHeight'.
+            /// </summary>
+            [Parameter]
+            public double ComboBoxHeight
+            {
+                get { return comboBoxHeight; }
+                set 
+                {
+                    comboBoxHeight = value;
+
+                    // Set the value for ComboBoxHeightStyle
+                    comboBoxHeightStyle = ComboBoxHeight + HeightUnit;
+                }
+            }
+            #endregion
+            
+            #region ComboBoxHeightStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ComboBoxHeightStyle'.
+            /// </summary>
+            public string ComboBoxHeightStyle
+            {
+                get { return comboBoxHeightStyle; }
+                set { comboBoxHeightStyle = value; }
+            }
+            #endregion
+            
             #region ComboBoxLeft
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxLeft'.
