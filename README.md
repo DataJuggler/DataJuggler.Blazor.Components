@@ -1,6 +1,7 @@
 News
 
 12.30.2023: I updated the CheckBox to send a message to its Parent when it's value changes.
+I added SetLabelColor method to the ValidationComponent.
 
 12.28.2023: I fixed a bug with the CheckedListBox where the ListItemHeight was wrong.
 
