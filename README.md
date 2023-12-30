@@ -1,23 +1,25 @@
 News
 
-# 12.28.2023: I fixed a bug with the CheckedListBox where the ListItemHeight was wrong.
+12.30.2023: I updated the CheckBox to send a message to its Parent when it's value changes.
 
-# 12.27.2023: I added the !important attribute to the ListItemZIndex CSS and ListItemHeight and CheckedListHeight.
+12.28.2023: I fixed a bug with the CheckedListBox where the ListItemHeight was wrong.
 
-# 12.26.2023: I updated DataJuggler.NET8 and DataJuggler.Excelerate Nuget packages.
+12.27.2023: I added the !important attribute to the ListItemZIndex CSS and ListItemHeight and CheckedListHeight.
 
-# 12.18.2023 I fixed a bug with the ValidationComponent
+12.26.2023: I updated DataJuggler.NET8 and DataJuggler.Excelerate Nuget packages.
+
+12.18.2023 I fixed a bug with the ValidationComponent
 If is valid is true, I set the label to the invalid label color. This is now fixed.
 
-# 11.15.2023 I updated the project to .NET 8
+11.15.2023 I updated the project to .NET 8
 
 For .NET 7, use a 7.x version.
 
-# 11.10.2023: I added a Label
+11.10.2023: I added a Label
 
 The Label provides a simple way to display text.
 
-# 11.8.2023 New Video For 100,000 Installs
+11.8.2023 New Video For 100,000 Installs
 
 Version 7.13.7
 

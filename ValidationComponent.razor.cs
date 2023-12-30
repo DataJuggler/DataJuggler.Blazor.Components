@@ -653,7 +653,22 @@ namespace DataJuggler.Blazor.Components
             public bool CheckBoxValue
             {
                 get { return checkBoxValue; }
-                set { checkBoxValue = value; }
+                set 
+                {
+                    // set the value
+                    checkBoxValue = value;
+
+                    // if there is a Parent
+                    if (HasParent)
+                    {
+                        Message message = new Message();
+                        message.Sender = this;
+                        message.Text = Name + " value has changed to " + CheckBoxValue.ToString();
+
+                        // Send the parent a message the value has changed.
+                        Parent.ReceiveData(message);
+                    }
+                }
             }
             #endregion
             
