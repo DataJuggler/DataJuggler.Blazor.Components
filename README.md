@@ -3,6 +3,14 @@ News
 12.30.2023: I updated the CheckBox to send a message to its Parent when it's value changes.
 I added SetLabelColor method to the ValidationComponent.
 
+I created a new project that uses these controls.
+
+Snow Creator
+https://github.com/DataJuggler/SnowCreator
+
+Live Demo:
+https://snowcreator.datajuggler.com 
+
 12.28.2023: I fixed a bug with the CheckedListBox where the ListItemHeight was wrong.
 
 12.27.2023: I added the !important attribute to the ListItemZIndex CSS and ListItemHeight and CheckedListHeight.
