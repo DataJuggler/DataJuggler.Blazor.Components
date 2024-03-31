@@ -174,7 +174,7 @@ CSS classes can be combined using spaces like:
     <div class="width16 backgroundcolorskyblue marginleft8 down12"></div>
 
 background(color name) 
-Example: backgroundlemonchiffon
+Example: backgroundlemonchiffon<br>
 Set the background color to a .NET named color.
 
 Set Colors:
