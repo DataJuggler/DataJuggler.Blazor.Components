@@ -171,7 +171,7 @@ The CSS file has values to make it easy to position and style components.
 
 CSS classes can be combined using spaces like:
 
-<div class="width16 backgroundcolorskyblue marginleft8 down12"></div>
+    <div class="width16 backgroundcolorskyblue marginleft8 down12"></div>
 
 background(color name) 
 Example: backgroundlemonchiffon
