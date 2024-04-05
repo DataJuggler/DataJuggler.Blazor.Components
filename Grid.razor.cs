@@ -44,7 +44,6 @@ namespace DataJuggler.Blazor.Components
         private string externalIdDescription;
         private List<ImageButton> buttons;
         private ButtonClickedHandler buttonClickHandler;
-        private string gridStyle;
         private Color gridBackColor;
         private double height;
         private string heightUnit;
@@ -483,17 +482,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return gridBackColor; }
                 set { gridBackColor = value; }
-            }
-            #endregion
-            
-            #region GridStyle
-            /// <summary>
-            /// This property gets or sets the value for 'GridStyle'.
-            /// </summary>
-            public string GridStyle
-            {
-                get { return gridStyle; }
-                set { gridStyle = value; }
             }
             #endregion
             

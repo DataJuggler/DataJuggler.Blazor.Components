@@ -1,5 +1,9 @@
 News
 
+4.4.2024: I removed the dependency on Blazor Styled. Blazor Styled hasn't been updated since 
+.NET Core 3.1, and I found you can create a Style section on any razor page and do the same thing
+without Blazor Styled, and with better results it seems of late.
+
 12.30.2023: I updated the CheckBox to send a message to its Parent when it's value changes.
 I added SetLabelColor method to the ValidationComponent.
 
@@ -122,22 +126,7 @@ Getting Started:
 
 # Important
 
-This project has a dependency on BlazorStyled by Chanan:
-
-Nuget: BlazorStyled
-
-Source
-https://github.com/chanan/BlazorStyled
-
-You must register BlazorStyled in your project in Program.cs:
-
-    using BlazorStyled;
-
-    builder.Services.AddRazorPages();
-    builder.Services.AddServerSideBlazor();
-    
-    // Register BlazorStyled
-    builder.Services.AddBlazorStyled();
+This project has removed the dependency on Blazor Styled.
     
 # New Video - 50,000 NuGet Installs
 
@@ -656,31 +645,7 @@ public partial class Index : IProgressSubscriber
         this.ProgressBar = progressBar;
     }
 
-# BlazorStyled Setup
-Blazor Styled is a great component and the code and documentation are available here:
-
-https://github.com/chanan/BlazorStyled
-
-Read the Server Side Install here for more information:
-
-https://blazorstyled.io/server-side-install
-
-Here are my paraphrase of the instructions for quick setup:
-1. Add Nuget Package BlazorStyled to your project. It should be installed with DataJuggler.Blazor.Components, but it still may need to be installed. 
-2. Open Startup.cs and in the ConfigureServices method, add this line:
-
-    services.AddBlazorStyled();
-
-3. Open Imports.razor and add the following:
-@using DataJuggler.Blazor.Components
-@using BlazorStyled
-
-4. Open (underscore)Host.cshtml and add this line at the bottom of the Head section:
-@(await Html.RenderComponentAsync<BlazorStyled.ServerSideStyled>(RenderMode.ServerPrerendered))
-
-The documentation of BlazorStyled may still be out of date as Visual Studio changed RenderComponentAsync method since the BlazorStyled docs were written. I have been told this will be fixed.
-
-That should be all thats required to get BlazorStyled configured. I will update this page if I can find a way to automate this part.
+# Blazor Styled Has Been Removed
 
 # Use Cases
 
@@ -688,7 +653,7 @@ For now, the progress bar is meant to show the user something is happening durin
 
 The sample project demonstrates using a Timer and on every refresh the progress bar increases the fill width by the increment value
 in pixels, up to the Max value. To use the timer, call the Start method on the Progress bar.
-In theory, and I will update this once I know it works, you should also be able to manually increase the FillWidth value, which in turn sets the FillWidthPixels string value used by BlazorStyled.
+In theory, and I will update this once I know it works, you should also be able to manually increase the FillWidth value, which in turn sets the FillWidthPixels string value
 
 Example: FillWidth = 100
          FillWidthPixels = 100px
@@ -802,13 +767,13 @@ This is also useful for debugging as it keeps the message chain down to single t
 
     public string Position { get; set; }
     
-This property is set on the BlazorStyled CSS Class for position. Fixed, Absolute and Relative are the 3 I know, there may be more.
+This property is set on the CSS Class for position. Fixed, Absolute and Relative are the 3 I know, there may be more.
 
 # ProgressBackground
 
     public string ProgressBackground { get; set; }
     
-This is the string property bound to the BlazorStyled styles for the ProgressBar div.
+This is the string property bound to the CSS styles for the ProgressBar div.
 In future versions I imagine themes or other styles, or even an option to display the innter graph without the background.
 
 <img src="https://github.com/DataJuggler/DataJuggler.Blazor.Components/blob/master/wwwroot/Images/RedProgressBase.png">
@@ -900,12 +865,6 @@ HeightPixels: 80px.
     public string Name
     
 The name helps distinquish Sprites from other Sprites.
-
-# SpriteStyle
-
-    public string SpriteStyle { get; set; }
-    
-This property is used as the CSS class for BlazorStyle.
 
 # Width
 

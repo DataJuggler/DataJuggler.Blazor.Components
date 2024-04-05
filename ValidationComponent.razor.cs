@@ -30,7 +30,6 @@ namespace DataJuggler.Blazor.Components
         private string labelBackgroundColor;
         private string textBoxBackColor;
         private string labelStyle;
-        private string textBoxStyle;
         private bool isValid;
         private string caption;
         private string text;        
@@ -53,17 +52,14 @@ namespace DataJuggler.Blazor.Components
         private string takenImageUrl;
         private string imageUrl;
         private bool showImage;
-        private string imageStyle;
         private bool isUnique;
         private bool checkBoxMode;
         private bool checkBoxValue;
-        private string checkBoxStyle;
         private double imageScale;
         private double checkBoxXPosition;
         private string checkBoxXStyle;
         private double checkBoxYPosition;
         private string checkBoxYStyle;
-        private string validationControlStyle;
         private double fontSize;        
         private double height;        
         private double width;        
@@ -93,9 +89,7 @@ namespace DataJuggler.Blazor.Components
         private double imageWidth;
         private string imageBackColor;
         private double marginLeft;
-        private string column1;
         private string column2;
-        private string column3;
         private double textBoxWidth;
         private int rows;
         private double column1Width;
@@ -645,17 +639,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxStyle
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxStyle'.
-            /// </summary>
-            public string CheckBoxStyle
-            {
-                get { return checkBoxStyle; }
-                set { checkBoxStyle = value; }
-            }
-            #endregion
-            
             #region CheckBoxValue
             /// <summary>
             /// This property gets or sets the value for 'CheckBoxValue'.
@@ -755,17 +738,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Column1
-            /// <summary>
-            /// This property gets or sets the value for 'Column1'.
-            /// </summary>
-            public string Column1
-            {
-                get { return column1; }
-                set { column1 = value; }
-            }
-            #endregion
-            
             #region Column1Width
             /// <summary>
             /// This property gets or sets the value for 'Column1Width'.
@@ -796,17 +768,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Column2
-            /// <summary>
-            /// This property gets or sets the value for 'Column2'.
-            /// </summary>
-            public string Column2
-            {
-                get { return column2; }
-                set { column2 = value; }
-            }
-            #endregion
-            
             #region Column2Width
             /// <summary>
             /// This property gets or sets the value for 'Column2Width'.
@@ -834,17 +795,6 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return column2WidthStyle;
                 }
-            }
-            #endregion
-            
-            #region Column3
-            /// <summary>
-            /// This property gets or sets the value for 'Column3'.
-            /// </summary>
-            public string Column3
-            {
-                get { return column3; }
-                set { column3 = value; }
             }
             #endregion
             
@@ -1160,17 +1110,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return imageScale; }
                 set { imageScale = value; }
-            }
-            #endregion
-            
-            #region ImageStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ImageStyle'.
-            /// </summary>
-            public string ImageStyle
-            {
-                get { return imageStyle; }
-                set { imageStyle = value; }
             }
             #endregion
             
@@ -1896,17 +1835,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region TextBoxStyle
-            /// <summary>
-            /// This property gets or sets the value for 'TextBoxStyle'.
-            /// </summary>
-            public string TextBoxStyle
-            {
-                get { return textBoxStyle; }
-                set { textBoxStyle = value; }
-            }
-            #endregion            
-            
             #region TextBoxWidth
             /// <summary>
             /// This property gets or sets the value for 'TextBoxWidth'.
@@ -1986,17 +1914,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set {unit = value;}
-            }
-            #endregion
-            
-            #region ValidationControlStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ValidationControlStyle'.
-            /// </summary>
-            public string ValidationControlStyle
-            {
-                get { return validationControlStyle; }
-                set { validationControlStyle = value; }
             }
             #endregion
             

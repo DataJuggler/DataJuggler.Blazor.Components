@@ -25,7 +25,6 @@ namespace DataJuggler.Blazor.Components
     {
 
         #region Private Variables
-        private string spriteStyle;
         private Timer timer;
         private double xIncrement;
         private double yIncrement;
@@ -1002,17 +1001,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return scale; }
                 set { scale = value; }
-            }
-            #endregion
-            
-            #region SpriteStyle
-            /// <summary>
-            /// This property gets or sets the value for 'SpriteStyle'.
-            /// </summary>
-            public string SpriteStyle
-            {
-                get { return spriteStyle; }
-                set { spriteStyle = value; }
             }
             #endregion
             

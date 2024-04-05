@@ -25,8 +25,6 @@ namespace DataJuggler.Blazor.Components
     {
 
         #region Private Variables
-        private string buttonStyle;        
-        private string buttonContainerStyle;
         private string imageUrl;
         private string buttonText;
         private int buttonNumber;
@@ -42,7 +40,6 @@ namespace DataJuggler.Blazor.Components
         private IBlazorComponentParent parent;
         private ButtonClickedHandler clickHandler;
         private List<IBlazorComponent> children;
-        private string buttonTextAlignStyle;
         private int zIndex;
         private TextSizeEnum textSize;
         private string textSizeStyle;
@@ -166,17 +163,6 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
             
-            #region ButtonContainerStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonContainerStyle'.
-            /// </summary>
-            public string ButtonContainerStyle
-            {
-                get { return buttonContainerStyle; }
-                set { buttonContainerStyle = value; }
-            }
-            #endregion
-            
             #region ButtonNumber
             /// <summary>
             /// This property gets or sets the value for 'ButtonNumber'.
@@ -186,17 +172,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonNumber; }
                 set { buttonNumber = value; }
-            }
-            #endregion
-            
-            #region ButtonStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonStyle'.
-            /// </summary>
-            public string ButtonStyle
-            {
-                get { return buttonStyle; }
-                set { buttonStyle = value; }
             }
             #endregion
             
@@ -221,17 +196,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonTextAlign; }
                 set { buttonTextAlign = value; }
-            }
-            #endregion
-            
-            #region ButtonTextAlignStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonTextAlignStyle'.
-            /// </summary>
-            public string ButtonTextAlignStyle
-            {
-                get { return buttonTextAlignStyle; }
-                set { buttonTextAlignStyle = value; }
             }
             #endregion
             

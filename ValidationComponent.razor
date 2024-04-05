@@ -1,71 +1,78 @@
 ﻿@namespace DataJuggler.Blazor.Components
-@using BlazorStyled 
-
-<Styled @bind-Classname="@Column1">
-    display: inline-block;
-    height: 100%;
-    background-color: @LabelBackgroundColor;
-    color: @LabelColor;
-    font-size: @LabelFontSizeStyle;
-    text-align: right;
-    width: @Column1WidthStyle;
-    position: relative;
-    top: @LabelTopStyle;
-</Styled>
-<Styled @bind-Classname="@Column2">
-    display: inline-block;
-    width: @TextBoxWidthStyle;
-    height: 100%;    
-    margin-left: @MarginLeftStyle;
-    width: @Column2WidthStyle;
-</Styled>
-<Styled @bind-Classname="@Column3">    
-    display: inline-block;
-    width: @ImageWidthStyle;
-    height: 100%;    
-    background-color: @ImageBackColor;
-    width: @Column3WidthStyle;
-</Styled>
-<Styled @bind-Classname="@TextBoxStyle">        
-    background-color: @TextBoxBackColor;
-    height: @HeightStyle;
-    line-height: 2vh;
-    font-size: @FontSizeStyle;
-    width: @TextBoxWidthStyle;
-    overflow: hidden;
-</Styled>
-<Styled @bind-Classname="@CheckBoxStyle">
-    background-color: @TextBoxBackColor;
-    position: @Position;
-    left: @CheckBoxXStyle;
-    top: @CheckBoxYStyle;
-    clear: both;
-</Styled>
-<Styled @bind-Classname="@ImageStyle">
-    background-image: url('@ImageUrl');
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-size: 100% 100%;    
-    transform: scale(@ImageScale);
-    transform-origin: left;
-    width: @ImageWidthStyle;
-    height: 100%;
-</Styled>
-<Styled @bind-Classname="@ValidationControlStyle">
-    width: @WidthStyle;
-    position: @Position;
-    left: @LeftStyle;
-    top: @TopStyle;
-    height: @HeightStyle;
-    background-color: @BackgroundColor;
-    z-index: @ZIndex;
-</Styled>
-<Styled @bind-Classname="@BottomMarginClass">
-    width: @WidthStyle;
-    height: @MarginBottomStyle;
-</Styled>
 
 <style>
+    .column1
+    {    
+        display: inline-block;
+        height: 100%;
+        background-color: @LabelBackgroundColor;
+        color: @LabelColor;
+        font-size: @LabelFontSizeStyle;
+        text-align: right;
+        width: @Column1WidthStyle;
+        position: relative;
+        top: @LabelTopStyle;
+    }
+    .column2
+    {
+        display: inline-block;
+        width: @TextBoxWidthStyle;
+        height: 100%;    
+        margin-left: @MarginLeftStyle;
+        width: @Column2WidthStyle;
+    }
+    .column3
+    {
+        display: inline-block;
+        width: @ImageWidthStyle;
+        height: 100%;    
+        background-color: @ImageBackColor;
+        width: @Column3WidthStyle;
+    }
+    .textboxstyle
+    {
+        background-color: @TextBoxBackColor;
+        height: @HeightStyle;
+        line-height: 2vh;
+        font-size: @FontSizeStyle;
+        width: @TextBoxWidthStyle;
+        overflow: hidden;
+    }
+    .checkboxstyle
+    {
+        background-color: @TextBoxBackColor;
+        position: @Position;
+        left: @CheckBoxXStyle;
+        top: @CheckBoxYStyle;
+        clear: both;
+    }
+    .imagestyle
+    {
+        background-image: url('@ImageUrl');
+        background-repeat: no-repeat;
+        background-color: transparent;
+        background-size: 100% 100%;    
+        transform: scale(@ImageScale);
+        transform-origin: left;
+        width: @ImageWidthStyle;
+        height: 100%;
+    }
+    .validationcontrolstyle
+    {
+        width: @WidthStyle;
+        position: @Position;
+        left: @LeftStyle;
+        top: @TopStyle;
+        height: @HeightStyle;
+        background-color: @BackgroundColor;
+        z-index: @ZIndex;
+    }
+    .bottommarginclass
+    {
+        width: @WidthStyle;
+        height: @MarginBottomStyle;
+    }
+
     /* Clear floats after the columns */
     .row:after {
         content: "";
@@ -78,24 +85,24 @@
 @if (Visible)
 {
     <div class="row">
-        <div class="@ValidationControlStyle">
+        <div class="validationcontrolstyle">
             @if (ShowCaption)
             {
-                <div class="@Column1">
+                <div class="column1">
                     <div class="@LabelClassName">@Caption</div>
                 </div>
             }
-            <div class="@Column2">
+            <div class="column2">
                 @if (CheckBoxMode)
                 {
                     <div class="@CheckBoxClassName">
                         @if (Enabled)
                         {
-                            <input class="@CheckBoxStyle" @bind="@CheckBoxValue" type=@InputType checked="@CheckBoxValue" />                            
+                            <input class="checkboxstyle" @bind="@CheckBoxValue" type=@InputType checked="@CheckBoxValue" />                            
                         }
                         else
                         {
-                            <input class="@CheckBoxStyle" type=@InputType checked="@CheckBoxValue" disabled />@Text
+                            <input class="checkboxstyle" type=@InputType checked="@CheckBoxValue" disabled />@Text
                         }
                         <span class="displayinlineblock">
                             @Text
@@ -107,11 +114,11 @@
                     <div class="@TextBoxClassName">
                         @if (Enabled)
                         {
-                            <textarea class="@TextBoxStyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
+                            <textarea class="textboxstyle" type=@InputType @bind="@Text" @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" />
                         }
                         else
                         {
-                            <textarea class="@TextBoxStyle" disabled type=@InputType @bind="@Text"  />
+                            <textarea class="textboxstyle" disabled type=@InputType @bind="@Text"  />
                         }                        
                     </div>
                 }
@@ -120,24 +127,24 @@
                     <span class="@TextBoxClassName">
                         @if (Enabled)
                         {
-                            <input class="@TextBoxStyle" autocomplete="@AutoCompleteStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                            <input class="textboxstyle" autocomplete="@AutoCompleteStyle" type=@InputType @bind="@Text" @bind:event="oninput" onfocus="this.select()" onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
                         }
                         else
                         {
-                            <input class="@TextBoxStyle" autocomplete="off" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
+                            <input class="textboxstyle" autocomplete="off" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
                         }
                     </span>
                 }
             </div>
             @if (ShowImage)
             {
-                <div class="@Column3">
+                <div class="column3">
                     <div class="@ImageClassName">
-                        <div class="@ImageStyle"></div>
+                        <div class="imagestyle"></div>
                     </div>
                 </div>
             }
         </div>
     </div>
-    <div class="@BottomMarginClass"></div>
+    <div class="bottommarginclass"></div>
 }

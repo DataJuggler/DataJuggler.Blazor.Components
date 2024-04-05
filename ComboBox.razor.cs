@@ -30,7 +30,6 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private double buttonLeft;
         private string buttonPosition;
-        private string buttonStyle;
         private string buttonText;
         private Color buttonTextColor;
         private double buttonTop;
@@ -42,12 +41,10 @@ namespace DataJuggler.Blazor.Components
         private Color comboBoxBackColor;
         private ImageButton comboBoxButton;
         private double comboBoxLeft;
-        private string comboBoxStyle;
         private double comboBoxWidth;
         private string displayStyle;
         private bool expanded;
         private double expandedButtonLeft;
-        private string grid;
         private double height;
         private string heightStyle;
         private string heightUnit;
@@ -62,7 +59,6 @@ namespace DataJuggler.Blazor.Components
         private string labelMarginRightListStyle;
         private string labelMarginRightStyle;
         private string labelPosition;
-        private string labelStyle;
         private string labelText;
         private double labelTop;
         private string labelUnit;
@@ -809,17 +805,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region ButtonStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonStyle'.
-            /// </summary>
-            public string ButtonStyle
-            {
-                get { return buttonStyle; }
-                set { buttonStyle = value; }
-            }
-            #endregion
-                
             #region ButtonText
             /// <summary>
             /// This property gets or sets the value for 'ButtonText'.
@@ -1044,17 +1029,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region ComboBoxStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ComboBoxStyle'.
-            /// </summary>
-            public string ComboBoxStyle
-            {
-                get { return comboBoxStyle; }
-                set { comboBoxStyle = value; }
-            }
-            #endregion
-                
             #region ComboBoxWidth
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxWidth'.
@@ -1125,17 +1099,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return expandedButtonLeft; }
                 set { expandedButtonLeft = value; }
-            }
-            #endregion
-                
-            #region Grid
-            /// <summary>
-            /// This property gets or sets the value for 'Grid'.
-            /// </summary>
-            public string Grid
-            {
-                get { return grid; }
-                set { grid = value; }
             }
             #endregion
                 
@@ -1507,17 +1470,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelPosition; }
                 set { labelPosition = value; }
-            }
-            #endregion
-                
-            #region LabelStyle
-            /// <summary>
-            /// This property gets or sets the value for 'LabelStyle'.
-            /// </summary>
-            public string LabelStyle
-            {
-                get { return labelStyle; }
-                set { labelStyle = value; }
             }
             #endregion
                 

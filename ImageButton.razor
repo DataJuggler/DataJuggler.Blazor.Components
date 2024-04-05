@@ -1,37 +1,38 @@
-﻿@using BlazorStyled
-
-<Styled @bind-Classname="ButtonContainerStyle">
-    position: @Position;
-    left: @LeftStyle;
-    top: @TopStyle;    
-    z-index: @ZIndex;   
-    display: inline-block;
-    outline: none;
-    border: none;    
-    width: @WidthStyle;    
-</Styled>
-<Styled @bind-Classname="ButtonStyle">
-    background-image: url('@ImageUrl');    
-    background-size: 100% 100%;
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
-    outline: none;
-    border: none;    
-    background-repeat: no-repeat;
-    background-color: transparent;    
-    width: @WidthStyle;
-    height: @HeightStyle;
-    white-space: nowrap;
-    font-size: @TextSizeStyle;
-    color: @TextColorName;
-    vertical-align: central;
-</Styled>
-<Styled @bind-Classname="ButtonTextAlignStyle">
-    text-align: @ButtonTextAlign;
-</Styled>
-
+﻿
 <style>
+    .buttoncontainerstyle
+    {
+        position: @Position;
+        left: @LeftStyle;
+        top: @TopStyle;    
+        z-index: @ZIndex;   
+        display: inline-block;
+        outline: none;
+        border: none;    
+        width: @WidthStyle;    
+    }
+    .buttonstyle
+    {
+        background-image: url('@ImageUrl');    
+        background-size: 100% 100%;
+        display: inline-block;
+        justify-content: center;
+        align-items: center;
+        outline: none;
+        border: none;    
+        background-repeat: no-repeat;
+        background-color: transparent;    
+        width: @WidthStyle;
+        height: @HeightStyle;
+        white-space: nowrap;
+        font-size: @TextSizeStyle;
+        color: @TextColorName;
+        vertical-align: central;
+    }
+    .buttontextalignstyle
+    {
+        text-align: @ButtonTextAlign;
+    }
     .imagebutton
     {
         outline: none;
@@ -55,9 +56,9 @@
 
 @if (Visible)
 {
-    <div class="@ButtonContainerStyle">
-        <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked">
-            <span class="@ButtonTextAlignStyle">@ButtonText</span>
+    <div class="buttoncontainerstyle">
+        <button class="imagebutton buttonstyle" @onclick="ButtonClicked">
+            <span class="buttontextalignstyle">@ButtonText</span>
         </button>    
     </div>
 }

@@ -56,8 +56,7 @@ namespace DataJuggler.Blazor.Components
         private double imageWidth;
         private string imageBackColor;
         private double marginLeft;        
-        private double marginBottom;
-        private string bottomMarginClass;
+        private double marginBottom;        
         private string labelControlStyle;
         #endregion
         
@@ -197,17 +196,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return backgroundColor; }
                 set { backgroundColor = value; }
-            }
-            #endregion
-            
-            #region BottomMarginClass
-            /// <summary>
-            /// This property gets or sets the value for 'BottomMarginClass'.
-            /// </summary>
-            public string BottomMarginClass
-            {
-                get { return bottomMarginClass; }
-                set { bottomMarginClass = value; }
             }
             #endregion
             

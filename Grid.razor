@@ -2,19 +2,21 @@
 @using DataJuggler.UltimateHelper
 @using DataJuggler.Excelerate;
 @using DataJuggler.Blazor.Components
-@using BlazorStyled
 
-<Styled @bind-Classname="@GridStyle">
-    background-color: @GridBackColor;
-    height: @HeightStyle;
-    line-height: 2vh;
-    font-size: @FontSizeStyle;
-    width: @WidthStyle;
-    overflow: hidden;
-    position: @Position;
-    left: @LeftStyle;
-    top: @TopStyle;
-</Styled>
+<style>
+    .gridstyle
+    {
+        background-color: @GridBackColor;
+        height: @HeightStyle;
+        line-height: 2vh;
+        font-size: @FontSizeStyle;
+        width: @WidthStyle;
+        overflow: hidden;
+        position: @Position;
+        left: @LeftStyle;
+        top: @TopStyle;
+    }
+</style>
 
 @if (ShowHeader)
 {
@@ -23,7 +25,7 @@
     </div>
 }
 
-<div class="@ClassName @GridStyle">
+<div class="@ClassName gridstyle">
     
 
     @if ((ShowColumnHeaders) && (HasColumns))

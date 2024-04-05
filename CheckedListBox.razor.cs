@@ -26,7 +26,6 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private double checkBoxXPosition;
         private double checkBoxYPosition;
-        private string checkedListBoxStyle;
         private List<IBlazorComponent> children;
         private string displayStyle;
         private double height;
@@ -41,7 +40,6 @@ namespace DataJuggler.Blazor.Components
         private double listItemHeight;
         private double listItemLeft;
         private string listItemPosition;
-        private string listItemStyle;
         private Color listItemTextColor;
         private double listItemTop;
         private double listItemWidth;
@@ -365,17 +363,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return checkBoxYPosition; }
                 set { checkBoxYPosition = value; }
-            }
-            #endregion
-            
-            #region CheckedListBoxStyle
-            /// <summary>
-            /// This property gets or sets the value for 'CheckedListBoxStyle'.
-            /// </summary>
-            public string CheckedListBoxStyle
-            {
-                get { return checkedListBoxStyle; }
-                set { checkedListBoxStyle = value; }
             }
             #endregion
                 
@@ -755,18 +742,7 @@ namespace DataJuggler.Blazor.Components
                 set { listItemPosition = value; }
             }
             #endregion
-                
-            #region ListItemStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ListItemStyle'.
-            /// </summary>
-            public string ListItemStyle
-            {
-                get { return listItemStyle; }
-                set { listItemStyle = value; }
-            }
-            #endregion
-
+            
             #region ListItemTextColor
             /// <summary>
             /// This property gets or sets the value for 'ListItemTextColor'.
