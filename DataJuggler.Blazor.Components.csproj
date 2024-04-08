@@ -410,7 +410,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>8.2.2</Version>
+    <Version>8.2.3</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>

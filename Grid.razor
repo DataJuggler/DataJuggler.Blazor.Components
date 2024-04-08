@@ -27,8 +27,7 @@
 
 @if ((ShowColumnHeaders) && (HasColumns))
 {
-    <div class="@HeaderClassName">
-        // iterate each column
+    <div class="@HeaderClassName">        
         @foreach (Column column in Columns)
         {
             <div class="@column.ClassName">@column.Caption</div>
