@@ -54,6 +54,7 @@ namespace DataJuggler.Blazor.Components
         private double top;                        
         private string position;
         private string unit;
+        private bool notifyParentOnDoubleClick;
         #endregion
 
         #region Constructor
@@ -130,25 +131,41 @@ namespace DataJuggler.Blazor.Components
                 // if the row exists
                 if (NullHelper.Exists(row))
                 {
-                    // Find the column
-                    Column column = row.FindColumnByNumber(columnNumber);
-
-                    // If the column object exists
-                    if (NullHelper.Exists(column))
+                    // if NotifyParent is true
+                    if ((NotifyParentOnDoubleClick) && (HasParent))
                     {
-                        // Set the column to focus
-                        column.SetFocusOnFirstRender = true;
+                        // Create a message
+                        Message message = new Message();
 
-                        // Set the column to EditMode
-                        column.EditMode = true;
+                        // Set the parent
+                        message.Text = "A row was double clicked with Id " + row.ExternalId + " " + row.ExternalIdDescription;
+                        message.Sender = this;
+
+                        // Notify the parent
+                        Parent.ReceiveData(message);
                     }
+                    else
+                    {
+                        // Find the column
+                        Column column = row.FindColumnByNumber(columnNumber);
 
-                    // Set the row into EditMode so the edit control is displayed.
-                    // to do: Figure out the Edit Control.
-                    row.EditMode = true;
+                        // If the column object exists
+                        if (NullHelper.Exists(column))
+                        {
+                            // Set the column to focus
+                            column.SetFocusOnFirstRender = true;
 
-                    // turn on EditMode
-                    EditMode = true;
+                            // Set the column to EditMode
+                            column.EditMode = true;
+                        }
+
+                        // Set the row into EditMode so the edit control is displayed.
+                        // to do: Figure out the Edit Control.
+                        row.EditMode = true;
+
+                        // turn on EditMode
+                        EditMode = true;
+                    }
                 }
 
                 // Update the page in EditMode
@@ -715,6 +732,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return name; }
                 set { name = value; }
+            }
+            #endregion
+            
+            #region NotifyParentOnDoubleClick
+            /// <summary>
+            /// This property gets or sets the value for 'NotifyParentOnDoubleClick'.
+            /// </summary>
+            [Parameter]
+            public bool NotifyParentOnDoubleClick
+            {
+                get { return notifyParentOnDoubleClick; }
+                set { notifyParentOnDoubleClick = value; }
             }
             #endregion
             

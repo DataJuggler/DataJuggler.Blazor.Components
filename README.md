@@ -1,5 +1,8 @@
 News
 
+4.8.2024: I modified the grid with a new property 'NotifyParentOnDoubleClick'. You can set
+an ExternalId and ExternalIdDescription when you create the rows. 
+
 4.5.2024: ImageButton does not have a ClassName property.
 
 4.4.2024: I removed the dependency on Blazor Styled. Blazor Styled hasn't been updated since 
