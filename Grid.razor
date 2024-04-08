@@ -25,17 +25,19 @@
     </div>
 }
 
-<div class="@ClassName gridstyle">
-    
-
-    @if ((ShowColumnHeaders) && (HasColumns))
-    {
+@if ((ShowColumnHeaders) && (HasColumns))
+{
+    <div class="@HeaderClassName">
         // iterate each column
-        foreach (Column column in Columns)
+        @foreach (Column column in Columns)
         {
             <div class="@column.ClassName">@column.Caption</div>
         }
-    }
+    </div>
+}
+
+<div class="@ClassName gridstyle">
+    
     @if (HasRows)
     {  
 

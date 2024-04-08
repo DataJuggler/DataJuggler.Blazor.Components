@@ -214,6 +214,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ClassName'.
             /// </summary>
+            [Parameter]
             public string ClassName
             {
                 get { return className; }

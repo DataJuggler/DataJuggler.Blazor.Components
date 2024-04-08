@@ -1,5 +1,7 @@
 News
 
+4.5.2024: ImageButton does not have a ClassName property.
+
 4.4.2024: I removed the dependency on Blazor Styled. Blazor Styled hasn't been updated since 
 .NET Core 3.1, and I found you can create a Style section on any razor page and do the same thing
 without Blazor Styled, and with better results it seems of late.
