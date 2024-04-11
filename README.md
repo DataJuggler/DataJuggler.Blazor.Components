@@ -2,6 +2,8 @@ News
 
 4.8.2024: I modified the grid with a new property 'NotifyParentOnDoubleClick'. You can set
 an ExternalId and ExternalIdDescription when you create the rows. 
+I also added an EnableClick function for a Grid row. The Click does work. Testing the DoubleClick now.
+the parent object will receive a message. Optionally, Set the ExternalId and ExternalId Description.
 
 4.5.2024: ImageButton does not have a ClassName property.
 

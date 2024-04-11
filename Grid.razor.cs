@@ -54,7 +54,8 @@ namespace DataJuggler.Blazor.Components
         private double top;                        
         private string position;
         private string unit;
-        private bool notifyParentOnDoubleClick;
+        private bool notifyParentOnDoubleClick;        
+        private bool enableClick;
         #endregion
 
         #region Constructor
@@ -121,6 +122,36 @@ namespace DataJuggler.Blazor.Components
                 await base.OnAfterRenderAsync(firstRender);
             }
             #endregion
+
+            #region OnClick(Row row, int columnNumber)
+            /// <summary>
+            /// On Double Click
+            /// </summary>
+            public void OnClick(Row row, int columnNumber)
+            {
+                // if the row exists
+                if (NullHelper.Exists(row))
+                {
+                    // if NotifyParent is true
+                    if (HasParent)
+                    {
+                        // Create a message
+                        Message message = new Message();
+
+                        // Set the parent
+                        message.Text = "A row was clicked with Id " + row.ExternalId + " " + row.ExternalIdDescription;
+                        message.Id = row.ExternalId;
+                        message.Sender = this;
+
+                        // Notify the parent
+                        Parent.ReceiveData(message);
+                    }
+                }
+
+                // Update the page in EditMode
+                Refresh();
+            }
+            #endregion
             
             #region OnDoubleClick(Row row, int columnNumber)
             /// <summary>
@@ -139,6 +170,7 @@ namespace DataJuggler.Blazor.Components
 
                         // Set the parent
                         message.Text = "A row was double clicked with Id " + row.ExternalId + " " + row.ExternalIdDescription;
+                        message.Id = row.ExternalId;
                         message.Sender = this;
 
                         // Notify the parent
@@ -422,6 +454,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return editRowId; }
                 set { editRowId = value; }
+            }
+            #endregion
+            
+            #region EnableClick
+            /// <summary>
+            /// This property gets or sets the value for 'EnableClick'.
+            /// </summary>
+            [Parameter]
+            public bool EnableClick
+            {
+                get { return enableClick; }
+                set { enableClick = value; }
             }
             #endregion
             

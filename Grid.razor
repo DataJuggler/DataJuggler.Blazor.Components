@@ -64,6 +64,10 @@
                             Text="@column.EditorText"  Parent=this></ValidationComponent>
                         </div>
                     }
+                    else if (EnableClick)
+                    {
+                        <div class="down0 @column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                    }
                     else
                     {
                         <div class="down0 @column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
