@@ -1,21 +1,18 @@
-﻿
+﻿@using BlazorStyled
 
-<style>
-    .textpercent
-    {
-        color: @TextColor !important;
-        height: 3vh;
-        line-height: 3vh;
-        font-size: 2.2vh;
-    }
-</style>
+<Styled @bind-Classname="@TextPercentStyle">
+    color: @TextColor !important;
+    height: 3vh;
+    line-height: 3vh;
+    font-size: 2.2vh;
+</Styled>
 
 @if  (Visible)
 {  
     <div>
         @if (OverrideThemeColorForText)
-        {  
-            <span class="textpercent">@PercentString</span>
+        {
+            <span class="TextPercentStyle">@PercentString</span>
         }
         else
         {

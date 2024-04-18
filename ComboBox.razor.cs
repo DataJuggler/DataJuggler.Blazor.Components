@@ -70,7 +70,6 @@ namespace DataJuggler.Blazor.Components
         private string listItemClassName;
         private double listItemLeft;
         private string listItemPosition;
-        private string listItemStyle;
         private Color listItemTextColor;
         private Color listItemBackgroundColor;
         private double listItemTop;
@@ -98,7 +97,14 @@ namespace DataJuggler.Blazor.Components
         private double comboBoxHeight;
         private string comboBoxHeightStyle;
         private double labelFontSize;        
-        private string labelFontSizeUnit;     
+        private string labelFontSizeUnit;
+        
+        // Had to bring back BlazorStyled
+        private string gridStyle;
+        private string labelStyle;
+        private string comboboxStyle;
+        private string listItemStyle;
+        private string buttonStyle;
         #endregion
         
         #region Constructor
@@ -804,7 +810,18 @@ namespace DataJuggler.Blazor.Components
                 set { buttonPosition = value; }
             }
             #endregion
-                
+
+            #region ButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonstyleStyle'.
+            /// </summary>
+            public string ButtonStyle
+            {
+                get { return buttonStyle; }
+                set { buttonStyle = value; }
+            }
+            #endregion
+            
             #region ButtonText
             /// <summary>
             /// This property gets or sets the value for 'ButtonText'.
@@ -1028,7 +1045,18 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-                
+            
+            #region ComboboxStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ComboboxStyle'.
+            /// </summary>
+            public string ComboboxStyle
+            {
+                get { return comboboxStyle; }
+                set { comboboxStyle = value; }
+            }
+            #endregion
+            
             #region ComboBoxWidth
             /// <summary>
             /// This property gets or sets the value for 'ComboBoxWidth'.
@@ -1101,7 +1129,18 @@ namespace DataJuggler.Blazor.Components
                 set { expandedButtonLeft = value; }
             }
             #endregion
-                
+            
+            #region GridStyle
+            /// <summary>
+            /// This property gets or sets the value for 'GridStyle'.
+            /// </summary>
+            public string GridStyle
+            {
+                get { return gridStyle; }
+                set { gridStyle = value; }
+            }
+            #endregion
+            
             #region HasCheckedListComponent
             /// <summary>
             /// This property returns true if this object has a 'CheckedListComponent'.
@@ -1472,7 +1511,18 @@ namespace DataJuggler.Blazor.Components
                 set { labelPosition = value; }
             }
             #endregion
-                
+            
+            #region LabelStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelStyle'.
+            /// </summary>
+            public string LabelStyle
+            {
+                get { return labelStyle; }
+                set { labelStyle = value; }
+            }
+            #endregion
+            
             #region LabelText
             /// <summary>
             /// This property gets or sets the value for 'LabelText'.
@@ -1711,7 +1761,7 @@ namespace DataJuggler.Blazor.Components
                 set { listItemPosition = value; }
             }
             #endregion
-                
+            
             #region ListItemStyle
             /// <summary>
             /// This property gets or sets the value for 'ListItemStyle'.
@@ -1722,7 +1772,7 @@ namespace DataJuggler.Blazor.Components
                 set { listItemStyle = value; }
             }
             #endregion
-                
+            
             #region ListItemTextColor
             /// <summary>
             /// This property gets or sets the value for 'ListItemTextColor'.

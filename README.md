@@ -1,5 +1,10 @@
 News
 
+4.18.2024: The conversion to using BlazorStyled again has completed. Testing in progress, but seems to work.
+
+4.17.2024: I added back BlazorStyled, but I forked the project and created a NuGet package DataJuggler.BlazorStyled.
+I didn't make any code changes, all I did was upgrade the component to .NET 8 and the dependencies.
+
 4.8.2024: I modified the grid with a new property 'NotifyParentOnDoubleClick'. You can set
 an ExternalId and ExternalIdDescription when you create the rows. 
 I also added an EnableClick function for a Grid row. The Click does work. Testing the DoubleClick now.
@@ -133,7 +138,14 @@ Getting Started:
 
 # Important
 
-This project has removed the dependency on Blazor Styled.
+This project has a dependency on DataJuggler.BlazorStyled (a port of BlazorStyled by chanan. Both will work, but 
+the forked version has been upgraded for .NET8.)
+
+Add the following to program.cs:
+
+using DataJuggler.BlazorStyled;
+
+builder.Services.AddBlazorStyled();
     
 # New Video - 50,000 NuGet Installs
 

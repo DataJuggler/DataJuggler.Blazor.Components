@@ -56,6 +56,7 @@ namespace DataJuggler.Blazor.Components
         private string unit;
         private bool notifyParentOnDoubleClick;        
         private bool enableClick;
+        private string gridStyle;
         #endregion
 
         #region Constructor
@@ -543,6 +544,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return gridBackColor; }
                 set { gridBackColor = value; }
+            }
+            #endregion
+            
+            #region GridStyle
+            /// <summary>
+            /// This property gets or sets the value for 'GridStyle'.
+            /// </summary>
+            public string GridStyle
+            {
+                get { return gridStyle; }
+                set { gridStyle = value; }
             }
             #endregion
             

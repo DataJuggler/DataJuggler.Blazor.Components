@@ -57,6 +57,10 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private int zIndex;        
         private string listItemClassName;
+
+        // reverting back to BlazorStyled
+        private string checkedlistboxStyle;
+        private string listitemStyle;
         #endregion
         
         #region Constructor
@@ -366,6 +370,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region CheckedlistboxStyle
+            /// <summary>
+            /// This property gets or sets the value for 'CheckedlistboxStyle'.
+            /// </summary>
+            public string CheckedlistboxStyle
+            {
+                get { return checkedlistboxStyle; }
+                set { checkedlistboxStyle = value; }
+            }
+            #endregion
+            
             #region Children
             /// <summary>
             /// This property gets or sets the value for 'Children'.
@@ -740,6 +755,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemPosition; }
                 set { listItemPosition = value; }
+            }
+            #endregion
+            
+            #region ListitemStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListitemStyle'.
+            /// </summary>
+            public string ListitemStyle
+            {
+                get { return listitemStyle; }
+                set { listitemStyle = value; }
             }
             #endregion
             

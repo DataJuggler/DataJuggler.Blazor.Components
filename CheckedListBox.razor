@@ -1,50 +1,46 @@
-﻿@using DataJuggler.Blazor.Components
+﻿@using BlazorStyled
 
-<style>
-    .checkedlistboxstyle
-    {
-        background-color: @ListBackgroundColor;
-        display: @DisplayStyle;
-        font-size: @TextSizeStyle;
-        height: @HeightStyle;
-        justify-content: left;
-        min-width: @WidthStyle;    
-        left: @LeftStyle;
-        Top: @TopStyle;
-        margin-top: 0;
-        margin-bottom: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        position: @Position;
-        width: @WidthStyle;
-    }
-    .listitemstyle
-    {
-        background-color: @ListBackgroundColorName;
-        color: @ListItemTextColorName;
-        font-family: Verdana;
-        font-size: @TextSizeStyle;        
-        height: @ListItemHeightStyle;    
-        left: @ListItemLeftStyle;    
-        margin-bottom: 0;    
-        max-height: @ListItemHeightStyle;
-        padding-bottom: 0;
-        padding-top: 0;
-        position: @listItemPosition;    
-        text-align: left;
-        top: @ListItemTopStyle;
-        width: @ListItemWidthStyle;
-        z-index: @ZIndex;
-        overflow: clip;
-    }
-</style>
+<Styled @bind-Classname=CheckedlistboxStyle>
+    background-color: @ListBackgroundColor;
+    display: @DisplayStyle;
+    font-size: @TextSizeStyle;
+    height: @HeightStyle;
+    justify-content: left;
+    min-width: @WidthStyle;
+    left: @LeftStyle;
+    Top: @TopStyle;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    position: @Position;
+    width: @WidthStyle;
+</Styled>
+<Styled @bind-Classname=ListitemStyle>
+    background-color: @ListBackgroundColorName;
+    color: @ListItemTextColorName;
+    font-family: Verdana;
+    font-size: @TextSizeStyle;
+    height: @ListItemHeightStyle;
+    left: @ListItemLeftStyle;
+    margin-bottom: 0;
+    max-height: @ListItemHeightStyle;
+    padding-bottom: 0;
+    padding-top: 0;
+    position: @listItemPosition;
+    text-align: left;
+    top: @ListItemTopStyle;
+    width: @ListItemWidthStyle;
+    z-index: @ZIndex;
+    overflow: clip;
+</Styled>
 
-<div class="checkedlistboxstyle">
+<div class="@CheckedlistboxStyle">
     @if (HasItems)
     {  
         @foreach (Item item in Items)
         {
-            <div class="row listitemstyle">
+            <div class="row @ListitemStyle">
             <ValidationComponent CheckBoxMode=true Parent="this" Name="@item.Name" Unit="@Unit"
                 Column1Width="@Width" Column2Width="@Width" CheckBoxValue = "@item.ItemChecked"
                 HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@Width"

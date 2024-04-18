@@ -1,46 +1,47 @@
-﻿
+﻿@using BlazorStyled
+
+<Styled @bind-Classname=ButtoncontainerStyle>
+    position: @Position;
+    left: @LeftStyle;
+    top: @TopStyle;
+    z-index: @ZIndex;
+    display: inline-block;
+    outline: none;
+    border: none;
+    width: @WidthStyle;
+</Styled>
+<Styled @bind-Classname=ButtonStyle>
+    background-image: url('@ImageUrl');
+    background-size: 100% 100%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: @WidthStyle;
+    height: @HeightStyle;
+    white-space: nowrap;
+    font-size: @TextSizeStyle;
+    color: @TextColorName;
+    vertical-align: central;
+</Styled>
+<Styled @bind-Classname=ButtontextalignStyle>
+    text-align: @ButtonTextAlign;
+</Styled>
+<Styled @bind-Classname=ImagebuttonStyle>
+    outline: none;
+    border: none;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    z-index: @ZIndex;
+</Styled>
+
 <style>
-    .buttoncontainerstyle
-    {
-        position: @Position;
-        left: @LeftStyle;
-        top: @TopStyle;    
-        z-index: @ZIndex;   
-        display: inline-block;
-        outline: none;
-        border: none;    
-        width: @WidthStyle;    
-    }
-    .buttonstyle
-    {
-        background-image: url('@ImageUrl');    
-        background-size: 100% 100%;
-        display: inline-block;
-        justify-content: center;
-        align-items: center;
-        outline: none;
-        border: none;    
-        background-repeat: no-repeat;
-        background-color: transparent;    
-        width: @WidthStyle;
-        height: @HeightStyle;
-        white-space: nowrap;
-        font-size: @TextSizeStyle;
-        color: @TextColorName;
-        vertical-align: central;
-    }
-    .buttontextalignstyle
-    {
-        text-align: @ButtonTextAlign;
-    }
     .imagebutton
     {
-        outline: none;
-        border: none;
-        position: relative;
-        top: 0px;
-        left: 0px;
-        z-index: @ZIndex;
     }
     .imagebutton:focus
     {
@@ -56,9 +57,9 @@
 
 @if (Visible)
 {
-    <div class="buttoncontainerstyle">
-        <button class="imagebutton buttonstyle" @onclick="ButtonClicked">
-            <span class="buttontextalignstyle">@ButtonText</span>
+    <div class="@ButtoncontainerStyle">
+        <button class="@ImagebuttonStyle imagebutton @ButtonStyle" @onclick="ButtonClicked">
+            <span class="@ButtonTextAlign">@ButtonText</span>
         </button>    
     </div>
 }

@@ -59,6 +59,7 @@ namespace DataJuggler.Blazor.Components
         private ColorEnum color;
         private ThemeEnum theme;
         private bool overrideThemeColorForText;
+        private string textPercentStyle;
         #endregion
 
         #region Constructor
@@ -788,6 +789,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textColorStyle; }
                 set { textColorStyle = value; }
+            }
+            #endregion
+            
+            #region TextPercentStyle
+            /// <summary>
+            /// This property gets or sets the value for 'TextPercentStyle'.
+            /// </summary>
+            public string TextPercentStyle
+            {
+                get { return textPercentStyle; }
+                set { textPercentStyle = value; }
             }
             #endregion
             

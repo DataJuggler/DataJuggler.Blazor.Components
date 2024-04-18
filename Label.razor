@@ -1,45 +1,34 @@
 ﻿@namespace DataJuggler.Blazor.Components
+@using BlazorStyled
 
-<style>
-    .imagestyle
-    {
-        background-image: url('@ImageUrl');
-        background-repeat: no-repeat;
-        background-color: transparent;
-        background-size: 100% 100%;    
-        transform: scale(@ImageScale);
-        transform-origin: left;
-        width: @ImageWidthStyle;
-        height: 100%;
-    }
-    .labelcontrolstyle
-    {
-        width: @WidthStyle;
-        position: @Position;
-        left: @LeftStyle;
-        top: @TopStyle;
-        height: @HeightStyle;
-        background-color: @BackgroundColor;
-        z-index: @ZIndex;
-    }
-    .bottommarginclass
-    {
-        width: @WidthStyle;
-        height: @MarginBottomStyle;
-    }
-
-    /* Clear floats after the columns */
-    .row:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-</style>
+<Styled @bind-Classname=@ImageStyle>
+    background-image: url('@ImageUrl');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 100% 100%;
+    transform: scale(@ImageScale);
+    transform-origin: left;
+    width: @ImageWidthStyle;
+    height: 100%;
+</Styled>
+<Styled @bind-Classname=@LabelControlStyle>
+    width: @WidthStyle;
+    position: @Position;
+    left: @LeftStyle;
+    top: @TopStyle;
+    height: @HeightStyle;
+    background-color: @BackgroundColor;
+    z-index: @ZIndex;
+</Styled>
+<Styled @bind-Classname=@BottomMarginStyle>
+    width: @WidthStyle;
+    height: @MarginBottomStyle;
+</Styled>
 
 @if (Visible)
 {
     <div class="row">
-        <div class="labelcontrolstyle">
+        <div class="@LabelControlStyle">
             @if (ShowCaption)
             {
                 <div class="@LabelStyle">
@@ -52,10 +41,10 @@
             @if (ShowImage)
             {  
                 <div class="@ImageClassName">
-                    <div class="imagestyle"></div>
+                    <div class="@ImageStyle"></div>
                 </div>
             }
         </div>
     </div>
-    <div class="bottommarginclass"></div>
+    <div class="@BottomMarginStyle"></div>
 }

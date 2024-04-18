@@ -58,6 +58,7 @@ namespace DataJuggler.Blazor.Components
         private bool busy;
         private List<Transform> transforms;
         private IBlazorComponentParent parent;
+        private string spriteStyle;
         #endregion
 
         #region Constructor
@@ -1001,6 +1002,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return scale; }
                 set { scale = value; }
+            }
+            #endregion
+            
+            #region SpriteStyle
+            /// <summary>
+            /// This property gets or sets the value for 'SpriteStyle'.
+            /// </summary>
+            public string SpriteStyle
+            {
+                get { return spriteStyle; }
+                set { spriteStyle = value; }
             }
             #endregion
             

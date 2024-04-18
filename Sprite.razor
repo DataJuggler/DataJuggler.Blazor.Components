@@ -1,24 +1,22 @@
-﻿
-<style>
-    .spritestyle
-    {
-        background-image: url('@ImageUrl');
-        background-repeat: no-repeat;
-        background-size: 100% 100%;   
-        width: @WidthStyle;
-        height: @HeightStyle;
-        position: @Position;
-        top: @YPositionStyle;
-        left: @XPositionStyle;
-        transform: scale(@Scale);
-        transform-origin: left;
-        display: @Display;
-        opacity: @Opacity;
-        transform: rotate(@RotationStyle);
-        z-index: @ZIndex;
-    }
-</style>
+﻿@using BlazorStyled
 
-<div class="spritestyle">
+<Styled @bind-Classname="@SpriteStyle">
+    background-image: url('@ImageUrl');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: @WidthStyle;
+    height: @HeightStyle;
+    position: @Position;
+    top: @YPositionStyle;
+    left: @XPositionStyle;
+    transform: scale(@Scale);
+    transform-origin: left;
+    display: @Display;
+    opacity: @Opacity;
+    transform: rotate(@RotationStyle);
+    z-index: @ZIndex;
+</Styled>
+    
+<div class="@SpriteStyle">
     
 </div>

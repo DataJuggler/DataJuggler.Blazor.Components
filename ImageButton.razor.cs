@@ -50,6 +50,12 @@ namespace DataJuggler.Blazor.Components
         private Color textColor;
         private string heightUnit;
         private string className;
+
+        // Reverting back to BlazorStyled
+        private string buttoncontainerStyle;
+        private string buttonStyle;
+        private string buttontextalignStyle;
+        private string imagebuttonStyle;        
         #endregion
 
         #region Constructor
@@ -163,6 +169,17 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
             
+            #region ButtoncontainerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ButtoncontainerStyle'.
+            /// </summary>
+            public string ButtoncontainerStyle
+            {
+                get { return buttoncontainerStyle; }
+                set { buttoncontainerStyle = value; }
+            }
+            #endregion
+            
             #region ButtonNumber
             /// <summary>
             /// This property gets or sets the value for 'ButtonNumber'.
@@ -172,6 +189,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonNumber; }
                 set { buttonNumber = value; }
+            }
+            #endregion
+            
+            #region ButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonStyle'.
+            /// </summary>
+            public string ButtonStyle
+            {
+                get { return buttonStyle; }
+                set { buttonStyle = value; }
             }
             #endregion
             
@@ -196,6 +224,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonTextAlign; }
                 set { buttonTextAlign = value; }
+            }
+            #endregion
+            
+            #region ButtontextalignStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ButtontextalignStyle'.
+            /// </summary>
+            public string ButtontextalignStyle
+            {
+                get { return buttontextalignStyle; }
+                set { buttontextalignStyle = value; }
             }
             #endregion
             
@@ -323,6 +362,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return heightUnit; }
                 set { heightUnit = value; }
+            }
+            #endregion
+            
+            #region ImagebuttonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ImagebuttonStyle'.
+            /// </summary>
+            public string ImagebuttonStyle
+            {
+                get { return imagebuttonStyle; }
+                set { imagebuttonStyle = value; }
             }
             #endregion
             
