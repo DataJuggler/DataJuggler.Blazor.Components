@@ -1,5 +1,20 @@
 News
 
+4.23.2024: I had some problems running the Blazor Server App projects in .NET 8. The problem was browsers (Chrome) are depreciating 
+Page Unload events, and blazor.server.js is the culprit. I switched to a web app and things work.
+The one important thing I noticed, linking to a CSS class like this seems to not work in a Blazor Web Project (not Blazor Server App Template)
+
+    <link href="~/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
+
+What I had to do to get the CSS to work for the Grid, was copy the above file, place the file in a css directory under www
+Dragging in the file attempts to add a tilde, and the only way I could get it to work was remove the tilde char.
+
+	Doesn't Work
+	<link href="~/css/datajuggler.blazor.components.css" rel="stylesheet" />
+
+    Works
+	<link href="css/datajuggler.blazor.components.css" rel="stylesheet" />
+
 4.18.2024: The conversion to using BlazorStyled again has completed. Testing in progress, but seems to work.
 
 4.17.2024: I added back BlazorStyled, but I forked the project and created a NuGet package DataJuggler.BlazorStyled.
