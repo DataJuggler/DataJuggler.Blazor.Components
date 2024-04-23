@@ -6,14 +6,9 @@ The one important thing I noticed, linking to a CSS class like this seems to not
 
     <link href="~/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
 
-What I had to do to get the CSS to work for the Grid, was copy the above file, place the file in a css directory under www
-Dragging in the file attempts to add a tilde, and the only way I could get it to work was remove the tilde char.
+Removing the Tilde seems to work.
 
-	Doesn't Work
-	<link href="~/css/datajuggler.blazor.components.css" rel="stylesheet" />
-
-    Works
-	<link href="css/datajuggler.blazor.components.css" rel="stylesheet" />
+    <link href="/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
 
 4.18.2024: The conversion to using BlazorStyled again has completed. Testing in progress, but seems to work.
 
@@ -312,7 +307,9 @@ View the code for the BubbleReportWeb above, and view the code for Index.razor.c
 
 One important thing to note, is the grid works best when you register DataJuggler.Blazor.Components.css in your project like this:
     
-    <link href="~/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
+    <link href="/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
+
+Removing the tilde seems necessary for Blazor Web Apps (latest .NET8 Template). I will do more testing when I get a chance and confirm this works in both.
 
 The above CSS class is included with NuGet package DataJuggler.Blazor.Components
 
