@@ -30,12 +30,11 @@
     gap: 0px;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
-    display: inline;    
-    justify-content: left;
+    display: inline;        
     text-align: left;    
     background-size: 100% 100%;
     z-index: 30;
-    height: 25.6px;
+    height: 25.6px;    
 </Styled>
 <Styled @bind-Classname=@NavButtonStyle>
     display: inline;
@@ -89,6 +88,7 @@
     border: 0px;
     background-color: white;
     font-size: 10px;
+    font-weight: bold;
     width: @ColumnWidth2Style;
     min-width: @ColumnWidth2Style;
     max-width: @ColumnWidth2Style;
@@ -106,6 +106,7 @@
     border: 0px;
     background-color: white;
     font-size: 10px;
+    font-weight: bold;
     width: @ColumnWidth2Style;
     min-width: @ColumnWidth2Style;
     max-width: @ColumnWidth2Style;
@@ -130,12 +131,14 @@
     display: inline;
     text-align: center;
     height: 100%;
-    color: firebrick;
+    color: white;
+    background-color: firebrick;
     height: @RowHeightStyle;
     margin: 0px;
     padding: 0px;
     position: relative;
     left: 1px;
+    object-fit: cover;
 </Styled>
 
 <div class="@ContainerStyle @ClassName">
@@ -201,7 +204,7 @@
                         </ImageButton>
                     </td>
                     <td class="down8 left16" width="64">
-                        <Label FontSize=10 LabelColor="Black" ClassName="textaligncenter colorblack width64 textdonotwrap" 
+                        <Label FontSize=10 LabelColor="Black" ClassName="textaligncenter colorblack width64 textdonotwrap fontbold" 
                             Width="64" Height="12" Text="@DateTitle" Position="relative" Top="-4"></Label>
                     </td>
                     <td width="48">

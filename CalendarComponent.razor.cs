@@ -99,19 +99,25 @@ namespace DataJuggler.Blazor.Components
             Unit = "px";
             HeightUnit = "px";
             Height = 146;
-            Width = 252;
-            ButtonHeight = 24;
+            Width = 224;
+            ButtonHeight = 26;
             ButtonWidth = 24;
-            CalendarLeft = 256;
+            CalendarLeft = 264;
+            CalendarTop = 264;
             Column1Width = 100;
-            Column2Width = 240;
+            Column2Width = 128;
             TextBoxWidth = 236;
             ControlWidth = 640;
             ControlHeight = 144;
             Position = "relative";
             DayRowColor = Color.DodgerBlue;
             DayRowTextColor = Color.GhostWhite;
-
+            ButtonLeft =-26;
+            ButtonTop = -.64;
+            Top = -58;
+            LabelClassName = "down4 right2";
+            TextBoxWidth= 124;
+            
             // Buttons
             NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
             NextMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRNextSmall.png";

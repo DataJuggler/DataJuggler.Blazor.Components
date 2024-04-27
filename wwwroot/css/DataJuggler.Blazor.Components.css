@@ -6199,6 +6199,195 @@
 {
     float: right;
 }
+.fontbold
+{
+    font-weight: bold;
+}
+.fontitalic
+{
+    font-style: italic;
+}
+.fontnamearial
+{
+    font-family: 'Arial';
+}
+.fontnamebaskerville
+{
+    font-family: 'Baskerville';
+}
+.fontnamebookantiqua
+{
+    font-family: 'Book Antiqua';
+}
+.fontnamecenturygothic
+{
+    font-family: 'Century Gothic';
+}
+.fontnamecomicssansms
+{
+    font-family: 'Comic Sans MS';
+}
+.fontnamefranklingothic
+{
+    font-family: 'Franklin Gothic Medium';
+}
+.fontnamegaramond
+{
+    font-family: 'Garamond';
+}
+.fontnamegeorgia
+{
+    font-family: 'Georgia';
+}
+.fontnamehelvetica
+{
+    font-family: 'Helvetica';
+}
+.fontnameimpact
+{
+    font-family: 'Impact';
+}
+.fontnamelucidasans
+{
+    font-family: 'Lucida Sans';
+}
+.fontnamerockwell
+{
+    font-family: 'Rockwell';
+}
+.fontnametahoma
+{
+    font-family: 'Tahoma';
+}
+.fontnametrebuchetms
+{
+    font-family: 'Trebuchet MS';
+}
+.fontnametimesnewroman
+{
+    font-family: 'Times New Roman';
+}
+.fontnameverdana
+{
+    font-family: 'Verdana';
+}
+.fontsize8
+{
+    font-size: 8px;
+}
+.fontsize9
+{
+    font-size: 9px;
+}
+.fontsize10
+{
+    font-size: 10px;
+}
+.fontsize11
+{
+    font-size: 11px;
+}
+.fontsize12
+{
+    font-size: 12px;
+}
+.fontsize13
+{
+    font-size: 13px;
+}
+.fontsize14
+{
+    font-size: 14px;
+}
+.fontsize15
+{
+    font-size: 15px;
+}
+.fontsize16
+{
+    font-size: 16px;
+}
+.fontsize17
+{
+    font-size: 17px;
+}
+.fontsize18
+{
+    font-size: 18px;
+}
+.fontsize19
+{
+    font-size: 19px;
+}
+.fontsize20
+{
+    font-size: 20px;
+}
+.fontsize21
+{
+    font-size: 21px;
+}
+.fontsize22
+{
+    font-size: 22px;
+}
+.fontsize23
+{
+    font-size: 23px;
+}
+.fontsize24
+{
+    font-size: 24px;
+}
+.fontsize25
+{
+    font-size: 25px;
+}
+.fontsize26
+{
+    font-size: 26px;
+}
+.fontsize27
+{
+    font-size: 27px;
+}
+.fontsize28
+{
+    font-size: 28px;
+}
+.fontsize29
+{
+    font-size: 29px;
+}
+.fontsize30
+{
+    font-size: 30px;
+}
+.fontsize31
+{
+    font-size: 31px;
+}
+.fontsize32
+{
+    font-size: 32px;
+}
+.fontsize33
+{
+    font-size: 33px;
+}
+.fontsize34
+{
+    font-size: 34px;
+}
+.fontsize35
+{
+    font-size: 35px;
+}
+.fontsize36
+{
+    font-size: 36px;
+}
+
 .height0
 {
     height: 0px;

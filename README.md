@@ -1,5 +1,10 @@
 News
 
+4.29.2024: I added few more tweaks to the CalendarComponent, to make it easier to use. 
+I think a good future feature might be if you click on the Year label, a combobox opens with a selection of years.
+For things like Birthday, scrolling dozens of years isn't worth it. You can always type it, but a year selector might
+be worth exploring.
+
 4.27.2024: Eureka! I have done it. I built a working CalendarComponent, and being it has been tested by all of 1 person in all
 of 1 project(s), I am pretty excited. If this doesn't make it worth the price, and make you willing to leave a star on GitHub
 or Subscribe to my YouTube channel, nothing will. 
