@@ -73,7 +73,8 @@ namespace DataJuggler.Blazor.Components
         private string dateTitle;
         private string navButtonStyle;
         private string bottomRowStyle;
-        private DateTime thisMonth;        
+        private DateTime thisMonth;
+        private string labelClassName;
         #endregion
         
         #region Constructor
@@ -180,6 +181,9 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Set to closed
                     Expanded = false;
+
+                    // Update the UI
+                    Refresh();
                 }
             }
             #endregion
@@ -1158,6 +1162,28 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return heightUnit; }
                 set { heightUnit = value; }
+            }
+            #endregion
+            
+            #region LabelClassName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelClassName'.
+            /// </summary>
+            [Parameter]
+            public string LabelClassName
+            {
+                get { return labelClassName; }
+                set 
+                {
+                    labelClassName = value;
+
+                    // if the TextBox exists
+                    if (HasTextBox)
+                    {
+                        // Set the LabelClassName to use
+                        TextBox.SetLabelClassName(labelClassName);
+                    }
+                }
             }
             #endregion
             

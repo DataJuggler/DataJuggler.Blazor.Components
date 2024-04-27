@@ -421,6 +421,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetLabelClassName(string labelClass)
+            /// <summary>
+            /// Set Label Class Name
+            /// </summary>
+            public void SetLabelClassName(string labelClass)
+            {
+                // Store
+                LabelClassName = labelClass;
+            }
+            #endregion
+            
             #region SetLabelColor()
             /// <summary>
             /// Set Label Color
