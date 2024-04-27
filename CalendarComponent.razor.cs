@@ -73,7 +73,7 @@ namespace DataJuggler.Blazor.Components
         private string dateTitle;
         private string navButtonStyle;
         private string bottomRowStyle;
-        private DateTime thisMonth;
+        private DateTime thisMonth;        
         #endregion
         
         #region Constructor
@@ -132,7 +132,7 @@ namespace DataJuggler.Blazor.Components
             {
                 if (buttonNumber == 1)
                 {
-                    // For now it's the only button
+                    // Toggle the open or close, which shows the calendar or not
                     Expanded = !Expanded;
                 }
                 else if (buttonNumber == 2)
@@ -145,7 +145,7 @@ namespace DataJuggler.Blazor.Components
                     // Create a tempDate one month prior
                     DateTime tempDate = ThisMonth.AddMonths(-1);
 
-                    // Previous Year
+                    // Previous Month
                     Dates = CreateDates(tempDate.Year, tempDate.Month);
                 }
                 else if (buttonNumber == 4)
@@ -166,6 +166,21 @@ namespace DataJuggler.Blazor.Components
 
                 // Update the UI
                 Refresh();
+            }
+            #endregion
+            
+            #region Close()
+            /// <summary>
+            /// Close
+            /// </summary>
+            public void Close()
+            {
+                // If currently open
+                if (Expanded)
+                {
+                    // Set to closed
+                    Expanded = false;
+                }
             }
             #endregion
             
@@ -452,7 +467,31 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void ReceiveData(Message message)
             {
-                
+                // local
+                DateTime invalidDate = new DateTime(1900, 1, 1);
+
+                if ((NullHelper.Exists(message)) && (HasTextBox))
+                {
+                    if (message.Text == "EnterPressed")
+                    {
+                        SelectedDate = DateHelper.ParseDate(TextBox.Text, invalidDate, invalidDate);
+
+                        // if a valid date
+                        if (SelectedDate.Year > 1900)
+                        {
+                            // Set the Date
+                            TextBox.SetTextValue(SelectedDate.ToShortDateString());
+
+                            // Close the Calendar if open
+                            Close();
+                        }
+                    }
+                    else if (message.Text == "EscapePressed")
+                    {
+                        // Close the Calendar if open
+                        Close();
+                    }
+                }
             }
             #endregion
             
@@ -479,7 +518,25 @@ namespace DataJuggler.Blazor.Components
                 if (component is ValidationComponent)
                 {
                     // Store
-                    TextBox = component as ValidationComponent;
+                    TextBox = component as ValidationComponent;                    
+                }
+            }
+            #endregion
+            
+            #region SetSelectedDate(DateTime date)
+            /// <summary>
+            /// Set Selected Date
+            /// </summary>
+            public void SetSelectedDate(DateTime date)
+            {
+                // Set the SelectedDate
+                SelectedDate = date;
+
+                // if the value for HasTextBox is true
+                if (HasTextBox)
+                {
+                    // Dislay
+                    TextBox.SetTextValue(SelectedDate.ToShortDateString());
                 }
             }
             #endregion
@@ -668,6 +725,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'Caption'.
             /// </summary>
+            [Parameter]
             public string Caption
             {
                 get { return caption; }
