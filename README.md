@@ -4,6 +4,13 @@ News
 of 1 project(s), I am pretty excited. If this doesn't make it worth the price, and make you willing to leave a star on GitHub
 or Subscribe to my YouTube channel, nothing will. 
 
+# Example Calendar
+
+    <CalendarComponent Unit="px" HeightUnit="px" CalendarTop="-272" Parent="this"
+        CalendarLeft="256" Width="224" Column2Width="128"
+        TextBoxWidth="124" ButtonLeft="-26" ButtonTop="-.6">
+    </CalendarComponent>
+
 4.24.2024: To celebrate the coming milestone of 200,000 installs coming up this summer, I am working on a Calendar Component.
 The Calendar Component is in this release (8.5.0), but it is far from being to use. What I am testing now is the text box shows up,
 the button shows up, and if you click the button, the pop up calendar div shows and goes away as you toggle the button.
