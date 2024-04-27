@@ -527,21 +527,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region SetLabelClassName(string labelClassName)
-            /// <summary>
-            /// Set Label Class Name
-            /// </summary>
-            public void SetLabelClassName(string labelClassName)
-            {
-                // if the value for HasTextBox is true
-                if (HasTextBox)
-                {
-                    // Set the value on the TextBox
-                    TextBox.SetLabelClassName(labelClassName);
-                }
-            }
-            #endregion
-            
             #region SetSelectedDate(DateTime date)
             /// <summary>
             /// Set Selected Date
