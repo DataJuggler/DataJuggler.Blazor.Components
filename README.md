@@ -1,5 +1,10 @@
 News
 
+4.24.2024: To celebrate the coming milestone of 200,000 installs coming up this summer, I am working on a Calendar Component.
+The Calendar Component is in this release (8.5.0), but it is far from being to use. What I am testing now is the text box shows up,
+the button shows up, and if you click the button, the pop up calendar div shows and goes away as you toggle the button.
+Soon I will add buttons for the calendar. Baby steps.
+
 4.23.2024: I had some problems running the Blazor Server App projects in .NET 8. The problem was browsers (Chrome) are depreciating 
 Page Unload events, and blazor.server.js is the culprit. I switched to a web app and things work.
 The one important thing I noticed, linking to a CSS class like this seems to not work in a Blazor Web Project (not Blazor Server App Template)

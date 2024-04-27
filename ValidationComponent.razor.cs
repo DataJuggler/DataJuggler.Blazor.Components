@@ -88,8 +88,7 @@ namespace DataJuggler.Blazor.Components
         private string backgroundColor;
         private double imageWidth;
         private string imageBackColor;
-        private double marginLeft;
-        private string column2;
+        private double marginLeft;        
         private double textBoxWidth;
         private int rows;
         private double column1Width;
@@ -97,7 +96,6 @@ namespace DataJuggler.Blazor.Components
         private double column3Width;
         private bool enabled;
         private double marginBottom;
-        private string bottomMarginClass;
         private bool autoComplete;
         private string invalidLabelColor;
         

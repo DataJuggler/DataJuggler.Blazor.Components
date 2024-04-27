@@ -410,7 +410,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>8.4.1</Version>
+    <Version>8.6.0</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
@@ -436,11 +436,11 @@ Now is the time to break anything.
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

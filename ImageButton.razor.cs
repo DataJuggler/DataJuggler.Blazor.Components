@@ -50,6 +50,7 @@ namespace DataJuggler.Blazor.Components
         private Color textColor;
         private string heightUnit;
         private string className;
+        private string title;
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
@@ -607,6 +608,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textSizeStyle; }
                 set { textSizeStyle = value; }
+            }
+            #endregion
+            
+            #region Title
+            /// <summary>
+            /// This property gets or sets the value for 'Title'.
+            /// </summary>
+            [Parameter]
+            public string Title
+            {
+                get { return title; }
+                set { title = value; }
             }
             #endregion
             

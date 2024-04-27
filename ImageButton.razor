@@ -10,7 +10,7 @@
     border: none;
     width: @WidthStyle;
 </Styled>
-<Styled @bind-Classname=ButtonStyle>
+<Styled @bind-Classname=@ButtonStyle>
     background-image: url('@ImageUrl');
     background-size: 100% 100%;
     display: inline-block;
@@ -27,10 +27,10 @@
     color: @TextColorName;
     vertical-align: central;
 </Styled>
-<Styled @bind-Classname=ButtontextalignStyle>
+<Styled @bind-Classname=@ButtontextalignStyle>
     text-align: @ButtonTextAlign;
 </Styled>
-<Styled @bind-Classname=ImagebuttonStyle>
+<Styled @bind-Classname=@ImagebuttonStyle>
     outline: none;
     border: none;
     position: relative;
@@ -58,7 +58,7 @@
 @if (Visible)
 {
     <div class="@ButtoncontainerStyle">
-        <button class="@ImagebuttonStyle imagebutton @ButtonStyle" @onclick="ButtonClicked">
+        <button class="@ImagebuttonStyle imagebutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
             <span class="@ButtonTextAlign">@ButtonText</span>
         </button>    
     </div>
