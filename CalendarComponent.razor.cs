@@ -1217,6 +1217,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'Name'.
             /// </summary>
+            [Parameter]
             public string Name
             {
                 get { return name; }
