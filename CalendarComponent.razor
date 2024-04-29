@@ -158,69 +158,70 @@
             </td>
         </tr>
     </table>
-</div>
-<div class="@CalendarStyle">
-    <div class="@DayRowStyle">
-        <div class="@ColumnStyle"><span class="right4">Sun</span></div>
-        <div class="@ColumnStyle"><span class="right9">Mon</span></div>
-        <div class="@ColumnStyle"><span class="right14">Tue</span></div>
-        <div class="@ColumnStyle"><span class="right19">Wed</span></div>
-        <div class="@ColumnStyle"><span class="right24">Thu</span></div>
-        <div class="@ColumnStyle"><span class="right33">Fri</span></div>
-        <div class="@ColumnStyle"><span class="right42">Sat</span></div>
+    <div class="@CalendarStyle">
+        <div class="@DayRowStyle">
+            <div class="@ColumnStyle"><span class="right4">Sun</span></div>
+            <div class="@ColumnStyle"><span class="right9">Mon</span></div>
+            <div class="@ColumnStyle"><span class="right14">Tue</span></div>
+            <div class="@ColumnStyle"><span class="right19">Wed</span></div>
+            <div class="@ColumnStyle"><span class="right24">Thu</span></div>
+            <div class="@ColumnStyle"><span class="right33">Fri</span></div>
+            <div class="@ColumnStyle"><span class="right42">Sat</span></div>
+        </div>
+        @if (ListHelper.HasOneOrMoreItems(Dates))
+        {
+            <div class="@RowStyle">
+                @foreach (DayObject dayObject in Dates)
+                {
+                    @if (dayObject.Today)
+                    {
+                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle3">@dayObject.ToString()</button>
+                    }
+                    else if (dayObject.ThisMonth)
+                    {
+                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle">@dayObject.ToString()</button>
+                    }
+                    else
+                    {
+                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle2">@dayObject.ToString()</button>
+                    }
+                }
+            </div>
+            <div class="@BottomRowStyle">
+                <table class="up6 right14">
+                    <tr>
+                        <td width="48">
+                            <ImageButton ClassName="@NavButtonStyle" ButtonNumber="2" HeightUnit="px" Height="8"
+                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one year."
+                                         Left="0" Top=0 ImageUrl="@PrevYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                            </ImageButton>
+                        </td>
+                        <td width="48">
+                            <ImageButton ClassName="@NavButtonStyle" ButtonNumber="3" HeightUnit="px" Height="8"
+                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one month."
+                                         Left="0" Top=0 ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                            </ImageButton>
+                        </td>
+                        <td class="down8 left16" width="64">
+                            <Label FontSize=10 LabelColor="Black" ClassName="textaligncenter colorblack width64 textdonotwrap fontbold"
+                                   Width="64" Height="12" Text="@DateTitle" Position="relative" Top="-4"></Label>
+                        </td>
+                        <td width="48">
+                            <ImageButton ClassName="@NavButtonStyle" ButtonNumber="4" HeightUnit="px" Height="8"
+                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one month."
+                                         Left="0" Top=0 ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                            </ImageButton>
+                        </td>
+                        <td width="47">
+                            <ImageButton ClassName="@NavButtonStyle" ButtonNumber="5" HeightUnit="px" Height="8"
+                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one year."
+                                         Left="0" Top=0 ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                            </ImageButton>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
     </div>
-    @if (ListHelper.HasOneOrMoreItems(Dates))
-    {
-        <div class="@RowStyle">
-            @foreach (DayObject dayObject in Dates)
-            {
-                @if (dayObject.Today)
-                {
-                    <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle3">@dayObject.ToString()</button>
-                }
-                else if (dayObject.ThisMonth)
-                {
-                    <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle">@dayObject.ToString()</button>
-                }
-                else
-                {
-                    <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle2">@dayObject.ToString()</button>
-                }
-            }
-        </div>
-        <div class="@BottomRowStyle">
-            <table class="up6 right14">
-                <tr>
-                    <td width="48">
-                        <ImageButton ClassName="@NavButtonStyle" ButtonNumber="2" HeightUnit="px" Height="8"
-                                 Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one year."
-                                 Left="0" Top=0 ImageUrl="@PrevYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
-                        </ImageButton>
-                    </td>
-                    <td width="48">
-                        <ImageButton ClassName="@NavButtonStyle" ButtonNumber="3" HeightUnit="px" Height="8"
-                                     Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one month."
-                                     Left="0" Top=0 ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
-                        </ImageButton>
-                    </td>
-                    <td class="down8 left16" width="64">
-                        <Label FontSize=10 LabelColor="Black" ClassName="textaligncenter colorblack width64 textdonotwrap fontbold" 
-                            Width="64" Height="12" Text="@DateTitle" Position="relative" Top="-4"></Label>
-                    </td>
-                    <td width="48">
-                        <ImageButton ClassName="@NavButtonStyle" ButtonNumber="4" HeightUnit="px" Height="8"
-                             Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one month."
-                             Left="0" Top=0 ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
-                        </ImageButton>
-                    </td>
-                    <td width="47">
-                        <ImageButton ClassName="@NavButtonStyle" ButtonNumber="5" HeightUnit="px" Height="8"
-                             Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one year."
-                             Left="0" Top=0 ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
-                        </ImageButton>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    }
 </div>
+
