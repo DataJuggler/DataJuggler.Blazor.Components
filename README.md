@@ -1,5 +1,8 @@
 News
 
+4.30.2024: Version 8.6.22 fixes the textbox and button jumping around when the calendar showed, by adding min-height and max-height
+properties to the ContainerStyle BlazorStyled class.
+
 4.29.2024: I added few more tweaks to the CalendarComponent, to make it easier to use. 
 I think a good future feature might be if you click on the Year label, a combobox opens with a selection of years.
 For things like Birthday, scrolling dozens of years isn't worth it. You can always type it, but a year selector might
