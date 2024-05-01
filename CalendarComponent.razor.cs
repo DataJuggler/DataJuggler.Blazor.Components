@@ -103,7 +103,7 @@ namespace DataJuggler.Blazor.Components
             Width = 224;
             ButtonHeight = 26;
             ButtonWidth = 24;
-            CalendarLeft = 264;
+            CalendarLeft = 262;
             CalendarTop = 264;
             Column1Width = 100;
             Column2Width = 128;
