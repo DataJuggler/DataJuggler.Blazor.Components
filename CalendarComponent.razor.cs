@@ -75,6 +75,7 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowStyle;
         private DateTime thisMonth;
         private string labelClassName;
+        private int zindex;
         #endregion
         
         #region Constructor
@@ -117,6 +118,7 @@ namespace DataJuggler.Blazor.Components
             Top = -58;
             LabelClassName = "down4 right2";
             TextBoxWidth= 124;
+            Zindex = 20;
             
             // Buttons
             NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -1475,6 +1477,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return widthStyle;
                 }
+            }
+            #endregion
+            
+            #region Zindex
+            /// <summary>
+            /// This property gets or sets the value for 'Zindex'.
+            /// </summary>
+            [Parameter]
+            public int Zindex
+            {
+                get { return zindex; }
+                set { zindex = value; }
             }
             #endregion
             

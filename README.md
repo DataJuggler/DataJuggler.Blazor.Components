@@ -1,5 +1,8 @@
 News
 
+5.1.2024: I added a ZIndex property to the Calendar. If you have two calendar components near each other, the first one can't type.
+Will work on a solution later, but the ZIndex should allow a fix.
+
 4.30.2024: Version 8.6.22 fixes the textbox and button jumping around when the calendar showed, by adding min-height and max-height
 properties to the ContainerStyle BlazorStyled class.
 
