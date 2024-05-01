@@ -15,7 +15,7 @@ be worth exploring.
 of 1 project(s), I am pretty excited. If this doesn't make it worth the price, and make you willing to leave a star on GitHub
 or Subscribe to my YouTube channel, nothing will. 
 
-    <img src=https://github.com/DataJuggler/SharedRepo/blob/master/Shared/Images/Calendar.png height=219 width=336>
+<img src=https://github.com/DataJuggler/SharedRepo/blob/master/Shared/Images/Calendar.png height=219 width=336>
 
 # Calendar Example
 
