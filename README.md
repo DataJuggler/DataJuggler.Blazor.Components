@@ -19,12 +19,13 @@ or Subscribe to my YouTube channel, nothing will.
 
 # Calendar Example
 
-    <CalendarComponent Unit="px" HeightUnit="px" CalendarTop="-264" Parent="this"
-		CalendarLeft="264" Width="224" Column2Width="128" Position="relative" Top="-56"
-		TextBoxWidth="124" ButtonLeft="-26" ButtonTop="-.84" ButtonHeight="25">
-	</CalendarComponent>
+    <CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px" 
+        CalendarTop="-64" CalendarLeft="64" Parent="this" Zindex="30"
+        Caption="Last Contacted:" Width="224" Column2Width="128" Position="relative" 
+        Top="-8" LabelClassName="down4 right2" TextBoxWidth="124" ControlHeight="48">
+    </CalendarComponent>
 
-I created a new repository for a project I am working on that has an example with the CalendarComponent.
+I created a new repository for a project called NTouch. You can run NTouch now and see an example.
 
 NTouch
 https://github.com/DataJuggler/NTouch
