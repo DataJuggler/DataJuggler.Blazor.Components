@@ -30,14 +30,6 @@
 <Styled @bind-Classname=@ButtontextalignStyle>
     text-align: @ButtonTextAlign;
 </Styled>
-<Styled @bind-Classname=@ImagebuttonStyle>
-    outline: none;
-    border: none;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: @ZIndex;
-</Styled>
 
 <style>
     .imagebutton
@@ -58,7 +50,7 @@
 @if (Visible)
 {
     <div class="@ButtoncontainerStyle">
-        <button class="@ImagebuttonStyle imagebutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
+        <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
             <span class="@ButtonTextAlign">@ButtonText</span>
         </button>    
     </div>

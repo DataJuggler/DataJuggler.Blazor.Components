@@ -1,5 +1,82 @@
 News
 
+5.8.2024: I spent a week refactoring the Combo Box. I realized my first combobox wasn't a standard combobox.
+Now, if you are in regular mode (not checklist mode), you can type T twice for Texas in a States list, for example.
+I have a new sample project called 'NTouch', that demonstrates the ComboBox and the Calendar.
+
+NTouch
+https://github.com/DataJuggler/NTouch/
+
+# Example using the Combobox in regular mode (not CheckListMode)
+
+    <ComboBox Name="StateComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32" ZIndex="80"
+        LabelText="State:" Width="224" Parent="this" ButtonHeight=24 ButtonWidth=24 ControlHeight="32"
+        DropdownClassName="container2 border1gray textdonotwrap" TextBoxLeft="0" ButtonTop=-5 ButtonLeft=-26
+        ListItemWidth="120" ListZIndex=80 ListItemTop=24
+        Column2Width="128" Position="relative" Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
+    </ComboBox>
+
+Notice the attribute Parent=this on Line 2. This is how the ComboBox registers with its parent. To use this feature, you probably 
+have to supress the warning BL0007 in the project properties. Microsoft doesn't like code in Setters, but this is how all
+IBlazorComponents and IBlazorComponentParents talk to each other. 
+
+New video coming soon.
+
+Here is the css you must put in the client project that uses the ComboBox. Notice line 3 DropDownClassName
+
+    .container2
+    {
+        position: absolute;
+        width: 120px;
+        height: 80px;        
+    }
+
+Feel free to adjust the height and width as needed. The position absolute is the key to the Drop Down showing, without
+moving other content (spent a while on this). Border1Gray is shown below.
+
+# Example using the Combobox in CheckListMode
+
+    <ComboBox Name="TargetFrameworkComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32"
+        LabelText="Target:" Width="224" Parent="this" ButtonHeight=24 ButtonWidth=24 
+        CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="1" ButtonTop=-5 ButtonLeft=-4
+        Column2Width="128" Position="relative" Top="4" LabelClassName="down4 right2" TextBoxWidth="124" 
+        CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="4" ListItemHeight="2.4"
+        CheckedListItemLeft="2" CheckedListItemTop=1 ListItemBackgroundColor=Color.White
+        CheckBoxXPosition="-3.2" CheckBoxYPosition=".4" CheckBoxTextXPosition="-3"  CheckBoxTextYPosition="0" 
+        CheckedListWidth=8 CheckedListTop="24" CheckedListLeft="48" ListItemWidth=10>
+    </ComboBox>
+
+It is important to note the CheckedListClassName on line 3. I have two CSS classes set in an External project, that are the key
+to making the Z-Index work. I tried using an internal CSS Class, and haven't had much luck. Will try again later.
+
+    .border1
+    {
+        border-width: 1px;
+        border-style: solid;
+        border-color: black;
+    }
+    .border1gray
+    {
+        border-width: 1px;
+        border-style: solid;
+        border-color: gray;
+    }
+    .container
+    {
+        display: inline-block;
+        height: 16vh;
+        min-height: 16vh;
+        max-height: 16vh;
+        width: 16vw  !important;
+        max-width: 16vw  !important;
+        min-width: 16vw !important; 
+        position: relative;
+        left: 0vw;
+        overflow: visible !important;
+        z-index: 200 !important;
+        background-color: white;
+    }
+
 5.1.2024: I added a ZIndex property to the Calendar. If you have two calendar components near each other, the first one can't type.
 Will work on a solution later, but the ZIndex should allow a fix.
 
@@ -19,10 +96,10 @@ or Subscribe to my YouTube channel, nothing will.
 
 # Calendar Example
 
-    <CalendarComponent Name="LastContactedDateControl" Unit="px" HeightUnit="px" 
-        CalendarTop="-64" CalendarLeft="64" Parent="this" Zindex="30"
-        Caption="Last Contacted:" Width="224" Column2Width="128" Position="relative" 
-        Top="-8" LabelClassName="down4 right2" TextBoxWidth="124" ControlHeight="48">
+    <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" Position="relative"
+        ButtonHeight=24 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
+        Parent="this" ButtonTop="-4" Width="224" Column2Width="128" ControlHeight="32" 
+        Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
     </CalendarComponent>
 
 I created a new repository for a project called NTouch. You can run NTouch now and see an example.

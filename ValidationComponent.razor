@@ -11,6 +11,8 @@
     width: @Column1WidthStyle;
     position: relative;
     top: @LabelTopStyle;
+    left: @LabelLeftStyle;
+    justify-content: left;
 </Styled>
 <Styled @bind-Classname=@Column2Style>
     display: inline-block;
@@ -65,6 +67,13 @@
     width: @WidthStyle;
     height: @MarginBottomStyle;
 </Styled>
+<Styled @bind-Classname=@CheckBoxTextStyle>
+    display: inline-block;
+    position: @Position;
+    left: @CheckBoxTextXPositionStyle;
+    top: @CheckBoxTextYPositionStyle;
+    z-index: @ZIndexPlus1;
+</Styled>
 
 @if (Visible)
 {
@@ -88,7 +97,7 @@
                         {
                             <input class="@CheckBoxStyle" type=@InputType checked="@CheckBoxValue" disabled />
                         }
-                        <span class="displayinlineblock">
+                        <span class="@CheckBoxTextStyle">
                             @Text
                         </span>
                     </div>

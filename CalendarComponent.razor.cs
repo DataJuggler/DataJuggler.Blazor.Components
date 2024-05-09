@@ -75,7 +75,7 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowStyle;
         private DateTime thisMonth;
         private string labelClassName;
-        private int zindex;
+        private int zIndex;                
         #endregion
         
         #region Constructor
@@ -107,18 +107,17 @@ namespace DataJuggler.Blazor.Components
             CalendarTop = 264;
             Column1Width = 100;
             Column2Width = 128;
-            TextBoxWidth = 236;
             ControlWidth = 640;
-            ControlHeight = 144;
+            ControlHeight = 48;
             Position = "relative";
             DayRowColor = Color.DodgerBlue;
             DayRowTextColor = Color.GhostWhite;
             ButtonLeft =-26;
-            ButtonTop = -.64;
+            ButtonTop = 0;
             Top = -58;
             LabelClassName = "down4 right2";
             TextBoxWidth= 124;
-            Zindex = 20;
+            ZIndex = 20;
             
             // Buttons
             NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -331,7 +330,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// returns the Next Month Days
             /// </summary>
-            public int GetNextMonthDays(DayOfWeek dayOfWeek)
+            public static int GetNextMonthDays(DayOfWeek dayOfWeek)
             {
                 // initial value
                 int prevMonthDays = 0;
@@ -404,7 +403,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// returns the Prev Month Days
             /// </summary>
-            public int GetPrevMonthDays(DayOfWeek dayOfWeek)
+            public static int GetPrevMonthDays(DayOfWeek dayOfWeek)
             {
                 // initial value
                 int prevMonthDays = 0;
@@ -1321,7 +1320,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This read only property returns the value of RowHeight
             /// </summary>
-            public double RowHeight
+            public static double RowHeight
             {
                 
                 get
@@ -1480,15 +1479,15 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Zindex
+            #region ZIndex
             /// <summary>
-            /// This property gets or sets the value for 'Zindex'.
+            /// This property gets or sets the value for 'ZIndex'.
             /// </summary>
             [Parameter]
-            public int Zindex
+            public int ZIndex
             {
-                get { return zindex; }
-                set { zindex = value; }
+                get { return zIndex; }
+                set { zIndex = value; }
             }
             #endregion
             

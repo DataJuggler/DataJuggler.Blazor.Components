@@ -65,7 +65,7 @@ namespace DataJuggler.Blazor.Components
         private double width;        
         private string name;
         private double left;
-        private double top;                
+        private double top;
         private double labelWidth;
         private double labelFontSize;        
         private string labelFontSizeUnit;        
@@ -84,6 +84,7 @@ namespace DataJuggler.Blazor.Components
         private string display;
         private bool sendAllTextToParent;
         private double labelTop;
+        private double labelLeft;
         private string fontSizeUnit;
         private string backgroundColor;
         private double imageWidth;
@@ -98,6 +99,8 @@ namespace DataJuggler.Blazor.Components
         private double marginBottom;
         private bool autoComplete;
         private string invalidLabelColor;
+        private double checkBoxTextXPosition;
+        private double checkBoxTextYPosition;
         
         // Due to a bug, BlazorStyled is back. I forked BlazorStyled by Chanan to upgrade it.
         private string column1Style;
@@ -108,6 +111,7 @@ namespace DataJuggler.Blazor.Components
         private string imageStyle;
         private string validationControlStyle;
         private string bottomMarginStyle;
+        private string checkBoxTextStyle;
        
         // This are only used when inside a Grid
         private Guid rowId;
@@ -171,14 +175,15 @@ namespace DataJuggler.Blazor.Components
                 AutoComplete = false;
                 Caption = "";
                 BackgroundColor = "transparent";
+                CheckBoxTextXPosition = -1;
+                CheckBoxTextYPosition = -1;
+                CheckBoxXPosition = -4;
+                CheckBoxYPosition = 1;
                 Display = "inline-block";
                 InputType = "text";
                 LabelColor = "Black";
                 IsUnique = true;
-                ImageScale = 1.6;                
-                CheckBoxXPosition = 0;
-                CheckBoxYPosition = 0;
-                
+                ImageScale = 1.6;                                            
                 TextBoxWidth = 120;
                 Unit = "px";
                 FontSize = 12;
@@ -202,13 +207,13 @@ namespace DataJuggler.Blazor.Components
                 TextBoxBackColor = "white";                
                 Top = 0;
                 UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";                
-                Column1Width = 30;
-                Column2Width = 50;
+                Column1Width = 60;
+                Column2Width = 120;
                 Column3Width = 20;
                 Rows = 3;
                 Visible = true;
                 Width= 80;
-                Enabled = true;                
+                Enabled = true;
             }
             #endregion
             
@@ -669,6 +674,77 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region CheckBoxTextStyle
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxTextStyle'.
+            /// </summary>
+            public string CheckBoxTextStyle
+            {
+                get { return checkBoxTextStyle; }
+                set { checkBoxTextStyle = value; }
+            }
+            #endregion
+            
+            #region CheckBoxTextXPosition
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxTextXPosition'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxTextXPosition
+            {
+                get { return checkBoxTextXPosition; }
+                set { checkBoxTextXPosition = value; }
+            }
+            #endregion
+            
+            #region CheckBoxTextXPositionStyle
+            /// <summary>
+            /// This read only property returns the value of CheckBoxTextXPositionStyle from the object CheckBoxTextXPosition.
+            /// </summary>
+            public string CheckBoxTextXPositionStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string checkBoxTextXPositionStyle = CheckBoxTextXPosition + Unit;
+                    
+                    // return value
+                    return checkBoxTextXPositionStyle;
+                }
+            }
+            #endregion
+            
+            #region CheckBoxTextYPosition
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxTextYPosition'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxTextYPosition
+            {
+                get { return checkBoxTextYPosition; }
+                set { checkBoxTextYPosition = value; }
+            }
+            #endregion
+            
+            #region CheckBoxTextYPositionStyle
+            /// <summary>
+            /// This read only property returns the value of CheckBoxTextYPositionStyle from the object CheckBoxTextYPosition.
+            /// </summary>
+            public string CheckBoxTextYPositionStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string checkBoxTextYPositionStyle = CheckBoxTextYPosition + HeightUnit;
+                    
+                    // return value
+                    return checkBoxTextYPositionStyle;
+                }
+            }
+            #endregion
+            
             #region CheckBoxValue
             /// <summary>
             /// This property gets or sets the value for 'CheckBoxValue'.
@@ -710,7 +786,7 @@ namespace DataJuggler.Blazor.Components
                     checkBoxXPosition = value;
 
                     // set the headerStyle value
-                    checkBoxXStyle = checkBoxXPosition.ToString() + "%";
+                    checkBoxXStyle = checkBoxXPosition + Unit;
                 }
             }
             #endregion
@@ -740,7 +816,7 @@ namespace DataJuggler.Blazor.Components
                     checkBoxYPosition = value;
 
                     // Set the checkBoxYStyle
-                    checkBoxYStyle = checkBoxYPosition.ToString() + HeightUnit;
+                    checkBoxYStyle = checkBoxYPosition + HeightUnit;
                 }
             }
             #endregion
@@ -1438,6 +1514,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelLeft
+            /// <summary>
+            /// This property gets or sets the value for 'LabelLeft'.
+            /// </summary>
+            [Parameter]
+            public double LabelLeft
+            {
+                get { return labelLeft; }
+                set { labelLeft = value; }
+            }
+            #endregion
+            
+            #region LabelLeftStyle
+            /// <summary>
+            /// This read only property returns the value of LabelLeftStyle from the object LabelLeft.
+            /// </summary>
+            public string LabelLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string labelLeftStyle = LabelLeft + unit;
+                    
+                    // return value
+                    return labelLeftStyle;
+                }
+            }
+            #endregion
+            
             #region LabelStyle
             /// <summary>
             /// This property gets or sets the value for 'LabelStyle'.
@@ -2076,6 +2182,24 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return zIndex; }
                 set { zIndex = value; }
+            }
+            #endregion
+            
+            #region ZIndexPlus1
+            /// <summary>
+            /// This read only property returns the value of ZIndex Plus1
+            /// </summary>
+            public int ZIndexPlus1
+            {
+                
+                get
+                {
+                    // initial value
+                    int zIndexPlus1 = ZIndex + 1;
+                    
+                    // return value
+                    return zIndexPlus1;
+                }
             }
             #endregion
             

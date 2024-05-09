@@ -7,7 +7,7 @@
 <Styled @bind-Classname=@CalendarStyle>    
     height: @HeightStyle;
     width: @WidthStyle;
-    z-index: 20;
+    z-index: @ZIndex;
     position: relative;
     top: @CalendarTopStyle;
     left: @CalendarLeftStyle;
@@ -16,7 +16,7 @@
     border-style: solid;
     background-color: white;
     display: @Display;
-    color: white;
+    background-color: white;
 </Styled>
 <Styled @bind-Classname=@ContainerStyle>     
     text-align: left;
@@ -37,7 +37,7 @@
     display: inline;        
     text-align: left;    
     background-size: 100% 100%;
-    z-index: 30;
+    z-index: @ZIndex;
     height: 25.6px;    
 </Styled>
 <Styled @bind-Classname=@NavButtonStyle>
@@ -48,7 +48,7 @@
     top: 0px;
     text-align: left;
     background-size: 100% 100%;
-    z-index: 30;
+    z-index: @ZIndex;
     height: 16px;
     background-color: transparent;
 </Styled>
@@ -80,7 +80,7 @@
     padding: 0px;
     position: absolute;
     bottom: 0px;
-    font-size: 10px;
+    font-size: 10px;    
 </Styled>
 <Styled @bind-Classname=@DayRowStyle>
     background-color: @DayRowColorName;
@@ -151,12 +151,12 @@
             <td width="@TextBoxWidth">
             <ValidationComponent Name="DisplayTextBox" Caption="@Caption" Parent="this" ClassName="displayinline"
                 Column1Width="@Column1Width" Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" 
-                Width="@Width" LabelClassName="@LabelClassName" ZIndex="@Zindex">
+                Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
             </ValidationComponent>
             </td>
             <td width="@ButtonWidth">
                 <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight" 
-                    Unit="px" Width="@ButtonWidth"  Name="CalendarButton" Position="relative" ZIndex="@Zindex"
+                    Unit="px" Width="@ButtonWidth"  Name="CalendarButton" Position="relative" ZIndex="@ZIndex"
                     Left="@ButtonLeft" Top=@ButtonTop  ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                 </ImageButton>
             </td>

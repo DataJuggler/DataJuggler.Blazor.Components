@@ -55,8 +55,7 @@ namespace DataJuggler.Blazor.Components
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
         private string buttonStyle;
-        private string buttontextalignStyle;
-        private string imagebuttonStyle;        
+        private string buttontextalignStyle;        
         #endregion
 
         #region Constructor
@@ -366,17 +365,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ImagebuttonStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ImagebuttonStyle'.
-            /// </summary>
-            public string ImagebuttonStyle
-            {
-                get { return imagebuttonStyle; }
-                set { imagebuttonStyle = value; }
-            }
-            #endregion
-            
             #region ImageUrl
             /// <summary>
             /// This property gets or sets the value for 'ImageUrl'.
@@ -437,7 +425,7 @@ namespace DataJuggler.Blazor.Components
                     left = value;
 
                     // set the value for leftStyle
-                    leftStyle = left + "%";
+                    leftStyle = left + Unit;
                 }
             }
             #endregion
@@ -637,7 +625,7 @@ namespace DataJuggler.Blazor.Components
                     top = value;
 
                     // set the value for topStyle
-                    TopStyle = top + "vh";
+                    TopStyle = top + HeightUnit;
                 }
             }
             #endregion

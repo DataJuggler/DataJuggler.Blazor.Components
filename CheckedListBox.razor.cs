@@ -47,8 +47,7 @@ namespace DataJuggler.Blazor.Components
         private string name;
         private IBlazorComponentParent parent;
         private string position;
-        private TextSizeEnum textSize;
-        private string textSizeStyle;
+        private double fontSize;
         private double top;
         private string topStyle;
         private string unit;
@@ -57,7 +56,12 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private int zIndex;        
         private string listItemClassName;
-
+        private string fontUnit;
+        private string className;
+        private double labelWidth;
+        private double checkBoxTextXPosition;
+        private double checkBoxTextYPosition;
+        
         // reverting back to BlazorStyled
         private string checkedlistboxStyle;
         private string listitemStyle;
@@ -176,18 +180,19 @@ namespace DataJuggler.Blazor.Components
                 // Set the Unit and HeightUnit defaults
                 Unit = "px";
                 HeightUnit = "px";
-
+                FontUnit = "px";
+                FontSize = 12;
+                
                 // Set a default height
                 ListItemHeight = 32;
                 
-                // Move the checkbox down a little
-                CheckBoxYPosition = .2;
-                
+                // Move over a little
+                CheckBoxXPosition = .2;
+
                 // Set the default width
                 Width = 120;
                 
-                // Default to 30% for the lable, the rest goes to the ComboBox                
-                TextSize = TextSizeEnum.Medium;
+                // Default to 30% for the lable, the rest goes to the ComboBox                                
                 Left = 0;
                 Top = 0;
                 Unit = "px";
@@ -200,6 +205,8 @@ namespace DataJuggler.Blazor.Components
                 ListItemPosition = "relative";
                 ListItemBackgroundColor = Color.White;
                 ListBackgroundColor = Color.White;
+                ListItemClassName = "textdonotwrap";
+                ZIndex = 40;
             }
             #endregion
 
@@ -253,6 +260,13 @@ namespace DataJuggler.Blazor.Components
                             {
                                 // store
                                 item.ItemChecked = message.CheckedValue;
+
+                                // if there is a parent
+                                if (HasParent)
+                                {
+                                    // Notify the parent
+                                    Parent.ReceiveData(message);
+                                }
                             }
                         }
                     }
@@ -346,6 +360,30 @@ namespace DataJuggler.Blazor.Components
             
         #region Properties
                 
+            #region CheckBoxTextXPosition
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxTextXPosition'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxTextXPosition
+            {
+                get { return checkBoxTextXPosition; }
+                set { checkBoxTextXPosition = value; }
+            }
+            #endregion
+            
+            #region CheckBoxTextYPosition
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxTextYPosition'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxTextYPosition
+            {
+                get { return checkBoxTextYPosition; }
+                set { checkBoxTextYPosition = value; }
+            }
+            #endregion
+            
             #region CheckBoxXPosition
             /// <summary>
             /// This property gets or sets the value for 'CheckBoxXPosition'.
@@ -392,6 +430,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
+            }
+            #endregion
+            
             #region ComboBox
             /// <summary>
             /// This read only property returns the value of ComboBox from the object Parent.
@@ -450,6 +500,48 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return displayStyle; }
                 set { displayStyle = value; }
+            }
+            #endregion
+            
+            #region FontSize
+            /// <summary>
+            /// This property gets or sets the value for 'FontSize'.
+            /// </summary>
+            [Parameter]
+            public double FontSize
+            {
+                get { return fontSize; }
+                set { fontSize = value; }
+            }
+            #endregion
+            
+            #region FontSizeStyle
+            /// <summary>
+            /// This read only property returns the value of FontSizeStyle from the object FontSize.
+            /// </summary>
+            public string FontSizeStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string fontSizeStyle = FontSize + FontUnit;
+                    
+                    // return value
+                    return fontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region FontUnit
+            /// <summary>
+            /// This property gets or sets the value for 'FontUnit'.
+            /// </summary>
+            [Parameter]
+            public string FontUnit
+            {
+                get { return fontUnit; }
+                set { fontUnit = value; }
             }
             #endregion
             
@@ -585,6 +677,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region LabelWidth
+            /// <summary>
+            /// This property gets or sets the value for 'LabelWidth'.
+            /// </summary>
+            [Parameter]
+            public double LabelWidth
+            {
+                get { return labelWidth; }
+                set { labelWidth = value; }
+            }
+            #endregion
+            
             #region Left
             /// <summary>
             /// This property gets or sets the value for 'Left'.
@@ -964,92 +1068,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region TextSize
-            /// <summary>
-            /// This property gets or sets the value for 'TextSize'.
-            /// </summary>
-            [Parameter]
-            public TextSizeEnum TextSize
-            {
-                get { return textSize; }
-                set
-                {
-                    // set the value
-                    textSize = value;
-                        
-                    switch (value)
-                    {
-                        case TextSizeEnum.Extra_Small:
-                            
-                        // Set the value
-                        TextSizeStyle = .6 + "em";
-                            
-                        // required
-                        break;
-                            
-                        case TextSizeEnum.Small:
-                            
-                        // Set the value
-                        TextSizeStyle = .8 + "em";
-                            
-                        // required
-                        break;
-                            
-                        case TextSizeEnum.SmallMedium:
-                            
-                        // Set the value
-                        TextSizeStyle = .9 + "em";
-                            
-                        // required
-                        break;
-                            
-                        case TextSizeEnum.Medium:
-                            
-                        // Set the value
-                        TextSizeStyle = 1 + "em";
-                            
-                        // required
-                        break;
-                            
-                        case TextSizeEnum.MediumLarge:
-                            
-                        // Set the value
-                        TextSizeStyle = 1.1 + "em";
-                            
-                        // required
-                        break;
-                            
-                        case TextSizeEnum.Large:
-                            
-                        // Set the value
-                        TextSizeStyle = 1.2 + "em";
-                            
-                        // required
-                        break;
-                            
-                        case TextSizeEnum.Extra_Large:
-                            
-                        // Set the value
-                        TextSizeStyle = 1.4 + "em";
-                            
-                        // required
-                        break;
-                    }
-                }
-            }
-            #endregion
-                
-            #region TextSizeStyle
-            /// <summary>
-            /// This property gets or sets the value for 'TextSizeStyle'.
-            /// </summary>
-            public string TextSizeStyle
-            {
-                get { return textSizeStyle; }
-                set { textSizeStyle = value; }
-            }
-            #endregion
-                
             #region Top
             /// <summary>
             /// This property gets or sets the value for 'Top'.
@@ -1166,6 +1184,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ZIndex'.
             /// </summary>
+            [Parameter]
             public int ZIndex
             {
                 get { return zIndex; }

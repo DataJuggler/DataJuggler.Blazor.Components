@@ -1,26 +1,31 @@
 ﻿@using BlazorStyled
 
-<Styled @bind-Classname=CheckedlistboxStyle>
+<Styled @bind-Classname=@CheckedlistboxStyle>
     background-color: @ListBackgroundColor;
     display: @DisplayStyle;
-    font-size: @TextSizeStyle;
+    font-size: @FontSizeStyle;
     height: @HeightStyle;
-    justify-content: left;
-    min-width: @WidthStyle;
-    left: @LeftStyle;
-    Top: @TopStyle;
+    min-height: @HeightStyle;
+    max-height: @HeightStyle;
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 1px;
     position: @Position;
+    left: @LeftStyle;
+    Top: @TopStyle;
     width: @WidthStyle;
+    min-width: @WidthStyle;
+    max-width: max-content;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    z-index: @ZIndex;
 </Styled>
-<Styled @bind-Classname=ListitemStyle>
+<Styled @bind-Classname=@ListitemStyle>
     background-color: @ListBackgroundColorName;
     color: @ListItemTextColorName;
     font-family: Verdana;
-    font-size: @TextSizeStyle;
+    font-size: @FontSizeStyle;
     height: @ListItemHeightStyle;
     left: @ListItemLeftStyle;
     margin-bottom: 0;
@@ -31,23 +36,33 @@
     text-align: left;
     top: @ListItemTopStyle;
     width: @ListItemWidthStyle;
+    min-width: @ListItemWidthStyle;
+    max-width: @ListItemWidthStyle;
     z-index: @ZIndex;
-    overflow: clip;
+    object-fit: fill;
 </Styled>
 
+<br class="clear" />
 <div class="@CheckedlistboxStyle">
-    @if (HasItems)
-    {  
-        @foreach (Item item in Items)
-        {
-            <div class="row @ListitemStyle">
-            <ValidationComponent CheckBoxMode=true Parent="this" Name="@item.Name" Unit="@Unit"
-                Column1Width="@Width" Column2Width="@Width" CheckBoxValue = "@item.ItemChecked"
-                HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@Width"
-                Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" ClassName="@ListItemClassName"           
-                Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
-            </ValidationComponent>
-            </div>
+    <table class="@ClassName" width="@Width" height="@Height">
+        @if (HasItems)
+        {  
+            @foreach (Item item in Items)
+            {
+                <tr>
+                    <td width="@ListItemWidth" height="@ListItemHeight">
+                        <div class="@ListitemStyle">
+                            <ValidationComponent CheckBoxMode=true Parent="this" Name="@item.Id.ToString()" Unit="@Unit"                                
+                                Column1Width="@LabelWidth" Column2Width="@Width" CheckBoxValue="@item.ItemChecked"
+                                HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@listItemWidth"
+                                Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" ClassName="@ListItemClassName"
+                                CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
+                                Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
+                            </ValidationComponent>
+                        </div>
+                    </td>
+                </tr>
+            }
         }
-    }
+    </table>
 </div>
