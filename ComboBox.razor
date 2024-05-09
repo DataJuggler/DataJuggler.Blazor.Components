@@ -57,7 +57,7 @@
     display: inline;
     text-align: left;
     background-size: 100% 100%;
-    z-index: 30;
+    z-index: @ZIndex;
     height: 25.6px;
     position: @ButtonPosition;
     left: @ButtonLeftStyle;
@@ -119,14 +119,14 @@
             {
                 <table class="@CheckedListBoxStyle">
                     <tr>
-                    <CheckedListBox Parent="this" HeightUnit="@CheckedListHeightUnit" Height="@CheckedListheight" Position="@CheckedListPosition"
-                        Unit="@CheckedListUnit" Width=@CheckedListWidth ListItemWidth=@ListItemWidth 
-                        ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
+                    <CheckedListBox Parent="this" HeightUnit="@CheckedListHeightUnit" Height="@CheckedListheight" 
+                        Position="@CheckedListPosition" Unit="@CheckedListUnit" Width=@CheckedListWidth 
+                        ListItemWidth=@ListItemWidth  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
                         ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor
                         CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
                         ListBackgroundColor="Color.White" Top="0" ZIndex="@CheckedListZIndex"
                         CheckBoxXPosition=@CheckBoxXPosition  CheckBoxYPosition="@CheckBoxYPosition" 
-                        Left=0  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
+                        Left=@CheckedListLeft  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
                     </CheckedListBox>
                     </tr>
                 </table>
