@@ -47,6 +47,7 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;
         private string imagePath;
         private List<Item> items;
+        private List<Item> storedSelectedItems;
         private string labelBackColor;
         private string labelClassName;
         private Color labelColor;
@@ -582,6 +583,16 @@ namespace DataJuggler.Blazor.Components
                     {
                         // Set the Items
                         CheckedListComponent.SetItems(Items);
+
+                        // if the value for HasStoredSelectedItems is true
+                        if (HasStoredSelectedItems)
+                        {
+                            // Now set the SelectedItems
+                            SetSelectedItems(StoredSelectedItems);
+
+                            // erase
+                            StoredSelectedItems = null;
+                        }
                     }
                 }
             }
@@ -616,6 +627,11 @@ namespace DataJuggler.Blazor.Components
 
                     // Update the selections
                     CheckedListComponent.Refresh();
+                }
+                else
+                {
+                    // Store this for once the ocmponent is registered
+                    StoredSelectedItems = selectedItems;
                 }
             }
             #endregion
@@ -1663,6 +1679,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasStoredSelectedItems
+            /// <summary>
+            /// This property returns true if this object has a 'StoredSelectedItems'.
+            /// </summary>
+            public bool HasStoredSelectedItems
+            {
+                get
+                {
+                    // initial value
+                    bool hasStoredSelectedItems = (this.StoredSelectedItems != null);
+                    
+                    // return value
+                    return hasStoredSelectedItems;
+                }
+            }
+            #endregion
+            
             #region HasTextBox
             /// <summary>
             /// This property returns true if this object has a 'TextBox'.
@@ -2393,7 +2426,7 @@ namespace DataJuggler.Blazor.Components
                 set { selectedItem = value; }
             }
             #endregion
-                
+            
             #region SelectedItems
             /// <summary>
             /// This read only property returns the value of SelectedItems from the object CheckedListComponent.
@@ -2448,6 +2481,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region StoredSelectedItems
+            /// <summary>
+            /// This property gets or sets the value for 'StoredSelectedItems'.
+            /// </summary>
+            public List<Item> StoredSelectedItems
+            {
+                get { return storedSelectedItems; }
+                set { storedSelectedItems = value; }
+            }
+            #endregion
+            
             #region TextAlign
             /// <summary>
             /// This property gets or sets the value for 'TextAlign'.
