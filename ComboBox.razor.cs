@@ -14,6 +14,7 @@ using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using System.Drawing;
 using OfficeOpenXml.FormulaParsing.ExpressionGraph.FunctionCompilers;
+using DataJuggler.Blazor.Components.Util;
 
 #endregion
 
@@ -501,10 +502,24 @@ namespace DataJuggler.Blazor.Components
                             {
                                 // Set the Selected Text
                                 SetSelectedText(SelectedItem.Text);
+
+                                // if the SelectedText exists
+                                if ((HasSelectedText) && (HasItems))
+                                {
+                                    // find the index
+                                    int index = ItemHelper.FindItemIndexByText(Items, SelectedText);
+
+                                    // if found
+                                    if (index >= 0)
+                                    {
+                                        // Set the selected index
+                                        SelectedItem = Items[index];
+                                    }
+                                }
                             }
                         }
 
-                        // Update the UI with the filtered list
+                        // Update the UI
                         Refresh();
                     }                   
                     else
@@ -1598,6 +1613,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region HasSelectedText
+            /// <summary>
+            /// This property returns true if the 'SelectedText' exists.
+            /// </summary>
+            public bool HasSelectedText
+            {
+                get
+                {
+                    // initial value
+                    bool hasSelectedText = (!String.IsNullOrEmpty(this.SelectedText));
+                    
+                    // return value
+                    return hasSelectedText;
+                }
+            }
+            #endregion
+            
             #region HasTextBox
             /// <summary>
             /// This property returns true if this object has a 'TextBox'.
