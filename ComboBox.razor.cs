@@ -587,6 +587,32 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region SetSelectedItems(List<Item> selectedItems)
+            /// <summary>
+            /// Set Selected Items for the ComboBox in CheckedListMode
+            /// </summary>
+            public void SetSelectedItems(List<Item> selectedItems)
+            {
+                // if the value for HasCheckedListComponent is true
+                if ((HasCheckedListComponent) && (ListHelper.HasOneOrMoreItems(selectedItems)))
+                {
+                    // iterate the items
+                    foreach (Item item in selectedItems)
+                    {
+                        // Find the item by Id
+                        Item tempItem = ItemHelper.FindItemById(CheckedListComponent.Items, item.Id);
+
+                        // if the item was found
+                        if (NullHelper.Exists(tempItem))
+                        {  
+                            // Select this item
+                            tempItem.ItemChecked = item.ItemChecked;
+                        }
+                    }
+                }
+            }
+            #endregion
+            
             #region SetSelectedText(string buttonText)
             /// <summary>
             /// Set the selected value for the combo box Text
