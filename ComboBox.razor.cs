@@ -599,16 +599,23 @@ namespace DataJuggler.Blazor.Components
                     // iterate the items
                     foreach (Item item in selectedItems)
                     {
-                        // Find the item by Id
-                        Item tempItem = ItemHelper.FindItemById(CheckedListComponent.Items, item.Id);
+                        // if this item is checked
+                        if (item.ItemChecked)
+                        {
+                            // Find the item by Id
+                            int index = ItemHelper.FindItemIndexByText(CheckedListComponent.Items, item.Text);
 
-                        // if the item was found
-                        if (NullHelper.Exists(tempItem))
-                        {  
-                            // Select this item
-                            tempItem.ItemChecked = item.ItemChecked;
+                            // if the index was found
+                            if (index >= 0)
+                            {
+                                // Check this item
+                                CheckedListComponent.Items[index].ItemChecked = true;    
+                            }
                         }
                     }
+
+                    // Update the selections
+                    CheckedListComponent.Refresh();
                 }
             }
             #endregion
