@@ -1,4 +1,12 @@
+
 News
+
+# Update 5.18.2024
+
+New Video:
+
+First Ever Opensource Saturday - Sunday Edition
+https://youtu.be/kohGlLIBMR0
 
 5.8.2024: I spent a week refactoring the Combo Box. I realized my first combobox wasn't a standard combobox.
 Now, if you are in regular mode (not checklist mode), you can type T twice for Texas in a States list, for example.
