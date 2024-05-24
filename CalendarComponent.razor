@@ -182,15 +182,15 @@
                 {
                     @if (dayObject.Today)
                     {
-                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle3">@dayObject.ToString()</button>
+                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle3 cursorpointer">@dayObject.ToString()</button>
                     }
                     else if (dayObject.ThisMonth)
                     {
-                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle">@dayObject.ToString()</button>
+                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle cursorpointer">@dayObject.ToString()</button>
                     }
                     else
                     {
-                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle2">@dayObject.ToString()</button>
+                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle2 cursorpointer">@dayObject.ToString()</button>
                     }
                 }
             </div>
