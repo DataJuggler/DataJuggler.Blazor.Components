@@ -75,7 +75,10 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowStyle;
         private DateTime thisMonth;
         private string labelClassName;
-        private int zIndex;                
+        private int zIndex;               
+        private double textBoxLeft;
+        private double textBoxHeight;
+        private double rowHeight;
         #endregion
         
         #region Constructor
@@ -118,6 +121,8 @@ namespace DataJuggler.Blazor.Components
             LabelClassName = "down4 right2";
             TextBoxWidth= 124;
             ZIndex = 20;
+            RowHeight = 16;
+            TextBoxHeight = 32;
             
             // Buttons
             NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -1318,19 +1323,13 @@ namespace DataJuggler.Blazor.Components
             
             #region RowHeight
             /// <summary>
-            /// This read only property returns the value of RowHeight
+            /// This property gets or sets the value for 'RowHeight'.
             /// </summary>
-            public static double RowHeight
+            [Parameter]
+            public double RowHeight
             {
-                
-                get
-                {
-                    // initial value
-                    double rowHeight = 16;
-                    
-                    // return value
-                    return rowHeight;;
-                }
+                get { return rowHeight; }
+                set { rowHeight = value; }
             }
             #endregion
             
@@ -1382,6 +1381,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBox; }
                 set { textBox = value; }
+            }
+            #endregion
+            
+            #region TextBoxHeight
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxHeight'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxHeight
+            {
+                get { return textBoxHeight; }
+                set { textBoxHeight = value; }
+            }
+            #endregion
+            
+            #region TextBoxLeft
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxLeft'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxLeft
+            {
+                get { return textBoxLeft; }
+                set { textBoxLeft = value; }
             }
             #endregion
             

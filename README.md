@@ -1,6 +1,9 @@
 
 News
 
+5.24.2024
+8.8.8: New Properties were added to the ComboBox to control the height of the TextBox for the CalendarComponent
+
 # Update 5.18.2024
 
 New Video:
