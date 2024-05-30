@@ -1,6 +1,181 @@
 
 News
 
+5.30.2024: I created a new component called an InformationBox.
+
+<img src=https://github.com/DataJuggler/SharedRepo/blob/master/Shared/Images/SampleInformationBox.png height=356 width=215>
+
+    <InformationBox Parent="this" Title="Summary" Height="204" Width="340"
+        Column1Width="180" Column2Width="152" Column1Left="0" Gap="8"
+        Left="256" Theme="@ThemeEnum.Blue" BorderColor="Color.Gray" HeaderHeight="32"
+        HeaderTextVerticalOffset="3" Name="Summary">
+    </InformationBox>
+
+The InformationBox is loaded via code. Here is a sample for how to load an InformationBox
+
+I create a private variable for the InformationBox
+
+    private InformationBox infoBox;
+
+And from this I create a property. It's optional, but I use Visual Studio package Regionizer2022
+
+Regionizer2022
+https://github.com/DataJuggler/Regionizer2022
+
+Make sure your page has a Properties region, and select one or more private variables - Click the 
+Create Properties button
+
+A property is created
+
+    #region InfoBox
+    /// <summary>
+    /// This property gets or sets the value for 'InfoBox'.
+    /// </summary>
+    public InformationBox InfoBox
+    {
+        get { return infoBox; }
+        set { infoBox = value; }
+    }
+    #endregion
+
+To create a HasProperty, I select the word InfoBox, in the line public InformationBox InfoBox
+and in Regionizer 2022, I click 'Create Has Property'.
+
+This creates a read only property that is a simple method of testing for null
+
+    #region HasInfoBox
+    /// <summary>
+    /// This property returns true if this object has an 'InfoBox'.
+    /// </summary>
+    public bool HasInfoBox
+    {
+        get
+        {
+            // initial value
+            bool hasInfoBox = (this.InfoBox != null);
+            
+            // return value
+            return hasInfoBox;
+        }
+    }
+    #endregion
+
+Then in the Register method of the page or component hosting the InformationBox, make sure the
+component implements IBlazorComponentParent. If you have more than one InformationBox on a page
+or component, you can refer to them by name to store each component. The example below only has
+one InformationBox on the page.
+
+In the register method, store the object
+
+    if (component is InformationBox)
+    {
+        // Store
+        InfoBox = component as InformationBox;
+        
+        // test only
+        List<Item> items = CreateSampleInfoBoxItems();
+        
+        // if the value for HasInfoBox is true
+        if (HasInfoBox)
+        {
+            // Set the Items
+            InfoBox.SetItems(items);
+            
+            // Update the UI
+            InfoBox.Refresh();
+        }
+    }
+
+And this method CreateSampleInfoBoxItems demonstrates how to load a list of items
+
+Tip: Notice the code for the image for the first item. You can place an image on the left or right of text,
+by selecting the ImageAlignment.
+
+    #region CreateSampleInfoBoxItems()
+    /// <summary>
+    /// returns a list of Sample Info Box Items
+    /// </summary>
+    public List<Item> CreateSampleInfoBoxItems()
+    {
+        // initial value
+        List<Item> items = new List<Item>();
+        
+        // Create a new instance of an 'Item' object.
+        Item item = new Item();
+        item.Caption = "Acceptable Pressure Test?";
+        item.Text = "Yes";
+        
+        // image
+        item.IncludeImage = true;
+        item.ImageAlignment = ImageAlignmentEnum.ImageOnLeftOfText;
+        item.ImageWidth = 16;
+        item.ImageHeight = 16;
+        item.ImageUrl = "../Images/GreenCircle.png";
+        
+        // Add this item
+        items.Add(item);
+        
+        // Create a new instance of an 'Item' object.
+        item = new Item();
+        item.Caption = "PSI Loss to Leak?";
+        item.Text = "30.1 psi";
+        
+        // Add this item
+        items.Add(item);
+        
+        // Create a new instance of an 'Item' object.
+        item = new Item();
+        item.Caption = "Total Test Time";
+        item.Text = "8 Hours 0 Minutes";
+        
+        // Add this item
+        items.Add(item);
+        
+        // Create a new instance of an 'Item' object.
+        item = new Item();
+        item.Caption = "Min Test Duration Met?";
+        item.Text = "Yes";
+        
+        // Add this item
+        items.Add(item);
+        
+        // Create a new instance of an 'Item' object.
+        item = new Item();
+        item.Caption = "Min Test Pressure Met?";
+        item.Text = "Yes";
+        
+        // Add this item
+        items.Add(item);
+        
+        // Create a new instance of an 'Item' object.
+        item = new Item();
+        item.Caption = "MAOP Verified By Test";
+        item.Text = "452 psi";
+        
+        // Add this item
+        items.Add(item);
+        
+        // Create a new instance of an 'Item' object.
+        item = new Item();
+        item.Caption = "Desired MAOP";
+        item.Text = "400 psi";
+        
+        // Add this item
+        items.Add(item);
+        
+        // Create a new instance of an 'Item' object.
+        item = new Item();
+        item.Caption = "Test Within Pressure Bounds?";
+        item.Text = "Yes";
+        
+        // Add this item
+        items.Add(item);
+        
+        // return value
+        return items;
+    }
+    #endregion
+
 5.24.2024
 8.8.8: New Properties were added to the ComboBox to control the height of the TextBox for the CalendarComponent
 

@@ -1,0 +1,87 @@
+﻿@using DataJuggler.Blazor.Components
+@using DataJuggler.UltimateHelper
+@using BlazorStyled
+@using DataJuggler.Blazor.Components.Enumerations
+
+<Styled @bind-Classname=@InfoBoxStyle>
+    position: @Position;
+    left: @LeftStyle;
+    height: @HeightStyle;
+    top: @TopStyle;
+    Width: @WidthStyle;
+    border-color: @BorderColor.Name;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: @BorderRadiusStyle;
+    overflow: hidden;    
+</Styled>
+<Styled @bind-Classname=@InfoBoxHeaderStyle>
+    text-align: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: @BorderColor.Name;
+    height: @HeaderHeightStyle;
+    background-size: 100% 100%;
+    background-image: url('@HeaderImageUrl');
+    color: @TitleTextColor.Name;   
+</Styled>
+<Styled @bind-Classname=@Column1Style>
+    position: @Position;
+    left: @Column1LeftStyle;
+</Styled>
+<Styled @bind-Classname=@ItemContainerStyle>
+    
+</Styled>
+<Styled @bind-Classname=@ListItemStyle>
+    font-size: @FontSizeStyle;
+</Styled>
+<Styled @bind-Classname=@ImageStyle>
+    display: inline-block;
+    background-size: 100% 100%;
+</Styled>
+<Styled @bind-Classname=@HeaderTextStyle>
+    position: @HeaderTextPosition;
+    top: @HeaderTextVerticalOffsetStyle;
+</Styled>
+
+<div class="@InfoBoxStyle">
+    <div class="@InfoBoxHeaderStyle">
+        <span class="@HeaderTextStyle">
+            @Title
+        </span>
+    </div>
+    <div class="@ItemContainerStyle">
+        @if (ListHelper.HasOneOrMoreItems(Items))
+        {
+            <table>
+            @foreach (Item item in Items)
+            {
+                <tr class="@ListItemStyle">
+                    <td class="@Column1TextAlignStyle" width="@Column1Width">
+                        <span class="@Column1Style textdonotwrap">
+                            @item.Caption
+                        </span>
+                    </td>                    
+                    <td width="@Gap"></td>                    
+                    <td class="@Column2TextAlignStyle" width="@Column2Width">
+                        @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnLeftOfText))
+                        {
+                            <span class="@ImageStyle">
+                                <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
+                            </span>
+                        }
+                        @item.Text
+                        @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnRightOfText))
+                        {
+                            <span class="@ImageStyle">
+                                <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
+                            </span>
+                        }
+                    </td>
+                </tr>
+            }
+            </table>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,883 @@
+﻿
+
+#region using statements
+
+using DataJuggler.Blazor.Components.Interfaces;
+using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
+using System.Drawing;
+using DataJuggler.Blazor.Components.Enumerations;
+using System.Numerics;
+
+#endregion
+
+namespace DataJuggler.Blazor.Components
+{
+
+    #region class InformationBox
+    /// <summary>
+    /// This class is used to display information in a rectangle
+    /// </summary>
+    public partial class InformationBox : IBlazorComponent
+    {
+        
+        #region Private Variables
+        private double height;
+        private double headerHeight;
+        private string headerHeightStyle;
+        private string heightUnit;
+        private string infoBoxHeaderStyle;
+        private string infoBoxStyle;
+        private double left;
+        private string name;
+        private IBlazorComponentParent parent;
+        private string position;
+        private string title;
+        private double top;
+        private string unit;
+        private double width;
+        private string leftStyle;
+        private string topStyle;
+        private string widthStyle;
+        private string HeightStyle;
+        private string itemContainerStyle;
+        private string listItemStyle;
+        private List<Item> items;
+        private string column1Style;
+        private double column1Width;
+        private double column2Width;
+        private double column1Left;
+        private double listItemHeight;
+        private string listItemHeightStyle;
+        private string imageStyle;
+        private string headerImageUrl;
+        private ThemeEnum theme;
+        private Color titleTextColor;
+        private Color borderColor;
+        private double borderRadius;
+        private double headerTextVerticalOffset;
+        private string headerTextPosition;
+        private string headerTextStyle;
+        private double fontSize;
+        private string fontUnit;
+        private double imageWidth;
+        private double imageHeight;
+        private TextAlignmentEnum column1TextAlign;
+        private TextAlignmentEnum column2TextAlign;
+        private int gap;
+        #endregion
+        
+        #region Constructor
+        /// <summary>
+        /// Create a new instance of a 'InformationBox' object.
+        /// </summary>
+        public InformationBox()
+        {
+            // Perform initializations for this object
+            Init();
+        }
+        #endregion
+        
+        #region Methods
+            
+            #region GetTextAlignValue(TextAlignmentEnum textAlign)
+            /// <summary>
+            /// returns the Text Align Value
+            /// </summary>
+            public string GetTextAlignValue(TextAlignmentEnum textAlign)
+            {
+                // initial value
+                string textAlignValue = "textalignleft";
+
+                if (textAlign == TextAlignmentEnum.Center)
+                {
+                    // center
+                    textAlignValue = "textaligncenter";
+                }
+                else if (textAlign == TextAlignmentEnum.Right)
+                {
+                    // center
+                    textAlignValue = "textalignright";
+                }
+                
+                // return value
+                return textAlignValue;
+            }
+            #endregion
+            
+            #region Init()
+            /// <summary>
+            ///  This method performs initializations for this object.
+            /// </summary>
+            public void Init()
+            {
+                // Defaults
+                Position = "relative";
+                HeaderTextPosition = "relative"; 
+                Unit = "px";
+                HeightUnit = "px";
+                Column1TextAlign = TextAlignmentEnum.Right;
+                Column2TextAlign = TextAlignmentEnum.Left;
+                Width = 240;
+                Height = 160;
+                HeaderHeight = 20;
+                Column1Width = 112;
+                Column2Width = 112;
+                TitleTextColor = Color.White;
+                BorderColor = Color.Gray;
+                BorderRadius = 10;
+                FontSize = 12;
+                FontUnit = "px";
+                Column1Left = 8;
+                Gap = 8;
+            }
+            #endregion
+            
+            #region ReceiveData(Message message)
+            /// <summary>
+            /// method Receive Data
+            /// </summary>
+            public void ReceiveData(Message message)
+            {
+                
+            }
+            #endregion
+
+            #region Refresh()
+            /// <summary>
+            /// method Refresh
+            /// </summary>
+            public void Refresh()
+            {
+                InvokeAsync(() =>
+                {
+                    // Refresh
+                    StateHasChanged();
+                });
+            }
+            #endregion
+            
+            #region SetHeaderImage(ThemeEnum theme)
+            /// <summary>
+            /// Set Header Image
+            /// </summary>
+            public void SetHeaderImage(ThemeEnum theme)
+            {
+                switch(theme)
+                {
+                    case ThemeEnum.Blue:
+
+                        // Set the HeaderImage
+                        HeaderImageUrl = "_content/DataJuggler.Blazor.Components/Images/Headers/HeaderBlue.png";
+
+                        // required
+                        break;
+
+                    case ThemeEnum.Black:
+
+                        // Set the HeaderImage
+                        HeaderImageUrl = "_content/DataJuggler.Blazor.Components/Images/Headers/HeaderBlack.png";
+
+                        // required
+                        break;
+
+                    case ThemeEnum.Dark:
+
+                        // Set the HeaderImage
+                        HeaderImageUrl = "_content/DataJuggler.Blazor.Components/Images/Headers/HeaderDark.png";
+
+                        // required
+                        break;
+
+                    case ThemeEnum.Red:
+
+                        // Set the HeaderImage
+                        HeaderImageUrl = "BackgroundImageUrl = \"_content/DataJuggler.Blazor.Components/Images/Headers/HeaderRed.png";
+
+                        // required
+                        break;
+                }
+            }
+            #endregion
+            
+            #region SetItems(List<Item> items)
+            /// <summary>
+            /// Set Items
+            /// </summary>
+            public void SetItems(List<Item> items)
+            {
+                // Store
+                Items = items;
+            }
+            #endregion
+            
+        #endregion
+        
+        #region Properties
+            
+            #region BorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'BorderColor'.
+            /// </summary>
+            [Parameter]
+            public Color BorderColor
+            {
+                get { return borderColor; }
+                set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderRadius
+            /// <summary>
+            /// This property gets or sets the value for 'BorderRadius'.
+            /// </summary>
+            [Parameter]
+            public double BorderRadius
+            {
+                get { return borderRadius; }
+                set { borderRadius = value; }
+            }
+            #endregion
+            
+            #region BorderRadiusStyle
+            /// <summary>
+            /// This read only property returns the value of BorderRadiusStyle from the object BorderRadius.
+            /// </summary>
+            public string BorderRadiusStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string borderRadiusStyle = BorderRadius + Unit;
+                    
+                    // return value
+                    return borderRadiusStyle;
+                }
+            }
+            #endregion            
+            
+            #region Column1Left
+            /// <summary>
+            /// This property gets or sets the value for 'Column1Left'.
+            /// </summary>
+            [Parameter]
+            public double Column1Left
+            {
+                get { return column1Left; }
+                set { column1Left = value; }
+            }
+            #endregion
+            
+            #region Column1LeftStyle
+            /// <summary>
+            /// This read only property returns the value of Column1LeftStyle from the object Column1Left.
+            /// </summary>
+            public string Column1LeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column1LeftStyle = Column1Left + Unit;
+                    
+                    // return value
+                    return column1LeftStyle;
+                }
+            }
+            #endregion
+            
+            #region Column1Style
+            /// <summary>
+            /// This property gets or sets the value for 'Column1Style'.
+            /// </summary>
+            public string Column1Style
+            {
+                get { return column1Style; }
+                set { column1Style = value; }
+            }
+            #endregion
+            
+            #region Column1TextAlign
+            /// <summary>
+            /// This property gets or sets the value for 'Column1Textalign'.
+            /// </summary>
+            [Parameter]
+            public TextAlignmentEnum Column1TextAlign
+            {
+                get { return column1TextAlign; }
+                set { column1TextAlign = value; }
+            }
+            #endregion
+            
+            #region Column1TextAlignStyle
+            /// <summary>
+            /// This read only property returns the value of Column1TextAlignStyle
+            /// </summary>
+            public string Column1TextAlignStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column1TextAlignStyle = GetTextAlignValue(column1TextAlign);
+                    
+                    // return value
+                    return column1TextAlignStyle;
+                }
+            }
+            #endregion
+            
+            #region Column1Width
+            /// <summary>
+            /// This property gets or sets the value for 'Column1Width'.
+            /// </summary>
+            [Parameter]
+            public double Column1Width
+            {
+                get { return column1Width; }
+                set { column1Width = value; }
+            }
+            #endregion
+            
+            #region Column2TextAlign
+            /// <summary>
+            /// This property gets or sets the value for 'Column2TexAlign'.
+            /// </summary>
+            [Parameter]
+            public TextAlignmentEnum Column2TextAlign
+            {
+                get { return column2TextAlign; }
+                set { column2TextAlign = value; }
+            }
+            #endregion
+
+            #region Column2TextAlignStyle
+            /// <summary>
+            /// This read only property returns the string value of the text align value, left, center or right
+            /// </summary>
+            public string Column2TextAlignStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column2TextAlignStyle = GetTextAlignValue(column2TextAlign);
+                    
+                    // return value
+                    return column2TextAlignStyle;
+                }
+            }
+            #endregion
+            
+            #region Column2Width
+            /// <summary>
+            /// This property gets or sets the value for 'Column2Width'.
+            /// </summary>
+            [Parameter]
+            public double Column2Width
+            {
+                get { return column2Width; }
+                set { column2Width = value; }
+            }
+            #endregion
+            
+            #region FontSize
+            /// <summary>
+            /// This property gets or sets the value for 'FontSize'.
+            /// </summary>
+            [Parameter]
+            public double FontSize
+            {
+                get { return fontSize; }
+                set { fontSize = value; }
+            }
+            #endregion
+            
+            #region FontSizeStyle
+            /// <summary>
+            /// This read only property returns the value of FontSizeStyle from the object FontSize.
+            /// </summary>
+            public string FontSizeStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string fontSizeStyle = FontSize + FontUnit;
+                    
+                    // return value
+                    return fontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region FontUnit
+            /// <summary>
+            /// This property gets or sets the value for 'FontUnit'.
+            /// </summary>
+            [Parameter]
+            public string FontUnit
+            {
+                get { return fontUnit; }
+                set { fontUnit = value; }
+            }
+            #endregion
+            
+            #region Gap
+            /// <summary>
+            /// This property gets or sets the value for 'Gap'.
+            /// </summary>
+            [Parameter]
+            public int Gap
+            {
+                get { return gap; }
+                set { gap = value; }
+            }
+            #endregion
+            
+            #region HasParent
+            /// <summary>
+            /// This property returns true if this object has a 'Parent'.
+            /// </summary>
+            public bool HasParent
+            {
+                get
+                {
+                    // initial value
+                    bool hasParent = (this.Parent != null);
+                    
+                    // return value
+                    return hasParent;
+                }
+            }
+            #endregion
+            
+            #region HeaderHeight
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderHeight'.
+            /// </summary>
+            [Parameter]
+            public double HeaderHeight
+            {
+                get { return headerHeight; }
+                set
+                {
+                    // set the value
+                    headerHeight = value;
+
+                    // Set the HeaderStyle
+                    HeaderHeightStyle = headerHeight + HeightUnit;
+                }
+            }
+            #endregion
+            
+            #region HeaderHeightStyle
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderHeightStyle'.
+            /// </summary>
+            public string HeaderHeightStyle
+            {
+                get { return headerHeightStyle; }
+                set { headerHeightStyle = value; }
+            }
+            #endregion
+            
+            #region HeaderImageUrl
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderImageUrl'.
+            /// </summary>
+            public string HeaderImageUrl
+            {
+                get { return headerImageUrl; }
+                set { headerImageUrl = value; }
+            }
+            #endregion
+            
+            #region HeaderTextPosition
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderTextPosition'.
+            /// </summary>
+            [Parameter]
+
+            public string HeaderTextPosition
+            {
+                get { return headerTextPosition; }
+                set { headerTextPosition = value; }
+            }
+            #endregion
+            
+            #region HeaderTextStyle
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderTextStyle'.
+            /// </summary>
+            public string HeaderTextStyle
+            {
+                get { return headerTextStyle; }
+                set { headerTextStyle = value; }
+            }
+            #endregion
+            
+            #region HeaderTextVerticalOffset
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderTextVerticalOffset'.
+            /// </summary>
+            [Parameter]
+            public double HeaderTextVerticalOffset
+            {
+                get { return headerTextVerticalOffset; }
+                set { headerTextVerticalOffset = value; }
+            }
+            #endregion
+            
+            #region HeaderTextVerticalOffsetStyle
+            /// <summary>
+            /// This read only property returns the value of HeaderTextVerticalOffsetStyle from the object HeaderTextVerticalOffset.
+            /// </summary>
+            public string HeaderTextVerticalOffsetStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string headerTextVerticalOffsetStyle =  HeaderTextVerticalOffset + HeightUnit;
+                    
+                    // return value
+                    return headerTextVerticalOffsetStyle;
+                }
+            }
+            #endregion
+            
+            #region Height
+            /// <summary>
+            /// This property gets or sets the value for 'Height'.
+            /// </summary>
+            [Parameter]
+            public double Height
+            {
+                get { return height; }
+                set
+                {
+                    height = value;
+                        
+                    // Set the height headerStyle string
+                    HeightStyle = height + HeightUnit;
+                }
+            }
+            #endregion
+            
+            #region HeightUnit
+            /// <summary>
+            /// This property gets or sets the value for 'HeightUnit'.
+            /// </summary>
+            [Parameter]
+            public string HeightUnit
+            {
+                get { return heightUnit; }
+                set { heightUnit = value; }
+            }
+            #endregion
+            
+            #region ImageStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ImageStyle'.
+            /// </summary>
+            public string ImageStyle
+            {
+                get { return imageStyle; }
+                set { imageStyle = value; }
+            }
+            #endregion
+            
+            #region ImageWidth
+            /// <summary>
+            /// This property gets or sets the value for 'ImageWidth'.
+            /// </summary>
+            public double ImageWidth
+            {
+                get { return imageWidth; }
+                set { imageWidth = value; }
+            }
+            #endregion
+            
+            #region InfoBoxHeaderStyle
+            /// <summary>
+            /// This property gets or sets the value for 'InfoBoxHeaderStyle'.
+            /// </summary>
+            public string InfoBoxHeaderStyle
+            {
+                get { return infoBoxHeaderStyle; }
+                set { infoBoxHeaderStyle = value; }
+            }
+            #endregion
+            
+            #region InfoBoxStyle
+            /// <summary>
+            /// This property gets or sets the value for 'InfoBoxStyle'.
+            /// </summary>
+            public string InfoBoxStyle
+            {
+                get { return infoBoxStyle; }
+                set { infoBoxStyle = value; }
+            }
+            #endregion
+            
+            #region ItemContainerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ItemContainerStyle'.
+            /// </summary>
+            public string ItemContainerStyle
+            {
+                get { return itemContainerStyle; }
+                set { itemContainerStyle = value; }
+            }
+            #endregion
+            
+            #region Items
+            /// <summary>
+            /// This property gets or sets the value for 'Items'.
+            /// </summary>
+            public List<Item> Items
+            {
+                get { return items; }
+                set { items = value; }
+            }
+            #endregion
+            
+            #region Left
+            /// <summary>
+            /// This property gets or sets the value for 'Left'.
+            /// </summary>
+            [Parameter]
+            public double Left
+            {
+                get { return left; }
+                set
+                {
+                    left = value;
+                        
+                    // set the value for leftStyle
+                    leftStyle = left + Unit;
+                }
+            }
+            #endregion
+            
+            #region LeftStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LeftStyle'.
+            /// </summary>
+            public string LeftStyle
+            {
+                get { return leftStyle; }
+                set { leftStyle = value; }
+            }
+            #endregion
+            
+            #region ListItemHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemHeight'.
+            /// </summary>
+            public double ListItemHeight
+            {
+                get { return listItemHeight; }
+                set 
+                {
+                    listItemHeight = value;
+
+                    // Set the ListItemHeightStyle
+                    ListItemHeightStyle = ListItemHeight + HeightUnit;
+                }
+            }
+            #endregion
+            
+            #region ListItemHeightStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemHeightStyle'.
+            /// </summary>
+            public string ListItemHeightStyle
+            {
+                get { return listItemHeightStyle; }
+                set { listItemHeightStyle = value; }
+            }
+            #endregion
+            
+            #region ListItemStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemStyle'.
+            /// </summary>
+            public string ListItemStyle
+            {
+                get { return listItemStyle; }
+                set { listItemStyle = value; }
+            }
+            #endregion
+            
+            #region Name
+            /// <summary>
+            /// This property gets or sets the value for 'Name'.
+            /// </summary>
+            [Parameter]
+            public string Name
+            {
+                get { return name; }
+                set { name = value; }
+            }
+            #endregion
+            
+            #region Parent
+            /// <summary>
+            /// This property gets or sets the value for 'Parent'.
+            /// You should set the Name property before this method.
+            /// </summary>
+            [Parameter]
+            public IBlazorComponentParent Parent
+            {
+                get { return parent; }
+                set
+                {
+                    // set the value
+                    parent = value;
+                    
+                    // if the value for HasParent is true
+                    if (HasParent)
+                    {
+                        // Register with the parent
+                        Parent.Register(this);
+                    }
+                }
+            }
+            #endregion
+            
+            #region Position
+            /// <summary>
+            /// This property gets or sets the value for 'Position'.
+            /// </summary>
+            [Parameter]
+            public string Position
+            {
+                get { return position; }
+                set { position = value; }
+            }
+            #endregion
+            
+            #region Theme
+            /// <summary>
+            /// This property gets or sets the value for 'Theme'.
+            /// </summary>
+            [Parameter]
+            public ThemeEnum Theme
+            {
+                get { return theme; }
+                set 
+                {
+                    theme = value;
+
+                    // Set the HeaderImage
+                    SetHeaderImage(theme);
+                }
+            }
+            #endregion
+            
+            #region Title
+            /// <summary>
+            /// This property gets or sets the value for 'Title'.
+            /// </summary>
+            [Parameter]
+            public string Title
+            {
+                get { return title; }
+                set { title = value; }
+            }
+            #endregion
+            
+            #region TitleTextColor
+            /// <summary>
+            /// This property gets or sets the value for 'TitleTextColor'.
+            /// </summary>
+            [Parameter]
+            public Color TitleTextColor
+            {
+                get { return titleTextColor; }
+                set { titleTextColor = value; }
+            }
+            #endregion
+            
+            #region Top
+            /// <summary>
+            /// This property gets or sets the value for 'Top'.
+            /// </summary>
+            [Parameter]
+            public double Top
+            {
+                get { return top; }
+                set
+                {
+                    // set the value for top
+                    top = value;
+                        
+                    // set the value for topStyle
+                    TopStyle = top + HeightUnit;
+                }
+            }
+            #endregion
+            
+            #region TopStyle
+            /// <summary>
+            /// This property gets or sets the value for 'TopStyle'.
+            /// </summary>
+            public string TopStyle
+            {
+                get { return topStyle; }
+                set { topStyle = value; }
+            }
+            #endregion
+            
+            #region Unit
+            /// <summary>
+            /// This property gets or sets the value for 'Unit'.
+            /// </summary>
+            [Parameter]
+            public string Unit
+            {
+                get { return unit; }
+                set { unit = value; }
+            }
+            #endregion
+            
+            #region Width
+            /// <summary>
+            /// This property gets or sets the value for 'Width'.
+            /// </summary>
+            [Parameter]
+            public double Width
+            {
+                get { return width; }
+                set 
+                {
+                    // set the value
+                    width = value;
+
+                    // Set the value for WidthStyle
+                    WidthStyle = Width + Unit;
+
+                }
+            }
+            #endregion
+            
+            #region WidthStyle
+            /// <summary>
+            /// This property gets or sets the value for 'WidthStyle'.
+            /// </summary>
+            public string WidthStyle
+            {
+                get { return widthStyle; }
+                set { widthStyle = value; }
+            }
+            #endregion
+            
+        #endregion
+        
+    }
+    #endregion
+
+}

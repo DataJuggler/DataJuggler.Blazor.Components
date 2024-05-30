@@ -45,6 +45,19 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
+    #region ImageAlignmentEnum : int
+    /// <summary>
+    /// This enum is used by the Item object, but only in an InfoformationBox
+    /// </summary>
+    public enum ImageAlignmentEnum : int
+    {
+        NoImage = 0,
+        ImageOnly = 1,
+        ImageOnLeftOfText = 2,
+        ImageOnRightOfText = 3
+    }
+    #endregion
+
     #region SizeEnum : int
     /// <summary>
     /// This enum is used to set which size to render the progress bar.
@@ -55,6 +68,18 @@ namespace DataJuggler.Blazor.Components.Enumerations
         Small = 1,
         Medium = 2,
         Large = 3
+    }
+    #endregion
+
+    #region TextAlignmentEnum : int
+    /// <summary>
+    /// The choices for Text Alignment
+    /// </summary>
+    public enum TextAlignmentEnum : int
+    {
+        Left = 0,
+        Center = 1,
+        Right = 2
     }
     #endregion
 
@@ -84,7 +109,8 @@ namespace DataJuggler.Blazor.Components.Enumerations
         Black = 0,
         Dark = 1,
         Blue = 2,
-        Brown = 3
+        Brown = 3,
+        Red = 4
     }
     #endregion
 
