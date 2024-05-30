@@ -1,7 +1,7 @@
 
 News
 
-5.30.2024: I created a new component called an InformationBox. This component is usedful for creating dashboards or reports.
+5.30.2024: I created a new component called an InformationBox. This component is used for creating dashboards or reports.
 
 <img src=https://github.com/DataJuggler/SharedRepo/blob/master/Shared/Images/SampleInformationBox.png height=215 width=356>
 
