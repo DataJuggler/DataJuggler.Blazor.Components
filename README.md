@@ -22,7 +22,7 @@ And from this I create a property. It's optional, but I use Visual Studio packag
 Regionizer2022
 https://github.com/DataJuggler/Regionizer2022
 
-Make sure your page has a Properties region, and select one or more private variables - Click the 
+Make sure your code file has a Properties region, and select one or more private variables - Click the 
 Create Properties button
 
 A property is created
