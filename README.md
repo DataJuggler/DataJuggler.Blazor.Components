@@ -3,7 +3,7 @@ News
 
 5.30.2024: I created a new component called an InformationBox.
 
-<img src=https://github.com/DataJuggler/SharedRepo/blob/master/Shared/Images/SampleInformationBox.png height=356 width=215>
+<img src=https://github.com/DataJuggler/SharedRepo/blob/master/Shared/Images/SampleInformationBox.png height=215 width=356>
 
     <InformationBox Parent="this" Title="Summary" Height="204" Width="340"
         Column1Width="180" Column2Width="152" Column1Left="0" Gap="8"
