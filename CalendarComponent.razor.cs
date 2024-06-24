@@ -121,7 +121,7 @@ namespace DataJuggler.Blazor.Components
             TextBoxWidth= 124;
             ZIndex = 20;
             RowHeight = 16;
-            TextBoxHeight = 32;
+            TextBoxHeight = 24;
             
             // Buttons
             NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
