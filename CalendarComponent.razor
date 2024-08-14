@@ -212,8 +212,7 @@
                             </ImageButton>
                         </td>
                         <td class="down8 left16" width="64">
-                            <Label FontSize=10 LabelColor="Black" ClassName="textaligncenter colorblack width64 textdonotwrap fontbold"
-                                   Width="64" Height="12" Text="@DateTitle" Position="relative" Top="-4"></Label>
+                            <button @onclick="() => LaunchYearSelector()" class="@YearSelectorStyle cursorpointer">@DateTitle</button>
                         </td>
                         <td width="48">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="4" HeightUnit="px" Height="8"
@@ -232,5 +231,11 @@
             </div>
         }
     </div>
+    @if (YearSelectorVisible)
+    {
+        <div>
+
+        </div>
+    }
 </div>
 

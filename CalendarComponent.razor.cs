@@ -78,6 +78,8 @@ namespace DataJuggler.Blazor.Components
         private double textBoxLeft;
         private double textBoxHeight;
         private double rowHeight;
+        private string yearSelectorStyle;
+        private bool yearSelectorVisible;
         #endregion
         
         #region Constructor
@@ -473,6 +475,16 @@ namespace DataJuggler.Blazor.Components
                 
                 // return value
                 return prevMonthDays;
+            }
+            #endregion
+            
+            #region LaunchYearSelector()
+            /// <summary>
+            /// Launch Year Selector
+            /// </summary>
+            public void LaunchYearSelector()
+            {
+                
             }
             #endregion
             
@@ -1498,6 +1510,28 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return widthStyle;
                 }
+            }
+            #endregion
+            
+            #region YearSelectorStyle
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorStyle'.
+            /// </summary>
+            public string YearSelectorStyle
+            {
+                get { return yearSelectorStyle; }
+                set { yearSelectorStyle = value; }
+            }
+            #endregion
+            
+            #region YearSelectorVisible
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorVisible'.
+            /// </summary>
+            public bool YearSelectorVisible
+            {
+                get { return yearSelectorVisible; }
+                set { yearSelectorVisible = value; }
             }
             #endregion
             
