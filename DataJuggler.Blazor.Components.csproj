@@ -389,7 +389,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>8.9.2</Version>
+    <Version>8.9.3</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
@@ -449,7 +449,7 @@ Now is the time to break anything.
   <ItemGroup>
     <PackageReference Include="DataJuggler.BlazorStyled" Version="8.0.0" />
     <PackageReference Include="DataJuggler.Excelerate" Version="8.0.8" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="8.1.0" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8" />
   </ItemGroup>
