@@ -30,14 +30,17 @@
     left: @Column1LeftStyle;
 </Styled>
 <Styled @bind-Classname=@Column2Style>
+    display: inline-block;
     position: @ListItemPosition;
     left: @ListItemLeftStyle;
     top: @ListItemTopStyle;
 </Styled>
 <Styled @bind-Classname=@ItemContainerStyle>
-    
+    display: inline-block;
+    white-space: nowrap;
 </Styled>
 <Styled @bind-Classname=@ListItemStyle>
+    display: inline-block;
     font-size: @FontSizeStyle;
 </Styled>
 <Styled @bind-Classname=@ImageStyle>
@@ -71,19 +74,19 @@
                         </span>
                     </td>                    
                     <td width="@Gap"></td>                    
-                    <td class="@Column2TextAlignStyle" width="@Column2Width">
+                    <td class="@Column2TextAlignStyle textdonotwrap" width="@Column2Width">
                         @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnLeftOfText))
                         {
-                            <span class="@ImageStyle">
+                            <span class="@ImageStyle textdonotwrap">
                                 <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
                             </span>
                         }
-                        <div class="@Column2Style">
+                        <div class="@Column2Style textdonotwrap">
                             @item.Text
                         </div>
                         @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnRightOfText))
                         {
-                            <span class="@ImageStyle">
+                            <span class="@ImageStyle textdonotwrap">
                                 <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
                             </span>
                         }
