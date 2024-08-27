@@ -29,6 +29,11 @@
     position: @Position;
     left: @Column1LeftStyle;
 </Styled>
+<Styled @bind-Classname=@Column2Style>
+    position: @ListItemPosition;
+    left: @ListItemLeftStyle;
+    top: @ListItemTopStyle;
+</Styled>
 <Styled @bind-Classname=@ItemContainerStyle>
     
 </Styled>
@@ -38,6 +43,9 @@
 <Styled @bind-Classname=@ImageStyle>
     display: inline-block;
     background-size: 100% 100%;
+    position: @ListItemPosition;
+    left: @ImageLeftStyle;
+    top: @ImageTopStyle;
 </Styled>
 <Styled @bind-Classname=@HeaderTextStyle>
     position: @HeaderTextPosition;
@@ -70,7 +78,9 @@
                                 <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
                             </span>
                         }
-                        @item.Text
+                        <div class="@Column2Style">
+                            @item.Text
+                        </div>
                         @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnRightOfText))
                         {
                             <span class="@ImageStyle">

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using DataJuggler.Blazor.Components.Enumerations;
 using System.Numerics;
+using System.Drawing.Text;
 
 #endregion
 
@@ -65,6 +66,14 @@ namespace DataJuggler.Blazor.Components
         private TextAlignmentEnum column1TextAlign;
         private TextAlignmentEnum column2TextAlign;
         private int gap;
+        private string listItemPosition;
+        private double listItemTop;
+        private double listItemLeft;
+        private string listItemUnit;
+        private string listItemHeightUnit;
+        private string column2Style;
+        private double imageTop;
+        private double imageLeft;
         #endregion
         
         #region Constructor
@@ -130,6 +139,11 @@ namespace DataJuggler.Blazor.Components
                 FontUnit = "px";
                 Column1Left = 8;
                 Gap = 8;
+                ListItemTop = 0;
+                ListItemLeft = 0;
+                ListItemPosition = "relative";
+                ListItemUnit = "px";
+                ListItemHeightUnit = "px";
             }
             #endregion
             
@@ -337,6 +351,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return column1Width; }
                 set { column1Width = value; }
+            }
+            #endregion
+            
+            #region Column2Style
+            /// <summary>
+            /// This property gets or sets the value for 'Column2Style'.
+            /// </summary>
+            public string Column2Style
+            {
+                get { return column2Style; }
+                set { column2Style = value; }
             }
             #endregion
             
@@ -578,6 +603,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ImageLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ImageLeft'.
+            /// </summary>
+            [Parameter]
+            public double ImageLeft
+            {
+                get { return imageLeft; }
+                set { imageLeft = value; }
+            }
+            #endregion
+            
+            #region ImageLeftStyle
+            /// <summary>
+            /// This read only property returns the value of ImageLeftStyle from the object ImageLeft.
+            /// </summary>
+            public string ImageLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string imageLeftStyle = ImageLeft + ListItemUnit;
+                    
+                    // return value
+                    return imageLeftStyle;
+                }
+            }
+            #endregion
+            
             #region ImageStyle
             /// <summary>
             /// This property gets or sets the value for 'ImageStyle'.
@@ -586,6 +641,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return imageStyle; }
                 set { imageStyle = value; }
+            }
+            #endregion
+            
+            #region ImageTop
+            /// <summary>
+            /// This property gets or sets the value for 'ImageTop'.
+            /// </summary>
+            [Parameter]
+            public double ImageTop
+            {
+                get { return imageTop; }
+                set { imageTop = value; }
+            }
+            #endregion
+            
+            #region ImageTopStyle
+            /// <summary>
+            /// This read only property returns the value of ImageTopStyle from the object ImageTop.
+            /// </summary>
+            public string ImageTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string imageTopStyle = ImageTop + ListItemUnit;
+                    
+                    // return value
+                    return imageTopStyle;
+                }
             }
             #endregion
             
@@ -701,6 +786,60 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ListItemHeightUnit
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemHeightUnit'.
+            /// </summary>
+            [Parameter]
+            public string ListItemHeightUnit
+            {
+                get { return listItemHeightUnit; }
+                set { listItemHeightUnit = value; }
+            }
+            #endregion
+            
+            #region ListItemLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemLeft'.
+            /// </summary>
+            [Parameter]
+            public double ListItemLeft
+            {
+                get { return listItemLeft; }
+                set { listItemLeft = value; }
+            }
+            #endregion
+            
+            #region ListItemLeftStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemLeftStyle from the object ListItemLeft.
+            /// </summary>
+            public string ListItemLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string listItemLeftStyle = ListItemLeft + ListItemUnit;
+                    
+                    // return value
+                    return listItemLeftStyle;
+                }
+            }
+            #endregion
+            
+            #region ListItemPosition
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemPosition'.
+            /// </summary>
+            [Parameter]
+            public string ListItemPosition
+            {
+                get { return listItemPosition; }
+                set { listItemPosition = value; }
+            }
+            #endregion
+            
             #region ListItemStyle
             /// <summary>
             /// This property gets or sets the value for 'ListItemStyle'.
@@ -709,6 +848,48 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemStyle; }
                 set { listItemStyle = value; }
+            }
+            #endregion
+            
+            #region ListItemTop
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemTop'.
+            /// </summary>
+            [Parameter]
+            public double ListItemTop
+            {
+                get { return listItemTop; }
+                set { listItemTop = value; }
+            }
+            #endregion
+            
+            #region ListItemTopStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemTopStyle from the object ListItemTop.
+            /// </summary>
+            public string ListItemTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string listItemTopStyle = ListItemTop + ListItemHeightUnit;
+                    
+                    // return value
+                    return listItemTopStyle;
+                }
+            }
+            #endregion
+            
+            #region ListItemUnit
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemUnit'.
+            /// </summary>
+            [Parameter]
+            public string ListItemUnit
+            {
+                get { return listItemUnit; }
+                set { listItemUnit = value; }
             }
             #endregion
             

@@ -1,6 +1,8 @@
 
 News
 
+8.27.2024: I added some properties to customize the position of items in the Information Box.
+
 8.13.2024: DataJuggler.UltimateHelper was updated.
 
 5.30.2024: I created a new component called an InformationBox. This component is used for creating dashboards or reports.
