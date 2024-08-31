@@ -51,12 +51,27 @@ namespace DataJuggler.Blazor.Components
                 Name = name;
                 Text = text;
             }
+        #endregion
+
+        #endregion
+
+        #region Methods
+
+            #region ToString()
+            /// <summary>
+            /// method returns the Caption - Text
+            /// </summary>
+            public override string ToString()
+            {
+                // Aids in debugging
+                return Caption + " - " + Text;
+            }
             #endregion
             
         #endregion
-        
+
         #region Properties
-            
+
             #region Caption
             /// <summary>
             /// This property gets or sets the value for 'Caption'.
