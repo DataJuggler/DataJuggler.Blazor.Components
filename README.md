@@ -1,6 +1,9 @@
 
 News
 
+9.1.2024: I added Column1Width and Column2 Width and Column1TextAlign and Column2TextAlign properties.
+Testing now.
+
 8.27.2024: I added some properties to customize the position of items in the Information Box.
 
 8.13.2024: DataJuggler.UltimateHelper was updated.

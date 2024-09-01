@@ -131,6 +131,8 @@ namespace DataJuggler.Blazor.Components
                 Height = 160;
                 HeaderHeight = 20;
                 Column1Width = 112;
+                Column1TextAlign = TextAlignmentEnum.Right;
+                Column2TextAlign = TextAlignmentEnum.Left;
                 Column2Width = 112;
                 TitleTextColor = Color.White;
                 BorderColor = Color.Gray;
@@ -354,6 +356,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Column1WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column1WidthStyle from the object Column1Width.
+            /// </summary>
+            public string Column1WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column1WidthStyle =  Column1Width + Unit;
+                    
+                    // return value
+                    return column1WidthStyle;
+                }
+            }
+            #endregion
+            
             #region Column2Style
             /// <summary>
             /// This property gets or sets the value for 'Column2Style'.
@@ -404,6 +424,24 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return column2Width; }
                 set { column2Width = value; }
+            }
+            #endregion
+            
+            #region Column2WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column2WidthStyle from the object Column2Width.
+            /// </summary>
+            public string Column2WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column2WidthStyle = Column2Width + Unit;
+                    
+                    // return value
+                    return column2WidthStyle;
+                }
             }
             #endregion
             
