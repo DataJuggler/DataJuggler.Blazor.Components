@@ -71,29 +71,33 @@
             <table>
             @foreach (Item item in Items)
             {
-                <tr class="@ListItemStyle">
-                    <td class="@Column1ClassName" width="@Column1Width">
-                        <span class="@Column1Style textdonotwrap">
-                            @item.Caption
-                        </span>
+                <tr class="@ListItemStyle">                    
+                    <td class="@Column1TextAlign" width="@Column1Width">
+                        <div class="@Column1Style textdonotwrap">
+                            <span class="@Column1ClassName">
+                                @item.Caption
+                            </span>
+                        </div>
                     </td>                    
                     <td width="@Gap"></td>                    
-                    <td class="@Column2ClassName textdonotwrap" width="@Column2Width">
-                        @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnLeftOfText))
-                        {
-                            <span class="@ImageStyle textdonotwrap">
-                                <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
-                            </span>
-                        }
+                    <td class="@Column2TextAlign @Column2ClassName textdonotwrap" width="@Column2Width">
                         <div class="@Column2Style textdonotwrap">
-                            @item.Text
-                        </div>
-                        @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnRightOfText))
-                        {
-                            <span class="@ImageStyle textdonotwrap">
-                                <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
+                            @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnLeftOfText))
+                            {
+                                <span class="@ImageStyle textdonotwrap">
+                                    <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
+                                </span>
+                            }
+                            <span class="@Column2ClassName textdonotwrap">
+                                @item.Text
                             </span>
-                        }
+                            @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnRightOfText))
+                            {
+                                <span class="@ImageStyle textdonotwrap">
+                                    <img src="@item.ImageUrl" height="@item.ImageHeight" width="@item.ImageWidth" />
+                                </span>
+                            }
+                        </div>
                     </td>
                 </tr>
             }
