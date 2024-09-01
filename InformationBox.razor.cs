@@ -74,6 +74,8 @@ namespace DataJuggler.Blazor.Components
         private string column2Style;
         private double imageTop;
         private double imageLeft;
+        private string column1ClassName;
+        private string column2ClassName;
         #endregion
         
         #region Constructor
@@ -273,6 +275,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion            
             
+            #region Column1ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'Column1ClassName'.
+            /// </summary>
+            [Parameter]
+            public string Column1ClassName
+            {
+                get { return column1ClassName; }
+                set { column1ClassName = value; }
+            }
+            #endregion
+            
             #region Column1Left
             /// <summary>
             /// This property gets or sets the value for 'Column1Left'.
@@ -371,6 +385,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return column1WidthStyle;
                 }
+            }
+            #endregion
+            
+            #region Column2ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'Column2ClassName'.
+            /// </summary>
+            [Parameter]
+            public string Column2ClassName
+            {
+                get { return column2ClassName; }
+                set { column2ClassName = value; }
             }
             #endregion
             

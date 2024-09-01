@@ -72,13 +72,13 @@
             @foreach (Item item in Items)
             {
                 <tr class="@ListItemStyle">
-                    <td class="@Column1TextAlignStyle" width="@Column1Width">
+                    <td class="@Column1ClassName" width="@Column1Width">
                         <span class="@Column1Style textdonotwrap">
                             @item.Caption
                         </span>
                     </td>                    
                     <td width="@Gap"></td>                    
-                    <td class="@Column2TextAlignStyle textdonotwrap" width="@Column2Width">
+                    <td class="@Column2ClassName textdonotwrap" width="@Column2Width">
                         @if ((item.IncludeImage) && (item.ImageAlignment == ImageAlignmentEnum.ImageOnLeftOfText))
                         {
                             <span class="@ImageStyle textdonotwrap">
