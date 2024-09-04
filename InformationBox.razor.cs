@@ -9,6 +9,8 @@ using System.Drawing;
 using DataJuggler.Blazor.Components.Enumerations;
 using System.Numerics;
 using System.Drawing.Text;
+using DataJuggler.UltimateHelper;
+using System;
 
 #endregion
 
@@ -76,6 +78,7 @@ namespace DataJuggler.Blazor.Components
         private double imageLeft;
         private string column1ClassName;
         private string column2ClassName;
+        private double scale;
         #endregion
         
         #region Constructor
@@ -148,6 +151,7 @@ namespace DataJuggler.Blazor.Components
                 ListItemPosition = "relative";
                 ListItemUnit = "px";
                 ListItemHeightUnit = "px";
+                Scale = 100;
             }
             #endregion
             
@@ -1002,6 +1006,39 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return position; }
                 set { position = value; }
+            }
+            #endregion
+            
+            #region Scale
+            /// <summary>
+            /// This property gets or sets the value for 'Scale'.
+            /// </summary>
+            [Parameter]
+            public double Scale
+            {
+                get { return scale; }
+                set { scale = value; }
+            }
+            #endregion
+            
+            #region ScaleValue
+            /// <summary>
+            /// This read only property returns the value of Scale times .01
+            /// </summary>
+            public double ScaleValue
+            {
+                
+                get
+                {
+                    // initial value
+                    double scaleValue = Scale * .01;
+
+                    // Round to 2 digits just in case
+                    scaleValue = Math.Round(scaleValue, 2);
+                    
+                    // return value
+                    return scaleValue;
+                }
             }
             #endregion
             
