@@ -79,6 +79,7 @@ namespace DataJuggler.Blazor.Components
         private string column1ClassName;
         private string column2ClassName;
         private double scale;
+        private string display;
         #endregion
         
         #region Constructor
@@ -152,6 +153,7 @@ namespace DataJuggler.Blazor.Components
                 ListItemUnit = "px";
                 ListItemHeightUnit = "px";
                 Scale = 100;
+                Display = "inline-block";
             }
             #endregion
             
@@ -472,6 +474,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return column2WidthStyle;
                 }
+            }
+            #endregion
+            
+            #region Display
+            /// <summary>
+            /// This property gets or sets the value for 'Display'.
+            /// </summary>
+            [Parameter]
+            public string Display
+            {
+                get { return display; }
+                set { display = value; }
             }
             #endregion
             

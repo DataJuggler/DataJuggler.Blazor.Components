@@ -4,6 +4,7 @@
 @using DataJuggler.Blazor.Components.Enumerations
 
 <Styled @bind-Classname=@InfoBoxStyle>
+    display: @Display;
     position: @Position;
     left: @LeftStyle;
     height: @HeightStyle;
@@ -15,7 +16,7 @@
     border-radius: @BorderRadiusStyle;
     overflow: hidden;
     transform: scale(@ScaleValue);
-    transform-origin: top left;
+    transform-origin: top left;    
 </Styled>
 <Styled @bind-Classname=@InfoBoxHeaderStyle>
     text-align: center;
