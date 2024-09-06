@@ -114,4 +114,17 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
+    #region VerticalAlignmentEnum : int
+    /// <summary>
+    /// This enum is used to set which type of vertical align. This is a subset
+    /// of CSS for the simple types. Top is the Default.
+    /// </summary>
+    public enum VerticalAlignmentEnum : int
+    {
+        Top = 0,
+        Bottom = 1,
+        Middle = 2
+    }
+    #endregion
+
 }

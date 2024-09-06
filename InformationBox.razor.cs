@@ -80,6 +80,7 @@ namespace DataJuggler.Blazor.Components
         private string column2ClassName;
         private double scale;
         private string display;
+        private VerticalAlignmentEnum verticalAlignment;
         #endregion
         
         #region Constructor
@@ -99,7 +100,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// returns the Text Align Value
             /// </summary>
-            public string GetTextAlignValue(TextAlignmentEnum textAlign)
+            public static string GetTextAlignValue(TextAlignmentEnum textAlign)
             {
                 // initial value
                 string textAlignValue = "textalignleft";
@@ -154,6 +155,7 @@ namespace DataJuggler.Blazor.Components
                 ListItemHeightUnit = "px";
                 Scale = 100;
                 Display = "inline-block";
+                VerticalAlignment = VerticalAlignmentEnum.Top;
             }
             #endregion
             
@@ -685,6 +687,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ImageHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ImageHeight'.
+            /// </summary>
+            [Parameter]
+            public double ImageHeight
+            {
+                get { return imageHeight; }
+                set { imageHeight = value; }
+            }
+            #endregion
+            
             #region ImageLeft
             /// <summary>
             /// This property gets or sets the value for 'ImageLeft'.
@@ -760,6 +774,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ImageWidth'.
             /// </summary>
+            [Parameter]
             public double ImageWidth
             {
                 get { return imageWidth; }
@@ -1137,6 +1152,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+            
+            #region VerticalAlignment
+            /// <summary>
+            /// This property gets or sets the value for 'VerticalAlignment'.
+            /// </summary>
+            [Parameter]
+            public VerticalAlignmentEnum VerticalAlignment
+            {
+                get { return verticalAlignment; }
+                set { verticalAlignment = value; }
             }
             #endregion
             
