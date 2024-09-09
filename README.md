@@ -1,8 +1,12 @@
 
 News
 
-9.1.2024: I added Column1Width and Column2 Width and Column1TextAlign and Column2TextAlign properties.
-Testing now.
+9.9.2024: I added two new properties HeaderFontSize and HeaderFontWeight, which defaults to bold.
+
+9.5.2024: I added a Scale property to the Information Box.
+
+9.1.2024: I added Column1Width and Column2 Width and Column1TextAlign and Column2TextAlign properties
+to the the Information Box. Testing now
 
 8.27.2024: I added some properties to customize the position of items in the Information Box.
 

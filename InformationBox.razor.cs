@@ -36,6 +36,8 @@ namespace DataJuggler.Blazor.Components
         private IBlazorComponentParent parent;
         private string position;
         private string title;
+        private double headerFontSize;
+        private string headerFontWeight;
         private double top;
         private string unit;
         private double width;
@@ -156,6 +158,8 @@ namespace DataJuggler.Blazor.Components
                 Scale = 100;
                 Display = "inline-block";
                 VerticalAlignment = VerticalAlignmentEnum.Top;
+                HeaderFontSize = 16;
+                HeaderFontWeight = "bold";
             }
             #endregion
             
@@ -513,7 +517,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string fontSizeStyle = FontSize + FontUnit;
+                    string fontSizeStyle = FontSize + HeightUnit;
                     
                     // return value
                     return fontSizeStyle;
@@ -559,6 +563,48 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return hasParent;
                 }
+            }
+            #endregion
+            
+            #region HeaderFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderFontSize'.
+            /// </summary>
+            [Parameter]
+            public double HeaderFontSize
+            {
+                get { return headerFontSize; }
+                set { headerFontSize = value; }
+            }
+            #endregion
+            
+            #region HeaderFontSizeStyle
+            /// <summary>
+            /// This read only property returns the value of HeaderFontSizeStyle from the object HeaderFontSize.
+            /// </summary>
+            public string HeaderFontSizeStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string headerFontSizeStyle = HeaderFontSize + HeightUnit;
+                    
+                    // return value
+                    return headerFontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region HeaderFontWeight
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderFontWeight'.
+            /// </summary>
+            [Parameter]
+            public string HeaderFontWeight
+            {
+                get { return headerFontWeight; }
+                set { headerFontWeight = value; }
             }
             #endregion
             

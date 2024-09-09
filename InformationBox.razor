@@ -27,7 +27,7 @@
     height: @HeaderHeightStyle;
     background-size: 100% 100%;
     background-image: url('@HeaderImageUrl');
-    color: @TitleTextColor.Name;   
+    color: @TitleTextColor.Name;    
 </Styled>
 <Styled @bind-Classname=@Column1Style>
     position: @Position;
@@ -61,8 +61,9 @@
 <Styled @bind-Classname=@HeaderTextStyle>
     position: @HeaderTextPosition;
     top: @HeaderTextVerticalOffsetStyle;
+    font-size: @HeaderFontSizeStyle;
+    font-weight: @HeaderFontWeight;
 </Styled>
-
 <div class="@InfoBoxStyle">
     <div class="@InfoBoxHeaderStyle">
         <span class="@HeaderTextStyle">
