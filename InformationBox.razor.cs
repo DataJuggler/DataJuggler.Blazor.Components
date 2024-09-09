@@ -83,6 +83,8 @@ namespace DataJuggler.Blazor.Components
         private double scale;
         private string display;
         private VerticalAlignmentEnum verticalAlignment;
+        private RenderFragment bodyContent;
+        private ItemContenteAlignmentEnum itemContenteAlignment;
         #endregion
         
         #region Constructor
@@ -160,6 +162,7 @@ namespace DataJuggler.Blazor.Components
                 VerticalAlignment = VerticalAlignmentEnum.Top;
                 HeaderFontSize = 16;
                 HeaderFontWeight = "bold";
+                ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;
             }
             #endregion
             
@@ -244,6 +247,18 @@ namespace DataJuggler.Blazor.Components
         #endregion
         
         #region Properties
+            
+            #region BodyContent
+            /// <summary>
+            /// This property gets or sets the value for 'BodyContent'.
+            /// </summary>
+            [Parameter]
+            public RenderFragment BodyContent
+            {
+                get { return bodyContent; }
+                set { bodyContent = value; }
+            }
+            #endregion
             
             #region BorderColor
             /// <summary>
@@ -858,6 +873,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return itemContainerStyle; }
                 set { itemContainerStyle = value; }
+            }
+            #endregion
+            
+            #region ItemContenteAlignment
+            /// <summary>
+            /// This property gets or sets the value for 'ItemContenteAlignment'.
+            /// </summary>
+            [Parameter]
+            public ItemContenteAlignmentEnum ItemContenteAlignment
+            {
+                get { return itemContenteAlignment; }
+                set { itemContenteAlignment = value; }
             }
             #endregion
             

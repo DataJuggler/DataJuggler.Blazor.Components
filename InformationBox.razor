@@ -64,6 +64,7 @@
     font-size: @HeaderFontSizeStyle;
     font-weight: @HeaderFontWeight;
 </Styled>
+
 <div class="@InfoBoxStyle">
     <div class="@InfoBoxHeaderStyle">
         <span class="@HeaderTextStyle">
@@ -71,6 +72,10 @@
         </span>
     </div>
     <div class="@ItemContainerStyle">
+        @if (ItemContenteAlignment == ItemContenteAlignmentEnum.ItemsOnBottom)
+        {
+            @BodyContent
+        }
         @if (ListHelper.HasOneOrMoreItems(Items))
         {
             <table>
@@ -107,6 +112,10 @@
                 </tr>
             }
             </table>
+        }
+        @if (ItemContenteAlignment == ItemContenteAlignmentEnum.ItemsOnTop)
+        {
+            @BodyContent
         }
     </div>
 </div>

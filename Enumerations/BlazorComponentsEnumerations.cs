@@ -58,6 +58,18 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
+    #region ItemContenteAlignmentEnum : int
+    /// <summary>
+    /// This enum is how the InformationBox displays Items.
+    /// </summary>
+    public enum ItemContenteAlignmentEnum : int
+    {
+        ItemsOnly = -1,
+        ItemsOnTop = 0,
+        ItemsOnBottom = 1
+    }
+    #endregion
+
     #region SizeEnum : int
     /// <summary>
     /// This enum is used to set which size to render the progress bar.

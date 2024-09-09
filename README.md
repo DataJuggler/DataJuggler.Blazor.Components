@@ -2,6 +2,10 @@
 News
 
 9.9.2024: I added two new properties HeaderFontSize and HeaderFontWeight, which defaults to bold.
+I also expanded the InformationBox with a RenderFragment property, allowing a user to put custom content
+such as text, HTML, Blazor Components or images inside an InformationBox object.
+Also a new enum was created to specifiy ItemsOnly, ItemsOnTop (default) or ItemsOnBottom, and the users
+custom content will render with the Items (if it works, untested yet)
 
 9.5.2024: I added a Scale property to the Information Box.
 
