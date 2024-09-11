@@ -1,6 +1,8 @@
 
 News
 
+9.11.2024: I updated DataJuggler.Excelerate.
+
 9.9.2024: I added two new properties HeaderFontSize and HeaderFontWeight, which defaults to bold.
 I also expanded the InformationBox with a RenderFragment property, allowing a user to put custom content
 such as text, HTML, Blazor Components or images inside an InformationBox object.
