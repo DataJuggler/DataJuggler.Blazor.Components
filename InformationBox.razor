@@ -30,22 +30,22 @@
     color: @TitleTextColor.Name;    
 </Styled>
 <Styled @bind-Classname=@Column1Style>
-    position: @Position;
+    position: @ListItemPosition;
     left: @Column1LeftStyle;
     width: @Column1WidthStyle;
     text-align: @Column1TextAlignStyle;
 </Styled>
 <Styled @bind-Classname=@Column2Style>
     display: inline-block;
-    position: @ListItemPosition;
-    left: @ListItemLeftStyle;
-    top: @ListItemTopStyle;
     text-align: @Column2TextAlignStyle;
-    width: @Column2WidthStyle;
+    width: @Column2WidthStyle;    
 </Styled>
 <Styled @bind-Classname=@ItemContainerStyle>
     display: block;
     white-space: nowrap;
+    position: @ListItemPosition;
+    left: @ListItemLeftStyle;
+    top: @ListItemTopStyle;
 </Styled>
 <Styled @bind-Classname=@ListItemStyle>
     display: block;
