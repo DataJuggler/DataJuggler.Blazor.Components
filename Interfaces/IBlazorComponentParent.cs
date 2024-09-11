@@ -18,15 +18,6 @@ namespace DataJuggler.Blazor.Components.Interfaces
         
         #region Methods
 
-            #region FindChildByName(string name)
-            /// <summary>
-            /// This method is used to find a child component that has registered with the parent.
-            /// </summary>
-            /// <param name="name"></param>
-            /// <returns></returns>
-            IBlazorComponent FindChildByName(string name);
-            #endregion
-
             #region ReceiveData(Message message)
             /// <summary>
             /// This method is used to send Data from a child component to the parent component or page.
