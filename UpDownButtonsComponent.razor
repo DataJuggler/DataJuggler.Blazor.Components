@@ -1,0 +1,26 @@
+﻿@using BlazorStyled
+
+<Styled @bind-Classname=@ButtonContainerStyle>
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: @Position;
+  left: @LeftStyle;
+  top: @TopStyle;
+  z-index: 200;
+</Styled>
+
+<Styled @bind-Classname=@ButtonStyle>   
+    margin-bottom: @GapStyle;
+</Styled>
+
+<div class="@ButtonContainerStyle">
+    <ImageButton Name="UpButton" Parent="this" ButtonNumber="1" ClassName="@ButtonStyle"
+        Width="ButtonWidth" Height="ButtonHeight"
+        ClickHandler="ButtonClicked" ImageUrl="_content/DataJuggler.Blazor.Components/Images/Buttons/BlueUpArrowGray32.png">
+    </ImageButton>
+    <ImageButton Name="DownButton" Parent="this" ButtonNumber="2" ClassName="@ButtonStyle"
+        Width="@ButtonWidth" Height="@ButtonHeight"
+        ClickHandler="ButtonClicked" ImageUrl="_content/DataJuggler.Blazor.Components/Images/Buttons/BlueDownArrowGray32.png">
+    </ImageButton>
+</div>

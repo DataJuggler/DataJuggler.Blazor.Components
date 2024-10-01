@@ -2,30 +2,33 @@
 
 #region using statements
 
+using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
+using System.Drawing;
+using System.Threading.Tasks;
+using DataJuggler.Blazor.Components.Delegates;
 
 #endregion
 
 namespace DataJuggler.Blazor.Components
 {
 
-    #region class ValidationComponent : IBlazorComponent
+    #region class TextBoxComponent : IBlazorComponent
     /// <summary>
     /// The validation component is just a way to display a valid or not valid to make the UI
     /// appear different.
     /// </summary>
-    public partial class ValidationComponent : IBlazorComponent
+    public partial class TextBoxComponent : IBlazorComponent
     {
         
         #region Private Variables
         private string labelColor;
         private string labelClassName;
         private string textBoxClassName;
-        private string checkBoxClassName;
         private string imageClassName;
         private string labelBackgroundColor;
         private string textBoxBackColor;
@@ -52,14 +55,8 @@ namespace DataJuggler.Blazor.Components
         private string takenImageUrl;
         private string imageUrl;
         private bool showImage;
-        private bool isUnique;
-        private bool checkBoxMode;
-        private bool checkBoxValue;
-        private double imageScale;
-        private double checkBoxXPosition;
-        private string checkBoxXStyle;
-        private double checkBoxYPosition;
-        private string checkBoxYStyle;
+        private bool isUnique;        
+        private double imageScale;        
         private double fontSize;        
         private double height;        
         private double width;        
@@ -99,19 +96,20 @@ namespace DataJuggler.Blazor.Components
         private double marginBottom;
         private bool autoComplete;
         private string invalidLabelColor;
-        private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;
-        
-        // Due to a bug, BlazorStyled is back. I forked BlazorStyled by Chanan to upgrade it.
+        private string pattern;
+        private int tabIndex;
         private string column1Style;
         private string column2Style;
         private string column3Style;
-        private string textBoxStyle;
-        private string checkBoxStyle;
+        private string textBoxStyle;        
         private string imageStyle;
         private string validationControlStyle;
-        private string bottomMarginStyle;
-        private string checkBoxTextStyle;
+        private string bottomMarginStyle;        
+        private double borderWidth;
+        private string borderColor;
+        private bool loading;
+        private OnTextChange onTextChangedCallback;
+        private HandleChangeEnum handleChangeOption;
        
         // This are only used when inside a Grid
         private Guid rowId;
@@ -120,9 +118,9 @@ namespace DataJuggler.Blazor.Components
         
         #region Constructor
         /// <summary>
-        /// Create a new instance of a ValidationComponent object
+        /// Create a new instance of a TextBoxComponent object
         /// </summary>
-        public ValidationComponent()
+        public TextBoxComponent()
         {
             // Perform initializations for this object
             Init();
@@ -130,6 +128,24 @@ namespace DataJuggler.Blazor.Components
         #endregion
 
         #region Events            
+            
+            #region HandleChange(ChangeEventArgs e)
+            /// <summary>
+            /// event is fired when Handle Change
+            /// </summary>
+            private void HandleChange(ChangeEventArgs e)
+            {
+                // get the current text
+                string text = e.Value.ToString();
+
+                // if the value for HasOnTextChangedCallback is true
+                if (HasOnTextChangedCallback)
+                {
+                    // Notify Subscriber
+                    OnTextChangedCallback(text);
+                }
+            }
+            #endregion
             
         #endregion
 
@@ -160,7 +176,7 @@ namespace DataJuggler.Blazor.Components
                 if (SendAllTextToParent)
                 {
                     // Send to the parent
-                    SendMessageToParent("text: " + e.Code);
+                    SendMessageToParent("text: " + e.Code, e.Code);
                 }
             }
             #endregion
@@ -174,11 +190,7 @@ namespace DataJuggler.Blazor.Components
                 // Set Default Values
                 AutoComplete = false;
                 Caption = "";
-                BackgroundColor = "transparent";
-                CheckBoxTextXPosition = -1;
-                CheckBoxTextYPosition = -1;
-                CheckBoxXPosition = -4;
-                CheckBoxYPosition = 1;
+                BackgroundColor = "transparent";                
                 Display = "inline-block";
                 InputType = "text";
                 LabelColor = "Black";
@@ -214,6 +226,9 @@ namespace DataJuggler.Blazor.Components
                 Visible = true;
                 Width= 80;
                 Enabled = true;
+                BorderWidth = 1;
+                BorderColor = "black";
+                HandleChangeOption = HandleChangeEnum.OnKeyDown;
             }
             #endregion
             
@@ -295,11 +310,11 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region SendMessageToParent(string messageText)
+            #region SendMessageToParent(string messageText, string keyCode = "")
             /// <summary>
             /// Sends a Message To the Parent
             /// </summary>
-            public void SendMessageToParent(string messageText)
+            public void SendMessageToParent(string messageText, string keyCode = "")
             {
                 // if the value for HasParent is true
                 if (HasParent)
@@ -312,6 +327,9 @@ namespace DataJuggler.Blazor.Components
 
                     // Set the Sender
                     message.Sender = this;
+
+                    // Send the KeyCode
+                    message.KeyCode = keyCode;
 
                     // Create a new instance of a 'NamedParameter' object.
                     NamedParameter parameter = new NamedParameter();
@@ -344,19 +362,30 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region SetCheckBoxValue(bool isChecked)
+            #region SetBackgroundColor(Color color)
             /// <summary>
-            /// This method Sets the CheckBoxValue
+            /// Set Background Color
             /// </summary>
-            public void SetCheckBoxValue(bool isChecked)
+            public void SetBackgroundColor(Color color)
             {
-                // if CheckBoxMode
-                if (CheckBoxMode)
-                {
-                    // Set the value
-                    CheckBoxValue = isChecked;
+                // Set the BackgroundColor
+                BackgroundColor = color.Name;
+            }
+            #endregion
+            
+            #region SetClassName(string className, bool refresh)
+            /// <summary>
+            /// Set Class Name
+            /// </summary>
+            public void SetClassName(string newClassName, bool refresh)
+            {
+                // Set the ClassName
+                ClassName = newClassName;
 
-                    // Update the UI
+                // if the value for refresh is true
+                if (refresh)
+                {
+                    // Set to Refresh
                     Refresh();
                 }
             }
@@ -387,7 +416,7 @@ namespace DataJuggler.Blazor.Components
                 catch (Exception error)
                 {
                     // for debugging only for now
-                    DebugHelper.WriteDebugError("SetFocus", "ValidationComponent.cs", error);
+                    DebugHelper.WriteDebugError("SetFocus", "TextBoxComponent.cs", error);
                 }
             }
             #endregion
@@ -406,12 +435,7 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Set the InputType
                     inputType = "password";
-                }
-                else if (CheckBoxMode)
-                {
-                    // Set the InputType
-                    inputType = "checkbox";
-                }
+                }                
             }
             #endregion
             
@@ -445,6 +469,17 @@ namespace DataJuggler.Blazor.Components
             {
                 // Store
                 LabelColor = color;
+            }
+            #endregion
+            
+            #region SetTextBoxBackColor(Color color)
+            /// <summary>
+            /// Set Text Box Back Color
+            /// </summary>
+            public void SetTextBoxBackColor(Color color)
+            {
+                // Set the Color
+                TextBoxBackColor = color.Name;
             }
             #endregion
             
@@ -602,6 +637,48 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'BorderColor'.
+            /// </summary>
+            [Parameter]
+            public string BorderColor
+            {
+                get { return borderColor; }
+                set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'BorderWidth'.
+            /// </summary>
+            [Parameter]
+            public double BorderWidth
+            {
+                get { return borderWidth; }
+                set { borderWidth = value; }
+            }
+            #endregion
+            
+            #region BorderWidthStyle
+            /// <summary>
+            /// This read only property returns the value of BorderWidth + Unit;
+            /// </summary>
+            public string BorderWidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string borderWidthStyle = BorderWidth + Unit;
+                    
+                    // return value
+                    return borderWidthStyle;
+                }
+            }
+            #endregion
+            
             #region BottomMarginStyle
             /// <summary>
             /// This property gets or sets the value for 'BottomMarginStyle'.
@@ -629,206 +706,6 @@ namespace DataJuggler.Blazor.Components
                     // Show the Caption, if the Caption is set.
                     ShowCaption = TextHelper.Exists(caption);
                 }
-            }
-            #endregion
-            
-            #region CheckBoxClassName
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxClassName'.
-            /// </summary>
-            [Parameter]
-            public string CheckBoxClassName
-            {
-                get { return checkBoxClassName; }
-                set { checkBoxClassName = value; }
-            }
-            #endregion
-            
-            #region CheckBoxMode
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxMode'.
-            /// </summary>
-            [Parameter]
-            public bool CheckBoxMode
-            {
-                get { return checkBoxMode; }
-                set 
-                {
-                    // set the value
-                    checkBoxMode = value;
-
-                    // Set to CheckBox
-                    SetInputType();
-                }
-            }
-            #endregion
-            
-            #region CheckBoxStyle
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxStyle'.
-            /// </summary>
-            public string CheckBoxStyle
-            {
-                get { return checkBoxStyle; }
-                set { checkBoxStyle = value; }
-            }
-            #endregion
-            
-            #region CheckBoxTextStyle
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextStyle'.
-            /// </summary>
-            public string CheckBoxTextStyle
-            {
-                get { return checkBoxTextStyle; }
-                set { checkBoxTextStyle = value; }
-            }
-            #endregion
-            
-            #region CheckBoxTextXPosition
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextXPosition'.
-            /// </summary>
-            [Parameter]
-            public double CheckBoxTextXPosition
-            {
-                get { return checkBoxTextXPosition; }
-                set { checkBoxTextXPosition = value; }
-            }
-            #endregion
-            
-            #region CheckBoxTextXPositionStyle
-            /// <summary>
-            /// This read only property returns the value of CheckBoxTextXPositionStyle from the object CheckBoxTextXPosition.
-            /// </summary>
-            public string CheckBoxTextXPositionStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string checkBoxTextXPositionStyle = CheckBoxTextXPosition + Unit;
-                    
-                    // return value
-                    return checkBoxTextXPositionStyle;
-                }
-            }
-            #endregion
-            
-            #region CheckBoxTextYPosition
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextYPosition'.
-            /// </summary>
-            [Parameter]
-            public double CheckBoxTextYPosition
-            {
-                get { return checkBoxTextYPosition; }
-                set { checkBoxTextYPosition = value; }
-            }
-            #endregion
-            
-            #region CheckBoxTextYPositionStyle
-            /// <summary>
-            /// This read only property returns the value of CheckBoxTextYPositionStyle from the object CheckBoxTextYPosition.
-            /// </summary>
-            public string CheckBoxTextYPositionStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string checkBoxTextYPositionStyle = CheckBoxTextYPosition + HeightUnit;
-                    
-                    // return value
-                    return checkBoxTextYPositionStyle;
-                }
-            }
-            #endregion
-            
-            #region CheckBoxValue
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxValue'.
-            /// </summary>
-            [Parameter]
-            public bool CheckBoxValue
-            {
-                get { return checkBoxValue; }
-                set 
-                {
-                    // set the value
-                    checkBoxValue = value;
-
-                    // if there is a Parent
-                    if (HasParent)
-                    {
-                        Message message = new Message();
-                        message.Sender = this;
-                        message.Text = Name + " value has changed to " + CheckBoxValue.ToString();
-
-                        // Send the parent a message the value has changed.
-                        Parent.ReceiveData(message);
-                    }
-                }
-            }
-            #endregion
-            
-            #region CheckBoxXPosition
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxXPosition'.
-            /// </summary>
-            [Parameter]
-            public double CheckBoxXPosition
-            {
-                get { return checkBoxXPosition; }
-                set 
-                { 
-                    // set the value
-                    checkBoxXPosition = value;
-
-                    // set the headerStyle value
-                    checkBoxXStyle = checkBoxXPosition + Unit;
-                }
-            }
-            #endregion
-            
-            #region CheckBoxXStyle
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxXStyle'.
-            /// </summary>
-            public string CheckBoxXStyle
-            {
-                get { return checkBoxXStyle; }
-                set { checkBoxXStyle = value; }
-            }
-            #endregion
-            
-            #region CheckBoxYPosition
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxYPosition'.
-            /// </summary>
-            [Parameter]
-            public double CheckBoxYPosition
-            {
-                get { return checkBoxYPosition; }
-                set 
-                {
-                    // set the value
-                    checkBoxYPosition = value;
-
-                    // Set the checkBoxYStyle
-                    checkBoxYStyle = checkBoxYPosition + HeightUnit;
-                }
-            }
-            #endregion
-            
-            #region CheckBoxYStyle
-            /// <summary>
-            /// This property gets or sets the value for 'CheckBoxYStyle'.
-            /// </summary>
-            public string CheckBoxYStyle
-            {
-                get { return checkBoxYStyle; }
-                set { checkBoxYStyle = value; }
             }
             #endregion
             
@@ -1096,6 +973,35 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return fontSizeUnit; }
                 set { fontSizeUnit = value; }
+            }
+            #endregion   
+            
+            #region HandleChangeOption
+            /// <summary>
+            /// This property gets or sets the value for 'HandleChangeOption'.
+            /// </summary>
+            [Parameter]
+            public HandleChangeEnum HandleChangeOption
+            {
+                get { return handleChangeOption; }
+                set { handleChangeOption = value; }
+            }
+            #endregion
+            
+            #region HasOnTextChangedCallback
+            /// <summary>
+            /// This property returns true if this object has an 'OnTextChangedCallback'.
+            /// </summary>
+            public bool HasOnTextChangedCallback
+            {
+                get
+                {
+                    // initial value
+                    bool hasOnTextChangedCallback = (this.OnTextChangedCallback != null);
+                    
+                    // return value
+                    return hasOnTextChangedCallback;
+                }
             }
             #endregion
             
@@ -1657,6 +1563,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Loading
+            /// <summary>
+            /// This property gets or sets the value for 'Loading'.
+            /// </summary>
+            public bool Loading
+            {
+                get { return loading; }
+                set { loading = value; }
+            }
+            #endregion
+            
             #region MarginBottom
             /// <summary>
             /// This property gets or sets the value for 'MarginBottom'.
@@ -1817,6 +1734,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region OnTextChangedCallback
+            /// <summary>
+            /// This property gets or sets the value for 'OnTextChangedCallback'.
+            /// </summary>
+            [Parameter]
+            public OnTextChange OnTextChangedCallback
+            {
+                get { return onTextChangedCallback; }
+                set { onTextChangedCallback = value; }
+            }
+            #endregion
+            
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.
@@ -1881,6 +1810,18 @@ namespace DataJuggler.Blazor.Components
                     // Set the InputType
                     SetInputType();
                 }
+            }
+            #endregion
+            
+            #region Pattern
+            /// <summary>
+            /// This property gets or sets the value for 'Pattern'.
+            /// </summary>
+            [Parameter]
+            public string Pattern
+            {
+                get { return pattern; }
+                set { pattern = value; }
             }
             #endregion
             
@@ -1967,6 +1908,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TabIndex
+            /// <summary>
+            /// This property gets or sets the value for 'TabIndex'.
+            /// </summary>
+            [Parameter]
+            public int TabIndex
+            {
+                get { return tabIndex; }
+                set { tabIndex = value; }
+            }
+            #endregion
+            
             #region TakenImageUrl
             /// <summary>
             /// This property gets or sets the value for 'TakenImageUrl'.
@@ -1987,7 +1940,20 @@ namespace DataJuggler.Blazor.Components
             public string Text
             {
                 get { return text; }
-                set { text = value; }
+                set 
+                {
+                    text = value;
+
+                    if (!Loading)
+                    {
+                        // if the call back exists
+                        if (HasOnTextChangedCallback)
+                        {
+                            // Notify the Subscriber
+                            OnTextChangedCallback(text);
+                        }
+                    }
+                }
             }
             #endregion
             

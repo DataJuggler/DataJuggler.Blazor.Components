@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 #endregion
 
-namespace DataJuggler.Blazor.Components
+namespace DataJuggler.Blazor.Components.Objects
 {
 
     #region class DayObject

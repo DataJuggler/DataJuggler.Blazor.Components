@@ -6,7 +6,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>DataJuggler</Authors>
     <Description>
-		This project consists of an ImageButton, ProgressBar, Sprite, ValidationComponent which can display as a TextBox, Multi-line TextBox or a CheckBox, a ComboBox, CheckedListComboBox, CheckedListBox, Grid, Label and a brand new Calendar Component.
+		This project consists of an ImageButton, ProgressBar, Sprite, TextBoxComponent which can display as a TextBox, Multi-line TextBox or a CheckBox, a ComboBox, CheckedListComboBox, CheckedListBox, Grid, Label and a brand new Calendar Component.
 
 		The CSS file DataJuggler.Blazor.Components.css contains many useful classes to help style
 		and position objects.
@@ -19,7 +19,7 @@
     <PackageIconUrl />
     <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
     <RepositoryType>Git - Git Hub</RepositoryType>
-    <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,ValidationComponent</PackageTags>
+    <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
     <PackageReleaseNotes>
 		Version 8.0.0: This project has been updated to .NET 8. 
 		
@@ -58,13 +58,13 @@
 
 		July 18, 2023: I fixed the checkbox component. The binding wasn't working when I thought I fixed it last time.
 
-		July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a ValidationComponent
+		July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a TextBoxComponent
 		below a ComboBox, so hopefully this fixes it. I also added a ComboBoxWidth parameter property on the ComboBox.
 
 		July 6, 2023: I added an AutoComplete property, which defaults to false.
 		The reason for this is browsers like to fill in values, and the browser is confusing Email Address and User Name fields.
 
-		July 2, 2023: I removed the floats from the ValidationComponent. This will probably break
+		July 2, 2023: I removed the floats from the TextBoxComponent. This will probably break
 		some existing users, but I am trying to make the control more consistant to work with.
 		I also added a MarginBottom property. Use this in conjunction with the HeightUnit, which
 		defaults to px (pixels) and the MarginBottom is set to 8 by default.
@@ -108,14 +108,14 @@
 
 		12.21.2022: Trying another way to do visibibility of the ComboBox.
 
-		12.19.2022: I am cleaning up the ValidationComponent.
+		12.19.2022: I am cleaning up the TextBoxComponent.
 
 		12.18.2022 B: I accidently left a color red in I was using for placement issues.
 
-		12.18.2022: I finally fixed the ValidationComponent. You should be able to just
+		12.18.2022: I finally fixed the TextBoxComponent. You should be able to just
 		create one and set a few properties and have them line up correctly now.
 
-		12.17.2022: I added an AutoComplete parameter to the ValidationComponent.
+		12.17.2022: I added an AutoComplete parameter to the TextBoxComponent.
 		Trying to prevent browsers from filling in forms if you set this to false.
 		Also added Float Left to the Label and TextBox so that they stay inline better.
 
@@ -123,16 +123,16 @@
 		12.16.2022: The ComboBox was defaulting to TextSizeEnum.Large. I fixed this to
 		use the TextSize default setting of Medium.
 
-		12.11.2022: I changed the way Height &amp; Width work again for the ValidationComponent. I over complicated this at first by having
+		12.11.2022: I changed the way Height &amp; Width work again for the TextBoxComponent. I over complicated this at first by having
 TextBoxHeight / Width and a Control Height / Width. Now the Height &amp; Width is applied to the TextBox.
 I added a HeightUnit property. I also added two parameter properties: ExternalId and ExternalIdDescription.
 NamedParameter also added the same two properties, and the values are set when the Enter key is pressed.
-A added a 'SendAllTextToParent' boolean property to the ValidationComponent. I also added a method
+A added a 'SendAllTextToParent' boolean property to the TextBoxComponent. I also added a method
 SetTextColor. I added a Refresh method to the ImageButton. I added an EditorClassName to the column object
 so you can style columns. I now use Column.ZIndex for the ZIndex for the edit display control. I removed
 the EditZIndex property from the Grid.
 
-12.10.2022: I added a ShowCaption parameter to the ValidationComponent. If the Caption parameter is set,
+12.10.2022: I added a ShowCaption parameter to the TextBoxComponent. If the Caption parameter is set,
 ShowCaption is set to true, else the caption will not show.
 I also changed the way Width and Height work. Now there is a Unit (string) property, and HeightStyle &amp; WidthStyle.
 These two read only properties return Height + Unit and Width + Unit.
@@ -147,17 +147,17 @@ Only the column with Column.EditMode will show.
 12.4.2022: I changed how the grid works for entering EditMode. The grid now uses EditorText property
 instead of Column.ColumnText when entering Edit Mode. If EditText is not set, EditorText returns ColumnText.
 
-12.3.2022: I realized today I did not have Visible defaulting to true on the ValidationComponent.
+12.3.2022: I realized today I did not have Visible defaulting to true on the TextBoxComponent.
 
-12.2.2022: Attempting to have the ValidationComponent also SelectAll when it gets focus. Making it easier
+12.2.2022: Attempting to have the TextBoxComponent also SelectAll when it gets focus. Making it easier
 to change existing text. I also added a property Visible and a Property for Display. The css class 
 named DisplayStyle is set to none if Visible = false, else Display is used. The default display
 if nothing is set is inline-block.
 
 
-12.1.2022: I fixed the ValidationComponent to send an EnterPressed message to a parent. Before it would
+12.1.2022: I fixed the TextBoxComponent to send an EnterPressed message to a parent. Before it would
 only send the message if in a grid. I have the edit in place working for a client's project with both the grid
-and the ValidationComponent. 
+and the TextBoxComponent. 
 
 11.30.2022: I added some code to the validation component that should set focus to existing text when you
 set focus to the text in a textbox when you enter it. Not sure if I can make this a toggleable feature.
@@ -252,7 +252,7 @@ Version 1.7.0: I updated to version 1.7 since I added a bunch of properties to m
 Version 1.6.7: checking in with a few fixes and properties added for positioning elements.
 
 10.23.2021
-Version 1.6.6: I added a few ZIndex properties to the ComboBox, and also I added a ZIndex property to the ValidationComponent. I had an issue where the ComboBox when it dropped down was behind another item.
+Version 1.6.6: I added a few ZIndex properties to the ComboBox, and also I added a ZIndex property to the TextBoxComponent. I had an issue where the ComboBox when it dropped down was behind another item.
 
 10.19.2021
 Version 1.6.5: I started working on Animating sprites. The current implentation has too much flickering. I read about ways to double buffer and smooth it out, but for now it was just an idea I wanted to add to my new project
@@ -263,12 +263,12 @@ for now I will just publish it and make this a 'nice to have feature if I ever g
 Version 1.6.4: I added a SetVisible method and a Visible parameter to the ImageButton.
 
 10.14.2021
-Version 1.6.3: Added Top and Left properties to the ValidationComponent.
+Version 1.6.3: Added Top and Left properties to the TextBoxComponent.
 
 10.14.2021
 Version 1.6.2: I did some more testing and the ComboBox and ImageButtons had some improvements made.
 
-1.6.0: Added two new methods to the ValidationComponent:
+1.6.0: Added two new methods to the TextBoxComponent:
 SetTextValue
 SetCheckBoxValue
 
@@ -282,13 +282,13 @@ SetCheckBoxValue
 
 1.5.8: I added a property 'TextBoxWidth', which is a double and set the value for TextBoxWidthPercent, a string.
 
-1.5.7: I added a Width property to the ValidationComponent. This value is in percentage, and it defaults to 80 percent. Not sure if 80 is the right value or not. I also changed the Text-Align property to top for the label. This may need to be a Parameter.
+1.5.7: I added a Width property to the TextBoxComponent. This value is in percentage, and it defaults to 80 percent. Not sure if 80 is the right value or not. I also changed the Text-Align property to top for the label. This may need to be a Parameter.
 
 1.5.6: I forgot to add the Parameter tag to the Multiline propery.
 
 1.5.5: I added a Multiline propery to for description or long text fields
 
-1.5.4: I added the tag Parameter to the ValidationComponent.LabelColor and TextBoxBackColor.
+1.5.4: I added the tag Parameter to the TextBoxComponent.LabelColor and TextBoxBackColor.
 
 1.5.2: I had a problem publishing a .Net 5 project, trying again.
 
@@ -331,7 +331,7 @@ when CheckBoxMode = true.
 
 1.4.1 - I fixed the images for UniqueImageUrl and TakenImageUrl to be embedded in the component.
 
-1.4.0 - I added a new ValidationComponent.
+1.4.0 - I added a new TextBoxComponent.
 
 1.3.5 - I added a SetClientHandledIncrement method so I can turn this value on or off from outside the component.
 
@@ -356,9 +356,9 @@ TextColor - The color to use for Text.
 
 1.3.0 - My progress bar went from little league to the minors with this upgrade. I found a pure CSS way, and it works really well. Themes and more are coming, this is the first release, so it is back in beta.
 
-1.2.1 - I realzied my ValidationComponent had a lot of code specific to my project PixelDatabase.Net, so I removed it for now. I will update it again later.
+1.2.1 - I realzied my TextBoxComponent had a lot of code specific to my project PixelDatabase.Net, so I removed it for now. I will update it again later.
 
-1.2.0 - I added a new component called a ValidationComponent.
+1.2.0 - I added a new component called a TextBoxComponent.
 I also removed the ProgressBar from the Sprite Interface.
 I will update the Progress Bar in the near future, as I found a pure CSS way that is pretty cool.
 
@@ -389,7 +389,7 @@ Now is the time to break anything.
 1.0.1 - I added a Sprite component.
 
 1.0.0 This is the first version I am releasing along with a Sample.</PackageReleaseNotes>
-    <Version>8.10.3</Version>
+    <Version>8.11.0</Version>
     <AssemblyVersion>7.5.5</AssemblyVersion>
     <FileVersion>7.5.5</FileVersion>
     <Nullable>disable</Nullable>
@@ -415,11 +415,11 @@ Now is the time to break anything.
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -448,7 +448,7 @@ Now is the time to break anything.
 
   <ItemGroup>
     <PackageReference Include="DataJuggler.BlazorStyled" Version="8.0.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="8.0.9" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="8.0.10" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="8.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.8" />

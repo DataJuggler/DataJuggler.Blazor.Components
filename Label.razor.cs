@@ -6,6 +6,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using System;
 
 #endregion
@@ -59,11 +60,23 @@ namespace DataJuggler.Blazor.Components
         private double marginBottom;        
         private string labelControlStyle;
         private string bottomMarginStyle;
+        private bool enableClick;
+        private bool enableDoubleClick;
+        private bool notifyParentOnDoubleClick;
+        private bool notifyParentOnClick;
+        private bool enableEnterEditMode;
+        private bool editMode;
+        private int id;
+        private string description;
+        private string textBoxClassName;        
+        private bool autoComplete;
+        private ElementReference innerControl;
+        private bool sendAllTextToParent;
         #endregion
         
         #region Constructor
         /// <summary>
-        /// Create a new instance of a ValidationComponent object
+        /// Create a new instance of a TextBoxComponent object
         /// </summary>
         public Label()
         {
@@ -72,11 +85,103 @@ namespace DataJuggler.Blazor.Components
         }
         #endregion
 
-        #region Events            
+        #region Events
+            
+            #region OnClick()
+            /// <summary>
+            /// On Double Click
+            /// </summary>
+            public void OnClick()
+            {
+                // If the name string exists
+                if ((HasParent) && (NotifyParentOnClick))
+                {
+                    // Create a message
+                    Message message = new Message();
+
+                    // Notify the Parent
+                    message.Text = "A label was was clicked with Name '" + name + "' and Id " + Id + " - " + Description + ".";
+                    message.Id = Id;
+                    message.Sender = this;
+
+                    // Notify the parent
+                    Parent.ReceiveData(message);
+                }
+                
+                // Update the page in EditMode
+                Refresh();
+            }
+            #endregion
+            
+            #region OnDoubleClick()
+            /// <summary>
+            /// On Double Click
+            /// </summary>
+            public void OnDoubleClick()
+            {  
+                // if NotifyParent is true
+                if ((NotifyParentOnDoubleClick) && (HasParent))
+                {
+                    // Create a message
+                    Message message = new Message();
+
+                    // Set the parent
+                    message.Text = "A label was was double clicked with Name '" + name + "' and Id " + Id + " - " + Description + ".";
+                    message.Sender = this;
+
+                    // Notify the parent
+                    Parent.ReceiveData(message);
+                }                    
+                
+                if (EnableEnterEditMode)
+                {
+                    // EditMode is Now true
+                    EditMode = true;
+                }
+
+                // Update the page in EditMode
+                Refresh();
+            }
+            #endregion
             
         #endregion
 
         #region Methods
+
+            #region Enter(KeyboardEventArgs e)
+            /// <summary>
+            /// event is fired when Enter
+            /// </summary>
+            public void Enter(KeyboardEventArgs e)
+            {
+                if (e.Code == "Enter" || e.Code == "NumpadEnter")
+                {  
+                    // Inform the Parent
+                    SendMessageToParent("EnterPressed");     
+
+                    // Exit EditMode
+                    EditMode = false;
+                }
+                else if (e.Code == "Escape")
+                {
+                    // Inform the Parent Escape was hit
+                    SendMessageToParent("EscapePressed");      
+
+                    // Exit EditMode
+                    EditMode = false;
+                }
+                
+                // if SendAllTextToParent
+                if (SendAllTextToParent)
+                {
+                    // Send to the parent
+                    SendMessageToParent("text: " + e.Code);
+                }
+
+                // Exit EditMode (possibly)
+                Refresh();
+            }
+            #endregion
     
             #region Init()
             /// <summary>
@@ -152,6 +257,8 @@ namespace DataJuggler.Blazor.Components
                     // Set the message text
                     message.Text = messageText;
 
+                    message.Id = Id;
+                    
                     // Set the Sender
                     message.Sender = this;
 
@@ -187,6 +294,42 @@ namespace DataJuggler.Blazor.Components
         #endregion
 
         #region Properties
+
+            #region AutoComplete
+            /// <summary>
+            /// This property gets or sets the value for 'Autocomplete'.
+            /// </summary>
+            [Parameter]
+            public bool AutoComplete
+            {
+                get { return autoComplete; }
+                set { autoComplete = value; }
+            }
+            #endregion
+            
+            #region AutoCompleteStyle
+            /// <summary>
+            /// This read only property returns the value of AutoCompleteStyle from the object AutoComplete.
+            /// </summary>
+            public string AutoCompleteStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string autoCompleteStyle = "off";
+                    
+                    if (AutoComplete)
+                    {
+                        // Set to On if AutoComplete is truned on.
+                        autoCompleteStyle = "on";
+                    }
+                    
+                    // return value
+                    return autoCompleteStyle;
+                }
+            }
+            #endregion
             
             #region BackgroundColor
             /// <summary>
@@ -242,6 +385,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Description
+            /// <summary>
+            /// This property gets or sets the value for 'Description'.
+            /// </summary>
+            [Parameter]
+            public string Description
+            {
+                get { return description; }
+                set { description = value; }
+            }
+            #endregion
+            
             #region Display
             /// <summary>
             /// This property gets or sets the value for 'Display'.
@@ -282,6 +437,54 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return displayStyle;
                 }
+            }
+            #endregion
+            
+            #region EditMode
+            /// <summary>
+            /// This property gets or sets the value for 'EditMode'.
+            /// </summary>
+            [Parameter]
+            public bool EditMode
+            {
+                get { return editMode; }
+                set { editMode = value; }
+            }
+            #endregion
+            
+            #region EnableClick
+            /// <summary>
+            /// This property gets or sets the value for 'EnableClick'.
+            /// </summary>
+            [Parameter]
+            public bool EnableClick
+            {
+                get { return enableClick; }
+                set { enableClick = value; }
+            }
+            #endregion
+            
+            #region EnableDoubleClick
+            /// <summary>
+            /// This property gets or sets the value for 'EnableDoubleClick'.
+            /// </summary>
+            [Parameter]
+            public bool EnableDoubleClick
+            {
+                get { return enableDoubleClick; }
+                set { enableDoubleClick = value; }
+            }
+            #endregion
+            
+            #region EnableEnterEditMode
+            /// <summary>
+            /// This property gets or sets the value for 'EnableEnterEditMode'.
+            /// </summary>
+            [Parameter]
+            public bool EnableEnterEditMode
+            {
+                get { return enableEnterEditMode; }
+                set { enableEnterEditMode = value; }
             }
             #endregion
             
@@ -392,6 +595,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Id
+            /// <summary>
+            /// This property gets or sets the value for 'Id'.
+            /// </summary>
+            [Parameter]
+            public int Id
+            {
+                get { return id; }
+                set { id = value; }
+            }
+            #endregion
+            
             #region ImageBackColor
             /// <summary>
             /// This property gets or sets the value for 'ImageBackColor'.
@@ -477,6 +692,17 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return imageWidthStyle;
                 }
+            }
+            #endregion
+            
+            #region InnerControl
+            /// <summary>
+            /// This property gets or sets the value for 'InnerControl'.
+            /// </summary>
+            public ElementReference InnerControl
+            {
+                get { return innerControl; }
+                set { innerControl = value; }
             }
             #endregion
             
@@ -742,6 +968,30 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region NotifyParentOnClick
+            /// <summary>
+            /// This property gets or sets the value for 'NotifyParentOnClick'.
+            /// </summary>
+            [Parameter]
+            public bool NotifyParentOnClick
+            {
+                get { return notifyParentOnClick; }
+                set { notifyParentOnClick = value; }
+            }
+            #endregion
+            
+            #region NotifyParentOnDoubleClick
+            /// <summary>
+            /// This property gets or sets the value for 'NotifyParentOnDoubleClick'.
+            /// </summary>
+            [Parameter]
+            public bool NotifyParentOnDoubleClick
+            {
+                get { return notifyParentOnDoubleClick; }
+                set { notifyParentOnDoubleClick = value; }
+            }
+            #endregion
+            
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.
@@ -777,6 +1027,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SendAllTextToParent
+            /// <summary>
+            /// This property gets or sets the value for 'SendAllTextToParent'.
+            /// </summary>
+            [Parameter]
+            public bool SendAllTextToParent
+            {
+                get { return sendAllTextToParent; }
+                set { sendAllTextToParent = value; }
+            }
+            #endregion
+            
             #region ShowCaption
             /// <summary>
             /// This property gets or sets the value for 'ShowCaption'.
@@ -809,6 +1071,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return text; }
                 set { text = value; }
+            }
+            #endregion
+            
+            #region TextBoxClassName
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxClassName'.
+            /// </summary>
+            [Parameter]
+            public string TextBoxClassName
+            {
+                get { return textBoxClassName; }
+                set { textBoxClassName = value; }
             }
             #endregion
             

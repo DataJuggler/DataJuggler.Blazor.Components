@@ -1,0 +1,78 @@
+﻿@using BlazorStyled
+@using DataJuggler.Blazor.Components
+@using DataJuggler.Blazor.Components.Enumerations
+@using DataJuggler.Blazor.Components.Delegates
+
+<Styled @bind-Classname="@TimeComponentStyle">
+    display: @Display;
+    position: @Position;
+    top: @TopStyle;
+    left: @LeftStyle;
+    width: @WidthStyle;
+    height: @HeightStyle;
+    font-size: @FontSizeStyle;
+    outline: none;
+    border-radius: 0px;    
+</Styled>
+<Styled @bind-Classname="@HoursTextBoxStyle">
+    border-left: 1px;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-right: 1px;
+    text-align: right;
+</Styled>
+<Styled @bind-Classname="@ColonTextBoxStyle">
+    border-left: 0px;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-right: 0px;
+</Styled>
+<Styled @bind-Classname="@MinutesTextBoxStyle">
+    border-left: 1px;
+    border-top: 1px;
+    border-bottom: 1px;
+    border-right: 1px;
+</Styled>
+
+<table class="@TimeComponentStyle textdonotwrap timewrapper">
+    <tr>
+        <td width="@LabelWidth">
+            <Label Name="LabelComponent" Parent="this" Caption="@Caption" Left="@LabelLeft" 
+                Top=@LabelTop Width="80"></Label>
+        </td>        
+        <td width="@HoursTextBoxWidth">
+            <TextBoxComponent Name="HoursTextBox" Column1Width="0" ShowCaption="false"
+                TextBoxClassName="@HoursTextBoxStyle" SendAllTextToParent="true"
+                Column2Width="@HoursTextBoxWidthPlus4" Width="@HoursTextBoxWidth"
+                OnTextChangedCallback="ValidateHours" HandleChangeOption="HandleChangeEnum.OnChange"
+                TextBoxWidth="@HoursTextBoxWidth" Left="@HoursTextBoxLeft" FontSize="@FontSize"
+                Display="inline-block" ZIndex="20" Parent="this" TabIndex="1">
+            </TextBoxComponent>
+        </td>
+        <td width="4">
+            <TextBoxComponent Name="ColonTextBox" Column1Width="0" Parent="this" 
+                Left="@MinutesTextBoxLeft" Column2Width="4" FontSize="@FontSize"
+                Width="4" TextBoxClassName="@ColonTextBoxStyle" Enabled="false" Text=":"
+                TextBoxWidth="@MinutesTextBoxWidth" Display="inline-block"
+                ShowCaption="false" ZIndex="40" TabIndex="2">
+            </TextBoxComponent>
+        </td>
+        <td width="@MinutesTextBoxWidth">
+            <TextBoxComponent Name="MinutesTextBox" Column1Width="0" Parent="this" 
+                Left="@MinutesTextBoxLeft" Column2Width="@MinutesTextBoxWidth" FontSize="@FontSize"
+                Width="@MinutesTextBoxWidth" TextBoxClassName="@MinutesTextBoxStyle"
+                TextBoxWidth="@MinutesTextBoxWidth" Display="inline-block" Caption=""
+                OnTextChangedCallback="ValidateMinutes" HandleChangeOption="HandleChangeEnum.OnChange"
+                ShowCaption="false" ZIndex="40" TabIndex="2" SendAllTextToParent="true">
+            </TextBoxComponent>
+        </td>        
+        @if (ShowAMPMLabel)
+        {
+            <td width="20">
+                <Label Name="LabelAMPMComponent" Parent="this" Left="0" Caption="" 
+                    ClassName="textalignright" EnableDoubleClick="true" NotifyParentOnDoubleClick="true"
+                    Top=@LabelTop Width="40" Text="AM"></Label>
+            </td>
+        }
+    </tr>    
+</table>

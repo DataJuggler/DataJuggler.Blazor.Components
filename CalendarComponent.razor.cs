@@ -2,6 +2,7 @@
 
 #region using statements
 
+using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
@@ -9,6 +10,9 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using DataJuggler.Blazor.Components.Objects;
+using System.Runtime.CompilerServices;
+using System.Linq;
 
 #endregion
 
@@ -23,6 +27,7 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
+        private bool allowYearSelector;
         private List<IBlazorComponent> children;
         private string name;
         private IBlazorComponentParent parent;
@@ -64,7 +69,7 @@ namespace DataJuggler.Blazor.Components
         private string dayButtonStyle3;
         private double dayRowHeight;
         private DateTime selectedDate;
-        private ValidationComponent textBox;
+        private TextBoxComponent textBox;
         private string prevYearButtonUrl;
         private string nextYearButtonUrl;
         private string prevMonthButtonUrl;
@@ -78,8 +83,24 @@ namespace DataJuggler.Blazor.Components
         private double textBoxLeft;
         private double textBoxHeight;
         private double rowHeight;
-        private string yearSelectorStyle;
+        private string yearSelectorButtonStyle;
         private bool yearSelectorVisible;
+        private double yearButtonWidth;
+        private ThemeEnum theme;
+        private string yearSelectorStyle;
+        private string yearSelectorDecadesStyle;
+        private string yearSelectorYearsStyle;
+        private string yearSelectorDisplay;
+        private Decade selectedDecade;
+        private string decadeButtonStyle;
+        private string yearButtonStyle;
+        private string dividerStyle;
+        private string yearSelectorContainerStyle;
+        private Color selectedColor;
+        private string yearButtonSelectedStyle;
+        private Color yearButtonTextColor;
+        private Color yearButtonTextColorSelected;
+        private string navButtonCellStyle;
         #endregion
         
         #region Constructor
@@ -88,51 +109,8 @@ namespace DataJuggler.Blazor.Components
         /// </summary>
         public CalendarComponent()
         {
-            // Create a new collection of 'IBlazorComponent' objects.
-            Children = new List<IBlazorComponent>();
-
-            // Get the current date
-            DateTime now = DateTime.Now;
-
-            // Create the dates
-            Dates = CreateDates(now.Year, now.Month);
-
-            // Default
-            Caption = "Date:";
-
-            // Set the Unit
-            Unit = "px";
-            HeightUnit = "px";
-            Height = 146;
-            Width = 224;
-            ButtonHeight = 26;
-            ButtonWidth = 24;
-            CalendarLeft = 262;
-            CalendarTop = 264;
-            Column1Width = 100;
-            Column2Width = 128;
-            ControlWidth = 640;
-            ControlHeight = 48;
-            Position = "relative";
-            DayRowColor = Color.DodgerBlue;
-            DayRowTextColor = Color.GhostWhite;
-            ButtonLeft =-26;
-            ButtonTop = 0;
-            Top = -58;
-            LabelClassName = "down4 right2";
-            TextBoxWidth= 124;
-            ZIndex = 20;
-            RowHeight = 16;
-            TextBoxHeight = 24;
-            
-            // Buttons
-            NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
-            NextMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRNextSmall.png";
-            PrevYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRFirstSmall.png";
-            PrevMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRPrevSmall.png";
-            
-            // Setup the Component
-            SetupComponent();
+            // Perform initializations for this object
+            Init();
         }
         #endregion
         
@@ -478,13 +456,61 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region LaunchYearSelector()
+            #region Init()
             /// <summary>
-            /// Launch Year Selector
+            ///  This method performs initializations for this object.
             /// </summary>
-            public void LaunchYearSelector()
+            public void Init()
             {
-                
+                 // Create a new collection of 'IBlazorComponent' objects.
+                Children = new List<IBlazorComponent>();
+
+                // Get the current date
+                DateTime now = DateTime.Now;
+
+                // Create the dates
+                Dates = CreateDates(now.Year, now.Month);
+
+                // Default
+                Caption = "Date:";
+
+                // Set the Unit
+                Unit = "px";
+                HeightUnit = "px";
+                Height = 146;
+                Width = 224;
+                ButtonHeight = 26;
+                ButtonWidth = 24;
+                CalendarLeft = 262;
+                CalendarTop = 264;
+                Column1Width = 100;
+                Column2Width = 128;
+                ControlWidth = 640;
+                ControlHeight = 48;
+                Position = "relative";
+                DayRowColor = Color.DodgerBlue;
+                DayRowTextColor = Color.GhostWhite;
+                ButtonLeft = 0;
+                ButtonTop = 0;
+                Top = -58;
+                LabelClassName = "down4 right2";
+                TextBoxWidth= 124;
+                ZIndex = 20;
+                RowHeight = 16;
+                TextBoxHeight = 24;
+                YearButtonWidth = 24;
+                SelectedColor = Color.Firebrick;
+                YearButtonTextColor = Color.Black;
+                YearButtonTextColorSelected = Color.White;
+            
+                // Buttons
+                NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
+                NextMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRNextSmall.png";
+                PrevYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRFirstSmall.png";
+                PrevMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRPrevSmall.png";
+            
+                // Setup the Component
+                SetupComponent();
             }
             #endregion
             
@@ -542,11 +568,65 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Register(IBlazorComponent component)
             {
-                if (component is ValidationComponent)
+                if (component is TextBoxComponent)
                 {
                     // Store
-                    TextBox = component as ValidationComponent;                    
+                    TextBox = component as TextBoxComponent;                    
                 }
+            }
+            #endregion
+            
+            #region SelectDecade(Decade decade)
+            /// <summary>
+            /// Select Decade
+            /// </summary>
+            public void SelectDecade(Decade decade)
+            {
+                // Store
+                SelectedDecade = decade;
+
+                // if the value for HasSelectdDecade is true
+                if (HasSelectedDecade)
+                {
+                    // if the years have not been loaded yet
+                    if (!SelectedDecade.HasYears)
+                    {
+                        // Load the Years
+                        SelectedDecade.Years = Decade.CreateYears(SelectedDecade);
+                    }
+                }
+            }
+            #endregion
+            
+            #region SelectYear(int year)
+            /// <summary>
+            /// Select Year
+            /// </summary>
+            public void SelectYear(int year)
+            {
+                // Get the selected Month
+                int month = SelectedDate.Month;
+                int day = SelectedDate.Day;
+                int lastDayOfMonth = DateTime.DaysInMonth(year, month);
+
+                // can't be a day that doesn't exist
+                if (day > lastDayOfMonth)
+                {
+                    // reset
+                    day = lastDayOfMonth;
+                }
+
+                // Recreate the Selected Date
+                SelectedDate = new DateTime(year, month, day);
+
+                // Create the Dates
+                Dates = CreateDates(SelectedDate.Year, SelectedDate.Month);
+
+                // Redraw the Component
+                SetupComponent();
+
+                // Stop showing the Year Selector
+                ToggleYearSelector();
             }
             #endregion
             
@@ -566,34 +646,121 @@ namespace DataJuggler.Blazor.Components
                     TextBox.SetTextValue(SelectedDate.ToShortDateString());
                 }
             }
-            #endregion
-            
+
+        #endregion
+
             #region SetupComponent()
             /// <summary>
             /// Setup Component
             /// </summary>
             public void SetupComponent()
             {
+                // if Blue Mode
+                if (theme == ThemeEnum.Blue)
+                {      
+                    if (Expanded)
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/TriangleButtonOpen.png";
+                    }
+                    else
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/TriangleButtonClosed.png";
+                    }
+                }
+                else if ((theme == ThemeEnum.Dark) || (theme == ThemeEnum.Black))
+                { 
+                    if (Expanded)
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlackTriangleOpen.png";
+                    }
+                    else
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlackTriangleClosed.png";
+                    }
+                }
+                else if (theme == ThemeEnum.Brown)
+                {      
+                    if (Expanded)
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BrownTriangleOpen.png";
+                    }
+                    else
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BrownTriangleClosed.png";
+                    }
+                }
+                else if (theme == ThemeEnum.BlueGold)
+                {
+                    if (Expanded)
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueDownArrow32.png";
+                    }
+                    else
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueUpArrow32.png";
+                    }
+                }
+                
+                // If Expanded
                 if (Expanded)
                 {
-                    ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/TriangleButtonOpen.png";
-
                     // Hide
                     Display = "inline-block";
+
+                    // if the value for YearSelectorVisible is true
+                    if (YearSelectorVisible)
+                    {
+                        // Set to show
+                        YearSelectorDisplay = "inline-block";
+                    }
+                    else
+                    {
+                        // Set to hide
+                        YearSelectorDisplay = "none";
+                    }
                 }
                 else
                 {
-                    ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/TriangleButtonClosed.png";
-
                     // Hide
                     Display = "none";
+
+                    // Set to hide
+                    YearSelectorDisplay = "none";
                 }
             }
             #endregion
-            
+
+            #region ToggleYearSelector()
+            /// <summary>
+            /// Toggle the Year Selector
+            /// </summary>
+            public void ToggleYearSelector()
+            {
+                // Toggle
+                YearSelectorVisible = !YearSelectorVisible;
+
+                // Update
+                Refresh();
+            }
+            #endregion
+           
         #endregion
         
         #region Properties
+            
+            #region AllowYearSelector
+            /// <summary>
+            /// This property gets or sets the value for 'AllowYearSelector'.
+            /// If true, the month and year becomes a button, and a user
+            /// can select a decade and or year.
+            /// </summary>
+            [Parameter]
+            public bool AllowYearSelector
+            {
+                get { return allowYearSelector; }
+                set { allowYearSelector = value; }
+            }
+            #endregion
             
             #region BottomRowStyle
             /// <summary>
@@ -1084,6 +1251,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DecadeButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'DecadeButtonStyle'.
+            /// </summary>
+            public string DecadeButtonStyle
+            {
+                get { return decadeButtonStyle; }
+                set { decadeButtonStyle = value; }
+            }
+            #endregion
+            
             #region Display
             /// <summary>
             /// This property gets or sets the value for 'Display'.
@@ -1092,6 +1270,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return display; }
                 set { display = value; }
+            }
+            #endregion
+            
+            #region DividerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'DividerStyle'.
+            /// </summary>
+            public string DividerStyle
+            {
+                get { return dividerStyle; }
+                set { dividerStyle = value; }
             }
             #endregion
             
@@ -1130,6 +1319,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region HasSelectdDecade
+            /// <summary>
+            /// This property returns true if this object has a 'SelectdDecade'.
+            /// </summary>
+            public bool HasSelectedDecade
+            {
+                get
+                {
+                    // initial value
+                    bool hasSelectedDecade = (this.SelectedDecade != null);
+                    
+                    // return value
+                    return hasSelectedDecade;
+                }
+            }
+            #endregion
+            
             #region HasTextBox
             /// <summary>
             /// This property returns true if this object has a 'TextBox'.
@@ -1143,6 +1349,23 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return hasTextBox;
+                }
+            }
+            #endregion
+            
+            #region HasThisDecade
+            /// <summary>
+            /// This property returns true if this object has a 'ThisDecade'.
+            /// </summary>
+            public bool HasThisDecade
+            {
+                get
+                {
+                    // initial value
+                    bool hasThisDecade = (this.ThisDecade != null);
+                    
+                    // return value
+                    return hasThisDecade;
                 }
             }
             #endregion
@@ -1239,6 +1462,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return name; }
                 set { name = value; }
+            }
+            #endregion
+            
+            #region NavButtonCellStyle
+            /// <summary>
+            /// This property gets or sets the value for 'NavButtonCellStyle'.
+            /// </summary>
+            public string NavButtonCellStyle
+            {
+                get { return navButtonCellStyle; }
+                set { navButtonCellStyle = value; }
             }
             #endregion
             
@@ -1373,6 +1607,47 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SelectedColor
+            /// <summary>
+            /// This property gets or sets the value for 'SelectedColor'.
+            /// </summary>
+            [Parameter]
+            public Color SelectedColor
+            {
+                get { return selectedColor; }
+                set { selectedColor = value; }
+            }
+            #endregion
+            
+            #region SelectedColorName
+            /// <summary>
+            /// This read only property returns the value of SelectedColorName from the object SelectedColor.
+            /// </summary>
+            public string SelectedColorName
+            {
+                
+                get
+                {
+                    // initial value
+                    string selectedColorName = SelectedColor.Name;
+                    
+                    // return value
+                    return selectedColorName;
+                }
+            }
+            #endregion
+            
+            #region SelectedDecade
+            /// <summary>
+            /// This property gets or sets the value for 'SelectedDecade'.
+            /// </summary>
+            public Decade SelectedDecade
+            {
+                get { return selectedDecade; }
+                set { selectedDecade = value; }
+            }
+            #endregion
+            
             #region SelectedDate
             /// <summary>
             /// This property gets or sets the value for 'SelectedDate'.
@@ -1388,7 +1663,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'TextBox'.
             /// </summary>
-            public ValidationComponent TextBox
+            public TextBoxComponent TextBox
             {
                 get { return textBox; }
                 set { textBox = value; }
@@ -1428,6 +1703,35 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxWidth; }
                 set { textBoxWidth = value; }
+            }
+            #endregion
+            
+            #region Theme
+            /// <summary>
+            /// This property gets or sets the value for 'Theme'.
+            /// </summary>
+            [Parameter]
+            public ThemeEnum Theme
+            {
+                get { return theme; }
+                set { theme = value; }
+            }
+            #endregion
+
+            #region Decade ThisDecade()
+            /// <summary>
+            /// returns the . This Decade
+            /// </summary>
+            public Decade ThisDecade
+            {
+                get
+                {
+                    // initial value
+                    Decade decade = Decade.CreateDecades().LastOrDefault();
+
+                    // return value
+                    return decade;
+                }
             }
             #endregion
             
@@ -1513,6 +1817,161 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region YearButtonSelectedStyle
+            /// <summary>
+            /// This property gets or sets the value for 'YearButtonSelectedStyle'.
+            /// </summary>
+            public string YearButtonSelectedStyle
+            {
+                get { return yearButtonSelectedStyle; }
+                set { yearButtonSelectedStyle = value; }
+            }
+            #endregion
+            
+            #region YearButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'YearButtonStyle'.
+            /// </summary>
+            public string YearButtonStyle
+            {
+                get { return yearButtonStyle; }
+                set { yearButtonStyle = value; }
+            }
+            #endregion
+            
+            #region YearButtonTextColor
+            /// <summary>
+            /// This property gets or sets the value for 'YearButtonTextColor'.
+            /// </summary>
+            [Parameter]
+            public Color YearButtonTextColor
+            {
+                get { return yearButtonTextColor; }
+                set { yearButtonTextColor = value; }
+            }
+            #endregion
+            
+            #region YearButtonTextColorName
+            /// <summary>
+            /// This read only property returns the value of Name from the object YearButtonTextColor.
+            /// </summary>
+            public string YearButtonTextColorName
+            {
+                
+                get
+                {
+                    // initial value
+                    string yearButtonTextColorName = YearButtonTextColor.Name;
+                    
+                    // return value
+                    return yearButtonTextColorName;
+                }
+            }
+            #endregion
+            
+            #region YearButtonTextColorSelected
+            /// <summary>
+            /// This property gets or sets the value for 'YearButtonTextColorSelected'.
+            /// </summary>
+            [Parameter]
+            public Color YearButtonTextColorSelected
+            {
+                get { return yearButtonTextColorSelected; }
+                set { yearButtonTextColorSelected = value; }
+            }
+            #endregion
+            
+            #region YearButtonTextColorSelectedName
+            /// <summary>
+            /// This read only property returns the value of Name from the object YearButtonTextColorSelected.
+            /// </summary>
+            public string YearButtonTextColorSelectedName
+            {
+                
+                get
+                {
+                    // initial value
+                    string yearButtonTextColorSelectedName = YearButtonTextColorSelected.Name;
+                    
+                    // return value
+                    return yearButtonTextColorSelectedName;
+                }
+            }
+            #endregion
+            
+            #region YearButtonWidth
+            /// <summary>
+            /// This property gets or sets the value for 'YearButtonWidth'.
+            /// </summary>
+            public double YearButtonWidth
+            {
+                get { return yearButtonWidth; }
+                set { yearButtonWidth = value; }
+            }
+            #endregion
+            
+            #region YearButtonWidthStyle
+            /// <summary>
+            /// This read only property returns the value of YearButtonWidthStyle from the object YearButtonWidth.
+            /// </summary>
+            public string YearButtonWidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string yearButtonWidthStyle = YearButtonWidth + Unit;
+                    
+                    // return value
+                    return yearButtonWidthStyle;
+                }
+            }
+            #endregion
+            
+            #region YearSelectorButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorButtonStyle'.
+            /// </summary>
+            public string YearSelectorButtonStyle
+            {
+                get { return yearSelectorButtonStyle; }
+                set { yearSelectorButtonStyle = value; }
+            }
+            #endregion
+            
+            #region YearSelectorContainerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorContainerStyle'.
+            /// </summary>
+            public string YearSelectorContainerStyle
+            {
+                get { return yearSelectorContainerStyle; }
+                set { yearSelectorContainerStyle = value; }
+            }
+            #endregion
+            
+            #region YearSelectorDecadesStyle
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorDecadesStyle'.
+            /// </summary>
+            public string YearSelectorDecadesStyle
+            {
+                get { return yearSelectorDecadesStyle; }
+                set { yearSelectorDecadesStyle = value; }
+            }
+            #endregion
+            
+            #region YearSelectorDisplay
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorDisplay'.
+            /// </summary>
+            public string YearSelectorDisplay
+            {
+                get { return yearSelectorDisplay; }
+                set { yearSelectorDisplay = value; }
+            }
+            #endregion
+            
             #region YearSelectorStyle
             /// <summary>
             /// This property gets or sets the value for 'YearSelectorStyle'.
@@ -1531,7 +1990,25 @@ namespace DataJuggler.Blazor.Components
             public bool YearSelectorVisible
             {
                 get { return yearSelectorVisible; }
-                set { yearSelectorVisible = value; }
+                set
+                {
+                    // set the value
+                    yearSelectorVisible = value;
+                    
+                    // Show or hide the YearSelector
+                    SetupComponent();
+                }
+            }
+            #endregion
+            
+            #region YearSelectorYearsStyle
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorYearsStyle'.
+            /// </summary>
+            public string YearSelectorYearsStyle
+            {
+                get { return yearSelectorYearsStyle; }
+                set { yearSelectorYearsStyle = value; }
             }
             #endregion
             

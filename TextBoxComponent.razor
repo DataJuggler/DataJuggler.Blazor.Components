@@ -1,0 +1,128 @@
+﻿@namespace DataJuggler.Blazor.Components
+@using DataJuggler.Blazor.Components.Enumerations
+@using BlazorStyled
+
+<Styled @bind-Classname=@Column1Style>
+    display: inline-block;
+    height: 100%;
+    background-color: @LabelBackgroundColor;
+    color: @LabelColor;
+    font-size: @LabelFontSizeStyle;
+    text-align: right;
+    width: @Column1WidthStyle;
+    position: relative;
+    top: @LabelTopStyle;
+    left: @LabelLeftStyle;
+    justify-content: left;
+</Styled>
+<Styled @bind-Classname=@Column2Style>
+    display: inline-block;
+    width: @TextBoxWidthStyle;
+    height: 100%;
+    margin-left: @MarginLeftStyle;
+    width: @Column2WidthStyle;
+</Styled>
+<Styled @bind-Classname=@Column3Style>
+    display: inline-block;
+    width: @ImageWidthStyle;
+    height: 100%;
+    background-color: @ImageBackColor;
+    width: @Column3WidthStyle;
+</Styled>
+<Styled @bind-Classname=@TextBoxStyle>
+    background-color: @TextBoxBackColor;
+    height: @HeightStyle;
+    line-height: 2vh;
+    font-size: @FontSizeStyle;
+    width: @TextBoxWidthStyle;
+    overflow: hidden;
+    z-index: @ZIndex;
+    border-width: @BorderWidthStyle;
+    border-color: @BorderColor;
+</Styled>
+<Styled @bind-Classname=@ImageStyle>
+    background-image: url('@ImageUrl');
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 100% 100%;
+    transform: scale(@ImageScale);
+    transform-origin: left;
+    width: @ImageWidthStyle;
+    height: 100%;
+</Styled>
+<Styled @bind-Classname=@ValidationControlStyle>
+    width: @WidthStyle;
+    position: @Position;
+    left: @LeftStyle;
+    top: @TopStyle;
+    height: @HeightStyle;
+    background-color: @BackgroundColor;
+    z-index: @ZIndex;
+</Styled>
+<Styled @bind-Classname=@BottomMarginStyle>
+    width: @WidthStyle;
+    height: @MarginBottomStyle;
+</Styled>
+
+@if (Visible)
+{  
+    <div class="@ValidationControlStyle">
+        @if (ShowCaption)
+        {
+            <div class="@Column1Style">
+                <div class="@LabelClassName">@Caption</div>
+            </div>
+        }
+        <div class="@Column2Style">
+            @if (Multiline)
+            {
+                <div>
+                    @if (Enabled)
+                    {
+                        <textarea class="@TextBoxStyle @TextBoxClassName" type=@InputType @bind="@Text" 
+                            @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" tabindex="@TabIndex" />
+                    }
+                    else
+                    {
+                        <textarea class="@TextBoxStyle @TextBoxClassName" disabled type=@InputType @bind="@Text" />
+                    }                        
+                </div>
+            }
+            else
+            {
+                <span>
+                    @if (Enabled)
+                    {
+                        if (HandleChangeOption == HandleChangeEnum.OnKeyDown)
+                        {
+                            <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle" 
+                                type=@InputType @bind="@Text" pattern="@Pattern"
+                                @bind:event="oninput" onfocus="this.select()" tabindex="@TabIndex"
+                            onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                        }
+                        else
+                        {
+                            <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
+                                   type=@InputType @bind="@Text" pattern="@Pattern"
+                                   onfocus="this.select();" tabindex="@TabIndex"
+                                   onClick="this.select();" @ref="InnerControl" />
+                        }
+                    }
+                    else
+                    {
+                        <input class="@TextBoxStyle @TextBoxClassName" autocomplete="off" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
+                    }
+                </span>
+            }
+        </div>
+        @if (ShowImage)
+        {
+            <div class="@Column3Style">
+                <div class="@ImageClassName">
+                    <div class="@ImageStyle"></div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="@BottomMarginStyle"></div>
+}

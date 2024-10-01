@@ -38,7 +38,7 @@ namespace DataJuggler.Blazor.Components
         private Row editRow;
         private Guid editRowId;
         private string className;
-        private ValidationComponent setFocusEditor;
+        private TextBoxComponent setFocusEditor;
         private List<IBlazorComponent> children;
         private int externalId;
         private string externalIdDescription;
@@ -339,16 +339,16 @@ namespace DataJuggler.Blazor.Components
                     // Add this oobject
                     Children.Add(component);
 
-                    if (component is ValidationComponent)
+                    if (component is TextBoxComponent)
                     {
-                        // Test if this is a ValidationComponent
-                        ValidationComponent validationComponent = component as ValidationComponent;
+                        // Test if this is a TextBoxComponent
+                        TextBoxComponent TextBoxComponent = component as TextBoxComponent;
 
                         // if this is the control to set focus to
-                        if ((NullHelper.Exists(validationComponent)) && (validationComponent.SetFocusOnFirstRender))
+                        if ((NullHelper.Exists(TextBoxComponent)) && (TextBoxComponent.SetFocusOnFirstRender))
                         {
                             // Set the SetFocusEditor
-                            SetFocusEditor = validationComponent;
+                            SetFocusEditor = TextBoxComponent;
                         }
                     }
                     else if (component is ImageButton)
@@ -854,7 +854,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'SetFocusEditor'.
             /// </summary>
-            public ValidationComponent SetFocusEditor
+            public TextBoxComponent SetFocusEditor
             {
                 get { return setFocusEditor; }
                 set { setFocusEditor = value; }

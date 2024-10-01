@@ -1,5 +1,85 @@
-
 News
+
+# 200,000 Installs
+10.1.2024: DataJuggler.Blazor.Components recently passed 200,000 installs on NuGet. Sadly, out of 200,000 installs 
+there are only 7 likes on this project. Please take a second and like this project as I work hundreds of hours 
+per year on it.
+
+Please leave a star if you think this project is worth the price.
+https://github.com/DataJuggler/DataJuggler.Blazor.Components
+
+# Upcoming News
+I will start testing the previews for .NET 9, so I expect to have a working version for .NET 9 by release date
+in Mid November or soon thereafter.
+
+# New Website Coming
+I plan on building a new site just for this project, so you can find the information you need faster about each component.
+
+# Major Update Version 8.11.0
+10.1.2024: This release contains a few major updates, and one breaking change, but it's an easy fix in most cases.
+
+# New Time Component
+I created a new Time Component, and you type in the hours or minutes and double click on the AM / PM label to toggle it.
+If you set the property TimeType to Hours24, than the AM / PM label does not appear.
+
+# New Delegate OnTextChange(string text)
+
+A new delegate was created in DataJuggler.Blazor.Components.Delegates called OnTextChange, and you can create
+a method that receives a string parameter to get a call back when a text box value changes. This is how the TimeComponent
+turns red if you type in an invalid time.
+
+    public delegate void OnTextChange(string text);
+
+# InformationBoxComponent - New Property: BodyContent
+I learned something new recently thanks to Bing Chat (Copilot). I wanted the user to be able to host their own 
+components on an InformationBoxComponent, and you can do so with a property called RenderFragment.
+So in the InformationBoxComponent, you can do this:
+
+    <InformationBox Name="TestScheduleInfoBox" Parent="this" Title="Test Schedule"
+        Column1Width="200" Column2Width="120" Column1Left="0" Gap="8" ListItemTop="-2"
+        Column1ClassName="textalignright" Column2ClassName="textalignleft"
+        HeaderFontWeight="bold" HeaderFontSize=20
+        ListItemLeft="0" ImageTop="1" Height="164" Width="300" FontSize=16
+        Left="-112" Theme="@ThemeEnum.Blue" BorderColor="Color.Gray" HeaderHeight="32"
+        HeaderTextVerticalOffset="3" Scale="85">
+        <BodyContent>
+            <div class="down8 right8">
+                <TimeComponent Name="StartTimeComponent" Parent="this"
+					Column1Width="40" Caption="Start Time" FontSize="16"
+					HoursTextBoxLeft="-2" MinutesTextBoxWidth="20"
+					MinutesTextBoxLeft="0"></TimeComponent>
+			</div>
+		</BodyContent>
+    </InformationBox>
+
+# ValidationComponent is Gone
+The ValidationComponent confused people I have discovered. Instead of having one component that could be
+a CheckBox, a Multiline TextBox or a TextBox, I broke this up into two new components.
+
+CheckBoxComponent
+TextBoxComponent
+
+Everything that used be on the ValidationComponent, is now called TextBoxComponent. The only parts that are missing
+are the parts related to a CheckBoxMode. This should help with the confusion, since everyone knows what a TextBox is.
+
+The other part that changed is the ComboBox in CheckedListMode now uses the CheckBox for each item instead of the
+ValidationComponents.
+
+# CalendarComponent Now Has A Year Selector
+By default the year selector is turned off. Set the property AllowYearSelector to true and the year selector appears.
+
+    AllowYearSelector="true"
+
+The Year Selector has decades at the top and the selected decade's year appear below. Select a Year to close the
+Year Selector or click the Date Title (Month Year) on the Calendar to toggle it On/ off.
+
+9.24.2024: Breaking Changing! Easy Fix. I renamed the ValidationComponent to TextBoxComponent, 
+removed the CheckBoxMode and created a new CheckBoxComponent. Unless you were using the 
+CheckedBoxMode of the ValidationComponent, the only thing you should have to do is rename
+ValidationComponent to TextBoxComponent. I think it confused a lot of people on what the
+ValidationComponent is. Everyone knows what a TextBox is, so simple is better.
+ 
+9.12.2024: Working on a new TimeComponent. 
 
 9.11.2024: I updated DataJuggler.Excelerate. I also fixed a bug with ListItemTop and ListItemLeft,
 as they were only applied to Column2. i removed method FindChildByName from IBlazorComponent interface.
@@ -343,7 +423,7 @@ the parent object will receive a message. Optionally, Set the ExternalId and Ext
 without Blazor Styled, and with better results it seems of late.
 
 12.30.2023: I updated the CheckBox to send a message to its Parent when it's value changes.
-I added SetLabelColor method to the ValidationComponent.
+I added SetLabelColor method to the TextBoxComponent.
 
 I created a new project that uses these controls.
 
@@ -359,7 +439,7 @@ https://snowcreator.datajuggler.com
 
 12.26.2023: I updated DataJuggler.NET8 and DataJuggler.Excelerate Nuget packages.
 
-12.18.2023 I fixed a bug with the ValidationComponent
+12.18.2023 I fixed a bug with the TextBoxComponent
 If is valid is true, I set the label to the invalid label color. This is now fixed.
 
 11.15.2023 I updated the project to .NET 8
@@ -406,13 +486,13 @@ Blazor Excelerate
 
 July 18, 2023: I fixed the checkbox component. The binding wasn't working when I thought I fixed it last time.
 
-July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a ValidationComponent
+July 9, 2023: I removed floats from the ComboBox component. I was having trouble "stacking" a TextBoxComponent
 below a ComboBox, so hopefully this fixes it. I also added a ComboBoxWidth parameter property on the ComboBox.
 
 July 6, 2023: I added an AutoComplete property, which defaults to false.
 The reason for this is browsers like to fill in values, and the browser is confusing Email Address and User Name fields.
 
-July 2, 2023: I removed the floats from the ValidationComponent. This will probably break
+July 2, 2023: I removed the floats from the TextBoxComponent. This will probably break
 some existing users, but I am trying to make the control more consistant to work with.
 I also added a MarginBottom property. Use this in conjunction with the HeightUnit, which
 defaults to px (pixels) and the MarginBottom is set to 8 by default. 
@@ -433,7 +513,7 @@ If Enabled is false, disabled will appear in the input objects and be read only.
 
 # Sample Projects
 
-I created a new project that uses the ValidationComponent.
+I created a new project that uses the TextBoxComponent.
 
 # Blazor Gallery
 
@@ -560,13 +640,13 @@ width(0 - 1000)
 Example: width640
 Set the width, min-width and max-width in pixels. In this example 640.
 
-## ValidationComponent
+## TextBoxComponent
 
 ### Example
 
-    <ValidationComponent Name="ResultsControl" Caption="Results:" Parent="this" Unit="px" Column1Width="64" Column2Width="480" TextBoxWidth="480" 
+    <TextBoxComponent Name="ResultsControl" Caption="Results:" Parent="this" Unit="px" Column1Width="64" Column2Width="480" TextBoxWidth="480" 
         LabelClassName="down8" Left="0" MarginLeft="4" Multiline=true HeightUnit="vh" Height="20" Top=0 LabelFontSizeUnit="em" 
-        LabelFontSize=".8"></ValidationComponent>
+        LabelFontSize=".8"></TextBoxComponent>
 
 This componet can serve as a CheckBox, a TextBox or a TextArea.
 
@@ -812,7 +892,7 @@ If you have any questions, please feel free to ask on Git Hub:
 https://github.com/DataJuggler/DataJuggler.Blazor.Components/Issues
 
 # DataJuggler.Blazor.Components
-This class consists of an ImageButton, ProgressBar, Sprite, ValidationComponent, ComboBox,
+This class consists of an ImageButton, ProgressBar, Sprite, TextBoxComponent, ComboBox,
 CheckedListBox and a Grid.
 
 # CheckedListBox
@@ -935,7 +1015,7 @@ Blazor Excelerate is used to code generate C# classes from an Excel header row.
 
 --
 
-The ValidationComponent is a multi-use component that allows you to build data entry
+The TextBoxComponent is a multi-use component that allows you to build data entry
 screens quickly. 
 
 Below is a quick sample to get you started using it.

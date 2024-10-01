@@ -100,12 +100,12 @@
         <table>
             <tr class="textdonotwrap">
                 <td width="@TextBoxWidth">
-                    <ValidationComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
+                    <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
                         ClassName="displayinline" Column1Width="@Column1Width" 
-                        Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" 
-                        SendAllTextToParent=true Text="@SelectedText" 
+                        Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth"
+                        SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
                         Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
-                    </ValidationComponent>
+                    </TextBoxComponent>
                 </td>
                 <td width="@ButtonWidth">
                     <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight"

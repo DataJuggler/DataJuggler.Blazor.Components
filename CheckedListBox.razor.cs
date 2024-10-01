@@ -60,7 +60,7 @@ namespace DataJuggler.Blazor.Components
         private string className;
         private double labelWidth;
         private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;
+        private double checkBoxTextYPosition;        
         
         // reverting back to BlazorStyled
         private string checkedlistboxStyle;
@@ -95,17 +95,17 @@ namespace DataJuggler.Blazor.Components
                     // Iterate the collection of IBlazorComponent objects
                     foreach (IBlazorComponent item in Children)
                     {
-                        // is this a validationComponent
-                        ValidationComponent validationComponent = component as ValidationComponent;
+                        // is this a CheckBoxComponent
+                        CheckBoxComponent checkBoxComponent = component as CheckBoxComponent;
 
-                        // cast this item as a 
-                        ValidationComponent itemValidationComponent = item as ValidationComponent;
+                        // cast this item as a CheckBoxComponent
+                        CheckBoxComponent itemCheckBoxComponent = item as CheckBoxComponent;
 
-                        // If the validationComponent object exists
-                        if (NullHelper.Exists(validationComponent, itemValidationComponent))
+                        // If the checkBoxComponent and itemCheckBoxComponent objects both exist
+                        if (NullHelper.Exists(checkBoxComponent, itemCheckBoxComponent))
                         {
                             // if the ExternalId's match
-                            if ((validationComponent.ExternalId == itemValidationComponent.ExternalId) && (validationComponent.ExternalId > 0))
+                            if ((checkBoxComponent.ExternalId == itemCheckBoxComponent.ExternalId) && (checkBoxComponent.ExternalId > 0))
                             {
                                 // set the return value
                                 isComponentRegistered = true;
@@ -294,7 +294,7 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Register(IBlazorComponent component)
             {
-                if (component is ValidationComponent)
+                if (component is CheckBoxComponent)
                 {   
                     // check if this component is already registered
                     bool isComponentRegistered = CheckIfComponentIsRegistered(component);
@@ -612,7 +612,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-                
+            
             #region Height
             /// <summary>
             /// This property gets or sets the value for 'Height'.
@@ -1039,8 +1039,8 @@ namespace DataJuggler.Blazor.Components
                         // Iterate the collection of IBlazorComponent objects
                         foreach (IBlazorComponent component in Children)
                         {
-                            // get the ValidationComponent
-                            ValidationComponent checkBox = component as ValidationComponent;
+                            // get the CheckBoxComponent
+                            CheckBoxComponent checkBox = component as CheckBoxComponent;
                                 
                             // If the checkBox object exists
                             if (NullHelper.Exists(checkBox))
@@ -1147,7 +1147,7 @@ namespace DataJuggler.Blazor.Components
                 set { visibleCount = value; }
             }
             #endregion
-                
+            
             #region Width
             /// <summary>
             /// This property gets or sets the value for 'Width'.

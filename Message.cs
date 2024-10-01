@@ -25,6 +25,7 @@ namespace DataJuggler.Blazor.Components
         private List<NamedParameter> parameters;
         private int id;
         private bool checkedValue;
+        private string keyCode;
         #endregion
 
         #region Constructor
@@ -110,6 +111,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return id; }
                 set { id = value; }
+            }
+            #endregion
+            
+            #region KeyCode
+            /// <summary>
+            /// This property gets or sets the value for 'KeyCode'.
+            /// </summary>
+            public string KeyCode
+            {
+                get { return keyCode; }
+                set { keyCode = value; }
             }
             #endregion
             

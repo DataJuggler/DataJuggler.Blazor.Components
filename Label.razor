@@ -35,9 +35,32 @@
                     <div class="@LabelClassName">@Caption</div>
                 </div>
             }
-            <div class="@ClassName">
-                @Text
-            </div>
+            @if (EnableClick)
+            {
+                <div class="@ClassName cursorpointer" @onclick="() => OnClick()">
+                    @Text
+                </div>
+            }
+            else if (EnableDoubleClick)
+            {
+                <div class="@ClassName cursorpointer" @ondblclick="() => OnDoubleClick()">                    
+                    @Text
+                </div>
+            }
+            else if (EditMode)
+            {
+                <div>
+                    <input class="@TextBoxClassName" autocomplete="@AutoCompleteStyle" type="text" @bind="@Text" 
+                        @bind:event="oninput" onfocus="this.select()" 
+                            onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />                    
+                </div>
+            }
+            else
+            {
+                <div class="@ClassName">
+                    @Text
+                </div>
+            }
             @if (ShowImage)
             {  
                 <div class="@ImageClassName">

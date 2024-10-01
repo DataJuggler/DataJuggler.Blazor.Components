@@ -96,7 +96,7 @@ namespace DataJuggler.Blazor.Components
         private double column2Width;
         private double buttonWidth;
         private double buttonHeight;
-        private ValidationComponent textBox;
+        private TextBoxComponent textBox;
         private double textBoxLeft;
         private int listZIndex;
         private string filterText;
@@ -270,7 +270,7 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Default to 30% for the lable, the rest goes to the ComboBox
-                Theme = ThemeEnum.Black;
+                Theme = ThemeEnum.BlueGold;
                 ButtonPosition = "relative";
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
@@ -310,7 +310,7 @@ namespace DataJuggler.Blazor.Components
                 Theme = ThemeEnum.Black;
                 ButtonTop = -.64;
                 TextBoxLeft = -3.2;
-                ButtonLeft = -2;
+                ButtonLeft = 0;
                 CheckBoxTextXPosition = -1;
                 checkBoxTextYPosition = -1;
                 CheckedListZIndex = 40;
@@ -446,9 +446,40 @@ namespace DataJuggler.Blazor.Components
                         CheckedListComponent.SetItems(Items);
                     }
                     // if a checkbox was checked
-                    else if (message.Text == "ItemSelected")
+                    else if ((message.Text == "ItemSelected") && (CheckListMode))
                     {
-                        
+                        // If the value for the property .HasCheckedListComponent is true
+                        if ((HasCheckedListComponent) && (HasTextBox))
+                        {
+                            // Get the Selected Items
+                            List<Item> selectedItems = this.CheckedListComponent.SelectedItems;
+
+                            // Initial value
+                            string selectedText = "";
+
+                            if (ListHelper.HasOneOrMoreItems(selectedItems))
+                            {
+                                StringBuilder sb = new StringBuilder();
+
+                                // Iterate the collection of Item objects
+                                foreach(Item item in selectedItems)
+                                {
+                                    // if checked
+                                    if (item.ItemChecked)
+                                    {
+                                        // Append the Item and a semicolon separator
+                                        sb.Append(item.Text);
+                                        sb.Append(";");
+                                    }
+                                }
+
+                                // Set the selected Text
+                                selectedText = sb.ToString();
+                            }
+
+                            // Set the SelecctedText
+                            TextBox.SetTextValue(selectedText);
+                        }
                     }
                     else if (message.Text.Contains("text"))
                     {
@@ -568,10 +599,10 @@ namespace DataJuggler.Blazor.Components
                         Button.SetClickHandler(ButtonClicked);
                     }
                 }
-                else if (component is ValidationComponent)
+                else if (component is TextBoxComponent)
                 {
                     // Store the TextBox
-                    TextBox = component as ValidationComponent;
+                    TextBox = component as TextBoxComponent;
                 }
                 else if (component is CheckedListBox)
                 {
@@ -757,7 +788,7 @@ namespace DataJuggler.Blazor.Components
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/TriangleButtonClosed.png";
                     }
                 }
-                else if (theme == ThemeEnum.Dark)
+                else if ((theme == ThemeEnum.Dark) || (theme == ThemeEnum.Black))
                 { 
                     if (Expanded)
                     {
@@ -777,6 +808,17 @@ namespace DataJuggler.Blazor.Components
                     else
                     {
                         ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BrownTriangleClosed.png";
+                    }
+                }
+                else if (theme == ThemeEnum.BlueGold)
+                {
+                    if (Expanded)
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueDownArrow32.png";
+                    }
+                    else
+                    {
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueUpArrow32.png";
                     }
                 }
                     
@@ -2508,10 +2550,28 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'TextBox'.
             /// </summary>
-            public ValidationComponent TextBox
+            public TextBoxComponent TextBox
             {
                 get { return textBox; }
                 set { textBox = value; }
+            }
+            #endregion
+            
+            #region TextBoxEnabled
+            /// <summary>
+            /// This read only property returns true if not in ChecckListMode
+            /// </summary>
+            public bool TextBoxEnabled
+            {
+                
+                get
+                {
+                    // initial value
+                    bool textBoxEnabled = !CheckListMode;
+                    
+                    // return value
+                    return textBoxEnabled;
+                }
             }
             #endregion
             

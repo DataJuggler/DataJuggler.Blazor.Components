@@ -56,10 +56,10 @@
                     else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
                     {
                         <div class="displayinline @column.ClassName">
-                        <ValidationComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width 
+                        <TextBoxComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width 
                             Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
                             SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
-                            Text="@column.EditorText"  Parent=this></ValidationComponent>
+                            Text="@column.EditorText"  Parent=this></TextBoxComponent>
                         </div>
                     }
                     else if (EnableClick)

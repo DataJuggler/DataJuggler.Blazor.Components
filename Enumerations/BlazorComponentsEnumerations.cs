@@ -45,6 +45,17 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
+    #region HandleChangeEnum : int
+    /// <summary>
+    /// This enum is used to handle how the oninput is bound in the TextBoxComponent
+    /// </summary>
+    public enum HandleChangeEnum : int
+    {
+        OnKeyDown = 0,
+        OnChange = 1
+    }
+    #endregion
+
     #region ImageAlignmentEnum : int
     /// <summary>
     /// This enum is used by the Item object, but only in an InfoformationBox
@@ -122,7 +133,19 @@ namespace DataJuggler.Blazor.Components.Enumerations
         Dark = 1,
         Blue = 2,
         Brown = 3,
-        Red = 4
+        Red = 4,
+        BlueGold = 5
+    }
+    #endregion
+
+    #region enum TimeTypeEnum : int
+    /// <summary>
+    /// The type of time. Hours 12 has AM or PM and Hours 24 or military time, does not.
+    /// </summary>
+    public enum TimeTypeEnum : int
+    {
+        Hours12 = 0,
+        Hours24 = 1
     }
     #endregion
 

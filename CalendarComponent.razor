@@ -1,6 +1,7 @@
 ﻿@using DataJuggler.UltimateHelper
 @using DataJuggler.Blazor.Components
 @using DataJuggler.Blazor.Components.Enumerations
+@using DataJuggler.Blazor.Components.Objects
 @using BlazorStyled
 
 
@@ -46,11 +47,13 @@
     position: absolute;
     left: 0px;
     top: 0px;
-    text-align: left;
+    text-align: center;
     background-size: 100% 100%;
     z-index: @ZIndex;
     height: 16px;
     background-color: transparent;
+    display: block;
+    margin: auto;
 </Styled>
 <Styled @bind-Classname=@ColumnStyle>    
     font-size: 10px;
@@ -127,8 +130,7 @@
     cursor: pointer;
 </Styled>
 <Styled @bind-Classname=@DayButtonStyle3>
-    border: 0px;
-    background-color: white;
+    border: 0px;    
     font-size: 10px;
     font-weight: bold;
     width: @ColumnWidth2Style;
@@ -138,7 +140,7 @@
     text-align: center;
     height: 100%;
     color: white;
-    background-color: firebrick;
+    background-color: @SelectedColorName;
     height: @RowHeightStyle;
     margin: 0px;
     padding: 0px;
@@ -147,17 +149,103 @@
     object-fit: cover;
     cursor: pointer;
 </Styled>
+<Styled @bind-Classname=@YearSelectorButtonStyle>
+    border: 0px;
+    background-color: white;
+    font-size: 10px;
+    font-weight: bold;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+    display: inline;
+    text-align: center;
+    height: 100%;
+    color: black;
+    height: @RowHeightStyle;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+</Styled>
+<Styled @bind-Classname=@YearSelectorStyle>
+    display: @YearSelectorDisplay;
+    border-width: 1px;    
+    background-color: white;
+    font-size: 10px;
+    height: 64px;
+    width: 48px;
+    position: relative;
+    cursor: pointer;
+    z-index: 60;
+    text-align: center;
+</Styled>
+<Styled @bind-Classname=@DividerStyle>
+    height: 1px;
+    width: 100%;
+    background-color: black;
+</Styled>
+<Styled @bind-Classname=@YearButtonStyle>    
+    width: 36px;
+    min-width: 36px;
+    max-width: 36px;
+    height: 16px;
+    min-height: 16px;
+    max-height: 16px;
+    border-width: 1px;
+    font-size: 10px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    color: @YearButtonTextColorName;
+    background-color: white;
+</Styled>
+<Styled @bind-Classname=@YearButtonSelectedStyle>
+    width: 36px;
+    min-width: 36px;
+    max-width: 36px;
+    height: 16px;
+    min-height: 16px;
+    max-height: 16px;
+    border-width: 1px;
+    font-size: 10px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    color: @YearButtonTextColorSelectedName;
+    background-color: @SelectedColorName;
+</Styled>
+<Styled @bind-Classname=@YearSelectorContainerStyle>
+    box-sizing: border-box;
+    width: 182px;
+    min-width: 182px;
+    max-width: 182px;
+    height: 68px;
+    min-height: 68px;
+    max-height: 68px;
+    z-index: 80;    
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 16px;   
+    background-color: white;
+</Styled>
+<Styled @bind-Classname=@NavButtonCellStyle>
+    text-align: center;
+    vertical-align: middle;
+</Styled>
 
 <div class="@ContainerStyle @ClassName">
     <table>
         <tr class="textdonotwrap">
             <td width="@TextBoxWidth">
-            <ValidationComponent Name="DisplayTextBox" Caption="@Caption" Parent="this" 
+            <TextBoxComponent Name="DisplayTextBox" Caption="@Caption" Parent="this" 
                 ClassName="displayinline" Column1Width="@Column1Width" 
                 Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" 
                 Width="@Width" Height="@TextBoxHeight" LabelClassName="@LabelClassName" 
                 ZIndex="@ZIndex" Left="@TextBoxLeft">
-            </ValidationComponent>
+            </TextBoxComponent>
             </td>
             <td width="@ButtonWidth">
                 <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight" 
@@ -197,33 +285,41 @@
                 }
             </div>
             <div class="@BottomRowStyle">
-                <table class="up6 right14">
+                <table class="up4 right14">
                     <tr>
-                        <td width="48">
+                        <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="2" HeightUnit="px" Height="8"
-                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one year."
-                                         Left="0" Top=0 ImageUrl="@PrevYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                    Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one year."
+                                    Left="0" Top=0 ImageUrl="@PrevYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
-                        <td width="48">
+                        <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="3" HeightUnit="px" Height="8"
-                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one month."
-                                         Left="0" Top=0 ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                    Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one month."
+                                    Left="0" Top=0 ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
+                        </td>                        
+                        <td class="textdonotwrap" width="80">
+                            @if (AllowYearSelector)
+                            {
+                                <button @onclick="ToggleYearSelector" class="@YearSelectorButtonStyle cursorpointer textaligncenter left8">@DateTitle</button>
+                            }
+                            else
+                            {
+                                <Label FontSize=10 LabelColor="Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
+                                       Width="64" Height="12" Text="@DateTitle" Position="relative" Top="2" Left="8"></Label>
+                            }
                         </td>
-                        <td class="down8 left16" width="64">
-                            <button @onclick="() => LaunchYearSelector()" class="@YearSelectorStyle cursorpointer">@DateTitle</button>
-                        </td>
-                        <td width="48">
+                        <td width="34">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="4" HeightUnit="px" Height="8"
-                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one month."
-                                         Left="0" Top=0 ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one month."
+                                Left="0" Top=0 ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
-                        <td width="47">
+                        <td width="34">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="5" HeightUnit="px" Height="8"
-                                         Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one year."
-                                         Left="0" Top=0 ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one year."
+                                Left="0" Top=0 ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                     </tr>
@@ -233,8 +329,34 @@
     </div>
     @if (YearSelectorVisible)
     {
-        <div>
+        <div class="@YearSelectorContainerStyle border1">
+            @foreach (Decade decade in Decade.CreateDecades())
+            {
+                @if ((HasSelectedDecade) && (SelectedDecade.StartYear == decade.StartYear))
+                {
+                    <button class="@YearButtonSelectedStyle border0" @onclick="() => SelectDecade(decade)">@decade.Name</button>
+                }
+                else
+                {
+                    <button class="@YearButtonStyle border0" @onclick="() => SelectDecade(decade)">@decade.Name</button>
+                }
+            }
+            @if ((HasThisDecade) && (!HasSelectedDecade))
+            {
+                // Select this Decade
+                SelectedDecade = ThisDecade;
 
+                // Select this Decade
+                SelectDecade(ThisDecade);
+            }
+            <div class="@DividerStyle"></div>
+            @if ((HasSelectedDecade) && (SelectedDecade.HasYears))
+            {
+                @foreach (int year in SelectedDecade.Years)
+                {
+                    <button class="@YearButtonStyle border0" @onclick="() => SelectYear(year)">@year.ToString()</button>
+                }
+            }
         </div>
     }
 </div>

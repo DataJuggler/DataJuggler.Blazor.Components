@@ -16,7 +16,7 @@
 }
 .backgroundcoloraquamarine
 {
-    background-color: aquamarine;  
+    background-color: aquamarine;
 }
 .backgroundcolorazure
 {
@@ -577,6 +577,10 @@
 .backgroundcolorrebeccapurple
 {
     background-color: rebeccapurple;
+}
+.border0
+{
+    border-width: 0px !important;
 }
 .border1
 {
@@ -32046,16 +32050,6 @@
 {
     position: relative;
     left: 1000px;
-}
-.row
-{
-    display: flex;
-}
-.row::after
-{
-    content: "";
-    display: table;
-    clear: both;
 }
 .textalignleft
 {

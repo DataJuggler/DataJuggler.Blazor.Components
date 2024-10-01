@@ -52,13 +52,13 @@
                 <tr>
                     <td width="@ListItemWidth" height="@ListItemHeight">
                         <div class="@ListitemStyle">
-                            <ValidationComponent CheckBoxMode=true Parent="this" Name="@item.Id.ToString()" Unit="@Unit"                                
+                            <CheckBoxComponent Parent="this" Name="@item.Id.ToString()" Unit="@Unit"                                
                                 Column1Width="@LabelWidth" Column2Width="@Width" CheckBoxValue="@item.ItemChecked"
                                 HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@listItemWidth"
                                 Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" ClassName="@ListItemClassName"
                                 CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
                                 Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
-                            </ValidationComponent>
+                            </CheckBoxComponent>
                         </div>
                     </td>
                 </tr>
