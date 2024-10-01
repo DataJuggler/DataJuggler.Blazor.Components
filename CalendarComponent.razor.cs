@@ -498,6 +498,7 @@ namespace DataJuggler.Blazor.Components
                 ZIndex = 20;
                 RowHeight = 16;
                 TextBoxHeight = 24;
+                Theme = ThemeEnum.BlueGold;
                 YearButtonWidth = 24;
                 SelectedColor = Color.Firebrick;
                 YearButtonTextColor = Color.Black;
@@ -693,11 +694,11 @@ namespace DataJuggler.Blazor.Components
                 {
                     if (Expanded)
                     {
-                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueDownArrow32.png";
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueGoldArrowOpen.png";
                     }
                     else
                     {
-                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueUpArrow32.png";
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueGoldArrowClosed.png";
                     }
                 }
                 
