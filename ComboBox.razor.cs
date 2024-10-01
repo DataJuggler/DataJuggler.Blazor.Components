@@ -814,11 +814,11 @@ namespace DataJuggler.Blazor.Components
                 {
                     if (Expanded)
                     {
-                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueDownArrow32.png";
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueGoldArrowOpen.png";
                     }
                     else
                     {
-                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueUpArrow32.png";
+                        ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/BlueGoldArrowClosed.png";
                     }
                 }
                     
