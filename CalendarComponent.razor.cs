@@ -101,6 +101,7 @@ namespace DataJuggler.Blazor.Components
         private Color yearButtonTextColor;
         private Color yearButtonTextColorSelected;
         private string navButtonCellStyle;
+        private ImageButton button;
         #endregion
         
         #region Constructor
@@ -574,6 +575,11 @@ namespace DataJuggler.Blazor.Components
                     // Store
                     TextBox = component as TextBoxComponent;                    
                 }
+                else if (component is ImageButton)
+                {
+                    // Store
+                    Button = component as ImageButton;
+                }
             }
             #endregion
             
@@ -728,6 +734,13 @@ namespace DataJuggler.Blazor.Components
                     // Set to hide
                     YearSelectorDisplay = "none";
                 }
+
+                // if the Button exists
+                if (HasButton)
+                {
+                    // Update the Button
+                    Button.Refresh();
+                }
             }
             #endregion
 
@@ -771,6 +784,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return bottomRowStyle; }
                 set { bottomRowStyle = value; }
+            }
+            #endregion
+            
+            #region Button
+            /// <summary>
+            /// This property gets or sets the value for 'Button'.
+            /// </summary>
+            public ImageButton Button
+            {
+                get { return button; }
+                set { button = value; }
             }
             #endregion
             
@@ -1299,6 +1323,23 @@ namespace DataJuggler.Blazor.Components
                         
                     // The button image changes on Expanded and Theme.
                     SetupComponent();
+                }
+            }
+            #endregion
+            
+            #region HasButton
+            /// <summary>
+            /// This property returns true if this object has a 'Button'.
+            /// </summary>
+            public bool HasButton
+            {
+                get
+                {
+                    // initial value
+                    bool hasButton = (this.Button != null);
+                    
+                    // return value
+                    return hasButton;
                 }
             }
             #endregion

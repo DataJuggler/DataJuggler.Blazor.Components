@@ -307,7 +307,6 @@ namespace DataJuggler.Blazor.Components
                 TextBoxWidth= 124;
                 Column1Width = 100;
                 Column2Width = 128;
-                Theme = ThemeEnum.Black;
                 ButtonTop = -.64;
                 TextBoxLeft = -3.2;
                 ButtonLeft = 0;
@@ -573,9 +572,9 @@ namespace DataJuggler.Blazor.Components
                 InvokeAsync(() =>
                 {
                     StateHasChanged();
-                    });
-                }
-                #endregion
+                });
+            }
+            #endregion
                 
             #region Register(IBlazorComponent component)
             /// <summary>
