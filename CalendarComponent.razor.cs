@@ -655,6 +655,9 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Dislay
                     TextBox.SetTextValue(SelectedDate.ToShortDateString());
+
+                    // Create the Dates
+                    Dates = CreateDates(date.Year, date.Month);
                 }
             }
 
