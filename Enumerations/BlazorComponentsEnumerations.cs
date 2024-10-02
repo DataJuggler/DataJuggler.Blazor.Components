@@ -138,7 +138,7 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
-    #region enum TimeTypeEnum : int
+    #region TimeTypeEnum : int
     /// <summary>
     /// The type of time. Hours 12 has AM or PM and Hours 24 or military time, does not.
     /// </summary>
@@ -159,6 +159,19 @@ namespace DataJuggler.Blazor.Components.Enumerations
         Top = 0,
         Bottom = 1,
         Middle = 2
+    }
+    #endregion
+
+    #region YearSelectorAlignmentEnum : int
+    /// <summary>
+    /// This is used as an easy way for people to position the YearSelector on Left or Right.
+    /// May add bottom if ever needed.
+    /// </summary>
+    public enum YearSelectorAlignmentEnum : int
+    {
+        OnRight = 0,
+        OnLeft = 1,
+        Custom = 2
     }
     #endregion
 

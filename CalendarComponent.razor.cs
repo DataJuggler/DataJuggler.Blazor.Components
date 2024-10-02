@@ -104,6 +104,7 @@ namespace DataJuggler.Blazor.Components
         private ImageButton button;
         private double yearSelectorLeft;
         private double yearSelectorTop;
+        private YearSelectorAlignmentEnum yearSelectorAlignment;
         #endregion
         
         #region Constructor
@@ -505,9 +506,8 @@ namespace DataJuggler.Blazor.Components
                 YearButtonWidth = 24;
                 SelectedColor = Color.Firebrick;
                 YearButtonTextColor = Color.Black;
-                YearButtonTextColorSelected = Color.White;
-                YearSelectorLeft = 182;
-                YearSelectorTop = 40;
+                YearButtonTextColorSelected = Color.White;                
+                YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;
             
                 // Buttons
                 NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -723,6 +723,21 @@ namespace DataJuggler.Blazor.Components
                     {
                         // Set to show
                         YearSelectorDisplay = "inline-block";
+
+                        // if on YearSelector appears on left
+                        if (YearSelectorAlignment == YearSelectorAlignmentEnum.OnLeft)
+                        {
+                            // Left Side
+                            YearSelectorLeft = -184;
+                        }
+                        else
+                        {
+                            // Right Side or Custom
+                            YearSelectorLeft = 226;
+                        }
+                        
+                        // Defaults to 40
+                        YearSelectorTop = 40;
                     }
                     else
                     {
@@ -1971,6 +1986,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return yearButtonWidthStyle;
                 }
+            }
+            #endregion
+            
+            #region YearSelectorAlignment
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorAlignment'.
+            /// </summary>
+            [Parameter]
+            public YearSelectorAlignmentEnum YearSelectorAlignment
+            {
+                get { return yearSelectorAlignment; }
+                set { yearSelectorAlignment = value; }
             }
             #endregion
             
