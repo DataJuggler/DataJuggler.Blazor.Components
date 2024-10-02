@@ -13,7 +13,7 @@ using DataJuggler.UltimateHelper;
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using System.Drawing;
-using OfficeOpenXml.FormulaParsing.ExpressionGraph.FunctionCompilers;
+using DataJuggler.Blazor.Components.Delegates;
 using DataJuggler.Blazor.Components.Util;
 
 #endregion
@@ -204,6 +204,75 @@ namespace DataJuggler.Blazor.Components
         #endregion
         
         #region Methods
+            
+            #region DisplaySelections()
+            /// <summary>
+            /// Display Selections
+            /// </summary>
+            public void DisplaySelections()
+            {
+                // If the CheckedListComponent exists and the TextBox exists
+                if ((HasCheckedListComponent) && (HasTextBox))
+                {
+                    // Get the Selected Items
+                    List<Item> selectedItems = this.CheckedListComponent.SelectedItems;
+
+                    // Dislay the selected items
+                    DisplaySelections(selectedItems);
+                }
+                else if ((HasTextBox) && (HasStoredSelectedItems))
+                {
+                    // Dislay the selected items
+                    DisplaySelections(StoredSelectedItems);
+                }
+            }
+            #endregion
+
+            #region DisplaySelections(List<Item> selectedItems)
+            /// <summary>
+            /// This method displays the SelectedItems
+            /// </summary>
+            /// <param name="selectedItems"></param>
+            public void DisplaySelections(List<Item> selectedItems)
+            {
+                // Initial value
+                string selectedText = "";
+
+                // if the TextBox exists and there are one or more selectedItems
+                if ((HasTextBox) && (ListHelper.HasOneOrMoreItems(selectedItems)))
+                {
+                    // Set Loading to true
+                    TextBox.Loading = true;
+
+                    // Create a new instance of a 'StringBuilder' object.
+                    StringBuilder sb = new StringBuilder();
+
+                    // Iterate the collection of Item objects
+                    foreach(Item item in selectedItems)
+                    {
+                        // if checked
+                        if (item.ItemChecked)
+                        {
+                            // Append the Item and a semicolon separator
+                            sb.Append(item.Text);
+                            sb.Append(";");
+                        }
+                    }
+
+                    // Set the selected Text
+                    selectedText = sb.ToString();
+
+                     // Set the SelecctedText
+                    TextBox.SetTextValue(selectedText);
+
+                    // Update
+                    TextBox.Refresh();
+
+                    // Set Loading to false
+                    TextBox.Loading = false;
+                }
+            }
+            #endregion
             
             #region FindChildByName(string name)
             /// <summary>
@@ -429,6 +498,22 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region OnTextChanged(string text)
+            /// <summary>
+            /// On Text Changed
+            /// </summary>
+            public void OnTextChanged(string text)
+            {
+                // This method is here so I can figure out why the selections are erased
+                // When the combo box button is clicked to close.
+                if (!TextHelper.Exists(text))
+                {
+                    // the text was set to blank
+                    DisplaySelections();
+                }
+            }
+            #endregion
+            
             #region ReceiveData(Message message)
             /// <summary>
             /// method returns the Data
@@ -447,38 +532,8 @@ namespace DataJuggler.Blazor.Components
                     // if a checkbox was checked
                     else if ((message.Text == "ItemSelected") && (CheckListMode))
                     {
-                        // If the value for the property .HasCheckedListComponent is true
-                        if ((HasCheckedListComponent) && (HasTextBox))
-                        {
-                            // Get the Selected Items
-                            List<Item> selectedItems = this.CheckedListComponent.SelectedItems;
-
-                            // Initial value
-                            string selectedText = "";
-
-                            if (ListHelper.HasOneOrMoreItems(selectedItems))
-                            {
-                                StringBuilder sb = new StringBuilder();
-
-                                // Iterate the collection of Item objects
-                                foreach(Item item in selectedItems)
-                                {
-                                    // if checked
-                                    if (item.ItemChecked)
-                                    {
-                                        // Append the Item and a semicolon separator
-                                        sb.Append(item.Text);
-                                        sb.Append(";");
-                                    }
-                                }
-
-                                // Set the selected Text
-                                selectedText = sb.ToString();
-                            }
-
-                            // Set the SelecctedText
-                            TextBox.SetTextValue(selectedText);
-                        }
+                        // Display Selections
+                        DisplaySelections();                        
                     }
                     else if (message.Text.Contains("text"))
                     {
@@ -602,6 +657,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Store the TextBox
                     TextBox = component as TextBoxComponent;
+
+                    // if the value for HasStoredSelectedItems is true
+                    if (HasStoredSelectedItems)
+                    {
+                        // Display the Selections
+                        DisplaySelections(StoredSelectedItems);
+                    }
                 }
                 else if (component is CheckedListBox)
                 {
@@ -657,6 +719,9 @@ namespace DataJuggler.Blazor.Components
 
                     // Update the selections
                     CheckedListComponent.Refresh();
+
+                    // display the selections
+                    DisplaySelections();
                 }
                 else
                 {
@@ -827,6 +892,9 @@ namespace DataJuggler.Blazor.Components
                     // Update the Button
                     Button.Refresh();
                 }
+
+                // Display the Selections (if in CheckListMode)
+                DisplaySelections();
             }
             #endregion
                 

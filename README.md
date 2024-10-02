@@ -1,5 +1,8 @@
 News
 
+10.2.2024: Version 8.11.7 was published and the ComboBox when in CheckedListMode now displays
+the selections. 
+
 # 200,000 Installs
 10.1.2024: DataJuggler.Blazor.Components recently passed 200,000 installs on NuGet. Sadly, out of 200,000 installs 
 there are only 7 likes on this project. Please take a second and like this project as I work hundreds of hours 

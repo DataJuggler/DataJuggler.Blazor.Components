@@ -254,9 +254,12 @@ namespace DataJuggler.Blazor.Components
                     // if there is a Parent
                     if (HasParent)
                     {
+                        // Create a new instance of a 'Message' object.
                         Message message = new Message();
                         message.Sender = this;
-                        message.Text = Name + " value has changed to " + CheckBoxValue.ToString();
+                        message.Text = "ItemSelected";
+                        message.Id = ExternalId;
+                        message.CheckedValue = checkBoxValue;
 
                         // Send the parent a message the value has changed.
                         Parent.ReceiveData(message);
