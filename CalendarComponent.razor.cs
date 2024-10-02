@@ -102,6 +102,8 @@ namespace DataJuggler.Blazor.Components
         private Color yearButtonTextColorSelected;
         private string navButtonCellStyle;
         private ImageButton button;
+        private double yearSelectorLeft;
+        private double yearSelectorTop;
         #endregion
         
         #region Constructor
@@ -504,6 +506,8 @@ namespace DataJuggler.Blazor.Components
                 SelectedColor = Color.Firebrick;
                 YearButtonTextColor = Color.Black;
                 YearButtonTextColorSelected = Color.White;
+                YearSelectorLeft = 182;
+                YearSelectorTop = 40;
             
                 // Buttons
                 NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -2014,6 +2018,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region YearSelectorLeft
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorLeft'.
+            /// </summary>
+            [Parameter]
+            public double YearSelectorLeft
+            {
+                get { return yearSelectorLeft; }
+                set { yearSelectorLeft = value; }
+            }
+            #endregion
+            
+            #region YearSelectorLeftStyle
+            /// <summary>
+            /// This read only property returns the value of YearSelectorLeftStyle from the object YearSelectorLeft.
+            /// </summary>
+            public string YearSelectorLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string yearSelectorLeftStyle = YearSelectorLeft + Unit;
+                    
+                    // return value
+                    return yearSelectorLeftStyle;
+                }
+            }
+            #endregion
+            
             #region YearSelectorStyle
             /// <summary>
             /// This property gets or sets the value for 'YearSelectorStyle'.
@@ -2022,6 +2056,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return yearSelectorStyle; }
                 set { yearSelectorStyle = value; }
+            }
+            #endregion
+            
+            #region YearSelectorTop
+            /// <summary>
+            /// This property gets or sets the value for 'YearSelectorTop'.
+            /// </summary>
+            [Parameter]
+            public double YearSelectorTop
+            {
+                get { return yearSelectorTop; }
+                set { yearSelectorTop = value; }
+            }
+            #endregion
+            
+            #region YearSelectorTopStyle
+            /// <summary>
+            /// This read only property returns the value of YearSelectorTopStyle from the object YearSelectorTop.
+            /// </summary>
+            public string YearSelectorTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string yearSelectorTopStyle = YearSelectorTop + HeightUnit;
+                    
+                    // return value
+                    return yearSelectorTopStyle;
+                }
             }
             #endregion
             
