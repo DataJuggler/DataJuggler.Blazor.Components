@@ -1,5 +1,10 @@
 News
 
+10.4.2024: A new video was published
+
+DataJuggler.Blazor.Components Grand Update
+https://youtu.be/ybihE8udW-w
+
 10.2.2024: Version 8.11.7 was published and the ComboBox when in CheckedListMode now displays
 the selections. 
 
