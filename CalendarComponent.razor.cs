@@ -107,6 +107,7 @@ namespace DataJuggler.Blazor.Components
         private double yearSelectorTop;
         private double textBoxFontSize;
         private YearSelectorAlignmentEnum yearSelectorAlignment;
+        private string calendarPosition;
         #endregion
         
         #region Constructor
@@ -488,6 +489,7 @@ namespace DataJuggler.Blazor.Components
                 ButtonHeight = 26;
                 ButtonWidth = 24;
                 CalendarLeft = 262;
+                CalendarPosition = "relative";
                 CalendarTop = 264;
                 Column1Width = 100;
                 Column2Width = 128;
@@ -922,6 +924,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return calendarLeftStyle;
                 }
+            }
+            #endregion
+            
+            #region CalendarPosition
+            /// <summary>
+            /// This property gets or sets the value for 'CalendarPosition'.
+            /// </summary>
+            [Parameter]
+            public string CalendarPosition
+            {
+                get { return calendarPosition; }
+                set { calendarPosition = value; }
             }
             #endregion
             
