@@ -69,6 +69,7 @@ namespace DataJuggler.Blazor.Components
         private string dayButtonStyle3;
         private double dayRowHeight;
         private DateTime selectedDate;
+        private double labelFontSize;
         private TextBoxComponent textBox;
         private string prevYearButtonUrl;
         private string nextYearButtonUrl;
@@ -104,6 +105,7 @@ namespace DataJuggler.Blazor.Components
         private ImageButton button;
         private double yearSelectorLeft;
         private double yearSelectorTop;
+        private double textBoxFontSize;
         private YearSelectorAlignmentEnum yearSelectorAlignment;
         #endregion
         
@@ -502,6 +504,8 @@ namespace DataJuggler.Blazor.Components
                 ZIndex = 20;
                 RowHeight = 16;
                 TextBoxHeight = 24;
+                TextBoxFontSize = 14;
+                LabelFontSize = 14;
                 Theme = ThemeEnum.BlueGold;
                 YearButtonWidth = 24;
                 SelectedColor = Color.Firebrick;
@@ -1487,6 +1491,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSize'.
+            /// </summary>
+            [Parameter]
+            public double LabelFontSize
+            {
+                get { return labelFontSize; }
+                set { labelFontSize = value; }
+            }
+            #endregion
+            
             #region Left
             /// <summary>
             /// This property gets or sets the value for 'Left'.
@@ -1731,6 +1747,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBox; }
                 set { textBox = value; }
+            }
+            #endregion
+            
+            #region TextBoxFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxFontSize'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxFontSize
+            {
+                get { return textBoxFontSize; }
+                set { textBoxFontSize = value; }
             }
             #endregion
             
