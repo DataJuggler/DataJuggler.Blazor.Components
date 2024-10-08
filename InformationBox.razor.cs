@@ -85,6 +85,7 @@ namespace DataJuggler.Blazor.Components
         private VerticalAlignmentEnum verticalAlignment;
         private RenderFragment bodyContent;
         private ItemContenteAlignmentEnum itemContenteAlignment;
+        private string overflow;
         #endregion
         
         #region Constructor
@@ -161,6 +162,7 @@ namespace DataJuggler.Blazor.Components
                 Display = "inline-block";
                 VerticalAlignment = VerticalAlignmentEnum.Top;
                 HeaderFontSize = 16;
+                Overflow = "visible";
                 HeaderFontWeight = "bold";
                 ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;
             }
@@ -1072,6 +1074,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return name; }
                 set { name = value; }
+            }
+            #endregion
+            
+            #region Overflow
+            /// <summary>
+            /// This property gets or sets the value for 'Overflow'.
+            /// </summary>
+            [Parameter]
+            public string Overflow
+            {
+                get { return overflow; }
+                set { overflow = value; }
             }
             #endregion
             

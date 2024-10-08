@@ -7,8 +7,7 @@
 
 <Styled @bind-Classname=@CalendarStyle>    
     height: @HeightStyle;
-    width: @WidthStyle;
-    z-index: @ZIndex;
+    width: @WidthStyle;    
     position: @CalendarPosition;
     top: @CalendarTopStyle;
     left: @CalendarLeftStyle;
@@ -18,6 +17,7 @@
     background-color: white;
     display: @Display;
     background-color: white;
+    z-index: @ZIndexPlus1;
 </Styled>
 <Styled @bind-Classname=@ContainerStyle>     
     text-align: left;
@@ -33,6 +33,9 @@
     display: flex;
     justify-content: left;    
     gap: 0px;
+    transform: scale(@ScaleValue);
+    transform-origin: top left;
+    z-index: @ZIndex;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
     display: inline;        
@@ -64,9 +67,20 @@
     text-align: center;
     height: 100%;    
     position: relative;
-    top: -2.4px;
+    top: -2px;
+    left: 4px;
     margin-left: 2px;
     margin-right: 2px;
+</Styled>
+<Styled @bind-Classname=@HeaderRowColumnStyle>
+    font-size: 10px;    
+    display: inline;
+    width: 40px;
+    text-align: center;
+    height: 16px;
+    position: relative;
+    top: -2.4px;
+    left: 2px;
 </Styled>
 <Styled @bind-Classname=@RowStyle>        
     width: @WidthStyle;
@@ -82,14 +96,15 @@
     margin: 0px;
     padding: 0px;
     position: absolute;
-    bottom: 0px;
-    font-size: 10px;    
+    bottom: 1px;
+    font-size: 11px;    
 </Styled>
 <Styled @bind-Classname=@DayRowStyle>
     background-color: @DayRowColorName;
     color: @DayRowTextColorName;
     width: @WidthStyle;    
     height: @DayRowHeightStyle;
+    z-index: @ZIndex;
 </Styled>
 <Styled @bind-Classname=@DayButtonStyle>    
     border: 0px;
@@ -177,7 +192,7 @@
     width: 48px;
     position: relative;
     cursor: pointer;
-    z-index: 60;
+    z-index: @ZIndexPlus1;
     text-align: center;
 </Styled>
 <Styled @bind-Classname=@DividerStyle>
@@ -225,7 +240,7 @@
     height: 68px;
     min-height: 68px;
     max-height: 68px;
-    z-index: 80;    
+    z-index: @ZIndexPlus1;
     display: flex;
     flex-wrap: wrap;
     line-height: 16px;   
@@ -260,33 +275,61 @@
     </table>
     <div class="@CalendarStyle">
         <div class="@DayRowStyle">
-            <div class="@ColumnStyle"><span class="right4">Sun</span></div>
-            <div class="@ColumnStyle"><span class="right9">Mon</span></div>
-            <div class="@ColumnStyle"><span class="right14">Tue</span></div>
-            <div class="@ColumnStyle"><span class="right19">Wed</span></div>
-            <div class="@ColumnStyle"><span class="right24">Thu</span></div>
-            <div class="@ColumnStyle"><span class="right33">Fri</span></div>
-            <div class="@ColumnStyle"><span class="right42">Sat</span></div>
+            <table>
+                <tr>
+                    <td width="1"></td>
+                    <td width="40">
+                        <span class="@HeaderRowColumnStyle"><span class="left2">Sun</span></span>
+                    </td>
+                    <td width="40">
+                        <span class="@HeaderRowColumnStyle"><span class="left4">Mon</span></span>
+                    </td>
+                    <td width="40">
+                        <span class="@HeaderRowColumnStyle"><span class="left2">Tue</span></span>
+                    </td>
+                    <td width="40">
+                        <span class="@HeaderRowColumnStyle"><span class="left4">Wed</span></span>
+                    </td>
+                    <td width="40">
+                        <span class="@HeaderRowColumnStyle"><span class="left4">Thu</span></span>
+                    </td>
+                    <td width="40">
+                        <span class="@HeaderRowColumnStyle"><span class="left2">Fri</span></span>
+                    </td>
+                    <td width="40">
+                        <span class="@HeaderRowColumnStyle"><span class="right1">Sat</span></span>
+                    </td>
+                </tr>
+            </table>
         </div>
         @if (ListHelper.HasOneOrMoreItems(Dates))
-        {
-            <div class="@RowStyle">
-                @foreach (DayObject dayObject in Dates)
+        {  
+            @if (ListHelper.HasOneOrMoreItems(Weeks))
+            {  
+                @foreach (CalendarRow week in Weeks)
                 {
-                    @if (dayObject.Today)
-                    {
-                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle3 cursorpointer">@dayObject.ToString()</button>
-                    }
-                    else if (dayObject.ThisMonth)
-                    {
-                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle cursorpointer">@dayObject.ToString()</button>
-                    }
-                    else
-                    {
-                        <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle2 cursorpointer">@dayObject.ToString()</button>
-                    }
-                }
-            </div>
+                    <div class="@RowStyle">
+                        @if (week.HasDays)
+                        {
+                            foreach (DayObject dayObject in week.Days)
+                            {
+                                if (dayObject.Today)
+                                {
+                                    <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle3 cursorpointer">@dayObject.ToString()</button>
+                                }
+                                else if (dayObject.ThisMonth)
+                                {
+                                    <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle cursorpointer">@dayObject.ToString()</button>
+                                }
+                                else
+                                {
+                                    <button @onclick="() => DateSelected(dayObject)" class="@DayButtonStyle2 cursorpointer">@dayObject.ToString()</button>
+                                }
+                            }
+                        }
+                    </div>
+                }                
+            }
             <div class="@BottomRowStyle">
                 <table class="up4 right14">
                     <tr>
@@ -309,7 +352,7 @@
                             }
                             else
                             {
-                                <Label FontSize=10 LabelColor="Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
+                                <Label FontSize=11 LabelColor="Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
                                        Width="64" Height="12" Text="@DateTitle" Position="relative" Top="2" Left="-8"></Label>
                             }
                         </td>

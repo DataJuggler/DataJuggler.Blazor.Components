@@ -108,6 +108,10 @@ namespace DataJuggler.Blazor.Components
         private double textBoxFontSize;
         private YearSelectorAlignmentEnum yearSelectorAlignment;
         private string calendarPosition;
+        private List<CalendarRow> weeks;
+        private double scale;
+        private double headerRowColumnWidth;
+        private string headerRowColumnStyle;
         #endregion
         
         #region Constructor
@@ -137,7 +141,7 @@ namespace DataJuggler.Blazor.Components
                 else if (buttonNumber == 2)
                 {
                     // Previous Year
-                    Dates = CreateDates(ThisMonth.Year - 1, ThisMonth.Month);
+                    CreateDates(ThisMonth.Year - 1, ThisMonth.Month);
                 }
                 else if (buttonNumber == 3)
                 {
@@ -145,7 +149,7 @@ namespace DataJuggler.Blazor.Components
                     DateTime tempDate = ThisMonth.AddMonths(-1);
 
                     // Previous Month
-                    Dates = CreateDates(tempDate.Year, tempDate.Month);
+                    CreateDates(tempDate.Year, tempDate.Month);
                 }
                 else if (buttonNumber == 4)
                 {
@@ -155,12 +159,12 @@ namespace DataJuggler.Blazor.Components
                     DateTime tempDate = ThisMonth.AddMonths(1);
 
                     // Recreate the Date
-                    Dates = CreateDates(tempDate.Year, tempDate.Month);
+                    CreateDates(tempDate.Year, tempDate.Month);
                 }
                 else if (buttonNumber == 5)
                 {
                     // Next Year
-                    Dates = CreateDates(ThisMonth.Year + 1, ThisMonth.Month);
+                    CreateDates(ThisMonth.Year + 1, ThisMonth.Month);
                 }
 
                 // Update the UI
@@ -190,10 +194,10 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// returns a list of Dates
             /// </summary>
-            public List<DayObject> CreateDates(int year, int month)
+            public void CreateDates(int year, int month)
             {
                 // initial value
-                List<DayObject> dates =  new List<DayObject>();
+                Dates = new List<DayObject>();
 
                 // locals
                 DateTime now = DateTime.Now;
@@ -277,8 +281,8 @@ namespace DataJuggler.Blazor.Components
                     dates.Add(dayObject);
                 }
 
-                // return value
-                return dates;
+                // Set the CurrentWeeks
+                Weeks = GetWeeks();
             }
             #endregion
             
@@ -463,6 +467,49 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region GetWeeks()
+            /// <summary>
+            /// returns a list of Weeks
+            /// </summary>
+            public List<CalendarRow> GetWeeks()
+            {
+                // initial value
+                List<CalendarRow> weeks = new List<CalendarRow>();
+
+                // Create a CalendarRow
+                CalendarRow currentWeek = new CalendarRow();
+
+                // If the Dates collection exists and has one or more items
+                if (ListHelper.HasOneOrMoreItems(Dates))
+                {
+                    for (int i = 0; i < Dates.Count; i++)
+                    {
+                        if (i % 7 == 0 && i != 0)
+                        {
+                            // Add this week
+                            weeks.Add(currentWeek);
+
+                            // Set the new currentWeek
+                            currentWeek = new CalendarRow();
+                        }
+
+                        // Add this DayObject to the currentWeek
+                        currentWeek.Days.Add(Dates[i]);
+                    }
+
+                    // Add the last week if it has any days
+                    if (currentWeek.Days.Count > 0)
+                    {
+                        // Add this week
+                        weeks.Add(currentWeek);
+                    }
+                }
+                
+                // return value
+                return weeks;
+            }
+            #endregion
+            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -476,7 +523,7 @@ namespace DataJuggler.Blazor.Components
                 DateTime now = DateTime.Now;
 
                 // Create the dates
-                Dates = CreateDates(now.Year, now.Month);
+                CreateDates(now.Year, now.Month);
 
                 // Default
                 Caption = "Date:";
@@ -484,7 +531,7 @@ namespace DataJuggler.Blazor.Components
                 // Set the Unit
                 Unit = "px";
                 HeightUnit = "px";
-                Height = 146;
+                Height = 136;
                 Width = 224;
                 ButtonHeight = 26;
                 ButtonWidth = 24;
@@ -503,7 +550,7 @@ namespace DataJuggler.Blazor.Components
                 Top = -58;
                 LabelClassName = "down4 right2";
                 TextBoxWidth= 124;
-                ZIndex = 20;
+                ZIndex = 200;
                 RowHeight = 16;
                 TextBoxHeight = 24;
                 TextBoxFontSize = 14;
@@ -514,7 +561,8 @@ namespace DataJuggler.Blazor.Components
                 YearButtonTextColor = Color.Black;
                 YearButtonTextColorSelected = Color.White;                
                 YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;
-            
+                Scale = 100;
+                
                 // Buttons
                 NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
                 NextMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRNextSmall.png";
@@ -637,7 +685,7 @@ namespace DataJuggler.Blazor.Components
                 SelectedDate = new DateTime(year, month, day);
 
                 // Create the Dates
-                Dates = CreateDates(SelectedDate.Year, SelectedDate.Month);
+                CreateDates(SelectedDate.Year, SelectedDate.Month);
 
                 // Redraw the Component
                 SetupComponent();
@@ -663,7 +711,7 @@ namespace DataJuggler.Blazor.Components
                     TextBox.SetTextValue(SelectedDate.ToShortDateString());
 
                     // Create the Dates
-                    Dates = CreateDates(date.Year, date.Month);
+                    CreateDates(date.Year, date.Month);
                 }
             }
 
@@ -1452,6 +1500,34 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasWeeks
+            /// <summary>
+            /// This property returns true if this object has a 'Weeks'.
+            /// </summary>
+            public bool HasWeeks
+            {
+                get
+                {
+                    // initial value
+                    bool hasWeeks = (this.Weeks != null);
+                    
+                    // return value
+                    return hasWeeks;
+                }
+            }
+            #endregion
+            
+            #region HeaderRowColumnStyle
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderRowColumnStyle'.
+            /// </summary>
+            public string HeaderRowColumnStyle
+            {
+                get { return headerRowColumnStyle; }
+                set { headerRowColumnStyle = value; }
+            }
+            #endregion
+            
             #region Height
             /// <summary>
             /// This property gets or sets the value for 'Height'.
@@ -1701,6 +1777,39 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Scale
+            /// <summary>
+            /// This property gets or sets the value for 'Scale'.
+            /// </summary>
+            [Parameter]
+            public double Scale
+            {
+                get { return scale; }
+                set { scale = value; }
+            }
+            #endregion
+
+            #region ScaleValue
+            /// <summary>
+            /// This read only property returns the value of Scale times .01
+            /// </summary>
+            public double ScaleValue
+            {
+                
+                get
+                {
+                    // initial value
+                    double scaleValue = Scale * .01;
+
+                    // Round to 2 digits just in case
+                    scaleValue = Math.Round(scaleValue, 2);
+                    
+                    // return value
+                    return scaleValue;
+                }
+            }
+            #endregion
+            
             #region SelectedColor
             /// <summary>
             /// This property gets or sets the value for 'SelectedColor'.
@@ -1891,6 +2000,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+            
+            #region Weeks
+            /// <summary>
+            /// This property gets or sets the value for 'Weeks'.
+            /// </summary>
+            public List<CalendarRow> Weeks
+            {
+                get { return weeks; }
+                set { weeks = value; }
             }
             #endregion
             
@@ -2199,6 +2319,24 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return zIndex; }
                 set { zIndex = value; }
+            }
+            #endregion
+            
+            #region ZIndexPlus1
+            /// <summary>
+            /// This read only property returns the value of ZIndexPlus1 from the object ZIndex.
+            /// </summary>
+            public int ZIndexPlus1
+            {
+                
+                get
+                {
+                    // initial value
+                    int zIndexPlus1 = ZIndex + 1;
+                    
+                    // return value
+                    return zIndexPlus1;
+                }
             }
             #endregion
             
