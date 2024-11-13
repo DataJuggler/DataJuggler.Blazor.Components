@@ -109,8 +109,7 @@ namespace DataJuggler.Blazor.Components
         private YearSelectorAlignmentEnum yearSelectorAlignment;
         private string calendarPosition;
         private List<CalendarRow> weeks;
-        private double scale;
-        private double headerRowColumnWidth;
+        private double scale;       
         private string headerRowColumnStyle;
         #endregion
         
@@ -288,7 +287,7 @@ namespace DataJuggler.Blazor.Components
             
             #region DateSelected(DayObject date)
             /// <summary>
-            /// Date Selected
+            /// A date was selected. This method sets the selected date and closes the Calendar.
             /// </summary>
             public void DateSelected(DayObject date)
             {
@@ -1483,23 +1482,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region HasThisDecade
-            /// <summary>
-            /// This property returns true if this object has a 'ThisDecade'.
-            /// </summary>
-            public bool HasThisDecade
-            {
-                get
-                {
-                    // initial value
-                    bool hasThisDecade = (this.ThisDecade != null);
-                    
-                    // return value
-                    return hasThisDecade;
-                }
-            }
-            #endregion
-            
             #region HasWeeks
             /// <summary>
             /// This property returns true if this object has a 'Weeks'.
@@ -1935,9 +1917,9 @@ namespace DataJuggler.Blazor.Components
 
             #region Decade ThisDecade()
             /// <summary>
-            /// returns the . This Decade
+            /// returns . This Decade
             /// </summary>
-            public Decade ThisDecade
+            public static Decade ThisDecade
             {
                 get
                 {

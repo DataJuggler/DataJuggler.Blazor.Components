@@ -1,5 +1,8 @@
 News
 
+11.13.2024: This project has been updated to .NET 9. Also, EPPPlus has been removed from
+DataJuggler.Excelerate, so the package vunlernabilities are gone.
+
 10.4.2024: A new video was published
 
 DataJuggler.Blazor.Components Grand Update

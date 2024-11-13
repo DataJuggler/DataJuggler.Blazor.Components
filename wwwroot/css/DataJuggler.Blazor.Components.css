@@ -584,21 +584,79 @@
 }
 .border1
 {
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
+    border-width: 1px;    
 }
 .border2
 {
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
+    border-width: 2px;        
 }
 .border3
 {
-    border-width: 1px;
+    border-width: 3px;    
+}
+.borderright1
+{
+    border-right: 1px;
+}
+.borderright2
+{
+    border-right: 2px;
+}
+.borderright3
+{
+    border-right: 3px;
+}
+.borderleft1
+{
+    border-left: 1px;
+}
+.borderleft2
+{
+    border-left: 2px;
+}
+.borderleft3
+{
+    border-left: 3px;
+}
+.bordertop1
+{
+    border-top: 1px;
+}
+.bordertop2
+{
+    border-top: 2px;
+}
+.bordertop3
+{
+    border-top: 3px;
+}
+.borderbottom1
+{
+    border-bottom: 1px;
+}
+.borderbottom2
+{
+    border-bottom: 2px;
+}
+.borderbottom3
+{
+    border-bottom: 3px;
+}
+.bordercolorblack
+{
     border-color: black;
-    border-style: solid;
+}
+.bordercolorgray
+{
+    border-color: gray;
+}
+.bordercolorred
+{
+    border-color: red;
+}
+.bordercolorwhite
+{
+    border-color: white;
 }
 .clear
 {

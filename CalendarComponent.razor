@@ -386,7 +386,7 @@
                         <button class="@YearButtonStyle border0" @onclick="() => SelectDecade(decade)">@decade.Name</button>
                     }
                 }
-                @if ((HasThisDecade) && (!HasSelectedDecade))
+                @if (!HasSelectedDecade)
                 {
                     // Select this Decade
                     SelectedDecade = ThisDecade;
