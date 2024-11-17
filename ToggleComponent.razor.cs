@@ -140,6 +140,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetOnValue(bool onValue)
+            /// <summary>
+            /// Set On Value
+            /// </summary>
+            public void SetOnValue(bool onValue)
+            {
+                // Set the Value of On
+                On = onValue;
+            }
+            #endregion
+            
             #region Toggle()
             /// <summary>
             /// Toggle

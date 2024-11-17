@@ -16,7 +16,6 @@ Note the OvalWidth is the OvalWidth + (Oval End Width x 2) = 56.   24 + (16 * 2)
 Other notable properties include
 1. OvalEndWidth which defaults to 16.
 2. OvalRadius which defaults to 50%.
-3. Scale - The scale of the entire component, including the Caption. This value must be greater than 0 and defaults to 100 (normal size)
 
 Note - I recently built a new project called Doc Gen, which reads a Visual Studio solution and will help me build
 better documentation, coming soon.
