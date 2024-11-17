@@ -105,6 +105,7 @@ namespace DataJuggler.Blazor.Components
                 // The end of the oval have their own width
                 OvalEndWidth = 16;
                 OvalWidth = 48;
+                OvalRadius = 50;
                 
                 // Default On or Off positions
                 CircleLeftOff = -35;
