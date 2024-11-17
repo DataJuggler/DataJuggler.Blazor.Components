@@ -26,16 +26,20 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
-        private string labelColor;
-        private string labelClassName;
-        private string textBoxClassName;
-        private string imageClassName;
-        private string labelBackgroundColor;
-        private string textBoxBackColor;
-        private string labelStyle;
-        private bool isValid;
         private string caption;
-        private string text;        
+        private double fontSize;
+        private double height;
+        private string labelClassName;
+        private string labelBackgroundColor;
+        private string labelColor;
+        private double labelTop;
+        private double labelLeft;
+        private string labelStyle;
+        private string imageClassName;
+        private bool isValid;
+        private string text;
+        private string textBoxBackColor;
+        private string textBoxClassName;
         private bool isRequired;
         private bool isIntegerRequired;
         private bool isDoubleRequired;
@@ -56,15 +60,13 @@ namespace DataJuggler.Blazor.Components
         private string imageUrl;
         private bool showImage;
         private bool isUnique;        
-        private double imageScale;        
-        private double fontSize;        
-        private double height;        
+        private double imageScale;
         private double width;        
         private string name;
         private double left;
         private double top;
         private double labelWidth;
-        private double labelFontSize;        
+        private double labelFontSize;
         private string labelFontSizeUnit;        
         private int zIndex;
         private string position;
@@ -79,9 +81,7 @@ namespace DataJuggler.Blazor.Components
         private ElementReference innerControl;
         private bool visible;
         private string display;
-        private bool sendAllTextToParent;
-        private double labelTop;
-        private double labelLeft;
+        private bool sendAllTextToParent;        
         private string fontSizeUnit;
         private string backgroundColor;
         private double imageWidth;
@@ -103,7 +103,7 @@ namespace DataJuggler.Blazor.Components
         private string column3Style;
         private string textBoxStyle;        
         private string imageStyle;
-        private string validationControlStyle;
+        private string textBoxControlStyle;
         private string bottomMarginStyle;        
         private double borderWidth;
         private string borderColor;
@@ -1980,6 +1980,17 @@ namespace DataJuggler.Blazor.Components
                 set { textBoxClassName = value; }
             }
             #endregion
+
+            #region TextBoxControlStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ValidationControlStyle'.
+            /// </summary>
+            public string TextBoxControlStyle
+            {
+                get { return textBoxControlStyle; }
+                set { textBoxControlStyle = value; }
+            }
+            #endregion
             
             #region TextBoxStyle
             /// <summary>
@@ -2071,17 +2082,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set {unit = value;}
-            }
-            #endregion
-            
-            #region ValidationControlStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ValidationControlStyle'.
-            /// </summary>
-            public string ValidationControlStyle
-            {
-                get { return validationControlStyle; }
-                set { validationControlStyle = value; }
             }
             #endregion
             

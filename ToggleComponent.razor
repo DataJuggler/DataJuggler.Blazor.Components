@@ -1,0 +1,89 @@
+﻿@using BlazorStyled
+
+<Styled @bind-Classname=@Column1Style>
+    display: inline-block;
+    height: 100%;
+    background-color: @LabelBackgroundColor;
+    color: @LabelColor;
+    font-size: @LabelFontSizeStyle;
+    text-align: right;
+    width: @Column1WidthStyle;
+    position: @LabelPosition;
+    top: @LabelTopStyle;
+    left: @LabelLeftStyle;
+    z-index: @ZIndexMinus1;
+    justify-content: left;    
+</Styled>
+<Styled @bind-Classname="@ComponentStyle">
+    width: @WidthStyle;
+    height: @HeightStyle;
+    display: flex;
+    align-items: center;    
+    border: none;
+    outline: none;
+    z-index: @ZIndex;
+    cursor: pointer;
+    transform: scale(@ScaleValue);
+    transform-origin: top left;
+</Styled>
+<Styled @bind-Classname="@OvalLeft">
+    width: @OvalEndWidthStyle;
+    max-width: @OvalEndWidthStyle;
+    height: @HeightStyle;        
+    border: none;
+    outline: none;
+    border-bottom-left-radius: @OvalRadiusStyle;
+    border-top-left-radius: @OvalRadiusStyle;
+    background-color: @BackgroundColor.Name;
+    z-index: @ZIndexPlus1;
+    cursor: pointer;
+</Styled>
+<Styled @bind-Classname="@OvalMiddle">
+    width: @OvalWidthStyle;
+    min-width: @OvalWidthStyle;
+    height: @HeightStyle;    
+    border: none;
+    outline: none;
+    background-color: @BackgroundColor.Name;
+    z-index: @ZIndexPlus1;
+    cursor: pointer;
+</Styled>
+<Styled @bind-Classname="@OvalRight">
+    width: @OvalEndWidthStyle;
+    max-width: @OvalEndWidthStyle;
+    height: @HeightStyle;    
+    border: none;
+    outline: none;
+    border-bottom-right-radius: @OvalRadiusStyle;
+    border-top-right-radius: @OvalRadiusStyle;
+    background-color: @BackgroundColor.Name;
+    z-index: @ZIndexPlus1;
+    cursor: pointer;
+</Styled>
+<Styled @bind-Classname="@ButtonStyle">
+    width: @CircleWidthStyle;
+    height: @CircleHeightStyle;
+    z-index: @ZIndexPlus2;
+    border-radius: 50%;    
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: @CircleColor.Name;
+    position: relative;
+    left: @CircleLeftStyle;
+</Styled>
+
+<div class="@ComponentStyle">
+    @if (ShowCaption)
+    {
+        <div class="@Column1Style">
+            <div class="@LabelClassName">@Caption</div>
+        </div>
+    }
+    <button class="@OvalLeft" @onclick="Toggle"></button>
+    <button class="@OvalMiddle" @onclick="Toggle"></button>
+    <button class="@OvalRight" @onclick="Toggle"></button>
+    <button class="@ButtonStyle" @onclick="Toggle"></button>
+    @* <ImageButton Height="@CircleHeight" Width="@CircleWidth" Position="Relative" Left="@CircleLeft" Top="@CircleTop"
+        ImageUrl="@ImageUrl" ZIndex="40" ></ImageButton> *@
+</div>

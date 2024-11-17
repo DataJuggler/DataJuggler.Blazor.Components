@@ -1,5 +1,27 @@
 News
 
+11.17.2024: New Toggle Component. The Toggle Component makes it simple to place a Label and Toggle Component
+on a page. Here is an example of using the Toggle Component.
+
+From Open Source Project NTouch
+https://github.com/DataJuggler/NTouch
+
+    <ToggleComponent Parent="this" Width="60" CircleColor="@Color.Orange"
+        CircleWidth="12" CircleHeight="12" Caption="Subscriber: " OvalWidth="24"
+        BackgroundColorOn="Color.CornflowerBlue" BackgroundColorOff="@Color.Gray"></ToggleComponent>
+
+You can customize the Oval Size and Color for the on state and color for the off state.
+Note the OvalWidth is the OvalWidth + (Oval End Width x 2) = 56.   24 + (16 * 2) in this case.                                       
+
+Other notable properties include
+1. OvalEndWidth which defaults to 16.
+2. OvalRadius which defaults to 50%.
+3. Scale - The scale of the entire component, including the Caption. This value must be greater than 0 and defaults to 100 (normal size)
+
+Note - I recently built a new project called Doc Gen, which reads a Visual Studio solution and will help me build
+better documentation, coming soon.
+
+
 11.13.2024: This project has been updated to .NET 9. Also, EPPPlus has been removed from
 DataJuggler.Excelerate, so the package vunlernabilities are gone.
 

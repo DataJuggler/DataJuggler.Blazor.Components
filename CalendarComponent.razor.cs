@@ -552,8 +552,8 @@ namespace DataJuggler.Blazor.Components
                 ZIndex = 200;
                 RowHeight = 16;
                 TextBoxHeight = 24;
-                TextBoxFontSize = 14;
-                LabelFontSize = 14;
+                TextBoxFontSize = 12;
+                LabelFontSize = 12;
                 Theme = ThemeEnum.BlueGold;
                 YearButtonWidth = 24;
                 SelectedColor = Color.Firebrick;
