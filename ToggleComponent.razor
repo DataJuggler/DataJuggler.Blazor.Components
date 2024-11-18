@@ -7,6 +7,8 @@
     color: @LabelColor;
     font-size: @LabelFontSizeStyle;
     text-align: right;
+    display: flex;
+    align-items: center;
     width: @Column1WidthStyle;
     position: @LabelPosition;
     top: @LabelTopStyle;
@@ -17,13 +19,8 @@
 </Styled>
 <Styled @bind-Classname="@ComponentStyle">
     width: @WidthStyle;
-    height: @HeightStyle;
-    display: flex;
-    align-items: center;    
-    border: none;
-    outline: none;
-    z-index: @ZIndex;
-    cursor: pointer;
+    height: @HeightStyle;    
+    z-index: @ZIndex;    
 </Styled>
 <Styled @bind-Classname="@OvalLeftButtonStyle">
     width: @OvalEndWidthStyle;
@@ -74,9 +71,15 @@
 <Styled @bind-Classname="@OvalStyle">
     position: @OvalPosition;
     left: @OvalLeftStyle;
+    top: @OvalTopStyle;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
 </Styled>
 
-<div class="@ComponentStyle">
+<div class="@ComponentStyle textdonotwrap">
     @if (ShowCaption)
     {
         <div class="@Column1Style">

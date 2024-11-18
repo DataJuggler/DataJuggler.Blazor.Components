@@ -25,7 +25,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is designed to make a DropDownList easier to work with.
     /// </summary>
-    public partial class ComboBox : ComponentBase, IBlazorComponent, IBlazorComponentParent
+    public partial class ComboBox : ComponentBase, IBlazorComponent, IBlazorComponentParent, ILabelFont
     {
         
         #region Private Variables
@@ -91,6 +91,7 @@ namespace DataJuggler.Blazor.Components
         private double checkedListWidth;
         private double labelFontSize;        
         private string labelFontSizeUnit;
+        private string labelFontName;
         private double textBoxWidth;
         private double column1Width;
         private double column2Width;
@@ -387,6 +388,8 @@ namespace DataJuggler.Blazor.Components
                 TextBoxHeight = 2;
 
                 // Set the Fonts
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelFontName = GlobalDefaults.LabelFontName;
                 FontSize = 12;
                 FontUnit = "px";
                 
@@ -1954,6 +1957,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region LabelFontName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontName'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontName
+            {
+                get { return labelFontName; }
+                set { labelFontName = value; }
+            }
+            #endregion
+            
             #region LabelFontSize
             /// <summary>
             /// This property gets or sets the value for 'LabelFontSize'.

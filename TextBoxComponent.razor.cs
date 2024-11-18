@@ -22,7 +22,7 @@ namespace DataJuggler.Blazor.Components
     /// The validation component is just a way to display a valid or not valid to make the UI
     /// appear different.
     /// </summary>
-    public partial class TextBoxComponent : IBlazorComponent
+    public partial class TextBoxComponent : IBlazorComponent, ILabelFont
     {
         
         #region Private Variables
@@ -67,6 +67,7 @@ namespace DataJuggler.Blazor.Components
         private double top;
         private double labelWidth;
         private double labelFontSize;
+        private string labelFontName;
         private string labelFontSizeUnit;        
         private int zIndex;
         private string position;
@@ -207,9 +208,10 @@ namespace DataJuggler.Blazor.Components
                 InvalidLabelColor = "Tomato";
                 LabelBackgroundColor = "transparent";
                 LabelColor="Black";
-                LabelWidth= 30;
-                LabelFontSize = 12;
+                LabelWidth= 30;                
                 LabelFontSizeUnit = "px";
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelFontName = GlobalDefaults.LabelFontName;
                 Left = 0;
                 MarginLeft = 1.2;
                 MarginBottom = 8;
@@ -1376,6 +1378,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelColor; }
                 set { labelColor = value; }
+            }
+            #endregion
+            
+            #region LabelFontName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontName'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontName
+            {
+                get { return labelFontName; }
+                set { labelFontName = value; }
             }
             #endregion
             

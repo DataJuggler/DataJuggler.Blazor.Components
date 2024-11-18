@@ -23,7 +23,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is the code behind for the CalendarComponent
     /// </summary>
-    public partial class CalendarComponent : IBlazorComponent, IBlazorComponentParent
+    public partial class CalendarComponent : IBlazorComponent, IBlazorComponentParent, ILabelFont
     {
         
         #region Private Variables
@@ -70,6 +70,7 @@ namespace DataJuggler.Blazor.Components
         private double dayRowHeight;
         private DateTime selectedDate;
         private double labelFontSize;
+        private string labelFontName;
         private TextBoxComponent textBox;
         private string prevYearButtonUrl;
         private string nextYearButtonUrl;
@@ -552,8 +553,7 @@ namespace DataJuggler.Blazor.Components
                 ZIndex = 200;
                 RowHeight = 16;
                 TextBoxHeight = 24;
-                TextBoxFontSize = 12;
-                LabelFontSize = 12;
+                TextBoxFontSize = 12;                
                 Theme = ThemeEnum.BlueGold;
                 YearButtonWidth = 24;
                 SelectedColor = Color.Firebrick;
@@ -561,6 +561,10 @@ namespace DataJuggler.Blazor.Components
                 YearButtonTextColorSelected = Color.White;                
                 YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;
                 Scale = 100;
+
+                // Initialize Label Font
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelFontName = GlobalDefaults.LabelFontName;
                 
                 // Buttons
                 NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -1560,6 +1564,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelClassName; }
                 set { labelClassName = value; }
+            }
+            #endregion
+            
+            #region LabelFontName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontName'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontName
+            {
+                get { return labelFontName; }
+                set { labelFontName = value; }
             }
             #endregion
             

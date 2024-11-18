@@ -17,7 +17,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is used to display and edit an On / Off state.
     /// </summary>
-    public partial class ToggleComponent : IBlazorComponent
+    public partial class ToggleComponent : IBlazorComponent, ILabelFont
     {
         
         #region Private Variables
@@ -59,6 +59,7 @@ namespace DataJuggler.Blazor.Components
         private double ovalRadius;
         private string ovalPosition;
         private double ovalLeft;
+        private double ovalTop;
         private string ovalStyle;
 
         // Label
@@ -97,21 +98,21 @@ namespace DataJuggler.Blazor.Components
             {  
                 // Defaults - adjust as needed
                 Height = 24;
-                Width = 80;
+                Width = 160;
                 CircleHeight = 16;
                 CircleWidth = 16;
                 Unit = "px";
                 HeightUnit = "px";
                 ZIndex = 20;
                 On = true;
-                Scale = 100;
-
+                
                 // The end of the oval have their own width
                 OvalEndWidth = 16;
                 OvalWidth = 48;
                 OvalRadius = 50;
                 OvalPosition = "relative";
-                OvalLeft = 0;
+                OvalLeft = 24;
+                OvalTop = -22;
                 
                 // Default On or Off positions
                 CircleLeftOff = -35;
@@ -121,10 +122,10 @@ namespace DataJuggler.Blazor.Components
                 // Label
                 LabelPosition = "relative";
                 Column1Width = 60;
-                LabelFontSize = 12;
-                LabelFontName = "Verdana";
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSizeUnit = "px";
-                LabelLeft = -48;
+                LabelLeft = -64;
                 LabelTop = 4;
 
                 // Set default colors
@@ -878,6 +879,36 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return ovalStyle; }
                 set { ovalStyle = value; }
+            }
+            #endregion
+            
+            #region OvalTop
+            /// <summary>
+            /// This property gets or sets the value for 'OvalTop'.
+            /// </summary>
+            [Parameter]
+            public double OvalTop
+            {
+                get { return ovalTop; }
+                set { ovalTop = value; }
+            }
+            #endregion
+            
+            #region OvalTopStyle
+            /// <summary>
+            /// This read only property returns the value of OvalTop + HeightUnit
+            /// </summary>
+            public string OvalTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string ovalTopStyle = OvalTop + HeightUnit;
+                    
+                    // return value
+                    return ovalTopStyle;
+                }
             }
             #endregion
             
