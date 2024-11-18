@@ -130,7 +130,7 @@ namespace DataJuggler.Blazor.Components
 
                 // Set default colors
                 BackgroundColorOn = Color.CornflowerBlue;
-                BackgroundColorOff = Color.Gray;
+                BackgroundColorOff = Color.DimGray;
                 CircleColor = Color.GhostWhite;
 
                 // Default ImageUrl
@@ -926,8 +926,16 @@ namespace DataJuggler.Blazor.Components
                     // set the value
                     ovalWidth = value;
 
-                    // Set the value for CircleLeftOff
-                    CircleLeftOff = -ovalWidth - 22;
+                    // if > 24
+                    if (ovalWidth > 24)
+                    {
+                        CircleLeftOff = -ovalWidth - 22;
+                    }
+                    else
+                    {
+                        int adjustment = 24 - (int) ovalWidth;
+                        CircleLeftOff = -ovalWidth - 22 - adjustment;
+                    }
                 }
             }
             #endregion

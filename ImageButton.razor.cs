@@ -100,7 +100,8 @@ namespace DataJuggler.Blazor.Components
                 Left = 0;
                 Top = 0;
                 ZIndex = 5;
-                Visible = true;            
+                Visible = true;
+                Position = "relative";
                 ButtonTextAlign = "center";
             }
             #endregion
