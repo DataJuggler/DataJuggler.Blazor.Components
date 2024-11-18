@@ -23,7 +23,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is the code behind for the CalendarComponent
     /// </summary>
-    public partial class CalendarComponent : IBlazorComponent, IBlazorComponentParent, ILabelFont
+    public partial class CalendarComponent : IBlazorComponent, IBlazorComponentParent, ILabelFont, ITextBoxFont
     {
         
         #region Private Variables
@@ -107,6 +107,7 @@ namespace DataJuggler.Blazor.Components
         private double yearSelectorLeft;
         private double yearSelectorTop;
         private double textBoxFontSize;
+        private string textBoxFontName;
         private YearSelectorAlignmentEnum yearSelectorAlignment;
         private string calendarPosition;
         private List<CalendarRow> weeks;
@@ -553,7 +554,9 @@ namespace DataJuggler.Blazor.Components
                 ZIndex = 200;
                 RowHeight = 16;
                 TextBoxHeight = 24;
-                TextBoxFontSize = 12;                
+                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                TextBoxFontName = GlobalDefaults.TextBoxFontName;
+                
                 Theme = ThemeEnum.BlueGold;
                 YearButtonWidth = 24;
                 SelectedColor = Color.Firebrick;
@@ -1868,6 +1871,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBox; }
                 set { textBox = value; }
+            }
+            #endregion
+            
+            #region TextBoxFontName
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxFontName'.
+            /// </summary>
+            [Parameter]
+            public string TextBoxFontName
+            {
+                get { return textBoxFontName; }
+                set { textBoxFontName = value; }
             }
             #endregion
             
