@@ -11,6 +11,7 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using DataJuggler.Blazor.Components.Delegates;
+using NPOI.SS.UserModel;
 
 #endregion
 
@@ -22,12 +23,15 @@ namespace DataJuggler.Blazor.Components
     /// The validation component is just a way to display a valid or not valid to make the UI
     /// appear different.
     /// </summary>
-    public partial class TextBoxComponent : IBlazorComponent, ILabelFont
+    public partial class TextBoxComponent : IBlazorComponent, ILabelFont, ITextBoxFont 
     {
         
         #region Private Variables
         private string caption;
         private double fontSize;
+        private string fontName;
+        private double textBoxFontSize;
+        private string textBoxFontName;
         private double height;
         private string labelClassName;
         private string labelBackgroundColor;
@@ -199,7 +203,8 @@ namespace DataJuggler.Blazor.Components
                 ImageScale = 1.6;                                            
                 TextBoxWidth = 120;
                 Unit = "px";
-                FontSize = 12;
+                FontSize = GlobalDefaults.TextBoxFontSize;
+                FontName = GlobalDefaults.TextBoxFontName;
                 FontSizeUnit="px";
                 Height= 24;
                 HeightUnit = "px";
@@ -231,6 +236,8 @@ namespace DataJuggler.Blazor.Components
                 BorderWidth = 1;
                 BorderColor = "black";
                 HandleChangeOption = HandleChangeEnum.OnKeyDown;
+                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                TextBoxFontName = GlobalDefaults.TextBoxFontName;
             }
             #endregion
             
@@ -937,6 +944,26 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set 
+                {
+                    // Set the FontName
+                    fontName = value;
+
+                    // Set Both
+                    LabelFontName = value;
+                    TextBoxFontName = value;
+                }
+            }
+            #endregion
+            
             #region FontSize
             /// <summary>
             /// This property gets or sets the value for 'FontSize'.
@@ -945,7 +972,15 @@ namespace DataJuggler.Blazor.Components
             public double FontSize
             {
                 get { return fontSize; }
-                set {fontSize = value; }
+                set 
+                {
+                    // Set the fontSize
+                    fontSize = value;
+
+                    // Set Both
+                    LabelFontSize = value;
+                    TextBoxFontSize = value;
+                }
             }
             #endregion
            
@@ -2003,6 +2038,48 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxControlStyle; }
                 set { textBoxControlStyle = value; }
+            }
+            #endregion
+            
+            #region TextBoxFontName
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxFontName'.
+            /// </summary>
+            [Parameter]
+            public string TextBoxFontName
+            {
+                get { return textBoxFontName; }
+                set { textBoxFontName = value; }
+            }
+            #endregion
+            
+            #region TextBoxFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxFontSize'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxFontSize
+            {
+                get { return textBoxFontSize; }
+                set { textBoxFontSize = value; }
+            }
+            #endregion
+            
+            #region TextBoxFontSizeStyle
+            /// <summary>
+            /// This read only property returns the value of TextBoxFontSizeStyle from the object TextBoxFontSize.
+            /// </summary>
+            public string TextBoxFontSizeStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string textBoxFontSizeStyle = TextBoxFontSize + Unit;
+                    
+                    // return value
+                    return textBoxFontSizeStyle;
+                }
             }
             #endregion
             

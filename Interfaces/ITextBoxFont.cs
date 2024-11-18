@@ -9,11 +9,11 @@ using System.Collections.Generic;
 namespace DataJuggler.Blazor.Components.Interfaces
 {
 
-    #region interface IValueFont
+    #region interface ITextBoxFont
     /// <summary>
     /// The purpose of this interface is to set all the TextBoxes to the same Font Size and Font Name (Family)
     /// </summary>
-    public interface IValueFont
+    public interface ITextBoxFont
     {
 
         #region Properties

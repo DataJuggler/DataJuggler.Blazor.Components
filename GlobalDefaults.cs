@@ -35,6 +35,20 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public const double LabelFontSize = 14;
             #endregion
+
+            #region TextBoxFontName
+            /// <summary>
+            /// This property returns the Default Font Name for TextBoxs
+            /// </summary>
+            public const string TextBoxFontName = "Calibri";
+            #endregion
+            
+            #region TextBoxFontSize
+            /// <summary>
+            /// This property returns the Default Font Size for TextBoxs
+            /// </summary>
+            public const double TextBoxFontSize = 14;
+            #endregion
             
         #endregion
         

@@ -3,40 +3,6 @@
 @using BlazorStyled
 @using System.Drawing
 
-<Styled @bind-Classname=@LabelStyle>
-    display: inline-block;
-    font-size: @LabelFontSizeStyle;
-    font-family: @LabelFontName;
-    text-align: right;
-    background-color: @LabelBackColor;
-    margin-right: @LabelMarginRightStyle !important;
-    color: @LabelColorName;
-    white-space: nowrap;
-    width: @LabelWidthStyle;
-    min-width: @LabelWidthStyle;
-    max-width: @LabelWidthStyle;
-    z-index: @ZIndexMinusStyle;
-    position: @LabelPosition;
-    left: @LabelLeftStyle;
-    top: @LabelTopStyle;
-</Styled>
-<Styled @bind-Classname=@ComboboxStyle>
-    display: inline-block;
-    height: @HeightStyle;
-    max-height: @HeightStyle;
-    min-height: @HeightStyle;
-    width: @WidthStyle;
-    min-width: @WidthStyle;
-    max-width: @WidthStyle;
-    font-size: @LabelFontSizeStyle;
-    justify-content: left;
-    text-align: center;
-    z-index: @ZIndex;
-    position: @Position;
-    left: @LeftStyle;
-    top: @TopStyle;
-    overflow: visible;
-</Styled>
 <Styled @bind-Classname=@ListItemStyle>
     font-family: Calibri;
     text-align: left;
@@ -104,6 +70,8 @@
                     <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
                         ClassName="displayinline" Column1Width="@Column1Width" OnTextChangedCallback="OnTextChanged"
                         Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth"
+                        LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize"
+                        TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
                         SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
                         Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
                     </TextBoxComponent>

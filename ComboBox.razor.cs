@@ -25,7 +25,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is designed to make a DropDownList easier to work with.
     /// </summary>
-    public partial class ComboBox : ComponentBase, IBlazorComponent, IBlazorComponentParent, ILabelFont
+    public partial class ComboBox : ComponentBase, IBlazorComponent, IBlazorComponentParent, ILabelFont, ITextBoxFont
     {
         
         #region Private Variables
@@ -121,10 +121,11 @@ namespace DataJuggler.Blazor.Components
         private double controlWidth;
         private double controlHeight;
         private string dropdownClassName;
+        private double textBoxFontSize;
+        private string textBoxFontName;
+        private string fontName;
         
-        // Had to bring back BlazorStyled
-        private string labelStyle;
-        private string comboboxStyle;
+        // Had to bring back BlazorStyled        
         private string listItemStyle;
         private string buttonStyle;
         private string checkedListBoxStyle;
@@ -390,7 +391,9 @@ namespace DataJuggler.Blazor.Components
                 // Set the Fonts
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
-                FontSize = 12;
+                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                TextBoxFontName = GlobalDefaults.TextBoxFontName;
+                FontSize = GlobalDefaults.TextBoxFontSize;
                 FontUnit = "px";
                 
                 // Set so the image is set
@@ -1428,17 +1431,6 @@ namespace DataJuggler.Blazor.Components
                 set { column2Width = value; }
             }
             #endregion
-                 
-            #region ComboboxStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ComboboxStyle'.
-            /// </summary>
-            public string ComboboxStyle
-            {
-                get { return comboboxStyle; }
-                set { comboboxStyle = value; }
-            }
-            #endregion
                 
             #region ContainerStyle
             /// <summary>
@@ -1610,6 +1602,26 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return filterText; }
                 set { filterText = value; }
+            }
+            #endregion
+            
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set 
+                {
+                    // Set the value
+                    fontName = value;
+
+                    // Set Both
+                    LabelFontName = value;
+                    TextBoxFontName = value;
+                }
             }
             #endregion
             
@@ -2107,17 +2119,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelPosition; }
                 set { labelPosition = value; }
-            }
-            #endregion
-            
-            #region LabelStyle
-            /// <summary>
-            /// This property gets or sets the value for 'LabelStyle'.
-            /// </summary>
-            public string LabelStyle
-            {
-                get { return labelStyle; }
-                set { labelStyle = value; }
             }
             #endregion
             
@@ -2654,6 +2655,30 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return textBoxEnabled;
                 }
+            }
+            #endregion
+            
+            #region TextBoxFontName
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxFontName'.
+            /// </summary>
+            [Parameter]
+            public string TextBoxFontName
+            {
+                get { return textBoxFontName; }
+                set { textBoxFontName = value; }
+            }
+            #endregion
+            
+            #region TextBoxFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxFontSize'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxFontSize
+            {
+                get { return textBoxFontSize; }
+                set { textBoxFontSize = value; }
             }
             #endregion
             
