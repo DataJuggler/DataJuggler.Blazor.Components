@@ -33,7 +33,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property returns the Default Font Size for Labels
             /// </summary>
-            public const double LabelFontSize = 12;
+            public const double LabelFontSize = 14;
             #endregion
             
         #endregion

@@ -27,7 +27,7 @@ namespace DataJuggler.Blazor.Components.Interfaces
 
             #region LabelFontSize
             /// <summary>
-            /// This property gets or sets the FontSize
+            /// This property gets or sets the LabelFontSize
             /// </summary>
             public double LabelFontSize { get; set; }
             #endregion

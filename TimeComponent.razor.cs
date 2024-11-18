@@ -22,7 +22,7 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class is used to diisplay and select user input of a time.
     /// </summary>
-    public partial class TimeComponent : IBlazorComponent, IBlazorComponentParent
+    public partial class TimeComponent : IBlazorComponent, IBlazorComponentParent, ILabelFont
     {
         
         #region Private Variables
@@ -62,7 +62,9 @@ namespace DataJuggler.Blazor.Components
         private string colonTextBoxStyle;
         private Label labelComponent;
         private Label aMPMComponent; 
-        private DateTime currentTime;        
+        private DateTime currentTime;
+        private string labelFontName;
+        private double labelFontSize;
         #endregion
         
         #region Constructor
@@ -95,7 +97,8 @@ namespace DataJuggler.Blazor.Components
                 // if 12 - 23
                 if (hour > 11)
                 {
-                    hour = (hour - 12);
+                    // reduce hourss by 12
+                    hour -= 12;
                     
                     // After noon
                     ampm = "PM";
@@ -158,6 +161,8 @@ namespace DataJuggler.Blazor.Components
                 // Default
                 FontSize = 14;
                 FontUnit = "px";
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                labelFontName = GlobalDefaults.LabelFontName;
 
                 // Default Pattern for a Time
                 // Pattern = "(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)";
@@ -816,6 +821,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelComponent; }
                 set { labelComponent = value; }
+            }
+            #endregion
+            
+            #region LabelFontName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontName'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontName
+            {
+                get { return labelFontName; }
+                set { labelFontName = value; }
+            }
+            #endregion
+            
+            #region LabelFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSize'.
+            /// </summary>
+            [Parameter]
+            public double LabelFontSize
+            {
+                get { return labelFontSize; }
+                set { labelFontSize = value; }
             }
             #endregion
             

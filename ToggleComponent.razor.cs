@@ -580,6 +580,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'LabelFontSize'.
             /// </summary>
+            [Parameter]
             public double LabelFontSize
             {
                 get { return labelFontSize; }
