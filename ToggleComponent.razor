@@ -12,7 +12,8 @@
     top: @LabelTopStyle;
     left: @LabelLeftStyle;
     z-index: @ZIndexMinus1;
-    justify-content: left;    
+    justify-content: left;
+    font-family: @LabelFontName;
 </Styled>
 <Styled @bind-Classname="@ComponentStyle">
     width: @WidthStyle;
@@ -24,7 +25,7 @@
     z-index: @ZIndex;
     cursor: pointer;
 </Styled>
-<Styled @bind-Classname="@OvalLeft">
+<Styled @bind-Classname="@OvalLeftButtonStyle">
     width: @OvalEndWidthStyle;
     max-width: @OvalEndWidthStyle;
     height: @HeightStyle;        
@@ -36,7 +37,7 @@
     z-index: @ZIndexPlus1;
     cursor: pointer;
 </Styled>
-<Styled @bind-Classname="@OvalMiddle">
+<Styled @bind-Classname="@OvalMiddleButtonStyle">
     width: @OvalWidthStyle;
     min-width: @OvalWidthStyle;
     height: @HeightStyle;    
@@ -46,7 +47,7 @@
     z-index: @ZIndexPlus1;
     cursor: pointer;
 </Styled>
-<Styled @bind-Classname="@OvalRight">
+<Styled @bind-Classname="@OvalRightButtonStyle">
     width: @OvalEndWidthStyle;
     max-width: @OvalEndWidthStyle;
     height: @HeightStyle;    
@@ -70,6 +71,10 @@
     position: relative;
     left: @CircleLeftStyle;
 </Styled>
+<Styled @bind-Classname="@OvalStyle">
+    position: @OvalPosition;
+    left: @OvalLeftStyle;
+</Styled>
 
 <div class="@ComponentStyle">
     @if (ShowCaption)
@@ -78,10 +83,10 @@
             <div class="@LabelClassName">@Caption</div>
         </div>
     }
-    <button class="@OvalLeft" @onclick="Toggle"></button>
-    <button class="@OvalMiddle" @onclick="Toggle"></button>
-    <button class="@OvalRight" @onclick="Toggle"></button>
-    <button class="@ButtonStyle" @onclick="Toggle"></button>
-    @* <ImageButton Height="@CircleHeight" Width="@CircleWidth" Position="Relative" Left="@CircleLeft" Top="@CircleTop"
-        ImageUrl="@ImageUrl" ZIndex="40" ></ImageButton> *@
+    <div class="@OvalStyle">
+        <button class="@OvalLeftButtonStyle" @onclick="Toggle"></button>
+        <button class="@OvalMiddleButtonStyle" @onclick="Toggle"></button>
+        <button class="@OvalRightButtonStyle" @onclick="Toggle"></button>
+        <button class="@ButtonStyle" @onclick="Toggle"></button>
+    </div>    
 </div>

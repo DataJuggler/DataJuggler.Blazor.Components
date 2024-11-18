@@ -15,7 +15,9 @@ Note the OvalWidth is the OvalWidth + (Oval End Width x 2) = 56.   24 + (16 * 2)
 
 Other notable properties include
 1. OvalEndWidth which defaults to 16.
-2. OvalRadius which defaults to 50%.
+2. OvalRadius which defaults to 50%
+3. OvalPosition - defaults to relative
+4. OvalLeft - Increase this value to move the oval container to the right
 
 Note - I recently built a new project called Doc Gen, which reads a Visual Studio solution and will help me build
 better documentation, coming soon.

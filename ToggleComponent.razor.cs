@@ -40,9 +40,9 @@ namespace DataJuggler.Blazor.Components
         private string buttonStyle;
         private bool on;
         private int zIndex;
-        private string ovalLeft;
-        private string ovalMiddle;
-        private string ovalRight;
+        private string ovalLeftButtonStyle;
+        private string ovalMiddleButtonStyle;
+        private string ovalRightButtonStyle;
         private double circleLeftOn;
         private double circleLeftOff;
         private double circleLeft;
@@ -57,6 +57,9 @@ namespace DataJuggler.Blazor.Components
         private double ovalEndWidth;
         private double ovalWidth;
         private double ovalRadius;
+        private string ovalPosition;
+        private double ovalLeft;
+        private string ovalStyle;
 
         // Label
         private double column1Width;
@@ -65,6 +68,7 @@ namespace DataJuggler.Blazor.Components
         private string labelBackgroundColor;
         private string labelColor;
         private string labelFontSizeUnit;
+        private string labelFontName;
         private string labelStyle;
         #endregion
 
@@ -106,6 +110,8 @@ namespace DataJuggler.Blazor.Components
                 OvalEndWidth = 16;
                 OvalWidth = 48;
                 OvalRadius = 50;
+                OvalPosition = "relative";
+                OvalLeft = 0;
                 
                 // Default On or Off positions
                 CircleLeftOff = -35;
@@ -115,7 +121,8 @@ namespace DataJuggler.Blazor.Components
                 // Label
                 LabelPosition = "relative";
                 Column1Width = 60;
-                LabelFontSize = 12;                
+                LabelFontSize = 12;
+                LabelFontName = "Verdana";
                 LabelFontSizeUnit = "px";
                 LabelLeft = -48;
                 LabelTop = 4;
@@ -556,6 +563,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region LabelFontName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontName'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontName
+            {
+                get { return labelFontName; }
+                set { labelFontName = value; }
+            }
+            #endregion
+            
             #region LabelFontSize
             /// <summary>
             /// This property gets or sets the value for 'LabelFontSize'.
@@ -749,24 +768,66 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'OvalLeft'.
             /// </summary>
-            public string OvalLeft
+            [Parameter]
+            public double OvalLeft
             {
                 get { return ovalLeft; }
                 set { ovalLeft = value; }
             }
             #endregion
             
-            #region OvalMiddle
+            #region OvalLeftButtonStyle
             /// <summary>
-            /// This property gets or sets the value for 'OvalMiddle'.
+            /// This property gets or sets the value for 'OvalLeftButtonStyle'.
             /// </summary>
-            public string OvalMiddle
+            public string OvalLeftButtonStyle
             {
-                get { return ovalMiddle; }
-                set { ovalMiddle = value; }
+                get { return ovalLeftButtonStyle; }
+                set { ovalLeftButtonStyle = value; }
+            }
+            #endregion
+            
+            #region OvalLeftStyle
+            /// <summary>
+            /// This read only property returns the value of OvalLeftStyle from the object OvalLeft.
+            /// </summary>
+            public string OvalLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string ovalLeftStyle = OvalLeft + Unit;
+                    
+                    // return value
+                    return ovalLeftStyle;
+                }
+            }
+            #endregion
+            
+            #region OvalMiddleButtonStyle
+            /// <summary>
+            /// This property gets or sets the value for 'OvalMiddleButtonStyle'.
+            /// </summary>
+            public string OvalMiddleButtonStyle
+            {
+                get { return ovalMiddleButtonStyle; }
+                set { ovalMiddleButtonStyle = value; }
             }
             #endregion
 
+            #region OvalPosition
+            /// <summary>
+            /// This property gets or sets the value for 'OvalPosition'.
+            /// </summary>
+            [Parameter]
+            public string OvalPosition
+            {
+                get { return ovalPosition; }
+                set { ovalPosition = value; }
+            }
+            #endregion
+            
             #region OvalRadius
             /// <summary>
             /// This property gets or sets the value for 'OvalRadius'.
@@ -798,14 +859,25 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region OvalRight
+            #region OvalRightButtonStyle
             /// <summary>
-            /// This property gets or sets the value for 'OvalRight'.
+            /// This property gets or sets the value for 'OvalRightButtonStyle'.
             /// </summary>
-            public string OvalRight
+            public string OvalRightButtonStyle
             {
-                get { return ovalRight; }
-                set { ovalRight = value; }
+                get { return ovalRightButtonStyle; }
+                set { ovalRightButtonStyle = value; }
+            }
+            #endregion
+            
+            #region OvalStyle
+            /// <summary>
+            /// This property gets or sets the value for 'OvalStyle'.
+            /// </summary>
+            public string OvalStyle
+            {
+                get { return ovalStyle; }
+                set { ovalStyle = value; }
             }
             #endregion
             

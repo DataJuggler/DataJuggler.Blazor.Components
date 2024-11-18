@@ -43138,13 +43138,6 @@
     min-width: 1000px;
     max-width: 1000px;
 }
-.zindex1
-{
-    position: relative;
-    top: 0px;
-    left: 0px;
-    z-index: 1;
-}
 .zindex0
 {
     position: relative;
