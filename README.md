@@ -610,7 +610,7 @@ One of my favorite parts of this project is the DataJuggler.Blazor.Componets.css
 After adding nuget package DataJuggler.Blazor.Componets Nuget package, add the folloing line to
 your _layout.cshtml file in your Blazor project:
 
-    <link href="~/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
+    <link href="_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
 
 View the full CSS here:
 https://github.com/DataJuggler/DataJuggler.Blazor.Components/blob/master/wwwroot/css/DataJuggler.Blazor.Components.css
