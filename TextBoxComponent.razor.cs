@@ -27,6 +27,9 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
+        private string bottomMarginStyle;        
+        private double borderWidth;
+        private string borderColor;
         private string caption;
         private double fontSize;
         private string fontName;
@@ -43,7 +46,7 @@ namespace DataJuggler.Blazor.Components
         private bool isValid;
         private string text;
         private string textBoxBackColor;
-        private string texBoxTextColor;
+        private string textBoxTextColor;
         private string textBoxClassName;
         private bool isRequired;
         private bool isIntegerRequired;
@@ -92,8 +95,7 @@ namespace DataJuggler.Blazor.Components
         private string backgroundColor;
         private double imageWidth;
         private string imageBackColor;
-        private double marginLeft;        
-        private double textBoxWidth;
+        private double marginLeft;
         private int rows;
         private double column1Width;
         private double column2Width;
@@ -109,11 +111,10 @@ namespace DataJuggler.Blazor.Components
         private string column3Style;
         private string textBoxStyle;        
         private string imageStyle;
-        private string textBoxControlStyle;
-        private string bottomMarginStyle;        
-        private double borderWidth;
-        private string borderColor;
+        private double textBoxWidth;
+        
         private bool loading;
+        private string textBoxControlStyle;
         private OnTextChange onTextChangedCallback;
         private HandleChangeEnum handleChangeOption;
        
@@ -2115,8 +2116,8 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public string TextBoxTextColor
             {
-                get { return TextBoxTextColor; }
-                set { TextBoxTextColor = value; }
+                get { return textBoxTextColor; }
+                set { textBoxTextColor = value; }
             }
             #endregion
             
