@@ -43,6 +43,7 @@ namespace DataJuggler.Blazor.Components
         private bool isValid;
         private string text;
         private string textBoxBackColor;
+        private string texBoxTextColor;
         private string textBoxClassName;
         private bool isRequired;
         private bool isIntegerRequired;
@@ -223,7 +224,7 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";
                 TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";                
                 Text = "";
-                TextBoxBackColor = "white";                
+                
                 Top = 0;
                 UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";                
                 Column1Width = 60;
@@ -236,6 +237,8 @@ namespace DataJuggler.Blazor.Components
                 BorderWidth = 1;
                 BorderColor = "black";
                 HandleChangeOption = HandleChangeEnum.OnKeyDown;
+                TextBoxBackColor = "white";                
+                TextBoxTextColor = "black";
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
             }
@@ -489,6 +492,17 @@ namespace DataJuggler.Blazor.Components
             {
                 // Set the Color
                 TextBoxBackColor = color.Name;
+            }
+            #endregion
+            
+            #region SetTextBoxTextColor(string color)
+            /// <summary>
+            /// Set Text Box Text Color
+            /// </summary>
+            public void SetTextBoxTextColor(string color)
+            {
+                // Store
+                TextBoxTextColor = color;
             }
             #endregion
             
@@ -2091,6 +2105,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxStyle; }
                 set { textBoxStyle = value; }
+            }
+            #endregion
+
+            #region TextBoxTextColor
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxTextColor'.
+            /// </summary>
+            [Parameter]
+            public string TextBoxTextColor
+            {
+                get { return TextBoxTextColor; }
+                set { TextBoxTextColor = value; }
             }
             #endregion
             
