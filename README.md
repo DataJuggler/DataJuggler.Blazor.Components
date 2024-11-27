@@ -1,5 +1,7 @@
 News
 
+11.27.2024: I added a new property called TextBoxTextColor to the TextBoxComponent.
+
 11.17.2024: New Toggle Component. The Toggle Component makes it simple to place a Label and Toggle Component
 on a page. Here is an example of using the Toggle Component.
 
