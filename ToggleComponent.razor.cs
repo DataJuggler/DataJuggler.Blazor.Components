@@ -86,10 +86,6 @@ namespace DataJuggler.Blazor.Components
         }
         #endregion
         
-        #region Events
-            
-        #endregion
-        
         #region Methods
             
             #region Init()
@@ -291,8 +287,8 @@ namespace DataJuggler.Blazor.Components
                         }
                     }
 
-                    // return CircleColor
-                    return circleColor;
+                    // return tempCircleColor
+                    return tempCircleColor;
                 }
                 set { circleColor = value; }
             }
