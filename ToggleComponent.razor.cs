@@ -29,6 +29,8 @@ namespace DataJuggler.Blazor.Components
         private double labelLeft;
         private double labelTop;        
         private Color circleColor;
+        private Color circleColorOn;
+        private Color circleColorOff;
         private double height;
         private string imageUrl;
         private string name;
@@ -105,7 +107,7 @@ namespace DataJuggler.Blazor.Components
                 HeightUnit = "px";
                 ZIndex = 20;
                 On = true;
-                
+
                 // The end of the oval have their own width
                 OvalEndWidth = 16;
                 OvalWidth = 48;
@@ -115,6 +117,9 @@ namespace DataJuggler.Blazor.Components
                 OvalTop = -22;
                 
                 // Default On or Off positions
+                CircleColorOn = Color.Empty;
+                CircleColorOff = Color.Empty;
+                CircleColor = Color.GhostWhite;
                 CircleLeftOff = -35;
                 CircleLeftOn = -14;
                 CircleTop = 2;
@@ -130,8 +135,7 @@ namespace DataJuggler.Blazor.Components
 
                 // Set default colors
                 BackgroundColorOn = Color.CornflowerBlue;
-                BackgroundColorOff = Color.DimGray;
-                CircleColor = Color.GhostWhite;
+                BackgroundColorOff = Color.DimGray;                
 
                 // Default ImageUrl
                 ImageUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/OrangeCircle.png";
@@ -191,7 +195,7 @@ namespace DataJuggler.Blazor.Components
                     else
                     {
                         // Use the Off color
-                        backgroundColor = BackgroundColorOff;
+                        backgroundColor = BackgroundColorOff;                        
                     }
 
                     // return value
@@ -261,8 +265,60 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public Color CircleColor
             {
-                get { return circleColor; }
+                get 
+                {
+                    // initial value
+                    Color tempCircleColor = circleColor;
+
+                    // if this component is currently On
+                    if (On)
+                    {
+                        // if Set
+                        if (CircleColorOn != Color.Empty)
+                        {
+                        
+                            // Use the On Color
+                            tempCircleColor = CircleColorOn;
+                        }                        
+                    }
+                    else
+                    {
+                        // if Off Color is set
+                        if (CircleColorOff != Color.Empty)
+                        {
+                            // Use the Off Color
+                            tempCircleColor = CircleColorOff;
+                        }
+                    }
+
+                    // return CircleColor
+                    return circleColor;
+                }
                 set { circleColor = value; }
+            }
+            #endregion
+            
+            #region CircleColorOff
+            /// <summary>
+            /// This property gets or sets the value for 'CircleColorOff'.
+            /// </summary>
+            [Parameter]
+            public Color CircleColorOff
+            {
+                get { return circleColorOff; }
+                set { circleColorOff = value; }
+            }
+            #endregion
+            
+            #region CircleColorOn
+            /// <summary>
+            /// This property gets or sets the value for 'CircleColorOn'.
+            /// </summary>
+            [Parameter]
+            public Color CircleColorOn
+            {
+                get { return circleColorOn; }
+                set { circleColorOn = value; }
             }
             #endregion
             
