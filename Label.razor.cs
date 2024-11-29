@@ -27,6 +27,7 @@ namespace DataJuggler.Blazor.Components
         private string labelStyle;        
         private string caption;
         private string text;
+        private string textAlign;
         private string imageUrl;
         private bool showImage;
         private string imageStyle;
@@ -1069,6 +1070,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return text; }
                 set { text = value; }
+            }
+            #endregion
+            
+            #region TextAlign
+            /// <summary>
+            /// This property gets or sets the value for 'TextAlign'.
+            /// </summary>
+            [Parameter]
+            public string TextAlign
+            {
+                get { return textAlign; }
+                set { textAlign = value; }
             }
             #endregion
             
