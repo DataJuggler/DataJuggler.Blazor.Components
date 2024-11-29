@@ -256,6 +256,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'BackgroundColor'.
             /// </summary>
+            [Parameter]
             public Color BackgroundColor
             {
                 get { return backgroundColor; }
