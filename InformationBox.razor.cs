@@ -151,6 +151,7 @@ namespace DataJuggler.Blazor.Components
                 Gap = 8;
                 HeaderFontSize = 16;
                 HeaderFontWeight = "bold";
+                HeaderFontName = "Calibri";
                 HeaderHeight = 20;
                 HeaderTextPosition = "relative";
                 Height = 160;
