@@ -26,6 +26,7 @@ namespace DataJuggler.Blazor.Components
         
         #region Private Variables
         private Color backgroundColor;
+        private string display;
         private double height;
         private double headerHeight;
         private string headerHeightStyle;
@@ -64,6 +65,7 @@ namespace DataJuggler.Blazor.Components
         private double headerTextVerticalOffset;
         private string headerTextPosition;
         private string headerTextStyle;
+        private string headerFontName;
         private double fontSize;
         private string fontUnit;
         private double imageWidth;
@@ -81,12 +83,11 @@ namespace DataJuggler.Blazor.Components
         private double imageLeft;
         private string column1ClassName;
         private string column2ClassName;
-        private double scale;
-        private string display;
+        private string overflow;
+        private double scale;        
         private VerticalAlignmentEnum verticalAlignment;
         private RenderFragment bodyContent;
-        private ItemContenteAlignmentEnum itemContenteAlignment;
-        private string overflow;
+        private ItemContenteAlignmentEnum itemContenteAlignment;        
         #endregion
         
         #region Constructor
@@ -135,38 +136,38 @@ namespace DataJuggler.Blazor.Components
             {
                 // Defaults
                 BackgroundColor = Color.White;
-                Position = "relative";
-                HeaderTextPosition = "relative"; 
-                Unit = "px";
-                HeightUnit = "px";
+                BorderColor = Color.Gray;
+                BorderRadius = 10;
                 Column1TextAlign = TextAlignmentEnum.Right;
-                Column2TextAlign = TextAlignmentEnum.Left;
-                Width = 240;
-                Height = 160;
-                HeaderHeight = 20;
+                Column2TextAlign = TextAlignmentEnum.Left;                
                 Column1Width = 112;
                 Column1TextAlign = TextAlignmentEnum.Right;
                 Column2TextAlign = TextAlignmentEnum.Left;
                 Column2Width = 112;
-                TitleTextColor = Color.White;
-                BorderColor = Color.Gray;
-                BorderRadius = 10;
+                Column1Left = 8;
+                Display = "inline-block";
                 FontSize = 12;
                 FontUnit = "px";
-                Column1Left = 8;
                 Gap = 8;
+                HeaderFontSize = 16;
+                HeaderFontWeight = "bold";
+                HeaderHeight = 20;
+                HeaderTextPosition = "relative";
+                Height = 160;
+                HeightUnit = "px";
+                ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;
                 ListItemTop = 0;
                 ListItemLeft = 0;
                 ListItemPosition = "relative";
                 ListItemUnit = "px";
                 ListItemHeightUnit = "px";
-                Scale = 100;
-                Display = "inline-block";
-                VerticalAlignment = VerticalAlignmentEnum.Top;
-                HeaderFontSize = 16;
                 Overflow = "visible";
-                HeaderFontWeight = "bold";
-                ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;
+                Position = "relative";
+                Scale = 100;
+                TitleTextColor = Color.White;
+                Unit = "px";
+                VerticalAlignment = VerticalAlignmentEnum.Top;                
+                Width = 240;
             }
             #endregion
             
@@ -594,6 +595,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return hasParent;
                 }
+            }
+            #endregion
+            
+            #region HeaderFontName
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderFontName'.
+            /// </summary>
+            [Parameter]
+            public string HeaderFontName
+            {
+                get { return headerFontName; }
+                set { headerFontName = value; }
             }
             #endregion
             
