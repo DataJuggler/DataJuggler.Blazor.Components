@@ -25,6 +25,7 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
+        private Color backgroundColor;
         private double height;
         private double headerHeight;
         private string headerHeightStyle;
@@ -133,6 +134,7 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Defaults
+                BackgroundColor = Color.White;
                 Position = "relative";
                 HeaderTextPosition = "relative"; 
                 Unit = "px";
@@ -227,7 +229,7 @@ namespace DataJuggler.Blazor.Components
                     case ThemeEnum.Red:
 
                         // Set the HeaderImage
-                        HeaderImageUrl = "BackgroundImageUrl = \"_content/DataJuggler.Blazor.Components/Images/Headers/HeaderRed.png";
+                        HeaderImageUrl = "_content/DataJuggler.Blazor.Components/Images/Headers/HeaderRed.png";
 
                         // required
                         break;
@@ -249,6 +251,17 @@ namespace DataJuggler.Blazor.Components
         #endregion
         
         #region Properties
+            
+            #region BackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'BackgroundColor'.
+            /// </summary>
+            public Color BackgroundColor
+            {
+                get { return backgroundColor; }
+                set { backgroundColor = value; }
+            }
+            #endregion
             
             #region BodyContent
             /// <summary>
