@@ -26,6 +26,8 @@ namespace DataJuggler.Blazor.Components
         
         #region Private Variables
         private Color backgroundColor;
+        private string column1ClassName;
+        private string column2ClassName;
         private string display;
         private double height;
         private double headerHeight;
@@ -61,12 +63,13 @@ namespace DataJuggler.Blazor.Components
         private Color titleTextColor;
         private Color borderColor;
         private double borderRadius;
+        private double fontSize;
+        private string fontName;
+        private string fontUnit;
         private double headerTextVerticalOffset;
         private string headerTextPosition;
         private string headerTextStyle;
-        private string headerFontName;
-        private double fontSize;
-        private string fontUnit;
+        private string headerFontName;        
         private double imageWidth;
         private double imageHeight;
         private TextAlignmentEnum column1TextAlign;
@@ -80,9 +83,7 @@ namespace DataJuggler.Blazor.Components
         private string listItemHeightUnit;
         private string column2Style;
         private double imageTop;
-        private double imageLeft;
-        private string column1ClassName;
-        private string column2ClassName;
+        private double imageLeft;        
         private string overflow;
         private double scale;        
         private VerticalAlignmentEnum verticalAlignment;
@@ -146,6 +147,7 @@ namespace DataJuggler.Blazor.Components
                 Column2Width = 112;
                 Column1Left = 8;
                 Display = "inline-block";
+                FontName = "Calibri";
                 FontSize = 12;
                 FontUnit = "px";
                 Gap = 8;
@@ -157,7 +159,7 @@ namespace DataJuggler.Blazor.Components
                 Height = 160;
                 HeightUnit = "px";
                 ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;
-                ListItemHeight = 12;
+                ListItemHeight = 16;
                 ListItemLeft = 0;
                 ListItemTop = 0;
                 ListItemPosition = "relative";
@@ -526,6 +528,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return display; }
                 set { display = value; }
+            }
+            #endregion
+            
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set { fontName = value; }
             }
             #endregion
             
