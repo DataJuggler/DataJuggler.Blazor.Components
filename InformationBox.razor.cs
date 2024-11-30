@@ -157,8 +157,9 @@ namespace DataJuggler.Blazor.Components
                 Height = 160;
                 HeightUnit = "px";
                 ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;
-                ListItemTop = 0;
+                ListItemHeight = 12;
                 ListItemLeft = 0;
+                ListItemTop = 0;
                 ListItemPosition = "relative";
                 ListItemUnit = "px";
                 ListItemHeightUnit = "px";
