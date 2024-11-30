@@ -286,7 +286,7 @@ namespace DataJuggler.Blazor.Components
             public void SetTextValue(string text)
             {
                 // Set the value
-                this.Text = text;
+                Text = text;
             }
             #endregion
             

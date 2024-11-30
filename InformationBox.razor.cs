@@ -53,8 +53,7 @@ namespace DataJuggler.Blazor.Components
         private string column1Style;
         private double column1Width;
         private double column2Width;
-        private double column1Left;
-        private double listItemHeight;
+        private double column1Left;        
         private string listItemHeightStyle;
         private string imageStyle;
         private string headerImageUrl;
@@ -77,6 +76,7 @@ namespace DataJuggler.Blazor.Components
         private double listItemTop;
         private double listItemLeft;
         private string listItemUnit;
+        private double listItemHeight;
         private string listItemHeightUnit;
         private string column2Style;
         private double imageTop;
@@ -962,6 +962,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ListItemHeight'.
             /// </summary>
+            [Parameter]
             public double ListItemHeight
             {
                 get { return listItemHeight; }
@@ -970,7 +971,7 @@ namespace DataJuggler.Blazor.Components
                     listItemHeight = value;
 
                     // Set the ListItemHeightStyle
-                    ListItemHeightStyle = ListItemHeight + HeightUnit;
+                    ListItemHeightStyle = listItemHeight + HeightUnit;
                 }
             }
             #endregion
