@@ -167,6 +167,13 @@ namespace DataJuggler.Blazor.Components
             {
                 if (e.Code == "Enter" || e.Code == "NumpadEnter")
                 {
+                    // if the value for FormatAsPhoneNumber is true
+                    if (FormatAsPhoneNumber)
+                    {
+                        // Handle Blue which sets the text to (xxx) xxx - xxxx
+                        HandleBlur();
+                    }
+
                     // if the Parent exists
                     if (HasParent)
                     { 
