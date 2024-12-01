@@ -78,6 +78,7 @@ namespace DataJuggler.Blazor.Components
         private string labelFontName;
         private string labelFontSizeUnit;        
         private int zIndex;
+        private bool formatAsPhoneNumber;
         private string position;
         private IBlazorComponentParent parent;
         private string className;
@@ -188,6 +189,21 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region HandleBlur()
+            /// <summary>
+            /// method Handle Blur
+            /// </summary>
+            private void HandleBlur()
+            {
+                // if the value for FormatAsPhoneNumber is true
+                if (FormatAsPhoneNumber)
+                {
+                    // Update the Text
+                    Text = TextHelper.FormatPhoneNumber(Text);
+                }
+            }
+            #endregion
+            
             #region Init()
             /// <summary>
             /// This method  This method performs initializations for this object.
@@ -1027,6 +1043,18 @@ namespace DataJuggler.Blazor.Components
                 set { fontSizeUnit = value; }
             }
             #endregion   
+            
+            #region FormatAsPhoneNumber
+            /// <summary>
+            /// This property gets or sets the value for 'FormatAsPhoneNumber'.
+            /// </summary>
+            [Parameter]
+            public bool FormatAsPhoneNumber
+            {
+                get { return formatAsPhoneNumber; }
+                set { formatAsPhoneNumber = value; }
+            }
+            #endregion
             
             #region HandleChangeOption
             /// <summary>

@@ -99,14 +99,14 @@
                         if (HandleChangeOption == HandleChangeEnum.OnKeyDown)
                         {
                             <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle" 
-                                type=@InputType @bind="@Text" pattern="@Pattern"
+                                type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
                                 @bind:event="oninput" onfocus="this.select()" tabindex="@TabIndex"
                             onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
                         }
                         else
                         {
                             <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
-                                   type=@InputType @bind="@Text" pattern="@Pattern"
+                                   type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
                                    onfocus="this.select();" tabindex="@TabIndex"
                                    onClick="this.select();" @ref="InnerControl" />
                         }
