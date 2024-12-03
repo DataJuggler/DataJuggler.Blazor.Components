@@ -98,37 +98,17 @@
                     {
                         if (HandleChangeOption == HandleChangeEnum.OnKeyDown)
                         {  
-                            @if (setFocusOnFirstRender)
-                            {
-                                <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle" 
+                            <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
                                     type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
-                                    @bind:event="oninput" onfocus="this.select()" tabindex="@TabIndex" @onload="SetFocus"
+                                    @bind:event="oninput" onfocus="this.select()" tabindex="@TabIndex"
                                     onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
-                            }
-                            else
-                            {
-                                <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
-                                       type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
-                                       @bind:event="oninput" onfocus="this.select()" tabindex="@TabIndex"
-                                       onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
-                            }
                         }
                         else
-                        {
-                            @if (setFocusOnFirstRender)
-                            {
-                                <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
-                                       type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
-                                       onfocus="this.select();" tabindex="@TabIndex" @onload="SetFocus"
-                                       onClick="this.select();" @ref="InnerControl" />
-                            }
-                            else
-                            {
-                                <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
-                                       type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
-                                       onfocus="this.select();" tabindex="@TabIndex"
-                                       onClick="this.select();" @ref="InnerControl" />
-                            }
+                        {  
+                            <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
+                                    type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
+                                    onfocus="this.select();" tabindex="@TabIndex"
+                                    onClick="this.select();" @ref="InnerControl" />                          
                         }
                     }
                     else

@@ -154,6 +154,33 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
+
+            #region OnAfterRenderAsync(bool firstRender)
+            /// <summary>
+            /// This method is used to verify a user
+            /// </summary>
+            /// <param name="firstRender"></param>
+            /// <returns></returns>
+            protected async override Task OnAfterRenderAsync(bool firstRender)
+            {
+                try
+                {
+                    if (SetFocusOnFirstRender && firstRender)
+                    {
+                        // Set Focus
+                        SetFocus();
+                    }
+                }
+                catch (Exception error)
+                {
+                    // Attempt to trap
+                    DebugHelper.WriteDebugError("OnAfterRenderAsync", "Grid.razor.cs", error);
+                }
+
+                // call the base
+                await base.OnAfterRenderAsync(firstRender);
+            }
+            #endregion
             
         #endregion
 
