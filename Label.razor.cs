@@ -6,6 +6,8 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using System.Threading.Tasks;
+using System;
 
 #endregion
 
@@ -60,6 +62,7 @@ namespace DataJuggler.Blazor.Components
         private string labelControlStyle;
         private string bottomMarginStyle;
         private bool enableClick;
+        private double fadeValue;
         private bool enableDoubleClick;
         private bool notifyParentOnDoubleClick;
         private bool notifyParentOnClick;
@@ -70,7 +73,7 @@ namespace DataJuggler.Blazor.Components
         private string textBoxClassName;        
         private bool autoComplete;
         private ElementReference innerControl;
-        private bool sendAllTextToParent;
+        private bool sendAllTextToParent;        
         #endregion
         
         #region Constructor
@@ -182,6 +185,22 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
     
+            #region FadeVisibilityAsync(bool visible)
+            /// <summary>
+            /// method returns the Visibility Async
+            /// </summary>
+            public async Task FadeVisibilityAsync(bool visible)
+            {
+                // This is an asynchronous delay
+                await Task.Delay((int) FadeValue);
+                
+                // Set the value
+                Visible = visible;
+                
+                Refresh();
+            }
+            #endregion
+            
             #region Init()
             /// <summary>
             /// This method  This method performs initializations for this object.
@@ -194,7 +213,7 @@ namespace DataJuggler.Blazor.Components
                 Display = "inline-block";                
                 LabelColor = "Black";
                 ImageScale = 1.6;
-                Unit = "px";
+                FadeValue = 0;
                 FontSize = 12;
                 FontSizeUnit="px";
                 Height= 24;
@@ -212,6 +231,7 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";                
                 Text = "";                
                 Top = 0;                
+                Unit = "px";
                 Visible = true;
                 Width= 30;                
             }
@@ -484,6 +504,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return enableEnterEditMode; }
                 set { enableEnterEditMode = value; }
+            }
+            #endregion
+            
+            #region FadeValue
+            /// <summary>
+            /// This property gets or sets the value for 'FadeValue'.
+            /// </summary>
+            [Parameter]
+            public double FadeValue
+            {
+                get { return fadeValue; }
+                set { fadeValue = value; }
             }
             #endregion
             
@@ -991,6 +1023,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region OpacityStyle
+            /// <summary>
+            /// This read only property returns the value of OpacityStyle from the object Visible.
+            /// </summary>
+            public string OpacityStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string opacityStyle = "1";
+                    
+                    // if the value for Visible is false
+                    if (!Visible)
+                    {
+                        // set the return value
+                        opacityStyle = "0";
+                    }
+                    
+                    // return value
+                    return opacityStyle;
+                }
+            }
+            #endregion
+            
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.
@@ -1126,6 +1183,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TransitionStyle
+            /// <summary>
+            /// This read only property returns the value of TransitionStyle from the object Visible.
+            /// </summary>
+            public string TransitionStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string transitionStyle = "visibility 0s " + FadeValue + "s, opacity " + FadeValue + "s linear;"; 
+                    
+                    // if the value for Visible is false
+                    if (!Visible)
+                    {
+                        // set the return value
+                        transitionStyle = "none";
+                    }
+                    
+                    // return value
+                    return transitionStyle;
+                }
+            }
+            #endregion
+            
             #region Unit
             /// <summary>
             /// This property gets or sets the value for 'Unit'.
@@ -1135,6 +1217,31 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set {unit = value;}
+            }
+            #endregion
+            
+            #region VisibilityStyle
+            /// <summary>
+            /// This read only property returns the value of VisibilityStyle from the object Visible.
+            /// </summary>
+            public string VisibilityStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string visibilityStyle = "visible";
+                    
+                    // if the value for Visible is false
+                    if (!Visible)
+                    {
+                        // set the return value
+                        visibilityStyle = "hidden";
+                    }
+                    
+                    // return value
+                    return visibilityStyle;
+                }
             }
             #endregion
             
