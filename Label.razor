@@ -1,5 +1,6 @@
 ﻿@namespace DataJuggler.Blazor.Components
 @using BlazorStyled
+@inject IJSRuntime JSRuntime
 
 <Styled @bind-Classname=@ImageStyle>
     background-image: url('@ImageUrl');
@@ -21,10 +22,7 @@
     color: @LabelColor;
     font-size: @LabelFontSizeStyle;    
     background-color: @BackgroundColor;
-    z-index: @ZIndex;
-    visibility: @VisibilityStyle;
-    opacity: @OpacityStyle;
-    transition: @TransitionStyle;
+    z-index: @ZIndex;    
 </Styled>
 <Styled @bind-Classname=@BottomMarginStyle>
     width: @WidthStyle;
@@ -70,7 +68,7 @@
             @if (ShowImage)
             {  
                 <div class="@ImageClassName">
-                    <div class="@ImageStyle"></div>
+                    <div id="@ClientId" class="@ImageStyle"></div>
                 </div>
             }
         </div>

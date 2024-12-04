@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Threading.Tasks;
 using System;
+using Microsoft.JSInterop;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 #endregion
 
@@ -62,7 +64,7 @@ namespace DataJuggler.Blazor.Components
         private string labelControlStyle;
         private string bottomMarginStyle;
         private bool enableClick;
-        private double fadeValue;
+        private int fadeValue;
         private bool enableDoubleClick;
         private bool notifyParentOnDoubleClick;
         private bool notifyParentOnClick;
@@ -73,7 +75,8 @@ namespace DataJuggler.Blazor.Components
         private string textBoxClassName;        
         private bool autoComplete;
         private ElementReference innerControl;
-        private bool sendAllTextToParent;        
+        private bool sendAllTextToParent;
+        private string clientId;
         #endregion
         
         #region Constructor
@@ -183,21 +186,16 @@ namespace DataJuggler.Blazor.Components
                 // Exit EditMode (possibly)
                 Refresh();
             }
-            #endregion
-    
-            #region FadeVisibilityAsync(bool visible)
+
+        #endregion
+
+            #region Hide()
             /// <summary>
-            /// method returns the Visibility Async
+            /// method hides the label on the client
             /// </summary>
-            public async Task FadeVisibilityAsync(bool visible)
+            public async Task Hide()
             {
-                // This is an asynchronous delay
-                await Task.Delay((int) FadeValue);
-                
-                // Set the value
-                Visible = visible;
-                
-                Refresh();
+                await BlazorJSBridge.HideElement(JSRuntime, ClientId);
             }
             #endregion
             
@@ -208,8 +206,9 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Set Default Values                
-                Caption = "";
                 BackgroundColor = "transparent";
+                Caption = "";
+                ClientId = Guid.NewGuid().ToString().Substring(0, 12);
                 Display = "inline-block";                
                 LabelColor = "Black";
                 ImageScale = 1.6;
@@ -233,7 +232,7 @@ namespace DataJuggler.Blazor.Components
                 Top = 0;                
                 Unit = "px";
                 Visible = true;
-                Width= 30;                
+                Width= 30;             
             }
             #endregion
             
@@ -296,6 +295,16 @@ namespace DataJuggler.Blazor.Components
                     // notify the parent
                     Parent.ReceiveData(message);                  
                 }
+            }
+            #endregion
+
+            #region Show()
+            /// <summary>
+            /// method shows the label on the client
+            /// </summary>
+            public async Task Show()
+            {
+                await BlazorJSBridge.ShowElement(JSRuntime, ClientId);
             }
             #endregion
             
@@ -415,6 +424,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ClientId
+            /// <summary>
+            /// This property gets or sets the value for 'ClientId'.
+            /// </summary>
+            [Parameter]
+            public string ClientId
+            {
+                get { return clientId; }
+                set { clientId = value; }
+            }
+            #endregion
+            
             #region Description
             /// <summary>
             /// This property gets or sets the value for 'Description'.
@@ -523,7 +544,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'FadeValue'.
             /// </summary>
             [Parameter]
-            public double FadeValue
+            public int FadeValue
             {
                 get { return fadeValue; }
                 set { fadeValue = value; }
@@ -1034,31 +1055,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region OpacityStyle
-            /// <summary>
-            /// This read only property returns the value of OpacityStyle from the object Visible.
-            /// </summary>
-            public string OpacityStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string opacityStyle = "1";
-                    
-                    // if the value for Visible is false
-                    if (!Visible)
-                    {
-                        // set the return value
-                        opacityStyle = "0";
-                    }
-                    
-                    // return value
-                    return opacityStyle;
-                }
-            }
-            #endregion
-            
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.
@@ -1194,31 +1190,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region TransitionStyle
-            /// <summary>
-            /// This read only property returns the value of TransitionStyle from the object Visible.
-            /// </summary>
-            public string TransitionStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string transitionStyle = "visibility 0s " + FadeValue + "s, opacity " + FadeValue + "s linear;"; 
-                    
-                    // if the value for Visible is false
-                    if (!Visible)
-                    {
-                        // set the return value
-                        transitionStyle = "none";
-                    }
-                    
-                    // return value
-                    return transitionStyle;
-                }
-            }
-            #endregion
-            
             #region Unit
             /// <summary>
             /// This property gets or sets the value for 'Unit'.
@@ -1228,31 +1199,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set {unit = value;}
-            }
-            #endregion
-            
-            #region VisibilityStyle
-            /// <summary>
-            /// This read only property returns the value of VisibilityStyle from the object Visible.
-            /// </summary>
-            public string VisibilityStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string visibilityStyle = "visible";
-                    
-                    // if the value for Visible is false
-                    if (!Visible)
-                    {
-                        // set the return value
-                        visibilityStyle = "hidden";
-                    }
-                    
-                    // return value
-                    return visibilityStyle;
-                }
             }
             #endregion
             
