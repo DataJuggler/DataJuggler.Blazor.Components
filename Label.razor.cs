@@ -310,6 +310,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetVisibility(bool visibleValue)
+            /// <summary>
+            /// Set Visibility
+            /// </summary>
+            public void SetVisibility(bool visibleValue)
+            {
+                // Change the value
+                Visible = visibleValue;
+            }
+            #endregion
+            
         #endregion
 
         #region Properties
