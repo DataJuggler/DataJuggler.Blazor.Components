@@ -307,6 +307,16 @@ namespace DataJuggler.Blazor.Components
                 await BlazorJSBridge.ShowElement(JSRuntime, ClientId);
             }
             #endregion
+
+            #region Show()
+            /// <summary>
+            /// method shows the label on the client
+            /// </summary>
+            public async Task ShowThenHide()
+            {
+                await BlazorJSBridge.ShowThenHide(JSRuntime, ClientId, FadeValue);
+            }
+            #endregion
             
             #region SetTextValue(string text)
             /// <summary>
