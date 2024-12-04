@@ -31,7 +31,7 @@
 
 @if (Visible)
 {
-    <div class="row">
+    <div id="@ClientId" class="row">
         <div class="@LabelControlStyle">
             @if (ShowCaption)
             {
@@ -68,7 +68,7 @@
             @if (ShowImage)
             {  
                 <div class="@ImageClassName">
-                    <div id="@ClientId" class="@ImageStyle"></div>
+                    <div class="@ImageStyle"></div>
                 </div>
             }
         </div>

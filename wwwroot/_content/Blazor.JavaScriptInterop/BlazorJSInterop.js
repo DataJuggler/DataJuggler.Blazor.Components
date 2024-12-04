@@ -27,7 +27,7 @@ window.BlazorJSFunctions =
         // return value
         return returnValue;
     },
-    ShowElement(elementId)
+    ShowElement: function (elementId)
     {
         const element = document.getElementById(elementId);
         if (!element)
@@ -39,7 +39,7 @@ window.BlazorJSFunctions =
         element.style.display = "block"; // Make the element visible
         element.style.opacity = 1; // Ensure the element is fully opaque
     },    
-    HideElement(elementId)
+    HideElement: function (elementId)
     {
         const element = document.getElementById(elementId);
         if (!element)
@@ -50,12 +50,13 @@ window.BlazorJSFunctions =
 
         element.style.display = "none"; // Hide the element
     },    
-    ShowThenHide(elementId, duration) {
-        showElement(elementId); // Show the element
+    ShowThenHide: function (elementId, duration)
+    {
+        BlazorJSFunctions.ShowElement(elementId); // Show the element
 
         setTimeout(() =>
         {
-            hideElement(elementId); // Hide the element after the duration
+            BlazorjSFunctions.HideElement(elementId); // Hide the element after the duration
         }, duration);
     }
 };
