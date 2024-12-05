@@ -52,11 +52,24 @@ window.BlazorJSFunctions =
     },    
     ShowThenHide: function (elementId, duration)
     {
-        BlazorJSFunctions.ShowElement(elementId); // Show the element
+        const element = document.getElementById(elementId);
+        if (!element) {
+            console.error(`No element found with id ${elementId}`);
+            return;
+        }
+
+        element.style.display = "block"; // Make the element visible
+        element.style.opacity = 1; // Ensure the element is fully opaque
 
         setTimeout(() =>
         {
-            BlazorjSFunctions.HideElement(elementId); // Hide the element after the duration
+            const element2 = document.getElementById(elementId);
+            if (!element2) {
+                console.error(`No element found with id ${elementId}`);
+                return;
+            }
+
+            element2.style.display = "none"; // Hide the element
         }, duration);
     }
 };
