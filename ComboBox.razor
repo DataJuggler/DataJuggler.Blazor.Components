@@ -68,9 +68,10 @@
             <tr class="textdonotwrap">
                 <td width="@TextBoxWidth">
                     <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
-                        ClassName="displayinline" Column1Width="@Column1Width" OnTextChangedCallback="OnTextChanged"
+                        ClassName="displayinline" Column1Width="@Column1Width" 
                         Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth"
                         LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize"
+                        LabelColor="@LabelColor.Name" OnTextChangedCallback="OnTextChanged"
                         TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
                         SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
                         Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
