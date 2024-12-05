@@ -1209,14 +1209,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string heightStyle = Height + unit;
-
-                    // If the HeightUnit string exists
-                    if (TextHelper.Exists(HeightUnit))
-                    {
-                        // Use the HeightUnit
-                        heightStyle = Height + HeightUnit;
-                    }
+                    string heightStyle = Height + unit;                    
                     
                     // return value
                     return heightStyle;

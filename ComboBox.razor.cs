@@ -342,9 +342,14 @@ namespace DataJuggler.Blazor.Components
             {
                 // Default to 30% for the lable, the rest goes to the ComboBox
                 Theme = ThemeEnum.BlueGold;
+                
+                // Button
                 ButtonPosition = "relative";
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
+                ButtonTop = -1;
+                ButtonLeft = 0;
+
                 SelectedText = "";
                 Children = new List<IBlazorComponent>();
                 Visible = true;
@@ -374,20 +379,22 @@ namespace DataJuggler.Blazor.Components
                 LabelPosition = "relative";
                 ListItemBackgroundColor = Color.White;
                 ListBackgroundColor = Color.White;
-                ListItemClassName="height16";
-                TextBoxWidth= 124;
+                ListItemClassName="height16";                
                 Column1Width = 100;
-                Column2Width = 128;
-                ButtonTop = -.64;
-                TextBoxLeft = -3.2;
-                ButtonLeft = 0;
+                Column2Width = 128;                
+               
+                // CheckBox
                 CheckBoxTextXPosition = -1;
                 checkBoxTextYPosition = -1;
                 CheckedListZIndex = 40;
                 CheckedListPosition = "absolute";
+                
+                // TextBox
+                TextBoxWidth= 124;
+                TextBoxLeft = -3.2;                
                 TextBoxWidth = 12;
-                TextBoxHeight = 2;
-
+                TextBoxHeight = 24;
+                
                 // Set the Fonts
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
