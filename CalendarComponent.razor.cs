@@ -57,7 +57,7 @@ namespace DataJuggler.Blazor.Components
         private double controlWidth;
         private double controlHeight;
         private string className;
-        private string position;
+        private Color labelColor;
         private double left;
         private double top;
         private string display;
@@ -83,7 +83,7 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowStyle;
         private DateTime thisMonth;
         private string labelClassName;
-        private int zIndex;               
+        private string position;        
         private double textBoxLeft;
         private double rowHeight;
         private string yearSelectorButtonStyle;
@@ -114,6 +114,7 @@ namespace DataJuggler.Blazor.Components
         private List<CalendarRow> weeks;
         private double scale;       
         private string headerRowColumnStyle;
+        private int zIndex;
         #endregion
         
         #region Constructor
@@ -566,7 +567,8 @@ namespace DataJuggler.Blazor.Components
                 YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;
                 Scale = 100;
 
-                // Initialize Label Font
+                // Initialize Label Color and Fonts
+                LabelColor = Color.Black;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 
@@ -1587,6 +1589,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelClassName; }
                 set { labelClassName = value; }
+            }
+            #endregion
+            
+            #region LabelColor
+            /// <summary>
+            /// This property gets or sets the value for 'LabelColor'.
+            /// </summary>
+            [Parameter]
+            public Color LabelColor
+            {
+                get { return labelColor; }
+                set { labelColor = value; }
             }
             #endregion
             
