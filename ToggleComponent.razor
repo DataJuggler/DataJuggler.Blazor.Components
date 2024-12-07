@@ -18,41 +18,51 @@
     font-family: @LabelFontName;
 </Styled>
 <Styled @bind-Classname="@ComponentStyle">
+    display: @DisplayStyle;
+    height: @HeightStyle;
     width: @WidthStyle;
-    height: @HeightStyle;    
-    z-index: @ZIndex;    
+    z-index: @ZIndex;
+    position: @Position;
+    top: @TopStyle;
+    left: @LeftStyle;
+    display: flex;
+    justify-content: left;
+    gap: 0px;
+    background-color: @BackgroundColor.Name;
+    border-width: @BorderWidth;
+    border-color: @BorderColor.Name;    
 </Styled>
 <Styled @bind-Classname="@OvalLeftButtonStyle">
     width: @OvalEndWidthStyle;
     max-width: @OvalEndWidthStyle;
-    height: @HeightStyle;        
+    height: @HeightStyle;
     border: none;
     outline: none;
     border-bottom-left-radius: @OvalRadiusStyle;
     border-top-left-radius: @OvalRadiusStyle;
-    background-color: @BackgroundColor.Name;
+    background-color: @OvalBackgroundColor.Name;
     z-index: @ZIndexPlus1;
     cursor: pointer;
 </Styled>
 <Styled @bind-Classname="@OvalMiddleButtonStyle">
     width: @OvalWidthStyle;
     min-width: @OvalWidthStyle;
-    height: @HeightStyle;    
+    height: @HeightStyle;
     border: none;
     outline: none;
-    background-color: @BackgroundColor.Name;
+    background-color: @OvalBackgroundColor.Name;
     z-index: @ZIndexPlus1;
     cursor: pointer;
 </Styled>
 <Styled @bind-Classname="@OvalRightButtonStyle">
     width: @OvalEndWidthStyle;
     max-width: @OvalEndWidthStyle;
-    height: @HeightStyle;    
+    height: @HeightStyle;
     border: none;
     outline: none;
     border-bottom-right-radius: @OvalRadiusStyle;
     border-top-right-radius: @OvalRadiusStyle;
-    background-color: @BackgroundColor.Name;
+    background-color: @OvalBackgroundColor.Name;
     z-index: @ZIndexPlus1;
     cursor: pointer;
 </Styled>
@@ -60,7 +70,7 @@
     width: @CircleWidthStyle;
     height: @CircleHeightStyle;
     z-index: @ZIndexPlus2;
-    border-radius: 50%;    
+    border-radius: 50%;
     cursor: pointer;
     border: none;
     outline: none;
@@ -91,5 +101,5 @@
         <button class="@OvalMiddleButtonStyle" @onclick="Toggle"></button>
         <button class="@OvalRightButtonStyle" @onclick="Toggle"></button>
         <button class="@ButtonStyle" @onclick="Toggle"></button>
-    </div>    
+    </div>
 </div>

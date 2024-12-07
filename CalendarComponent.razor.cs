@@ -13,6 +13,7 @@ using System.Drawing;
 using DataJuggler.Blazor.Components.Objects;
 using System.Runtime.CompilerServices;
 using System.Linq;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -47,6 +48,7 @@ namespace DataJuggler.Blazor.Components
         private double buttonTop;
         private double calendarLeft;
         private double calendarTop;
+        private double textBoxHeight;
         private double textBoxWidth;
         private double column1Width;
         private double column2Width;
@@ -83,7 +85,6 @@ namespace DataJuggler.Blazor.Components
         private string labelClassName;
         private int zIndex;               
         private double textBoxLeft;
-        private double textBoxHeight;
         private double rowHeight;
         private string yearSelectorButtonStyle;
         private bool yearSelectorVisible;
@@ -547,13 +548,13 @@ namespace DataJuggler.Blazor.Components
                 DayRowColor = Color.DodgerBlue;
                 DayRowTextColor = Color.GhostWhite;
                 ButtonLeft = 0;
-                ButtonTop = 0;
+                ButtonTop = -1;
                 Top = -58;
                 LabelClassName = "down4 right2";
                 TextBoxWidth= 124;
                 ZIndex = 200;
                 RowHeight = 16;
-                TextBoxHeight = 24;
+                TextBoxHeight = 22;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 
@@ -577,6 +578,25 @@ namespace DataJuggler.Blazor.Components
             
                 // Setup the Component
                 SetupComponent();
+            }
+            #endregion
+
+            #region OnAfterRenderAsync(bool firstRender)
+            /// <summary>
+            /// This method is used to verify a user
+            /// </summary>
+            /// <param name="firstRender"></param>
+            /// <returns></returns>
+            protected async override Task OnAfterRenderAsync(bool firstRender)
+            {
+                if (firstRender)
+                {
+                    // Setup this component
+                    SetupComponent();
+                }
+
+                // call the base
+                await base.OnAfterRenderAsync(firstRender);
             }
             #endregion
             

@@ -7,6 +7,7 @@ using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Drawing;
+using System.Net.NetworkInformation;
 
 #endregion
 
@@ -21,9 +22,10 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
-        private Color backgroundColor;
-        private Color backgroundColorOff;
-        private Color backgroundColorOn;        
+        private int borderWidth;
+        private Color borderColor;
+        private string display;
+        private Color backgroundColor;                
         private double labelFontSize;
         private string labelPosition;
         private double labelLeft;
@@ -34,6 +36,7 @@ namespace DataJuggler.Blazor.Components
         private double height;
         private string imageUrl;
         private string name;
+        private bool notifyParentOnChange;
         private IBlazorComponentParent parent;
         private double width;
         private string unit;
@@ -41,10 +44,10 @@ namespace DataJuggler.Blazor.Components
         private string componentStyle;
         private string buttonStyle;
         private bool on;
+        private bool previousOn;
         private int zIndex;
-        private string ovalLeftButtonStyle;
-        private string ovalMiddleButtonStyle;
-        private string ovalRightButtonStyle;
+        
+        // Circle
         private double circleLeftOn;
         private double circleLeftOff;
         private double circleLeft;
@@ -54,8 +57,12 @@ namespace DataJuggler.Blazor.Components
         private string column1Style;
         private bool showCaption;
         private double scale;
+        private string containerStyle;
+        private string position;
+        private double top;
+        private double left;
         
-        // Oval and Oval Ends - Button ends now get their own values
+        // Oval and Oval Ends
         private double ovalEndWidth;
         private double ovalWidth;
         private double ovalRadius;
@@ -63,6 +70,12 @@ namespace DataJuggler.Blazor.Components
         private double ovalLeft;
         private double ovalTop;
         private string ovalStyle;
+        private Color ovalBackgroundColor;
+        private Color ovalBackgroundColorOff;
+        private Color ovalBackgroundColorOn;
+        private string ovalLeftButtonStyle;
+        private string ovalMiddleButtonStyle;
+        private string ovalRightButtonStyle;
 
         // Label
         private double column1Width;
@@ -73,6 +86,7 @@ namespace DataJuggler.Blazor.Components
         private string labelFontSizeUnit;
         private string labelFontName;
         private string labelStyle;
+        private bool visible;
         #endregion
 
         #region Constructor
@@ -95,22 +109,30 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {  
                 // Defaults - adjust as needed
+                BackgroundColor = Color.Transparent;
+                BorderColor = Color.Transparent;
+                BorderWidth = 0;
+                Visible = true;
+                Display = "inline-block";
+                position = "relative";
                 Height = 24;
                 Width = 160;
-                CircleHeight = 16;
-                CircleWidth = 16;
-                Unit = "px";
-                HeightUnit = "px";
+                CircleHeight = 12;
+                CircleWidth = 12;                
                 ZIndex = 20;
                 On = true;
+                Unit = "px";
+                HeightUnit = "px";
 
                 // The end of the oval have their own width
                 OvalEndWidth = 16;
-                OvalWidth = 48;
+                OvalWidth = 16;
                 OvalRadius = 50;
                 OvalPosition = "relative";
-                OvalLeft = 24;
-                OvalTop = -22;
+                OvalLeft = 35;
+                OvalTop = 32;
+                OvalBackgroundColorOn = Color.CornflowerBlue;
+                OvalBackgroundColorOff = Color.Gray;
                 
                 // Default On or Off positions
                 CircleColorOn = Color.Empty;
@@ -122,19 +144,12 @@ namespace DataJuggler.Blazor.Components
                 
                 // Label
                 LabelPosition = "relative";
-                Column1Width = 60;
+                Column1Width = 100;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSizeUnit = "px";
-                LabelLeft = -64;
-                LabelTop = 4;
-
-                // Set default colors
-                BackgroundColorOn = Color.CornflowerBlue;
-                BackgroundColorOff = Color.DimGray;                
-
-                // Default ImageUrl
-                ImageUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/OrangeCircle.png";
+                LabelLeft = 0;
+                LabelTop = 10;
             }
             #endregion
             
@@ -177,50 +192,36 @@ namespace DataJuggler.Blazor.Components
             #region BackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'BackgroundColor'.
-            /// </summary>            
-            public Color BackgroundColor
-            {
-                get
-                {
-                    // if On
-                    if (On)
-                    {
-                        // Use the On color
-                        backgroundColor = BackgroundColorOn;
-                    }
-                    else
-                    {
-                        // Use the Off color
-                        backgroundColor = BackgroundColorOff;                        
-                    }
-
-                    // return value
-                    return backgroundColor;
-                }
-            }
-            #endregion
-           
-            #region BackgroundColorOff
-            /// <summary>
-            /// This property gets or sets the value for 'BackgroundColorOff'.
             /// </summary>
             [Parameter]
-            public Color BackgroundColorOff
+            public Color BackgroundColor
             {
-                get { return backgroundColorOff; }
-                set { backgroundColorOff = value; }
+                get { return backgroundColor; }
+                set { backgroundColor = value; }
             }
             #endregion
             
-            #region BackgroundColorOn
+            #region BorderColor
             /// <summary>
-            /// This property gets or sets the value for 'BackgroundColorOn'.
+            /// This property gets or sets the value for 'BorderColor'.
             /// </summary>
             [Parameter]
-            public Color BackgroundColorOn
+            public Color BorderColor
             {
-                get { return backgroundColorOn; }
-                set { backgroundColorOn = value; }
+                get { return borderColor; }
+                set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'BorderWidth'.
+            /// </summary>
+            [Parameter]
+            public int BorderWidth
+            {
+                get { return borderWidth; }
+                set { borderWidth = value; }
             }
             #endregion
             
@@ -510,6 +511,60 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ContainerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ContainerStyle'.
+            /// </summary>
+            public string ContainerStyle
+            {
+                get { return containerStyle; }
+                set { containerStyle = value; }
+            }
+            #endregion
+
+            #region Display
+            /// <summary>
+            /// This property gets or sets the value for 'Display'.
+            /// This property will be used, unless Visible = false, then DisplayNone will be used.
+            /// </summary>
+            [Parameter]
+            public string Display
+            {
+                get { return display; }
+                set { display = value; }
+            }
+            #endregion
+            
+            #region DisplayStyle
+            /// <summary>
+            /// This read only property returns the value of Display, unless Visible = false.
+            /// </summary>
+            public string DisplayStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string displayStyle = "";
+                    
+                    // if the value for Visible is true
+                    if (Visible)
+                    {
+                        // set the return value
+                        displayStyle = Display;
+                    }
+                    else
+                    {
+                        // Invisible
+                        displayStyle = "none";
+                    }
+                    
+                    // return value
+                    return displayStyle;
+                }
+            }
+            #endregion
+            
             #region HasParent
             /// <summary>
             /// This property returns true if this object has a 'Parent'.
@@ -752,6 +807,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Left
+            /// <summary>
+            /// This property gets or sets the value for 'Left'.
+            /// </summary>
+            [Parameter]
+            public double Left
+            {
+                get { return left; }
+                set { left = value; }
+            }
+            #endregion
+            
+            #region LeftStyle
+            /// <summary>
+            /// This read only property returns the value of Left + Unit
+            /// </summary>
+            public string LeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string leftStyle = Left + Unit;
+                    
+                    // return value
+                    return leftStyle;
+                }
+            }
+            #endregion
+            
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.
@@ -761,6 +846,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return name; }
                 set { name = value; }
+            }
+            #endregion
+            
+            #region NotifyParentOnChange
+            /// <summary>
+            /// This property gets or sets the value for 'NotifyParentOnChange'.
+            /// </summary>
+            [Parameter]
+            public bool NotifyParentOnChange
+            {
+                get { return notifyParentOnChange; }
+                set { notifyParentOnChange = value; }
             }
             #endregion
             
@@ -776,15 +873,75 @@ namespace DataJuggler.Blazor.Components
                 {
                     on = value;
 
-                    if (on)
+                    // If the value for the property HasParent is true and NotifyParentOnChange is true
+                    // and the value of On changed
+                    if ((HasParent && NotifyParentOnChange) && (previousOn != on))
                     {
-                        
+                        // Create a new instance of a 'Message' object.
+                        Message message = new Message();
+
+                        // Set the Message Properties
+                        message.Sender = this;
+                        message.Text = "On value was changed to " + on;
+                        message.CheckedValue = on;
+
+                        // Send the parent a message
+                        Parent.ReceiveData(message);
+                    }
+
+                    // Set the value for PreviousOn
+                    PreviousOn = on;
+                }
+            }
+            #endregion
+            
+            #region OvalBackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'BackgroundColor'.
+            /// </summary>            
+            public Color OvalBackgroundColor
+            {
+                get
+                {
+                    // if On
+                    if (On)
+                    {
+                        // Use the On color
+                        ovalBackgroundColor = ovalBackgroundColorOn;
                     }
                     else
                     {
-                        
+                        // Use the Off color
+                        ovalBackgroundColor = ovalBackgroundColorOff;
                     }
+
+                    // return value
+                    return ovalBackgroundColor;
                 }
+            }
+            #endregion
+            
+            #region OvalBackgroundColorOff
+            /// <summary>
+            /// This property gets or sets the value for 'OvalbackgroundColorOff'.
+            /// </summary>
+            [Parameter]
+            public Color OvalBackgroundColorOff
+            {
+                get { return ovalBackgroundColorOff; }
+                set { ovalBackgroundColorOff = value; }
+            }
+            #endregion
+            
+            #region OvalBackgroundColorOn
+            /// <summary>
+            /// This property gets or sets the value for 'OvalBackgroundColorOn'.
+            /// </summary>
+            [Parameter]
+            public Color OvalBackgroundColorOn
+            {
+                get { return ovalBackgroundColorOn; }
+                set { ovalBackgroundColorOn = value; }
             }
             #endregion
             
@@ -1033,6 +1190,29 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region Position
+            /// <summary>
+            /// This property gets or sets the value for 'Position'.
+            /// </summary>
+            [Parameter]
+            public string Position
+            {
+                get { return position; }
+                set { position = value; }
+            }
+            #endregion
+            
+            #region PreviousOn
+            /// <summary>
+            /// This property gets or sets the value for 'PreviousOn'.
+            /// </summary>
+            public bool PreviousOn
+            {
+                get { return previousOn; }
+                set { previousOn = value; }
+            }
+            #endregion
+            
             #region Scale
             /// <summary>
             /// This property gets or sets the value for 'Scale'.
@@ -1078,6 +1258,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Top
+            /// <summary>
+            /// This property gets or sets the value for 'Top'.
+            /// </summary>
+            [Parameter]
+            public double Top
+            {
+                get { return top; }
+                set { top = value; }
+            }
+            #endregion
+
+            #region TopStyle
+            /// <summary>
+            /// This read only property returns the value of Top + HeightUnit
+            /// </summary>
+            public string TopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string topStyle = Top + HeightUnit;
+                    
+                    // return value
+                    return topStyle;
+                }
+            }
+            #endregion
+            
             #region Unit
             /// <summary>
             /// This property gets or sets the value for 'Unit'.
@@ -1087,6 +1297,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+            
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set { visible = value; }
             }
             #endregion
             

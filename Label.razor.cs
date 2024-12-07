@@ -209,7 +209,7 @@ namespace DataJuggler.Blazor.Components
                 BackgroundColor = "transparent";
                 Caption = "";
                 ClientId = Guid.NewGuid().ToString().Substring(0, 12);
-                Display = "inline-block";                
+                Display = "inline-block";
                 LabelColor = "Black";
                 ImageScale = 1.6;
                 FadeValue = 0;
