@@ -63,6 +63,7 @@ namespace DataJuggler.Blazor.Components
         private Label labelComponent;
         private Label aMPMComponent; 
         private DateTime currentTime;
+        private Color labelColor;
         private string labelFontName;
         private double labelFontSize;
         #endregion
@@ -175,6 +176,7 @@ namespace DataJuggler.Blazor.Components
                 // Defaults
                 LabelWidth = 48;
                 LabelTop = 4;
+                LabelColor = Color.Black;
                 HoursTextBoxLeft = -4;                
                 ButtonHeight = 16;
                 ButtonWidth = 16;
@@ -810,6 +812,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return hoursTextBoxWidthPlus4;
                 }
+            }
+            #endregion
+            
+            #region LabelColor
+            /// <summary>
+            /// This property gets or sets the value for 'LabelColor'.
+            /// </summary>
+            [Parameter]
+            public Color LabelColor
+            {
+                get { return labelColor; }
+                set { labelColor = value; }
             }
             #endregion
             
