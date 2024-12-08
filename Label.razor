@@ -12,7 +12,7 @@
     width: @ImageWidthStyle;
     height: 100%;
 </Styled>
-<Styled @bind-Classname=@LabelControlStyle>
+<Styled @bind-Classname=@ControlStyle>
     display: @DisplayStyle;
     width: @WidthStyle;
     position: @Position;
@@ -20,8 +20,8 @@
     top: @TopStyle;
     height: @HeightStyle;
     text-align: @TextAlign;
-    color: @LabelColor;
-    font-size: @LabelFontSizeStyle;    
+    color: @TextColor;
+    font-size: @FontSizeStyle;    
     background-color: @BackgroundColor;
     z-index: @ZIndex;    
 </Styled>
@@ -30,12 +30,10 @@
     height: @MarginBottomStyle;
 </Styled>
 
-<div id="@ClientId" class="@LabelControlStyle">
+<div id="@ClientId" class="@ControlStyle">
     @if (ShowCaption)
-    {
-        <div class="@LabelStyle">
-            <div class="@LabelClassName">@Caption</div>
-        </div>
+    {  
+        <div class="@CaptionClassName">@Caption</div>        
     }
     @if (EnableClick)
     {

@@ -24,11 +24,9 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
-        private string labelColor;
-        private string labelClassName;        
+        private string textColor;
+        private string captionClassName;        
         private string imageClassName;
-        private string labelBackgroundColor;        
-        private string labelStyle;        
         private string caption;
         private string text;
         private string textAlign;
@@ -41,10 +39,7 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private string name;
         private double left;
-        private double top;                
-        private double labelWidth;
-        private double labelFontSize;        
-        private string labelFontSizeUnit;        
+        private double top;        
         private int zIndex;
         private string position;
         private IBlazorComponentParent parent;
@@ -54,14 +49,13 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;        
         private bool visible;
         private string display;        
-        private double labelTop;
         private string fontSizeUnit;
         private string backgroundColor;
         private double imageWidth;
         private string imageBackColor;
         private double marginLeft;        
         private double marginBottom;        
-        private string labelControlStyle;
+        private string controlStyle;
         private string bottomMarginStyle;
         private bool enableClick;
         private int fadeValue;
@@ -210,7 +204,6 @@ namespace DataJuggler.Blazor.Components
                 Caption = "";
                 ClientId = Guid.NewGuid().ToString().Substring(0, 12);
                 Display = "inline-block";
-                LabelColor = "Black";
                 ImageScale = 1.6;
                 FadeValue = 0;
                 FontSize = 12;
@@ -219,11 +212,8 @@ namespace DataJuggler.Blazor.Components
                 HeightUnit = "px";
                 ImageBackColor = "transparent";
                 ImageWidth = 10;                
-                LabelBackgroundColor = "transparent";
-                LabelColor="Black";
-                LabelWidth= 30;
-                LabelFontSize = 12;
-                LabelFontSizeUnit = "px";
+                BackgroundColor = "transparent";
+                TextColor="Black";                                
                 Left = 0;
                 MarginLeft = 1.2;
                 MarginBottom = 8;
@@ -232,7 +222,7 @@ namespace DataJuggler.Blazor.Components
                 Top = 0;                
                 Unit = "px";
                 Visible = true;
-                Width= 30;             
+                Width= 60;             
             }
             #endregion
             
@@ -421,6 +411,18 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
+
+            #region CaptionClassName
+            /// <summary>
+            /// This property gets or sets the value for 'CaptionClassName'.
+            /// </summary>
+            [Parameter]
+            public string CaptionClassName
+            {
+                get { return captionClassName; }
+                set { captionClassName = value; }
+            }
+            #endregion
             
             #region ClassName
             /// <summary>
@@ -443,6 +445,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return clientId; }
                 set { clientId = value; }
+            }
+            #endregion
+
+            #region ControlStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ControlStyle'.
+            /// </summary>
+            public string ControlStyle
+            {
+                get { return controlStyle; }
+                set { controlStyle = value; }
             }
             #endregion
             
@@ -779,167 +792,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region LabelBackgroundColor
-            /// <summary>
-            /// This property gets or sets the value for 'LabelBackgroundColor'.
-            /// </summary>
-            [Parameter]
-            public string LabelBackgroundColor
-            {
-                get { return labelBackgroundColor; }
-                set { labelBackgroundColor = value; }
-            }
-            #endregion
-            
-            #region LabelClassName
-            /// <summary>
-            /// This property gets or sets the value for 'LabelClassName'.
-            /// </summary>
-            [Parameter]
-            public string LabelClassName
-            {
-                get { return labelClassName; }
-                set { labelClassName = value; }
-            }
-            #endregion
-            
-            #region LabelColor
-            /// <summary>
-            /// This property gets or sets the value for 'LabelColor'.
-            /// </summary>
-            [Parameter]
-            public string LabelColor
-            {
-                get { return labelColor; }
-                set { labelColor = value; }
-            }
-            #endregion
-            
-            #region LabelControlStyle
-            /// <summary>
-            /// This property gets or sets the value for 'LabelControlStyle'.
-            /// </summary>
-            public string LabelControlStyle
-            {
-                get { return labelControlStyle; }
-                set { labelControlStyle = value; }
-            }
-            #endregion
-            
-            #region LabelFontSize
-            /// <summary>
-            /// This property gets or sets the value for 'LabelFontSize'.
-            /// </summary>
-            [Parameter]
-            public double LabelFontSize
-            {
-                get { return labelFontSize; }
-                set { labelFontSize = value; }
-            }
-            #endregion
-            
-            #region LabelFontSizeStyle
-            /// <summary>
-            /// This property gets or sets the value for 'LabelFontSizeStyle'.
-            /// </summary>
-            public string LabelFontSizeStyle
-            {
-                get 
-                {
-                    // set the return value
-                    string labelFontSizeStyle = LabelFontSize + LabelFontSizeUnit;
-
-                    // return value
-                    return labelFontSizeStyle;
-                }
-            }
-            #endregion
-            
-            #region LabelFontSizeUnit
-            /// <summary>
-            /// This property gets or sets the value for 'LabelFontSizeUnit'.
-            /// </summary>
-            [Parameter]
-            public string LabelFontSizeUnit
-            {
-                get { return labelFontSizeUnit; }
-                set { labelFontSizeUnit = value; }
-            }
-            #endregion
-            
-            #region LabelStyle
-            /// <summary>
-            /// This property gets or sets the value for 'LabelStyle'.
-            /// </summary>
-            public string LabelStyle
-            {
-                get { return labelStyle; }
-                set { labelStyle = value; }
-            }
-            #endregion
-
-            #region LabelTop
-            /// <summary>
-            /// This property gets or sets the value for 'LabelTop'.
-            /// </summary>
-            [Parameter]
-            public double LabelTop
-            {
-                get { return labelTop; }
-                set { labelTop = value; }
-            }
-            #endregion
-            
-            #region LabelTopStyle
-            /// <summary>
-            /// This read only property returns the value of LabelTopStyle from the object LabelTop.
-            /// </summary>
-            public string LabelTopStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string labelTopStyle = LabelTop + HeightUnit;
-                    
-                    // return value
-                    return labelTopStyle;
-                }
-            }
-            #endregion
-            
-            #region LabelWidth
-            /// <summary>
-            /// This property gets or sets the value for 'LabelWidth'.
-            /// </summary>
-            [Parameter]
-            public double LabelWidth
-            {
-                get { return labelWidth; }
-                set 
-                {
-                    // set the value
-                    labelWidth = value;
-                }
-            }
-            #endregion
-            
-            #region LabelWidthStyle
-            /// <summary>
-            /// This property gets or sets the value for 'LabelWidthStyle'.
-            /// </summary>
-            public string LabelWidthStyle
-            {
-                get
-                {
-                    string labelWidthStyle = LabelWidth + Unit;
-
-                    // return value
-                    return labelWidthStyle;
-                }
-            }
-            #endregion
-            
             #region Left
             /// <summary>
             /// This property gets or sets the value for 'Left'.
@@ -1168,6 +1020,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxClassName; }
                 set { textBoxClassName = value; }
+            }
+            #endregion
+
+            #region TextColor
+            /// <summary>
+            /// This property gets or sets the value for 'TextColor'.
+            /// </summary>
+            [Parameter]
+            public string TextColor
+            {
+                get { return textColor; }
+                set { textColor = value; }
             }
             #endregion
             

@@ -1,5 +1,14 @@
 News
 
+12.8.2024: Breaking changes for the LabelComponent. I didn't like having so much clutter that
+wasn't used. I cleaned up and made a bunch of changes:
+1. LabelColor became TextColor
+2. LabelClassName became ClassName
+3. Anything property named Label became Caption or was removed
+4. There is no longer a FontSize and LabelFontSize. Too confusing.
+ 
+Sorry to break things, but trying to be consistent and simple.
+
 11.27.2024: I added a new property called TextBoxTextColor to the TextBoxComponent.
 
 11.17.2024: New Toggle Component. The Toggle Component makes it simple to place a Label and Toggle Component
