@@ -55,7 +55,7 @@
                 Left="@MinutesTextBoxLeft" Column2Width="4" 
                 FontSize="@FontSize" LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize"
                 Width="4" TextBoxClassName="@ColonTextBoxStyle" Enabled="false" Text=":"
-                TextBoxWidth="@MinutesTextBoxWidth" Display="inline-block"
+                TextBoxWidth="@MinutesTextBoxWidth" Display="inline-block" FontName="@FontName"
                 ShowCaption="false" ZIndex="40" TabIndex="2">
             </TextBoxComponent>
         </td>
@@ -64,6 +64,7 @@
                 Left="@MinutesTextBoxLeft" Column2Width="@MinutesTextBoxWidth" FontSize="@FontSize"
                 Width="@MinutesTextBoxWidth" TextBoxClassName="@MinutesTextBoxStyle"
                 TextBoxWidth="@MinutesTextBoxWidth" Display="inline-block" Caption=""
+                TextBoxFontSize="@FontSize" FontName="@FontName"
                 OnTextChangedCallback="ValidateMinutes" HandleChangeOption="HandleChangeEnum.OnChange"
                 ShowCaption="false" ZIndex="40" TabIndex="2" SendAllTextToParent="true">
             </TextBoxComponent>

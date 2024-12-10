@@ -43,6 +43,7 @@ namespace DataJuggler.Blazor.Components
         private string position;
         private string caption;
         private double fontSize;
+        private string fontName;
         private string fontUnit;
         private string pattern;
         private Color backgroundColor;
@@ -160,10 +161,11 @@ namespace DataJuggler.Blazor.Components
                 CaptionTextAlign = TextAlignmentEnum.Right;
 
                 // Default
-                FontSize = 14;
                 FontUnit = "px";
+                FontSize = GlobalDefaults.TextBoxFontSize;
+                FontName = GlobalDefaults.TextBoxFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
-                labelFontName = GlobalDefaults.LabelFontName;
+                LabelFontName = GlobalDefaults.LabelFontName;
 
                 // Default Pattern for a Time
                 // Pattern = "(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)";
@@ -556,6 +558,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return display; }
                 set { display = value; }
+            }
+            #endregion
+            
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set { fontName = value; }
             }
             #endregion
             
