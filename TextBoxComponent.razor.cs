@@ -254,11 +254,11 @@ namespace DataJuggler.Blazor.Components
                 IsUnique = true;
                 ImageScale = 1.6;                                            
                 TextBoxWidth = 120;
+                Height = 22;
                 Unit = "px";
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontName = GlobalDefaults.TextBoxFontName;
-                FontSizeUnit="px";
-                Height= 24;
+                FontSizeUnit="px";                
                 HeightUnit = "px";
                 ImageBackColor = "transparent";
                 ImageWidth = 10;

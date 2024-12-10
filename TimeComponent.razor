@@ -39,7 +39,7 @@
         <td width="@LabelWidth">
             <Label Name="LabelComponent" Parent="this" Caption="@Caption" Left="@LabelLeft" 
                 FontSize="@LabelFontSize"
-                Top=@LabelTop Width="80" LabelColor="@LabelColor.Name"></Label>
+                Top=@LabelTop Width="80" TextColor="@LabelColor.Name"></Label>
         </td>        
         <td width="@HoursTextBoxWidth">
             <TextBoxComponent Name="HoursTextBox" Column1Width="0" ShowCaption="false"
@@ -72,6 +72,7 @@
         {
             <td width="20">
                 <Label Name="LabelAMPMComponent" Parent="this" Left="0" Caption="" 
+                    FontSize="@LabelFontSize" TextColor="@LabelColor.Name"
                     ClassName="textalignright" EnableDoubleClick="true" NotifyParentOnDoubleClick="true"
                     Top=@LabelTop Width="40" Text="AM"></Label>
             </td>
