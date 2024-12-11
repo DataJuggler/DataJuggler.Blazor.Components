@@ -32,27 +32,17 @@ namespace DataJuggler.Blazor.Components
         private string borderColor;
         private string caption;
         private double fontSize;
-        private string fontName;
-        private double textBoxFontSize;
-        private string textBoxFontName;
-        private double height;
-        private string labelClassName;
-        private string labelBackgroundColor;
-        private string labelColor;
-        private double labelTop;
-        private double labelLeft;
-        private string labelStyle;
+        private string fontName;        
+        private double height;        
         private string imageClassName;
         private bool isValid;
         private string text;
-        private string textBoxBackColor;
-        private string textBoxTextColor;
-        private string textBoxClassName;
+        private string inputType;
         private bool isRequired;
         private bool isIntegerRequired;
         private bool isDoubleRequired;
-        private bool passwordMode;
-        private string inputType;
+        private bool isUnique;        
+        private bool loading;
         private int minimumLength;
         private int maximumLength;
         private int minimumInteger;
@@ -66,26 +56,19 @@ namespace DataJuggler.Blazor.Components
         private string uniqueImageUrl;
         private string takenImageUrl;
         private string imageUrl;
-        private bool showImage;
-        private bool isUnique;        
+        private bool passwordMode;
+        private bool showImage;        
         private double imageScale;
         private double width;        
         private string name;
         private double left;
         private double top;
-        private double labelWidth;
-        private double labelFontSize;
-        private string labelFontName;
-        private string labelFontSizeUnit;        
-        private int zIndex;
         private bool formatAsPhoneNumber;
         private string position;
         private IBlazorComponentParent parent;
         private string className;
         private bool setFocusOnFirstRender;
-        private bool showCaption;
-        private string unit;
-        private string heightUnit;
+        private bool showCaption;        
         private int externalId;
         private string externalIdDescription;        
         private ElementReference innerControl;
@@ -110,15 +93,34 @@ namespace DataJuggler.Blazor.Components
         private string column1Style;
         private string column2Style;
         private string column3Style;
-        private string textBoxStyle;        
         private string imageStyle;
-        private double textBoxWidth;
-        
-        private bool loading;
-        private string textBoxControlStyle;
         private OnTextChange onTextChangedCallback;
         private HandleChangeEnum handleChangeOption;
-       
+        private int zIndex;
+        private string unit;
+        private string heightUnit;
+
+        // Label
+        private double labelWidth;
+        private double labelFontSize;
+        private string labelFontName;        
+        private string labelClassName;
+        private string labelBackgroundColor;
+        private string labelColor;
+        private double labelTop;
+        private double labelLeft;
+        private string labelStyle;
+        
+        // TextBox
+        private string textBoxBackColor;
+        private string textBoxTextColor;
+        private string textBoxClassName;
+        private double textBoxWidth;
+        private string textBoxControlStyle;
+        private string textBoxStyle;
+        private double textBoxFontSize;
+        private string textBoxFontName;
+
         // This are only used when inside a Grid
         private Guid rowId;
         private Guid columnId;        
@@ -265,8 +267,7 @@ namespace DataJuggler.Blazor.Components
                 InvalidLabelColor = "Tomato";
                 LabelBackgroundColor = "transparent";
                 LabelColor="Black";
-                LabelWidth= 30;                
-                LabelFontSizeUnit = "px";
+                LabelWidth= 30;                                
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 Left = 0;
@@ -1519,23 +1520,11 @@ namespace DataJuggler.Blazor.Components
                 get 
                 {
                     // set the return value
-                    string labelFontSizeStyle = LabelFontSize + LabelFontSizeUnit;
+                    string labelFontSizeStyle = LabelFontSize + Unit;
 
                     // return value
                     return labelFontSizeStyle;
                 }
-            }
-            #endregion
-            
-            #region LabelFontSizeUnit
-            /// <summary>
-            /// This property gets or sets the value for 'LabelFontSizeUnit'.
-            /// </summary>
-            [Parameter]
-            public string LabelFontSizeUnit
-            {
-                get { return labelFontSizeUnit; }
-                set { labelFontSizeUnit = value; }
             }
             #endregion
             
