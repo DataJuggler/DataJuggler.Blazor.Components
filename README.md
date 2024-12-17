@@ -1,5 +1,17 @@
 News
 
+12.17.2024: Updates to the Calendar, Label and Time Comonents.
+
+To get the JS working for the Label, set the FadeValue to the miliseconds such as:
+
+	<Label Name="StatusLabel" Parent="this" Unit="vw" FadeValue="2500"
+		TextColor="Coral" FontSize="20" TextAlign="center" ClientId="statuslabel"
+		Width="20" Visible="@ShowStatusMessage"></Label>
+
+Add this JS reference to App.razor:
+
+    <script src="_content/DataJuggler.Blazor.Components/_content/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
+
 12.8.2024: Breaking changes for the LabelComponent. I didn't like having so much clutter that
 wasn't used. I cleaned up and made a bunch of changes:
 1. LabelColor became TextColor

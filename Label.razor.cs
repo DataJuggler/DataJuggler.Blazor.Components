@@ -38,6 +38,7 @@ namespace DataJuggler.Blazor.Components
         private bool enableEnterEditMode;
         private int fadeValue;
         private double fontSize;
+        private string fontName;
         private string fontSizeUnit;
         private double height;
         private string heightUnit;
@@ -146,7 +147,8 @@ namespace DataJuggler.Blazor.Components
                 Display = "inline-block";
                 ImageScale = 1.6;
                 FadeValue = 0;
-                FontSize = 12;
+                FontSize = GlobalDefaults.LabelFontSize;
+                FontName = GlobalDefaults.LabelFontName;
                 FontSizeUnit="px";
                 Height= 24;
                 HeightUnit = "px";
@@ -571,6 +573,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set { fontName = value; }
+            }
+            #endregion
+            
             #region FontSize
             /// <summary>
             /// This property gets or sets the value for 'FontSize'.

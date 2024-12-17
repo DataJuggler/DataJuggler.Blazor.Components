@@ -47,6 +47,7 @@
                 Column2Width="@HoursTextBoxWidthPlus4" Width="@HoursTextBoxWidth"
                 OnTextChangedCallback="ValidateHours" HandleChangeOption="HandleChangeEnum.OnChange"
                 TextBoxWidth="@HoursTextBoxWidth" Left="@HoursTextBoxLeft" FontSize="@FontSize"
+                FontName="@FontName"
                 Display="inline-block" ZIndex="20" Parent="this" TabIndex="1">
             </TextBoxComponent>
         </td>
@@ -73,7 +74,7 @@
         {
             <td width="20">
                 <Label Name="LabelAMPMComponent" Parent="this" Left="0" Caption="" 
-                    FontSize="@LabelFontSize" TextColor="@LabelColor.Name"
+                    FontSize="@LabelFontSize" TextColor="@LabelColor.Name" FontName="@FontName"
                     ClassName="textalignright" EnableDoubleClick="true" NotifyParentOnDoubleClick="true"
                     Top=@LabelTop Width="40" Text="AM"></Label>
             </td>

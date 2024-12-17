@@ -95,9 +95,12 @@
     line-height: @RowHeightStyle;
     margin: 0px;
     padding: 0px;
-    position: absolute;
-    bottom: 1px;
-    font-size: 11px;    
+    position: @BottomRowPosition;
+    left: @BottomRowLeftStyle;
+    bottom: @BottomRowBottomStyle;
+    font-size: @BottomRowFontSizeStyle;
+    font-name: @BottomRowFontName;
+    font-weight: @BottomRowFontWeight;
 </Styled>
 <Styled @bind-Classname=@DayRowStyle>
     background-color: @DayRowColorName;
@@ -355,8 +358,10 @@
                             }
                             else
                             {
-                                <Label FontSize=11 TextColor="Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
-                                       Width="64" Height="12" Text="@DateTitle" Position="relative" Top="2" Left="-8"></Label>
+                                <Label FontSize=@BottomRowFontSize FontName="@BottomRowFontName"
+                                    TextColor="Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
+                                    Width="64" Height="12" Text="@DateTitle" Position="@DateTitlePosition" 
+                                    Left="@dateTitleLeft" Top="@DateTitleTop"></Label>
                             }
                         </td>
                         <td width="34">

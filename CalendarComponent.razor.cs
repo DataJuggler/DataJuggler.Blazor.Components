@@ -4,14 +4,13 @@
 
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Objects;
 using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using DataJuggler.Blazor.Components.Objects;
-using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -105,6 +104,9 @@ namespace DataJuggler.Blazor.Components
         private Color yearButtonTextColorSelected;
         private string navButtonCellStyle;
         private ImageButton button;
+        private double dateTitleLeft;
+        private double dateTitleTop;
+        private string dateTitlePosition;
         private double yearSelectorLeft;
         private double yearSelectorTop;
         private double textBoxFontSize;
@@ -115,6 +117,12 @@ namespace DataJuggler.Blazor.Components
         private double scale;       
         private string headerRowColumnStyle;
         private int zIndex;
+        private double bottomRowLeft;
+        private double bottomRowBottom;
+        private double bottomRowFontSize;
+        private string bottomRowFontName;
+        private string bottomRowPosition;
+        private string bottomRowFontWeight;        
         #endregion
         
         #region Constructor
@@ -531,12 +539,17 @@ namespace DataJuggler.Blazor.Components
                 // Default
                 Caption = "Date:";
 
-                // Set the Unit
+                // Set Defaults
+                BottomRowBottom = 1;
+                BottomRowFontSize = 11;
+                BottomRowFontName = "Calibri";
+                BottomRowPosition = "Absolute";
+                BottomRowFontWeight = "bold";
                 Unit = "px";
                 HeightUnit = "px";
                 Height = 136;
                 Width = 224;
-                ButtonHeight = 26;
+                ButtonHeight = 24;
                 ButtonWidth = 24;
                 CalendarLeft = 262;
                 CalendarPosition = "relative";
@@ -549,16 +562,20 @@ namespace DataJuggler.Blazor.Components
                 DayRowColor = Color.DodgerBlue;
                 DayRowTextColor = Color.GhostWhite;
                 ButtonLeft = 0;
+                DateTitleLeft = -12;
+                DateTitleTop= 3;
+                BottomRowLeft = -8;
+                BottomRowBottom = 3;
                 ButtonTop = -1;
                 Top = -58;
+                DateTitlePosition = "relative";
                 LabelClassName = "down4 right2";
                 TextBoxWidth= 124;
                 ZIndex = 200;
                 RowHeight = 16;
                 TextBoxHeight = 22;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
-                TextBoxFontName = GlobalDefaults.TextBoxFontName;
-                
+                TextBoxFontName = GlobalDefaults.TextBoxFontName;                
                 Theme = ThemeEnum.BlueGold;
                 YearButtonWidth = 24;
                 SelectedColor = Color.Firebrick;
@@ -877,6 +894,132 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return allowYearSelector; }
                 set { allowYearSelector = value; }
+            }
+            #endregion
+            
+            #region BottomRowBottom
+            /// <summary>
+            /// This property gets or sets the value for 'BottomRowBottom'.
+            /// </summary>
+            [Parameter]
+            public double BottomRowBottom
+            {
+                get { return bottomRowBottom; }
+                set { bottomRowBottom = value; }
+            }
+            #endregion
+            
+            #region BottomRowBottomStyle
+            /// <summary>
+            /// This read only property returns the value of BottomRowBottom + HeightUnit
+            /// </summary>
+            public string BottomRowBottomStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string bottomRowBottomStyle = BottomRowBottom + HeightUnit;
+                    
+                    // return value
+                    return bottomRowBottomStyle;
+                }
+            }
+            #endregion
+            
+            #region BottomRowFontName
+            /// <summary>
+            /// This property gets or sets the value for 'BottomRowFontName'.
+            /// </summary>
+            [Parameter]
+            public string BottomRowFontName
+            {
+                get { return bottomRowFontName; }
+                set { bottomRowFontName = value; }
+            }
+            #endregion
+            
+            #region BottomRowFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'BottomRowFontSize'.
+            /// </summary>
+            [Parameter]
+            public double BottomRowFontSize
+            {
+                get { return bottomRowFontSize; }
+                set { bottomRowFontSize = value; }
+            }
+            #endregion
+            
+            #region BottomRowFontSizeStyleStyle
+            /// <summary>
+            /// This read only property returns the value of BottomRowFontSize + HeightUnit;
+            /// </summary>
+            public string BottomRowFontSizeStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string bottomRowFontSizeStyle = BottomRowFontSize + HeightUnit;
+                    
+                    // return value
+                    return bottomRowFontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region BottomRowFontWeight
+            /// <summary>
+            /// This property gets or sets the value for 'BottomRowFontWeight'.
+            /// </summary>
+            [Parameter]
+            public string BottomRowFontWeight
+            {
+                get { return bottomRowFontWeight; }
+                set { bottomRowFontWeight = value; }
+            }
+            #endregion
+            
+            #region BottomRowLeft
+            /// <summary>
+            /// This property gets or sets the value for 'BottomRowLeft'.
+            /// </summary>
+            [Parameter]
+            public double BottomRowLeft
+            {
+                get { return bottomRowLeft; }
+                set { bottomRowLeft = value; }
+            }
+            #endregion
+            
+            #region BottomRowLeftStyle
+            /// <summary>
+            /// This read only property returns the value of BottomRowLeftStyle + Unit;
+            /// </summary>
+            public string BottomRowLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string bottomRowLeftStyle = BottomRowLeft + Unit;
+                    
+                    // return value
+                    return bottomRowLeftStyle;
+                }
+            }
+            #endregion
+            
+            #region BottomRowPosition
+            /// <summary>
+            /// This property gets or sets the value for 'BottomRowPosition'.
+            /// </summary>
+            [Parameter]
+            public string BottomRowPosition
+            {
+                get { return bottomRowPosition; }
+                set { bottomRowPosition = value; }
             }
             #endregion
             
@@ -1251,6 +1394,42 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return dateTitle; }
                 set { dateTitle = value; }
+            }
+            #endregion
+            
+            #region DateTitleLeft
+            /// <summary>
+            /// This property gets or sets the value for 'DateTitleLeft'.
+            /// </summary>
+            [Parameter]
+            public double DateTitleLeft
+            {
+                get { return dateTitleLeft; }
+                set { dateTitleLeft = value; }
+            }
+            #endregion
+            
+            #region DateTitlePosition
+            /// <summary>
+            /// This property gets or sets the value for 'DateTitlePosition'.
+            /// </summary>
+            [Parameter]
+            public string DateTitlePosition
+            {
+                get { return dateTitlePosition; }
+                set { dateTitlePosition = value; }
+            }
+            #endregion
+            
+            #region DateTitleTop
+            /// <summary>
+            /// This property gets or sets the value for 'DateTitleTop'.
+            /// </summary>
+            [Parameter]
+            public double DateTitleTop
+            {
+                get { return dateTitleTop; }
+                set { dateTitleTop = value; }
             }
             #endregion
             
