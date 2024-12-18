@@ -126,6 +126,7 @@ namespace DataJuggler.Blazor.Components
         private string fontName;
         
         // Had to bring back BlazorStyled        
+        private string listItemContainer;
         private string listItemStyle;
         private string buttonStyle;
         private string checkedListBoxStyle;
@@ -340,71 +341,72 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // Default to 30% for the lable, the rest goes to the ComboBox
-                Theme = ThemeEnum.BlueGold;
-                
+                // Default to 30% for the label, the rest goes to the ComboBox
+                Theme = ThemeEnum.Black;
+    
                 // Button
                 ButtonPosition = "relative";
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
                 ButtonTop = -1;
-                ButtonLeft = 0;
-
+                ButtonLeft = -1;
                 SelectedText = "";
                 Children = new List<IBlazorComponent>();
                 Visible = true;
-                Left = 0;
+                Left = -3;
                 Top = 0;
                 Height = 32;
                 Unit = "px";
                 HeightUnit = "px";
-                Width = 120;
+                Width = 224; // Updated from 120
                 checkedListheight = 64;
-                CheckedListWidth = 120;                
+                CheckedListWidth = 120;
                 Position = "relative";
                 VisibleCount = 5;
-                ZIndex = 40;
+                ZIndex = 80; // Updated from 40
                 ListZIndex = 80;
                 LabelMarginRight = 0;
                 LabelMarginRightList = 0;
-                listItemLeft = 108;
-                ListItemWidth = 120;
+                listItemLeft = -150; // Updated from 108
+                ListItemWidth = 108; // Updated from 120
                 TextAlign = "center";
                 Items = new List<Item>();
                 LabelBackColor = "transparent";
                 LabelUnit = "px";
                 ListItemPosition = "relative";
                 ListItemHeight = 16;
-                listItemTop = -12;
+                listItemTop = 32; // Updated from -12
                 LabelPosition = "relative";
                 ListItemBackgroundColor = Color.White;
                 ListBackgroundColor = Color.White;
-                ListItemClassName="height16";                
+                ListItemClassName = "zindex200"; // Updated from "height16"
                 Column1Width = 100;
-                Column2Width = 128;                
-               
+                Column2Width = 128; // Already matching value
+    
                 // CheckBox
                 CheckBoxTextXPosition = -1;
                 checkBoxTextYPosition = -1;
                 CheckedListZIndex = 40;
                 CheckedListPosition = "absolute";
-                
+    
                 // TextBox
-                TextBoxWidth= 124;
-                TextBoxLeft = -3.2;                
-                TextBoxWidth = 12;
-                TextBoxHeight = 24;
-                
+                TextBoxWidth = 124; // Updated from 12
+                TextBoxLeft = 0; // Updated from -3.2
+                TextBoxHeight = 22; // Updated from 24
+    
                 // Set the Fonts
-                LabelFontSize = GlobalDefaults.LabelFontSize;
-                LabelFontName = GlobalDefaults.LabelFontName;
+                LabelFontSize = 18; // Updated from GlobalDefaults.LabelFontSize
+                LabelFontName = "Calibri"; // Updated from GlobalDefaults.LabelFontName
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontUnit = "px";
-                
+    
                 // Set so the image is set
                 Expanded = false;
+    
+                // Additional Properties                
+                LabelClassName = "down4 right2";
             }
             #endregion
             
@@ -2367,6 +2369,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemPosition; }
                 set { listItemPosition = value; }
+            }
+            #endregion
+            
+            #region ListItemContainer
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemContainer'.
+            /// </summary>
+            public string ListItemContainer
+            {
+                get { return listItemContainer; }
+                set { listItemContainer = value; }
             }
             #endregion
             

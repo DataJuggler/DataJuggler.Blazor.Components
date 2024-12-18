@@ -3,13 +3,13 @@
 @using BlazorStyled
 @using System.Drawing
 
-<Styled @bind-Classname=@ListItemStyle>
+<Styled @bind-Classname=@ListItemContainer>
     font-family: Calibri;
     text-align: left;
     background-color: @ListBackgroundColorName;
     width: @ListItemWidthStyle;
-    height: @ListItemHeightStyle;
-    position: @listItemPosition;
+    min-width: @ListItemWidthStyle;    
+    position: @ListItemPosition;
     color: @ListItemTextColorName;
     left: @ListItemLeftStyle;
     top: @ListItemTopStyle;
@@ -19,6 +19,11 @@
     border-color: gray;
     border-style: solid;
     overflow: visible;
+</Styled>
+<Styled @bind-Classname=@ListItemStyle>    
+    width: @ListItemWidthStyle;
+    min-width: @ListItemWidthStyle;
+    height: @ListItemHeightStyle;    
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
     display: inline;
@@ -104,13 +109,13 @@
                 </table>
             }
             else
-            {  
-                <div class="@ListItemStyle @DropdownClassName">
+            {
+                <div class="@ListItemContainer @DropdownClassName">
                     <select class="form-control" name="ListBox" size="@VisibleCount"
                             id="ComboBoxListBox" @onchange="SelectionChanged">
                         @foreach (Item item in Items)
                         {
-                            <option class="nopadding">@item.Text</option>
+                            <option class="@ListItemStyle nopadding" >@item.Text</option>
                         }
                     </select>
                 </div>
