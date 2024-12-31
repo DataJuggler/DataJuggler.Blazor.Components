@@ -45,13 +45,7 @@ namespace DataJuggler.Blazor.Components.Interfaces
         #endregion
 
         #region Properties
-
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for Children.
-            /// </summary>
-            public List<IBlazorComponent> Children { get; set; }
-            #endregion
+    
 
         #endregion
 
