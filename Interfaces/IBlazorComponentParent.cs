@@ -44,11 +44,6 @@ namespace DataJuggler.Blazor.Components.Interfaces
 
         #endregion
 
-        #region Properties
-    
-
-        #endregion
-
     }
     #endregion
 
