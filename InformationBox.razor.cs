@@ -135,6 +135,12 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
+                // Unit must come first
+                ListItemUnit = "px";
+                ListItemHeightUnit = "px";
+                FontUnit = "px";
+                Unit = "px";
+
                 // Defaults
                 BackgroundColor = Color.White;
                 BorderColor = Color.Gray;
@@ -149,7 +155,6 @@ namespace DataJuggler.Blazor.Components
                 Display = "inline-block";
                 FontName = "Calibri";
                 FontSize = 12;
-                FontUnit = "px";
                 Gap = 8;
                 HeaderFontSize = 16;
                 HeaderFontWeight = "bold";
@@ -158,18 +163,15 @@ namespace DataJuggler.Blazor.Components
                 HeaderTextPosition = "relative";
                 Height = 160;
                 HeightUnit = "px";
-                ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;
-                ListItemHeight = 16;
+                ItemContenteAlignment = ItemContenteAlignmentEnum.ItemsOnTop;                
                 ListItemLeft = 0;
                 ListItemTop = 0;
-                ListItemPosition = "relative";
-                ListItemUnit = "px";
-                ListItemHeightUnit = "px";
+                ListItemPosition = "relative";                
+                ListItemHeight = 26;
                 Overflow = "visible";
                 Position = "relative";
                 Scale = 100;
-                TitleTextColor = Color.White;
-                Unit = "px";
+                TitleTextColor = Color.White;                
                 VerticalAlignment = VerticalAlignmentEnum.Top;                
                 Width = 240;
             }

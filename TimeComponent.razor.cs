@@ -144,9 +144,10 @@ namespace DataJuggler.Blazor.Components
                  // Default
                 TimeType = TimeTypeEnum.Hours12;
 
-                // Default Units
-                Unit = "px";
+                // Default Units                
+                FontUnit = "px";                
                 HeightUnit = "px";
+                Unit = "px";
 
                 // Default to inline-block
                 Display = "inline-block";
@@ -160,8 +161,7 @@ namespace DataJuggler.Blazor.Components
                  // Default to right
                 CaptionTextAlign = TextAlignmentEnum.Right;
 
-                // Default
-                FontUnit = "px";
+                // Default                
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontName = GlobalDefaults.TextBoxFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
