@@ -67,6 +67,7 @@ namespace DataJuggler.Blazor.Components
         private Color labelColor;
         private string labelFontName;
         private double labelFontSize;
+        private double aMPMLabelLeft;
         #endregion
         
         #region Constructor
@@ -182,6 +183,9 @@ namespace DataJuggler.Blazor.Components
                 HoursTextBoxLeft = -4;                
                 ButtonHeight = 16;
                 ButtonWidth = 16;
+
+                // Start at Negative 20
+                AMPMLabelLeft = -20;
 
                 // Default to two 12 hour times
                 TimeType = TimeTypeEnum.Hours12;
@@ -446,6 +450,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region AMPMLabelLeft
+            /// <summary>
+            /// This property gets or sets the value for 'AMPMLabelLeft'.
+            /// </summary>
+            [Parameter]
+            public double AMPMLabelLeft
+            {
+                get { return aMPMLabelLeft; }
+                set { aMPMLabelLeft = value; }
+            }
+            #endregion
+           
             #region BackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'BackgroundColor'.
