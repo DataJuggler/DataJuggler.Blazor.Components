@@ -122,7 +122,8 @@ namespace DataJuggler.Blazor.Components
         private double bottomRowFontSize;
         private string bottomRowFontName;
         private string bottomRowPosition;
-        private string bottomRowFontWeight;        
+        private string bottomRowFontWeight;
+        private double labelLeft;
         #endregion
         
         #region Constructor
@@ -588,6 +589,7 @@ namespace DataJuggler.Blazor.Components
                 LabelColor = Color.Black;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
+                LabelLeft = -4;
                 
                 // Buttons
                 NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -1804,6 +1806,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelFontSize; }
                 set { labelFontSize = value; }
+            }
+            #endregion
+            
+            #region LabelLeft
+            /// <summary>
+            /// This property gets or sets the value for 'LabelLeft'.
+            /// </summary>
+            [Parameter]
+            public double LabelLeft
+            {
+                get { return labelLeft; }
+                set { labelLeft = value; }
             }
             #endregion
             
