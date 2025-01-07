@@ -68,6 +68,7 @@ namespace DataJuggler.Blazor.Components
         private string labelFontName;
         private double labelFontSize;
         private double aMPMLabelLeft;
+        private double labelZIndex;
         #endregion
         
         #region Constructor
@@ -943,6 +944,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return labelWidthStyle;
                 }
+            }
+            #endregion
+            
+            #region LabelZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'LabelZIndex'.
+            /// </summary>
+            [Parameter]
+            public double LabelZIndex
+            {
+                get { return labelZIndex; }
+                set { labelZIndex = value; }
             }
             #endregion
             
