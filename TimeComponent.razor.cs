@@ -1053,6 +1053,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region MinutesTextBoxLeftPlus3
+            /// <summary>
+            /// This read only property returns the value of MinutesTextBoxLeft + 3
+            /// </summary>
+            public double MinutesTextBoxLeftPlus3
+            {
+                get
+                {
+                    // initial value
+                    double minutesTextBoxLeftMinus3 = MinutesTextBoxLeft + 3;
+                    
+                    // return value
+                    return minutesTextBoxLeftMinus3;
+                }
+            }
+            #endregion
+
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.

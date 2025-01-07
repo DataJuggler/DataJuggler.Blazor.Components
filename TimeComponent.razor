@@ -53,7 +53,7 @@
         </td>
         <td width="4">
             <TextBoxComponent Name="ColonTextBox" Column1Width="0" Parent="this" 
-                Left="@MinutesTextBoxLeft" Column2Width="4" 
+                Left="@MinutesTextBoxLeftPlus3" Column2Width="4" 
                 FontSize="@FontSize" LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize"
                 Width="4" TextBoxClassName="@ColonTextBoxStyle" Enabled="false" Text=":"
                 TextBoxWidth="@MinutesTextBoxWidth" Display="inline-block" FontName="@FontName"
@@ -62,7 +62,7 @@
         </td>
         <td width="@MinutesTextBoxWidth">
             <TextBoxComponent Name="MinutesTextBox" Column1Width="0" Parent="this" 
-                Left="@MinutesTextBoxLeft" Column2Width="@MinutesTextBoxWidth" FontSize="@FontSize"
+                Left="@HoursTextBoxLeft" Column2Width="@MinutesTextBoxWidth" FontSize="@FontSize"
                 Width="@MinutesTextBoxWidth" TextBoxClassName="@MinutesTextBoxStyle"
                 TextBoxWidth="@MinutesTextBoxWidth" Display="inline-block" Caption=""
                 TextBoxFontSize="@FontSize" TextBoxFontName="@FontName"
