@@ -57,6 +57,8 @@ namespace DataJuggler.Blazor.Components
         private bool notifyParentOnDoubleClick;        
         private bool enableClick;
         private string gridStyle;
+        private string overflowX;
+        private string overflowY;
         #endregion
 
         #region Constructor
@@ -240,7 +242,9 @@ namespace DataJuggler.Blazor.Components
                 FontSize = 12;
                 FontSizeUnit="px";
                 Unit = "px";
-                Width = 400;                
+                Width = 400;
+                OverflowX = "hidden";
+                OverflowY = "auto";
             }
             #endregion
             
@@ -800,6 +804,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return notifyParentOnDoubleClick; }
                 set { notifyParentOnDoubleClick = value; }
+            }
+            #endregion
+            
+            #region OverflowX
+            /// <summary>
+            /// This property gets or sets the value for 'OverflowX'.
+            /// </summary>
+            [Parameter]
+            public string OverflowX
+            {
+                get { return overflowX; }
+                set { overflowX = value; }
+            }
+            #endregion
+            
+            #region OverflowY
+            /// <summary>
+            /// This property gets or sets the value for 'OverflowY'.
+            /// </summary>
+            [Parameter]
+            public string OverflowY
+            {
+                get { return overflowY; }
+                set { overflowY = value; }
             }
             #endregion
             

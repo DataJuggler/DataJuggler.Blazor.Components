@@ -85,7 +85,8 @@ namespace DataJuggler.Blazor.Components
         private double imageTop;
         private double imageLeft;        
         private string overflow;
-        private double scale;        
+        private double scale;
+        private int zIndex;
         private VerticalAlignmentEnum verticalAlignment;
         private RenderFragment bodyContent;
         private ItemContenteAlignmentEnum itemContenteAlignment;        
@@ -1328,6 +1329,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return widthStyle; }
                 set { widthStyle = value; }
+            }
+            #endregion
+            
+            #region ZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'ZIndex'.
+            /// </summary>
+            [Parameter]
+            public int ZIndex
+            {
+                get { return zIndex; }
+                set { zIndex = value; }
             }
             #endregion
             

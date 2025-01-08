@@ -10,7 +10,8 @@
     line-height: 2vh;
     font-size: @FontSizeStyle;
     width: @WidthStyle;
-    overflow: hidden;
+    overflow-y: @OverflowY;
+    overflow-x: @OverflowX;
     position: @Position;
     left: @LeftStyle;
     top: @TopStyle;
@@ -33,11 +34,10 @@
     </div>
 }
 
-<div class="@ClassName @GridStyle">
+<div class="@GridStyle @ClassName">
     
     @if (HasRows)
     {  
-
         @foreach (Row row in Rows)
         {
             // if the row has columns
