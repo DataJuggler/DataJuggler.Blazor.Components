@@ -160,7 +160,8 @@ namespace DataJuggler.Blazor.Components
                 // Default Caption
                 Caption = "Time:";
 
-                 // Default to right
+                // Default to right
+                Column1Width = 40;
                 CaptionTextAlign = TextAlignmentEnum.Right;
 
                 // Default                
@@ -174,14 +175,18 @@ namespace DataJuggler.Blazor.Components
 
                 // Defaults (this might get adjusted)
                 HoursTextBoxLeft = 2;
-                HoursTextBoxWidth = 24; // Will Set MinutesTextBoxLeft                
+                HoursTextBoxWidth = 24; // Will Set MinutesTextBoxLeft
                 MinutesTextBoxWidth = HoursTextBoxWidth;
+                
 
-                // Defaults
+                // Defaults                
+                Left = -1;
                 LabelWidth = 48;
-                LabelTop = 4;
+                LabelLeft = 0;
+                LabelTop = 3;
                 LabelColor = Color.Black;
-                HoursTextBoxLeft = -4;                
+                HoursTextBoxLeft = -14; 
+                MinutesTextBoxLeft = -16;
                 ButtonHeight = 16;
                 ButtonWidth = 16;
 
@@ -822,8 +827,8 @@ namespace DataJuggler.Blazor.Components
                 {
                     hoursTextBoxWidth = value;
 
-                    // The left of the minutes textbox should be the same (I think)
-                    MinutesTextBoxLeft = value;
+                    // The left of the minutes textbox should be the same plus the colon (I think)
+                    MinutesTextBoxLeft = value + 8;
                 }
             }
             #endregion
