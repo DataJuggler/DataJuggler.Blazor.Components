@@ -4,7 +4,10 @@
 @using DataJuggler.Blazor.Components
 @using BlazorStyled
 
-<Styled @bind-Classname=@GridStyle>    
+<Styled @bind-Classname=@GridStyle>
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     background-color: @GridBackColor;
     height: @HeightStyle;
     line-height: 2vh;
@@ -16,17 +19,20 @@
     left: @LeftStyle;
     top: @TopStyle;
 </Styled>
+<Styled @bind-Classname=@HeaderRowStyle>
+    flex: 1;
+</Styled>
 
 @if (ShowHeader)
 {
-    <div class="@HeaderClassName">
+    <div class="@HeaderRowStyle @HeaderClassName">
         @HeaderText
     </div>
 }
 
 @if ((ShowColumnHeaders) && (HasColumns))
 {
-    <div class="@HeaderClassName">        
+    <div class="@HeaderRowStyle @HeaderClassName">
         @foreach (Column column in Columns)
         {
             <div class="@column.ClassName">@column.Caption</div>

@@ -59,6 +59,7 @@ namespace DataJuggler.Blazor.Components
         private string gridStyle;
         private string overflowX;
         private string overflowY;
+        private string headerRowStyle;
         #endregion
 
         #region Constructor
@@ -690,6 +691,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return headerClassName; }
                 set { headerClassName = value; }
+            }
+            #endregion
+            
+            #region HeaderRowStyle
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderRowStyle'.
+            /// </summary>
+            public string HeaderRowStyle
+            {
+                get { return headerRowStyle; }
+                set { headerRowStyle = value; }
             }
             #endregion
             
