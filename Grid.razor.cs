@@ -60,6 +60,7 @@ namespace DataJuggler.Blazor.Components
         private string overflowX;
         private string overflowY;
         private string headerRowStyle;
+        private string containerStyle;
         #endregion
 
         #region Constructor
@@ -427,6 +428,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return columns; }
                 set { columns = value; }
+            }
+            #endregion
+            
+            #region ContainerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ContainerStyle'.
+            /// </summary>
+            public string ContainerStyle
+            {
+                get { return containerStyle; }
+                set { containerStyle = value; }
             }
             #endregion
             
