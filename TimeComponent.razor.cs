@@ -134,6 +134,9 @@ namespace DataJuggler.Blazor.Components
                     // Set the Hours
                     MinutesTextBox.SetTextValue(minute.ToString());
                 }
+
+                // Update the UI
+                Refresh();
             }
             #endregion
             
@@ -177,7 +180,6 @@ namespace DataJuggler.Blazor.Components
                 HoursTextBoxLeft = 2;
                 HoursTextBoxWidth = 24; // Will Set MinutesTextBoxLeft
                 MinutesTextBoxWidth = HoursTextBoxWidth;
-                
 
                 // Defaults                
                 Left = -1;
