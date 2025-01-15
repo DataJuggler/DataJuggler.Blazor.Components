@@ -73,21 +73,24 @@
             <tr class="textdonotwrap">
                 <td width="@TextBoxWidth">
                     <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
-                        ClassName="displayinline" Column1Width="@Column1Width" 
-                        Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" Height="@TextBoxHeight"
-                        LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize"
-                        LabelColor="@LabelColor.Name" OnTextChangedCallback="OnTextChanged"
-                        TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
-                        SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
-                        Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
+                    ClassName="displayinline" Column1Width="@Column1Width" 
+                    Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" Height="@TextBoxHeight"
+                    LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize"
+                    LabelColor="@LabelColor.Name" OnTextChangedCallback="OnTextChanged"
+                    TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
+                    SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
+                    Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
                     </TextBoxComponent>
                 </td>
-                <td width="@ButtonWidth">
-                    <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight"
-                            Unit="px" Width="@ButtonWidth" Name="CalendarButton" Position="@ButtonPosition" ZIndex="@ZIndex"
-                            Left="@ButtonLeft" Top=@ButtonTop ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
-                    </ImageButton>
-                </td>
+                @if (ShowButton)
+                {
+                    <td width="@ButtonWidth">
+                        <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight"
+                                Unit="px" Width="@ButtonWidth" Name="CalendarButton" Position="@ButtonPosition" ZIndex="@ZIndex"
+                                Left="@ButtonLeft" Top=@ButtonTop ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                        </ImageButton>
+                    </td>
+                }
             </tr>
         </table>
         @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))

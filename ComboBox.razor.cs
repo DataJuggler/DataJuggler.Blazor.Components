@@ -124,6 +124,7 @@ namespace DataJuggler.Blazor.Components
         private double textBoxFontSize;
         private string textBoxFontName;
         private string fontName;
+        private bool showButton;
         
         // Had to bring back BlazorStyled        
         private string listItemContainer;
@@ -407,6 +408,9 @@ namespace DataJuggler.Blazor.Components
     
                 // Additional Properties                
                 LabelClassName = "down4 right2";
+
+                // Default to true
+                ShowButton = true;
             }
             #endregion
             
@@ -2606,6 +2610,28 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return selectedText; }
                 set { selectedText = value; }
+            }
+            #endregion
+            
+            #region ShowButton
+            /// <summary>
+            /// This property gets or sets the value for 'ShowButton'.
+            /// </summary>
+            [Parameter]
+            public bool ShowButton
+            {
+                get { return showButton; }
+                set 
+                {
+                    showButton = value;
+
+                    // if the value for showButton is false
+                    if (!showButton)
+                    {
+                        // Has to be Expanded
+                        Expanded = true;
+                    }
+                }
             }
             #endregion
             
