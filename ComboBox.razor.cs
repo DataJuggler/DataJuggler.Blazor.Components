@@ -168,6 +168,25 @@ namespace DataJuggler.Blazor.Components
                 Refresh();
             }
             #endregion
+
+            #region OnAfterRenderAsync(bool firstRender)
+            /// <summary>
+            /// This method is used to verify a user
+            /// </summary>
+            /// <param name="firstRender"></param>
+            /// <returns></returns>
+            protected async override Task OnAfterRenderAsync(bool firstRender)
+            {
+                if (firstRender)
+                {
+                    // Setup this component
+                    SetupComponent();
+                }
+
+                // call the base
+                await base.OnAfterRenderAsync(firstRender);
+            }
+            #endregion
             
             #region SelectionChanged(ChangeEventArgs selectedItem)
             /// <summary>
@@ -859,6 +878,13 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void SetupComponent()
             {
+                // if not ShowButton
+                if (!ShowButton)
+                {
+                    // Show the list
+                    Expanded = true;
+                }
+
                 // if Blue Mode
                 if (theme == ThemeEnum.Blue)
                 {      
