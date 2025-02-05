@@ -125,6 +125,7 @@ namespace DataJuggler.Blazor.Components
         private string textBoxFontName;
         private string fontName;
         private bool showButton;
+        private bool initialized;
         
         // Had to bring back BlazorStyled        
         private string listItemContainer;
@@ -179,6 +180,9 @@ namespace DataJuggler.Blazor.Components
             {
                 if (firstRender)
                 {
+                    // Needs to be set first
+                    Initialized = true;
+
                     // Setup this component
                     SetupComponent();
                 }
@@ -421,15 +425,15 @@ namespace DataJuggler.Blazor.Components
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontUnit = "px";
+
+                // Default to true
+                ShowButton = true;
     
                 // Set so the image is set
                 Expanded = false;
     
                 // Additional Properties                
                 LabelClassName = "down4 right2";
-
-                // Default to true
-                ShowButton = true;
             }
             #endregion
             
@@ -879,7 +883,7 @@ namespace DataJuggler.Blazor.Components
             public void SetupComponent()
             {
                 // if not ShowButton
-                if (!ShowButton)
+                if ((!ShowButton) && (Initialized))
                 {
                     // Show the list
                     Expanded = true;
@@ -1936,6 +1940,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region Initialized
+            /// <summary>
+            /// This property gets or sets the value for 'Initialized'.
+            /// </summary>
+            public bool Initialized
+            {
+                get { return initialized; }
+                set { initialized = value; }
+            }
+            #endregion
+            
             #region Items
             /// <summary>
             /// This property gets or sets the value for 'Items'.
