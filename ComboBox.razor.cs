@@ -1574,10 +1574,18 @@ namespace DataJuggler.Blazor.Components
                 get { return expanded; }
                 set
                 {
+                    // initial value
+                    bool originalValue = expanded;
+
+                    // set the new value
                     expanded = value;
-                        
-                    // The button image changes on Expanded and Theme.
-                    SetupComponent();
+
+                    // if the value has changed
+                    if (originalValue != value)
+                    {  
+                        // The button image changes on Expanded and Theme.
+                        SetupComponent();
+                    }
                 }
             }
             #endregion
