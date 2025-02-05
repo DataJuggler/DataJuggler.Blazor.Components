@@ -62,6 +62,7 @@ namespace DataJuggler.Blazor.Components
         private string display;
         private string columnStyle;
         private string rowStyle;
+        private double dayRowLeft;
         private Color dayRowColor;
         private Color dayRowTextColor;
         private string dayRowStyle;
@@ -124,6 +125,7 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowPosition;
         private string bottomRowFontWeight;
         private double labelLeft;
+        private double rowLeft;
         #endregion
         
         #region Constructor
@@ -573,7 +575,7 @@ namespace DataJuggler.Blazor.Components
                 LabelClassName = "down4 right2";
                 TextBoxWidth= 124;
                 ZIndex = 200;
-                RowHeight = 16;
+                RowHeight = 14.8;
                 TextBoxHeight = 22;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;                
@@ -1532,6 +1534,37 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DayRowLeft
+            /// <summary>
+            /// This property gets or sets the value for 'DayRowLeft'.
+            /// This is the property for the Day of the Week Header, Left.
+            /// </summary>
+            [Parameter]
+            public double DayRowLeft
+            {
+                get { return dayRowLeft; }
+                set { dayRowLeft = value; }
+            }
+            #endregion
+            
+            #region DayRowLeftStyle
+            /// <summary>
+            /// This read only property returns the value of DayRowLeftStyle from the object DayRowLeft.
+            /// </summary>
+            public string DayRowLeftStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string dayRowLeftStyle =DayRowLeft + Unit;
+                    
+                    // return value
+                    return dayRowLeftStyle;
+                }
+            }
+            #endregion
+
             #region DayRowStyle
             /// <summary>
             /// This property gets or sets the value for 'DayRowStyle'.
@@ -1990,6 +2023,37 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return rowHeightStyle;
+                }
+            }
+            #endregion
+
+            #region RowLeft
+            /// <summary>
+            /// This property gets or sets the value for 'RowLeft'.
+            /// </summary>
+            [Parameter]
+            public double RowLeft
+            {
+                get { return rowLeft; }
+                set { rowLeft = value; }
+            }
+            #endregion
+            
+            #region RowLeftStyle
+            /// <summary>
+            /// This read only property returns the value of RowLeftStyle from the object RowLeft.
+            /// This is the property for the date buttons.
+            /// </summary>
+            public string RowLeftStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string rowLeftStyle = RowLeft + Unit;
+                    
+                    // return value
+                    return rowLeftStyle;
                 }
             }
             #endregion
