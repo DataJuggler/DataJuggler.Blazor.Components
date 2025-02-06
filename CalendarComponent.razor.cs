@@ -556,9 +556,9 @@ namespace DataJuggler.Blazor.Components
                 ButtonLeft = 0;
                 ButtonTop = 0;                                
                 ButtonWidth = 24;
-                CalendarLeft = 42;
+                CalendarLeft = 20;
                 CalendarPosition = "relative";
-                CalendarTop = -80;
+                CalendarTop = -118;
                 Caption = "Last Contacted:";
                 CellWidth = 14.2;
                 Column1Width = 100;
@@ -579,7 +579,7 @@ namespace DataJuggler.Blazor.Components
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelLeft = -4;
                 Position = "relative";
-                RowLeft = -2;
+                RowLeft = -3;
                 RowHeight = 12.8;
                 Scale = 100;
                 SelectedColor = Color.Firebrick;
