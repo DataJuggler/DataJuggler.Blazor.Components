@@ -551,14 +551,14 @@ namespace DataJuggler.Blazor.Components
                 BottomRowFontSize = 11;
                 BottomRowFontWeight = "bold";
                 BottomRowLeft = -8;
-                BottomRowPosition = "Absolute";                
+                BottomRowPosition = "absolute";                
                 ButtonHeight = 25;
                 ButtonLeft = 0;
                 ButtonTop = 0;                                
                 ButtonWidth = 24;
-                CalendarLeft = 262;
+                CalendarLeft = 42;
                 CalendarPosition = "relative";
-                CalendarTop = -112;
+                CalendarTop = -80;
                 Caption = "Last Contacted:";
                 CellWidth = 14.2;
                 Column1Width = 100;
@@ -571,7 +571,7 @@ namespace DataJuggler.Blazor.Components
                 DayButtonWidth = 26;                
                 DayRowColor = Color.DodgerBlue;
                 DayRowTextColor = Color.GhostWhite;                
-                Height = 146;                
+                Height = 146;            
                 HeightUnit = "px";
                 LabelClassName = "down4 right2";                
                 LabelColor = Color.Black;
@@ -595,7 +595,7 @@ namespace DataJuggler.Blazor.Components
                 YearButtonTextColorSelected = Color.White;                
                 YearButtonWidth = 24;
                 YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;                
-                ZIndex = 60;
+                ZIndex = 400;
                 
                 // Buttons
                 NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -1836,13 +1836,7 @@ namespace DataJuggler.Blazor.Components
             public double Height
             {
                 get { return height; }
-                set
-                {
-                    height = value;
-                        
-                    // Set the height headerStyle string
-                    HeightStyle = height + HeightUnit;
-                }
+                set { height = value; }
             }
             #endregion
                 
@@ -1852,8 +1846,22 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string HeightStyle
             {
-                get { return heightStyle; }
-                set { heightStyle = value; }
+                get
+                {
+                    if (TextHelper.Exists(heightUnit))
+                    {
+                        // initial value
+                        heightStyle = height + HeightUnit;
+                    }
+                    else
+                    {
+                        // Default to pixel
+                        heightStyle = height + "px";
+                    }
+
+                    // Set the return value
+                    return heightStyle;
+                }
             }
             #endregion
                 
@@ -2703,7 +2711,7 @@ namespace DataJuggler.Blazor.Components
             
             #region ZIndexPlus1
             /// <summary>
-            /// This read only property returns the value of ZIndexPlus1 from the object ZIndex.
+            /// This read only property returns the value of ZIndex Plus1 from the property ZIndex.
             /// </summary>
             public int ZIndexPlus1
             {
