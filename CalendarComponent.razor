@@ -75,9 +75,7 @@
 </Styled>
 <Styled @bind-Classname=@HeaderRowColumnStyle>
     font-size: 10px;    
-    display: inline;
-    width: 40px;
-    max-width: calc(100% / 7);
+    display: inline;    
     text-align: center;
     height: 16px;
     position: relative;
@@ -92,7 +90,8 @@
     margin: 0px;
     padding: 0px;
     position: @Position;
-    left: @RowLeftStyle;        
+    left: @RowLeftStyle;  
+    text-align: source;
 </Styled>
 <Styled @bind-Classname=@DayRowStyle>
     background-color: @DayRowColorName;
@@ -100,9 +99,12 @@
     width: @WidthStyle;
     height: @DayRowHeightStyle;
     z-index: @ZIndex;
-    position: @Position;
+    position: relative;
+    top: -4px;
     left: @DayRowLeftStyle;
-    text-align: center;
+    text-align: left;
+    vertical-align: top;
+    clear: both;
 </Styled>
 <Styled @bind-Classname=@BottomRowStyle>
     width: 100%;
@@ -122,9 +124,9 @@
     background-color: white;
     font-size: 10px;
     font-weight: bold;
-    width: @ColumnWidth2Style;
-    min-width: @ColumnWidth2Style;
-    max-width: @ColumnWidth2Style;
+    width: @DayButtonWidthstyle;
+    min-width: @DayButtonWidthstyle;
+    max-width: @DayButtonWidthstyle;
     display: inline;
     text-align: center;
     height: 100%;        
@@ -141,9 +143,9 @@
     background-color: white;
     font-size: 10px;
     font-weight: bold;
-    width: @ColumnWidth2Style;
-    min-width: @ColumnWidth2Style;
-    max-width: @ColumnWidth2Style;
+    width: @DayButtonWidthstyle;
+    min-width: @DayButtonWidthstyle;
+    max-width: @DayButtonWidthstyle;
     display: inline;
     text-align: center;
     height: 100%;    
@@ -159,9 +161,9 @@
     border: 0px;    
     font-size: 10px;
     font-weight: bold;
-    width: @ColumnWidth2Style;
-    min-width: @ColumnWidth2Style;
-    max-width: @ColumnWidth2Style;
+    width: @DayButtonWidthstyle;
+    min-width: @DayButtonWidthstyle;
+    max-width: @DayButtonWidthstyle;
     display: inline;
     text-align: center;
     height: 100%;
@@ -264,6 +266,9 @@
     text-align: center;
     vertical-align: middle;
 </Styled>
+<Styled @bind-Classname=@CellWidthStyle>
+    width: @CellWidthPercent;
+</Styled>
 
 <div class="@ContainerStyle @ClassName">
     <table>
@@ -289,28 +294,28 @@
     </table>
     <div class="@CalendarStyle">
         <div class="@DayRowStyle">
-            <table>
+            <table class="positionrelative up2">
                 <tr>
-                    <td width="1"></td>
-                    <td width="14.28%">
+                    <td class="width8"></td>
+                    <td class="@CellWidthStyle">
                         <span class="@HeaderRowColumnStyle"><span class="left2">Sun</span></span>
                     </td>
-                    <td width="14.28%">
+                    <td class="@CellWidthStyle right3">
                         <span class="@HeaderRowColumnStyle"><span class="left4">Mon</span></span>
                     </td>
-                    <td width="14.28%">
+                    <td class="@CellWidthStyle right5">
                         <span class="@HeaderRowColumnStyle"><span class="left2">Tue</span></span>
                     </td>
-                    <td width="14.28%">
+                    <td class="@CellWidthStyle right6">
                         <span class="@HeaderRowColumnStyle"><span class="left4">Wed</span></span>
                     </td>
-                    <td width="14.28%">
+                    <td class="@CellWidthStyle right7">
                         <span class="@HeaderRowColumnStyle"><span class="left4">Thu</span></span>
                     </td>
-                    <td width="14.28%">
+                    <td class="@CellWidthStyle right6">
                         <span class="@HeaderRowColumnStyle"><span class="left2">Fri</span></span>
                     </td>
-                    <td width="14.28%">
+                    <td class="@CellWidthStyle">
                         <span class="@HeaderRowColumnStyle"><span class="right1">Sat</span></span>
                     </td>
                 </tr>
@@ -320,11 +325,12 @@
         {  
             @if (ListHelper.HasOneOrMoreItems(Weeks))
             {
-                <table>
+                <table class="positionrelative up1">
                     @foreach (CalendarRow week in Weeks)
                     {
-                        <tr class="@RowStyle textdonotwrap">
-                            <td width="14.2%">
+                        <tr class="@RowStyle textdonotwrap up4">
+                            <td class="width2"></td>
+                            <td class="@CellWidthStyle">
                                 @if (week.HasDays)
                                 {
                                     @foreach (DayObject dayObject in week.Days)

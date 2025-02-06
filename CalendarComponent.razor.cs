@@ -40,6 +40,7 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;
         private string buttonStyle;
         private string buttonUrl;
+        private double cellWidth;
         private double width;
         private string unit;
         private string containerStyle;
@@ -126,6 +127,8 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowFontWeight;
         private double labelLeft;
         private double rowLeft;
+        private string cellWidthStyle;
+        private double dayButtonWidth;
         #endregion
         
         #region Constructor
@@ -543,55 +546,55 @@ namespace DataJuggler.Blazor.Components
                 Caption = "Date:";
 
                 // Set Defaults
-                BottomRowBottom = 1;
-                BottomRowFontSize = 11;
+                BottomRowBottom = 3;
                 BottomRowFontName = "Calibri";
-                BottomRowPosition = "Absolute";
+                BottomRowFontSize = 11;
                 BottomRowFontWeight = "bold";
-                Unit = "px";
-                HeightUnit = "px";
-                Height = 136;
-                Width = 224;
-                ButtonHeight = 24;
+                BottomRowLeft = -8;
+                BottomRowPosition = "Absolute";                
+                ButtonHeight = 25;
+                ButtonLeft = 0;
+                ButtonTop = 0;                                
                 ButtonWidth = 24;
                 CalendarLeft = 262;
                 CalendarPosition = "relative";
-                CalendarTop = 264;
+                CalendarTop = -112;
+                Caption = "Last Contacted:";
+                CellWidth = 14.2;
                 Column1Width = 100;
                 Column2Width = 128;
+                ControlHeight = 32;                
                 ControlWidth = 640;
-                ControlHeight = 48;
-                Position = "relative";
-                DayRowColor = Color.DodgerBlue;
-                DayRowTextColor = Color.GhostWhite;
-                ButtonLeft = 0;
                 DateTitleLeft = -12;
-                DateTitleTop= 3;
-                BottomRowLeft = -8;
-                BottomRowBottom = 3;
-                ButtonTop = -1;
-                Top = -58;
                 DateTitlePosition = "relative";
-                LabelClassName = "down4 right2";
-                TextBoxWidth= 124;
-                ZIndex = 200;
-                RowHeight = 14.8;
-                TextBoxHeight = 22;
-                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
-                TextBoxFontName = GlobalDefaults.TextBoxFontName;                
-                Theme = ThemeEnum.BlueGold;
-                YearButtonWidth = 24;
+                DateTitleTop= 3;
+                DayButtonWidth = 26;                
+                DayRowColor = Color.DodgerBlue;
+                DayRowTextColor = Color.GhostWhite;                
+                Height = 146;                
+                HeightUnit = "px";
+                LabelClassName = "down4 right2";                
+                LabelColor = Color.Black;
+                LabelFontName = GlobalDefaults.LabelFontName;
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelLeft = -4;
+                Position = "relative";                
+                RowHeight = 12.8;
+                Scale = 100;
                 SelectedColor = Color.Firebrick;
+                TextBoxFontName = GlobalDefaults.TextBoxFontName;                
+                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                TextBoxHeight = 24;
+                TextBoxWidth = 124;
+                Theme = ThemeEnum.BlueGold;                
+                Top = 0;                
+                Unit = "px";
+                Width = 224;                
                 YearButtonTextColor = Color.Black;
                 YearButtonTextColorSelected = Color.White;                
-                YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;
-                Scale = 100;
-
-                // Initialize Label Color and Fonts
-                LabelColor = Color.Black;
-                LabelFontSize = GlobalDefaults.LabelFontSize;
-                LabelFontName = GlobalDefaults.LabelFontName;
-                LabelLeft = -4;
+                YearButtonWidth = 24;
+                YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;                
+                ZIndex = 60;
                 
                 // Buttons
                 NextYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRLastSmall.png";
@@ -1215,6 +1218,47 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region CellWidth
+            /// <summary>
+            /// This property gets or sets the value for 'CellWidth'.
+            /// </summary>
+            [Parameter]
+            public double CellWidth
+            {
+                get { return cellWidth; }
+                set { cellWidth = value; }
+            }
+            #endregion
+            
+            #region CellWidthPercent
+            /// <summary>
+            /// This read only property returns the value of CellWidthPercent from the object CellWidth.
+            /// </summary>
+            public string CellWidthPercent
+            {
+
+                get
+                {
+                    // initial value
+                    string cellWidthPercent = CellWidth + "%";
+
+                    // return value
+                    return cellWidthPercent;
+                }
+            }
+            #endregion
+
+            #region CellWidthStyle
+            /// <summary>
+            /// This property gets or sets the value for 'CellWidthStyle'.
+            /// </summary>            
+            public string CellWidthStyle
+            {
+                get { return cellWidthStyle; }
+                set { cellWidthStyle = value; }
+            }
+            #endregion
+            
             #region Children
             /// <summary>
             /// This property gets or sets the value for 'Children'.
@@ -1470,6 +1514,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DayButtonWidth
+            /// <summary>
+            /// This property gets or sets the value for 'DayButtonWidth'.
+            /// </summary>
+            [Parameter]
+            public double DayButtonWidth
+            {
+                get { return dayButtonWidth; }
+                set { dayButtonWidth = value; }
+            }
+            #endregion
+            
+            #region DayButtonWidthstyle
+            /// <summary>
+            /// This read only property returns the value of DayButtonWidthstyle from the object DayButtonWidth.
+            /// </summary>
+            public string DayButtonWidthstyle
+            {
+
+                get
+                {
+                    // initial value
+                    string dayButtonWidthstyle = DayButtonWidth + Unit;
+                    
+                    // return value
+                    return dayButtonWidthstyle;
+                }
+            }
+            #endregion
+
             #region DayRowColor
             /// <summary>
             /// This property gets or sets the value for 'DayRowColor'.

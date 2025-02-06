@@ -27101,6 +27101,18 @@
 {
     position: inherit;
 }
+.positionabsolute
+{
+    position: absolute;
+}
+.positionrelative
+{
+    position: relative;
+}
+.positionfixed
+{
+    position: fixed;
+}
 .nopadding
 {
     margin: 0;
