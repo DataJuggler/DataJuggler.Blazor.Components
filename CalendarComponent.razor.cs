@@ -578,7 +578,8 @@ namespace DataJuggler.Blazor.Components
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelLeft = -4;
-                Position = "relative";                
+                Position = "relative";
+                RowLeft = -2;
                 RowHeight = 12.8;
                 Scale = 100;
                 SelectedColor = Color.Firebrick;
