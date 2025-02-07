@@ -40,8 +40,7 @@ namespace DataJuggler.Blazor.Components
         private string className;
         private ImageButton button;
         private string displayStyle;
-        private bool expanded;
-        private double expandedButtonLeft;
+        private bool expanded;        
         private double height;
         private string heightStyle;
         private string heightUnit;
@@ -371,8 +370,9 @@ namespace DataJuggler.Blazor.Components
                 ButtonPosition = "relative";
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
-                ButtonTop = -1;
-                ButtonLeft = -1;
+                ButtonHeight = 24;
+                ButtonTop = 0;
+                ButtonLeft = -ButtonWidth - 1;
                 SelectedText = "";
                 Children = new List<IBlazorComponent>();
                 Visible = true;
@@ -1030,19 +1030,7 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public double ButtonLeft
             {
-                get
-                {
-                    double left = buttonLeft;
-                        
-                    // if expanded and the value is different for ExpandedButtonLeft
-                    if ((expanded) && (buttonLeft != expandedButtonLeft))
-                    {
-                        // use ExpandedButtonLeft
-                        left = ExpandedButtonLeft;
-                    }
-                        
-                    return buttonLeft;
-                }
+                get { return buttonLeft; }                
                 set { buttonLeft = value; }
             }
             #endregion
@@ -1592,22 +1580,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-                
-            #region ExpandedButtonLeft
-            /// <summary>
-            /// This property gets or sets the value for 'ExpandedButtonLeft'.
-            /// This property is the left of the button when the control is expanded.
-            /// The reason for this is one of my projects the button shifts right about 4 pixels.
-            /// Kind of hack, but if it works I will leave it till I can solve the why it shifts.
-            /// </summary>
-            [Parameter]
-            public double ExpandedButtonLeft
-            {
-                get { return expandedButtonLeft; }
-                set { expandedButtonLeft = value; }
-            }
-            #endregion
-
+            
             #region FilteredItems
             /// <summary>
             /// This read only property returns the value of FilteredItems from the object Items.
