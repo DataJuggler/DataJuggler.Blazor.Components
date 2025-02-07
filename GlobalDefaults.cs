@@ -42,6 +42,13 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public const int Column3Width = 24;
             #endregion
+
+            #region LabelClassName
+            /// <summary>
+            /// A default LabelClassName
+            /// </summary>
+            public const string LabelClassName = "down4 right2";
+            #endregion
             
             #region LabelFontName
             /// <summary>

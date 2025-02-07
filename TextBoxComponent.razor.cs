@@ -277,7 +277,8 @@ namespace DataJuggler.Blazor.Components
                 TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";                
                 Text = "";                
                 Top = 0;
-                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";                
+                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
+                LabelClassName = GlobalDefaults.LabelClassName;
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
                 Column3Width = GlobalDefaults.Column3Width;

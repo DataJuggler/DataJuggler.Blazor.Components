@@ -68,6 +68,7 @@ namespace DataJuggler.Blazor.Components
         private double labelFontSize;
         private double aMPMLabelLeft;
         private double labelZIndex;
+        private string labelClassName;
         #endregion
         
         #region Constructor
@@ -185,6 +186,7 @@ namespace DataJuggler.Blazor.Components
                 LabelLeft = 0;
                 LabelTop = 3;
                 LabelColor = Color.Black;
+                LabelClassName = GlobalDefaults.LabelClassName;
                 HoursTextBoxLeft = -14; 
                 MinutesTextBoxLeft = -16;
                 ButtonHeight = 16;
@@ -848,6 +850,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return hoursTextBoxWidthPlus4;
                 }
+            }
+            #endregion
+            
+            #region LabelClassName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelClassName'.
+            /// </summary>
+            [Parameter]
+            public string LabelClassName
+            {
+                get { return labelClassName; }
+                set { labelClassName = value; }
             }
             #endregion
             

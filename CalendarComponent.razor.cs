@@ -573,7 +573,7 @@ namespace DataJuggler.Blazor.Components
                 DayRowTextColor = Color.GhostWhite;                
                 Height = 146;            
                 HeightUnit = "px";
-                LabelClassName = "down4 right2";                
+                LabelClassName = GlobalDefaults.LabelClassName;
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;

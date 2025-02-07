@@ -72,8 +72,7 @@ namespace DataJuggler.Blazor.Components
         private double listItemTop;
         private double listItemWidth;        
         private string listItemWidthStyle;
-        private string name;
-        private string noPadding;
+        private string name;        
         private IBlazorComponentParent parent;
         private string position;
         private Item selectedItem;
@@ -433,7 +432,7 @@ namespace DataJuggler.Blazor.Components
                 Expanded = false;
     
                 // Additional Properties                
-                LabelClassName = "down4 right2";
+                LabelClassName = GlobalDefaults.LabelClassName;
             }
             #endregion
             
@@ -2557,17 +2556,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return name; }
                 set { name = value; }
-            }
-            #endregion
-                
-            #region NoPadding
-            /// <summary>
-            /// This property gets or sets the value for 'NoPadding'.
-            /// </summary>
-            public string NoPadding
-            {
-                get { return noPadding; }
-                set { noPadding = value; }
             }
             #endregion
                 
