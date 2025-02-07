@@ -132,6 +132,8 @@ namespace DataJuggler.Blazor.Components
         private string checkedListBoxStyle;
         private double checkedListItemLeft;
         private double checkedListItemTop;
+        private string listContainerStyle;
+        private double listContainerTop;
         #endregion
         
         #region Constructor
@@ -280,7 +282,7 @@ namespace DataJuggler.Blazor.Components
                         {
                             // Append the Item and a semicolon separator
                             sb.Append(item.Text);
-                            sb.Append(";");
+                            sb.Append(';');
                         }
                     }
 
@@ -366,73 +368,65 @@ namespace DataJuggler.Blazor.Components
                 // Default to 30% for the label, the rest goes to the ComboBox
                 Theme = ThemeEnum.Black;
     
-                // Button
+                // Units First
+                Unit = "px";
+                LabelUnit = "px";
+                HeightUnit = "px";
+
+                ButtonHeight = 24;
+                ButtonLeft = -ButtonWidth - 1;
                 ButtonPosition = "relative";
+                ButtonTop = 1;
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
-                ButtonHeight = 24;
-                ButtonTop = 0;
-                ButtonLeft = -ButtonWidth - 1;
-                SelectedText = "";
-                Children = new List<IBlazorComponent>();
-                Visible = true;
-                Left = -3;
-                Top = 0;
-                Height = 32;
-                Unit = "px";
-                HeightUnit = "px";
-                Width = 224; // Updated from 120
-                checkedListheight = 64;
-                CheckedListWidth = 120;
-                Position = "relative";
-                VisibleCount = 5;
-                ZIndex = 80; // Updated from 40
-                ListZIndex = 80;
-                LabelMarginRight = 0;
-                LabelMarginRightList = 0;
-                listItemLeft = -150; // Updated from 108
-                ListItemWidth = 108; // Updated from 120
-                TextAlign = "center";
-                Items = new List<Item>();
-                LabelBackColor = "transparent";
-                LabelUnit = "px";
-                ListItemPosition = "relative";
-                ListItemHeight = 16;
-                listItemTop = 32; // Updated from -12
-                LabelPosition = "relative";
-                ListItemBackgroundColor = Color.White;
-                ListBackgroundColor = Color.White;
-                ListItemClassName = "zindex200"; // Updated from "height16"
-                Column1Width = GlobalDefaults.Column1Width;
-                Column2Width = GlobalDefaults.Column2Width;                
-    
-                // CheckBox
                 CheckBoxTextXPosition = -1;
                 checkBoxTextYPosition = -1;
+                checkedListheight = 64;
+                CheckedListPosition = "absolute";                
+                CheckedListWidth = 120;
                 CheckedListZIndex = 40;
-                CheckedListPosition = "absolute";
-    
-                // TextBox
-                TextBoxWidth = GlobalDefaults.TextBoxWidth;
-                TextBoxLeft = 0;
-                TextBoxHeight = 22;
-    
-                // Set the Fonts
-                LabelFontSize = 18; // Updated from GlobalDefaults.LabelFontSize
-                LabelFontName = "Calibri"; // Updated from GlobalDefaults.LabelFontName
-                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
-                TextBoxFontName = GlobalDefaults.TextBoxFontName;
+                Children = new List<IBlazorComponent>();
+                Column1Width = GlobalDefaults.Column1Width;
+                Column2Width = GlobalDefaults.Column2Width;                
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontUnit = "px";
-
-                // Default to true
+                Height = 32;                
+                Items = new List<Item>();
+                LabelBackColor = "transparent";                
+                LabelClassName = GlobalDefaults.LabelClassName;
+                LabelFontName = "Calibri"; // Updated from GlobalDefaults.LabelFontName
+                LabelFontSize = 18; // Updated from GlobalDefaults.LabelFontSize
+                LabelMarginRight = 0;
+                LabelMarginRightList = 0;
+                LabelPosition = "relative";
+                Left = -3;
+                ListBackgroundColor = Color.White;
+                ListContainerTop = -5;
+                ListItemBackgroundColor = Color.White;
+                ListItemClassName = "zindex200";
+                ListItemHeight = 16;            
+                ListItemLeft = 0;
+                ListItemPosition = "relative";
+                listItemTop = 0;
+                ListItemWidth = 108; // Updated from 120
+                ListZIndex = 80;
+                Position = "relative";
+                SelectedText = "";
                 ShowButton = true;
-    
+                TextAlign = "center";
+                TextBoxFontName = GlobalDefaults.TextBoxFontName;
+                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                TextBoxHeight = 22;
+                TextBoxLeft = 0;
+                TextBoxWidth = GlobalDefaults.TextBoxWidth;
+                Top = 0;
+                Visible = true;
+                VisibleCount = 5;
+                Width = 224;
+                ZIndex = 80;
+
                 // Set so the image is set
                 Expanded = false;
-    
-                // Additional Properties                
-                LabelClassName = GlobalDefaults.LabelClassName;
             }
             #endregion
             
@@ -1450,6 +1444,42 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Column1WidthPlus6Style
+            /// <summary>
+            /// This read only property returns the value of Column1Width Plus 6 + Unit
+            /// </summary>
+            public string Column1WidthPlus6Style
+            {
+
+                get
+                {
+                    // initial value
+                    string column1WidthPlus4Style = Column1Width + 6 + Unit;
+
+                    // return value
+                    return column1WidthPlus4Style;
+                }
+            }
+            #endregion
+
+            #region Column1WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column1WidthStyle from the object Column1Width.
+            /// </summary>
+            public string Column1WidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string column1WidthStyle = Column1Width + Unit;
+                    
+                    // return value
+                    return column1WidthStyle;
+                }
+            }
+            #endregion
+
             #region Column2Width
             /// <summary>
             /// This property gets or sets the value for 'Column2Width'.
@@ -2302,6 +2332,47 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ListContainerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListContainerStyle'.
+            /// </summary>            
+            public string ListContainerStyle
+            {
+                get { return listContainerStyle; }
+                set { listContainerStyle = value; }
+            }
+            #endregion
+            
+            #region ListContainerTop
+            /// <summary>
+            /// This property gets or sets the value for 'ListContainerTop'.
+            /// </summary>
+            [Parameter]
+            public double ListContainerTop
+            {
+                get { return listContainerTop; }
+                set { listContainerTop = value; }
+            }
+            #endregion
+            
+            #region ListContainerTopStyle
+            /// <summary>
+            /// This read only property returns the value of ListContainerTopStyle from the object ListContainerTop.
+            /// </summary>
+            public string ListContainerTopStyle
+            {
+
+                get
+                {
+                    // initial valu
+                    string listContainerTopStyle = ListContainerTop + HeightUnit;
+                    
+                    // return value
+                    return listContainerTopStyle;
+                }
+            }
+            #endregion
+
             #region ListItemBackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'ListItemBackgroundColor'.
