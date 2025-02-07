@@ -144,7 +144,7 @@ namespace DataJuggler.Blazor.Components
                 
                 // Label
                 LabelPosition = "relative";
-                Column1Width = 100;
+                Column1Width = GlobalDefaults.Column1Width;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSizeUnit = "px";

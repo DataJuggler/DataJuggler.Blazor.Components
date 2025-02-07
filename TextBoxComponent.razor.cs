@@ -255,7 +255,7 @@ namespace DataJuggler.Blazor.Components
                 LabelColor = "Black";
                 IsUnique = true;
                 ImageScale = 1.6;                                            
-                TextBoxWidth = 120;
+                TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Height = 22;
                 Unit = "px";
                 FontSize = GlobalDefaults.TextBoxFontSize;
@@ -275,13 +275,12 @@ namespace DataJuggler.Blazor.Components
                 MarginBottom = 8;
                 Position = "relative";
                 TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";                
-                Text = "";
-                
+                Text = "";                
                 Top = 0;
                 UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";                
-                Column1Width = 60;
-                Column2Width = 120;
-                Column3Width = 20;
+                Column1Width = GlobalDefaults.Column1Width;
+                Column2Width = GlobalDefaults.Column2Width;
+                Column3Width = GlobalDefaults.Column3Width;
                 Rows = 3;
                 Visible = true;
                 Width= 80;

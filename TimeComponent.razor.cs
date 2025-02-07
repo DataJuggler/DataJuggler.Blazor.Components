@@ -48,8 +48,7 @@ namespace DataJuggler.Blazor.Components
         private string pattern;
         private Color backgroundColor;
         private double labelLeft;
-        private double labelTop;
-        private double labelWidth;
+        private double labelTop;        
         private TextBoxComponent hoursTextBox;
         private TextBoxComponent minutesTextBox;
         private double hoursTextBoxWidth;
@@ -164,7 +163,7 @@ namespace DataJuggler.Blazor.Components
                 Caption = "Time:";
 
                 // Default to right
-                Column1Width = 40;
+                Column1Width = GlobalDefaults.Column1Width;
                 CaptionTextAlign = TextAlignmentEnum.Right;
 
                 // Default                
@@ -182,8 +181,7 @@ namespace DataJuggler.Blazor.Components
                 MinutesTextBoxWidth = HoursTextBoxWidth;
 
                 // Defaults                
-                Left = -1;
-                LabelWidth = 48;
+                Left = -1;                
                 LabelLeft = 0;
                 LabelTop = 3;
                 LabelColor = Color.Black;
@@ -921,36 +919,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelTop; }
                 set { labelTop = value; }
-            }
-            #endregion
-            
-            #region LabelWidth
-            /// <summary>
-            /// This property gets or sets the value for 'LabelWidth'.
-            /// </summary>
-            [Parameter]
-            public double LabelWidth
-            {
-                get { return labelWidth; }
-                set { labelWidth = value; }
-            }
-            #endregion
-            
-            #region LabelWidthStyle
-            /// <summary>
-            /// This read only property returns the value of LabelWidthStyle from the object LabelWidth.
-            /// </summary>
-            public string LabelWidthStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string labelWidthStyle = LabelWidth + Unit;
-                    
-                    // return value
-                    return labelWidthStyle;
-                }
             }
             #endregion
             

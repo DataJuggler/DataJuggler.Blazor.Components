@@ -242,7 +242,7 @@ namespace DataJuggler.Blazor.Components
                 if ((HasCheckedListComponent) && (HasTextBox))
                 {
                     // Get the Selected Items
-                    List<Item> selectedItems = this.CheckedListComponent.SelectedItems;
+                    List<Item> selectedItems = CheckedListComponent.SelectedItems;
 
                     // Dislay the selected items
                     DisplaySelections(selectedItems);
@@ -404,8 +404,8 @@ namespace DataJuggler.Blazor.Components
                 ListItemBackgroundColor = Color.White;
                 ListBackgroundColor = Color.White;
                 ListItemClassName = "zindex200"; // Updated from "height16"
-                Column1Width = 100;
-                Column2Width = 128; // Already matching value
+                Column1Width = GlobalDefaults.Column1Width;
+                Column2Width = GlobalDefaults.Column2Width;                
     
                 // CheckBox
                 CheckBoxTextXPosition = -1;
@@ -414,9 +414,9 @@ namespace DataJuggler.Blazor.Components
                 CheckedListPosition = "absolute";
     
                 // TextBox
-                TextBoxWidth = 124; // Updated from 12
-                TextBoxLeft = 0; // Updated from -3.2
-                TextBoxHeight = 22; // Updated from 24
+                TextBoxWidth = GlobalDefaults.TextBoxWidth;
+                TextBoxLeft = 0;
+                TextBoxHeight = 22;
     
                 // Set the Fonts
                 LabelFontSize = 18; // Updated from GlobalDefaults.LabelFontSize

@@ -148,10 +148,10 @@ namespace DataJuggler.Blazor.Components
                 BorderRadius = 10;
                 Column1TextAlign = TextAlignmentEnum.Right;
                 Column2TextAlign = TextAlignmentEnum.Left;                
-                Column1Width = 112;
+                Column1Width = GlobalDefaults.Column1Width;
+                Column2Width = GlobalDefaults.Column2Width;
                 Column1TextAlign = TextAlignmentEnum.Right;
-                Column2TextAlign = TextAlignmentEnum.Left;
-                Column2Width = 112;
+                Column2TextAlign = TextAlignmentEnum.Left;                
                 Column1Left = 8;
                 Display = "inline-block";
                 FontName = "Calibri";

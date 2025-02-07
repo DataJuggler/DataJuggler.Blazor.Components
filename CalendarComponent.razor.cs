@@ -561,8 +561,8 @@ namespace DataJuggler.Blazor.Components
                 CalendarTop = -118;
                 Caption = "Last Contacted:";
                 CellWidth = 14.2;
-                Column1Width = 100;
-                Column2Width = 128;
+                Column1Width = GlobalDefaults.Column1Width;
+                Column2Width = GlobalDefaults.Column2Width;                
                 ControlHeight = 32;                
                 ControlWidth = 640;
                 DateTitleLeft = -12;
@@ -586,7 +586,7 @@ namespace DataJuggler.Blazor.Components
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;                
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxHeight = 24;
-                TextBoxWidth = 124;
+                TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Theme = ThemeEnum.BlueGold;                
                 Top = 0;                
                 Unit = "px";

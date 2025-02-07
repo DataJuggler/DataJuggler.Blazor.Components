@@ -80,8 +80,8 @@ namespace DataJuggler.Blazor.Components
                 CheckBoxTextYPosition = -1;
                 CheckBoxXPosition = -4;
                 CheckBoxYPosition = 1;
-                Column1Width = 60;
-                Column2Width = 20;
+                Column1Width = GlobalDefaults.Column1Width;
+                Column2Width = GlobalDefaults.Column2Width;
                 Width = 80;
                 Height = 24;
                 BackgroundColor = "White";
