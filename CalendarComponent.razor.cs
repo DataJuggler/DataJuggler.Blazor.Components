@@ -61,6 +61,7 @@ namespace DataJuggler.Blazor.Components
         private double left;
         private double top;
         private string display;
+        private string calendarDisplay;
         private string columnStyle;
         private string rowStyle;
         private double dayRowLeft;
@@ -527,6 +528,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Hide(bool refresh = true)
+            /// <summary>
+            /// Hide
+            /// </summary>
+            public void Hide(bool refresh = true)
+            {
+                // Set the value
+                Display = "none";
+
+                // if the value for refresh is true
+                if (refresh)
+                {
+                    // Update the UI
+                    Refresh();
+                }
+            }
+            #endregion
+            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -825,8 +844,8 @@ namespace DataJuggler.Blazor.Components
                 // If Expanded
                 if (Expanded)
                 {
-                    // Hide
-                    Display = "inline-block";
+                    // Show Calendar
+                    CalendarDisplay = "inline-block";
 
                     // if the value for YearSelectorVisible is true
                     if (YearSelectorVisible)
@@ -858,7 +877,7 @@ namespace DataJuggler.Blazor.Components
                 else
                 {
                     // Hide
-                    Display = "none";
+                    CalendarDisplay = "none";
 
                     // Set to hide
                     YearSelectorDisplay = "none";
@@ -869,6 +888,24 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Update the Button
                     Button.Refresh();
+                }
+            }
+            #endregion
+
+            #region Show(bool refresh = true)
+            /// <summary>
+            /// Show
+            /// </summary>
+            public void Show(bool refresh = true)
+            {
+                // Set the value
+                Display = "inline-block";
+
+                // if the value for refresh is true
+                if (refresh)
+                {
+                    // Update the UI
+                    Refresh();
                 }
             }
             #endregion
@@ -1121,6 +1158,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonWidth; }
                 set { buttonWidth = value; }
+            }
+            #endregion
+            
+            #region CalendarDisplay
+            /// <summary>
+            /// This property gets or sets the value for 'CalendarDisplay'.
+            /// </summary>
+            [Parameter]
+            public string CalendarDisplay
+            {
+                get { return calendarDisplay; }
+                set { calendarDisplay = value; }
             }
             #endregion
             

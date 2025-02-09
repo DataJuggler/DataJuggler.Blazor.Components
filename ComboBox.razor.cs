@@ -38,13 +38,15 @@ namespace DataJuggler.Blazor.Components
         private bool checkListMode;
         private List<IBlazorComponent> children;
         private string className;
-        private ImageButton button;
-        private string displayStyle;
+        private string display;
+        private string listDisplay;
+        private ImageButton button;        
         private bool expanded;        
         private double height;
         private string heightStyle;
         private string heightUnit;
         private string imagePath;
+        private bool initialized;
         private List<Item> items;
         private List<Item> storedSelectedItems;
         private string labelBackColor;
@@ -62,6 +64,7 @@ namespace DataJuggler.Blazor.Components
         private double left;
         private string leftStyle;
         private Color listBackgroundColor;
+        private string listContainerPosition;
         private double listItemHeight;
         private string listItemClassName;
         private double listItemLeft;
@@ -79,8 +82,7 @@ namespace DataJuggler.Blazor.Components
         private ThemeEnum theme;
         private double top;
         private string topStyle;
-        private string unit;
-        private bool visible;
+        private string unit;        
         private int visibleCount;
         private double width;
         private int zIndex;
@@ -97,7 +99,6 @@ namespace DataJuggler.Blazor.Components
         private double buttonHeight;
         private TextBoxComponent textBox;
         private double textBoxLeft;
-        private int listZIndex;
         private string filterText;
         private int filterIndex;
         private double fontSize;
@@ -106,8 +107,7 @@ namespace DataJuggler.Blazor.Components
         private double checkedListTop;
         private string checkedListClassName;
         private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;
-        private int checkedListZIndex;
+        private double checkBoxTextYPosition;        
         private string checkedListPosition;
         private string checkedListUnit;
         private string checkedListHeightUnit;
@@ -122,8 +122,7 @@ namespace DataJuggler.Blazor.Components
         private double textBoxFontSize;
         private string textBoxFontName;
         private string fontName;
-        private bool showButton;
-        private bool initialized;
+        private bool showButton;        
         
         // Had to bring back BlazorStyled        
         private string listItemContainer;
@@ -133,6 +132,7 @@ namespace DataJuggler.Blazor.Components
         private double checkedListItemLeft;
         private double checkedListItemTop;
         private string listContainerStyle;
+        private double listContainerLeft;
         private double listContainerTop;
         #endregion
         
@@ -180,11 +180,11 @@ namespace DataJuggler.Blazor.Components
             {
                 if (firstRender)
                 {
-                    // Needs to be set first
-                    Initialized = true;
+                    // For some reason this has to be set here
+                    ListItemWidth = GlobalDefaults.TextBoxWidth;
 
-                    // Setup this component
-                    SetupComponent();
+                    // Set to False
+                    Expanded = false;                    
                 }
 
                 // call the base
@@ -358,6 +358,24 @@ namespace DataJuggler.Blazor.Components
                 return count;
             }
             #endregion
+
+            #region Hide(bool refresh = true)
+            /// <summary>
+            /// Hide
+            /// </summary>
+            public void Hide(bool refresh = true)
+            {
+                // Set the value
+                Display = "none";
+
+                // if the value for refresh is true
+                if (refresh)
+                {
+                    // Update the UI
+                    Refresh();
+                }
+            }
+            #endregion
             
             #region Init()
             /// <summary>
@@ -366,7 +384,7 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Default to 30% for the label, the rest goes to the ComboBox
-                Theme = ThemeEnum.Black;
+                Theme = ThemeEnum.BlueGold;
     
                 // Units First
                 Unit = "px";
@@ -383,11 +401,11 @@ namespace DataJuggler.Blazor.Components
                 checkBoxTextYPosition = -1;
                 checkedListheight = 64;
                 CheckedListPosition = "absolute";                
-                CheckedListWidth = 120;
-                CheckedListZIndex = 40;
+                CheckedListWidth = 120;                
                 Children = new List<IBlazorComponent>();
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;                
+                Display = "inline-block";                
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontUnit = "px";
                 Height = 32;                
@@ -401,15 +419,16 @@ namespace DataJuggler.Blazor.Components
                 LabelPosition = "relative";
                 Left = -3;
                 ListBackgroundColor = Color.White;
-                ListContainerTop = -5;
-                ListItemBackgroundColor = Color.White;
-                ListItemClassName = "zindex200";
-                ListItemHeight = 16;            
+                ListContainerLeft = Column1Width + 20;
+                ListContainerTop = 28;
+                ListContainerPosition = "absolute";
+                ListDisplay = "none";
+                ListItemBackgroundColor = Color.White;                
+                ListItemHeight = GlobalDefaults.ListItemHeight;            
                 ListItemLeft = 0;
                 ListItemPosition = "relative";
                 listItemTop = 0;
-                ListItemWidth = 108; // Updated from 120
-                ListZIndex = 80;
+                ListItemWidth = GlobalDefaults.TextBoxWidth;                
                 Position = "relative";
                 SelectedText = "";
                 ShowButton = true;
@@ -417,16 +436,15 @@ namespace DataJuggler.Blazor.Components
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxHeight = 22;
-                TextBoxLeft = 0;
+                TextBoxLeft = 2;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
-                Top = 0;
-                Visible = true;
+                Top = 0;                
                 VisibleCount = 5;
                 Width = 224;
-                ZIndex = 80;
+                ZIndex = GlobalDefaults.ListZIndex;
 
-                // Set so the image is set
-                Expanded = false;
+                // Set so the image is set (its gets unExpanded)
+                Expanded = true;
             }
             #endregion
             
@@ -935,19 +953,41 @@ namespace DataJuggler.Blazor.Components
                     Button.Refresh();
                 }
 
+                // if expanded
+                if (Expanded)
+                {
+                    // Show selections
+                    ListDisplay = "inline-block";
+                }
+                else
+                {
+                    // Show selections
+                    ListDisplay = "none";
+                }
+
                 // Display the Selections (if in CheckListMode)
                 DisplaySelections();
+
+                // Has fired once
+                Initialized = true;
             }
             #endregion
-                
-            #region SetVisible(bool visible)
+
+            #region Show(bool refresh = true)
             /// <summary>
-            /// Set Visible
+            /// Show
             /// </summary>
-            public void SetVisible(bool visible)
+            public void Show(bool refresh = true)
             {
-                // store
-                Visible = visible;
+                // Set the value
+                Display = "inline-block";
+
+                // if the value for refresh is true
+                if (refresh)
+                {
+                    // Update the UI
+                    Refresh();
+                }
             }
             #endregion
                 
@@ -1384,19 +1424,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-            
-            #region CheckedListZIndex
-            /// <summary>
-            /// This property gets or sets the value for 'CheckedListZIndex'.
-            /// </summary>
-            [Parameter]
-            public int CheckedListZIndex
-            {
-                get { return checkedListZIndex; }
-                set { checkedListZIndex = value; }
-            }
-            #endregion
-            
+          
             #region CheckListMode
             /// <summary>
             /// This property gets or sets the value for 'CheckListMode'.
@@ -1563,17 +1591,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region DisplayStyle
+            #region Display
             /// <summary>
-            /// This property gets or sets the value for 'DisplayStyle'.
+            /// This property gets or sets the value for 'Display'.
             /// </summary>
-            public string DisplayStyle
+            [Parameter]
+            public string Display
             {
-                get { return displayStyle; }
-                set { displayStyle = value; }
+                get { return display; }
+                set { display = value; }
             }
             #endregion
-            
+          
             #region DropdownClassName
             /// <summary>
             /// This property gets or sets the value for 'DropdownClassName'.
@@ -1602,8 +1631,8 @@ namespace DataJuggler.Blazor.Components
                     expanded = value;
 
                     // if the value has changed
-                    if (originalValue != value)
-                    {  
+                    if ((originalValue != value) || (!Initialized))
+                    {
                         // The button image changes on Expanded and Theme.
                         SetupComponent();
                     }
@@ -1941,7 +1970,7 @@ namespace DataJuggler.Blazor.Components
                 set { imagePath = value; }
             }
             #endregion
-                
+            
             #region Initialized
             /// <summary>
             /// This property gets or sets the value for 'Initialized'.
@@ -2332,6 +2361,48 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ListContainerLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ListContainerLeft'.
+            /// </summary>
+            [Parameter]
+            public double ListContainerLeft
+            {
+                get { return listContainerLeft; }
+                set { listContainerLeft = value; }
+            }
+            #endregion
+            
+            #region ListContainerLeftStyle
+            /// <summary>
+            /// This read only property returns the value of ListContainerLeft + Unit
+            /// </summary>
+            public string ListContainerLeftStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string listContainerLeftStyle = ListContainerLeft + Unit;
+                    
+                    // return value
+                    return listContainerLeftStyle;
+                }
+            }
+            #endregion
+
+            #region ListContainerPosition
+            /// <summary>
+            /// This property gets or sets the value for 'ListContainerPosition'.
+            /// </summary>
+            [Parameter]
+            public string ListContainerPosition
+            {
+                get { return listContainerPosition; }
+                set { listContainerPosition = value; }
+            }
+            #endregion
+            
             #region ListContainerStyle
             /// <summary>
             /// This property gets or sets the value for 'ListContainerStyle'.
@@ -2373,6 +2444,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ListDisplay
+            /// <summary>
+            /// This property gets or sets the value for 'ListDisplay'.
+            /// </summary>
+            public string ListDisplay
+            {
+                get { return listDisplay; }
+                set { listDisplay = value; }
+            }
+            #endregion
+            
             #region ListItemBackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'ListItemBackgroundColor'.
@@ -2576,18 +2658,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemWidthStyle; }
                 set { listItemWidthStyle = value; }
-            }
-            #endregion
-                
-            #region ListZIndex
-            /// <summary>
-            /// This property gets or sets the value for 'ListZIndex'.
-            /// </summary>
-            [Parameter]
-            public int ListZIndex
-            {
-                get { return listZIndex; }
-                set { listZIndex = value; }
             }
             #endregion
             
@@ -2905,32 +2975,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region Visible
-            /// <summary>
-            /// This property gets or sets the value for 'Visible'.
-            /// </summary>
-            [Parameter]
-            public bool Visible
-            {
-                get { return visible; }
-                set
-                {
-                    // set the value
-                    visible = value;
-                        
-                    // if visible
-                    if (visible)
-                    {
-                        DisplayStyle = "inline-block";
-                    }
-                    else
-                    {
-                        DisplayStyle = "none";
-                    }
-                }
-            }
-            #endregion
-                
             #region VisibleCount
             /// <summary>
             /// This property gets or sets the value for 'VisibleCount'.
@@ -3003,71 +3047,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region ZIndexMinus
-            /// <summary>
-            /// This read only property returns the value of Minus 10.
-            /// </summary>
-            public int ZIndexMinus
-            {
-                    
-                get
-                {
-                    // initial value
-                    int zIndexMinus =ZIndex - 10;
-                        
-                    // return value
-                    return zIndexMinus;
-                }
-            }
-            #endregion
-                
-            #region ZIndexMinusStyle
-            /// <summary>
-            /// This read only property returns the value of ZIndexMinus Minus 10.
-            /// </summary>
-            public string ZIndexMinusStyle
-            {
-                    
-                get
-                {
-                    // initial value
-                    string zIndexMinus = ZIndexMinus.ToString();
-                        
-                    // return value
-                    return zIndexMinus;
-                }
-            }
-            #endregion
-                
-            #region ZIndexPlus
+            #region ZIndexPlus10
             /// <summary>
             /// This read only property returns the value of ZIndexPlus Plus 10.
             /// </summary>
-            public int ZIndexPlus
+            public int ZIndexPlus10
             {
                     
                 get
                 {
                     // initial value
                     int zIndexPlus = ZIndex + 10;
-                        
-                    // return value
-                    return zIndexPlus;
-                }
-            }
-            #endregion
-                
-            #region ZIndexPlusStyle
-            /// <summary>
-            /// This read only property returns the value of ZIndexPlus Plus 10.
-            /// </summary>
-            public string ZIndexPlusStyle
-            {
-                    
-                get
-                {
-                    // initial value
-                    string zIndexPlus = ZIndexPlus.ToString();
                         
                     // return value
                     return zIndexPlus;

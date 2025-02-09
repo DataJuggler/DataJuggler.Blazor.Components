@@ -3,27 +3,47 @@
 @using BlazorStyled
 @using System.Drawing
 
+<Styled @bind-Classname=@ContainerStyle>
+    display: @Display;
+    text-align: left;
+    height: @ControlHeightStyle;
+    min-height: @ControlHeightStyle;
+    max-height: @ControlHeightStyle;
+    width: @ControlWidthStyle;
+    min-width: @ControlWidthStyle;
+    max-width: @ControlHeightStyle;
+    position: @Position;
+    top: @TopStyle;
+    left: @LeftStyle;
+    display: flex;
+    justify-content: left;
+    gap: 0px;
+</Styled>
 <Styled @bind-Classname=@ListItemContainer>
     font-family: Calibri;
     text-align: left;
     background-color: @ListBackgroundColorName;
     width: @ListItemWidthStyle;
-    min-width: @ListItemWidthStyle;    
+    min-width: @ListItemWidthStyle;
+    max-width: @ListItemWidthStyle;
     position: @ListItemPosition;
     color: @ListItemTextColorName;
     left: @ListItemLeftStyle;
     top: @ListItemTopStyle;
     font-size: @FontSizeStyle;
-    z-index: @ListZIndex;
+    z-index: @ZIndex;
     border-width: 1px;
     border-color: gray;
     border-style: solid;
     overflow: visible;
 </Styled>
-<Styled @bind-Classname=@ListItemStyle>    
+<Styled @bind-Classname=@ListItemStyle>
+    position: @Position;
     width: @ListItemWidthStyle;
     min-width: @ListItemWidthStyle;
-    height: @ListItemHeightStyle;    
+    height: @ListItemHeightStyle;
+    z-index: @ZIndex;
+    cursor: pointer;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
     display: inline;
@@ -46,92 +66,69 @@
     min-width: @CheckedListWidthStyle;    
     left: @CheckedListLeftStyle;
     top: @CheckedListTopStyle;
-    z-index: @CheckedListZIndex;
+    z-index: @ZIndex;
     background-color: @ListBackgroundColorName;
     overflow: visible;
 </Styled>
-<Styled @bind-Classname=@ContainerStyle>
-    text-align: left;
-    height: @ControlHeightStyle;
-    min-height: @ControlHeightStyle;
-    max-height: @ControlHeightStyle;
-    width: @ControlWidthStyle;
-    min-width: @ControlWidthStyle;
-    max-width: @ControlHeightStyle;
-    position: @Position;
-    top: @TopStyle;
-    left: @LeftStyle;
-    display: flex;
-    justify-content: left;
-    gap: 0px;
-</Styled>
 <Styled @bind-Classname=@ListContainerStyle>
-    position: @Position;
-    left: @Column1WidthPlus6Style;
+    display: @ListDisplay;
+    position: @ListContainerPosition;
+    left: @ListContainerLeftStyle;
     top: @ListContainerTopStyle;
+    z-index: @ZIndexPlus10;
 </Styled>
 
-@if (Visible)
-{
-    <div class="@ContainerStyle @ClassName textdonotwrap">
-        <table>
-            <tr class="textdonotwrap">
-                <td width="@TextBoxWidth">
-                    <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
-                    ClassName="displayinline" Column1Width="@Column1Width" 
-                    Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" Height="@TextBoxHeight"
-                    LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize"
-                    LabelColor="@LabelColor.Name" OnTextChangedCallback="OnTextChanged"
-                    TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
-                    SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
-                    Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
-                    </TextBoxComponent>
+<div class="@ContainerStyle @ClassName textdonotwrap">
+    <table>
+        <tr class="textdonotwrap">
+            <td width="@TextBoxWidth">
+                <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
+                ClassName="displayinline" Column1Width="@Column1Width" 
+                Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" Height="@TextBoxHeight"
+                LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize" Left="@TextBoxLeft"
+                LabelColor="@LabelColor.Name" OnTextChangedCallback="OnTextChanged"
+                TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
+                SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
+                Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
+                </TextBoxComponent>
+            </td>
+            @if (ShowButton)
+            {
+                <td width="@Column2Width">
+                    <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight"
+                            Unit="px" Width="@ButtonWidth" Name="CalendarButton" Position="@ButtonPosition" ZIndex="@ZIndex"
+                            Left="@ButtonLeft" Top=@ButtonTop ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                    </ImageButton>
                 </td>
-                @if (ShowButton)
-                {
-                    <td width="@Column2Width">
-                        <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight"
-                                Unit="px" Width="@ButtonWidth" Name="CalendarButton" Position="@ButtonPosition" ZIndex="@ZIndex"
-                                Left="@ButtonLeft" Top=@ButtonTop ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
-                        </ImageButton>
-                    </td>
-                }
-            </tr>        
-        @if ((Expanded) && (ListHelper.HasOneOrMoreItems(Items)))
-        {  
-            @if (CheckListMode)
-            {
-                <tr class="@CheckedListBoxStyle"> 
-                    <td colspan="2">
-                        <CheckedListBox Parent="this" HeightUnit="@CheckedListHeightUnit" Height="@CheckedListheight" 
-                            Position="@CheckedListPosition" Unit="@CheckedListUnit" Width=@CheckedListWidth 
-                            ListItemWidth=@ListItemWidth  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
-                            ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor
-                            CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
-                            ListBackgroundColor="Color.White" Top="0" ZIndex="@CheckedListZIndex"
-                            CheckBoxXPosition=@CheckBoxXPosition  CheckBoxYPosition="@CheckBoxYPosition" 
-                            Left=@CheckedListLeft  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
-                        </CheckedListBox>
-                     </td>
-                </tr>                
             }
-            else
-            {
-                <tr class="@ListContainerStyle">
-                    <td colspan="2">
-                        <div class="@ListItemContainer @DropdownClassName">
-                            <select class="form-control" name="ListBox" size="@VisibleCount"
-                                    id="ComboBoxListBox" @onchange="SelectionChanged">
-                                @foreach (Item item in Items)
-                                {
-                                    <option class="@ListItemStyle nopadding" >@item.Text</option>
-                                }
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-            }                
+        </tr>        
+    </table>
+    <div class="@ListContainerStyle">
+        @if (CheckListMode)
+        {
+            <div class="@CheckedListBoxStyle">
+                <CheckedListBox Parent="this" HeightUnit="@CheckedListHeightUnit" Height="@CheckedListheight" 
+                    Position="@CheckedListPosition" Unit="@CheckedListUnit" Width=@CheckedListWidth 
+                    ListItemWidth=@ListItemWidth  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
+                    ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor
+                    CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
+                    ListBackgroundColor="Color.White" Top="0" ZIndex="@ZIndexPlus10"
+                    CheckBoxXPosition=@CheckBoxXPosition  CheckBoxYPosition="@CheckBoxYPosition" 
+                    Left=@CheckedListLeft  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
+                </CheckedListBox>
+            </div>                
         }
-        </table>
+        else
+        {      
+            <div class="@ListItemContainer @DropdownClassName">
+                <select class="form-control" name="ListBox" size="@VisibleCount"
+                        id="ComboBoxListBox" @onchange="SelectionChanged">
+                    @foreach (Item item in Items)
+                    {
+                        <option class="@ListItemStyle nopadding" >@item.Text</option>
+                    }
+                </select>
+            </div>               
+        }
     </div>
-}
+</div>

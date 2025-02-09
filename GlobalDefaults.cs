@@ -64,6 +64,27 @@ namespace DataJuggler.Blazor.Components
             public const double LabelFontSize = 14;
             #endregion
 
+            #region ListItemHeight
+            /// <summary>
+            /// This is the default Height for items in a list
+            /// </summary>
+            public const int ListItemHeight = 18;
+            #endregion
+
+            #region ListItemZIndex
+            /// <summary>
+            /// This is the default ListZIndex
+            /// </summary>
+            public const int ListItemZIndex = 100;
+            #endregion
+
+            #region ListZIndex
+            /// <summary>
+            /// This is the default ListZIndex
+            /// </summary>
+            public const int ListZIndex = 80;
+            #endregion
+
             #region TextBoxFontName
             /// <summary>
             /// This property returns the Default Font Name for TextBoxs

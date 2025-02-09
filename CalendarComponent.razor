@@ -15,10 +15,9 @@
     border-width: 1px;
     border-style: solid;
     background-color: white;
-    display: @Display;
+    display: @CalendarDisplay;
     background-color: white;
-    z-index: @ZIndexPlus1;    
-    justify-content: space-between;
+    z-index: @ZIndexPlus1;   
 </Styled>
 <Styled @bind-Classname=@ContainerStyle>     
     text-align: left;
@@ -31,7 +30,7 @@
     position: @Position;
     top: @TopStyle;
     left: @LeftStyle;
-    display: flex;
+    display: @Display;
     justify-content: left;    
     gap: 0px;
     transform: scale(@ScaleValue);

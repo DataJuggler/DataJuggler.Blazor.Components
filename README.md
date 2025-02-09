@@ -1377,7 +1377,7 @@ WidthPixels: 900px;
 
 
 # ProgressBar
-It took me 3 attempts to get a progress bar I actually like, and I owe to Percentage Circle CSS:
+It took me 3 attempts to get a progress bar I actually like, and I owe thanks to Percentage Circle CSS:
 
     CSS Percentage Circle
     Author: Andre Firchow
