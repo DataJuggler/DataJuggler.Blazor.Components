@@ -727,24 +727,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region ListBackgroundColorName
-            /// <summary>
-            /// This read only property returns the value of ListBackgroundColorName from the object ListBackgroundColor.
-            /// </summary>
-            public string ListBackgroundColorName
-            {
-                    
-                get
-                {
-                    // initial value
-                    string listBackgroundColorName = ListBackgroundColor.Name;
-                        
-                    // return value
-                    return listBackgroundColorName;
-                }
-            }
-            #endregion
-            
             #region ListItemBackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'ListItemBackgroundColor'.

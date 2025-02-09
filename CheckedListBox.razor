@@ -1,7 +1,7 @@
 ﻿@using BlazorStyled
 
 <Styled @bind-Classname=@CheckedlistboxStyle>
-    background-color: @ListBackgroundColor;
+    background-color: @ListBackgroundColor.Name;
     display: @DisplayStyle;
     font-size: @FontSizeStyle;
     height: @HeightStyle;
@@ -22,7 +22,7 @@
     z-index: @ZIndex;
 </Styled>
 <Styled @bind-Classname=@ListitemStyle>
-    background-color: @ListBackgroundColorName;
+    background-color: @ListItemBackgroundColor.Name;
     color: @ListItemTextColorName;
     font-family: Calibri;
     font-size: @FontSizeStyle;
