@@ -1,5 +1,10 @@
 News
 
+2.9.2025: The ComboBox has been fixed. The Z-Index wasn't working.
+Leaving myself a note, for some reason ListItemWidth has to be set in OnAfterRenderAsync.
+
+    ListItemWidth = GlobalDefaults.TextBoxWidth;
+
 12.17.2024: Updates to the Calendar, Label and Time Comonents.
 
 To get the JS working for the Label, set the FadeValue to the miliseconds such as:

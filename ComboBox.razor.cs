@@ -180,8 +180,12 @@ namespace DataJuggler.Blazor.Components
             {
                 if (firstRender)
                 {
-                    // For some reason this has to be set here
-                    ListItemWidth = GlobalDefaults.TextBoxWidth;
+                    // if not set as a Parameter
+                    if (ListItemWidth == 0)
+                    {
+                        // For some reason this has to be set here
+                        ListItemWidth = GlobalDefaults.TextBoxWidth;
+                    }
 
                     // Set to False
                     Expanded = false;                    
@@ -428,7 +432,9 @@ namespace DataJuggler.Blazor.Components
                 ListItemLeft = 0;
                 ListItemPosition = "relative";
                 listItemTop = 0;
-                ListItemWidth = GlobalDefaults.TextBoxWidth;                
+
+                // Purposely 0 here. If not set as a Parameter, then GlobalDefaults.TextBoxWidth is used
+                ListItemWidth = 0;          
                 Position = "relative";
                 SelectedText = "";
                 ShowButton = true;
@@ -3004,17 +3010,7 @@ namespace DataJuggler.Blazor.Components
             public double Width
             {
                 get { return width; }
-                set
-                {
-                    width = value;
-                        
-                    // if the ListItemWidth is less than the width
-                    if (ListItemWidth < width)
-                    {
-                        // Set the ListItemWidth to the width of the button
-                        ListItemWidth = width;
-                    }
-                }
+                set { width = value; }
             }
             #endregion
                 
