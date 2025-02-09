@@ -76,6 +76,7 @@
     left: @ListContainerLeftStyle;
     top: @ListContainerTopStyle;
     z-index: @ZIndexPlus10;
+    background-color: @ListBackgroundColor.Name;
 </Styled>
 
 <div class="@ContainerStyle @ClassName textdonotwrap">
@@ -84,20 +85,22 @@
             <td width="@TextBoxWidth">
                 <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
                 ClassName="displayinline" Column1Width="@Column1Width" 
+                LabelLeft="@LabelLeft" LabelTop="@labelTop"
                 Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" Height="@TextBoxHeight"
                 LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize" Left="@TextBoxLeft"
                 LabelColor="@LabelColor.Name" OnTextChangedCallback="OnTextChanged"
                 TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
                 SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
-                Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndex">
+                Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndexPlus20">
                 </TextBoxComponent>
             </td>
             @if (ShowButton)
             {
                 <td width="@Column2Width">
-                    <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" Height="@ButtonHeight"
-                            Unit="px" Width="@ButtonWidth" Name="CalendarButton" Position="@ButtonPosition" ZIndex="@ZIndex"
-                            Left="@ButtonLeft" Top=@ButtonTop ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                    <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" 
+                        Height="@ButtonHeight" Unit="px" Width="@ButtonWidth" Name="CalendarButton" 
+                        Position="@ButtonPosition" ZIndex="@ZIndexPlus30" Left="@ButtonLeft" Top=@ButtonTop 
+                        ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                     </ImageButton>
                 </td>
             }
@@ -112,7 +115,7 @@
                     ListItemWidth=@ListItemWidth  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
                     ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor
                     CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
-                    ListBackgroundColor="Color.White" Top="0" ZIndex="@ZIndexPlus10"
+                    ListBackgroundColor="ListBackgroundColor" Top="0" ZIndex="@ZIndexPlus10"
                     CheckBoxXPosition=@CheckBoxXPosition  CheckBoxYPosition="@CheckBoxYPosition" 
                     Left=@CheckedListLeft  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
                 </CheckedListBox>

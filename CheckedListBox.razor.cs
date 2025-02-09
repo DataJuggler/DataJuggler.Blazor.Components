@@ -189,16 +189,13 @@ namespace DataJuggler.Blazor.Components
                 // Move over a little
                 CheckBoxXPosition = .2;
 
-                // Set the default width
-                Width = 120;
-                
                 // Default to 30% for the lable, the rest goes to the ComboBox                                
                 Left = 0;
                 Top = 0;
                 Unit = "px";
                 HeightUnit = "px";
                 Height = 60;
-                Width = 120;
+                Width = GlobalDefaults.TextBoxWidth;
                 Position = "relative";
                 VisibleCount = 5;
                 Items = new List<Item>();

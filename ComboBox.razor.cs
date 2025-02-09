@@ -180,11 +180,28 @@ namespace DataJuggler.Blazor.Components
             {
                 if (firstRender)
                 {
+                    // These values need to be set after Parameters have been set
+
                     // if not set as a Parameter
                     if (ListItemWidth == 0)
                     {
-                        // For some reason this has to be set here
+                        // Set the default Width
                         ListItemWidth = GlobalDefaults.TextBoxWidth;
+                    }
+
+                    // if not set as a parameter
+                    if (ListContainerLeft == 0)
+                    {
+                        if (CheckListMode)
+                        {
+                            // Set default
+                            ListContainerLeft = Column1Width;
+                        }
+                        else
+                        {
+                            // Set default
+                            ListContainerLeft = Column1Width + 20;
+                        }
                     }
 
                     // Set to False
@@ -423,7 +440,7 @@ namespace DataJuggler.Blazor.Components
                 LabelPosition = "relative";
                 Left = -3;
                 ListBackgroundColor = Color.White;
-                ListContainerLeft = Column1Width + 20;
+                ListContainerLeft = 0;
                 ListContainerTop = 28;
                 ListContainerPosition = "absolute";
                 ListDisplay = "none";
@@ -749,6 +766,21 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region SetComboBoxText(string text)
+            /// <summary>
+            /// Set Combo Box Text
+            /// </summary>
+            public void SetComboBoxText(string text)
+            {
+                // if the value for HasTextBox is true
+                if (HasTextBox)
+                {
+                    // Set the text value
+                    TextBox.SetTextValue(text);
+                }
+            }
+            #endregion
+            
             #region SetSelectedItems(List<Item> selectedItems)
             /// <summary>
             /// Set Selected Items for the ComboBox in CheckedListMode
@@ -3054,6 +3086,42 @@ namespace DataJuggler.Blazor.Components
                 {
                     // initial value
                     int zIndexPlus = ZIndex + 10;
+                        
+                    // return value
+                    return zIndexPlus;
+                }
+            }
+            #endregion
+
+            #region ZIndexPlus20
+            /// <summary>
+            /// This read only property returns the value of ZIndexPlus Plus 20.
+            /// </summary>
+            public int ZIndexPlus20
+            {
+                    
+                get
+                {
+                    // initial value
+                    int zIndexPlus = ZIndex + 20;
+                        
+                    // return value
+                    return zIndexPlus;
+                }
+            }
+            #endregion
+
+            #region ZIndexPlus30
+            /// <summary>
+            /// This read only property returns the value of ZIndexPlus Plus 30.
+            /// </summary>
+            public int ZIndexPlus30
+            {
+                    
+                get
+                {
+                    // initial value
+                    int zIndexPlus = ZIndex + 30;
                         
                     // return value
                     return zIndexPlus;

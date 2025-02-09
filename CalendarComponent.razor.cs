@@ -2775,6 +2775,42 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
+
+            #region ZIndexPlus20
+            /// <summary>
+            /// This read only property returns the value of ZIndexPlus Plus 20.
+            /// </summary>
+            public int ZIndexPlus20
+            {
+                    
+                get
+                {
+                    // initial value
+                    int zIndexPlus = ZIndex + 20;
+                        
+                    // return value
+                    return zIndexPlus;
+                }
+            }
+            #endregion
+
+            #region ZIndexPlus30
+            /// <summary>
+            /// This read only property returns the value of ZIndexPlus Plus 30.
+            /// </summary>
+            public int ZIndexPlus30
+            {
+                    
+                get
+                {
+                    // initial value
+                    int zIndexPlus = ZIndex + 30;
+                        
+                    // return value
+                    return zIndexPlus;
+                }
+            }
+            #endregion
             
         #endregion
         
