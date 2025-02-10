@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
+        private double borderWidth;
         private string name;
         private IBlazorComponentParent parent;
         private double checkBoxXPosition;
@@ -50,6 +52,7 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private double height;
         private string backgroundColor;
+        private Color borderColor;
         #endregion
 
         #region Constructor
@@ -85,6 +88,8 @@ namespace DataJuggler.Blazor.Components
                 Width = 80;
                 Height = 24;
                 BackgroundColor = "White";
+                BorderColor = Color.Gray;
+                BorderWidth = 1;
                 Enabled = true;
             }
             #endregion
@@ -131,18 +136,6 @@ namespace DataJuggler.Blazor.Components
         
         #region Properties
             
-            #region BackColor
-            /// <summary>
-            /// This property gets or sets the value for 'BackColor'.
-            /// </summary>
-            [Parameter]
-            public string BackColor
-            {
-                get { return backColor; }
-                set { backColor = value; }
-            }
-            #endregion
-            
             #region BackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'BackgroundColor'.
@@ -155,6 +148,46 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'BorderColor'.
+            /// </summary>
+            public Color BorderColor
+            {
+                get { return borderColor; }
+                set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'BorderWidth'.
+            /// </summary>
+            public double BorderWidth
+            {
+                get { return borderWidth; }
+                set { borderWidth = value; }
+            }
+            #endregion
+            
+            #region BorderWidthStyle
+            /// <summary>
+            /// This read only property returns the value of BorderWidthStyle from the object BorderWidth.
+            /// </summary>
+            public string BorderWidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string borderWidthStyle = BorderWidth + Unit;
+                    
+                    // return value
+                    return borderWidthStyle;
+                }
+            }
+            #endregion
+
             #region ClassName
             /// <summary>
             /// This property gets or sets the value for 'ClassName'.
@@ -405,6 +438,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HeightStyle
+            /// <summary>
+            /// This read only property returns the value of HeightStyle from the object Height.
+            /// </summary>
+            public string HeightStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string heightStyle = Height + HeightUnit;
+                    
+                    // return value
+                    return heightStyle;
+                }
+            }
+            #endregion
+
             #region HeightUnit
             /// <summary>
             /// This property gets or sets the value for 'HeightUnit'.
@@ -534,6 +585,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region WidthStyle
+            /// <summary>
+            /// This read only property returns the value of WidthStyle from the object Width.
+            /// </summary>
+            public string WidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string widthStyle = Width + Unit;
+                    
+                    // return value
+                    return widthStyle;
+                }
+            }
+            #endregion
+
             #region ZIndex
             /// <summary>
             /// This property gets or sets the value for 'ZIndex'.

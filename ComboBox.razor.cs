@@ -29,6 +29,7 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
+        private double listItemContainerHeight;
         private double buttonLeft;
         private string buttonPosition;
         private double buttonTop;
@@ -446,6 +447,7 @@ namespace DataJuggler.Blazor.Components
                 ListContainerPosition = "absolute";
                 ListDisplay = "none";
                 ListItemBackgroundColor = Color.White;                
+                ListItemContainerHeight = GlobalDefaults.TextBoxWidth; // Save value 120
                 ListItemHeight = GlobalDefaults.ListItemHeight;            
                 ListItemLeft = 0;
                 ListItemPosition = "relative";
@@ -1325,7 +1327,7 @@ namespace DataJuggler.Blazor.Components
                 set { checkedListHeightUnit = value; }
             }
             #endregion
-            
+           
             #region CheckedListItemLeft
             /// <summary>
             /// This property gets or sets the value for 'CheckedListItemLeft'.
@@ -2411,6 +2413,48 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ListContainerHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ListContainerHeight'.
+            /// </summary>
+            public double ListContainerHeight
+            {
+                get
+                {
+                    // initial value
+                    double listContainerHeight = ListItemContainerHeight;
+
+                    // if the value for CheckListMode is true
+                    if (CheckListMode)
+                    {
+                        // Use the CheckedListHeight
+                        listContainerHeight = CheckedListheight;
+                    }
+
+                    // return value
+                    return listContainerHeight;
+                }
+            }
+            #endregion
+            
+            #region ListContainerHeightStyle
+            /// <summary>
+            /// This read only property returns the value of ListContainerHeightStyle from the object ListContainerHeight.
+            /// </summary>
+            public string ListContainerHeightStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string listContainerHeightStyle = ListContainerHeight + HeightUnit;
+                    
+                    // return value
+                    return listContainerHeightStyle;
+                }
+            }
+            #endregion
+
             #region ListContainerLeft
             /// <summary>
             /// This property gets or sets the value for 'ListContainerLeft'.
@@ -2526,6 +2570,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemClassName; }
                 set { listItemClassName = value; }
+            }
+            #endregion
+                       
+            #region ListItemContainerHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemContainerHeight'.
+            /// </summary>
+            [Parameter]
+            public double ListItemContainerHeight
+            {
+                get { return listItemContainerHeight; }
+                set { listItemContainerHeight = value; }
             }
             #endregion
             

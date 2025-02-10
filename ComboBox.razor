@@ -4,7 +4,6 @@
 @using System.Drawing
 
 <Styled @bind-Classname=@ContainerStyle>
-    display: @Display;
     text-align: left;
     height: @ControlHeightStyle;
     min-height: @ControlHeightStyle;
@@ -15,9 +14,10 @@
     position: @Position;
     top: @TopStyle;
     left: @LeftStyle;
-    display: flex;
+    display: @Display;
     justify-content: left;
-    gap: 0px;
+    gap: 0px;    
+    z-index: @ZIndex;    
 </Styled>
 <Styled @bind-Classname=@ListItemContainer>
     font-family: Calibri;
@@ -26,12 +26,14 @@
     width: @ListItemWidthStyle;
     min-width: @ListItemWidthStyle;
     max-width: @ListItemWidthStyle;
+    height: @ListContainerHeightStyle;
+    min-height: @ListContainerHeightStyle;
+    max-height: @ListContainerHeightStyle;
     position: @ListItemPosition;
     color: @ListItemTextColorName;
     left: @ListItemLeftStyle;
     top: @ListItemTopStyle;
-    font-size: @FontSizeStyle;
-    z-index: @ZIndexPlus30;
+    font-size: @FontSizeStyle;    
     border-width: 1px;
     border-color: gray;
     border-style: solid;
@@ -41,20 +43,19 @@
     position: @Position;
     width: @ListItemWidthStyle;
     min-width: @ListItemWidthStyle;
-    height: @ListItemHeightStyle;
-    z-index: @ZIndexPlus30;
+    height: @ListItemHeightStyle;    
     cursor: pointer;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
     display: inline;
     text-align: left;
-    background-size: 100% 100%;
-    z-index: @ZIndex;
+    background-size: 100% 100%;    
     height: 25.6px;
     position: @ButtonPosition;
     left: @ButtonLeftStyle;
     top: @ButtonTopStyle;
     cursor: pointer;
+    z-index: @ZIndex;
 </Styled>
 <Styled @bind-Classname=@CheckedListBoxStyle>   
     position: @CheckedListPosition;
@@ -65,8 +66,7 @@
     max-width: @CheckedListWidthStyle;
     min-width: @CheckedListWidthStyle;    
     left: @CheckedListLeftStyle;
-    top: @CheckedListTopStyle;
-    z-index: @ZIndex;    
+    top: @CheckedListTopStyle;    
     overflow: visible;
 </Styled>
 <Styled @bind-Classname=@ListContainerStyle>
@@ -111,9 +111,9 @@
                 <CheckedListBox Parent="this" HeightUnit="@CheckedListHeightUnit" Height="@CheckedListheight" 
                     Position="@CheckedListPosition" Unit="@CheckedListUnit" Width=@CheckedListWidth 
                     ListItemWidth=@ListItemWidth  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
-                    ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor
+                    ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor                    
                     CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
-                    ListBackgroundColor="@ListBackgroundColor" Top="0" ZIndex="@ZIndexPlus10"
+                    Top="0" ZIndex="@ZIndexPlus10"
                     CheckBoxXPosition=@CheckBoxXPosition  CheckBoxYPosition="@CheckBoxYPosition" 
                     Left=@CheckedListLeft  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
                 </CheckedListBox>
