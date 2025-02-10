@@ -1171,6 +1171,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasText
+            /// <summary>
+            /// This property returns true if the 'Text' exists.
+            /// </summary>
+            public bool HasText
+            {
+                get
+                {
+                    // initial value
+                    bool hasText = (!String.IsNullOrEmpty(Text));
+
+                    // return value
+                    return hasText;
+                }
+            }
+            #endregion
+            
             #region HasUniqueImageUrl
             /// <summary>
             /// This property returns true if the 'UniqueImageUrl' exists.
