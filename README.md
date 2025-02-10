@@ -1,5 +1,18 @@
 News
 
+2.10.2025: The ComboBox still has an issue with z-index.
+
+I tried to fix this all weekend. The only solution I found is when you add the combo box,
+Add a class above it.
+
+    <div class="row row2 zindex400">
+        <ComboBox Name="TargetFrameworkComboBox" Parent="this" LabelText=".NET Framework:"
+        LabelColor="Color.GhostWhite" Theme="ThemeEnum.BlueGold" ListItemLeft="0"            
+        ListItemTop="0" ListContainerPosition="absolute" ZIndex="100"
+        LabelFontName="Calibri" LabelFontSize="14" ButtonHeight="24">
+        </ComboBox>
+    </div>
+
 2.9.2025: The ComboBox has been fixed. The Z-Index wasn't working.
 Leaving myself a note, for some reason ListItemWidth has to be set in OnAfterRenderAsync.
 

@@ -122,7 +122,8 @@ namespace DataJuggler.Blazor.Components
         private double textBoxFontSize;
         private string textBoxFontName;
         private string fontName;
-        private bool showButton;        
+        private bool showButton;
+        private string dropDownZIndex;
         
         // Had to bring back BlazorStyled        
         private string listItemContainer;
@@ -1650,6 +1651,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return dropdownClassName; }
                 set { dropdownClassName = value; }
+            }
+            #endregion
+            
+            #region DropDownZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'DropDownZIndex'.
+            /// </summary>
+            public string DropDownZIndex
+            {
+                get { return dropDownZIndex; }
+                set { dropDownZIndex = value; }
             }
             #endregion
             

@@ -42,7 +42,7 @@
     width: @ListItemWidthStyle;
     min-width: @ListItemWidthStyle;
     height: @ListItemHeightStyle;
-    z-index: @ZIndex;
+    z-index: @ZIndexPlus30;
     cursor: pointer;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
@@ -121,7 +121,7 @@
         }
         else
         {      
-            <div class="@ListItemContainer @DropdownClassName zindex400">
+            <div class="@ListItemContainer @DropdownClassName">
                 <select class="form-control" name="ListBox" size="@VisibleCount"
                         id="ComboBoxListBox" @onchange="SelectionChanged">
                     @foreach (Item item in Items)
