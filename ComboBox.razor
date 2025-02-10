@@ -31,7 +31,7 @@
     left: @ListItemLeftStyle;
     top: @ListItemTopStyle;
     font-size: @FontSizeStyle;
-    z-index: @ZIndex;
+    z-index: @ZIndexPlus30;
     border-width: 1px;
     border-color: gray;
     border-style: solid;
@@ -121,7 +121,7 @@
         }
         else
         {      
-            <div class="@ListItemContainer @DropdownClassName">
+            <div class="@ListItemContainer @DropdownClassName zindex400">
                 <select class="form-control" name="ListBox" size="@VisibleCount"
                         id="ComboBoxListBox" @onchange="SelectionChanged">
                     @foreach (Item item in Items)
