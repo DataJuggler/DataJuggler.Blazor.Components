@@ -1,8 +1,11 @@
 News
 
-2.11.2025: I added a SetTextColor method to the Label component.
+2.11.2025: I added a property ListItemMarginBottom to the ComboBox.
+This property defaults to 2 pixels.
 
-2.10.2025: The ComboBox still has an issue with z-index.
+2.10.2025: I added a SetTextColor method to the Label component.
+
+The ComboBox still has an issue with z-index.
 
 I tried to fix this all weekend. The only solution I found is when you add the combo box,
 Add a class above it.

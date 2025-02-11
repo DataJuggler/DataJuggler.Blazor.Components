@@ -69,6 +69,7 @@ namespace DataJuggler.Blazor.Components
         private double listItemHeight;
         private string listItemClassName;
         private double listItemLeft;
+        private double listItemMarginBottom;
         private string listItemPosition;
         private Color listItemTextColor;
         private Color listItemBackgroundColor;
@@ -450,6 +451,7 @@ namespace DataJuggler.Blazor.Components
                 ListItemContainerHeight = GlobalDefaults.TextBoxWidth; // Save value 120
                 ListItemHeight = GlobalDefaults.ListItemHeight;            
                 ListItemLeft = 0;
+                listItemMarginBottom = 2; // A little space between items
                 ListItemPosition = "relative";
                 listItemTop = 0;
 
@@ -2644,6 +2646,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region ListItemMarginBottom
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemMarginBottom'.
+            /// </summary>
+            [Parameter]
+            public double ListItemMarginBottom
+            {
+                get { return listItemMarginBottom; }
+                set { listItemMarginBottom = value; }
+            }
+            #endregion
+            
+            #region ListItemMarginBottomStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemMarginBottomStyle from the object ListItemMarginBottom.
+            /// </summary>
+            public string ListItemMarginBottomStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string listItemMarginBottomStyle = ListItemMarginBottom + HeightUnit;
+                    
+                    // return value
+                    return listItemMarginBottomStyle;
+                }
+            }
+            #endregion
+
             #region ListItemPosition
             /// <summary>
             /// This property gets or sets the value for 'ListItemPosition'.
