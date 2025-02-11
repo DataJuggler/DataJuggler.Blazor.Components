@@ -2416,7 +2416,7 @@ namespace DataJuggler.Blazor.Components
             #region ListContainerHeight
             /// <summary>
             /// This property gets or sets the value for 'ListContainerHeight'.
-            /// </summary>
+            /// </summary>            
             public double ListContainerHeight
             {
                 get
