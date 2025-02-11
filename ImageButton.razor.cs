@@ -290,7 +290,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-           
+            
             #region HasClickHandler
             /// <summary>
             /// This property returns true if this object has a 'ClickHandler'.

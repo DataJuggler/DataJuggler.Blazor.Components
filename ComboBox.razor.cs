@@ -28,8 +28,7 @@ namespace DataJuggler.Blazor.Components
     public partial class ComboBox : ComponentBase, IBlazorComponent, IBlazorComponentParent, ILabelFont, ITextBoxFont
     {
         
-        #region Private Variables
-        private double listItemContainerHeight;
+        #region Private Variables        
         private double buttonLeft;
         private string buttonPosition;
         private double buttonTop;
@@ -51,7 +50,7 @@ namespace DataJuggler.Blazor.Components
         private List<Item> items;
         private List<Item> storedSelectedItems;
         private string labelBackColor;
-        private string labelClassName;
+        private string labelClassName;        
         private Color labelColor;
         private double labelLeft;
         private double labelMarginRight;
@@ -68,15 +67,15 @@ namespace DataJuggler.Blazor.Components
         private string listContainerPosition;
         private double listItemHeight;
         private string listItemClassName;
-        private double listItemLeft;
-        private double listItemMarginBottom;
+        private double listItemLeft;        
         private string listItemPosition;
         private Color listItemTextColor;
         private Color listItemBackgroundColor;
         private double listItemTop;
         private double listItemWidth;        
         private string listItemWidthStyle;
-        private string name;        
+        private string name;
+        private bool notifyParentOnBlur;
         private IBlazorComponentParent parent;
         private string position;
         private Item selectedItem;
@@ -137,6 +136,10 @@ namespace DataJuggler.Blazor.Components
         private string listContainerStyle;
         private double listContainerLeft;
         private double listContainerTop;
+        private double listItemMarginBottom;
+        private double checkBoxHeight;
+        private double checkBoxWidth;
+        private double listContainerHeight;
         #endregion
         
         #region Constructor
@@ -290,28 +293,32 @@ namespace DataJuggler.Blazor.Components
                 string selectedText = "";
 
                 // if the TextBox exists and there are one or more selectedItems
-                if ((HasTextBox) && (ListHelper.HasOneOrMoreItems(selectedItems)))
+                if (HasTextBox)
                 {
-                    // Set Loading to true
-                    TextBox.Loading = true;
-
-                    // Create a new instance of a 'StringBuilder' object.
-                    StringBuilder sb = new StringBuilder();
-
-                    // Iterate the collection of Item objects
-                    foreach(Item item in selectedItems)
+                    // If the selectedItems collection exists and has one or more items
+                    if (ListHelper.HasOneOrMoreItems(selectedItems))
                     {
-                        // if checked
-                        if (item.ItemChecked)
-                        {
-                            // Append the Item and a semicolon separator
-                            sb.Append(item.Text);
-                            sb.Append(';');
-                        }
-                    }
+                        // Set Loading to true
+                        TextBox.Loading = true;
 
-                    // Set the selected Text
-                    selectedText = sb.ToString();
+                        // Create a new instance of a 'StringBuilder' object.
+                        StringBuilder sb = new StringBuilder();
+
+                        // Iterate the collection of Item objects
+                        foreach(Item item in selectedItems)
+                        {
+                            // if checked
+                            if (item.ItemChecked)
+                            {
+                                // Append the Item and a semicolon separator
+                                sb.Append(item.Text);
+                                sb.Append(';');
+                            }
+                        }
+
+                        // Set the selected Text
+                        selectedText = sb.ToString();
+                    }
 
                      // Set the SelecctedText
                     TextBox.SetTextValue(selectedText);
@@ -383,6 +390,21 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region HandleOnBlur()
+            /// <summary>
+            /// Handle On Blur
+            /// </summary>
+            public void HandleOnBlur()
+            {
+                // if the value for Expanded is true
+                if ((Expanded) && (HasButton) && (Button.HasClickHandler))
+                {
+                    // Call the ClickHander
+                    Button.ClickHandler(1, "");
+                }
+            }
+            #endregion
+            
             #region Hide(bool refresh = true)
             /// <summary>
             /// Hide
@@ -421,6 +443,8 @@ namespace DataJuggler.Blazor.Components
                 ButtonTop = 1;
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
+                CheckBoxHeight = 20;
+                CheckBoxWidth = 20;
                 CheckBoxTextXPosition = -1;
                 checkBoxTextYPosition = -1;
                 checkedListheight = 64;
@@ -448,10 +472,9 @@ namespace DataJuggler.Blazor.Components
                 ListContainerPosition = "absolute";
                 ListDisplay = "none";
                 ListItemBackgroundColor = Color.White;                
-                ListItemContainerHeight = GlobalDefaults.TextBoxWidth; // Save value 120
+                ListContainerHeight = 120;
                 ListItemHeight = GlobalDefaults.ListItemHeight;            
-                ListItemLeft = 0;
-                listItemMarginBottom = 2; // A little space between items
+                ListItemLeft = 0;                
                 ListItemPosition = "relative";
                 listItemTop = 0;
 
@@ -585,9 +608,7 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void OnTextChanged(string text)
             {
-                // This method is here so I can figure out why the selections are erased
-                // When the combo box button is clicked to close.
-                if (!TextHelper.Exists(text))
+                if (TextHelper.Exists(text))
                 {
                     // the text was set to blank
                     DisplaySelections();
@@ -615,6 +636,11 @@ namespace DataJuggler.Blazor.Components
                     {
                         // Display Selections
                         DisplaySelections();                        
+                    }
+                    else if (message.Text.Contains("OnBlurFired"))
+                    {
+                        // Handle the Blur
+                        HandleOnBlur();
                     }
                     else if (message.Text.Contains("text"))
                     {
@@ -1206,6 +1232,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region CheckBoxHeight
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxHeight'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxHeight
+            {
+                get { return checkBoxHeight; }
+                set { checkBoxHeight = value; }
+            }
+            #endregion
+            
             #region CheckBoxTextXPosition
             /// <summary>
             /// This property gets or sets the value for 'CheckBoxTextXPosition'.
@@ -1227,6 +1265,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return checkBoxTextYPosition; }
                 set { checkBoxTextYPosition = value; }
+            }
+            #endregion
+            
+            #region CheckBoxWidth
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxWidth'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxWidth
+            {
+                get { return checkBoxWidth; }
+                set { checkBoxWidth = value; }
             }
             #endregion
             
@@ -2414,34 +2464,22 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-            
+           
             #region ListContainerHeight
             /// <summary>
             /// This property gets or sets the value for 'ListContainerHeight'.
-            /// </summary>            
+            /// </summary>
+            [Parameter]
             public double ListContainerHeight
             {
-                get
-                {
-                    // initial value
-                    double listContainerHeight = ListItemContainerHeight;
-
-                    // if the value for CheckListMode is true
-                    if (CheckListMode)
-                    {
-                        // Use the CheckedListHeight
-                        listContainerHeight = CheckedListheight;
-                    }
-
-                    // return value
-                    return listContainerHeight;
-                }
+                get { return listContainerHeight; }
+                set { listContainerHeight = value; }
             }
             #endregion
             
             #region ListContainerHeightStyle
             /// <summary>
-            /// This read only property returns the value of ListContainerHeightStyle from the object ListContainerHeight.
+            /// This read only property returns the value of ListContainerHeight + HeightUnit
             /// </summary>
             public string ListContainerHeightStyle
             {
@@ -2574,18 +2612,6 @@ namespace DataJuggler.Blazor.Components
                 set { listItemClassName = value; }
             }
             #endregion
-                       
-            #region ListItemContainerHeight
-            /// <summary>
-            /// This property gets or sets the value for 'ListItemContainerHeight'.
-            /// </summary>
-            [Parameter]
-            public double ListItemContainerHeight
-            {
-                get { return listItemContainerHeight; }
-                set { listItemContainerHeight = value; }
-            }
-            #endregion
             
             #region ListItemHeight
             /// <summary>
@@ -2645,7 +2671,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-                
+
             #region ListItemMarginBottom
             /// <summary>
             /// This property gets or sets the value for 'ListItemMarginBottom'.
@@ -2658,24 +2684,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ListItemMarginBottomStyle
-            /// <summary>
-            /// This read only property returns the value of ListItemMarginBottomStyle from the object ListItemMarginBottom.
-            /// </summary>
-            public string ListItemMarginBottomStyle
-            {
-
-                get
-                {
-                    // initial value
-                    string listItemMarginBottomStyle = ListItemMarginBottom + HeightUnit;
-                    
-                    // return value
-                    return listItemMarginBottomStyle;
-                }
-            }
-            #endregion
-
             #region ListItemPosition
             /// <summary>
             /// This property gets or sets the value for 'ListItemPosition'.
@@ -2811,6 +2819,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region NotifyParentOnBlur
+            /// <summary>
+            /// This property gets or sets the value for 'NotifyParentOnBlur'.
+            /// </summary>
+            [Parameter]
+            public bool NotifyParentOnBlur
+            {
+                get { return notifyParentOnBlur; }
+                set { notifyParentOnBlur = value; }
+            }
+            #endregion
+            
             #region OnChange
             /// <summary>
             /// This event is used to clients can get a notification when a selection was made

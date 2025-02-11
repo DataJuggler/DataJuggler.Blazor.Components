@@ -40,7 +40,7 @@ namespace DataJuggler.Blazor.Components
         private bool enabled;
         private string text;
         private string position;
-        private double zIndex;
+        private int zIndex;
         private string backColor;
         private string inputType;
         private int tabIndex;
@@ -608,13 +608,31 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'ZIndex'.
             /// </summary>
             [Parameter]
-            public double ZIndex
+            public int ZIndex
             {
                 get { return zIndex; }
                 set { zIndex = value; }
             }
             #endregion
             
+            #region ZIndexPlus10
+            /// <summary>
+            /// This read only property returns the value of ZIndex Plus 10
+            /// </summary>
+            public int ZIndexPlus10
+            {
+
+                get
+                {
+                    // initial value
+                    int zIndexPlus10 = ZIndex + 10;
+                    
+                    // return value
+                    return zIndexPlus10;
+                }
+            }
+            #endregion
+
         #endregion
         
     }

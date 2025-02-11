@@ -7,6 +7,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
+using NPOI.SS.UserModel;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace DataJuggler.Blazor.Components
         private Color listBackgroundColor;
         private Color listItemBackgroundColor;
         private double listItemHeight;
+        private double listItemMarginBottom;
         private double listItemLeft;
         private string listItemPosition;
         private Color listItemTextColor;
@@ -60,7 +62,13 @@ namespace DataJuggler.Blazor.Components
         private string className;
         private double labelWidth;
         private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;        
+        private double checkBoxTextYPosition;
+        private double checkBoxHeight;
+        private double checkBoxWidth;
+        private bool notifyParentOnBlur;
+        private ElementReference containerElement;
+        private bool containerElementInitialized;
+        private bool setFocusOnFirstRender;
         
         // reverting back to BlazorStyled
         private string checkedlistboxStyle;
@@ -164,6 +172,25 @@ namespace DataJuggler.Blazor.Components
                 return item;
             }
             #endregion
+
+            #region HandleOnBlur()
+            /// <summary>
+            /// method Handle Blur
+            /// </summary>
+            private void HandleOnBlur()
+            {
+                // if the value for NotifyParentOnBlur is true
+                if ((HasParent) && (NotifyParentOnBlur))
+                {
+                    Message message = new Message();
+                    message.Sender = this;
+                    message.Text = "OnBlurFired";
+
+                    // Notify the parent
+                    parent.ReceiveData(message);
+                }
+            }
+            #endregion
             
             #region Init()
             /// <summary>
@@ -181,7 +208,7 @@ namespace DataJuggler.Blazor.Components
                 Unit = "px";
                 HeightUnit = "px";
                 FontUnit = "px";
-                FontSize = 12;
+                FontSize = GlobalDefaults.LabelFontSize;
                 
                 // Set a default height
                 ListItemHeight = 32;
@@ -189,7 +216,9 @@ namespace DataJuggler.Blazor.Components
                 // Move over a little
                 CheckBoxXPosition = .2;
 
-                // Default to 30% for the lable, the rest goes to the ComboBox                                
+                // Defaults
+                CheckBoxHeight = 20;
+                CheckBoxWidth = 20;
                 Left = 0;
                 Top = 0;
                 Unit = "px";
@@ -201,6 +230,7 @@ namespace DataJuggler.Blazor.Components
                 Items = new List<Item>();
                 ListItemPosition = "relative";
                 ListItemBackgroundColor = Color.White;
+                listItemMarginBottom = 2; // A little space between items
                 ListBackgroundColor = Color.White;
                 ListItemClassName = "textdonotwrap";
                 ZIndex = 40;
@@ -215,6 +245,20 @@ namespace DataJuggler.Blazor.Components
             /// <returns></returns>
             protected async override Task OnAfterRenderAsync(bool firstRender)
             {
+                // if the value for firstRender is true
+                if (firstRender)
+                {
+                    // Set to true
+                    ContainerElementInitialized = true;
+
+                    // if the value for SetFocusOnFirstRender is true
+                    if (SetFocusOnFirstRender)
+                    {
+                        // Set Focus Async
+                        await ContainerElement.FocusAsync();
+                    }
+                }
+
                 // if the Items do not exist for some reason
                 if (!ListHelper.HasOneOrMoreItems(Items))
                 {
@@ -265,6 +309,14 @@ namespace DataJuggler.Blazor.Components
                                     Parent.ReceiveData(message);
                                 }
                             }
+                        }
+                        else
+                        {
+                            // Send a message to clear
+                            message.Text = "Clear";
+
+                            // Notify the parent
+                            Parent.ReceiveData(message);
                         }
                     }
                 }
@@ -321,6 +373,21 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetFocus()
+            /// <summary>
+            /// Set Focus
+            /// </summary>
+            public async void SetFocus()
+            {
+                // if it has been initialized
+                if (ContainerElementInitialized)
+                {   
+                    // Set Focus
+                    await ContainerElement.FocusAsync();
+                }
+            }
+            #endregion
+            
             #region SetItems(List<Item> items, bool refresh = true)
             /// <summary>
             /// Set Items
@@ -357,6 +424,18 @@ namespace DataJuggler.Blazor.Components
             
         #region Properties
                 
+            #region CheckBoxHeight
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxHeight'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxHeight
+            {
+                get { return checkBoxHeight; }
+                set { checkBoxHeight = value; }
+            }
+            #endregion
+            
             #region CheckBoxTextXPosition
             /// <summary>
             /// This property gets or sets the value for 'CheckBoxTextXPosition'.
@@ -378,6 +457,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return checkBoxTextYPosition; }
                 set { checkBoxTextYPosition = value; }
+            }
+            #endregion
+            
+            #region CheckBoxWidth
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxWidth'.
+            /// </summary>
+            [Parameter]
+            public double CheckBoxWidth
+            {
+                get { return checkBoxWidth; }
+                set { checkBoxWidth = value; }
             }
             #endregion
             
@@ -489,6 +580,28 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region ContainerElement
+            /// <summary>
+            /// This property gets or sets the value for 'ContainerElement'.
+            /// </summary>
+            public ElementReference ContainerElement
+            {
+                get { return containerElement; }
+                set { containerElement = value; }
+            }
+            #endregion
+            
+            #region ContainerElementInitialized
+            /// <summary>
+            /// This property gets or sets the value for 'ContainerElementInitialized'.
+            /// </summary>
+            public bool ContainerElementInitialized
+            {
+                get { return containerElementInitialized; }
+                set { containerElementInitialized = value; }
+            }
+            #endregion
+            
             #region DisplayStyle
             /// <summary>
             /// This property gets or sets the value for 'DisplayStyle'.
@@ -575,7 +688,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-                
+            
             #region HasItems
             /// <summary>
             /// This property returns true if this object has an 'Items'.
@@ -828,6 +941,36 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
+
+             #region ListItemMarginBottom
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemMarginBottom'.
+            /// </summary>
+            [Parameter]
+            public double ListItemMarginBottom
+            {
+                get { return listItemMarginBottom; }
+                set { listItemMarginBottom = value; }
+            }
+            #endregion
+            
+            #region ListItemMarginBottomStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemMarginBottomStyle from the object ListItemMarginBottom.
+            /// </summary>
+            public string ListItemMarginBottomStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string listItemMarginBottomStyle = ListItemMarginBottom + HeightUnit;
+                    
+                    // return value
+                    return listItemMarginBottomStyle;
+                }
+            }
+            #endregion
             
             #region ListItemPosition
             /// <summary>
@@ -952,6 +1095,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region NotifyParentOnBlur
+            /// <summary>
+            /// This property gets or sets the value for 'NotifyParentOnBlur'.
+            /// </summary>
+            [Parameter]
+            public bool NotifyParentOnBlur
+            {
+                get { return notifyParentOnBlur; }
+                set { notifyParentOnBlur = value; }
+            }
+            #endregion
+            
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.
@@ -1047,6 +1202,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region SetFocusOnFirstRender
+            /// <summary>
+            /// This property gets or sets the value for 'SetFocusOnFirstRender'.
+            /// </summary>
+            [Parameter]
+            public bool SetFocusOnFirstRender
+            {
+                get { return setFocusOnFirstRender; }
+                set { setFocusOnFirstRender = value; }
+            }
+            #endregion
+            
             #region Top
             /// <summary>
             /// This property gets or sets the value for 'Top'.
@@ -1105,7 +1272,7 @@ namespace DataJuggler.Blazor.Components
                     // if visible
                     if (visible)
                     {
-                        DisplayStyle = "inline-block";
+                        DisplayStyle = "flex";
                     }
                     else
                     {

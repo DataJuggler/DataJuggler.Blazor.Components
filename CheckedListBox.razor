@@ -2,7 +2,9 @@
 
 <Styled @bind-Classname=@CheckedlistboxStyle>
     background-color: @ListBackgroundColor.Name;
-    display: @DisplayStyle;
+    display: @DisplayStyle;    
+    flex-direction: column;
+    gap: @ListItemMarginBottomStyle;
     font-size: @FontSizeStyle;
     height: @HeightStyle;
     min-height: @HeightStyle;
@@ -40,9 +42,10 @@
     max-width: @ListItemWidthStyle;
     z-index: @ZIndex;
     object-fit: fill;
+    clear: both;
 </Styled>
 
-<div class="@CheckedlistboxStyle">
+<div class="@CheckedlistboxStyle" tabindex="0" @onblur="HandleOnBlur" @ref="ContainerElement">
     <table class="@ClassName" width="@Width" height="@Height">
         @if (HasItems)
         {  
@@ -53,8 +56,9 @@
                         <div class="@ListitemStyle">
                             <CheckBoxComponent Parent="this" Name="@item.Id.ToString()" Unit="@Unit"                                
                                 Column1Width="@LabelWidth" Column2Width="@Width" CheckBoxValue="@item.ItemChecked"
-                                HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition" Width="@listItemWidth"
-                                Height="@ListItemHeight" CheckBoxYPosition="@CheckBoxYPosition" ClassName="@ListItemClassName"
+                                HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition"
+                                Height="@CheckBoxHeight" Width="@CheckBoxWidth"
+                                CheckBoxYPosition="@CheckBoxYPosition" ClassName="@ListItemClassName"
                                 CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
                                 Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
                             </CheckBoxComponent>

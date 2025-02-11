@@ -39,7 +39,7 @@ namespace DataJuggler.Blazor.Components
         private string position;
         private double left;
         private double top;
-        private double zIndex;
+        private int zIndex;
         #endregion
         
         #region Constructor
@@ -478,7 +478,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'ZIndex'.
             /// </summary>
             [Parameter]
-            public double ZIndex
+            public int ZIndex
             {
                 get { return zIndex; }
                 set { zIndex = value; }

@@ -99,6 +99,7 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private string unit;
         private string heightUnit;
+        private bool notifyParentOnBlur;
 
         // Label
         private double labelWidth;
@@ -236,6 +237,17 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Update the Text
                     Text = TextHelper.FormatPhoneNumber(Text);
+                }
+
+                // if the value for NotifyParentOnBlur is true
+                if ((HasParent) && (NotifyParentOnBlur))
+                {
+                    Message message = new Message();
+                    message.Sender = this;
+                    message.Text = "OnBlurFired";
+
+                    // Notify the parent
+                    parent.ReceiveData(message);
                 }
             }
             #endregion
@@ -1856,6 +1868,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return name; }
                 set { name = value; }
+            }
+            #endregion
+            
+            #region NotifyParentOnBlur
+            /// <summary>
+            /// This property gets or sets the value for 'NotifyParentOnBlur'.
+            /// </summary>
+            [Parameter]
+            public bool NotifyParentOnBlur
+            {
+                get { return notifyParentOnBlur; }
+                set { notifyParentOnBlur = value; }
             }
             #endregion
             

@@ -19,8 +19,9 @@
     gap: 0px;    
     z-index: @ZIndex;    
 </Styled>
-<Styled @bind-Classname=@ListItemContainer>
-    font-family: Calibri;
+<Styled @bind-Classname=@ListItemContainer>    
+    font-family: @FontName
+    font-size: @FontSizeStyle;
     text-align: left;
     background-color: @ListBackgroundColorName;
     width: @ListItemWidthStyle;
@@ -32,8 +33,7 @@
     position: @ListItemPosition;
     color: @ListItemTextColorName;
     left: @ListItemLeftStyle;
-    top: @ListItemTopStyle;
-    font-size: @FontSizeStyle;    
+    top: @ListItemTopStyle;    
     border-width: 1px;
     border-color: gray;
     border-style: solid;
@@ -43,8 +43,7 @@
     position: @Position;
     width: @ListItemWidthStyle;
     min-width: @ListItemWidthStyle;
-    height: @ListItemHeightStyle;
-    margin-bottom: @ListItemMarginBottomStyle;
+    height: @ListItemHeightStyle;    
     cursor: pointer;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
@@ -84,13 +83,13 @@
     max-height: @ListContainerHeightStyle;
 </Styled>
 
-<div class="@ContainerStyle @ClassName textdonotwrap">
+<div class="@ContainerStyle @ClassName textdonotwrap" tabindex="0" @onblur="HandleOnBlur">
     <table>
         <tr class="textdonotwrap">
             <td width="@TextBoxWidth">
                 <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
                 ClassName="displayinline" Column1Width="@Column1Width" 
-                LabelLeft="@LabelLeft" LabelTop="@labelTop"
+                LabelLeft="@LabelLeft" LabelTop="@labelTop" NotifyParentOnBlur="@NotifyParentOnBlur"
                 Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" Height="@TextBoxHeight"
                 LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize" Left="@TextBoxLeft"
                 LabelColor="@LabelColor.Name" OnTextChangedCallback="OnTextChanged"
@@ -120,7 +119,9 @@
                     ListItemWidth=@ListItemWidth  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
                     ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor                    
                     CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
-                    Top="0" ZIndex="@ZIndexPlus10"
+                    Top="0" ZIndex="@ZIndexPlus10" ListItemMarginBottom="@ListItemMarginBottom"
+                    NotifyParentOnBlur="true" SetFocusOnFirstRender="true"
+                    CheckBoxHeight="@CheckBoxHeight" CheckBoxwidth="@CheckBoxWidth"
                     CheckBoxXPosition=@CheckBoxXPosition  CheckBoxYPosition="@CheckBoxYPosition" 
                     Left=@CheckedListLeft  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
                 </CheckedListBox>
