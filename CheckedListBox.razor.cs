@@ -65,10 +65,7 @@ namespace DataJuggler.Blazor.Components
         private double checkBoxTextYPosition;
         private double checkBoxHeight;
         private double checkBoxWidth;
-        private bool notifyParentOnBlur;
-        private ElementReference containerElement;
-        private bool containerElementInitialized;
-        private bool setFocusOnFirstRender;
+        private bool notifyParentOnBlur;        
         
         // reverting back to BlazorStyled
         private string checkedlistboxStyle;
@@ -245,20 +242,6 @@ namespace DataJuggler.Blazor.Components
             /// <returns></returns>
             protected async override Task OnAfterRenderAsync(bool firstRender)
             {
-                // if the value for firstRender is true
-                if (firstRender)
-                {
-                    // Set to true
-                    ContainerElementInitialized = true;
-
-                    // if the value for SetFocusOnFirstRender is true
-                    if (SetFocusOnFirstRender)
-                    {
-                        // Set Focus Async
-                        await ContainerElement.FocusAsync();
-                    }
-                }
-
                 // if the Items do not exist for some reason
                 if (!ListHelper.HasOneOrMoreItems(Items))
                 {
@@ -370,21 +353,6 @@ namespace DataJuggler.Blazor.Components
                                 
                 // send a message to the parent
                 ComboBoxParent.ReceiveData(message);
-            }
-            #endregion
-            
-            #region SetFocus()
-            /// <summary>
-            /// Set Focus
-            /// </summary>
-            public async void SetFocus()
-            {
-                // if it has been initialized
-                if (ContainerElementInitialized)
-                {   
-                    // Set Focus
-                    await ContainerElement.FocusAsync();
-                }
             }
             #endregion
             
@@ -577,28 +545,6 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return comboBoxParent;
                 }
-            }
-            #endregion
-                
-            #region ContainerElement
-            /// <summary>
-            /// This property gets or sets the value for 'ContainerElement'.
-            /// </summary>
-            public ElementReference ContainerElement
-            {
-                get { return containerElement; }
-                set { containerElement = value; }
-            }
-            #endregion
-            
-            #region ContainerElementInitialized
-            /// <summary>
-            /// This property gets or sets the value for 'ContainerElementInitialized'.
-            /// </summary>
-            public bool ContainerElementInitialized
-            {
-                get { return containerElementInitialized; }
-                set { containerElementInitialized = value; }
             }
             #endregion
             
@@ -1199,18 +1145,6 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return selectedItems;
                 }
-            }
-            #endregion
-                
-            #region SetFocusOnFirstRender
-            /// <summary>
-            /// This property gets or sets the value for 'SetFocusOnFirstRender'.
-            /// </summary>
-            [Parameter]
-            public bool SetFocusOnFirstRender
-            {
-                get { return setFocusOnFirstRender; }
-                set { setFocusOnFirstRender = value; }
             }
             #endregion
             
