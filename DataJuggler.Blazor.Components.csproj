@@ -1,36 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <RazorLangVersion>3.0</RazorLangVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>DataJuggler</Authors>
-    <Description>
-		This project consists of a TextBoxComponent, Multiline TextBox, CheckBox, ComboBox,
-		CheckedListComboBox, CheckedListBox, Grid, Label, Calendar Component, Time Component
-		and more. 
-		
-		The CSS file DataJuggler.Blazor.Components.css contains many useful classes to help style
-		and position objects.
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<EnableRazorComponentAuthoring>true</EnableRazorComponentAuthoring>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<StaticWebAssetBasePath>DataJuggler.Blazor.Components</StaticWebAssetBasePath>
+		<Authors>DataJuggler</Authors>
+		<Description>
+			This project consists of a TextBoxComponent, Multiline TextBox, CheckBox, ComboBox,
+			CheckedListComboBox, CheckedListBox, Grid, Label, Calendar Component, Time Component
+			and more.
 
-		This version is for .Net 9.0.</Description>
-    <Copyright>2025 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
-    <PackageLicenseFile>License.txt</PackageLicenseFile>
-    <PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
-    <PackageIcon>Merge Boxes Small.png</PackageIcon>
-    <PackageIconUrl />
-    <RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
-    <RepositoryType>Git - Git Hub</RepositoryType>
-    <PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
-    <PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-    <Version>9.10.0</Version>
-    <AssemblyVersion>7.5.5</AssemblyVersion>
-    <FileVersion>7.5.5</FileVersion>
-    <Nullable>disable</Nullable>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-  </PropertyGroup>
+			The CSS file DataJuggler.Blazor.Components.css contains many useful classes to help style
+			and position objects.
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
+			This version is for .NET 9.0.
+		</Description>
+		<Copyright>2019 - 2025 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
+		<PackageLicenseFile>License.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
+		<PackageIcon>Merge Boxes Small.png</PackageIcon>
+		<PackageIconUrl />
+		<RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
+		<RepositoryType>Git - Git Hub</RepositoryType>
+		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
+		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
+		<Version>9.11.0</Version>
+		<AssemblyVersion>9.11.0</AssemblyVersion>
+		<FileVersion>9.11.0</FileVersion>
+		<Nullable>disable</Nullable>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
     <NoWarn>1701;1702;NU5118;</NoWarn>
   </PropertyGroup>
 
