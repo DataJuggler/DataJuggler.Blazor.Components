@@ -9,7 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
+using NPOI.SS.Formula.Functions;
+using NPOI.XWPF.UserModel;
 
 #endregion
 
@@ -23,36 +26,57 @@ namespace DataJuggler.Blazor.Components
     public partial class CheckBoxComponent : IBlazorComponent
     {
         
-        #region Private Variables
+        #region Private Variables        
+        private string backgroundColor;
+        private Color borderColor;
         private double borderWidth;
-        private string name;
-        private IBlazorComponentParent parent;
+        private string caption;
+        private string checkBoxControlStyle;
+        private string checkBoxStyle;
+        private bool checkBoxValue;
+        private double checkBoxTextXPosition;
+        private double checkBoxTextYPosition;
         private double checkBoxXPosition;
         private string checkBoxXStyle;
         private double checkBoxYPosition;
         private string checkBoxYStyle;
-        private string className;        
-        private bool checkBoxValue;
-        private string checkBoxStyle;
-        private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;
-        private string textStyle;
-        private bool enabled;
-        private string text;
-        private string position;
-        private int zIndex;
-        private string backColor;
-        private string inputType;
-        private int tabIndex;
-        private string unit;
-        private string heightUnit;
-        private int externalId;
+        private string className;
         private double column1Width;
+        private string column1Style;
         private double column2Width;
-        private double width;
+        private string column2Style;
+        private string display;
+        private bool enabled;
+        private int externalId;
         private double height;
-        private string backgroundColor;
-        private Color borderColor;
+        private string heightUnit;
+        private string inputType;
+        private double left;
+        private double marginBottom;
+        private double marginLeft;
+        private string name;
+        private IBlazorComponentParent parent;
+        private string position;
+        private bool showCaption;
+        private int tabIndex;
+        private string text;
+        private string textStyle;
+        private double top;
+        private string unit;
+        private bool visible;
+        private double width;
+        private int zIndex;
+        
+         // Label
+        private double labelWidth;
+        private double labelFontSize;
+        private string labelFontName;        
+        private string labelClassName;
+        private string labelBackgroundColor;
+        private string labelColor;
+        private double labelTop;
+        private double labelLeft;
+        private string labelStyle;
         #endregion
 
         #region Constructor
@@ -74,23 +98,37 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // default
-                Position = "relative";
-                InputType = "checkbox";
-                Unit = "px";
-                HeightUnit = "px";
+                // Default Values
+                BackgroundColor = "transparent";                
+                BorderColor = Color.Gray;
+                BorderWidth = 1;
+                Caption = "";
                 CheckBoxTextXPosition = -1;
                 CheckBoxTextYPosition = -1;
                 CheckBoxXPosition = -4;
                 CheckBoxYPosition = 1;
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
-                Width = 80;
-                Height = 24;
-                BackgroundColor = "White";
-                BorderColor = Color.Gray;
-                BorderWidth = 1;
-                Enabled = true;
+                Display = "inline-block";
+                Enabled = true;                
+                Height = 22;                
+                HeightUnit = "px";
+                InputType = "checkbox";                
+                LabelBackgroundColor = "transparent";
+                LabelClassName = GlobalDefaults.LabelClassName;
+                LabelColor = "Black";                
+                LabelFontName = GlobalDefaults.LabelFontName;
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelWidth = 30;
+                Left = 0;
+                MarginBottom = 8;
+                MarginLeft = 1.2;
+                Position = "relative";                
+                Text = "";
+                Top = 0;
+                Unit = "px";
+                Visible = true;
+                Width = 80;             
             }
             #endregion
             
@@ -188,6 +226,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region Caption
+            /// <summary>
+            /// This property gets or sets the value for 'Caption'.
+            /// </summary>
+            [Parameter]
+            public string Caption
+            {
+                get { return caption; }
+                set 
+                {
+                    // set the value
+                    caption = value;
+
+                    // Show the Caption, if the Caption is set.
+                    ShowCaption = TextHelper.Exists(caption);
+                }
+            }
+            #endregion
+
+            #region CheckBoxControlStyle
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxControlStyle'.
+            /// </summary>
+            public string CheckBoxControlStyle
+            {
+                get { return checkBoxControlStyle; }
+                set { checkBoxControlStyle = value; }
+            }
+            #endregion
+            
             #region ClassName
             /// <summary>
             /// This property gets or sets the value for 'ClassName'.
@@ -361,15 +429,54 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region Column1Style
+            /// <summary>
+            /// This property gets or sets the value for 'Column1Style'.
+            /// </summary>
+            public string Column1Style
+            {
+                get { return column1Style; }
+                set { column1Style = value; }
+            }
+            #endregion
+            
             #region Column1Width
             /// <summary>
             /// This property gets or sets the value for 'Column1Width'.
             /// </summary>
-            [Parameter]
             public double Column1Width
             {
                 get { return column1Width; }
                 set { column1Width = value; }
+            }
+            #endregion
+            
+            #region Column1WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column1Width + Unit
+            /// </summary>
+            public string Column1WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column1WidthStyle = Column1Width + Unit;
+                    
+                    // return value
+                    return column1WidthStyle;
+                }
+            }
+            #endregion
+            
+            #region Column2Style
+            /// <summary>
+            /// This property gets or sets the value for 'Column2Style'.
+            /// </summary>
+            public string Column2Style
+            {
+                get { return column2Style; }
+                set { column2Style = value; }
             }
             #endregion
             
@@ -382,6 +489,67 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return column2Width; }
                 set { column2Width = value; }
+            }
+            #endregion
+
+            #region Column2WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column2Width + Unit
+            /// </summary>
+            public string Column2WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column2WidthStyle = Column2Width + Unit;
+                    
+                    // return value
+                    return column2WidthStyle;
+                }
+            }
+            #endregion
+            
+            #region Display
+            /// <summary>
+            /// This property gets or sets the value for 'Display'.
+            /// This property will be used, unless Visible = false, then DisplayNone will be used.
+            /// </summary>
+            [Parameter]
+            public string Display
+            {
+                get { return display; }
+                set { display = value; }
+            }
+            #endregion
+
+            #region DisplayStyle
+            /// <summary>
+            /// This read only property returns the value of Display, unless Visible = false.
+            /// </summary>
+            public string DisplayStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string displayStyle = "";
+                    
+                    // if the value for Visible is true
+                    if (Visible)
+                    {
+                        // set the return value
+                        displayStyle = Display;
+                    }
+                    else
+                    {
+                        // Invisible
+                        displayStyle = "none";
+                    }
+                    
+                    // return value
+                    return displayStyle;
+                }
             }
             #endregion
             
@@ -478,6 +646,286 @@ namespace DataJuggler.Blazor.Components
                 set { inputType = value; }
             }
             #endregion
+
+            #region LabelBackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'LabelBackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public string LabelBackgroundColor
+            {
+                get { return labelBackgroundColor; }
+                set { labelBackgroundColor = value; }
+            }
+            #endregion
+            
+            #region LabelClassName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelClassName'.
+            /// </summary>
+            [Parameter]
+            public string LabelClassName
+            {
+                get { return labelClassName; }
+                set { labelClassName = value; }
+            }
+            #endregion
+            
+            #region LabelColor
+            /// <summary>
+            /// This property gets or sets the value for 'LabelColor'.
+            /// </summary>
+            [Parameter]
+            public string LabelColor
+            {
+                get { return labelColor; }
+                set { labelColor = value; }
+            }
+            #endregion
+            
+            #region LabelFontName
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontName'.
+            /// </summary>
+            [Parameter]
+            public string LabelFontName
+            {
+                get { return labelFontName; }
+                set { labelFontName = value; }
+            }
+            #endregion
+            
+            #region LabelFontSize
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSize'.
+            /// </summary>
+            [Parameter]
+            public double LabelFontSize
+            {
+                get { return labelFontSize; }
+                set { labelFontSize = value; }
+            }
+            #endregion
+            
+            #region LabelFontSizeStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelFontSizeStyle'.
+            /// </summary>
+            public string LabelFontSizeStyle
+            {
+                get 
+                {
+                    // set the return value
+                    string labelFontSizeStyle = LabelFontSize + Unit;
+
+                    // return value
+                    return labelFontSizeStyle;
+                }
+            }
+            #endregion
+            
+            #region LabelLeft
+            /// <summary>
+            /// This property gets or sets the value for 'LabelLeft'.
+            /// </summary>
+            [Parameter]
+            public double LabelLeft
+            {
+                get { return labelLeft; }
+                set { labelLeft = value; }
+            }
+            #endregion
+            
+            #region LabelLeftStyle
+            /// <summary>
+            /// This read only property returns the value of LabelLeftStyle from the object LabelLeft.
+            /// </summary>
+            public string LabelLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string labelLeftStyle = LabelLeft + unit;
+                    
+                    // return value
+                    return labelLeftStyle;
+                }
+            }
+            #endregion
+            
+            #region LabelStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelStyle'.
+            /// </summary>
+            public string LabelStyle
+            {
+                get { return labelStyle; }
+                set { labelStyle = value; }
+            }
+            #endregion
+
+            #region LabelTop
+            /// <summary>
+            /// This property gets or sets the value for 'LabelTop'.
+            /// </summary>
+            [Parameter]
+            public double LabelTop
+            {
+                get { return labelTop; }
+                set { labelTop = value; }
+            }
+            #endregion
+            
+            #region LabelTopStyle
+            /// <summary>
+            /// This read only property returns the value of LabelTopStyle from the object LabelTop.
+            /// </summary>
+            public string LabelTopStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string labelTopStyle = LabelTop + HeightUnit;
+                    
+                    // return value
+                    return labelTopStyle;
+                }
+            }
+            #endregion
+            
+            #region LabelWidth
+            /// <summary>
+            /// This property gets or sets the value for 'LabelWidth'.
+            /// </summary>
+            [Parameter]
+            public double LabelWidth
+            {
+                get { return labelWidth; }
+                set 
+                {
+                    // set the value
+                    labelWidth = value;
+
+                    // if a Caption is set
+                    if (ShowCaption)
+                    {
+                        // if the Column is not as big
+                        if (Column1Width < labelWidth)
+                        {
+                            // Set
+                            Column1Width = labelWidth;
+                        }
+                    }
+                }
+            }
+            #endregion
+            
+            #region LabelWidthStyle
+            /// <summary>
+            /// This property gets or sets the value for 'LabelWidthStyle'.
+            /// </summary>
+            public string LabelWidthStyle
+            {
+                get
+                {
+                    string labelWidthStyle = LabelWidth + Unit;
+
+                    // return value
+                    return labelWidthStyle;
+                }
+            }
+            #endregion
+
+            #region Left
+            /// <summary>
+            /// This property gets or sets the value for 'Left'.
+            /// </summary>
+            [Parameter]
+            public double Left
+            {
+                get { return left; }
+                set { left = value; }
+            }
+            #endregion
+            
+            #region LeftStyle
+            /// <summary>
+            /// This property returns the value for 'LeftStyle'.
+            /// </summary>
+            public string LeftStyle
+            {
+                get
+                {
+                    // initial value
+                    string leftStyle = Left + Unit;
+
+                    // return value
+                    return leftStyle;
+                }
+            }
+            #endregion
+
+            #region MarginBottom
+            /// <summary>
+            /// This property gets or sets the value for 'MarginBottom'.
+            /// </summary>
+            [Parameter]
+            public double MarginBottom
+            {
+                get { return marginBottom; }
+                set { marginBottom = value; }
+            }
+            #endregion
+            
+            #region MarginBottomStyle
+            /// <summary>
+            /// This read only property returns the value of MarginBottomStyle from the object MarginBottom.
+            /// </summary>
+            public string MarginBottomStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string marginBottomStyle = MarginBottom + HeightUnit;
+                    
+                    // return value
+                    return marginBottomStyle;
+                }
+            }
+            #endregion
+            
+            #region MarginLeft
+            /// <summary>
+            /// This property gets or sets the value for 'MarginLeft'.
+            /// </summary>
+            [Parameter]
+            public double MarginLeft
+            {
+                get { return marginLeft; }
+                set { marginLeft = value; }
+            }
+            #endregion
+            
+            #region MarginLeftStyle
+            /// <summary>
+            /// This read only property returns the value of MarginLeftStyle from the object MarginLeft.
+            /// </summary>
+            public string MarginLeftStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string marginLeftStyle = MarginLeft + Unit;
+
+                    // return value
+                    return marginLeftStyle;
+                }
+            }
+            #endregion
             
             #region Name
             /// <summary>
@@ -526,6 +974,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ShowCaption
+            /// <summary>
+            /// This property gets or sets the value for 'ShowCaption'.
+            /// </summary>
+            [Parameter]
+            public bool ShowCaption
+            {
+                get { return showCaption; }
+                set { showCaption = value; }
+            }
+            #endregion
+            
             #region TabIndex
             /// <summary>
             /// This property gets or sets the value for 'TabIndex'.
@@ -560,6 +1020,35 @@ namespace DataJuggler.Blazor.Components
                 set { textStyle = value; }
             }
             #endregion
+
+            #region Top
+            /// <summary>
+            /// This property gets or sets the value for 'Top'.
+            /// </summary>
+            [Parameter]
+            public double Top
+            {
+                get { return top; }
+                set { top = value; }
+            }
+            #endregion
+
+            #region TopStyle
+            /// <summary>
+            /// This property returns the value for 'TopStyle'.
+            /// </summary>
+            public string TopStyle
+            {
+                get
+                {
+                    // initial value
+                    string topStyle = Top + HeightUnit;
+
+                    // Set the value
+                    return topStyle;
+                }
+            }
+            #endregion
             
             #region Unit
             /// <summary>
@@ -570,6 +1059,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set { visible = value; }
             }
             #endregion
             

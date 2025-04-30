@@ -79,13 +79,13 @@ namespace DataJuggler.Blazor.Components
         private string backgroundColor;
         private double imageWidth;
         private string imageBackColor;
-        private double marginLeft;
         private int rows;
         private double column1Width;
         private double column2Width;
         private double column3Width;
-        private bool enabled;
+        private bool enabled;        
         private double marginBottom;
+        private double marginLeft;
         private bool autoComplete;
         private string invalidLabelColor;
         private string pattern;
@@ -258,53 +258,52 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // Set Default Values
+                // Default Values
                 AutoComplete = false;
+                BackgroundColor = "transparent";
+                BorderColor = "black";
+                BorderWidth = 1;
                 Caption = "";
-                BackgroundColor = "transparent";                
-                Display = "inline-block";
-                InputType = "text";
-                LabelColor = "Black";
-                IsUnique = true;
-                ImageScale = 1.6;                                            
-                TextBoxWidth = GlobalDefaults.TextBoxWidth;
-                Height = 22;
-                Unit = "px";
-                FontSize = GlobalDefaults.TextBoxFontSize;
-                FontName = GlobalDefaults.TextBoxFontName;
-                FontSizeUnit="px";                
-                HeightUnit = "px";
-                ImageBackColor = "transparent";
-                ImageWidth = 10;
-                InvalidLabelColor = "Tomato";
-                LabelBackgroundColor = "transparent";
-                LabelColor="Black";
-                LabelWidth= 30;                                
-                LabelFontSize = GlobalDefaults.LabelFontSize;
-                LabelFontName = GlobalDefaults.LabelFontName;
-                Left = 0;
-                MarginLeft = 1.2;
-                MarginBottom = 8;
-                Position = "relative";
-                TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";                
-                Text = "";                
-                Top = 0;
-                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
-                LabelClassName = GlobalDefaults.LabelClassName;
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
                 Column3Width = GlobalDefaults.Column3Width;
-                Rows = 3;
-                Visible = true;
-                Width= 80;
+                Display = "inline-block";
                 Enabled = true;
-                BorderWidth = 1;
-                BorderColor = "black";
+                FontName = GlobalDefaults.TextBoxFontName;
+                FontSize = GlobalDefaults.TextBoxFontSize;
+                FontSizeUnit = "px";
                 HandleChangeOption = HandleChangeEnum.OnKeyDown;
-                TextBoxBackColor = "white";                
-                TextBoxTextColor = "black";
-                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                Height = 22;
+                HeightUnit = "px";
+                ImageBackColor = "transparent";
+                ImageScale = 1.6;
+                ImageWidth = 10;
+                InputType = "text";
+                InvalidLabelColor = "Tomato";
+                IsUnique = true;
+                LabelBackgroundColor = "transparent";
+                LabelClassName = GlobalDefaults.LabelClassName;
+                LabelColor = "Black";
+                LabelFontName = GlobalDefaults.LabelFontName;
+                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelWidth = 30;
+                Left = 0;
+                MarginBottom = 8;
+                MarginLeft = 1.2;
+                Position = "relative";
+                Rows = 3;
+                TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";
+                Text = "";
+                TextBoxBackColor = "white";
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
+                TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                TextBoxTextColor = "black";
+                TextBoxWidth = GlobalDefaults.TextBoxWidth;
+                Top = 0;
+                UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
+                Unit = "px";
+                Visible = true;
+                Width = 80;
             }
             #endregion
             

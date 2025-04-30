@@ -1,5 +1,25 @@
 ﻿@using BlazorStyled
 
+<Styled @bind-Classname=@Column1Style>
+    display: inline-block;
+    height: 100%;
+    background-color: @LabelBackgroundColor;
+    color: @LabelColor;
+    font-size: @LabelFontSizeStyle;
+    font-family: @LabelFontName;
+    text-align: right;
+    width: @Column1WidthStyle;
+    position: relative;
+    top: @LabelTopStyle;
+    left: @LabelLeftStyle;
+    justify-content: left;
+</Styled>
+<Styled @bind-Classname=@Column2Style>
+    display: inline-block;    
+    height: 100%;
+    margin-left: @MarginLeftStyle;
+    width: @Column2WidthStyle;
+</Styled>
 <Styled @bind-Classname=@TextStyle>
     display: inline-block;
     position: @Position;
@@ -19,8 +39,25 @@
     clear: both;
     z-index: @ZIndexPlus10;
 </Styled>
+<Styled @bind-Classname=@CheckBoxControlStyle>
+    width: @WidthStyle;
+    position: @Position;
+    left: @LeftStyle;
+    top: @TopStyle;
+    height: @HeightStyle;
+    background-color: @BackgroundColor;
+    z-index: @ZIndex;
+    display: @DisplayStyle;
+    border-color: @BorderColor.Name;
+</Styled>
 
-<div class="@ClassName">
+<div class="@CheckBoxControlStyle @ClassName textdonotwrap">
+    @if (ShowCaption)
+    {
+        <div class="@Column1Style">
+            <div class="@LabelClassName">@Caption</div>
+        </div>
+    }
     @if (Enabled)
     {
         <input class="@CheckBoxStyle" @bind="@CheckBoxValue" type="@InputType" checked="@CheckBoxValue" tabindex="@TabIndex" />
