@@ -33,7 +33,7 @@ To get the JS working for the Label, set the FadeValue to the miliseconds such a
 
 Add this JS reference to App.razor:
 
-    <script src="_content/DataJuggler.Blazor.Components/_content/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
+    <script src="_content/DataJuggler.Blazor.Components/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
 
 Or as a static web asset (Updated 4.16.2025)
 
