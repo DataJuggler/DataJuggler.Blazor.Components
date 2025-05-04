@@ -1,6 +1,6 @@
 News
 
-5.4.2025 - I put StaticWebAssets on the project file
+5.4.2025 - Removing static web assets. Wasn't needed it after all.
 
 2.11.2025: I added a property ListItemMarginBottom to the ComboBox.
 This property defaults to 2 pixels.
@@ -36,10 +36,6 @@ To get the JS working for the Label, set the FadeValue to the miliseconds such a
 Add this JS reference to App.razor:
 
     <script src="_content/DataJuggler.Blazor.Components/_content/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
-
-Or as a StaticWebAsset
-
-    <script src="@Assets/DataJuggler.Blazor.Components/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
 
 12.8.2024: Breaking changes for the LabelComponent. I didn't like having so much clutter that
 wasn't used. I cleaned up and made a bunch of changes:
@@ -491,10 +487,6 @@ The one important thing I noticed, linking to a CSS class like this seems to not
 Removing the Tilde seems to work.
 
     <link href="/_content/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
-
-Or as a static web asset
-
-    <link href="@Assets/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
 
 4.18.2024: The conversion to using BlazorStyled again has completed. Testing in progress, but seems to work.
 
