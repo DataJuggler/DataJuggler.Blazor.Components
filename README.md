@@ -33,11 +33,11 @@ To get the JS working for the Label, set the FadeValue to the miliseconds such a
 
 Add this JS reference to App.razor:
 
-    <script src="_content/DataJuggler.Blazor.Components/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
+    <script src="_content/DataJuggler.Blazor.Components/_content/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
 
 Or as a static web asset (Updated 4.16.2025)
 
-    <script src="@Assets["DataJuggler.Blazor.Components/Blazor.JavaScriptInterop/BlazorJSInterop.js"]"></script>
+    <script src="@Assets/DataJuggler.Blazor.Components/Blazor.JavaScriptInterop/BlazorJSInterop.js"></script>
 
 12.8.2024: Breaking changes for the LabelComponent. I didn't like having so much clutter that
 wasn't used. I cleaned up and made a bunch of changes:
@@ -492,7 +492,7 @@ Removing the Tilde seems to work.
 
 Or as a static web asset (Updated 4.16.2025)
 
-    <link href="@Assets["DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css"]" rel="stylesheet" />
+    <link href="@Assets/DataJuggler.Blazor.Components/css/DataJuggler.Blazor.Components.css" rel="stylesheet" />
 
 4.18.2024: The conversion to using BlazorStyled again has completed. Testing in progress, but seems to work.
 
