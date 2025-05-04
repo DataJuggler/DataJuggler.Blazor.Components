@@ -4,6 +4,8 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<EnableRazorComponentAuthoring>true</EnableRazorComponentAuthoring>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<StaticWebAssetsBasePath>wwwroot</StaticWebAssetsBasePath>
+		<BaseContentName>DataJuggler.Blazor.Components</BaseContentName>
 		<EnableDefaultStaticAssets>true</EnableDefaultStaticAssets>
 		<Authors>DataJuggler</Authors>
 		<Description>
@@ -25,7 +27,7 @@
 		<RepositoryType>Git - Git Hub</RepositoryType>
 		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
 		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-		<Version>9.11.3</Version>
+		<Version>9.11.4</Version>
 		<AssemblyVersion>9.11.0</AssemblyVersion>
 		<FileVersion>9.11.0</FileVersion>
 		<Nullable>disable</Nullable>
