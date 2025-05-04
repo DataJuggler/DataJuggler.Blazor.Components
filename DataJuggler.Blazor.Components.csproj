@@ -4,7 +4,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<EnableRazorComponentAuthoring>true</EnableRazorComponentAuthoring>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<StaticWebAssetBasePath>DataJuggler.Blazor.Components</StaticWebAssetBasePath>
+		<EnableDefaultStaticAssets>true</EnableDefaultStaticAssets>
 		<Authors>DataJuggler</Authors>
 		<Description>
 			This project consists of a TextBoxComponent, Multiline TextBox, CheckBox, ComboBox,
@@ -25,7 +25,7 @@
 		<RepositoryType>Git - Git Hub</RepositoryType>
 		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
 		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-		<Version>9.11.1</Version>
+		<Version>9.11.3</Version>
 		<AssemblyVersion>9.11.0</AssemblyVersion>
 		<FileVersion>9.11.0</FileVersion>
 		<Nullable>disable</Nullable>
