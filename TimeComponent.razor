@@ -38,7 +38,7 @@
     <tr>
         <td width="@Column1Width">
             <Label Name="LabelComponent" Parent="this" Caption="@Caption" Left="@LabelLeft" 
-                FontSize="@LabelFontSize" FontName="@LabelFontName" ZIndex="60" TextAlign="right"
+                FontSize="@LabelFontSize" FontName="@LabelFontName" ZIndex="60" TextAlign="@CaptionTextAlign.ToString()"
                 Top=@LabelTop Width="80" TextColor="@LabelColor.Name"></Label>
         </td>        
         <td width="@HoursTextBoxWidth">

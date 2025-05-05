@@ -166,7 +166,7 @@ namespace DataJuggler.Blazor.Components
                 // Default to right
                 Column1Width = GlobalDefaults.Column1Width;
                 CaptionTextAlign = TextAlignmentEnum.Right;
-
+                
                 // Default                
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontName = GlobalDefaults.TextBoxFontName;
