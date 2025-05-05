@@ -462,11 +462,11 @@ or Subscribe to my YouTube channel, nothing will.
 
 # Calendar Example
 
-    <CalendarComponent Name="FollowUpDateControl" Unit="px" HeightUnit="px" Height="146" Position="relative"
-        ButtonHeight=24 ButtonWidth=24 CalendarTop="-116" CalendarLeft="64" Caption="Follow Up Date:" 
-        Parent="this" ButtonTop="-4" Width="224" Column2Width="128" ControlHeight="32" 
-        Top="0" LabelClassName="down4 right2" TextBoxWidth="124">
-    </CalendarComponent>
+   <CalendarComponent Name="OrderDateControl" Parent="this" Caption="Start Date:" TextBoxHeight="21" CalendarTop="-28"
+    DayRowLeft="0" DayButtonContainerLeft="2" CellWidth=28 DayButtonWidth=32 DayRowTextColor="Color.GhostWhite"
+    LabelColor="Color.Coral" LabelFontName="Calibri" LabelFontSize="18" DayRowColor="Color.Firebrick"
+    LabelClassName="down4 right2" ButtonLeft="-6" CalendarLeft="260" Top="24" Left="-16" 
+    TextBoxWidth="124" ZIndex="160"></CalendarComponent>          
 
 I created a new repository for a project called NTouch. You can run NTouch now and see an example.
 
