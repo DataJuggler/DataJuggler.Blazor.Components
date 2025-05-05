@@ -54,9 +54,7 @@ namespace DataJuggler.Blazor.Components
         private double hoursTextBoxWidth;
         private double hoursTextBoxLeft;
         private double minutesTextBoxWidth;
-        private double minutesTextBoxLeft;
-        private double buttonWidth;
-        private double buttonHeight;
+        private double minutesTextBoxLeft;        
         private string minutesTextBoxStyle;
         private string hoursTextBoxStyle;
         private string colonTextBoxStyle;
@@ -69,6 +67,8 @@ namespace DataJuggler.Blazor.Components
         private double aMPMLabelLeft;
         private double labelZIndex;
         private string labelClassName;
+        private double textBoxTop;
+        private double colonTextBoxLeft;
         #endregion
         
         #region Constructor
@@ -177,23 +177,21 @@ namespace DataJuggler.Blazor.Components
                 // Pattern = "(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)";
 
                 // Defaults (this might get adjusted)
-                HoursTextBoxLeft = 2;
+                TextBoxTop = -2;
+                HoursTextBoxLeft = 24;
+                MinutesTextBoxLeft = 0;
                 HoursTextBoxWidth = 24; // Will Set MinutesTextBoxLeft
                 MinutesTextBoxWidth = HoursTextBoxWidth;
-
-                // Defaults                
-                Left = -1;                
+                Left = 0;                
                 LabelLeft = 0;
                 LabelTop = 3;
                 LabelColor = Color.Black;
                 LabelClassName = GlobalDefaults.LabelClassName;
-                HoursTextBoxLeft = -14; 
-                MinutesTextBoxLeft = -16;
-                ButtonHeight = 16;
-                ButtonWidth = 16;
+                HoursTextBoxLeft = 8; // Sets Colon
+                MinutesTextBoxLeft = 0;
 
-                // Start at Negative 20
-                AMPMLabelLeft = -20;
+                // Start at Negative -24
+                AMPMLabelLeft = -24;
 
                 // Default to two 12 hour times
                 TimeType = TimeTypeEnum.Hours12;
@@ -482,30 +480,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ButtonHeight
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonHeight'.
-            /// </summary>
-            [Parameter]
-            public double ButtonHeight
-            {
-                get { return buttonHeight; }
-                set { buttonHeight = value; }
-            }
-            #endregion
-            
-            #region ButtonWidth
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonWidth'.
-            /// </summary>
-            [Parameter]
-            public double ButtonWidth
-            {
-                get { return buttonWidth; }
-                set { buttonWidth = value; }
-            }
-            #endregion
-            
             #region Caption
             /// <summary>
             /// This property gets or sets the value for 'Caption'.
@@ -540,6 +514,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region ColonTextBoxLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ColonTextBoxLeft'.
+            /// </summary>
+            [Parameter]
+            public double ColonTextBoxLeft
+            {
+                get { return colonTextBoxLeft; }
+                set { colonTextBoxLeft = value; }
+            }
+            #endregion
+            
             #region ColonTextBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'ColonTextBoxStyle'.
@@ -802,7 +788,14 @@ namespace DataJuggler.Blazor.Components
             public double HoursTextBoxLeft
             {
                 get { return hoursTextBoxLeft; }
-                set { hoursTextBoxLeft = value; }
+                set 
+                {
+                    // set the valuje
+                    hoursTextBoxLeft = value;
+
+                    // Update Colon to the same value seems to work
+                    ColonTextBoxLeft = value;
+                }
             }
             #endregion
             
@@ -1042,23 +1035,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region MinutesTextBoxLeftPlus3
-            /// <summary>
-            /// This read only property returns the value of MinutesTextBoxLeft + 3
-            /// </summary>
-            public double MinutesTextBoxLeftPlus3
-            {
-                get
-                {
-                    // initial value
-                    double minutesTextBoxLeftMinus3 = MinutesTextBoxLeft + 3;
-                    
-                    // return value
-                    return minutesTextBoxLeftMinus3;
-                }
-            }
-            #endregion
-
             #region Name
             /// <summary>
             /// This property gets or sets the value for 'Name'.
@@ -1133,6 +1109,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return showAMPMLabel;
                 }
+            }
+            #endregion
+            
+            #region TextBoxTop
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxTop'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxTop
+            {
+                get { return textBoxTop; }
+                set { textBoxTop = value; }
             }
             #endregion
             
