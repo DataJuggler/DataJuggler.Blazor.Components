@@ -187,11 +187,11 @@ namespace DataJuggler.Blazor.Components
                 LabelTop = 3;
                 LabelColor = Color.Black;
                 LabelClassName = GlobalDefaults.LabelClassName;
-                HoursTextBoxLeft = 8; // Sets Colon
+                HoursTextBoxLeft = 16; // SetsColonTextBoxLeft
                 MinutesTextBoxLeft = 0;
 
-                // Start at Negative -24
-                AMPMLabelLeft = -24;
+                // Start at 0
+                AMPMLabelLeft = 0;
 
                 // Default to two 12 hour times
                 TimeType = TimeTypeEnum.Hours12;
