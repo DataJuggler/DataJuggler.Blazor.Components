@@ -113,6 +113,8 @@ namespace DataJuggler.Blazor.Components
         private string labelStyle;
         
         // TextBox
+        private double textBoxLeft;
+        private double textBoxTop;
         private string textBoxBackColor;
         private string textBoxTextColor;
         private string textBoxClassName;
@@ -293,10 +295,11 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";
                 Rows = 3;
                 TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";
-                Text = "";
+                Text = "";                
                 TextBoxBackColor = "white";
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
+                TextBoxLeft = 8;
                 TextBoxTextColor = "black";
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Top = 0;
@@ -791,6 +794,13 @@ namespace DataJuggler.Blazor.Components
 
                     // Show the Caption, if the Caption is set.
                     ShowCaption = TextHelper.Exists(caption);
+
+                    // if the value for ShowCaption is false
+                    if (!ShowCaption)
+                    {
+                        // Reset to 0 if the Label is not visible
+                        TextBoxLeft = 0;
+                    }
                 }
             }
             #endregion
@@ -2182,6 +2192,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TextBoxLeft
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxLeft'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxLeft
+            {
+                get { return textBoxLeft; }
+                set { textBoxLeft = value; }
+            }
+            #endregion
+            
+            #region TextBoxLeftStyle
+            /// <summary>
+            /// This read only property returns the value of TextBoxLeft + Unit
+            /// </summary>
+            public string TextBoxLeftStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string textBoxLeftStyle = TextBoxLeft + Unit;
+                    
+                    // return value
+                    return textBoxLeftStyle;
+                }
+            }
+            #endregion
+
             #region TextBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'TextBoxStyle'.
@@ -2205,6 +2245,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TextBoxTop
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxTop'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxTop
+            {
+                get { return textBoxTop; }
+                set { textBoxTop = value; }
+            }
+            #endregion
+            
+            #region TextBoxTopStyle
+            /// <summary>
+            /// This read only property returns the value of TextBoxTop + HeightUnit
+            /// </summary>
+            public string TextBoxTopStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string textBoxTopStyle = TextBoxTop + HeightUnit;
+                    
+                    // return value
+                    return textBoxTopStyle;
+                }
+            }
+            #endregion
+
             #region TextBoxWidth
             /// <summary>
             /// This property gets or sets the value for 'TextBoxWidth'.

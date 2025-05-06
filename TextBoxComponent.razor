@@ -11,16 +11,19 @@
     font-family: @LabelFontName;
     text-align: right;
     width: @Column1WidthStyle;
-    position: relative;
+    position: @Position;
     top: @LabelTopStyle;
     left: @LabelLeftStyle;
     justify-content: left;
 </Styled>
 <Styled @bind-Classname=@Column2Style>
+    position: @Position;
+    top: @TextBoxTopStyle;
+    left: @TextBoxLeftStyle;
     display: inline-block;
     width: @TextBoxWidthStyle;
     height: 100%;
-    margin-left: @MarginLeftStyle;    
+    margin-left: @MarginLeftStyle;
 </Styled>
 <Styled @bind-Classname=@Column3Style>
     display: inline-block;

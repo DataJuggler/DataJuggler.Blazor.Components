@@ -1,5 +1,10 @@
 News
 
+5.6.2025: I added TextBoxLeft and TextBoxTop to the TextBoxComponent. TextBoxLeft defaults to 8 (pixels)
+This adds a little gap between the Label and the TextBox.
+
+    <TextBoxComponent Name="UserNameControl" Parent="this" Caption="UserName"></TextBoxComponent>
+
 5.4.2025 - Removing static web assets. Wasn't needed it after all.
 
 2.11.2025: I added a property ListItemMarginBottom to the ComboBox.
