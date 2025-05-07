@@ -6,14 +6,12 @@
 
 
 <Styled @bind-Classname=@ContainerStyle>    
+    visibility: @Visiblity;
     position: @Position;
     left: @LeftStyle;
     top: @TopStyle;
 </Styled>
-<Styled @bind-Classname=@GridStyle>
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+<Styled @bind-Classname=@GridStyle>    
     background-color: @GridBackColor;
     height: @HeightStyle;
     line-height: 2vh;
@@ -22,8 +20,7 @@
     overflow-y: @OverflowY;
     overflow-x: @OverflowX;    
 </Styled>
-<Styled @bind-Classname=@HeaderRowStyle>
-    flex: 1;
+<Styled @bind-Classname=@HeaderRowStyle>    
     clear: both;
 </Styled>
 <Styled @bind-Classname=@ContentStyle>
@@ -49,8 +46,7 @@
                 }
             </div>
         }
-        <div class="@GridStyle @ClassName">
-    
+        <div class="@GridStyle @ClassName">    
             @if (HasRows)
             {  
                 @foreach (Row row in Rows)

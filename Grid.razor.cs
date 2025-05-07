@@ -63,7 +63,9 @@ namespace DataJuggler.Blazor.Components
         private string containerStyle;
         private string contentStyle;
         private double contentLeft;
-        private double contentTop;
+        private double contentTop;        
+        private bool visible;
+        private string visiblity;
         #endregion
 
         #region Constructor
@@ -250,6 +252,9 @@ namespace DataJuggler.Blazor.Components
                 Width = 400;
                 OverflowX = "hidden";
                 OverflowY = "auto";
+                
+                // Set Visibility to visible
+                Visible = true;
             }
             #endregion
             
@@ -1049,6 +1054,43 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+            
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visiblity = "visible";
+                    }
+                    else
+                    {
+                        Visiblity = "none";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visiblity
+            /// <summary>
+            /// This property gets or sets the value for 'Visiblity'.
+            /// </summary>
+            public string Visiblity
+            {
+                get { return visiblity; }
+                set { visiblity = value; }
             }
             #endregion
             

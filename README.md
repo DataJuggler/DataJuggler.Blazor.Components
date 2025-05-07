@@ -1,5 +1,8 @@
 News
 
+5.7.2025: I added a ContentTop and ContentTop to the GridComponent. I also removed Flex from the Grid.
+AI is flex happy when you ask for assistance. 
+
 5.6.2025: I added TextBoxLeft and TextBoxTop to the TextBoxComponent. TextBoxLeft defaults to 8 (pixels)
 This adds a little gap between the Label and the TextBox.
 
