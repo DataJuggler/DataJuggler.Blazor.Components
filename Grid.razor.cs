@@ -61,6 +61,9 @@ namespace DataJuggler.Blazor.Components
         private string overflowY;
         private string headerRowStyle;
         private string containerStyle;
+        private string contentStyle;
+        private double contentLeft;
+        private double contentTop;
         #endregion
 
         #region Constructor
@@ -442,6 +445,77 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ContentLeft
+            /// <summary>
+            /// This property gets or sets the value for 'ContentLeft'.
+            /// </summary>
+            [Parameter]
+            public double ContentLeft
+            {
+                get { return contentLeft; }
+                set { contentLeft = value; }
+            }
+            #endregion
+            
+            #region ContentLeftStyle
+            /// <summary>
+            /// This read only property returns the value of ContentLeftStyle + Unit
+            /// </summary>
+            public string ContentLeftStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string contentLeftStyle = ContentLeft + Unit;
+                    
+                    // return value
+                    return contentLeftStyle;
+                }
+            }
+            #endregion
+
+            #region ContentStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ContentStyle'.
+            /// </summary>
+            public string ContentStyle
+            {
+                get { return contentStyle; }
+                set { contentStyle = value; }
+            }
+            #endregion
+            
+            #region ContentTop
+            /// <summary>
+            /// This property gets or sets the value for 'ContentTop'.
+            /// </summary>
+            [Parameter]
+            public double ContentTop
+            {
+                get { return contentTop; }
+                set { contentTop = value; }
+            }
+            #endregion
+            
+            #region ContentTopStyle
+            /// <summary>
+            /// This read only property returns the value of ContentTop + Unit
+            /// </summary>
+            public string ContentTopStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string contentTopStyle = ContentTop + HeightUnit;
+                    
+                    // return value
+                    return contentTopStyle;
+                }
+            }
+            #endregion
+
             #region EditMode
             /// <summary>
             /// This property gets or sets the value for 'EditMode'.
