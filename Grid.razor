@@ -30,23 +30,23 @@
 </Styled>
 
 <div class="@ContainerStyle">
-    <div class="@ContentStyle">
-        @if (ShowHeader)
-        {
-            <div class="@HeaderRowStyle @HeaderClassName">
-                @HeaderText
-            </div>
-        }
-        @if ((ShowColumnHeaders) && (HasColumns))
-        {
-            <div class="@HeaderRowStyle @HeaderClassName">
-                @foreach (Column column in Columns)
-                {
-                    <div class="@column.ClassName">@column.Caption</div>
-                }
-            </div>
-        }
-        <div class="@GridStyle @ClassName">    
+    @if (ShowHeader)
+    {
+        <div class="@HeaderRowStyle @HeaderClassName">
+            @HeaderText
+        </div>
+    }
+    <div class="@GridStyle @ClassName">
+        <div class="@ContentStyle">                            
+            @if ((ShowColumnHeaders) && (HasColumns))
+            {
+                <div class="@HeaderRowStyle @HeaderClassName">
+                    @foreach (Column column in Columns)
+                    {
+                        <div class="@column.ClassName">@column.Caption</div>
+                    }
+                </div>
+            }
             @if (HasRows)
             {  
                 @foreach (Row row in Rows)

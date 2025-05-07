@@ -38,8 +38,7 @@ namespace DataJuggler.Blazor.Components
         private Row editRow;
         private Guid editRowId;
         private string className;
-        private TextBoxComponent setFocusEditor;
-        private List<IBlazorComponent> children;
+        private TextBoxComponent setFocusEditor;        
         private int externalId;
         private string externalIdDescription;
         private List<ImageButton> buttons;
@@ -219,20 +218,6 @@ namespace DataJuggler.Blazor.Components
 
         #region Methods
             
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method returns the Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                // attempt to find the IBlazorComponent by name.
-                IBlazorComponent component = ComponentHelper.FindChildByName(Children, name);
-
-                // return value
-                return component;
-            }
-            #endregion
-            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -241,7 +226,6 @@ namespace DataJuggler.Blazor.Components
             {
                 // Create
                 Position = "relative";
-                Children = new List<IBlazorComponent>();
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
                 HeightUnit = "px";
@@ -348,11 +332,8 @@ namespace DataJuggler.Blazor.Components
             public void Register(IBlazorComponent component)
             {
                 // If the component object exists
-                if (NullHelper.Exists(component, Children))
+                if (NullHelper.Exists(component))
                 {
-                    // Add this oobject
-                    Children.Add(component);
-
                     if (component is TextBoxComponent)
                     {
                         // Test if this is a TextBoxComponent
@@ -391,17 +372,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttons; }
                 set { buttons = value; }
-            }
-            #endregion
-            
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
             }
             #endregion
             
