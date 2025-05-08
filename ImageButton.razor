@@ -22,13 +22,13 @@
     background-color: transparent;
     width: @WidthStyle;
     height: @HeightStyle;
-    white-space: nowrap;
-    font-size: @TextSizeStyle;
+    white-space: nowrap;    
     color: @TextColorName;
     vertical-align: central;
 </Styled>
-<Styled @bind-Classname=@ButtontextalignStyle>
+<Styled @bind-Classname=@ButtonTextStyle>
     text-align: @ButtonTextAlign;
+    font-size: @FontSizeStyle;
 </Styled>
 
 <style>
@@ -53,7 +53,7 @@
 {
     <div class="@ButtoncontainerStyle">
         <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
-            <span class="@ButtonTextAlign">@ButtonText</span>
+            <span class="@ButtonTextStyle">@ButtonText</span>
         </button>    
     </div>
 }

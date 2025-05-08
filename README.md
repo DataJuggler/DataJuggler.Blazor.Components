@@ -1,5 +1,7 @@
 News
 
+5.9.2025: I removed TextSize from the ImageButton and added FontSize. Trying to stay consistent among controls.
+
 5.7.2025: I added a ContentTop and ContentTop to the GridComponent. I also removed Flex from the Grid.
 AI is flex happy when you ask for assistance. 
 

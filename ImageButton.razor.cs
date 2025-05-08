@@ -40,9 +40,7 @@ namespace DataJuggler.Blazor.Components
         private IBlazorComponentParent parent;
         private ButtonClickedHandler clickHandler;
         private List<IBlazorComponent> children;
-        private int zIndex;
-        private TextSizeEnum textSize;
-        private string textSizeStyle;
+        private int zIndex;        
         private bool visible;        
         private string position;
         private string unit;
@@ -51,11 +49,12 @@ namespace DataJuggler.Blazor.Components
         private string heightUnit;
         private string className;
         private string title;
+        private double fontSize;
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
         private string buttonStyle;
-        private string buttontextalignStyle;        
+        private string buttonTextStyle;        
         #endregion
 
         #region Constructor
@@ -103,6 +102,7 @@ namespace DataJuggler.Blazor.Components
                 Visible = true;
                 Position = "relative";
                 ButtonTextAlign = "center";
+                FontSize = GlobalDefaults.LabelFontSize;
             }
             #endregion
             
@@ -228,14 +228,14 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ButtontextalignStyle
+            #region ButtonTextStyle
             /// <summary>
-            /// This property gets or sets the value for 'ButtontextalignStyle'.
+            /// This property gets or sets the value for 'ButtonTextStyle'.
             /// </summary>
-            public string ButtontextalignStyle
+            public string ButtonTextStyle
             {
-                get { return buttontextalignStyle; }
-                set { buttontextalignStyle = value; }
+                get { return buttonTextStyle; }
+                set { buttonTextStyle = value; }
             }
             #endregion
             
@@ -274,6 +274,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region FontSize
+            /// <summary>
+            /// This property gets or sets the value for 'FontSize'.
+            /// </summary>
+            [Parameter]
+            public double FontSize
+            {
+                get { return fontSize; }
+                set { fontSize = value; }
+            }
+            #endregion
+            
+            #region FontSizeStyle
+            /// <summary>
+            /// This read only property returns the value of FontSize + Unit
+            /// </summary>
+            public string FontSizeStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string fontSizeStyle = FontSize + Unit;
+                    
+                    // return value
+                    return fontSizeStyle;
+                }
+            }
+            #endregion
+
             #region HasChildren
             /// <summary>
             /// This property returns true if this object has a 'Children'.
@@ -511,92 +541,6 @@ namespace DataJuggler.Blazor.Components
                 {
                     return textColor.Name;
                 }
-            }
-            #endregion
-            
-            #region TextSize
-            /// <summary>
-            /// This property gets or sets the value for 'TextSize'.
-            /// </summary>
-            [Parameter]
-            public TextSizeEnum TextSize
-            {
-                get { return textSize; }
-                set 
-                { 
-                    // set the value
-                    textSize = value;
-
-                    switch (value)
-                    {
-                        case TextSizeEnum.Extra_Small:
-
-                            // Set the value
-                            TextSizeStyle = .6 + "em";
-
-                            // required
-                            break;
-
-                        case TextSizeEnum.Small:
-
-                            // Set the value
-                            TextSizeStyle = .8 + "em";
-
-                            // required
-                            break;
-
-                        case TextSizeEnum.SmallMedium:
-
-                            // Set the value
-                            TextSizeStyle = .9 + "em";
-
-                            // required
-                            break;
-
-                        case TextSizeEnum.Medium:
-
-                            // Set the value
-                            TextSizeStyle = 1 + "em";
-
-                            // required
-                            break;
-
-                        case TextSizeEnum.MediumLarge:
-
-                            // Set the value
-                            TextSizeStyle = 1.1 + "em";
-
-                            // required
-                            break;
-
-                        case TextSizeEnum.Large:
-
-                            // Set the value
-                            TextSizeStyle = 1.2 + "em";
-
-                            // required
-                            break;
-
-                        case TextSizeEnum.Extra_Large:
-
-                            // Set the value
-                            TextSizeStyle = 1.4 + "em";
-
-                            // required
-                            break;
-                    }
-                }
-            }
-            #endregion
-            
-            #region TextSizeStyle
-            /// <summary>
-            /// This property gets or sets the value for 'TextSizeStyle'.
-            /// </summary>
-            public string TextSizeStyle
-            {
-                get { return textSizeStyle; }
-                set { textSizeStyle = value; }
             }
             #endregion
             
