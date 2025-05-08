@@ -263,7 +263,7 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Default Values
-                AllowWrapping = true;
+                AllowWrapping = false;
                 AutoComplete = false;
                 BackgroundColor = "transparent";
                 BorderColor = "gray";

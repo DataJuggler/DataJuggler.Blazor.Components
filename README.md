@@ -3,7 +3,7 @@ News
 5.8.2025: I removed TextSize from the ImageButton and added FontSize. Trying to stay consistent among controls.
 I realized today the ClassName property of the TextBox was not being used. It is not used at the top.
 I added another property, AllowWrapping. If AllowWrapping is true, TextWrapping = "donotwrap" (a class name
-in DataJuggler.Blazor.Components.css) else TextWrapping = ""
+in DataJuggler.Blazor.Components.css) else TextWrapping = "". AllowWrapping defaults to False.
 
     @if (Visible)
     {  
