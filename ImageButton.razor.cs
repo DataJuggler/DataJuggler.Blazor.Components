@@ -50,6 +50,7 @@ namespace DataJuggler.Blazor.Components
         private string className;
         private string title;
         private double fontSize;
+        private string fontName;
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
@@ -103,6 +104,7 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";
                 ButtonTextAlign = "center";
                 FontSize = GlobalDefaults.LabelFontSize;
+                FontName = GlobalDefaults.LabelFontName;
             }
             #endregion
             
@@ -271,6 +273,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return clickHandler; }
                 set { clickHandler = value; }
+            }
+            #endregion
+            
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set { fontName = value; }
             }
             #endregion
             
