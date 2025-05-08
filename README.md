@@ -1,6 +1,13 @@
 News
 
-5.9.2025: I removed TextSize from the ImageButton and added FontSize. Trying to stay consistent among controls.
+5.8.2025: I removed TextSize from the ImageButton and added FontSize. Trying to stay consistent among controls.
+I realized today the ClassName property of the TextBox was not being used. It is not used at the top.
+I added another property, AllowWrapping. If AllowWrapping is true, TextWrapping = "donotwrap" (a class name
+in DataJuggler.Blazor.Components.css) else TextWrapping = ""
+
+    @if (Visible)
+    {  
+        <div class="@TextBoxControlStyle @ClassName @TextWrapping">
 
 5.7.2025: I added a ContentTop and ContentTop to the GridComponent. I also removed Flex from the Grid.
 AI is flex happy when you ask for assistance. 

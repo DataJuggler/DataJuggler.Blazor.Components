@@ -123,6 +123,8 @@ namespace DataJuggler.Blazor.Components
         private string textBoxStyle;
         private double textBoxFontSize;
         private string textBoxFontName;
+        private bool allowWrapping;
+        private string textWrapping;
 
         // This are only used when inside a Grid
         private Guid rowId;
@@ -263,7 +265,7 @@ namespace DataJuggler.Blazor.Components
                 // Default Values
                 AutoComplete = false;
                 BackgroundColor = "transparent";
-                BorderColor = "black";
+                BorderColor = "gray";
                 BorderWidth = 1;
                 Caption = "";
                 Column1Width = GlobalDefaults.Column1Width;
@@ -678,6 +680,34 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
    
+            #region AllowWrapping
+            /// <summary>
+            /// This property gets or sets the value for 'AllowWrapping'.
+            /// </summary>
+            [Parameter]
+            public bool AllowWrapping
+            {
+                get { return allowWrapping; }
+                set 
+                {
+                    // Set allowWrapping
+                    allowWrapping = value;
+
+                    // if allowWrapping is true
+                    if (allowWrapping)
+                    {
+                        // do not wrap
+                        TextWrapping = "textdonotwrap";
+                    }
+                    else
+                    {
+                        // do not wrap
+                        TextWrapping = "";
+                    }
+                }
+            }
+            #endregion
+            
             #region AutoComplete
             /// <summary>
             /// This property gets or sets the value for 'Autocomplete'.
@@ -2301,6 +2331,17 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return textBoxWidthStyle;
                 }
+            }
+            #endregion
+            
+            #region TextWrapping
+            /// <summary>
+            /// This property gets or sets the value for 'TextWrapping'.
+            /// </summary>
+            public string TextWrapping
+            {
+                get { return textWrapping; }
+                set { textWrapping = value; }
             }
             #endregion
             
