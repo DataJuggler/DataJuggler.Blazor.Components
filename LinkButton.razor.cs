@@ -2,14 +2,9 @@
 
 #region using statements
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components;
 using DataJuggler.Blazor.Components.Interfaces;
-using DataJuggler.UltimateHelper;
-using DataJuggler.Blazor.Components.Enumerations;
+using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
 using System.Drawing;
 
 #endregion
@@ -17,15 +12,14 @@ using System.Drawing;
 namespace DataJuggler.Blazor.Components
 {
 
-    #region class ImageButton
+    #region class LinkButton
     /// <summary>
-    /// This class is used to show an image with a text caption under it
+    /// This class is used to have a button that looks like a web link
     /// </summary>
-    public partial class ImageButton : IBlazorComponent
+    public partial class LinkButton : IBlazorComponent
     {
-
+        
         #region Private Variables
-        private string imageUrl;
         private string text;
         private int buttonNumber;
         private double left;
@@ -35,8 +29,7 @@ namespace DataJuggler.Blazor.Components
         private string name;
         private double height;
         private double width;
-        private string heightStyle;
-        private string textAlign;
+        private string heightStyle;        
         private IBlazorComponentParent parent;
         private ButtonClickedHandler clickHandler;
         private List<IBlazorComponent> children;
@@ -51,18 +44,19 @@ namespace DataJuggler.Blazor.Components
         private string title;
         private double fontSize;
         private string fontName;
+        private string textAlign;
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
         private string buttonStyle;
-        private string buttonTextStyle;        
+        private string buttonTextStyle;      
         #endregion
 
         #region Constructor
         /// <summary>
         /// Create a new instance of an ImageButton object
         /// </summary>
-        public ImageButton()
+        public LinkButton()
         {
             // Perform initializations for this object
             Init();
@@ -105,6 +99,7 @@ namespace DataJuggler.Blazor.Components
                 TextAlign = "center";
                 FontSize = GlobalDefaults.LabelFontSize;
                 FontName = GlobalDefaults.LabelFontName;
+                TextAlign = "center";
             }
             #endregion
             
@@ -156,7 +151,7 @@ namespace DataJuggler.Blazor.Components
                 Refresh();
             }
             #endregion
-
+            
             #region SetTextColor(Color color)
             /// <summary>
             /// method returns the Text Color
@@ -399,25 +394,7 @@ namespace DataJuggler.Blazor.Components
                 set { heightUnit = value; }
             }
             #endregion
-            
-            #region ImageUrl
-            /// <summary>
-            /// This property gets or sets the value for 'ImageUrl'.
-            /// </summary>
-            [Parameter]
-            public string ImageUrl
-            {
-                get 
-                {
-                    return imageUrl;
-                }
-                set 
-                { 
-                    imageUrl = value;
-                }
-            }
-            #endregion
-
+           
             #region LabelWidth
             /// <summary>
             /// This property gets or sets the value for 'LabelWidth'.

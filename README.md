@@ -1,5 +1,8 @@
 News
 
+5.9.2025: I added a new LinkButton. It's essentially the same code as the ImageButton, just formatted as link.
+I broke two properties. ButtonTextAlign and ButtonText are now just TextAlign and Text. 
+
 5.8.2025: I removed TextSize from the ImageButton and added FontSize. Trying to stay consistent among controls.
 I realized today the ClassName property of the TextBox was not being used. It is not used at the top.
 I added another property, AllowWrapping. If AllowWrapping is true, TextWrapping = "donotwrap" (a class name

@@ -12,19 +12,15 @@
     margin: 0px;
     padding: 0px;
 </Styled>
-<Styled @bind-Classname=@ButtonStyle>
-    background-image: url('@ImageUrl');
-    background-size: 100% 100%;
+<Styled @bind-Classname=@ButtonStyle>    
     display: inline-block;
-    justify-content: center;
-    align-items: center;
     outline: none;
     border: none;
     background-repeat: no-repeat;
     background-color: transparent;
     width: @WidthStyle;
     height: @HeightStyle;
-    white-space: nowrap;    
+    white-space: nowrap;
     color: @TextColorName;
     vertical-align: central;
     margin: 0px;
@@ -37,28 +33,34 @@
 </Styled>
 
 <style>
-    .imagebutton
-    {
-        cursor: default;
-    }
-    .imagebutton:focus
-    {
-        outline: none !important;
-        border: none !important;
-    }
-    .imagebutton:hover
-    {
-        outline: none;
+    .linkbutton {
+        background: none !important;
         border: none;
-        cursor: pointer !important;
+        padding: 0 !important;        
+        color: @TextColor;
+        text-decoration: none;
+        cursor: pointer;
+        height: @HeightStyle;        
+        font-size: @FontSizeStyle;        
+        outline: none;        
     }
+
+        .linkbutton:visited {
+            color: @TextColor;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .linkbutton:focus {
+            outline: none;
+        }
 </style>
 
 @if (Visible)
 {
     <div class="@ButtoncontainerStyle">
-        <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
+        <button class="linkbutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
             <span class="@ButtonTextStyle">@Text</span>
-        </button>    
+        </button>
     </div>
 }
