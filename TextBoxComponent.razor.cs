@@ -700,18 +700,18 @@ namespace DataJuggler.Blazor.Components
                     if (allowWrapping)
                     {
                         // do not wrap
-                        TextWrapping = "textdonotwrap";
+                        TextWrapping = "";
 
-                        // Use right
-                        LabelTextAlign = "right";
+                        // Use left
+                        LabelTextAlign = "left";
                     }
                     else
                     {
                         // do not wrap
-                        TextWrapping = "";
+                        TextWrapping = "textdonotwrap";
 
                         // Use right
-                        LabelTextAlign = "left";
+                        LabelTextAlign = "right";
                     }
                 }
             }
