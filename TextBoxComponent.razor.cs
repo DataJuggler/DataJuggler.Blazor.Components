@@ -111,6 +111,7 @@ namespace DataJuggler.Blazor.Components
         private double labelTop;
         private double labelLeft;
         private string labelStyle;
+        private string labelTextAlign;
         
         // TextBox
         private double textBoxLeft;
@@ -291,6 +292,7 @@ namespace DataJuggler.Blazor.Components
                 LabelColor = "Black";
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelTextAlign = "right";
                 LabelWidth = 30;
                 Left = 0;
                 MarginBottom = 8;
@@ -699,11 +701,17 @@ namespace DataJuggler.Blazor.Components
                     {
                         // do not wrap
                         TextWrapping = "textdonotwrap";
+
+                        // Use right
+                        LabelTextAlign = "right";
                     }
                     else
                     {
                         // do not wrap
                         TextWrapping = "";
+
+                        // Use right
+                        LabelTextAlign = "left";
                     }
                 }
             }
@@ -1638,6 +1646,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region LabelTextAlign
+            /// <summary>
+            /// This property gets or sets the value for 'LabelTextAlign'.
+            /// </summary>
+            [Parameter]
+            public string LabelTextAlign
+            {
+                get { return labelTextAlign; }
+                set { labelTextAlign = value; }
+            }
+            #endregion
+            
             #region LabelTop
             /// <summary>
             /// This property gets or sets the value for 'LabelTop'.
