@@ -444,6 +444,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'Column1Width'.
             /// </summary>
+            [Parameter]
             public double Column1Width
             {
                 get { return column1Width; }
