@@ -1,5 +1,25 @@
 News
 
+5.29.2025: I added a new CookieService.
+
+To use add this to Program.cs
+
+    builder.Services.AddHttpContextAccessor();
+    builder.Services.AddScoped<CookieService>();
+
+Add this to your razor file
+
+    @inject CookieService CookieService
+
+And in your razor.cs file
+
+    protected override void OnInitialized()
+    {
+        CookieService.SetCookie("MyApp.UserTheme", "Dark", 30); // Set for 30 days
+        var theme = CookieService.GetCookie("MyApp.UserTheme");  // Retrieve
+        CookieService.DeleteCookie("MyApp.UserTheme");           // Delete
+    }
+
 5.9.2025: I added a new LinkButton. It's essentially the same code as the ImageButton, just formatted as link.
 I broke two properties. ButtonTextAlign and ButtonText are now just TextAlign and Text. 
 
