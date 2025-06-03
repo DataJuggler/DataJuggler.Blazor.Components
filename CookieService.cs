@@ -1,39 +1,79 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
+﻿
+
+#region using statements
+
+using Microsoft.JSInterop;
+using System.Threading.Tasks;
+
+#endregion
 
 namespace DataJuggler.Blazor.Components
 {
+
+    #region class CookieService
+    /// <summary>
+    /// This class is used to set Cookies via JS.
+    /// </summary>
     public class CookieService
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public CookieService(IHttpContextAccessor httpContextAccessor)
+        
+        #region Private Variables
+        private readonly IJSRuntime jsRuntime;
+        #endregion
+        
+        #region Constructor
+        /// <summary>
+        /// Create a new instance of a 'CookieService' object.
+        /// </summary>
+        public CookieService(IJSRuntime jsRuntime)
         {
-            _httpContextAccessor = httpContextAccessor;
+            this.jsRuntime = jsRuntime;
         }
-
-        public void SetCookie(string key, string value, int? expireDays = 7)
-        {
-            var options = new CookieOptions
+        #endregion
+        
+        #region Events
+            
+        #endregion
+        
+        #region Methods
+            
+            #region DeleteCookieAsync(string key)
+            /// <summary>
+            /// method Delete Cookie Async
+            /// </summary>
+            public async Task DeleteCookieAsync(string key)
             {
-                Expires = expireDays.HasValue ? DateTimeOffset.Now.AddDays(expireDays.Value) : null,
-                HttpOnly = true,
-                Secure = true, // Use only if your app uses HTTPS
-                SameSite = SameSiteMode.Strict
-            };
-
-            _httpContextAccessor.HttpContext?.Response.Cookies.Append(key, value, options);
-        }
-
-        public string GetCookie(string key)
-        {
-            return _httpContextAccessor.HttpContext?.Request.Cookies[key];
-        }
-
-        public void DeleteCookie(string key)
-        {
-            _httpContextAccessor.HttpContext?.Response.Cookies.Delete(key);
-        }
+                await BlazorJSBridge.DeleteCookie(jsRuntime, key);
+            }
+            #endregion
+            
+            #region GetCookieAsync(string key)
+            /// <summary>
+            /// method Get Cookie Async
+            /// </summary>
+            public async Task<string> GetCookieAsync(string key)
+            {
+                return await BlazorJSBridge.GetCookie(jsRuntime, key);
+            }
+            #endregion
+            
+            #region SetCookieAsync(string key, string value, int expireDays = 30)
+            /// <summary>
+            /// method Set Cookie Async
+            /// </summary>
+            public async Task SetCookieAsync(string key, string value, int expireDays = 30)
+            {
+                await BlazorJSBridge.SetCookie(jsRuntime, key, value, expireDays);
+            }
+            #endregion
+            
+        #endregion
+        
+        #region Properties
+            
+        #endregion
+        
     }
+    #endregion
 
 }

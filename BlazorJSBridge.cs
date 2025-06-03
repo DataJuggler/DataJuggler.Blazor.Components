@@ -14,15 +14,8 @@ namespace DataJuggler.Blazor.Components
     /// <summary>
     /// This class [Enter Class Description]
     /// </summary>
-    public class BlazorJSBridge
-    {
-        
-        #region Private Variables
-        #endregion
-        
-        #region Events
-            
-        #endregion
+    public static class BlazorJSBridge
+    {  
         
         #region Methods
             
@@ -30,13 +23,29 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// method Copy To Clipboard
             /// </summary>
-            public async static Task<int> CopyToClipboard(IJSRuntime jsRuntime, string textToCopy)
+            public static async Task<int> CopyToClipboard(IJSRuntime jsRuntime, string textToCopy)
             {
-                // set the value
-                int copied = await jsRuntime.InvokeAsync<int>("BlazorJSFunctions.CopyText", textToCopy);
-                
-                // return value
-                return copied;
+                return await jsRuntime.InvokeAsync<int>("BlazorJSFunctions.CopyText", textToCopy);
+            }
+            #endregion
+            
+            #region DeleteCookie(IJSRuntime jsRuntime, string key)
+            /// <summary>
+            /// method Delete Cookie
+            /// </summary>
+            public static ValueTask DeleteCookie(IJSRuntime jsRuntime, string key)
+            {
+                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.DeleteCookie", key);
+            }
+            #endregion
+            
+            #region GetCookie(IJSRuntime jsRuntime, string key)
+            /// <summary>
+            /// method Get Cookie
+            /// </summary>
+            public static ValueTask<string> GetCookie(IJSRuntime jsRuntime, string key)
+            {
+                return jsRuntime.InvokeAsync<string>("BlazorJSFunctions.GetCookie", key);
             }
             #endregion
             
@@ -56,10 +65,17 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public static ValueTask<string> Prompt(IJSRuntime jsRuntime, string message)
             {
-                // Implemented in BlazorJSInterop.js
-                return jsRuntime.InvokeAsync<string>(
-                "BlazorJSFunctions.ShowPrompt",
-                message);
+                return jsRuntime.InvokeAsync<string>("BlazorJSFunctions.ShowPrompt", message);
+            }
+            #endregion
+            
+            #region SetCookie(IJSRuntime jsRuntime, string key, string value, int expireDays = 30)
+            /// <summary>
+            /// method Set Cookie
+            /// </summary>
+            public static ValueTask SetCookie(IJSRuntime jsRuntime, string key, string value, int expireDays = 30)
+            {
+                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.SetCookie", key, value, expireDays);
             }
             #endregion
             
@@ -82,10 +98,6 @@ namespace DataJuggler.Blazor.Components
                 return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.ShowThenHide", elementId, duration);
             }
             #endregion
-            
-        #endregion
-        
-        #region Properties
             
         #endregion
         
