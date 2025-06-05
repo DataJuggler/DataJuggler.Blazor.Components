@@ -50,7 +50,9 @@ namespace DataJuggler.Blazor.Components
         private string className;
         private string title;
         private double fontSize;
-        private string fontName;        
+        private string fontName;
+        private double textOffsetX;
+        private double textOffsetY;
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
@@ -572,6 +574,66 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TextOffsetX
+            /// <summary>
+            /// This property gets or sets the value for 'TextOffsetX'.
+            /// </summary>
+            [Parameter]
+            public double TextOffsetX
+            {
+                get { return textOffsetX; }
+                set { textOffsetX = value; }
+            }
+            #endregion
+            
+            #region TextOffsetXStyle
+            /// <summary>
+            /// This read only property returns the value of TextOffsetX + Unit
+            /// </summary>
+            public string TextOffsetXStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string textOffsetXStyle = TextOffsetX + Unit;
+                    
+                    // return value
+                    return textOffsetXStyle;
+                }
+            }
+            #endregion
+
+            #region TextOffsetY
+            /// <summary>
+            /// This property gets or sets the value for 'TextOffsetY'.
+            /// </summary>
+            [Parameter]
+            public double TextOffsetY
+            {
+                get { return textOffsetY; }
+                set { textOffsetY = value; }
+            }
+            #endregion
+            
+            #region TextOffsetYStyle
+            /// <summary>
+            /// This read only property returns the value of TextOffsetY + HeightUnit
+            /// </summary>
+            public string TextOffsetYStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string textOffsetYStyle = TextOffsetY + HeightUnit;
+                    
+                    // return value
+                    return textOffsetYStyle;
+                }
+            }
+            #endregion
+
             #region Title
             /// <summary>
             /// This property gets or sets the value for 'Title'.

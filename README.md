@@ -1,5 +1,8 @@
 News
 
+6.5.2025: I added two properties to the ImageButton TextOffsetX and TextOffsetY. This allows you to position the text.
+Also ClassName on the ImageButton wasn't being used. Now it is.
+
 6.3.2025: Added CookieService
 
 Added a CookieService that uses JavaScript Interop to set, retrieve, and delete cookies.
