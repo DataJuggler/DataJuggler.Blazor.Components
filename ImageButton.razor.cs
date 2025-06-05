@@ -51,8 +51,8 @@ namespace DataJuggler.Blazor.Components
         private string title;
         private double fontSize;
         private string fontName;
-        private double textOffsetX;
-        private double textOffsetY;
+        private double textOffSetX;
+        private double textOffSetY;
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
@@ -574,62 +574,62 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region TextOffsetX
+            #region TextOffSetX
             /// <summary>
-            /// This property gets or sets the value for 'TextOffsetX'.
+            /// This property gets or sets the value for 'TextOffSetX'.
             /// </summary>
             [Parameter]
-            public double TextOffsetX
+            public double TextOffSetX
             {
-                get { return textOffsetX; }
-                set { textOffsetX = value; }
+                get { return textOffSetX; }
+                set { textOffSetX = value; }
             }
             #endregion
             
-            #region TextOffsetXStyle
+            #region TextOffSetXStyle
             /// <summary>
-            /// This read only property returns the value of TextOffsetX + Unit
+            /// This read only property returns the value of TextOffSetX + Unit
             /// </summary>
-            public string TextOffsetXStyle
+            public string TextOffSetXStyle
             {
 
                 get
                 {
                     // initial value
-                    string textOffsetXStyle = TextOffsetX + Unit;
+                    string textOffSetXStyle = TextOffSetX + Unit;
                     
                     // return value
-                    return textOffsetXStyle;
+                    return textOffSetXStyle;
                 }
             }
             #endregion
 
-            #region TextOffsetY
+            #region TextOffSetY
             /// <summary>
-            /// This property gets or sets the value for 'TextOffsetY'.
+            /// This property gets or sets the value for 'TextOffSetY'.
             /// </summary>
             [Parameter]
-            public double TextOffsetY
+            public double TextOffSetY
             {
-                get { return textOffsetY; }
-                set { textOffsetY = value; }
+                get { return textOffSetY; }
+                set { textOffSetY = value; }
             }
             #endregion
             
-            #region TextOffsetYStyle
+            #region TextOffSetYStyle
             /// <summary>
-            /// This read only property returns the value of TextOffsetY + HeightUnit
+            /// This read only property returns the value of TextOffSetY + HeightUnit
             /// </summary>
-            public string TextOffsetYStyle
+            public string TextOffSetYStyle
             {
 
                 get
                 {
                     // initial value
-                    string textOffsetYStyle = TextOffsetY + HeightUnit;
+                    string textOffSetYStyle = TextOffSetY + HeightUnit;
                     
                     // return value
-                    return textOffsetYStyle;
+                    return textOffSetYStyle;
                 }
             }
             #endregion
