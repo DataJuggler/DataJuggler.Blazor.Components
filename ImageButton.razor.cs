@@ -50,7 +50,7 @@ namespace DataJuggler.Blazor.Components
         private string className;
         private string title;
         private double fontSize;
-        private string fontName;
+        private string fontName;        
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
