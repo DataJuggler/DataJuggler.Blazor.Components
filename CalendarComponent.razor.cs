@@ -129,12 +129,13 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowFontWeight;
         private double labelLeft;
         private double rowLeft;
-        private string cellWidthStyle;
+        private string cellWidthStyle;        
         private double dayButtonWidth;
         private string dayButtonContainerStyle;
         private double dayButtonContainerLeft;
         private double dayButtonContainerTop;
         private string cellWidth2Style;
+        private double textBoxTop;
         #endregion
         
         #region Constructor
@@ -2462,6 +2463,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxLeft; }
                 set { textBoxLeft = value; }
+            }
+            #endregion
+            
+            #region TextBoxTop
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxTop'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxTop
+            {
+                get { return textBoxTop; }
+                set { textBoxTop = value; }
             }
             #endregion
             

@@ -100,6 +100,7 @@ namespace DataJuggler.Blazor.Components
         private double buttonHeight;
         private TextBoxComponent textBox;
         private double textBoxLeft;
+        private double textBoxTop;
         private string filterText;
         private int filterIndex;
         private double fontSize;
@@ -3058,6 +3059,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxLeft; }
                 set { textBoxLeft = value; }
+            }
+            #endregion
+            
+            #region TextBoxTop
+            /// <summary>
+            /// This property gets or sets the value for 'TextBoxTop'.
+            /// </summary>
+            [Parameter]
+            public double TextBoxTop
+            {
+                get { return textBoxTop; }
+                set { textBoxTop = value; }
             }
             #endregion
             
