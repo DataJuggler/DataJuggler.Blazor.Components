@@ -1820,7 +1820,15 @@ namespace DataJuggler.Blazor.Components
             public double FontSize
             {
                 get { return fontSize; }
-                set { fontSize = value; }
+                set 
+                {
+                    // set the value
+                    fontSize = value;
+
+                    // Set Label & TextBox Font Sizes
+                    LabelFontSize = value;
+                    TextBoxFontSize = value;
+                }
             }
             #endregion
 

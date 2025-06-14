@@ -41,6 +41,8 @@ namespace DataJuggler.Blazor.Components
         private string buttonStyle;
         private string buttonUrl;
         private double cellWidth;
+        private double fontSize;
+        private string fontName;
         private double width;
         private string unit;
         private string containerStyle;
@@ -1902,6 +1904,46 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set 
+                {
+                    // Set the value
+                    fontName = value;
+
+                    // Set Both
+                    LabelFontName = value;
+                    TextBoxFontName = value;
+                }
+            }
+            #endregion
+            
+            #region FontSize
+            /// <summary>
+            /// This property gets or sets the value for 'FontSize'.
+            /// </summary>
+            [Parameter]
+            public double FontSize
+            {
+                get { return fontSize; }
+                set 
+                {
+                    // set the value
+                    fontSize = value;
+
+                    // Set Label & TextBox Font Sizes
+                    LabelFontSize = value;
+                    TextBoxFontSize = value;
+                }
+            }
+            #endregion
+
             #region HasButton
             /// <summary>
             /// This property returns true if this object has a 'Button'.

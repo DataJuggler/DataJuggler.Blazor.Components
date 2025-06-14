@@ -24,7 +24,7 @@
 		<RepositoryType>Git - Git Hub</RepositoryType>
 		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
 		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-		<Version>9.14.9</Version>
+		<Version>9.14.10</Version>
 		<AssemblyVersion>9.11.6</AssemblyVersion>
 		<FileVersion>9.11.6</FileVersion>
 		<Nullable>disable</Nullable>
