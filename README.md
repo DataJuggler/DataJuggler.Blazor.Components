@@ -1,7 +1,7 @@
 News
 
 6.14.2025: I added a Parameter property TextBoxTop to the Calendar and the ComboBox
-v9.14.9
+v9.14.9      Added FontSize to the Calendar which sets both the Label and TextBox FontSize
 
 6.5.2025: I added two properties to the ImageButton TextOffsetX and TextOffsetY. This allows you to position the text.
 Also ClassName on the ImageButton wasn't being used. Now it is.
