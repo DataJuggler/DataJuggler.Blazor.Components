@@ -33,6 +33,7 @@ namespace DataJuggler.Blazor.Components
         private IBlazorComponentParent parent;
         private bool expanded;
         private List<DayObject> dates;
+        private string bottomRowClassName;
         private string calendarStyle;
         private string caption;
         private double height;
@@ -138,6 +139,16 @@ namespace DataJuggler.Blazor.Components
         private double dayButtonContainerTop;
         private string cellWidth2Style;
         private double textBoxTop;
+
+        // Nav buttons
+        private double previousYearButtonLeft;
+        private double previousYearButtonTop;
+        private double previousMonthButtonLeft;
+        private double previousMonthButtonTop;
+        private double nextYearButtonLeft;
+        private double nextYearButtonTop;
+        private double nextMonthButtonLeft;
+        private double nextMonthButtonTop;
         #endregion
         
         #region Constructor
@@ -574,6 +585,7 @@ namespace DataJuggler.Blazor.Components
 
                 // Set Defaults
                 BottomRowBottom = 3;
+                BottomRowClassName = "up4 right20";
                 BottomRowFontName = "Calibri";
                 BottomRowFontSize = 11;
                 BottomRowFontWeight = "bold";
@@ -980,6 +992,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return bottomRowBottomStyle;
                 }
+            }
+            #endregion
+            
+            #region BottomRowClassName
+            /// <summary>
+            /// This property gets or sets the value for 'BottomRowClassName'.
+            /// </summary>
+            [Parameter]
+            public string BottomRowClassName
+            {
+                get { return bottomRowClassName; }
+                set { bottomRowClassName = value; }
             }
             #endregion
             
@@ -2213,6 +2237,30 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region NextMonthButtonLeft
+            /// <summary>
+            /// This property gets or sets the value for 'NextMonthButtonLeft'.
+            /// </summary>
+            [Parameter]
+            public double NextMonthButtonLeft
+            {
+                get { return nextMonthButtonLeft; }
+                set { nextMonthButtonLeft = value; }
+            }
+            #endregion
+            
+            #region NextMonthButtonTop
+            /// <summary>
+            /// This property gets or sets the value for 'NextMonthButtonTop'.
+            /// </summary>
+            [Parameter]
+            public double NextMonthButtonTop
+            {
+                get { return nextMonthButtonTop; }
+                set { nextMonthButtonTop = value; }
+            }
+            #endregion
+            
             #region NextMonthButtonUrl
             /// <summary>
             /// This property gets or sets the value for 'NextMonthButtonUrl'.
@@ -2221,6 +2269,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return nextMonthButtonUrl; }
                 set { nextMonthButtonUrl = value; }
+            }
+            #endregion
+            
+            #region NextYearButtonLeft
+            /// <summary>
+            /// This property gets or sets the value for 'NextYearButtonLeft'.
+            /// </summary>
+            [Parameter]
+            public double NextYearButtonLeft
+            {
+                get { return nextYearButtonLeft; }
+                set { nextYearButtonLeft = value; }
+            }
+            #endregion
+            
+            #region NextYearButtonTop
+            /// <summary>
+            /// This property gets or sets the value for 'NextYearButtonTop'.
+            /// </summary>
+            [Parameter]
+            public double NextYearButtonTop
+            {
+                get { return nextYearButtonTop; }
+                set { nextYearButtonTop = value; }
             }
             #endregion
             
@@ -2267,6 +2339,54 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return position; }
                 set { position = value; }
+            }
+            #endregion
+            
+            #region PreviousMonthButtonLeft
+            /// <summary>
+            /// This property gets or sets the value for 'PreviousMonthButtonLeft'.
+            /// </summary>
+            [Parameter]
+            public double PreviousMonthButtonLeft
+            {
+                get { return previousMonthButtonLeft; }
+                set { previousMonthButtonLeft = value; }
+            }
+            #endregion
+            
+            #region PreviousMonthButtonTop
+            /// <summary>
+            /// This property gets or sets the value for 'PreviousMonthButtonTop'.
+            /// </summary>
+            [Parameter]
+            public double PreviousMonthButtonTop
+            {
+                get { return previousMonthButtonTop; }
+                set { previousMonthButtonTop = value; }
+            }
+            #endregion
+            
+            #region PreviousYearButtonLeft
+            /// <summary>
+            /// This property gets or sets the value for 'PreviousYearButtonLeft'.
+            /// </summary>
+            [Parameter]
+            public double PreviousYearButtonLeft
+            {
+                get { return previousYearButtonLeft; }
+                set { previousYearButtonLeft = value; }
+            }
+            #endregion
+            
+            #region PreviousYearButtonTop
+            /// <summary>
+            /// This property gets or sets the value for 'PreviousYearButtonTop'.
+            /// </summary>
+            [Parameter]
+            public double PreviousYearButtonTop
+            {
+                get { return previousYearButtonTop; }
+                set { previousYearButtonTop = value; }
             }
             #endregion
             

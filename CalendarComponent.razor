@@ -362,19 +362,20 @@
                     </table>
                 </div>
             }
-            <div class="@BottomRowStyle">
-                <table class="up4 right20">
+            <div class="@BottomRowStyle ">
+                <table class="@BottomRowClassName">
                     <tr>
                         <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="2" HeightUnit="px" Height="8"
                                     Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one year."
-                                    Left="0" Top=0 ImageUrl="@PrevYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                    Left="@PreviousMonthButtonLeft" Top="@PreviousMonthButtonTop" ImageUrl="@PrevYearButtonUrl" 
+                                    Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                         <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="3" HeightUnit="px" Height="8"
-                                    Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one month."
-                                    Left="0" Top=0 ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                    Unit="px" Width="8" Name="PrevMonthButton" Position="relative" Title="Move back one month."
+                                    Left="@PreviousMonthButtonLeft" Top="@PreviousMonthButtonTop" ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>                        
                         <td class="textdonotwrap" width="80">
@@ -392,14 +393,14 @@
                         </td>
                         <td width="34">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="4" HeightUnit="px" Height="8"
-                                Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one month."
-                                Left="0" Top=0 ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                Unit="px" Width="8" Name="NextMonthButton" Position="relative" Title="Move forward one month."
+                                Left="@NextMonthButtonLeft" Top="@nextMonthButtonTop" ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                         <td width="34">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="5" HeightUnit="px" Height="8"
-                                Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move forward one year."
-                                Left="0" Top=0 ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                Unit="px" Width="8" Name="NextYearButton" Position="relative" Title="Move forward one year."
+                                Left="@NextYearButtonLeft" Top="@NextYearButtonTop" ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                     </tr>
