@@ -37,19 +37,16 @@
     transform-origin: top left;
     z-index: @ZIndex;
 </Styled>
-<Styled @bind-Classname=@ButtonStyle>
+<Styled @bind-Classname=@ButtonStyle>    
     display: inline;        
-    text-align: left;    
+    text-align: center;    
     background-size: 100% 100%;
     z-index: @ZIndexPlus30;
-    height: 25.6px;    
+    height: 25.6px;
 </Styled>
 <Styled @bind-Classname=@NavButtonStyle>
-    display: inline;
-    justify-content: left;
-    position: absolute;
-    left: 0px;
-    top: 0px;
+    display: inline;    
+    position: relative;    
     text-align: center;
     background-size: 100% 100%;
     z-index: @ZIndex;
@@ -368,14 +365,14 @@
                         <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="2" HeightUnit="px" Height="8"
                                     Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one year."
-                                    Left="@PreviousMonthButtonLeft" Top="@PreviousMonthButtonTop" ImageUrl="@PrevYearButtonUrl" 
+                                    Left="@PreviousMonthButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevYearButtonUrl" 
                                     Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                         <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="3" HeightUnit="px" Height="8"
                                     Unit="px" Width="8" Name="PrevMonthButton" Position="relative" Title="Move back one month."
-                                    Left="@PreviousMonthButtonLeft" Top="@PreviousMonthButtonTop" ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                    Left="@PreviousMonthButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>                        
                         <td class="textdonotwrap" width="80">
@@ -394,13 +391,13 @@
                         <td width="34">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="4" HeightUnit="px" Height="8"
                                 Unit="px" Width="8" Name="NextMonthButton" Position="relative" Title="Move forward one month."
-                                Left="@NextMonthButtonLeft" Top="@nextMonthButtonTop" ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                Left="@NextMonthButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@NextMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                         <td width="34">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="5" HeightUnit="px" Height="8"
                                 Unit="px" Width="8" Name="NextYearButton" Position="relative" Title="Move forward one year."
-                                Left="@NextYearButtonLeft" Top="@NextYearButtonTop" ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                Left="@NextYearButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@NextYearButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                     </tr>

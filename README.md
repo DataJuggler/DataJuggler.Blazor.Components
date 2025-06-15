@@ -1,15 +1,12 @@
 News
 
-6.15.2025: I added 8 new properties to the Calendar to allow positioning of the month and year navigation buttons:
+6.15.2025: I added some new properties to the Calendar to allow positioning of the month and year navigation buttons:
 
    PreviousMonthButtonLeft
    PreviousMonthButtonTop
    PreviousYearButtonLeft
    PreviousYearButtonTop
-   NextMonthButtonLeft
-   NextMonthButtonTop
-   NextYearButtonLeft
-   NextYearButtonTop
+   BottomNavButtonsTop
 
 6.14.2025: I added a Parameter property TextBoxTop to the Calendar and the ComboBox
 v9.14.9      Added FontSize to the Calendar which sets both the Label and TextBox FontSize

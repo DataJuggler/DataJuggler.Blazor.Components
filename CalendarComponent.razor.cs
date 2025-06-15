@@ -141,14 +141,11 @@ namespace DataJuggler.Blazor.Components
         private double textBoxTop;
 
         // Nav buttons
-        private double previousYearButtonLeft;
-        private double previousYearButtonTop;
-        private double previousMonthButtonLeft;
-        private double previousMonthButtonTop;
-        private double nextYearButtonLeft;
-        private double nextYearButtonTop;
-        private double nextMonthButtonLeft;
-        private double nextMonthButtonTop;
+        private double previousYearButtonLeft;        
+        private double previousMonthButtonLeft;        
+        private double nextYearButtonLeft;        
+        private double nextMonthButtonLeft;        
+        private double bottomNavButtonTop;
         #endregion
         
         #region Constructor
@@ -962,6 +959,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return allowYearSelector; }
                 set { allowYearSelector = value; }
+            }
+            #endregion
+            
+            #region BottomNavButtonTop
+            /// <summary>
+            /// This property gets or sets the value for 'BottomNavButtonTop'.
+            /// </summary>
+            [Parameter]
+            public double BottomNavButtonTop
+            {
+                get { return bottomNavButtonTop; }
+                set { bottomNavButtonTop = value; }
             }
             #endregion
             
@@ -2249,18 +2258,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region NextMonthButtonTop
-            /// <summary>
-            /// This property gets or sets the value for 'NextMonthButtonTop'.
-            /// </summary>
-            [Parameter]
-            public double NextMonthButtonTop
-            {
-                get { return nextMonthButtonTop; }
-                set { nextMonthButtonTop = value; }
-            }
-            #endregion
-            
             #region NextMonthButtonUrl
             /// <summary>
             /// This property gets or sets the value for 'NextMonthButtonUrl'.
@@ -2281,18 +2278,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return nextYearButtonLeft; }
                 set { nextYearButtonLeft = value; }
-            }
-            #endregion
-            
-            #region NextYearButtonTop
-            /// <summary>
-            /// This property gets or sets the value for 'NextYearButtonTop'.
-            /// </summary>
-            [Parameter]
-            public double NextYearButtonTop
-            {
-                get { return nextYearButtonTop; }
-                set { nextYearButtonTop = value; }
             }
             #endregion
             
@@ -2354,18 +2339,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region PreviousMonthButtonTop
-            /// <summary>
-            /// This property gets or sets the value for 'PreviousMonthButtonTop'.
-            /// </summary>
-            [Parameter]
-            public double PreviousMonthButtonTop
-            {
-                get { return previousMonthButtonTop; }
-                set { previousMonthButtonTop = value; }
-            }
-            #endregion
-            
             #region PreviousYearButtonLeft
             /// <summary>
             /// This property gets or sets the value for 'PreviousYearButtonLeft'.
@@ -2375,18 +2348,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return previousYearButtonLeft; }
                 set { previousYearButtonLeft = value; }
-            }
-            #endregion
-            
-            #region PreviousYearButtonTop
-            /// <summary>
-            /// This property gets or sets the value for 'PreviousYearButtonTop'.
-            /// </summary>
-            [Parameter]
-            public double PreviousYearButtonTop
-            {
-                get { return previousYearButtonTop; }
-                set { previousYearButtonTop = value; }
             }
             #endregion
             
