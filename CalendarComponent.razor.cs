@@ -581,6 +581,7 @@ namespace DataJuggler.Blazor.Components
                 Caption = "Date:";
 
                 // Set Defaults
+                BottomNavButtonTop = 2;
                 BottomRowBottom = 3;
                 BottomRowClassName = "up4 right20";
                 BottomRowFontName = "Calibri";
