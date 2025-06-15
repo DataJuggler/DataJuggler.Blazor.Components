@@ -583,19 +583,19 @@ namespace DataJuggler.Blazor.Components
                 // Set Defaults
                 BottomNavButtonTop = 2;
                 BottomRowBottom = 3;
-                BottomRowClassName = "up4 right20";
+                BottomRowClassName = "right12 up4 width220";
                 BottomRowFontName = "Calibri";
                 BottomRowFontSize = 11;
                 BottomRowFontWeight = "bold";
                 BottomRowLeft = -8;
                 BottomRowPosition = "absolute";
-                ButtonHeight = 25;
-                ButtonLeft = -6;
+                ButtonHeight = 24;
+                ButtonLeft = 4;
                 ButtonTop = 0;
                 ButtonWidth = 24;
-                CalendarLeft = 260;
+                CalendarLeft = 300;
                 CalendarPosition = "relative";
-                CalendarTop = -32;
+                CalendarTop = -156;
                 Caption = "Date:";
                 CellWidth = 28;
                 DayButtonWidth = 32;
@@ -612,7 +612,7 @@ namespace DataJuggler.Blazor.Components
                 DayRowTextColor = Color.GhostWhite;
                 Height = 146;
                 HeightUnit = "px";
-                LabelClassName = GlobalDefaults.LabelClassName;
+                LabelClassName = "down4 right4"; // slightly different than GlobalDefaults.LabelClassName
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
@@ -627,7 +627,7 @@ namespace DataJuggler.Blazor.Components
                 TextBoxHeight = 21;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Theme = ThemeEnum.BlueGold;
-                Top = 0;
+                Top = 4; // will monitor this
                 Left = 0;
                 Unit = "px";
                 Width = 228;

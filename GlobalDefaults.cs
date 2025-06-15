@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace DataJuggler.Blazor.Components
 {
 
-    #region class GlobalConstants
+    #region class GlobalDefaults
     /// <summary>
     /// This class is used to values are not 
     /// </summary>
@@ -33,7 +33,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// The default column width for the 2nd column, usually a TextBox
             /// </summary>
-            public const int Column2Width = 124;
+            public const int Column2Width = 128;
             #endregion
 
             #region Column3Width
@@ -103,7 +103,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// The default Width for TextBoxes
             /// </summary>
-            public const double TextBoxWidth = 120;
+            public const double TextBoxWidth = 140;
             #endregion
             
         #endregion
