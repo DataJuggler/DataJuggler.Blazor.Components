@@ -28,7 +28,9 @@ namespace DataJuggler.Blazor.Components
     public partial class ComboBox : ComponentBase, IBlazorComponent, IBlazorComponentParent, ILabelFont, ITextBoxFont
     {
         
-        #region Private Variables        
+        #region Private Variables
+        private Color buttonBorderColor;
+        private double buttonBorderWidth;
         private double buttonLeft;
         private string buttonPosition;
         private double buttonTop;
@@ -437,7 +439,8 @@ namespace DataJuggler.Blazor.Components
                 Unit = "px";
                 LabelUnit = "px";
                 HeightUnit = "px";
-
+                ButtonBorderColor = Color.Black;
+                ButtonBorderWidth = 0;
                 ButtonHeight = 24;
                 ButtonLeft = -ButtonWidth - 1;
                 ButtonPosition = "relative";
@@ -1115,6 +1118,30 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ButtonBorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonBorderColor'.
+            /// </summary>
+            [Parameter]
+            public Color ButtonBorderColor
+            {
+                get { return buttonBorderColor; }
+                set { buttonBorderColor = value; }
+            }
+            #endregion
+            
+            #region ButtonBorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonBorderWidth'.
+            /// </summary>
+            [Parameter]
+            public double ButtonBorderWidth
+            {
+                get { return buttonBorderWidth; }
+                set { buttonBorderWidth = value; }
+            }
+            #endregion
+            
             #region ButtonHeight
             /// <summary>
             /// This property gets or sets the value for 'ButtonHeight'.

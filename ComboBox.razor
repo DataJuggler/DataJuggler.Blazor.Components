@@ -101,8 +101,9 @@
             @if (ShowButton)
             {
                 <td width="@Column2Width">
-                    <ImageButton ClassName="@ButtonStyle" ButtonNumber="1" HeightUnit="px" 
-                        Height="@ButtonHeight" Unit="px" Width="@ButtonWidth" Name="CalendarButton" 
+                    <ImageButton ClassName="@ButtonStyle" Unit="px" ButtonNumber="1" HeightUnit="px"                         
+                        Height="@ButtonHeight"  Width="@ButtonWidth" Name="CalendarButton"
+                        BorderColor="@ButtonBorderColor" BorderWidth="@ButtonBorderWidth"
                         Position="@ButtonPosition" ZIndex="@ZIndexPlus30" Left="@ButtonLeft" Top=@ButtonTop 
                         ImageUrl="@ButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                     </ImageButton>

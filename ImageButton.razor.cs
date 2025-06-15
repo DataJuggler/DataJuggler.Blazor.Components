@@ -25,6 +25,8 @@ namespace DataJuggler.Blazor.Components
     {
 
         #region Private Variables
+        private Color borderColor;
+        private double borderWidth;
         private string imageUrl;
         private string text;
         private int buttonNumber;
@@ -95,8 +97,10 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // default
-                Unit = "px";
+                Unit = "px";                
                 HeightUnit = "px";
+                BorderWidth = 0;
+                BorderColor = Color.Black;
                 Width = 200;
                 Height = 200;
                 Left = 0;
@@ -188,6 +192,74 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
             
+            #region BorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'BorderColor'.
+            /// </summary>
+            [Parameter]
+            public Color BorderColor
+            {
+                get { return borderColor; }
+                set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderStyle
+            /// <summary>
+            /// This read only property returns the value of BorderWidthStyle + solid + Border Color
+            /// Example: 1px solid black
+            /// </summary>
+            public string BorderStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string borderStyle = "none";
+                    
+                    // if the width is set
+                    if (BorderWidth > 0)
+                    {
+                        // Set the return value
+                        borderStyle = BorderWidthStyle + " solid " + BorderColor.Name;
+                    }
+
+                    // return value
+                    return borderStyle;
+                }
+            }
+            #endregion
+
+            #region BorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'BorderWidth'.
+            /// </summary>
+            [Parameter]
+            public double BorderWidth
+            {
+                get { return borderWidth; }
+                set { borderWidth = value; }
+            }
+            #endregion
+            
+            #region BorderWidthStyle
+            /// <summary>
+            /// This read only property returns the value of BorderWidth + Unit;
+            /// </summary>
+            public string BorderWidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string borderWidthStyle = BorderWidth + Unit;
+                    
+                    // return value
+                    return borderWidthStyle;
+                }
+            }
+            #endregion
+
             #region ButtoncontainerStyle
             /// <summary>
             /// This property gets or sets the value for 'ButtoncontainerStyle'.

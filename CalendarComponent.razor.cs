@@ -27,6 +27,8 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
+        private Color buttonBorderColor;
+        private double buttonBorderWidth;
         private bool allowYearSelector;
         private List<IBlazorComponent> children;
         private string name;
@@ -581,6 +583,8 @@ namespace DataJuggler.Blazor.Components
                 Caption = "Date:";
 
                 // Set Defaults
+                ButtonBorderColor = Color.Black;
+                ButtonBorderWidth = 0;
                 BottomNavButtonTop = 2;
                 BottomRowBottom = 3;
                 BottomRowClassName = "right12 up4 width220";
@@ -1132,6 +1136,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return button; }
                 set { button = value; }
+            }
+            #endregion
+            
+            #region ButtonBorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonBorderColor'.
+            /// </summary>
+            [Parameter]
+            public Color ButtonBorderColor
+            {
+                get { return buttonBorderColor; }
+                set { buttonBorderColor = value; }
+            }
+            #endregion
+            
+            #region ButtonBorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonBorderWidth'.
+            /// </summary>
+            [Parameter]
+            public double ButtonBorderWidth
+            {
+                get { return buttonBorderWidth; }
+                set { buttonBorderWidth = value; }
             }
             #endregion
             
