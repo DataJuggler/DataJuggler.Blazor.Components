@@ -1,5 +1,13 @@
 News
 
+6.16.2025: Breaking Change!!!! - There are 6 components in this library that have the property LabelColor.
+                  
+CalendarComponent, CheckBoxComponent, ComboBox, TextBoxComponent, TimeComponent, ToggleComponent
+
+3 had LabelColor as a System.Drawing.Color and 3 had LabelColor as a String. I made them all a Color.
+Sorry for the breaking change, but I am code generating components in a toolbar and its easier if they are all
+the same.
+
 6.16.2025: I added two new properties to the ComboBox - OverfloxX and OverflowY.
                   OverFlowX defaults to Hidden and OverFloxY defaults to Auto.
 

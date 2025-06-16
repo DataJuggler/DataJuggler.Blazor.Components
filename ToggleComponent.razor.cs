@@ -82,7 +82,7 @@ namespace DataJuggler.Blazor.Components
         private string caption;
         private string labelClassName;
         private string labelBackgroundColor;
-        private string labelColor;
+        private Color labelColor;
         private string labelFontSizeUnit;
         private string labelFontName;
         private string labelStyle;
@@ -664,7 +664,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'LabelColor'.
             /// </summary>
             [Parameter]
-            public string LabelColor
+            public Color LabelColor
             {
                 get { return labelColor; }
                 set { labelColor = value; }
