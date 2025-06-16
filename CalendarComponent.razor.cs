@@ -616,7 +616,7 @@ namespace DataJuggler.Blazor.Components
                 DayRowTextColor = Color.GhostWhite;
                 Height = 146;
                 HeightUnit = "px";
-                LabelClassName = "down4 right4"; // slightly different than GlobalDefaults.LabelClassName
+                LabelClassName = "down4 right6"; // slightly different than GlobalDefaults.LabelClassName
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
@@ -629,6 +629,8 @@ namespace DataJuggler.Blazor.Components
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxHeight = 21;
+                TextBoxLeft = -3;
+                TextBoxTop = 2;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Theme = ThemeEnum.BlueGold;
                 Top = 4; // will monitor this
