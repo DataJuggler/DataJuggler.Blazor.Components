@@ -129,15 +129,18 @@
             </div>                
         }
         else
-        {      
+        {
             <div class="@ListItemContainer @DropdownClassName">
-                <select class="form-control" name="ListBox" size="@ActualVisualCount"
-                        id="ComboBoxListBox" @onchange="SelectionChanged">
-                    @foreach (Item item in Items)
-                    {
-                        <option class="@ListItemStyle nopadding" >@item.Text</option>
-                    }
-                </select>
+                @if (Loaded)
+                {
+                    <select class="form-control" name="ListBox" size="@ActualVisualCount"
+                            id="ComboBoxListBox" @onchange="SelectionChanged">
+                        @foreach (Item item in Items)
+                        {
+                            <option class="@ListItemStyle nopadding" >@item.Text</option>
+                        }
+                    </select>
+                }
             </div>               
         }
     </div>
