@@ -1134,8 +1134,8 @@ namespace DataJuggler.Blazor.Components
                     // if not loaded yet, don't use the real value
                     if (!Loaded)
                     {
-                        // Set to 1
-                        actualVisualCount = 1;
+                        // Set to goose egg (don't show scroll bar)
+                        actualVisualCount = 0;
                     }
                     
                     // return value
