@@ -54,7 +54,7 @@ namespace DataJuggler.Blazor.Components
         private double fontSize;
         private string fontName;
         private double textOffSetX;
-        private double textOffSetY;
+        private double textOffSetY;        
 
         // Reverting back to BlazorStyled
         private string buttoncontainerStyle;
@@ -562,6 +562,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region OutlineStyle
+            /// <summary>
+            /// This read only property returns the value of the Border if BorderWidth is set, else None:
+            /// </summary>
+            public string OutlineStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string outlineStyle = "none";
+
+                    // if BorderWidth is set
+                    if (BorderWidth > 0)
+                    {
+                        // set the return value
+                        outlineStyle = BorderWidth + Unit + " solid " + BorderColor.Name;
+                    }
+
+                    // return value
+                    return outlineStyle;
+                }
+            }
+            #endregion
+
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.
