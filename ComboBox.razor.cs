@@ -128,6 +128,8 @@ namespace DataJuggler.Blazor.Components
         private string fontName;
         private bool showButton;
         private string dropDownZIndex;
+        private string overflowX;
+        private string overflowY;
         
         // Had to bring back BlazorStyled        
         private string listItemContainer;
@@ -478,12 +480,14 @@ namespace DataJuggler.Blazor.Components
                 ListItemBackgroundColor = Color.White;                
                 ListContainerHeight = 120;
                 ListItemHeight = GlobalDefaults.ListItemHeight;            
-                ListItemLeft = 0;                
+                ListItemLeft = 0;
                 ListItemPosition = "relative";
-                listItemTop = 0;
+                ListItemTop = 0;
 
                 // Purposely 0 here. If not set as a Parameter, then GlobalDefaults.TextBoxWidth is used
-                ListItemWidth = 0;          
+                ListItemWidth = 0;
+                OverflowX = "hidden";
+                OverflowY = "auto";
                 Position = "relative";
                 SelectedText = "";
                 ShowButton = true;
@@ -2875,6 +2879,30 @@ namespace DataJuggler.Blazor.Components
             public EventCallback<ChangeEventArgs> OnChange { get; set; }
             #endregion
                 
+            #region OverflowX
+            /// <summary>
+            /// This property gets or sets the value for 'OverflowX'.
+            /// </summary>
+            [Parameter]
+            public string OverflowX
+            {
+                get { return overflowX; }
+                set { overflowX = value; }
+            }
+            #endregion
+            
+            #region OverflowY
+            /// <summary>
+            /// This property gets or sets the value for 'OverflowY'.
+            /// </summary>
+            [Parameter]
+            public string OverflowY
+            {
+                get { return overflowY; }
+                set { overflowY = value; }
+            }
+            #endregion
+            
             #region Parent
             /// <summary>
             /// This property gets or sets the value for 'Parent'.

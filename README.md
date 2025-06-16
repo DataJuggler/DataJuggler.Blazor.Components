@@ -1,5 +1,8 @@
 News
 
+6.16.2025: I added two new properties to the ComboBox - OverfloxX and OverflowY.
+                  OverFlowX defaults to Hidden and OverFloxY defaults to Auto.
+
 6.15.2025B: I added new properties to the ImageButton for BorderWidth and BorderColor and new Properties
 to the ComboBox and Calendar for ButtonBorderWidth and ButtonBorderColor.
 v9.15.2
