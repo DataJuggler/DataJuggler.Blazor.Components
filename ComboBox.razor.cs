@@ -2,19 +2,20 @@
 
 #region using statements
 
+using DataJuggler.Blazor.Components.Delegates;
+using DataJuggler.Blazor.Components.Enumerations;
+using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
+using DataJuggler.UltimateHelper;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Microsoft.AspNetCore.Components;
-using DataJuggler.UltimateHelper;
-using DataJuggler.Blazor.Components.Enumerations;
-using DataJuggler.Blazor.Components.Interfaces;
-using System.Drawing;
-using DataJuggler.Blazor.Components.Delegates;
-using DataJuggler.Blazor.Components.Util;
 
 #endregion
 
@@ -130,6 +131,7 @@ namespace DataJuggler.Blazor.Components
         private string dropDownZIndex;
         private string overflowX;
         private string overflowY;
+        private bool loaded;
         
         // Had to bring back BlazorStyled        
         private string listItemContainer;
@@ -546,6 +548,9 @@ namespace DataJuggler.Blazor.Components
                         // Select the first item
                         SelectedItem = Items[0];
                     }
+
+                    // Has been Loaded
+                    Loaded = true;
                     
                     // Update Async
                     Refresh();
@@ -602,6 +607,9 @@ namespace DataJuggler.Blazor.Components
                             // add this item
                             this.Items.Add(item);
                         }
+
+                        // Has been Loaded
+                        Loaded = true;
                         
                         // Update Async
                         Refresh();
@@ -1111,6 +1119,31 @@ namespace DataJuggler.Blazor.Components
             
         #region Properties
                 
+            #region ActualVisualCount
+            /// <summary>
+            /// This read only property returns the value of ActualVisualCount from the object VisibleCount.
+            /// </summary>
+            public int ActualVisualCount
+            {
+
+                get
+                {
+                    // initial value
+                    int actualVisualCount = VisibleCount;
+
+                    // if not loaded yet, don't use the real value
+                    if (!Loaded)
+                    {
+                        // Set to 1
+                        actualVisualCount = 1;
+                    }
+                    
+                    // return value
+                    return actualVisualCount;
+                }
+            }
+            #endregion
+
             #region Button
             /// <summary>
             /// This property gets or sets the value for 'Button'.
@@ -2844,6 +2877,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemWidthStyle; }
                 set { listItemWidthStyle = value; }
+            }
+            #endregion
+            
+            #region Loaded
+            /// <summary>
+            /// This property gets or sets the value for 'Loaded'.
+            /// </summary>
+            public bool Loaded
+            {
+                get { return loaded; }
+                set { loaded = value; }
             }
             #endregion
             
