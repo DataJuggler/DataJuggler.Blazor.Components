@@ -3,6 +3,7 @@
 #region using statements
 
 using DataJuggler.Blazor.Components.Enumerations;
+using System;
 
 #endregion
 
@@ -25,6 +26,7 @@ namespace DataJuggler.Blazor.Components
         private double imageWidth;
         private bool includeImage;
         private bool itemChecked;
+        private bool includeCaptionInToString;
         private string name;
         private string text;
         #endregion
@@ -63,8 +65,18 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public override string ToString()
             {
-                // Aids in debugging
-                return Caption + " - " + Text;
+                // initial value
+                string toString = Text;
+
+                // if the value for HasCaption is true
+                if ((HasCaption) && (IncludeCaptionInToString))
+                {
+                    // set the return value
+                    toString = Caption + " - " + Text;
+                }
+
+                // return value
+                return toString;
             }
             #endregion
             
@@ -80,6 +92,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return caption; }
                 set { caption = value; }
+            }
+            #endregion
+            
+            #region HasCaption
+            /// <summary>
+            /// This property returns true if the 'Caption' exists.
+            /// </summary>
+            public bool HasCaption
+            {
+                get
+                {
+                    // initial value
+                    bool hasCaption = (!String.IsNullOrEmpty(Caption));
+
+                    // return value
+                    return hasCaption;
+                }
             }
             #endregion
             
@@ -135,6 +164,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return imageWidth; }
                 set { imageWidth = value; }
+            }
+            #endregion
+            
+            #region IncludeCaptionInToString
+            /// <summary>
+            /// This property gets or sets the value for 'IncludeCaptionInToString'.
+            /// </summary>
+            public bool IncludeCaptionInToString
+            {
+                get { return includeCaptionInToString; }
+                set { includeCaptionInToString = value; }
             }
             #endregion
             
