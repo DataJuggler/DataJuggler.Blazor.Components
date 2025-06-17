@@ -956,6 +956,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ListItemTextColor'.
             /// </summary>
+            [Parameter]
             public Color ListItemTextColor
             {
                 get { return listItemTextColor; }
