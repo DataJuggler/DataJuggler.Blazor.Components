@@ -7,7 +7,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
-using NPOI.SS.UserModel;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -242,18 +242,25 @@ namespace DataJuggler.Blazor.Components
             /// <returns></returns>
             protected async override Task OnAfterRenderAsync(bool firstRender)
             {
-                // if the Items do not exist for some reason
-                if (!ListHelper.HasOneOrMoreItems(Items))
+                try
                 {
-                    // Request Items be sent
-                    RequestItems();
-
-                    // if now there are more than one
-                    if (ListHelper.HasOneOrMoreItems(Items))
+                    // if the Items do not exist for some reason
+                    if (!ListHelper.HasOneOrMoreItems(Items))
                     {
-                        // Update the 
-                        Refresh();
+                        // Request Items be sent
+                        RequestItems();
+
+                        // if now there are more than one
+                        if (ListHelper.HasOneOrMoreItems(Items))
+                        {
+                            // Update the 
+                            Refresh();
+                        }
                     }
+                }
+                catch (Exception error)
+                {
+                    DebugHelper.WriteDebugError("OnAfterRenderAsync", "CheckedListBox", error);
                 }
 
                 // call the base
@@ -347,12 +354,16 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void RequestItems()
             {
-                Message message = new Message();
-                message.Sender = this;
-                message.Text = "SendItems";
+                // if the value for HasComboBoxParent is true
+                if (HasComboBoxParent)
+                {
+                    Message message = new Message();
+                    message.Sender = this;
+                    message.Text = "SendItems";
                                 
-                // send a message to the parent
-                ComboBoxParent.ReceiveData(message);
+                    // send a message to the parent
+                    ComboBoxParent.ReceiveData(message);
+                }
             }
             #endregion
             
