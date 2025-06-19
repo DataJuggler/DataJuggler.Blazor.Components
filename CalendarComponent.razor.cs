@@ -57,6 +57,10 @@ namespace DataJuggler.Blazor.Components
         private double textBoxWidth;
         private double column1Width;
         private double column2Width;
+        private double dayRowLeft;
+        private double dayRowHeight;
+        private double dayRowWidth;
+        private double dayRowTop;
         private double buttonWidth;
         private double buttonHeight;
         private double controlWidth;
@@ -68,16 +72,13 @@ namespace DataJuggler.Blazor.Components
         private string display;
         private string calendarDisplay;
         private string columnStyle;
-        private string rowStyle;
-        private double dayRowLeft;
-        private double dayRowTop;
+        private string rowStyle;        
         private Color dayRowColor;
         private Color dayRowTextColor;
         private string dayRowStyle;
         private string dayButtonStyle;
         private string dayButtonStyle2;
-        private string dayButtonStyle3;
-        private double dayRowHeight;
+        private string dayButtonStyle3;        
         private DateTime selectedDate;
         private double labelFontSize;
         private string labelFontName;
@@ -124,7 +125,7 @@ namespace DataJuggler.Blazor.Components
         private string calendarPosition;
         private List<CalendarRow> weeks;
         private double scale;       
-        private string headerRowColumnStyle;
+        private string dayRowColumnStyle;
         private int zIndex;
         private double bottomRowLeft;
         private double bottomRowBottom;
@@ -133,15 +134,17 @@ namespace DataJuggler.Blazor.Components
         private string bottomRowPosition;
         private string bottomRowFontWeight;
         private double labelLeft;
-        private double rowLeft;
-        private string cellWidthStyle;        
+        private double rowLeft;        
         private double dayButtonWidth;
         private string dayButtonContainerStyle;
         private double dayButtonContainerLeft;
         private double dayButtonContainerTop;
         private string cellWidth2Style;
         private double textBoxTop;
-
+        private string dayRowTextStyle;
+        private double dayRowTextLeft;
+        private double dayRowTextTop;
+        
         // Nav buttons
         private double previousYearButtonLeft;        
         private double previousMonthButtonLeft;        
@@ -584,7 +587,7 @@ namespace DataJuggler.Blazor.Components
 
                 // Set Defaults
                 ButtonBorderColor = Color.Black;
-                ButtonBorderWidth = 0;
+                ButtonBorderWidth = 1;
                 BottomNavButtonTop = 2;
                 BottomRowBottom = 3;
                 BottomRowClassName = "right12 up4 width220";
@@ -593,27 +596,26 @@ namespace DataJuggler.Blazor.Components
                 BottomRowFontWeight = "bold";
                 BottomRowLeft = -8;
                 BottomRowPosition = "absolute";
-                ButtonHeight = 24;
+                ButtonHeight = 22;
                 ButtonLeft = 4;
                 ButtonTop = 0;
                 ButtonWidth = 24;
                 CalendarLeft = 300;
                 CalendarPosition = "relative";
                 CalendarTop = -156;
-                Caption = "Date:";
-                CellWidth = 28;
+                Caption = "Date:";                
                 DayButtonWidth = 32;
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
                 ControlHeight = 32;
                 ControlWidth = 640;
-                DateTitleLeft = -12;
+                DateTitleLeft = 0;
                 DateTitlePosition = "relative";
-                DateTitleTop = 3;
+                DateTitleTop = 0;
                 DayRowColor = Color.DodgerBlue;
-                DayRowLeft = 0;
+                DayRowLeft = 0;                
                 DayButtonContainerLeft = 2;
-                DayRowTextColor = Color.GhostWhite;
+                DayRowTextColor = Color.White;
                 Height = 146;
                 HeightUnit = "px";
                 LabelClassName = "down4 right6"; // slightly different than GlobalDefaults.LabelClassName
@@ -648,6 +650,12 @@ namespace DataJuggler.Blazor.Components
                 NextMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRNextSmall.png";
                 PrevYearButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRFirstSmall.png";
                 PrevMonthButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/VCRPrevSmall.png";
+
+                // Adjust posions
+                PreviousYearButtonLeft = 12;
+                PreviousMonthButtonLeft = 12;
+                NextYearButtonLeft = 12;
+                NextMonthButtonLeft = 12;
             
                 // Setup the Component
                 SetupComponent();
@@ -886,10 +894,15 @@ namespace DataJuggler.Blazor.Components
                             // Left Side
                             YearSelectorLeft = -184;
                         }
+                        else if (YearSelectorAlignment == YearSelectorAlignmentEnum.OnRight)
+                        {
+                            // Right Side
+                            YearSelectorLeft = 226;
+                        }
                         else
                         {
-                            // Right Side or Custom
-                            YearSelectorLeft = 226;
+                            // On bottom
+                            YearSelectorLeft = 21;
                         }
                         
                         // Defaults to 40
@@ -1366,35 +1379,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CellWidthUnit
-            /// <summary>
-            /// This read only property returns the value of CellWidth + Unit
-            /// </summary>
-            public string CellWidthUnit
-            {
-
-                get
-                {
-                    // initial value
-                    string cellWidthPercent = CellWidth + Unit;
-
-                    // return value
-                    return cellWidthPercent;
-                }
-            }
-            #endregion
-
-            #region CellWidthStyle
-            /// <summary>
-            /// This property gets or sets the value for 'CellWidthStyle'.
-            /// </summary>            
-            public string CellWidthStyle
-            {
-                get { return cellWidthStyle; }
-                set { cellWidthStyle = value; }
-            }
-            #endregion
-            
             #region Children
             /// <summary>
             /// This property gets or sets the value for 'Children'.
@@ -1593,6 +1577,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DateTitleLeftStyle
+            /// <summary>
+            /// This read only property returns the value of DateTitleLeft + Unit
+            /// </summary>
+            public string DateTitleLeftStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string dateTitleLeftStyle = DateTitleLeft + Unit;
+
+                    // return value
+                    return dateTitleLeftStyle;
+                }
+            }
+            #endregion
+
             #region DateTitlePosition
             /// <summary>
             /// This property gets or sets the value for 'DateTitlePosition'.
@@ -1617,6 +1619,24 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DateTitleTopStyle
+            /// <summary>
+            /// This read only property returns the value of DateTitleTop + HeightUnit
+            /// </summary>
+            public string DateTitleTopStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string dateTitleTopStyle = DateTitleTop + HeightUnit;
+
+                    // return value
+                    return dateTitleTopStyle;
+                }
+            }
+            #endregion
+
             #region DayButtonContainerLeft
             /// <summary>
             /// This property gets or sets the value for 'DayButtonContainerLeft'.
@@ -1886,7 +1906,78 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
+
+            #region DayRowTextLeft
+            /// <summary>
+            /// This property gets or sets the value for 'DayRowTextLeft'.
+            /// </summary>
             
+            [Parameter]
+            public double DayRowTextLeft
+            {
+                get { return dayRowTextLeft; }
+                set { dayRowTextLeft = value; }
+            }
+            #endregion
+            
+            #region DayRowTextLeftStyle
+            /// <summary>
+            /// This read only property returns the value of DayRowTextLeft + Unit
+            /// </summary>
+            public string DayRowTextLeftStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string dayRowTextLeftStyle = DayRowTextLeft + Unit;                    
+                    // return value
+                    return dayRowTextLeftStyle;
+                }
+            }
+            #endregion
+
+            #region DayRowTextStyle
+            /// <summary>
+            /// This property gets or sets the value for 'DayRowTextStyle'.
+            /// </summary>
+            public string DayRowTextStyle
+            {
+                get { return dayRowTextStyle; }
+                set { dayRowTextStyle = value; }
+            }
+            #endregion
+
+            #region DayRowTextTop
+            /// <summary>
+            /// This property gets or sets the value for 'DayRowTextTop'.
+            /// </summary>
+            [Parameter]
+            public double DayRowTextTop
+            {
+                get { return dayRowTextTop; }
+                set { dayRowTextTop = value; }
+            }
+            #endregion
+            
+            #region DayRowTextTopStyle
+            /// <summary>
+            /// This read only property returns the value of DayRowTextTop + HeightUnit
+            /// </summary>
+            public string DayRowTextTopStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string dayRowTextTopStyle = DayRowTextTop + HeightUnit;
+                    
+                    // return value
+                    return dayRowTextTopStyle;
+                }
+            }
+            #endregion
+
             #region DayRowTop
             /// <summary>
             /// This property gets or sets the value for 'DayRowTop'.
@@ -1913,6 +2004,36 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return dayRowTopStyle;
+                }
+            }
+            #endregion
+
+            #region DayRowWidth
+            /// <summary>
+            /// This property gets or sets the value for 'DayRowWidth'.
+            /// </summary>
+            [Parameter]
+            public double DayRowWidth
+            {
+                get { return dayRowWidth; }
+                set { dayRowWidth = value; }
+            }
+            #endregion
+            
+            #region DayRowWidthStyle
+            /// <summary>
+            /// This read only property returns the value of DayRowWidth + Unit
+            /// </summary>
+            public string DayRowWidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string dayRowWidthStyle = DayRowWidth + Unit;
+                    
+                    // return value
+                    return dayRowWidthStyle;
                 }
             }
             #endregion
@@ -2093,14 +2214,14 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region HeaderRowColumnStyle
+            #region DayRowColumnStyle
             /// <summary>
-            /// This property gets or sets the value for 'HeaderRowColumnStyle'.
+            /// This property gets or sets the value for 'DayRowColumnStyle'.
             /// </summary>
-            public string HeaderRowColumnStyle
+            public string DayRowColumnStyle
             {
-                get { return headerRowColumnStyle; }
-                set { headerRowColumnStyle = value; }
+                get { return dayRowColumnStyle; }
+                set { dayRowColumnStyle = value; }
             }
             #endregion
             

@@ -13,8 +13,7 @@
     left: @CalendarLeftStyle;
     border-color: black;
     border-width: 1px;
-    border-style: solid;
-    background-color: white;
+    border-style: solid;    
     display: @CalendarDisplay;
     background-color: white;
     z-index: @ZIndexPlus1;   
@@ -69,14 +68,11 @@
     margin-left: 2px;
     margin-right: 2px;
 </Styled>
-<Styled @bind-Classname=@HeaderRowColumnStyle>
-    font-size: 10px;    
-    display: inline;    
-    text-align: center;
-    height: 16px;
+<Styled @bind-Classname=@DayRowColumnStyle>
     position: relative;
-    top: -2.4px;
-    text-align: center;
+    display: inline;
+    font-size: 10px;    
+    text-align: center;    
 </Styled>
 <Styled @bind-Classname=@RowStyle>        
     width: @WidthStyle;
@@ -88,17 +84,26 @@
     left: @RowLeftStyle;  
     text-align: source;
 </Styled>
-<Styled @bind-Classname=@DayRowStyle>
-    background-color: @DayRowColorName;
+<Styled @bind-Classname=@DayRowTextStyle>    
     color: @DayRowTextColorName;
+    font-size: 10px;
+    display: grid;
+    position: relative;
+    left: @DayRowTextLeftStyle;
+    top: @DayRowTextTopStyle;
+    grid-template-columns: repeat(7, 1fr);
+    width: 100%;
+    text-align: center;     
+    user-select: none;
+</Styled>
+<Styled @bind-Classname=@DayRowStyle>
+    background-color: @DayRowColorName;    
     width: @WidthStyle;
     height: @DayRowHeightStyle;
     z-index: @ZIndex;
     position: relative;    
     left: @DayRowLeftStyle;
-    top: @DayRowTopStyle;
-    text-align: center;
-    vertical-align: top;
+    top: @DayRowTopStyle;    
     clear: both;
 </Styled>
 <Styled @bind-Classname=@BottomRowStyle>
@@ -182,7 +187,8 @@
     margin: 0px;
     padding: 0px;
     position: relative;
-    top: 1px;
+    top: @DateTitleTopStyle;
+    left: @DateTitleLeftStyle;
     cursor: pointer;
 </Styled>
 <Styled @bind-Classname=@YearSelectorStyle>
@@ -255,12 +261,6 @@
     text-align: center;
     vertical-align: middle;
 </Styled>
-<Styled @bind-Classname=@CellWidthStyle>
-    min-width: @CellWidthUnit;
-    width: @CellWidthUnit;
-    max-width: @CellWidthUnit;
-    text-align: center;
-</Styled>
 <Styled @bind-Classname=@CellWidth2Style>
     min-width: @DayButtonWidth;
     width: @DayButtonWidthStyle;
@@ -301,31 +301,15 @@
     </table>
     <div class="@CalendarStyle">
         <div class="@DayRowStyle">            
-            <table class="positionrelative up2">
-                <tr>                    
-                    <td class="@CellWidthStyle">
-                        <span class="@HeaderRowColumnStyle"><span class="">Sun</span></span>
-                    </td>
-                    <td class="@CellWidthStyle">
-                        <span class="@HeaderRowColumnStyle"><span class="">Mon</span></span>
-                    </td>
-                    <td class="@CellWidthStyle">
-                        <span class="@HeaderRowColumnStyle"><span class="">Tue</span></span>
-                    </td>
-                    <td class="@CellWidthStyle">
-                        <span class="@HeaderRowColumnStyle"><span class="">Wed</span></span>
-                    </td>
-                    <td class="@CellWidthStyle">
-                        <span class="@HeaderRowColumnStyle"><span class="">Thu</span></span>
-                    </td>
-                    <td class="@CellWidthStyle">
-                        <span class="@HeaderRowColumnStyle"><span class="">Fri</span></span>
-                    </td>
-                    <td class="@CellWidthStyle">
-                        <span class="@HeaderRowColumnStyle"><span class="">Sat</span></span>
-                    </td>
-                </tr>
-            </table>
+            <div class="@DayRowTextStyle">
+                <div>Sun</div>
+                <div class="left1">Mon</div>
+                <div class="left2">Tue</div>
+                <div class="left3">Wed</div>
+                <div class="left4">Thu</div>
+                <div class="left4">Fri</div>
+                <div class="left4">Sat</div>
+            </div>
         </div>
         @if (ListHelper.HasOneOrMoreItems(Dates))
         {  
@@ -374,20 +358,20 @@
                         <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="3" HeightUnit="px" Height="8"
                                     Unit="px" Width="8" Name="PrevMonthButton" Position="relative" Title="Move back one month."
-                                    Left="@PreviousMonthButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                    Left="@PreviousYearButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>                        
                         <td class="textdonotwrap" width="80">
                             @if (AllowYearSelector)
-                            {
-                                <button @onclick="ToggleYearSelector" class="@YearSelectorButtonStyle cursorpointer textaligncenter left8">@DateTitle</button>
+                            {  
+                                <button @onclick="ToggleYearSelector" class="@YearSelectorButtonStyle cursorpointer textaligncenter">@DateTitle</button>                                
                             }
                             else
                             {
-                                <Label FontSize=@BottomRowFontSize FontName="@BottomRowFontName"
+                                <Label FontSize=@BottomRowFontSize FontName="@BottomRowFontName" TextAlign="center"
                                     TextColor="Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
                                     Width="64" Height="12" Text="@DateTitle" Position="@DateTitlePosition" 
-                                    Left="@dateTitleLeft" Top="@DateTitleTop"></Label>
+                                    Left="@DateTitleLeft" Top="@DateTitleTop"></Label>
                             }
                         </td>
                         <td width="34">

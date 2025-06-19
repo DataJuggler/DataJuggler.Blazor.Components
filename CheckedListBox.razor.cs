@@ -216,6 +216,8 @@ namespace DataJuggler.Blazor.Components
                 // Defaults
                 CheckBoxHeight = 20;
                 CheckBoxWidth = 20;
+                CheckBoxTextXPosition = 3.2;
+                CheckBoxTextYPosition = -3.2;
                 Left = 0;
                 Top = 0;
                 Unit = "px";
@@ -227,7 +229,7 @@ namespace DataJuggler.Blazor.Components
                 Items = new List<Item>();
                 ListItemPosition = "relative";
                 ListItemBackgroundColor = Color.White;
-                listItemMarginBottom = 2; // A little space between items
+                listItemMarginBottom = 0;
                 ListBackgroundColor = Color.White;
                 ListItemClassName = "textdonotwrap";
                 ZIndex = 40;
@@ -1218,7 +1220,7 @@ namespace DataJuggler.Blazor.Components
                     // if visible
                     if (visible)
                     {
-                        DisplayStyle = "flex";
+                        DisplayStyle = "block";
                     }
                     else
                     {

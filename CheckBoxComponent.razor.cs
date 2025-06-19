@@ -45,6 +45,7 @@ namespace DataJuggler.Blazor.Components
         private string column1Style;
         private double column2Width;
         private string column2Style;
+        private double controlHeight;
         private string display;
         private bool enabled;
         private int externalId;
@@ -98,21 +99,25 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
+                // Units have to be first
+                HeightUnit = "px";
+                Unit = "px";
+
                 // Default Values
                 BackgroundColor = "transparent";                
                 BorderColor = Color.Gray;
                 BorderWidth = 1;
                 Caption = "";
-                CheckBoxTextXPosition = -1;
-                CheckBoxTextYPosition = -1;
+                CheckBoxTextXPosition = 0;
+                CheckBoxTextYPosition = -2;
                 CheckBoxXPosition = -4;
                 CheckBoxYPosition = 1;
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
+                ControlHeight = 22;
                 Display = "inline-block";
                 Enabled = true;                
-                Height = 22;                
-                HeightUnit = "px";
+                Height = 16;
                 InputType = "checkbox";                
                 LabelBackgroundColor = "transparent";
                 LabelClassName = GlobalDefaults.LabelClassName;
@@ -126,7 +131,7 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";                
                 Text = "";
                 Top = 0;
-                Unit = "px";
+                
                 Visible = true;
                 Width = 80;             
             }
@@ -511,6 +516,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ControlHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ControlHeight'.
+            /// </summary>
+            [Parameter]
+            public double ControlHeight
+            {
+                get { return controlHeight; }
+                set { controlHeight = value; }
+            }
+            #endregion
+            
+            #region ControlHeightStyle
+            /// <summary>
+            /// This read only property returns the value of ControlHeightJ + HeightUnit
+            /// </summary>
+            public string ControlHeightStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string controlHeightStyle = ControlHeight + HeightUnit;
+                    
+                    // return value
+                    return controlHeightStyle;
+                }
+            }
+            #endregion
+
             #region Display
             /// <summary>
             /// This property gets or sets the value for 'Display'.

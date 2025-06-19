@@ -67,6 +67,7 @@ namespace DataJuggler.Blazor.Components
         private double left;
         private string leftStyle;
         private Color listBackgroundColor;
+        private double listBorderWidth;
         private string listContainerPosition;
         private double listItemHeight;
         private string listItemClassName;
@@ -454,8 +455,8 @@ namespace DataJuggler.Blazor.Components
                 CheckBoxHeight = 20;
                 CheckBoxWidth = 20;
                 CheckBoxTextXPosition = -1;
-                checkBoxTextYPosition = -1;
-                checkedListheight = 64;
+                CheckBoxTextYPosition = -1;
+                CheckedListheight = 64;
                 CheckedListPosition = "absolute";                
                 CheckedListWidth = 120;                
                 Children = new List<IBlazorComponent>();
@@ -1118,32 +1119,7 @@ namespace DataJuggler.Blazor.Components
         #endregion
             
         #region Properties
-                
-            #region ActualVisualCount
-            /// <summary>
-            /// This read only property returns the value of ActualVisualCount from the object VisibleCount.
-            /// </summary>
-            public int ActualVisualCount
-            {
-
-                get
-                {
-                    // initial value
-                    int actualVisualCount = VisibleCount;
-
-                    // if not loaded yet, don't use the real value
-                    if (!Loaded)
-                    {
-                        // Set to goose egg (don't show scroll bar)
-                        actualVisualCount = 0;
-                    }
-                    
-                    // return value
-                    return actualVisualCount;
-                }
-            }
-            #endregion
-
+            
             #region Button
             /// <summary>
             /// This property gets or sets the value for 'Button'.
@@ -2538,6 +2514,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
            
+            #region ListBorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'ListBorderWidth'.
+            /// </summary>
+            [Parameter]
+            public double ListBorderWidth
+            {
+                get { return listBorderWidth; }
+                set { listBorderWidth = value; }
+            }
+            #endregion
+            
+            #region ListBorderWidthStyle
+            /// <summary>
+            /// This read only property returns the value of ListBorderWidth + Unit
+            /// </summary>
+            public string ListBorderWidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string listBorderWidthStyle = ListBorderWidth + Unit;
+
+                    // return value
+                    return listBorderWidthStyle;
+                }
+            }
+            #endregion
+
             #region ListContainerHeight
             /// <summary>
             /// This property gets or sets the value for 'ListContainerHeight'.

@@ -34,7 +34,7 @@
     color: @ListItemTextColorName;
     left: @ListItemLeftStyle;
     top: @ListItemTopStyle;    
-    border-width: 1px;
+    border-width: @ListBorderWidthStyle;
     border-color: gray;
     border-style: solid;
     overflow-y: @OverflowY;
@@ -133,7 +133,7 @@
             <div class="@ListItemContainer @DropdownClassName">
                 @if (Loaded)
                 {
-                    <select class="form-control" name="ListBox" size="@ActualVisualCount"
+                    <select class="form-control border0" name="ListBox" size="@VisibleCount"
                             id="ComboBoxListBox" @onchange="SelectionChanged">
                         @foreach (Item item in Items)
                         {

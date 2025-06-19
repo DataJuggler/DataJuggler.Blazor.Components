@@ -1,5 +1,9 @@
 News
 
+6.18.2025: Version 9.16.0 - I cleaned up a bunch of things. The ComboBox, CheckedListBox and Calendar all
+had pretty major updates. I probably broke a few things, but I have a new Visual Studio Toolbar coming to 
+make it easier to create and wire up components. Hopefully as soon as this weekend.
+
 6.16.2025: Breaking Change!!!! - There are 6 components in this library that have the property LabelColor.
                   
 CalendarComponent, CheckBoxComponent, ComboBox, TextBoxComponent, TimeComponent, ToggleComponent

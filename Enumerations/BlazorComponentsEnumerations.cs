@@ -171,7 +171,7 @@ namespace DataJuggler.Blazor.Components.Enumerations
     {
         OnRight = 0,
         OnLeft = 1,
-        Custom = 2
+        OnBotton = 2
     }
     #endregion
 

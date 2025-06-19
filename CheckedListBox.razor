@@ -3,8 +3,6 @@
 <Styled @bind-Classname=@CheckedlistboxStyle>
     background-color: @ListBackgroundColor.Name;
     display: @DisplayStyle;    
-    flex-direction: column;
-    gap: @ListItemMarginBottomStyle;
     font-size: @FontSizeStyle;
     height: @HeightStyle;
     min-height: @HeightStyle;
@@ -28,8 +26,10 @@
     color: @ListItemTextColorName;
     font-family: Calibri;
     font-size: @FontSizeStyle;
+    gap: @ListItemMarginBottomStyle;
     height: @ListItemHeightStyle;
     left: @ListItemLeftStyle;
+    line-height:@ListItemHeightStyle;
     margin-bottom: 0;
     max-height: @ListItemHeightStyle;
     padding-bottom: 0;
@@ -45,27 +45,22 @@
     clear: both;
 </Styled>
 
-<div class="@CheckedlistboxStyle" tabindex="0" @onblur="HandleOnBlur">
-    <table class="@ClassName" width="@Width" height="@Height">
-        @if (HasItems)
-        {  
-            @foreach (Item item in Items)
-            {
-                <tr>
-                    <td width="@ListItemWidth" height="@ListItemHeight">
-                        <div class="@ListitemStyle">
-                            <CheckBoxComponent Parent="this" Name="@item.Id.ToString()" Unit="@Unit"                                
-                                Column1Width="@LabelWidth" Column2Width="@Width" CheckBoxValue="@item.ItemChecked"
-                                HeightUnit="@HeightUnit" CheckBoxXPosition="@CheckBoxXPosition"
-                                Height="@CheckBoxHeight" Width="@CheckBoxWidth"
-                                CheckBoxYPosition="@CheckBoxYPosition" ClassName="@ListItemClassName"
-                                CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
-                                Text="@item.Text" ExternalId="@item.Id" BackgroundColor="@ListItemBackgroundColor.Name">
-                            </CheckBoxComponent>
-                        </div>
-                    </td>
-                </tr>
-            }
+<div class="@CheckedlistboxStyle">
+    @if (HasItems)
+    {
+        @foreach (Item item in Items)
+        {
+            <div class="@ListitemStyle">
+                <CheckBoxComponent Parent="this" Name="@item.Id.ToString()"
+                    Unit="@Unit" HeightUnit="@HeightUnit"
+                    Column1Width="@LabelWidth" Column2Width="@Width" CheckBoxValue="@item.ItemChecked"
+                    CheckBoxXPosition="@CheckBoxXPosition" CheckBoxYPosition="@CheckBoxYPosition"
+                    CheckBoxTextXPosition="@CheckBoxTextXPosition" CheckBoxTextYPosition="@CheckBoxTextYPosition"
+                    Height="@CheckBoxHeight" Width="@CheckBoxWidth" ControlHeight="@ListItemHeight"
+                    ClassName="@ListItemClassName" Text="@item.Text" ExternalId="@item.Id"
+                    BackgroundColor="@ListItemBackgroundColor.Name">
+                </CheckBoxComponent>
+            </div>
         }
-    </table>
+    }
 </div>
