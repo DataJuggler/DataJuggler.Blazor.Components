@@ -635,7 +635,7 @@ namespace DataJuggler.Blazor.Components
                 TextBoxTop = 2;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Theme = ThemeEnum.BlueGold;
-                Top = 4; // will monitor this
+                Top = 0;
                 Left = 0;
                 Unit = "px";
                 Width = 228;
