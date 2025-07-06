@@ -1,5 +1,35 @@
 News
 
+Request: This project has been stuck on 9 stars for a long time. 
+Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
+
+7.6.2025: I created a new SaveCancelComponent. You can either set ImageUrl, which will
+set botht the CancelButton and SaveButton to the same image, or you can use a different image
+by setting SaveButtonImageUrl or CancelButtonImageUrl. There is also a Text property or
+you can select a Theme which will set both buttons. Here is the list of Themes so far.
+
+    public enum ButtonThemeEnum : int
+    {
+        NotSet = 0,
+        BlackButton = 1,
+        BlackButtonWide = 2,        
+        OrangeStone = 3,
+        PurpleStone = 4,
+        RedGlass = 5,
+        TanButton = 6,
+        BlueButton = 7
+    }
+
+    <SaveCancelComponent Name="SaveCancel" Parent=this
+        Left="0" Top="0" ButtonTheme=@ButtonThemeEnum.BlackButton
+        OnSavedCallback="@OnSave" OnCancelledCallback="@OnCancel"
+        SaveButtonleft="-8" FontSize="16">
+    </SaveCancelComponent>
+
+I am also very close to releasing a new feature to my Visual Studio package Regionizer 2022.
+I added a new Blazor Templates Form, and you will soon be able to click a button and add 
+new components to a form and wire up all the code. It's pretty cool.
+
 7.2.2025: Hopefully no one is upsert, but I have another minor breaking change. I refactored any property
 called TextColor that was a string to be a System.Drawing.Color. I am trying to be consistent. Half were strings
 and half were Colors, so I went with Colors. Forgive me. Something cool is coming for UI Biulding and its not AI
