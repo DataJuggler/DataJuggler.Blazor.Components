@@ -108,6 +108,11 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {  
+                // Units must be first
+                Unit = "px";
+                HeightUnit = "px";
+                Position = "relative";
+
                 // Defaults - adjust as needed
                 BackgroundColor = Color.Transparent;
                 BorderColor = Color.Transparent;
@@ -117,12 +122,10 @@ namespace DataJuggler.Blazor.Components
                 position = "relative";
                 Height = 24;
                 Width = 160;
-                CircleHeight = 12;
-                CircleWidth = 12;                
+                LabelClassName = "textalignright down4 right2";
+                NotifyParentOnChange = true;
                 ZIndex = 20;
                 On = true;
-                Unit = "px";
-                HeightUnit = "px";
 
                 // The end of the oval have their own width
                 OvalEndWidth = 16;
@@ -134,9 +137,11 @@ namespace DataJuggler.Blazor.Components
                 OvalBackgroundColorOn = Color.CornflowerBlue;
                 OvalBackgroundColorOff = Color.Gray;
                 
-                // Default On or Off positions
-                CircleColorOn = Color.Empty;
-                CircleColorOff = Color.Empty;
+                // Circle
+                CircleHeight = 12;
+                CircleWidth = 12; 
+                CircleColorOn = Color.GhostWhite;
+                CircleColorOff = Color.GhostWhite;
                 CircleColor = Color.GhostWhite;
                 CircleLeftOff = -35;
                 CircleLeftOn = -14;

@@ -3,6 +3,7 @@
 @using DataJuggler.Blazor.Components.Enumerations
 @using DataJuggler.Blazor.Components.Objects
 @using BlazorStyled
+@using System.Drawing
 
 
 <Styled @bind-Classname=@CalendarStyle>    
@@ -369,7 +370,7 @@
                             else
                             {
                                 <Label FontSize=@BottomRowFontSize FontName="@BottomRowFontName" TextAlign="center"
-                                    TextColor="Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
+                                    TextColor="Color.Black" ClassName="textaligncenter colorblack width80 textdonotwrap fontbold"
                                     Width="64" Height="12" Text="@DateTitle" Position="@DateTitlePosition" 
                                     Left="@DateTitleLeft" Top="@DateTitleTop"></Label>
                             }

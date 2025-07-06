@@ -168,8 +168,8 @@ namespace DataJuggler.Blazor.Components
                 CaptionTextAlign = TextAlignmentEnum.Right;
                 
                 // Default                
-                FontSize = GlobalDefaults.TextBoxFontSize;
-                FontName = GlobalDefaults.TextBoxFontName;
+                FontSize = GlobalDefaults.FontSize;
+                FontName = GlobalDefaults.FontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelFontName = GlobalDefaults.LabelFontName;
 
@@ -180,8 +180,8 @@ namespace DataJuggler.Blazor.Components
                 TextBoxTop = -2;
                 HoursTextBoxLeft = 24;
                 MinutesTextBoxLeft = 0;
-                HoursTextBoxWidth = 24; // Will Set MinutesTextBoxLeft
-                MinutesTextBoxWidth = HoursTextBoxWidth;
+                HoursTextBoxWidth = 20;
+                MinutesTextBoxWidth = 20;
                 Left = 0;                
                 LabelLeft = 0;
                 LabelTop = 3;

@@ -43,6 +43,20 @@ namespace DataJuggler.Blazor.Components
             public const int Column3Width = 24;
             #endregion
 
+            #region FontSize
+            /// <summary>
+            /// This property returns the Default Font Size for Labels
+            /// </summary>
+            public const double FontSize = 14;
+            #endregion
+
+            #region FontName
+            /// <summary>
+            /// This property returns the Default Font Name for Labels
+            /// </summary>
+            public const string FontName = "Calibri";
+            #endregion
+
             #region LabelClassName
             /// <summary>
             /// A default LabelClassName
@@ -82,7 +96,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This is the default ListZIndex
             /// </summary>
-            public const int ListZIndex = 80;
+            public const int ListZIndex = 1201;
             #endregion
 
             #region TextBoxFontName
@@ -104,6 +118,13 @@ namespace DataJuggler.Blazor.Components
             /// The default Width for TextBoxes
             /// </summary>
             public const double TextBoxWidth = 140;
+            #endregion
+
+            #region ZIndex
+            /// <summary>
+            /// The default ZIndex
+            /// </summary>
+            public const int ZIndex = 80;
             #endregion
             
         #endregion

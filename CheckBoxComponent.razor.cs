@@ -34,11 +34,11 @@ namespace DataJuggler.Blazor.Components
         private string checkBoxControlStyle;
         private string checkBoxStyle;
         private bool checkBoxValue;
-        private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;
-        private double checkBoxXPosition;
+        private double checkBoxTextX;
+        private double checkBoxTextY;
+        private double checkBoxX;
         private string checkBoxXStyle;
-        private double checkBoxYPosition;
+        private double checkBoxY;
         private string checkBoxYStyle;
         private string className;
         private double column1Width;
@@ -108,10 +108,11 @@ namespace DataJuggler.Blazor.Components
                 BorderColor = Color.Gray;
                 BorderWidth = 1;
                 Caption = "";
-                CheckBoxTextXPosition = 0;
-                CheckBoxTextYPosition = -2;
-                CheckBoxXPosition = -4;
-                CheckBoxYPosition = 1;
+                CheckBoxTextX = 2;
+                CheckBoxTextY = 0;
+                CheckBoxX = 6;
+                CheckBoxY = 7;
+                ClassName = "";
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
                 ControlHeight = 22;
@@ -131,9 +132,8 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";                
                 Text = "";
                 Top = 0;
-                
-                Visible = true;
-                Width = 80;             
+                Width = 16;             
+                Visible = true;                
             }
             #endregion
             
@@ -284,62 +284,62 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxTextXPosition
+            #region CheckBoxTextX
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextXPosition'.
+            /// This property gets or sets the value for 'CheckBoxTextX'.
             /// </summary>
             [Parameter]
-            public double CheckBoxTextXPosition
+            public double CheckBoxTextX
             {
-                get { return checkBoxTextXPosition; }
-                set { checkBoxTextXPosition = value; }
+                get { return checkBoxTextX; }
+                set { checkBoxTextX = value; }
             }
             #endregion
             
-            #region CheckBoxTextXPositionStyle
+            #region CheckBoxTextXStyle
             /// <summary>
-            /// This read only property returns the value of CheckBoxTextXPositionStyle from the object CheckBoxTextXPosition.
+            /// This read only property returns the value of CheckBoxTextXStyle from the object CheckBoxTextX.
             /// </summary>
-            public string CheckBoxTextXPositionStyle
+            public string CheckBoxTextXStyle
             {
                 
                 get
                 {
                     // initial value
-                    string checkBoxTextXPositionStyle = CheckBoxTextXPosition + Unit;
+                    string checkBoxTextXStyle = CheckBoxTextX + Unit;
                     
                     // return value
-                    return checkBoxTextXPositionStyle;
+                    return checkBoxTextXStyle;
                 }
             }
             #endregion
             
-            #region CheckBoxTextYPosition
+            #region CheckBoxTextY
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextYPosition'.
+            /// This property gets or sets the value for 'CheckBoxTextY'.
             /// </summary>
             [Parameter]
-            public double CheckBoxTextYPosition
+            public double CheckBoxTextY
             {
-                get { return checkBoxTextYPosition; }
-                set { checkBoxTextYPosition = value; }
+                get { return checkBoxTextY; }
+                set { checkBoxTextY = value; }
             }
             #endregion
             
-            #region CheckBoxTextYPositionStyle
+            #region CheckBoxTextYStyle
             /// <summary>
-            /// This read only property returns the value of CheckBoxTextYPositionStyle from the object CheckBoxTextYPosition.
+            /// This read only property returns the value of CheckBoxTextYStyle from the object CheckBoxTextY.
             /// </summary>
-            public string CheckBoxTextYPositionStyle
+            public string CheckBoxTextYStyle
             {
                 
                 get
                 {
                     // initial value
-                    string checkBoxTextYPositionStyle = CheckBoxTextYPosition + HeightUnit;
+                    string checkBoxTextYStyle = CheckBoxTextY + HeightUnit;
                     
                     // return value
-                    return checkBoxTextYPositionStyle;
+                    return checkBoxTextYStyle;
                 }
             }
             #endregion
@@ -374,21 +374,21 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxXPosition
+            #region CheckBoxX
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxXPosition'.
+            /// This property gets or sets the value for 'CheckBoxX'.
             /// </summary>
             [Parameter]
-            public double CheckBoxXPosition
+            public double CheckBoxX
             {
-                get { return checkBoxXPosition; }
+                get { return checkBoxX; }
                 set 
                 { 
                     // set the value
-                    checkBoxXPosition = value;
+                    checkBoxX = value;
 
                     // set the headerStyle value
-                    checkBoxXStyle = checkBoxXPosition + Unit;
+                    checkBoxXStyle = checkBoxX + Unit;
                 }
             }
             #endregion
@@ -404,21 +404,21 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxYPosition
+            #region CheckBoxY
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxYPosition'.
+            /// This property gets or sets the value for 'CheckBoxY'.
             /// </summary>
             [Parameter]
-            public double CheckBoxYPosition
+            public double CheckBoxY
             {
-                get { return checkBoxYPosition; }
+                get { return checkBoxY; }
                 set 
                 {
                     // set the value
-                    checkBoxYPosition = value;
+                    checkBoxY = value;
 
                     // Set the checkBoxYStyle
-                    checkBoxYStyle = checkBoxYPosition + HeightUnit;
+                    checkBoxYStyle = checkBoxY + HeightUnit;
                 }
             }
             #endregion

@@ -8,7 +8,7 @@ using System.Timers;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Enumerations;
 using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 
 #endregion
 
@@ -53,7 +53,7 @@ namespace DataJuggler.Blazor.Components
         private int extraPercent;
         private int closeAtExtraPercent;
         private bool clientHandledIncrement;
-        private string textColor;
+        private Color textColor;
         private string textColorStyle;
         private SizeEnum size;
         private ColorEnum color;
@@ -92,9 +92,6 @@ namespace DataJuggler.Blazor.Components
                         // Set the CurrentValue
                         if ((this.Percent <= Max) && (Increment >= 0))
                         {
-                            // test only
-                            string textColor = TextColor;
-
                             // Increase the value
                             this.Percent += this.Increment;
 
@@ -237,7 +234,7 @@ namespace DataJuggler.Blazor.Components
                     if (!dontSetTextColor)
                     {
                         // Set the TextColor
-                        TextColor = "Green";
+                        TextColor = System.Drawing.Color.Green;
                     }
                 }
                 else if (Color == ColorEnum.Orange)
@@ -249,7 +246,7 @@ namespace DataJuggler.Blazor.Components
                     if (!dontSetTextColor)
                     {
                         // Set the TextColor
-                        TextColor = "Orange";
+                        TextColor = System.Drawing.Color.Orange;
                     }
                 }
                 else
@@ -260,7 +257,7 @@ namespace DataJuggler.Blazor.Components
                     if (!dontSetTextColor)
                     {
                         // Set the TextColor
-                        TextColor = "RoyalBlue";
+                        TextColor = System.Drawing.Color.RoyalBlue;
                     }
                 }
 
@@ -547,7 +544,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    bool hasTextColor = (!String.IsNullOrEmpty(this.TextColor));
+                    bool hasTextColor = TextColor != System.Drawing.Color.Empty;
                     
                     // return value
                     return hasTextColor;
@@ -774,7 +771,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'TextColor'.
             /// </summary>
             [Parameter]
-            public string TextColor
+            public Color TextColor
             {
                 get { return textColor; }
                 set { textColor = value; }

@@ -29,8 +29,7 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private Color buttonBorderColor;
         private double buttonBorderWidth;
-        private bool allowYearSelector;
-        private List<IBlazorComponent> children;
+        private bool allowYearSelector;        
         private string name;
         private IBlazorComponentParent parent;
         private bool expanded;
@@ -349,17 +348,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method Find Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                // return the child by name
-                return ComponentHelper.FindChildByName(Children, name);
-            }
-            #endregion
-
             #region GetNextMonthDays()
             /// <summary>
             /// returns the Next Month Days
@@ -573,9 +561,6 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // Create a new collection of 'IBlazorComponent' objects.
-                Children = new List<IBlazorComponent>();
-
                 // Get the current date
                 DateTime now = DateTime.Now;
 
@@ -586,18 +571,19 @@ namespace DataJuggler.Blazor.Components
                 Caption = "Date:";
 
                 // Set Defaults
+                AllowYearSelector = false;
                 ButtonBorderColor = Color.Black;
                 ButtonBorderWidth = 1;
                 BottomNavButtonTop = 2;
                 BottomRowBottom = 3;
-                BottomRowClassName = "right12 up4 width220";
+                BottomRowClassName = "right12 up4 width220";                
                 BottomRowFontName = "Calibri";
                 BottomRowFontSize = 11;
                 BottomRowFontWeight = "bold";
                 BottomRowLeft = -8;
                 BottomRowPosition = "absolute";
                 ButtonHeight = 22;
-                ButtonLeft = 4;
+                ButtonLeft = 5;
                 ButtonTop = 0;
                 ButtonWidth = 24;
                 CalendarLeft = 300;
@@ -616,9 +602,10 @@ namespace DataJuggler.Blazor.Components
                 DayRowLeft = 0;                
                 DayButtonContainerLeft = 2;
                 DayRowTextColor = Color.White;
+                FontSize = GlobalDefaults.LabelFontSize;
                 Height = 146;
                 HeightUnit = "px";
-                LabelClassName = "down4 right6"; // slightly different than GlobalDefaults.LabelClassName
+                LabelClassName = "down4 right6";
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
@@ -635,14 +622,14 @@ namespace DataJuggler.Blazor.Components
                 TextBoxTop = 2;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Theme = ThemeEnum.BlueGold;
-                Top = 0;
+                Top = 4;
                 Left = 0;
                 Unit = "px";
                 Width = 228;
                 YearButtonTextColor = Color.Black;
                 YearButtonTextColorSelected = Color.White;
                 YearButtonWidth = 24;
-                YearSelectorAlignment = YearSelectorAlignmentEnum.OnRight;
+                YearSelectorAlignment = YearSelectorAlignmentEnum.OnBottom;
                 ZIndex = 400;
                 
                 // Buttons
@@ -1376,17 +1363,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return cellWidth2Style; }
                 set { cellWidth2Style = value; }
-            }
-            #endregion
-            
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
             }
             #endregion
             

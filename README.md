@@ -1,5 +1,13 @@
 News
 
+7.2.2025: Hopefully no one is upsert, but I have another minor breaking change. I refactored any property
+called TextColor that was a string to be a System.Drawing.Color. I am trying to be consistent. Half were strings
+and half were Colors, so I went with Colors. Forgive me. Something cool is coming for UI Biulding and its not AI
+it's me!
+
+6.20.2025: Version 9.16.2: Small breaking change. I delted FontUnit from the CheckedListBox. I was using FontSize + FontUnit
+but FontSize + Unit is enough control. Too confusing having more than two units.
+
 6.18.2025: Version 9.16.0 - I cleaned up a bunch of things. The ComboBox, CheckedListBox and Calendar all
 had pretty major updates. I probably broke a few things, but I have a new Visual Studio Toolbar coming to 
 make it easier to create and wire up components. Hopefully as soon as this weekend.
@@ -467,11 +475,11 @@ New video coming soon.
 
 Here is the css you must put in the client project that uses the ComboBox. Notice line 3 DropDownClassName
 
-    .container2
+Update 6.22.2025: This class has been added to DataJuggler.Blazor.Components.css file.
+
+    .combobox-container
     {
-        position: absolute;
-        width: 120px;
-        height: 80px;        
+        position: absolute;               
     }
 
 Feel free to adjust the height and width as needed. The position absolute is the key to the Drop Down showing, without
@@ -481,11 +489,11 @@ moving other content (spent a while on this). Border1Gray is shown below.
 
     <ComboBox Name="TargetFrameworkComboBox" Theme=ThemeEnum.Blue Unit="px" HeightUnit="px" Height="32"
         LabelText="Target:" Width="224" Parent="this" ButtonHeight=24 ButtonWidth=24 
-        CheckedListClassName="container border1gray textdonotwrap" TextBoxLeft="1" ButtonTop=-5 ButtonLeft=-4
+        CheckedListClassName="combobox-container border1gray textdonotwrap" TextBoxLeft="1" ButtonTop=-5 ButtonLeft=-4
         Column2Width="128" Position="relative" Top="4" LabelClassName="down4 right2" TextBoxWidth="124" 
         CheckListMode=true CheckedListUnit="vw" CheckedListHeightUnit="vh" CheckedListheight="4" ListItemHeight="2.4"
         CheckedListItemLeft="2" CheckedListItemTop=1 ListItemBackgroundColor=Color.White
-        CheckBoxXPosition="-3.2" CheckBoxYPosition=".4" CheckBoxTextXPosition="-3"  CheckBoxTextYPosition="0" 
+        CheckBoxX="-3.2" CheckBoxY=".4" CheckBoxTextX="-3"  CheckBoxTextY="0" 
         CheckedListWidth=8 CheckedListTop="24" CheckedListLeft="48" ListItemWidth=10>
     </ComboBox>
 
@@ -517,7 +525,7 @@ to making the Z-Index work. I tried using an internal CSS Class, and haven't had
         left: 0vw;
         overflow: visible !important;
         z-index: 200 !important;
-        background-color: white;
+        background-color: white;    
     }
 
 5.1.2024: I added a ZIndex property to the Calendar. If you have two calendar components near each other, the first one can't type.

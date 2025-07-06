@@ -101,10 +101,11 @@ namespace DataJuggler.Blazor.Components
                 HeightUnit = "px";
                 BorderWidth = 0;
                 BorderColor = Color.Black;
-                Width = 200;
-                Height = 200;
+                Width = 64;
+                Height = 64;
                 Left = 0;
                 Top = 0;
+                TextColor = Color.Black;
                 ZIndex = 5;
                 Visible = true;
                 Position = "relative";

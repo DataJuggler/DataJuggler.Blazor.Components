@@ -33,6 +33,24 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
+    #region enum ButtonThemeEnum : int
+    /// <summary>
+    /// This enumeration is used by the SaveCancelComponent to 
+    /// allow setting button Image Url's by selecting a theme.
+    /// </summary>
+    public enum ButtonThemeEnum : int
+    {
+        NotSet = 0,
+        BlackButton = 1,
+        BlackButtonWide = 2,        
+        OrangeStone = 3,
+        PurpleStone = 4,
+        RedGlass = 5,
+        TanButton = 6,
+        BlueButton = 7
+    }
+    #endregion
+
     #region ColorEnum : int
     /// <summary>
     /// This enum is used to set which type of images to show.
@@ -81,6 +99,20 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
+    #region SaveCancelResultEnum : int
+    /// <summary>
+    /// This enum is used by the SaveCancelControl. This result 
+    /// will get sent to the parent
+    /// </summary>
+    public enum SaveCancelResultEnum : int
+    {
+        SaveAborted = -2, // Doesn't validate
+        SaveFailed = -1,    // Database Error
+        Cancelled = 0,      // User clicked Cancel
+        SaveSuccess = 1  // Saved to database or completed
+    }
+    #endregion
+
     #region SizeEnum : int
     /// <summary>
     /// This enum is used to set which size to render the progress bar.
@@ -106,23 +138,6 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
-    #region TextSizeEnum : int
-    /// <summary>
-    /// This enum is used to set which size to render the progress bar.
-    /// There is also a Scale property which can be used in conjunction.
-    /// </summary>
-    public enum TextSizeEnum : int
-    {
-        Extra_Small = 1,
-        Small = 2,
-        SmallMedium = 3,
-        Medium = 4,
-        MediumLarge = 5,
-        Large = 6,
-        Extra_Large = 7
-    }
-    #endregion
-    
     #region ThemeEnum : int
     /// <summary>
     /// This enum is used to set which type of images to show.
@@ -171,7 +186,7 @@ namespace DataJuggler.Blazor.Components.Enumerations
     {
         OnRight = 0,
         OnLeft = 1,
-        OnBotton = 2
+        OnBottom = 2
     }
     #endregion
 

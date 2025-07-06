@@ -112,15 +112,15 @@ namespace DataJuggler.Blazor.Components
         private double checkedListLeft;
         private double checkedListTop;
         private string checkedListClassName;
-        private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;        
+        private double checkBoxTextX;
+        private double checkBoxTextY;        
         private string checkedListPosition;
         private string checkedListUnit;
         private string checkedListHeightUnit;
         private double textBoxHeight;
         private string labelUnit;
-        private double checkBoxXPosition;
-        private double checkBoxYPosition;
+        private double checkBoxX;
+        private double checkBoxY;
         private string containerStyle;
         private double controlWidth;
         private double controlHeight;
@@ -129,7 +129,7 @@ namespace DataJuggler.Blazor.Components
         private string textBoxFontName;
         private string fontName;
         private bool showButton;
-        private string dropDownZIndex;
+        private int dropDownZIndex;
         private string overflowX;
         private string overflowY;
         private bool loaded;
@@ -437,58 +437,69 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // Default to 30% for the label, the rest goes to the ComboBox
+                // Default to blueGold now
                 Theme = ThemeEnum.BlueGold;
     
                 // Units First
                 Unit = "px";
                 LabelUnit = "px";
                 HeightUnit = "px";
+                CheckedListUnit = "px";
+                CheckedListHeightUnit = "px";
                 ButtonBorderColor = Color.Black;
-                ButtonBorderWidth = 0;
+                ButtonBorderWidth = 1;
                 ButtonHeight = 24;
-                ButtonLeft = -ButtonWidth - 1;
+                ButtonLeft = 8;
                 ButtonPosition = "relative";
-                ButtonTop = 1;
+                ButtonTop = 0;
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
-                CheckBoxHeight = 20;
-                CheckBoxWidth = 20;
-                CheckBoxTextXPosition = -1;
-                CheckBoxTextYPosition = -1;
-                CheckedListheight = 64;
+                CheckBoxHeight = 16;
+                CheckBoxWidth = 16;
+                CheckBoxTextX = 16;
+                CheckBoxTextY = 0;
+                CheckBoxX = 0;
+                CheckBoxY = 2;
+                CheckedListClassName = "container border1gray textdonotwrap";
+                CheckedListItemLeft = 8;
+                CheckedListItemTop = 0;
+                CheckedListheight = 72;
+                CheckedListLeft = 36;
                 CheckedListPosition = "absolute";                
-                CheckedListWidth = 120;                
-                Children = new List<IBlazorComponent>();
+                CheckedListTop = 24;
+                CheckedListWidth = 132;                
+                Children = new List<IBlazorComponent>();                
                 Column1Width = GlobalDefaults.Column1Width;
-                Column2Width = GlobalDefaults.Column2Width;                
-                Display = "inline-block";                
+                Column2Width = GlobalDefaults.Column2Width;
+                ControlHeight = 28;
+                Display = "inline-block";
+                DropdownClassName = "combobox-container border1gray textdonotwrap";
+                DropDownZIndex = GlobalDefaults.ListZIndex;
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontUnit = "px";
-                Height = 32;                
+                Height = 24; 
                 Items = new List<Item>();
-                LabelBackColor = "transparent";                
+                LabelBackColor = "transparent";
+                LabelColor = Color.LightSkyBlue;
                 LabelClassName = GlobalDefaults.LabelClassName;
-                LabelFontName = "Calibri"; // Updated from GlobalDefaults.LabelFontName
-                LabelFontSize = 18; // Updated from GlobalDefaults.LabelFontSize
+                LabelFontName = "Calibri"; 
+                LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelMarginRight = 0;
                 LabelMarginRightList = 0;
                 LabelPosition = "relative";
-                Left = -3;
+                Left = 0;
                 ListBackgroundColor = Color.White;
-                ListContainerLeft = 0;
-                ListContainerTop = 28;
+                ListContainerLeft = 36;
+                ListContainerTop = 1;
                 ListContainerPosition = "absolute";
                 ListDisplay = "none";
                 ListItemBackgroundColor = Color.White;                
                 ListContainerHeight = 120;
                 ListItemHeight = GlobalDefaults.ListItemHeight;            
-                ListItemLeft = 0;
+                ListItemLeft = -12;
                 ListItemPosition = "relative";
-                ListItemTop = 0;
-
-                // Purposely 0 here. If not set as a Parameter, then GlobalDefaults.TextBoxWidth is used
-                ListItemWidth = 0;
+                ListItemTop = -2;
+                ListItemWidth = 80;
                 OverflowX = "hidden";
                 OverflowY = "auto";
                 Position = "relative";
@@ -497,14 +508,14 @@ namespace DataJuggler.Blazor.Components
                 TextAlign = "center";
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
-                TextBoxHeight = 22;
-                TextBoxLeft = 2;
+                TextBoxHeight = 21;
+                TextBoxLeft = 0;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
-                Top = 0;                
+                Top = 2;
                 VisibleCount = 5;
                 Width = 224;
-                ZIndex = GlobalDefaults.ListZIndex;
-
+                ZIndex = GlobalDefaults.ZIndex;
+                
                 // Set so the image is set (its gets unExpanded)
                 Expanded = true;
             }
@@ -1285,27 +1296,27 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxTextXPosition
+            #region CheckBoxTextX
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextXPosition'.
+            /// This property gets or sets the value for 'CheckBoxTextX'.
             /// </summary>
             [Parameter]
-            public double CheckBoxTextXPosition
+            public double CheckBoxTextX
             {
-                get { return checkBoxTextXPosition; }
-                set { checkBoxTextXPosition = value; }
+                get { return checkBoxTextX; }
+                set { checkBoxTextX = value; }
             }
             #endregion
             
-            #region CheckBoxTextYPosition
+            #region CheckBoxTextY
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextYPosition'.
+            /// This property gets or sets the value for 'CheckBoxTextY'.
             /// </summary>
             [Parameter]
-            public double CheckBoxTextYPosition
+            public double CheckBoxTextY
             {
-                get { return checkBoxTextYPosition; }
-                set { checkBoxTextYPosition = value; }
+                get { return checkBoxTextY; }
+                set { checkBoxTextY = value; }
             }
             #endregion
             
@@ -1321,27 +1332,27 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxXPosition
+            #region CheckBoxX
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxXPosition'.
+            /// This property gets or sets the value for 'CheckBoxX'.
             /// </summary>
             [Parameter]
-            public double CheckBoxXPosition
+            public double CheckBoxX
             {
-                get { return checkBoxXPosition; }
-                set { checkBoxXPosition = value; }
+                get { return checkBoxX; }
+                set { checkBoxX = value; }
             }
             #endregion
             
-            #region CheckBoxYPosition
+            #region CheckBoxY
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxYPosition'.
+            /// This property gets or sets the value for 'CheckBoxY'.
             /// </summary>
             [Parameter]
-            public double CheckBoxYPosition
+            public double CheckBoxY
             {
-                get { return checkBoxYPosition; }
-                set { checkBoxYPosition = value; }
+                get { return checkBoxY; }
+                set { checkBoxY = value; }
             }
             #endregion
             
@@ -1753,7 +1764,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'DropDownZIndex'.
             /// </summary>
-            public string DropDownZIndex
+            public int DropDownZIndex
             {
                 get { return dropDownZIndex; }
                 set { dropDownZIndex = value; }

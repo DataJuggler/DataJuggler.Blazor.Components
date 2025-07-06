@@ -311,7 +311,7 @@ namespace DataJuggler.Blazor.Components
                 UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
                 Unit = "px";
                 Visible = true;
-                Width = 80;
+                Width = 220;
             }
             #endregion
             

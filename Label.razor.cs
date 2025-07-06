@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Threading.Tasks;
+using System.Drawing;
 
 #endregion
 
@@ -64,7 +65,7 @@ namespace DataJuggler.Blazor.Components
         private string text;
         private string textAlign;
         private string textBoxClassName;
-        private string textColor;
+        private Color textColor;
         private double top;
         private string unit;
         private bool visible;
@@ -140,9 +141,14 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
+                // Units have to be first
+                HeightUnit = "px";
+                Unit = "px";
+
                 // Set Default Values
                 BackgroundColor = "transparent";
                 Caption = "";
+                ClassName = "textdonotwrap";
                 ClientId = Guid.NewGuid().ToString().Substring(0, 12);
                 Display = "inline-block";
                 ImageScale = 1.6;
@@ -150,21 +156,20 @@ namespace DataJuggler.Blazor.Components
                 FontSize = GlobalDefaults.LabelFontSize;
                 FontName = GlobalDefaults.LabelFontName;
                 FontSizeUnit="px";
-                Height= 24;
-                HeightUnit = "px";
+                Height= 24;                
                 ImageBackColor = "transparent";
                 ImageWidth = 10;
                 BackgroundColor = "transparent";
-                TextColor="Black";
+                TextColor=Color.Black;
                 Left = 0;
                 MarginLeft = 1.2;
                 MarginBottom = 8;
                 Position = "relative";
                 Text = "";
-                Top = 0;
-                Unit = "px";
+                TextColor = Color.Black;
+                Top = 0;                
                 Visible = true;
-                Width= 60;
+                Width= 128;
             }
             #endregion
             
@@ -287,11 +292,11 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region SetTextColor(string color)
+            #region SetTextColor(Color color)
             /// <summary>
             /// Set Text Color
             /// </summary>
-            public void SetTextColor(string color)
+            public void SetTextColor(Color color)
             {
                 // Set the TextColor
                 TextColor = color;
@@ -1050,7 +1055,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'TextColor'.
             /// </summary>
             [Parameter]
-            public string TextColor
+            public Color TextColor
             {
                 get { return textColor; }
                 set { textColor = value; }

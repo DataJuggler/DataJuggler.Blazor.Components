@@ -25,8 +25,8 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
-        private double checkBoxXPosition;
-        private double checkBoxYPosition;
+        private double checkBoxX;
+        private double checkBoxY;
         private List<IBlazorComponent> children;
         private string displayStyle;
         private double height;
@@ -57,12 +57,11 @@ namespace DataJuggler.Blazor.Components
         private int visibleCount;
         private double width;
         private int zIndex;        
-        private string listItemClassName;
-        private string fontUnit;
+        private string listItemClassName;        
         private string className;
         private double labelWidth;
-        private double checkBoxTextXPosition;
-        private double checkBoxTextYPosition;
+        private double checkBoxTextX;
+        private double checkBoxTextY;
         private double checkBoxHeight;
         private double checkBoxWidth;
         private bool notifyParentOnBlur;        
@@ -195,43 +194,37 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // default to visible
-                Visible = true;
-                
                 // Create a new collection of 'IBlazorComponent' objects.
                 Children = new List<IBlazorComponent>();
-                
-                // Set the Unit and HeightUnit defaults
+
+                // Units must be first
                 Unit = "px";
-                HeightUnit = "px";
-                FontUnit = "px";
+                HeightUnit = "px";                
                 FontSize = GlobalDefaults.LabelFontSize;
                 
-                // Set a default height
-                ListItemHeight = 32;
-                
-                // Move over a little
-                CheckBoxXPosition = .2;
-
                 // Defaults
-                CheckBoxHeight = 20;
-                CheckBoxWidth = 20;
-                CheckBoxTextXPosition = 3.2;
-                CheckBoxTextYPosition = -3.2;
-                Left = 0;
-                Top = 0;
-                Unit = "px";
-                HeightUnit = "px";
-                Height = 60;
-                Width = GlobalDefaults.TextBoxWidth;
-                Position = "relative";
+                CheckBoxHeight = 16;
+                CheckBoxWidth = 16;                
+                CheckBoxTextX = 3.2;
+                CheckBoxTextY = -3.2;                
+                ClassName = "";
+                Height = 96;
+                Left = 32;
+                ListItemHeight = 24;
+                ListItemWidth = 140;
+                Position = "relative";                
                 VisibleCount = 5;
                 Items = new List<Item>();
                 ListItemPosition = "relative";
-                ListItemBackgroundColor = Color.White;
-                listItemMarginBottom = 0;
+                ListItemBackgroundColor = Color.White;                
                 ListBackgroundColor = Color.White;
                 ListItemClassName = "textdonotwrap";
+                ListItemLeft = 4;
+                ListItemTextColor = Color.Black;
+                ListItemTop = 4;
+                Visible = true;
+                NotifyParentOnBlur = true;
+                Width = 244;
                 ZIndex = 40;
             }
             #endregion
@@ -417,27 +410,27 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxTextXPosition
+            #region CheckBoxTextX
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextXPosition'.
+            /// This property gets or sets the value for 'CheckBoxTextX'.
             /// </summary>
             [Parameter]
-            public double CheckBoxTextXPosition
+            public double CheckBoxTextX
             {
-                get { return checkBoxTextXPosition; }
-                set { checkBoxTextXPosition = value; }
+                get { return checkBoxTextX; }
+                set { checkBoxTextX = value; }
             }
             #endregion
             
-            #region CheckBoxTextYPosition
+            #region CheckBoxTextY
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxTextYPosition'.
+            /// This property gets or sets the value for 'CheckBoxTextY'.
             /// </summary>
             [Parameter]
-            public double CheckBoxTextYPosition
+            public double CheckBoxTextY
             {
-                get { return checkBoxTextYPosition; }
-                set { checkBoxTextYPosition = value; }
+                get { return checkBoxTextY; }
+                set { checkBoxTextY = value; }
             }
             #endregion
             
@@ -453,27 +446,27 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region CheckBoxXPosition
+            #region CheckBoxX
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxXPosition'.
+            /// This property gets or sets the value for 'CheckBoxX'.
             /// </summary>
             [Parameter]
-            public double CheckBoxXPosition
+            public double CheckBoxX
             {
-                get { return checkBoxXPosition; }
-                set { checkBoxXPosition = value; }
+                get { return checkBoxX; }
+                set { checkBoxX = value; }
             }
             #endregion
                 
-            #region CheckBoxYPosition
+            #region CheckBoxY
             /// <summary>
-            /// This property gets or sets the value for 'CheckBoxYPosition'.
+            /// This property gets or sets the value for 'CheckBoxY'.
             /// </summary>
             [Parameter]
-            public double CheckBoxYPosition
+            public double CheckBoxY
             {
-                get { return checkBoxYPosition; }
-                set { checkBoxYPosition = value; }
+                get { return checkBoxY; }
+                set { checkBoxY = value; }
             }
             #endregion
                 
@@ -586,7 +579,7 @@ namespace DataJuggler.Blazor.Components
             
             #region FontSizeStyle
             /// <summary>
-            /// This read only property returns the value of FontSizeStyle from the object FontSize.
+            /// This read only property returns the value of FontSize + Unit
             /// </summary>
             public string FontSizeStyle
             {
@@ -594,26 +587,14 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string fontSizeStyle = FontSize + FontUnit;
+                    string fontSizeStyle = FontSize + Unit;
                     
                     // return value
                     return fontSizeStyle;
                 }
             }
             #endregion
-            
-            #region FontUnit
-            /// <summary>
-            /// This property gets or sets the value for 'FontUnit'.
-            /// </summary>
-            [Parameter]
-            public string FontUnit
-            {
-                get { return fontUnit; }
-                set { fontUnit = value; }
-            }
-            #endregion
-            
+          
             #region HasChildren
             /// <summary>
             /// This property returns true if this object has a 'Children'.

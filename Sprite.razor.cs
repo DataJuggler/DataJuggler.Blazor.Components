@@ -418,13 +418,13 @@ namespace DataJuggler.Blazor.Components
                         // increment
 
                         // Get a temp value of what the result will be if applied
-                        temp = XPosition + adjustment.AdjustmentAmount;
+                        temp = X + adjustment.AdjustmentAmount;
 
                         // if the newValue will be below Max
                         if (temp < adjustment.Max)
                         {
                             // Set the value
-                            XPosition = temp;
+                            X = temp;
                         }
                         else
                         {
@@ -432,7 +432,7 @@ namespace DataJuggler.Blazor.Components
                             result.MaximumSet = true;
 
                             // Set the value
-                            XPosition = adjustment.Max;
+                            X = adjustment.Max;
                         }
                     }
                     else
@@ -440,13 +440,13 @@ namespace DataJuggler.Blazor.Components
                         // decrement
 
                         // Get a temp value of what the result will be if applied
-                        temp = XPosition - adjustment.AdjustmentAmount;
+                        temp = X - adjustment.AdjustmentAmount;
 
                         // if the newValue will be below Max
                         if (temp > adjustment.Min)
                         {
                             // Set the value
-                            XPosition = temp;
+                            X = temp;
                         }
                         else
                         {
@@ -454,7 +454,7 @@ namespace DataJuggler.Blazor.Components
                             result.MinimumSet = true;
 
                             // Set the value
-                            XPosition = adjustment.Min;
+                            X = adjustment.Min;
                         }
 
                         // Was applied
@@ -462,7 +462,7 @@ namespace DataJuggler.Blazor.Components
                     }
 
                     // Set the new value
-                    result.NewValue = XPosition;
+                    result.NewValue = X;
                 }
                 
                 // return value
@@ -491,13 +491,13 @@ namespace DataJuggler.Blazor.Components
                         // increment
 
                         // Get a temp value of what the result will be if applied
-                        temp = YPosition + adjustment.AdjustmentAmount;
+                        temp = Y + adjustment.AdjustmentAmount;
 
                         // if the newValue will be below Max
                         if (temp < adjustment.Max)
                         {
                             // Set the value
-                            YPosition = temp;
+                            Y = temp;
                         }
                         else
                         {
@@ -505,7 +505,7 @@ namespace DataJuggler.Blazor.Components
                             result.MaximumSet = true;
 
                             // Set the value
-                            YPosition = adjustment.Max;
+                            Y = adjustment.Max;
                         }
                     }
                     else
@@ -513,13 +513,13 @@ namespace DataJuggler.Blazor.Components
                         // decrement
 
                         // Get a temp value of what the result will be if applied
-                        temp = YPosition - adjustment.AdjustmentAmount;
+                        temp = Y - adjustment.AdjustmentAmount;
 
                         // if the newValue will be below Max
                         if (temp > adjustment.Min)
                         {
                             // Set the value
-                            YPosition = temp;
+                            Y = temp;
                         }
                         else
                         {
@@ -527,12 +527,12 @@ namespace DataJuggler.Blazor.Components
                             result.MinimumSet = true;
 
                             // Set the value
-                            YPosition = adjustment.Min;
+                            Y = adjustment.Min;
                         }
                     }
 
                     // Set the new value
-                    result.NewValue = YPosition;
+                    result.NewValue = Y;
                 }
                 
                 // return value
@@ -562,8 +562,8 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Defaults
-                XPosition = 0;
-                YPosition = 0;
+                X = 0;
+                Y = 0;
                 Scale = 1;
                 Visible = true;
                 Interval = 100;
@@ -1153,12 +1153,12 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region XPosition
+            #region X
             /// <summary>
-            /// This property gets or sets the value for 'XPosition'.
+            /// This property gets or sets the value for 'X'.
             /// </summary>
             [Parameter]
-            public double XPosition
+            public double X
             {
                 get { return xPosition; }
                 set 
@@ -1167,16 +1167,16 @@ namespace DataJuggler.Blazor.Components
                     xPosition = value;
 
                     // set the string value
-                    XPositionStyle = XPosition.ToString() + "%";
+                    XStyle = X.ToString() + "%";
                 }
             }
             #endregion
             
-            #region XPositionStyle
+            #region XStyle
             /// <summary>
-            /// This property gets or sets the value for 'XPositionStyle'.
+            /// This property gets or sets the value for 'XStyle'.
             /// </summary>
-            public string XPositionStyle
+            public string XStyle
             {
                 get { return xPositionStyle; }
                 set { xPositionStyle = value; }
@@ -1195,12 +1195,12 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region YPosition
+            #region Y
             /// <summary>
-            /// This property gets or sets the value for 'YPosition'.
+            /// This property gets or sets the value for 'Y'.
             /// </summary>
             [Parameter]
-            public double YPosition
+            public double Y
             {
                 get { return yPosition; }
                 set 
@@ -1209,16 +1209,16 @@ namespace DataJuggler.Blazor.Components
                     yPosition = value;
 
                     // set the string value for position
-                    YPositionStyle = YPosition.ToString() + "vh";
+                    YStyle = Y.ToString() + "vh";
                 }
             }
             #endregion
             
-            #region YPositionStyle
+            #region YStyle
             /// <summary>
-            /// This property gets or sets the value for 'YPositionStyle'.
+            /// This property gets or sets the value for 'YStyle'.
             /// </summary>
-            public string YPositionStyle
+            public string YStyle
             {
                 get { return yPositionStyle; }
                 set { yPositionStyle = value; }

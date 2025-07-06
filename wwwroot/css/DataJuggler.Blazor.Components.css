@@ -588,13 +588,28 @@
 {
     border-width: 1px;    
 }
+.border1gray
+{
+    border-width: 1px;    
+    color: gray;
+}
 .border2
 {
     border-width: 2px;        
 }
+.border2gray
+{
+    border-width: 2px;    
+    color: gray;
+}
 .border3
 {
     border-width: 3px;    
+}
+.border3gray
+{
+    border-width:31px;    
+    color: gray;
 }
 .borderright1
 {

@@ -15,4 +15,20 @@ namespace DataJuggler.Blazor.Components.Delegates
     public delegate void OnTextChange(string text);    
     #endregion
 
+    #region delegate void OnSaved(string text);  
+    /// <summary>
+    /// This delegate is used to handle the Save buttom click event from the SaveCancelControl
+    /// </summary>
+    /// <param name="componentName">The name of the Component in case there are more than one</param>
+    public delegate void OnSaved(string componentName);
+    #endregion
+
+    #region delegate void OnSaved(string text);  
+    /// <summary>
+    /// This delegate is used to handle the Cancel buttom click event from the SaveCancelControl
+    /// </summary>
+    /// <param name="componentName">The name of the Component in case there are more than one</param>
+    public delegate void OnCancelled(string componentName);
+    #endregion
+
 }
