@@ -18,13 +18,13 @@
 <div class="@ControlStyle displayinline">
     <div class="floatright">
         <ImageButton Name="SaveButton" Unit="px" HeightUnit="px" Height="@ButtonHeight" 
-            TextColor=@TextColor ButtonNumber="1" Parent="this" ClassName="@SaveButtonClassName"
+            TextColor=@SaveButtonTextColor ButtonNumber="1" Parent="this" ClassName="@SaveButtonClassName"
             Position="@Position" Left="@SaveButtonleft" Top=@ButtonTop
             Width="@SaveButtonWidth" Text="@SaveButtonText" FontSize="@FontSize" FontName="Calibri"
             ImageUrl="@SaveButtonImageUrl" ClickHandler="@ButtonClicked">
         </ImageButton>
         <ImageButton Name="CancelButton" Unit="px" HeightUnit="px" Height="@ButtonHeight" 
-            TextColor=@TextColor ButtonNumber="2" Parent="this"
+            TextColor=@CancelButtonTextColor ButtonNumber="2" Parent="this"
             Position="@Position" Left="@CancelButtonLeft" Top=@ButtonTop ClassName="@CancelButtonClassName"
             Width="@CancelButtonWidth" Text="@CancelButtonText" FontSize="@FontSize" FontName="Calibri"
             ImageUrl="@CancelButtonImageUrl" ClickHandler="@ButtonClicked">

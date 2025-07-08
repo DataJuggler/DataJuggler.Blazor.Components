@@ -179,6 +179,39 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetButtonTextColor(Color textColor)
+            /// <summary>
+            /// Set Button Text Color
+            /// </summary>
+            public void SetButtonTextColor(Color textColor)
+            {
+                // store
+                TextColor = textColor;
+            }
+            #endregion
+            
+            #region SetCancelButtonTextColor(Color textColor)
+            /// <summary>
+            /// Set Cancel Button Text Color
+            /// </summary>
+            public void SetCancelButtonTextColor(Color textColor)
+            {
+                // store
+                CancelButtonTextColor = textColor;
+            }
+            #endregion
+            
+            #region SetSaveButtonTextColor(Color textColor)
+            /// <summary>
+            /// Set Save Button Text Color
+            /// </summary>
+            public void SetSaveButtonTextColor(Color textColor)
+            {
+                // store
+                SaveButtonTextColor = textColor;
+            }
+            #endregion
+            
             #region SetupButtons(string imageUrl)
             /// <summary>
             /// This method will set the same image url for both the Cancel button and the Save button.

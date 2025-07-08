@@ -3,6 +3,12 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+7.8.2025: Microsoft (NuGet) informed me Microsoft.Identity.Client 4.6.3 has a vulnerability.
+I don't use Identity in this project, but I updated DataJuggler.NET9 which did reference
+Microsoft.Data.SqlClient, which does reference Microsoft.Identity.Client. This project uses
+DataJuggler.Excelerate, which uses DataJuggler.NET9. This should fix any vulnerability warnings
+if VS starts showing them, update this package to 9.17.2 should fix it.
+
 7.6.2025: I created a new SaveCancelComponent. You can either set ImageUrl, which will
 set botht the CancelButton and SaveButton to the same image, or you can use a different image
 by setting SaveButtonImageUrl or CancelButtonImageUrl. There is also a Text property or
