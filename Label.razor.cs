@@ -71,6 +71,7 @@ namespace DataJuggler.Blazor.Components
         private bool visible;
         private double width;
         private int zIndex;
+        private string textStyle;
         #endregion
         
         #region Constructor
@@ -1062,6 +1063,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region TextStyle
+            /// <summary>
+            /// This property gets or sets the value for 'TextStyle'.
+            /// </summary>
+            [Parameter]
+            public string TextStyle
+            {
+                get { return textStyle; }
+                set { textStyle = value; }
+            }
+            #endregion
+            
             #region Top
             /// <summary>
             /// This property gets or sets the value for 'Top'.

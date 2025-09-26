@@ -3,6 +3,10 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+9.26.2025: I updated the Label component to have a new class called TextStyle. The font wasn't working
+with the font in ControlStyle, so I moved TextAlign, FontSize, FontName and Color properties to the new
+CSS (BlazorStyled) class. 
+
 7.8.2025: Microsoft (NuGet) informed me Microsoft.Identity.Client 4.6.3 has a vulnerability.
 I don't use Identity in this project, but I updated DataJuggler.NET9 which did reference
 Microsoft.Data.SqlClient, which does reference Microsoft.Identity.Client. This project uses

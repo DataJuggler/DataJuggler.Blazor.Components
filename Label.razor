@@ -26,6 +26,12 @@
     background-color: @BackgroundColor;
     z-index: @ZIndex;    
 </Styled>
+<Styled @bind-Classname=@TextStyle>   
+    text-align: @TextAlign;
+    color: @TextColor;
+    font-size: @FontSizeStyle;
+    font-family: @FontName;    
+</Styled>
 <Styled @bind-Classname=@BottomMarginStyle>
     width: @WidthStyle;
     height: @MarginBottomStyle;
@@ -38,13 +44,13 @@
     }
     @if (EnableClick)
     {
-        <div class="@ClassName cursorpointer" @onclick="() => OnClick()">
+        <div class="@ClassName @TextStyle cursorpointer" @onclick="() => OnClick()">
             @Text
         </div>
     }
     else if (EnableDoubleClick)
     {
-        <div class="@ClassName cursorpointer" @ondblclick="() => OnDoubleClick()">                    
+        <div class="@ClassName @TextStyle cursorpointer" @ondblclick="() => OnDoubleClick()">                    
             @Text
         </div>
     }
@@ -58,7 +64,7 @@
     }
     else
     {
-        <div class="@ClassName">
+        <div class="@ClassName @TextStyle">
             @Text
         </div>
     }
