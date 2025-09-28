@@ -227,6 +227,9 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
+                // Unit has to be first
+                Unit = "px";
+
                 // Create
                 BorderColor = Color.Gray;
                 BorderWidth = 1;
@@ -237,7 +240,7 @@ namespace DataJuggler.Blazor.Components
                 Height = 240;
                 FontSize = 12;
                 FontSizeUnit="px";
-                Unit = "px";
+               
                 Width = 400;
                 OverflowX = "hidden";
                 OverflowY = "auto";
