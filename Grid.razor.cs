@@ -26,13 +26,15 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
+        private double borderWidth;
         private List<Column> columns;
         private List<Row> rows;
         private bool showHeader;
-        private string headerText;
+        private string headerText;        
         private string name;
         private IBlazorComponentParent parent;        
         private string headerClassName;
+        private Color borderColor;
         private bool showColumnHeaders;
         private bool editMode;
         private Row editRow;
@@ -226,6 +228,8 @@ namespace DataJuggler.Blazor.Components
             public void Init()
             {
                 // Create
+                BorderColor = Color.Gray;
+                BorderWidth = 1;
                 Position = "relative";
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
@@ -364,6 +368,48 @@ namespace DataJuggler.Blazor.Components
         #endregion
 
         #region Properties
+
+            #region BorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'BorderColor'.
+            /// </summary>
+            [Parameter]
+            public Color BorderColor
+            {
+                get { return borderColor; }
+                set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'BorderWidth'.
+            /// </summary>
+            [Parameter]
+            public double BorderWidth
+            {
+                get { return borderWidth; }
+                set { borderWidth = value; }
+            }
+            #endregion
+            
+            #region BorderWidthStyle
+            /// <summary>
+            /// This read only property returns the value of BorderWidth + Unit
+            /// </summary>
+            public string BorderWidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string borderWidthStyle = borderWidth + Unit;
+                    
+                    // return value
+                    return borderWidthStyle;
+                }
+            }
+            #endregion
 
             #region Buttons
             /// <summary>

@@ -6,7 +6,8 @@ Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggle
 9.28.2025: I updated some more Color properties to be colors, not strings. Possible breaking
 changes to CheckBoxes, Calendars, TextBox, Label, and ComboBoxes. Sorry for the breaking 
 change, it is just better to obe consistent. I searched this time for Color = " and should have
-found them all. Still testing today.
+found them all. Still testing today. I also added some properties to the Grid BorderColor
+and Borderwidth, and EnableDoubleClick.
 
 9.26.2025: I updated the Label component to have a new class called TextStyle. The font wasn't working
 with the font in ControlStyle, so I moved TextAlign, FontSize, FontName and Color properties to the new
