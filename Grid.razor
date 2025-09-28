@@ -75,11 +75,15 @@
                             }
                             else if (EnableClick)
                             {
-                                <div class="down0 @column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <div class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                            }
+                            else if (EnableDoubleClick)
+                            {
+                                <div class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
                             }
                             else
                             {
-                                <div class="down0 @column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <div class="@column.ClassName">@column.ColumnText</div>
                             }
                         }
                         </div>

@@ -55,6 +55,7 @@ namespace DataJuggler.Blazor.Components
         private string unit;
         private bool notifyParentOnDoubleClick;        
         private bool enableClick;
+        private bool enableDoubleClick;
         private string gridStyle;
         private string overflowX;
         private string overflowY;
@@ -533,6 +534,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return enableClick; }
                 set { enableClick = value; }
+            }
+            #endregion
+            
+            #region EnableDoubleClick
+            /// <summary>
+            /// This property gets or sets the value for 'EnableDoubleClick'.
+            /// </summary>
+            [Parameter]
+            public bool EnableDoubleClick
+            {
+                get { return enableDoubleClick; }
+                set { enableDoubleClick = value; }
             }
             #endregion
             

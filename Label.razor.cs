@@ -159,8 +159,7 @@ namespace DataJuggler.Blazor.Components
                 FontSizeUnit="px";
                 Height= 24;                
                 ImageBackColor = Color.Transparent;
-                ImageWidth = 10;                
-                TextColor=Color.Black;
+                ImageWidth = 10;
                 Left = 0;
                 MarginLeft = 1.2;
                 MarginBottom = 8;
