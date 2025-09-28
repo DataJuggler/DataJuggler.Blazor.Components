@@ -24,7 +24,7 @@ namespace DataJuggler.Blazor.Components
         
         #region Private Variables
         private bool autoComplete;
-        private string backgroundColor;
+        private Color backgroundColor;
         private string bottomMarginStyle;
         private string caption;
         private string captionClassName;
@@ -44,7 +44,7 @@ namespace DataJuggler.Blazor.Components
         private double height;
         private string heightUnit;
         private int id;
-        private string imageBackColor;
+        private Color imageBackColor;
         private string imageClassName;
         private double imageScale;
         private string imageStyle;
@@ -147,7 +147,7 @@ namespace DataJuggler.Blazor.Components
                 Unit = "px";
 
                 // Set Default Values
-                BackgroundColor = "transparent";
+                BackgroundColor = Color.White;
                 Caption = "";
                 ClassName = "textdonotwrap";
                 ClientId = Guid.NewGuid().ToString().Substring(0, 12);
@@ -158,9 +158,8 @@ namespace DataJuggler.Blazor.Components
                 FontName = GlobalDefaults.LabelFontName;
                 FontSizeUnit="px";
                 Height= 24;                
-                ImageBackColor = "transparent";
-                ImageWidth = 10;
-                BackgroundColor = "transparent";
+                ImageBackColor = Color.Transparent;
+                ImageWidth = 10;                
                 TextColor=Color.Black;
                 Left = 0;
                 MarginLeft = 1.2;
@@ -391,7 +390,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'BackgroundColor'.
             /// </summary>
             [Parameter]
-            public string BackgroundColor
+            public Color BackgroundColor
             {
                 get { return backgroundColor; }
                 set { backgroundColor = value; }
@@ -726,7 +725,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'ImageBackColor'.
             /// </summary>
             [Parameter]
-            public string ImageBackColor
+            public Color ImageBackColor
             {
                 get { return imageBackColor; }
                 set { imageBackColor = value; }

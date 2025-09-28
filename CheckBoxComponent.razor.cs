@@ -27,7 +27,7 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables        
-        private string backgroundColor;
+        private Color backgroundColor;
         private Color borderColor;
         private double borderWidth;
         private string caption;
@@ -73,7 +73,7 @@ namespace DataJuggler.Blazor.Components
         private double labelFontSize;
         private string labelFontName;        
         private string labelClassName;
-        private string labelBackgroundColor;
+        private Color labelBackgroundColor;
         private Color labelColor;
         private double labelTop;
         private double labelLeft;
@@ -104,7 +104,7 @@ namespace DataJuggler.Blazor.Components
                 Unit = "px";
 
                 // Default Values
-                BackgroundColor = "transparent";                
+                BackgroundColor = @Color.White;
                 BorderColor = Color.Gray;
                 BorderWidth = 1;
                 Caption = "";
@@ -120,7 +120,7 @@ namespace DataJuggler.Blazor.Components
                 Enabled = true;                
                 Height = 16;
                 InputType = "checkbox";                
-                LabelBackgroundColor = "transparent";
+                LabelBackgroundColor = Color.White;
                 LabelClassName = GlobalDefaults.LabelClassName;
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
@@ -184,7 +184,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'BackgroundColor'.
             /// </summary>
             [Parameter]
-            public string BackgroundColor
+            public Color BackgroundColor
             {
                 get { return backgroundColor; }
                 set { backgroundColor = value; }
@@ -688,7 +688,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'LabelBackgroundColor'.
             /// </summary>
             [Parameter]
-            public string LabelBackgroundColor
+            public Color LabelBackgroundColor
             {
                 get { return labelBackgroundColor; }
                 set { labelBackgroundColor = value; }

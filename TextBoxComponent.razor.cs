@@ -29,7 +29,7 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private string bottomMarginStyle;        
         private double borderWidth;
-        private string borderColor;
+        private Color borderColor;
         private string caption;
         private double fontSize;
         private string fontName;        
@@ -76,9 +76,9 @@ namespace DataJuggler.Blazor.Components
         private string display;
         private bool sendAllTextToParent;        
         private string fontSizeUnit;
-        private string backgroundColor;
+        private Color backgroundColor;
         private double imageWidth;
-        private string imageBackColor;
+        private Color imageBackColor;
         private int rows;
         private double column1Width;
         private double column2Width;
@@ -87,7 +87,7 @@ namespace DataJuggler.Blazor.Components
         private double marginBottom;
         private double marginLeft;
         private bool autoComplete;
-        private string invalidLabelColor;
+        private Color invalidLabelColor;
         private string pattern;
         private int tabIndex;
         private string column1Style;
@@ -106,7 +106,7 @@ namespace DataJuggler.Blazor.Components
         private double labelFontSize;
         private string labelFontName;        
         private string labelClassName;
-        private string labelBackgroundColor;
+        private Color labelBackgroundColor;
         private Color labelColor;
         private double labelTop;
         private double labelLeft;
@@ -116,8 +116,8 @@ namespace DataJuggler.Blazor.Components
         // TextBox
         private double textBoxLeft;
         private double textBoxTop;
-        private string textBoxBackColor;
-        private string textBoxTextColor;
+        private Color textBoxBackColor;
+        private Color textBoxTextColor;
         private string textBoxClassName;
         private double textBoxWidth;
         private string textBoxControlStyle;
@@ -266,8 +266,8 @@ namespace DataJuggler.Blazor.Components
                 // Default Values
                 AllowWrapping = false;
                 AutoComplete = false;
-                BackgroundColor = "transparent";
-                BorderColor = "gray";
+                BackgroundColor = Color.White;
+                BorderColor = Color.Gray;
                 BorderWidth = 1;
                 Caption = "";
                 Column1Width = GlobalDefaults.Column1Width;
@@ -281,13 +281,13 @@ namespace DataJuggler.Blazor.Components
                 HandleChangeOption = HandleChangeEnum.OnKeyDown;
                 Height = 22;
                 HeightUnit = "px";
-                ImageBackColor = "transparent";
+                ImageBackColor = Color.Transparent;
                 ImageScale = 1.6;
                 ImageWidth = 10;
                 InputType = "text";
-                InvalidLabelColor = "Tomato";
+                InvalidLabelColor = Color.Tomato;
                 IsUnique = true;
-                LabelBackgroundColor = "transparent";
+                LabelBackgroundColor = Color.White;
                 LabelClassName = GlobalDefaults.LabelClassName;
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
@@ -301,11 +301,11 @@ namespace DataJuggler.Blazor.Components
                 Rows = 3;
                 TakenImageUrl = "_content/BlazorComponentsTutorial/Images/Failure.png";
                 Text = "";                
-                TextBoxBackColor = "white";
+                TextBoxBackColor = Color.White;
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxLeft = 8;
-                TextBoxTextColor = "black";
+                TextBoxTextColor = Color.Black;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Top = 0;
                 UniqueImageUrl = "_content/BlazorComponentsTutorial/Images/Success.png";
@@ -452,7 +452,7 @@ namespace DataJuggler.Blazor.Components
             public void SetBackgroundColor(Color color)
             {
                 // Set the BackgroundColor
-                BackgroundColor = color.Name;
+                BackgroundColor = color;
             }
             #endregion
             
@@ -522,11 +522,11 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region SetInvalidLabelColor(string invalidColor)
+            #region SetInvalidLabelColor(Color invalidColor)
             /// <summary>
             /// Set Invalid Label Color
             /// </summary>
-            public void SetInvalidLabelColor(string invalidColor)
+            public void SetInvalidLabelColor(Color invalidColor)
             {
                 // Set the color to be set for invalid
                 InvalidLabelColor = invalidColor;
@@ -562,15 +562,15 @@ namespace DataJuggler.Blazor.Components
             public void SetTextBoxBackColor(Color color)
             {
                 // Set the Color
-                TextBoxBackColor = color.Name;
+                TextBoxBackColor = color;
             }
             #endregion
             
-            #region SetTextBoxTextColor(string color)
+            #region SetTextBoxTextColor(Color color)
             /// <summary>
             /// Set Text Box Text Color
             /// </summary>
-            public void SetTextBoxTextColor(string color)
+            public void SetTextBoxTextColor(Color color)
             {
                 // Store
                 TextBoxTextColor = color;
@@ -758,7 +758,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'BackgroundColor'.
             /// </summary>
             [Parameter]
-            public string BackgroundColor
+            public Color BackgroundColor
             {
                 get { return backgroundColor; }
                 set { backgroundColor = value; }
@@ -770,7 +770,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'BorderColor'.
             /// </summary>
             [Parameter]
-            public string BorderColor
+            public Color BorderColor
             {
                 get { return borderColor; }
                 set { borderColor = value; }
@@ -1312,7 +1312,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'ImageBackColor'.
             /// </summary>
             [Parameter]
-            public string ImageBackColor
+            public Color ImageBackColor
             {
                 get { return imageBackColor; }
                 set { imageBackColor = value; }
@@ -1422,7 +1422,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'InvalidLabelColor'.
             /// </summary>
             [Parameter]
-            public string InvalidLabelColor
+            public Color InvalidLabelColor
             {
                 get { return invalidLabelColor; }
                 set { invalidLabelColor = value; }
@@ -1516,13 +1516,13 @@ namespace DataJuggler.Blazor.Components
                     {
                         // Set for valid
                         LabelColor = Color.Black;
-                        TextBoxBackColor = "White";
+                        TextBoxBackColor = Color.White;
                     }
                     else
                     {
                         // Set for valid
                         LabelColor = Color.Tomato;
-                        TextBoxBackColor = "Tomato";
+                        TextBoxBackColor = Color.Tomato;
                     }
                 }
             }
@@ -1533,7 +1533,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'LabelBackgroundColor'.
             /// </summary>
             [Parameter]
-            public string LabelBackgroundColor
+            public Color LabelBackgroundColor
             {
                 get { return labelBackgroundColor; }
                 set { labelBackgroundColor = value; }
@@ -2171,7 +2171,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'TextBoxBackColor'.
             /// </summary>
             [Parameter]
-            public string TextBoxBackColor
+            public Color TextBoxBackColor
             {
                 get { return textBoxBackColor; }
                 set { textBoxBackColor = value; }
@@ -2289,7 +2289,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'TextBoxTextColor'.
             /// </summary>
             [Parameter]
-            public string TextBoxTextColor
+            public Color TextBoxTextColor
             {
                 get { return textBoxTextColor; }
                 set { textBoxTextColor = value; }

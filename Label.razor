@@ -18,17 +18,13 @@
     position: @Position;
     left: @LeftStyle;
     top: @TopStyle;
-    height: @HeightStyle;
-    text-align: @TextAlign;
-    color: @TextColor;
-    font-size: @FontSizeStyle;
-    font-family: @FontName;
-    background-color: @BackgroundColor;
+    height: @HeightStyle;    
+    background-color: @BackgroundColor.Name;
     z-index: @ZIndex;    
 </Styled>
-<Styled @bind-Classname=@TextStyle>   
+<Styled @bind-Classname=@TextStyle>    
     text-align: @TextAlign;
-    color: @TextColor;
+    color: @TextColor.Name;
     font-size: @FontSizeStyle;
     font-family: @FontName;    
 </Styled>

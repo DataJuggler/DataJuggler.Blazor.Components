@@ -52,7 +52,7 @@ namespace DataJuggler.Blazor.Components
         private bool initialized;
         private List<Item> items;
         private List<Item> storedSelectedItems;
-        private string labelBackColor;
+        private Color labelBackColor;
         private string labelClassName;        
         private Color labelColor;
         private double labelLeft;
@@ -479,7 +479,7 @@ namespace DataJuggler.Blazor.Components
                 FontUnit = "px";
                 Height = 24; 
                 Items = new List<Item>();
-                LabelBackColor = "transparent";
+                LabelBackColor = Color.Transparent;
                 LabelColor = Color.LightSkyBlue;
                 LabelClassName = GlobalDefaults.LabelClassName;
                 LabelFontName = "Calibri"; 
@@ -2177,7 +2177,7 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'LabelBackColor'.
             /// </summary>
             [Parameter]
-            public string LabelBackColor
+            public Color LabelBackColor
             {
                 get { return labelBackColor; }
                 set { labelBackColor = value; }

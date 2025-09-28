@@ -43,6 +43,7 @@ namespace DataJuggler.Blazor.Components
         private string buttonStyle;
         private string buttonUrl;
         private double cellWidth;
+        private Color dayButtonBackgroundColor;
         private double fontSize;
         private string fontName;
         private double width;
@@ -598,6 +599,7 @@ namespace DataJuggler.Blazor.Components
                 DateTitleLeft = 0;
                 DateTitlePosition = "relative";
                 DateTitleTop = 0;
+                DayButtonBackgroundColor = Color.White;
                 DayRowColor = Color.DodgerBlue;
                 DayRowLeft = 0;                
                 DayButtonContainerLeft = 2;
@@ -1613,6 +1615,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region DayButtonBackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'DayButtonBackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public Color DayButtonBackgroundColor
+            {
+                get { return dayButtonBackgroundColor; }
+                set { dayButtonBackgroundColor = value; }
+            }
+            #endregion
+            
             #region DayButtonContainerLeft
             /// <summary>
             /// This property gets or sets the value for 'DayButtonContainerLeft'.
