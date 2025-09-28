@@ -147,7 +147,7 @@ namespace DataJuggler.Blazor.Components
                 Unit = "px";
 
                 // Set Default Values
-                BackgroundColor = Color.White;
+                BackgroundColor = Color.Transparent;
                 Caption = "";
                 ClassName = "textdonotwrap";
                 ClientId = Guid.NewGuid().ToString().Substring(0, 12);
