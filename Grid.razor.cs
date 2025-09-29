@@ -35,6 +35,7 @@ namespace DataJuggler.Blazor.Components
         private IBlazorComponentParent parent;        
         private string headerClassName;
         private Color borderColor;
+        private string borderStyle;
         private bool showColumnHeaders;
         private bool editMode;
         private Row editRow;
@@ -227,8 +228,9 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // Unit has to be first
+                // Units have to be first
                 Unit = "px";
+                HeightUnit = "px";
 
                 // Create
                 BorderColor = Color.Gray;
@@ -236,10 +238,11 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
-                HeightUnit = "px";
+                
                 Height = 240;
                 FontSize = 12;
                 FontSizeUnit="px";
+                GridBackColor = Color.White;
                
                 Width = 400;
                 OverflowX = "hidden";
@@ -381,6 +384,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return borderColor; }
                 set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderStyle
+            /// <summary>
+            /// This property gets or sets the value for 'BorderStyle'.
+            /// </summary>            
+            public string BorderStyle
+            {
+                get { return borderStyle; }
+                set { borderStyle = value; }
             }
             #endregion
             

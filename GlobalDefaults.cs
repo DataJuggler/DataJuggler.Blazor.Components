@@ -78,6 +78,13 @@ namespace DataJuggler.Blazor.Components
             public const double LabelFontSize = 14;
             #endregion
 
+            #region LabelHeight
+            /// <summary>
+            /// This property returns the Default Font Size for Labels
+            /// </summary>
+            public const double LabelHeight = 20;
+            #endregion
+
             #region ListItemHeight
             /// <summary>
             /// This is the default Height for items in a list

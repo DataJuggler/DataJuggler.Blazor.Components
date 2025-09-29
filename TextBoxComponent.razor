@@ -4,16 +4,9 @@
 
 <Styled @bind-Classname=@Column1Style>
     display: inline-block;
-    height: 100%;
-    background-color: @LabelBackgroundColor;
-    color: @LabelColor.Name;
-    font-size: @LabelFontSizeStyle;
-    font-family: @LabelFontName;
-    text-align: @LabelTextAlign;
+    height: 100%;    
     width: @Column1WidthStyle;
-    position: @Position;
-    top: @LabelTopStyle;
-    left: @LabelLeftStyle;    
+    position: @Position;   
 </Styled>
 <Styled @bind-Classname=@Column2Style>
     position: @Position;
@@ -53,6 +46,15 @@
     width: @ImageWidthStyle;
     height: 100%;
 </Styled>
+<Styled @bind-Classname=@LabelStyle>
+    background-color: @LabelBackgroundColor;
+    color: @LabelColor.Name;
+    font-size: @LabelFontSizeStyle;
+    font-family: @LabelFontName;
+    text-align: @LabelTextAlign;
+    top: @LabelTopStyle;
+    left: @LabelLeftStyle;
+</Styled>
 <Styled @bind-Classname=@TextBoxControlStyle>
     display: @DisplayStyle;
     width: @WidthStyle;
@@ -73,8 +75,10 @@
     <div class="@TextBoxControlStyle @ClassName @TextWrapping">
         @if (ShowCaption)
         {
-            <div class="@Column1Style">
-                <div class="@LabelClassName">@Caption</div>
+            <div class="@Column1Style @LabelStyle">
+                <Label Name="LabelControl" Width="@LabelWidth" Height="@LabelHeight"
+                    TextAlign="@LabelTextAlign"
+                    Text="@Caption" TextColor="@LabelColor" ClassName="@LabelClassName"></Label>
             </div>
         }
         <div class="@Column2Style">

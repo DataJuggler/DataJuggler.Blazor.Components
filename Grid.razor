@@ -12,7 +12,7 @@
     top: @TopStyle;    
 </Styled>
 <Styled @bind-Classname=@GridStyle>    
-    background-color: @GridBackColor;
+    background-color: @GridBackColor.Name;
     height: @HeightStyle;
     line-height: 2vh;
     font-size: @FontSizeStyle;
@@ -21,6 +21,10 @@
     border-color: @BorderColor.Name;
     overflow-y: @OverflowY;
     overflow-x: @OverflowX;    
+</Styled>
+<Styled @bind-Classname=@BorderStyle>    
+    border-width: @BorderWidthStyle;
+    border-color: @BorderColor.Name;    
 </Styled>
 <Styled @bind-Classname=@HeaderRowStyle>    
     clear: both;
@@ -77,15 +81,15 @@
                             }
                             else if (EnableClick)
                             {
-                                <div class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <div class="@column.ClassName @BorderStyle" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
                             }
                             else if (EnableDoubleClick)
                             {
-                                <div class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <div class="@column.ClassName  @BorderStyle" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
                             }
                             else
                             {
-                                <div class="@column.ClassName">@column.ColumnText</div>
+                                <div class="@column.ClassName @BorderStyle">@column.ColumnText</div>
                             }
                         }
                         </div>

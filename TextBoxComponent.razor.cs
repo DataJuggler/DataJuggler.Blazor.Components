@@ -33,11 +33,12 @@ namespace DataJuggler.Blazor.Components
         private string caption;
         private double fontSize;
         private string fontName;        
-        private double height;        
+        private double height;                
         private string imageClassName;
         private bool isValid;
         private string text;
         private string inputType;
+        private double labelHeight;
         private bool isRequired;
         private bool isIntegerRequired;
         private bool isDoubleRequired;
@@ -292,6 +293,7 @@ namespace DataJuggler.Blazor.Components
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelHeight = GlobalDefaults.LabelHeight;
                 LabelTextAlign = "right";
                 LabelWidth = 30;
                 Left = 0;
@@ -1605,6 +1607,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelHeight
+            /// <summary>
+            /// This property gets or sets the value for 'LabelHeight'.
+            /// </summary>
+            [Parameter]
+            public double LabelHeight
+            {
+                get { return labelHeight; }
+                set { labelHeight = value; }
+            }
+            #endregion
+            
             #region LabelLeft
             /// <summary>
             /// This property gets or sets the value for 'LabelLeft'.
@@ -1645,7 +1659,7 @@ namespace DataJuggler.Blazor.Components
                 set { labelStyle = value; }
             }
             #endregion
-
+            
             #region LabelTextAlign
             /// <summary>
             /// This property gets or sets the value for 'LabelTextAlign'.

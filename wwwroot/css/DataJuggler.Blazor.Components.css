@@ -591,7 +591,7 @@
 .border1gray
 {
     border-width: 1px;    
-    color: gray;
+    border-color: gray;
 }
 .border2
 {
@@ -600,7 +600,7 @@
 .border2gray
 {
     border-width: 2px;    
-    color: gray;
+    border-color: gray;
 }
 .border3
 {
@@ -608,8 +608,35 @@
 }
 .border3gray
 {
-    border-width:31px;    
-    color: gray;
+    border-width:3px;    
+    border-color: gray;
+}
+.borderleft1
+{
+    border-left: 1px;
+}
+.borderleft1gray
+{
+    border-left: 1px;
+    border-color: gray;
+}
+.borderleft2
+{
+    border-left: 2px;
+}
+.borderleft2gray
+{
+    border-left: 2px;
+    border-color: gray;
+}
+.borderleft3
+{
+    border-left: 3px;
+    border-color: gray;
+}
+.borderleft3gray
+{
+    border-left: 3px;
 }
 .borderright1
 {
@@ -622,18 +649,6 @@
 .borderright3
 {
     border-right: 3px;
-}
-.borderleft1
-{
-    border-left: 1px;
-}
-.borderleft2
-{
-    border-left: 2px;
-}
-.borderleft3
-{
-    border-left: 3px;
 }
 .bordertop1
 {
