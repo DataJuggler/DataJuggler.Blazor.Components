@@ -335,6 +335,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region RefreshAsync()
+            /// <summary>
+            /// Asynchronously refreshes the UI.
+            /// </summary>
+            public async Task RefreshAsync()
+            {
+                // Update the UI
+                await InvokeAsync(StateHasChanged);
+            }
+            #endregion
+
             #region Register(IBlazorComponent component)
             /// <summary>
             /// This method is used to keep track of the current editors.

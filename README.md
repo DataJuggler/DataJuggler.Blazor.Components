@@ -5,9 +5,7 @@ Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggle
 
 9.29.2025: I am redoing the TextBoxComponent. The Label is now a LabelComponent. 
 Hopeing this will solve some of the issues of properties not applying. The Label works well.
-I should have done this a while back. Also today I added two new interfaces.
-IBlazorComponentAsync and IBlazorComponentParentAsync. I haven't updated any of the
-components in this projects, but I may update the Grid or a variation of the grid. 
+I should have done this a while back. I added a method to the grid RefreshAsync
 
 9.28.2025: I updated some more Color properties to be colors, not strings. Possible breaking
 changes to CheckBoxes, Calendars, TextBox, Label, and ComboBoxes. Sorry for the breaking 
