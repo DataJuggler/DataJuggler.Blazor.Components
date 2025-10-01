@@ -22,9 +22,10 @@
     overflow-y: @OverflowY;
     overflow-x: @OverflowX;    
 </Styled>
-<Styled @bind-Classname=@BorderStyle>    
+<Styled @bind-Classname=@GridBorderStyle>    
     border-width: @BorderWidthStyle;
-    border-color: @BorderColor.Name;    
+    border-color: @BorderColor.Name;
+    border-style: @BorderStyle;
 </Styled>
 <Styled @bind-Classname=@HeaderRowStyle>    
     sticky: @StickyStyle;
@@ -43,7 +44,7 @@
             @HeaderText
         </div>
     }
-    <div class="@GridStyle @ClassName">
+    <div class="@GridStyle @GridBorderStyle @ClassName">
         <div class="@ContentStyle">                            
             @if ((ShowColumnHeaders) && (HasColumns))
             {
@@ -82,15 +83,15 @@
                             }
                             else if (EnableClick)
                             {
-                                <div class="@column.ClassName @BorderStyle" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <div class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
                             }
                             else if (EnableDoubleClick)
                             {
-                                <div class="@column.ClassName  @BorderStyle" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <div class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
                             }
                             else
                             {
-                                <div class="@column.ClassName @BorderStyle">@column.ColumnText</div>
+                                <div class="@column.ClassName">@column.ColumnText</div>
                             }
                         }
                         </div>

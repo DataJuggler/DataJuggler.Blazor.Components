@@ -27,6 +27,9 @@ namespace DataJuggler.Blazor.Components
         
         #region Private Variables
         private double borderWidth;
+        private Color borderColor;
+        private string borderStyle;
+        private string gridBorderStyle;
         private List<Column> columns;
         private List<Row> rows;
         private bool showHeader;
@@ -34,8 +37,8 @@ namespace DataJuggler.Blazor.Components
         private string name;
         private IBlazorComponentParent parent;        
         private string headerClassName;
-        private Color borderColor;
-        private string borderStyle;
+        
+        
         private bool showColumnHeaders;
         private bool editMode;
         private Row editRow;
@@ -69,7 +72,7 @@ namespace DataJuggler.Blazor.Components
         private double contentTop;        
         private bool visible;
         private string visiblity;
-        private bool stickyHeader;
+        private bool stickyHeader;        
         #endregion
 
         #region Constructor
@@ -236,6 +239,7 @@ namespace DataJuggler.Blazor.Components
                 // Create
                 BorderColor = Color.Gray;
                 BorderWidth = 1;
+                BorderStyle = "solid";
                 Position = "relative";
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
@@ -699,6 +703,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return gridBackColor; }
                 set { gridBackColor = value; }
+            }
+            #endregion
+            
+            #region GridBorderStyle
+            /// <summary>
+            /// This property gets or sets the value for 'GridBorderStyle'.
+            /// </summary>
+            [Parameter]
+            public string GridBorderStyle
+            {
+                get { return gridBorderStyle; }
+                set { gridBorderStyle = value; }
             }
             #endregion
             
