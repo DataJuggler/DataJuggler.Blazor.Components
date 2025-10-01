@@ -69,6 +69,7 @@ namespace DataJuggler.Blazor.Components
         private double contentTop;        
         private bool visible;
         private string visiblity;
+        private bool stickyHeader;
         #endregion
 
         #region Constructor
@@ -247,6 +248,7 @@ namespace DataJuggler.Blazor.Components
                 Width = 400;
                 OverflowX = "hidden";
                 OverflowY = "auto";
+                StickyHeader = true;
                 
                 // Set Visibility to visible
                 Visible = true;
@@ -1071,6 +1073,43 @@ namespace DataJuggler.Blazor.Components
                 get { return showHeader; }
                 set { showHeader = value; }
             }        
+            #endregion
+
+            #region StickyHeader
+            /// <summary>
+            /// This property gets or sets the value for 'StickyHeader'.
+            /// </summary>
+            [Parameter]
+            public bool StickyHeader
+            {
+                get { return stickyHeader; }
+                set { stickyHeader = value; }
+            }
+            #endregion
+            
+            #region StickyStyle
+            /// <summary>
+            /// This read only property returns the value of StyckyStyle
+            /// </summary>
+            public string StickyStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string styckyStyle = "sticky";
+
+                    // if StickyHeader exists
+                    if (!StickyHeader)
+                    {
+                        // set the return value
+                        styckyStyle = Position;
+                    }
+
+                    // return value
+                    return styckyStyle;
+                }
+            }
             #endregion
 
             #region Top

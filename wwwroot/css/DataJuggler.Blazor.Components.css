@@ -6503,7 +6503,10 @@
 {
     font-size: 36px;
 }
-
+.heightauto
+{
+    height: auto;
+}
 .height0
 {
     height: 0px;

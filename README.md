@@ -3,6 +3,11 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+10.1.2025: I added height: auto to DataJuggler.Blazor.Css
+
+9.30.2025: I added a property to the Grid called StickyHeader. If true, the grid header
+should stay in place when the grid scrolls. Testing now, so use at your own risk.
+
 9.29.2025: I am redoing the TextBoxComponent. The Label is now a LabelComponent. 
 Hopeing this will solve some of the issues of properties not applying. The Label works well.
 I should have done this a while back. I added a method to the grid RefreshAsync
