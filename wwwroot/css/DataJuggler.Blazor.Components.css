@@ -37277,6 +37277,12 @@
     position: relative;
     bottom: 1000px;
 }
+.vertical-center 
+{
+    display: flex;
+    align-items: center; /* Centers the content vertically */
+    height: 100%; /* Ensure full height is available */
+}
 .width0
 {
     width: 0px;
