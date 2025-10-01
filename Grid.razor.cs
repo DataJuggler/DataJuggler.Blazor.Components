@@ -36,9 +36,7 @@ namespace DataJuggler.Blazor.Components
         private string headerText;        
         private string name;
         private IBlazorComponentParent parent;        
-        private string headerClassName;
-        
-        
+        private string headerClassName;       
         private bool showColumnHeaders;
         private bool editMode;
         private Row editRow;

@@ -45,63 +45,75 @@
         </div>
     }
     <div class="@GridStyle @GridBorderStyle @ClassName">
-        <div class="@ContentStyle">                            
-            @if ((ShowColumnHeaders) && (HasColumns))
-            {
-                <div class="@HeaderRowStyle @HeaderClassName">
+        <div class="@ContentStyle">
+            <table class="tablelayoutfixed">
+            @if (HasColumns)
+            {  
+                <colgroup>
                     @foreach (Column column in Columns)
                     {
-                        <div class="@column.ClassName">@column.Caption</div>
+                        <col class="@column.ClassName" />
                     }
-                </div>
+                </colgroup>
+            }
+            @if ((ShowColumnHeaders) && (HasColumns))
+            {
+                <thead>
+                <tr class="@HeaderRowStyle @HeaderClassName">
+                    @foreach (Column column in Columns)
+                    {
+                        <th class="@column.ClassName">@column.Caption</th>
+                    }
+                </tr>
+                </thead>
             }
             @if (HasRows)
-            {  
+            { 
+                <tbody>
                 @foreach (Row row in Rows)
                 {
                     // if the row has columns
                     if (row.HasColumns)
                     {
-                        <div class="@row.ClassName">
-
+                        <tr class="@row.ClassName">
                         @foreach (Column column in row.Columns)
                         {
                             if (column.IsImageButton)
                             {
-                                <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl" 
-                                Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="Button"
-                                Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
+                                <td>
+                                    <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl" 
+                                        Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="Button"
+                                        Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
+                                </td>
                             }
                             else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
                             {
-                                <div class="displayinline @column.ClassName">
+                                <td class="displayinline @column.ClassName">
                                 <TextBoxComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width 
                                     Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
                                     SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
                                     Text="@column.EditorText"  Parent=this></TextBoxComponent>
-                                </div>
+                                </td>
                             }
                             else if (EnableClick)
                             {
-                                <div class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</td>
                             }
                             else if (EnableDoubleClick)
                             {
-                                <div class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</div>
+                                <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</td>
                             }
                             else
                             {
-                                <div class="@column.ClassName">@column.ColumnText</div>
+                                <td class="@column.ClassName">@column.ColumnText</td>
                             }
                         }
-                        </div>
-
-                        <br />
+                        </tr>
                     }
-                }    
+                }
+                </tbody>
             }
-        </div>
+            </table>
+        </div>        
     </div>
 </div>
-
-

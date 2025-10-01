@@ -32256,6 +32256,10 @@
     position: relative;
     left: 1000px;
 }
+.tablelayoutfixed
+{
+    table-layout: fixed;
+}
 .textalignleft
 {
     text-align: left !important;
