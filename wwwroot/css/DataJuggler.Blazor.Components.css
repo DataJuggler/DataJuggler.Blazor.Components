@@ -786,6 +786,10 @@
 {
     border-color: white;
 }
+.bordercollapse
+{
+    border-collapse: collapse;
+}
 .clear
 {
     clear: both;

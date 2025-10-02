@@ -3,7 +3,27 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
-10.1.2025: I added height: auto to DataJuggler.Blazor.Css
+10.2.2025: I added a way to add ColumnHeaders via markup
+
+Inside a Grid Definition, add a GridColumns Fragment like shown below.
+It's important you add LastColumn="true" on the last field. This is how
+the grid knows you are done adding columns and converts them to Columns for
+the Header for now. Later I will add a way to display rows from a datasource of 
+type<T> and use the Column info. Baby steps. 
+
+    <Grid>
+        <GridColumns>
+            <GridColumn Parent="@ClientsGrid" Caption="Name" Name="Name"
+                        Index="0" ColumnNumber="1" Width="240" Height="16"                                    
+                        ClassName="displayinlineblock textdonotwrap width240 colorwhite textalignleft right16 down4 fontsize12" />
+            <GridColumn Parent="@ClientsGrid" Caption="Active" Name="Active"
+                        Index="1" ColumnNumber="2" Width="64" Height="16"
+                        LastColumn="true"
+                        ClassName="displayinlineblock textdonotwrap width64 colorwhite textalignleft down4 right16 fontsize12" />
+        </GridColumns>
+    </Grid>
+
+10.1.2025: I added height: auto to DataJuggler.Blazor.CSS
 
 9.30.2025: I added a property to the Grid called StickyHeader. If true, the grid header
 should stay in place when the grid scrolls. Testing now, so use at your own risk.

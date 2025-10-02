@@ -1,17 +1,18 @@
 ﻿           
 #region using statements
 
-using System;
 using DataJuggler.Blazor.Components.Interfaces;
-using System.Collections.Generic;
-using DataJuggler.Excelerate;
-using Microsoft.AspNetCore.Components;
-using DataJuggler.UltimateHelper;
+using DataJuggler.Blazor.Components.Objects;
 using DataJuggler.Blazor.Components.Util;
-using Microsoft.AspNetCore.Components.Web;
 using DataJuggler.Cryptography;
-using System.Threading.Tasks;
+using DataJuggler.Excelerate;
+using DataJuggler.UltimateHelper;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -70,7 +71,10 @@ namespace DataJuggler.Blazor.Components
         private double contentTop;        
         private bool visible;
         private string visiblity;
-        private bool stickyHeader;        
+        private bool stickyHeader;
+        private RenderFragment<Grid> gridColumns;
+        private List<GridColumn> gridColumnDefs;
+        private bool columnsBuilt;
         #endregion
 
         #region Constructor
@@ -224,6 +228,57 @@ namespace DataJuggler.Blazor.Components
 
         #region Methods
             
+            #region ConvertGridColumnsToColumns()
+            /// <summary>
+            /// Converts the Grid Columns To Columns
+            /// </summary>
+            public void ConvertGridColumnsToColumns()
+            {
+                // locals
+                Column column = null;
+                int index = -1;
+
+                // if the Columns exist
+                if (HasGridColumnDefs)
+                {
+                    // Create the Columns object
+                    Columns = new List<Column>();
+
+                    // Iterate the collection of GridColumn objects
+                    foreach (GridColumn gridColumn in GridColumnDefs)
+                    {
+                        // Increment the value for index
+                        index++;
+
+                        // Create a new instance of a 'column' object.
+                        column = new Column();
+
+                        // map properties
+                        column.ColumnName = gridColumn.Name;
+                        column.ColumnNumber = gridColumn.ColumnNumber;
+                        column.Caption = gridColumn.Caption;
+                        column.ClassName = gridColumn.ClassName;
+                        column.DataType = gridColumn.DataType;
+                        column.Width = gridColumn.Width;
+                        column.Height = gridColumn.Height;
+                        
+                        // Set these values
+                        column.Index = index;
+                        column.ColumnNumber = index + 1;
+
+                        // Column.Visible doesn’t exist — use Hidden instead
+                        column.Hidden = !gridColumn.Visible;
+
+                        // Add this column to the collection
+                        Columns.Add(column);
+                    }
+
+                    // So this doesn't fire again
+                    ColumnsBuilt = true;
+                }
+            }
+            #endregion
+            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -241,6 +296,7 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
+                GridColumnDefs = new List<GridColumn>();
                 
                 Height = 240;
                 FontSize = 12;
@@ -377,10 +433,35 @@ namespace DataJuggler.Blazor.Components
                         // cast the IBlazorComponent as an ImageButton
                         ImageButton button = component as ImageButton;
 
-                        
-
                         // Add this button
                         Buttons.Add(button);
+                    }
+                    else if (component is GridColumn tempGridColumn)
+                    {
+                        // if the Columns have not been Built
+                        if (!ColumnsBuilt)
+                        {
+                            if (ListHelper.HasOneOrMoreItems(GridColumnDefs))
+                            {
+                                if (!GridColumnDefs.Contains(tempGridColumn))
+                                {
+                                    // Add this column
+                                    GridColumnDefs.Add(tempGridColumn);
+                                }
+                            }
+                            else
+                            {
+                                // Add this column
+                                GridColumnDefs.Add(tempGridColumn);
+                            }
+
+                            // if this is the last column
+                            if (tempGridColumn.LastColumn)
+                            {
+                                // Create the HeaderColumns from the GridColumns
+                                ConvertGridColumnsToColumns();
+                            }
+                        }
                     }
                 }
             }
@@ -485,6 +566,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return columns; }
                 set { columns = value; }
+            }
+            #endregion
+            
+            #region ColumnsBuilt
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnsBuilt'.
+            /// </summary>
+            public bool ColumnsBuilt
+            {
+                get { return columnsBuilt; }
+                set { columnsBuilt = value; }
             }
             #endregion
             
@@ -716,6 +808,29 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region GridColumnDefs
+            /// <summary>
+            /// This property gets or sets the value for 'GridColumnDefs'.
+            /// </summary>            
+            public List<GridColumn> GridColumnDefs
+            {
+                get { return gridColumnDefs; }
+                set { gridColumnDefs = value; }
+            }
+            #endregion
+                        
+            #region GridColumns
+            /// <summary>
+            /// This property gets or sets the value for 'GridColumns'.
+            /// </summary>
+            [Parameter]
+            public RenderFragment<Grid> GridColumns
+            {
+                get { return gridColumns; }
+                set { gridColumns = value; }
+            }
+            #endregion
+            
             #region GridStyle
             /// <summary>
             /// This property gets or sets the value for 'GridStyle'.
@@ -774,6 +889,23 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return hasEditRow;
+                }
+            }
+            #endregion
+            
+            #region HasGridColumns
+            /// <summary>
+            /// This property returns true if this object has a 'GridColumns'.
+            /// </summary>
+            public bool HasGridColumnDefs
+            {
+                get
+                {
+                    // initial value
+                    bool hasGridColumnDefs = (ListHelper.HasOneOrMoreItems(GridColumnDefs));
+
+                    // return value
+                    return hasGridColumnDefs;
                 }
             }
             #endregion
