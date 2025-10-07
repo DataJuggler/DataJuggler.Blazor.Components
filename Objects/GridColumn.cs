@@ -7,6 +7,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.NET9;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using DataJuggler.Excelerate;
 
 #endregion
 
@@ -50,6 +51,41 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 // Intentionally empty
             }
+            #endregion
+            
+            #region ExportAsColumn()
+            /// <summary>
+            /// returns the As Column
+            /// </summary>
+            #region ExportAsColumn()
+            /// <summary>
+            /// Exports this GridColumn as a Column object for Excelerate.
+            /// </summary>
+            public Column ExportAsColumn()
+            {
+                // initial value
+                Column column = new Column();
+
+                // set each property
+                column.Caption = this.Caption;
+                column.ClassName = this.ClassName;
+                column.ColumnNumber = this.ColumnNumber;
+                column.DataType = this.DataType;
+                column.Height = this.Height;
+                column.Index = this.Index;
+                column.Width = this.Width;
+
+                // The Column class uses Hidden instead of Visible (reverse mapping)
+                column.Hidden = !this.Visible;
+
+                // GridColumn uses FieldName; Column uses ColumnName
+                column.ColumnName = this.FieldName;
+
+                // return value
+                return column;
+            }
+            #endregion
+
             #endregion
             
             #region ReceiveData(Message message)

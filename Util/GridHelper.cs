@@ -60,7 +60,7 @@ namespace DataJuggler.Blazor.Components.Util
             
             #region GetPage<T>(List<T> items, int itemsPerPage = 0, int currentPage = -1)
             /// <summary>
-            /// method returns the Page < T >
+            /// method returns the Page <T>
             /// </summary>
             public static PageResponse GetPage<T>(List<T> items, int itemsPerPage = 0, int currentPage = -1)
             {
