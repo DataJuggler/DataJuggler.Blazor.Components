@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
+using System.Reflection;
 
 #endregion
 
@@ -868,7 +869,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    bool hasColumns = (this.Columns != null);
+                    bool hasColumns = (ListHelper.HasOneOrMoreItems(Columns));
                     
                     // return value
                     return hasColumns;

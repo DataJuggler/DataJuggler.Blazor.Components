@@ -3,6 +3,8 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+10.6.2025: I am adding a new way to add rows t the grid. Details coming soon, but this release is the first step.
+
 10.2.2025: I added a way to add ColumnHeaders via markup
 
 Inside a Grid Definition, add a GridColumns Fragment like shown below.
