@@ -35,6 +35,7 @@ namespace DataJuggler.Blazor.Components.Objects
         private int width;
         private bool lastColumn;
         private bool visible;
+        private string format;
         #endregion
         
         #region Events
@@ -159,6 +160,18 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return fieldName; }
                 set { fieldName = value; }
+            }
+            #endregion
+            
+            #region Format
+            /// <summary>
+            /// This property gets or sets the value for 'Format'.
+            /// </summary>
+            [Parameter]
+            public string Format
+            {
+                get { return format; }
+                set { format = value; }
             }
             #endregion
             

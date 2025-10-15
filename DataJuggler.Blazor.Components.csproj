@@ -24,7 +24,7 @@
 		<RepositoryType>Git - Git Hub</RepositoryType>
 		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
 		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-		<Version>9.19.4</Version>
+		<Version>9.19.5</Version>
 		<AssemblyVersion>9.11.6</AssemblyVersion>
 		<FileVersion>9.11.6</FileVersion>
 		<Nullable>disable</Nullable>
@@ -83,10 +83,10 @@
 
   <ItemGroup>
     <PackageReference Include="DataJuggler.BlazorStyled" Version="9.0.0" />
-    <PackageReference Include="DataJuggler.Excelerate" Version="9.1.3" />
+    <PackageReference Include="DataJuggler.Excelerate" Version="9.1.5" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="9.1.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.9" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
   </ItemGroup>
 
