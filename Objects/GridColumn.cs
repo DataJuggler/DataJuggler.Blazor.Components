@@ -36,6 +36,9 @@ namespace DataJuggler.Blazor.Components.Objects
         private bool lastColumn;
         private bool visible;
         private string format;
+        private string fontName;
+        private double fontSize;
+        private bool fontBold;
         #endregion
         
         #region Events
@@ -160,6 +163,42 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return fieldName; }
                 set { fieldName = value; }
+            }
+            #endregion
+            
+            #region FontBold
+            /// <summary>
+            /// This property gets or sets the value for 'FontBold'.
+            /// </summary>
+            [Parameter]
+            public bool FontBold
+            {
+                get { return fontBold; }
+                set { fontBold = value; }
+            }
+            #endregion
+            
+            #region FontName
+            /// <summary>
+            /// This property gets or sets the value for 'FontName'.
+            /// </summary>
+            [Parameter]
+            public string FontName
+            {
+                get { return fontName; }
+                set { fontName = value; }
+            }
+            #endregion
+            
+            #region FontSize
+            /// <summary>
+            /// This property gets or sets the value for 'FontSize'.
+            /// </summary>
+            [Parameter]
+            public double FontSize
+            {
+                get { return fontSize; }
+                set { fontSize = value; }
             }
             #endregion
             

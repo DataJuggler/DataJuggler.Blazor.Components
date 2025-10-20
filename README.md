@@ -3,6 +3,9 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+10.19.2025: I added FontName, FontSize and FontBold to the GridColumn object. This is used by the 
+Grid to help format columns and in DataTier.NET in the Grid Column Builder
+
 10.15.2025: I added a new property Format to the object GridColumn and updated 
 DataJuggler.Excelerate and two other NuGet packages. 
 
