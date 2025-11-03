@@ -1,6 +1,6 @@
 ﻿@using BlazorStyled
 
-<Styled @bind-Classname=ButtonContainerStyle>
+<Styled @bind-Classname=@ImageContainerStyle>
     position: @Position;
     left: @LeftStyle;
     top: @TopStyle;
@@ -13,7 +13,7 @@
     padding: 0px;
     visibility: @VisibleStyle;
 </Styled>
-<Styled @bind-Classname=@ButtonStyle>
+<Styled @bind-Classname=@ImageStyle>
     background-image: url('@ImageUrl');
     background-size: 100% 100%;
     display: inline-block;
@@ -30,29 +30,16 @@
     margin: 0px;
     padding: 0px;
 </Styled>
-<Styled @bind-Classname=@ButtonTextStyle>
+<Styled @bind-Classname=@ImageTextStyle>
     position: @Position;
     left: @TextOffsetXStyle;
     top: @TextOffsetYStyle;
     text-align: @TextAlign;
     font-family: @FontName;
     font-size: @FontSizeStyle;
-    color: @TextColorName;
 </Styled>
 
-<style>
-    .imagebutton
-    {
-        cursor: default;
-    }   
-    .imagebutton:hover
-    {        
-        cursor: pointer !important;        
-    }
-</style>
-
-<div class="@ButtonContainerStyle @ClassName">
-    <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
-        <span class="@ButtonTextStyle">@Text</span>
-    </button>    
+<div class="@ImageContainerStyle @ClassName">
+    <img class="@ImageStyle" />
+    <span class="@ImageTextStyle">@Text</span>
 </div>

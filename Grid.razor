@@ -86,8 +86,16 @@
                                 {
                                     <td>
                                         <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl" 
-                                            Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="Button"
+                                            Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.ColumnName"
                                             Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
+                                    </td>
+                                }
+                                else if (column.IsImage)
+                                {
+                                    <td>
+                                        <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl" 
+                                            Width="@column.Width" Height="@column.Height" Name="@column.ColumnName"
+                                            Text="@column.ColumnText" Visible=true Parent="this"></ImageComponent>
                                     </td>
                                 }
                                 else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))

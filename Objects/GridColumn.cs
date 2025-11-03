@@ -39,6 +39,8 @@ namespace DataJuggler.Blazor.Components.Objects
         private string fontName;
         private double fontSize;
         private bool fontBold;
+        private bool isImage;
+        private bool isImageButton;
         #endregion
         
         #region Events
@@ -235,6 +237,30 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return index; }
                 set { index = value; }
+            }
+            #endregion
+            
+            #region IsImage
+            /// <summary>
+            /// This property gets or sets the value for 'IsImage'.
+            /// </summary>
+            [Parameter]
+            public bool IsImage
+            {
+                get { return isImage; }
+                set { isImage = value; }
+            }
+            #endregion
+            
+            #region IsImageButton
+            /// <summary>
+            /// This property gets or sets the value for 'IsImageButton'.
+            /// </summary>
+            [Parameter]
+            public bool IsImageButton
+            {
+                get { return isImageButton; }
+                set { isImageButton = value; }
             }
             #endregion
             

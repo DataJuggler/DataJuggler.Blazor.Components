@@ -3,6 +3,12 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+11.3.2025: Breaking Change! - I renamed OffSet to Offset everywhere. Not sure why I spelled it wrong the first
+time. Sorry for any problems this causes, just rename OffSet to Offset everywhere its used.
+I also added a new ImageComponent, and the Grid now has a new property for Columns, IsImage.
+DataTier.NET now has new Grid Column Builder (releasing soon as today 11.3.2025).
+ImageComponent and the new Grid column for image have not been tested yet. Testing now, I just wanted to check this in.
+
 10.23.2025: I added fontsize37 - fontsize100 to DataJuggler.Blazor.Components.css
 
 10.19.2025: I added FontName, FontSize and FontBold to the GridColumn object. This is used by the 

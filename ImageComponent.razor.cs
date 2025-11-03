@@ -5,7 +5,6 @@
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
 using System.Drawing;
 
 #endregion
@@ -13,79 +12,54 @@ using System.Drawing;
 namespace DataJuggler.Blazor.Components
 {
 
-    #region class ImageButton
+    #region class ImageComponent
     /// <summary>
-    /// This class is used to show an image with a text caption under it
+    /// This class is used to render an Image.
     /// </summary>
-    public partial class ImageButton : IBlazorComponent
+    public partial class ImageComponent : IBlazorComponent
     {
-
+        
         #region Private Variables
         private Color borderColor;
         private double borderWidth;
+        private string fontName;
+        private double fontSize;
+        private string heightUnit;
+        private string imageContainerStyle;
+        private string imageTextStyle;
+        private double left;
+        private string name;
+        private IBlazorComponentParent parent;
+        private string position;
+        private string textAlign;
+        private double textOffsetX;
+        private double textOffsetY;
+        private double top;
+        private string unit;
+        private double height;
+        private Color textColor;
+        private double width;
+        private int zIndex;
+        private bool visible;
+        private string className;
+        private string imageStyle;
         private string imageUrl;
         private string text;
-        private int buttonNumber;
-        private double left;
-        private double top;
-        private string leftStyle;
-        private string topStyle;
-        private string name;
-        private double height;
-        private double width;
-        private string heightStyle;
-        private string textAlign;
-        private IBlazorComponentParent parent;
-        private ButtonClickedHandler clickHandler;
-        private List<IBlazorComponent> children;
-        private int zIndex;        
-        private bool visible;        
-        private string position;
-        private string unit;
-        private double labelWidth;
-        private Color textColor;
-        private string heightUnit;
-        private string className;
-        private string title;
-        private double fontSize;
-        private string fontName;
-        private double textOffsetX;
-        private double textOffsetY;        
-
-        // Reverting back to BlazorStyled
-        private string buttonContainerStyle;
-        private string buttonStyle;
-        private string buttonTextStyle;
         #endregion
-
+        
         #region Constructor
         /// <summary>
-        /// Create a new instance of an ImageButton object
+        /// Create a new instance of a 'ImageComponent' object.
         /// </summary>
-        public ImageButton()
+        public ImageComponent()
         {
             // Perform initializations for this object
             Init();
         }
         #endregion
-
+        
         #region Methods
-            
-            #region ButtonClicked()
-            /// <summary>
-            /// This method Button Clicked
-            /// </summary>
-            public void ButtonClicked()
-            {
-                // if the value for HasClickHandler is true
-                if (HasClickHandler)
-                {
-                    // Notify the handler
-                    ClickHandler(ButtonNumber, Text);
-                }
-            }
-            #endregion
-            
+
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -113,80 +87,16 @@ namespace DataJuggler.Blazor.Components
             
             #region ReceiveData(Message message)
             /// <summary>
-            /// method returns the Data
+            /// This method is used to receive messages from other components or pages
             /// </summary>
             public void ReceiveData(Message message)
             {
-                // not used in this component
-            }
-            #endregion
 
-            #region Refresh()
-            /// <summary>
-            /// method Refresh
-            /// </summary>
-            public void Refresh()
-            {
-                // Update the UI
-                InvokeAsync(() =>
-                {
-                    StateHasChanged();
-                });
-            }
-            #endregion
-
-            #region SetClickHandler(ButtonClickedHandler clickHandler)
-            /// <summary>
-            /// Set Click Handler
-            /// </summary>
-            public void SetClickHandler(ButtonClickedHandler clickHandler)
-            {
-                // Store the clickHandler
-                ClickHandler = clickHandler;
-            }
-            #endregion
-            
-            #region SetText(string text)
-            /// <summary>
-            /// Set Text
-            /// </summary>
-            public void SetText(string text)
-            {
-                // Store the new value
-                Text = text;
-
-                // Update
-                Refresh();
-            }
-            #endregion
-
-            #region SetTextColor(Color color)
-            /// <summary>
-            /// method returns the Text Color
-            /// </summary>
-            public void SetTextColor(Color color)
-            {
-                // Set the value
-                TextColor = color;
-
-                // Update
-                Refresh();
-            }
-            #endregion
-            
-            #region SetVisible(bool visible)
-            /// <summary>
-            /// Set Visible
-            /// </summary>
-            public void SetVisible(bool visible)
-            {
-                // store
-                Visible = visible;
             }
             #endregion
             
         #endregion
-
+        
         #region Properties
             
             #region BorderColor
@@ -238,7 +148,7 @@ namespace DataJuggler.Blazor.Components
                 set { borderWidth = value; }
             }
             #endregion
-            
+
             #region BorderWidthStyle
             /// <summary>
             /// This read only property returns the value of BorderWidth + Unit;
@@ -256,62 +166,6 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-
-            #region ButtonContainerStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ButtoncontainerStyle'.
-            /// </summary>
-            public string ButtonContainerStyle
-            {
-                get { return buttonContainerStyle; }
-                set { buttonContainerStyle = value; }
-            }
-            #endregion
-            
-            #region ButtonNumber
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonNumber'.
-            /// </summary>
-            [Parameter]
-            public int ButtonNumber
-            {
-                get { return buttonNumber; }
-                set { buttonNumber = value; }
-            }
-            #endregion
-            
-            #region ButtonStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonStyle'.
-            /// </summary>
-            public string ButtonStyle
-            {
-                get { return buttonStyle; }
-                set { buttonStyle = value; }
-            }
-            #endregion
-            
-            #region ButtonTextStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ButtonTextStyle'.
-            /// </summary>
-            public string ButtonTextStyle
-            {
-                get { return buttonTextStyle; }
-                set { buttonTextStyle = value; }
-            }
-            #endregion
-            
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
-            }
-            #endregion
             
             #region ClassName
             /// <summary>
@@ -322,18 +176,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return className; }
                 set { className = value; }
-            }
-            #endregion
-            
-            #region ClickHandler
-            /// <summary>
-            /// This property gets or sets the value for 'ClickHandler'.
-            /// </summary>            
-            [Parameter]
-            public ButtonClickedHandler ClickHandler
-            {
-                get { return clickHandler; }
-                set { clickHandler = value; }
             }
             #endregion
             
@@ -360,7 +202,7 @@ namespace DataJuggler.Blazor.Components
                 set { fontSize = value; }
             }
             #endregion
-            
+
             #region FontSizeStyle
             /// <summary>
             /// This read only property returns the value of FontSize + Unit
@@ -378,57 +220,6 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-
-            #region HasChildren
-            /// <summary>
-            /// This property returns true if this object has a 'Children'.
-            /// </summary>
-            public bool HasChildren
-            {
-                get
-                {
-                    // initial value
-                    bool hasChildren = (this.Children != null);
-                    
-                    // return value
-                    return hasChildren;
-                }
-            }
-            #endregion
-            
-            #region HasClickHandler
-            /// <summary>
-            /// This property returns true if this object has a 'ClickHandler'.
-            /// </summary>
-            public bool HasClickHandler
-            {
-                get
-                {
-                    // initial value
-                    bool hasClickHandler = (this.ClickHandler != null);
-                    
-                    // return value
-                    return hasClickHandler;
-                }
-            }
-            #endregion
-            
-            #region HasParent
-            /// <summary>
-            /// This property returns true if this object has a 'Parent'.
-            /// </summary>
-            public bool HasParent
-            {
-                get
-                {
-                    // initial value
-                    bool hasParent = (this.Parent != null);
-                    
-                    // return value
-                    return hasParent;
-                }
-            }
-            #endregion
             
             #region Height
             /// <summary>
@@ -441,7 +232,7 @@ namespace DataJuggler.Blazor.Components
                 set { height = value; }
             }
             #endregion
-            
+
             #region HeightStyle
             /// <summary>
             /// This read only property returns the value of Height + Unit
@@ -479,6 +270,39 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ImageContainerStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ImageContainerStyle'.
+            /// </summary>
+            public string ImageContainerStyle
+            {
+                get { return imageContainerStyle; }
+                set { imageContainerStyle = value; }
+            }
+            #endregion
+            
+            #region ImageStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ImageStyle'.
+            /// </summary>
+            public string ImageStyle
+            {
+                get { return imageStyle; }
+                set { imageStyle = value; }
+            }
+            #endregion
+            
+            #region ImageTextStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ImageTextStyle'.
+            /// </summary>
+            public string ImageTextStyle
+            {
+                get { return imageTextStyle; }
+                set { imageTextStyle = value; }
+            }
+            #endregion
+            
             #region ImageUrl
             /// <summary>
             /// This property gets or sets the value for 'ImageUrl'.
@@ -486,43 +310,8 @@ namespace DataJuggler.Blazor.Components
             [Parameter]
             public string ImageUrl
             {
-                get 
-                {
-                    return imageUrl;
-                }
-                set 
-                { 
-                    imageUrl = value;
-                }
-            }
-            #endregion
-
-            #region LabelWidth
-            /// <summary>
-            /// This property gets or sets the value for 'LabelWidth'.
-            /// </summary>
-            public double LabelWidth
-            {
-                get { return labelWidth; }
-                set { labelWidth = value; }
-            }
-            #endregion
-            
-            #region LabelWidthStyle
-            /// <summary>
-            /// This read only property returns the value of LabelWidthStyle from the object LabelWidth.
-            /// </summary>
-            public string LabelWidthStyle
-            {
-                
-                get
-                {
-                    // initial value
-                    string labelWidthStyle = LabelWidth + Unit;
-                    
-                    // return value
-                    return labelWidthStyle;
-                }
+                get { return imageUrl; }
+                set { imageUrl = value; }
             }
             #endregion
             
@@ -554,19 +343,7 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-            
-            #region Name
-            /// <summary>
-            /// This property gets or sets the value for 'Name'.
-            /// </summary>
-            [Parameter]
-            public string Name
-            {
-                get { return name; }
-                set { name = value; }
-            }
-            #endregion
-            
+
             #region OutlineStyle
             /// <summary>
             /// This read only property returns the value of the Border if BorderWidth is set, else None:
@@ -591,25 +368,45 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-
+            
+            #region Name
+            /// <summary>
+            /// This property gets or sets the value for Name
+            /// </summary>
+            [Parameter]
+            public string Name
+            {
+                get
+                {
+                    return name;
+                }
+                set
+                {
+                    name = value;
+                }
+            }
+            #endregion
+            
             #region Parent
             /// <summary>
-            /// This property gets or sets the value for 'Parent'.
+            /// This property gets or sets the value for Parent
             /// </summary>
             [Parameter]
             public IBlazorComponentParent Parent
             {
-                get { return parent; }
-                set 
+                get
                 {
-                    // set the value
+                    return parent;
+                }
+                set
+                {
                     parent = value;
 
-                    // if the parent exists
-                    if (HasParent)
+                    // If the parent exists
+                    if (parent != null)
                     {
-                        // Register with the parent
-                        Parent.Register(this);  
+                        // register with the parent
+                        parent.Register(this);
                     }
                 }
             }
@@ -662,19 +459,6 @@ namespace DataJuggler.Blazor.Components
                 set { textColor = value; }
             }
             #endregion
-
-            #region TextColorName
-            /// <summary>
-            /// This read only property returns the name from the 'TextColor'.
-            /// </summary>            
-            public string TextColorName
-            {
-                get 
-                {
-                    return textColor.Name;
-                }
-            }
-            #endregion
             
             #region TextOffsetX
             /// <summary>
@@ -687,7 +471,7 @@ namespace DataJuggler.Blazor.Components
                 set { textOffsetX = value; }
             }
             #endregion
-            
+
             #region TextOffsetXStyle
             /// <summary>
             /// This read only property returns the value of TextOffsetX + Unit
@@ -733,18 +517,6 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return textOffsetYStyle;
                 }
-            }
-            #endregion
-
-            #region Title
-            /// <summary>
-            /// This property gets or sets the value for 'Title'.
-            /// </summary>
-            [Parameter]
-            public string Title
-            {
-                get { return title; }
-                set { title = value; }
             }
             #endregion
             
@@ -801,30 +573,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region VisibleStyle
-            /// <summary>
-            /// This property gets or sets the value for 'VisibleStyle'.
-            /// </summary>
-            public string VisibleStyle
-            {
-                get 
-                {
-                    // initial value
-                    string visibleStyle = "visible";
-
-                    // if the value for Visible is false
-                    if (!Visible)
-                    {
-                        // hide
-                        visibleStyle = "hidden";
-                    }
-
-                    // return value
-                    return visibleStyle;
-                }
-            }
-            #endregion
-            
             #region Width
             /// <summary>
             /// This property gets or sets the value for 'Width'.
@@ -833,13 +581,10 @@ namespace DataJuggler.Blazor.Components
             public double Width
             {
                 get { return width; }
-                set 
-                { 
-                    width = value;
-                }
+                set { width = value; }
             }
             #endregion
-            
+
             #region WidthStyle
             /// <summary>
             /// This property gets or sets the value for 'WidthStyle'.
@@ -868,9 +613,33 @@ namespace DataJuggler.Blazor.Components
                 set { zIndex = value; }
             }
             #endregion
+
+            #region VisibleStyle
+            /// <summary>
+            /// This property gets or sets the value for 'VisibleStyle'.
+            /// </summary>
+            public string VisibleStyle
+            {
+                get 
+                {
+                    // initial value
+                    string visibleStyle = "visible";
+
+                    // if the value for Visible is false
+                    if (!Visible)
+                    {
+                        // hide
+                        visibleStyle = "hidden";
+                    }
+
+                    // return value
+                    return visibleStyle;
+                }
+            }
+            #endregion
             
         #endregion
-
+        
     }
     #endregion
 
