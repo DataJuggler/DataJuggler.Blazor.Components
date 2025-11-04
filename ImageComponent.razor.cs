@@ -94,7 +94,21 @@ namespace DataJuggler.Blazor.Components
 
             }
             #endregion
-            
+
+            #region Refresh()
+            /// <summary>
+            /// method Refresh
+            /// </summary>
+            public void Refresh()
+            {
+                InvokeAsync(() =>
+                {
+                    // Refresh
+                    StateHasChanged();
+                });
+            }
+            #endregion
+
             #region SetVisible(bool visible)
             /// <summary>
             /// Set Visible
@@ -103,6 +117,9 @@ namespace DataJuggler.Blazor.Components
             {
                 // set the value
                 this.Visible = visible;
+
+                // Update the UI
+                Refresh();
             }
             #endregion
             
@@ -583,6 +600,30 @@ namespace DataJuggler.Blazor.Components
                 set { visible = value; }
             }
             #endregion
+
+            #region VisibleStyle
+            /// <summary>
+            /// This property gets or sets the value for 'VisibleStyle'.
+            /// </summary>
+            public string VisibleStyle
+            {
+                get 
+                {
+                    // initial value
+                    string visibleStyle = "visible";
+
+                    // if the value for Visible is false
+                    if (!Visible)
+                    {
+                        // hide
+                        visibleStyle = "hidden";
+                    }
+
+                    // return value
+                    return visibleStyle;
+                }
+            }
+            #endregion
             
             #region Width
             /// <summary>
@@ -622,30 +663,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return zIndex; }
                 set { zIndex = value; }
-            }
-            #endregion
-
-            #region VisibleStyle
-            /// <summary>
-            /// This property gets or sets the value for 'VisibleStyle'.
-            /// </summary>
-            public string VisibleStyle
-            {
-                get 
-                {
-                    // initial value
-                    string visibleStyle = "visible";
-
-                    // if the value for Visible is false
-                    if (!Visible)
-                    {
-                        // hide
-                        visibleStyle = "hidden";
-                    }
-
-                    // return value
-                    return visibleStyle;
-                }
             }
             #endregion
             
