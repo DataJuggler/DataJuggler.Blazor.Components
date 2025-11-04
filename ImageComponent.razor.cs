@@ -95,6 +95,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// Set Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // set the value
+                this.Visible = visible;
+            }
+            #endregion
+            
         #endregion
         
         #region Properties
