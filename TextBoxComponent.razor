@@ -64,73 +64,71 @@
     height: @HeightStyle;
     background-color: @BackgroundColor;
     z-index: @ZIndex;
+    visibility: @Visibility;
 </Styled>
 <Styled @bind-Classname=@BottomMarginStyle>
     width: @WidthStyle;
     height: @MarginBottomStyle;
 </Styled>
-
-@if (Visible)
-{  
-    <div class="@TextBoxControlStyle @ClassName @TextWrapping">
-        @if (ShowCaption)
+ 
+<div class="@TextBoxControlStyle @ClassName @TextWrapping">
+    @if (ShowCaption)
+    {
+        <div class="@Column1Style @LabelStyle">
+            <Label Name="LabelControl" Width="@LabelWidth" Height="@LabelHeight"
+                TextAlign="@LabelTextAlign"
+                Text="@Caption" TextColor="@LabelColor" ClassName="@LabelClassName"></Label>
+        </div>
+    }
+    <div class="@Column2Style">
+        @if (Multiline)
         {
-            <div class="@Column1Style @LabelStyle">
-                <Label Name="LabelControl" Width="@LabelWidth" Height="@LabelHeight"
-                    TextAlign="@LabelTextAlign"
-                    Text="@Caption" TextColor="@LabelColor" ClassName="@LabelClassName"></Label>
+            <div>
+                @if (Enabled)
+                {
+                    <textarea class="@TextBoxStyle @TextBoxClassName" type=@InputType @bind="@Text" 
+                        @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" tabindex="@TabIndex" />
+                }
+                else
+                {
+                    <textarea class="@TextBoxStyle @TextBoxClassName" disabled type=@InputType @bind="@Text" />
+                }                        
             </div>
         }
-        <div class="@Column2Style">
-            @if (Multiline)
-            {
-                <div>
-                    @if (Enabled)
-                    {
-                        <textarea class="@TextBoxStyle @TextBoxClassName" type=@InputType @bind="@Text" 
-                            @bind:event="oninput" @onkeydown="Enter" onfocus="this.select()" tabindex="@TabIndex" />
-                    }
-                    else
-                    {
-                        <textarea class="@TextBoxStyle @TextBoxClassName" disabled type=@InputType @bind="@Text" />
-                    }                        
-                </div>
-            }
-            else
-            {
-                <span>
-                    @if (Enabled)
-                    {
-                        if (HandleChangeOption == HandleChangeEnum.OnKeyDown)
-                        {  
-                            <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
-                                    type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
-                                    @bind:event="oninput" onfocus="this.select()" tabindex="@TabIndex"
-                                    onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
-                        }
-                        else
-                        {  
-                            <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
-                                    type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
-                                    onfocus="this.select();" tabindex="@TabIndex"
-                                    onClick="this.select();" @ref="InnerControl" />                          
-                        }
-                    }
-                    else
-                    {
-                        <input class="@TextBoxStyle @TextBoxClassName" autocomplete="off" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
-                    }
-                </span>
-            }
-        </div>
-        @if (ShowImage)
+        else
         {
-            <div class="@Column3Style">
-                <div class="@ImageClassName">
-                    <div class="@ImageStyle"></div>
-                </div>
-            </div>
+            <span>
+                @if (Enabled)
+                {
+                    if (HandleChangeOption == HandleChangeEnum.OnKeyDown)
+                    {  
+                        <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
+                                type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
+                                @bind:event="oninput" onfocus="this.select()" tabindex="@TabIndex"
+                                onClick="this.select();" @onkeydown="Enter" @ref="InnerControl" />
+                    }
+                    else
+                    {  
+                        <input class="@TextBoxStyle @TextBoxClassName" autocomplete="@AutoCompleteStyle"
+                                type=@InputType @bind="@Text" pattern="@Pattern" @onblur="HandleBlur"
+                                onfocus="this.select();" tabindex="@TabIndex"
+                                onClick="this.select();" @ref="InnerControl" />                          
+                    }
+                }
+                else
+                {
+                    <input class="@TextBoxStyle @TextBoxClassName" autocomplete="off" disabled type=@InputType @bind="@Text" @bind:event="oninput" @ref="InnerControl" />
+                }
+            </span>
         }
     </div>
-    <div class="@BottomMarginStyle"></div>
-}
+    @if (ShowImage)
+    {
+        <div class="@Column3Style">
+            <div class="@ImageClassName">
+                <div class="@ImageStyle"></div>
+            </div>
+        </div>
+    }
+</div>
+<div class="@BottomMarginStyle"></div>

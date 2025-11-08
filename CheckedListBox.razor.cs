@@ -27,7 +27,7 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private double checkBoxX;
         private double checkBoxY;
-        private List<IBlazorComponent> children;
+        private List<CheckBoxComponent> checkBoxes;
         private string displayStyle;
         private double height;
         private string heightStyle;
@@ -52,8 +52,7 @@ namespace DataJuggler.Blazor.Components
         private double fontSize;
         private double top;
         private string topStyle;
-        private string unit;
-        private bool visible;
+        private string unit;        
         private int visibleCount;
         private double width;
         private int zIndex;        
@@ -64,7 +63,9 @@ namespace DataJuggler.Blazor.Components
         private double checkBoxTextY;
         private double checkBoxHeight;
         private double checkBoxWidth;
-        private bool notifyParentOnBlur;        
+        private bool notifyParentOnBlur;             
+        private bool visible;
+        private string visibility;
         
         // reverting back to BlazorStyled
         private string checkedlistboxStyle;
@@ -84,56 +85,35 @@ namespace DataJuggler.Blazor.Components
         
         #region Methods
             
-            #region CheckIfComponentIsRegistered(IBlazorComponent component)
+            #region CheckIfComponentIsRegistered(CheckBoxComponent component)
             /// <summary>
             /// returns the If Component Is Registered
             /// </summary>
-            public bool CheckIfComponentIsRegistered(IBlazorComponent component)
+            public bool CheckIfComponentIsRegistered(CheckBoxComponent component)
             {
                 // initial value (default to false)
                 bool isComponentRegistered = false;
 
-                // if the value for HasChildren is true
-                if (HasChildren)
+                // if the value for HasCheckBoxes is true
+                if (HasCheckBoxes)
                 {
-                    // Iterate the collection of IBlazorComponent objects
-                    foreach (IBlazorComponent item in Children)
-                    {
-                        // is this a CheckBoxComponent
-                        CheckBoxComponent checkBoxComponent = component as CheckBoxComponent;
-
-                        // cast this item as a CheckBoxComponent
-                        CheckBoxComponent itemCheckBoxComponent = item as CheckBoxComponent;
-
-                        // If the checkBoxComponent and itemCheckBoxComponent objects both exist
-                        if (NullHelper.Exists(checkBoxComponent, itemCheckBoxComponent))
+                    // Iterate the collection of CheckBoxes objects
+                    foreach (CheckBoxComponent checkBox in CheckBoxes)
+                    {  
+                        // if the ExternalId's match
+                        if ((checkBox.ExternalId == component.ExternalId) && (checkBox.ExternalId > 0))
                         {
-                            // if the ExternalId's match
-                            if ((checkBoxComponent.ExternalId == itemCheckBoxComponent.ExternalId) && (checkBoxComponent.ExternalId > 0))
-                            {
-                                // set the return value
-                                isComponentRegistered = true;
+                            // set the return value
+                            isComponentRegistered = true;
 
-                                // break out of the loop
-                                break;
-                            }
+                            // break out of the loop
+                            break;
                         }
                     }
                 }
                 
                 // return value
                 return isComponentRegistered;
-            }
-            #endregion
-            
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method returns the Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                // not sure if this is used, but interface requires it
-                return ComponentHelper.FindChildByName(Children, name);
             }
             #endregion
             
@@ -194,8 +174,8 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // Create a new collection of 'IBlazorComponent' objects.
-                Children = new List<IBlazorComponent>();
+                // Create a new collection of 'CheckBoxComponent' objects.
+                CheckBoxes = new List<CheckBoxComponent>();
 
                 // Units must be first
                 Unit = "px";
@@ -328,16 +308,17 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Register(IBlazorComponent component)
             {
-                if (component is CheckBoxComponent)
+                // is this component a CheckBoxComponent
+                if (component is CheckBoxComponent checkBox)
                 {   
-                    // check if this component is already registered
-                    bool isComponentRegistered = CheckIfComponentIsRegistered(component);
+                    // check if this checkBox is already registered
+                    bool isComponentRegistered = CheckIfComponentIsRegistered(checkBox);
 
                     // if the value for isComponentRegistered is false
                     if (!isComponentRegistered)
                     {
                         // Add to the list
-                        Children.Add(component);
+                        CheckBoxes.Add(checkBox);
                     }
                 }                
             }
@@ -398,6 +379,17 @@ namespace DataJuggler.Blazor.Components
             
         #region Properties
                 
+            #region CheckBoxes
+            /// <summary>
+            /// This property gets or sets the value for 'CheckBoxes'.
+            /// </summary>
+            public List<CheckBoxComponent> CheckBoxes
+            {
+                get { return checkBoxes; }
+                set { checkBoxes = value; }
+            }
+            #endregion
+            
             #region CheckBoxHeight
             /// <summary>
             /// This property gets or sets the value for 'CheckBoxHeight'.
@@ -478,17 +470,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return checkedlistboxStyle; }
                 set { checkedlistboxStyle = value; }
-            }
-            #endregion
-            
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
             }
             #endregion
                 
@@ -594,24 +575,24 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion
-          
-            #region HasChildren
+                
+            #region HasCheckBoxes
             /// <summary>
-            /// This property returns true if this object has a 'Children'.
+            /// This property returns true if this object has a 'CheckBoxes'.
             /// </summary>
-            public bool HasChildren
+            public bool HasCheckBoxes
             {
                 get
                 {
                     // initial value
-                    bool hasChildren = (this.Children != null);
-                        
+                    bool hasCheckBoxes = (CheckBoxes != null);
+
                     // return value
-                    return hasChildren;
+                    return hasCheckBoxes;
                 }
             }
             #endregion
-                
+            
             #region HasComboBoxParent
             /// <summary>
             /// This property returns true if this object has a 'ComboBoxParent'.
@@ -1108,31 +1089,24 @@ namespace DataJuggler.Blazor.Components
                     // Create a new collection of 'Item' objects.
                     List<Item> selectedItems = new List<Item>();
                         
-                    // if the value for HasChildren is true
-                    if (HasChildren)
+                    // if the value for HasCheckBoxes is true
+                    if (HasCheckBoxes)
                     {
                         // Iterate the collection of IBlazorComponent objects
-                        foreach (IBlazorComponent component in Children)
-                        {
-                            // get the CheckBoxComponent
-                            CheckBoxComponent checkBox = component as CheckBoxComponent;
-                                
-                            // If the checkBox object exists
-                            if (NullHelper.Exists(checkBox))
+                        foreach (CheckBoxComponent checkBox in CheckBoxes)
+                        {  
+                            // if checked
+                            if (checkBox.CheckBoxValue)
                             {
-                                // if checked
-                                if (checkBox.CheckBoxValue)
-                                {
-                                    // Set the values
-                                    Item item = new Item();
-                                    item.Id = checkBox.ExternalId;
-                                    item.Name = checkBox.Name;
-                                    item.Text = checkBox.Text;
-                                    item.ItemChecked = true;
+                                // Set the values
+                                Item item = new Item();
+                                item.Id = checkBox.ExternalId;
+                                item.Name = checkBox.Name;
+                                item.Text = checkBox.Text;
+                                item.ItemChecked = true;
                                         
-                                    // Add this item
-                                    selectedItems.Add(item);
-                                }
+                                // Add this item
+                                selectedItems.Add(item);
                             }
                         }
                     }
@@ -1193,21 +1167,32 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set
+                set 
                 {
                     // set the value
                     visible = value;
-                        
-                    // if visible
+
+                    // if the value for visible is true
                     if (visible)
                     {
-                        DisplayStyle = "block";
+                        Visibility = "visible";
                     }
                     else
                     {
-                        DisplayStyle = "none";
+                        Visibility = "hidden";
                     }
                 }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
                 

@@ -71,17 +71,17 @@ namespace DataJuggler.Blazor.Components
                 HeightUnit = "px";
                 BorderWidth = 0;
                 BorderColor = Color.Black;
-                Width = 64;
+                FontSize = GlobalDefaults.LabelFontSize;
+                FontName = GlobalDefaults.LabelFontName;                
                 Height = 64;
                 Left = 0;
-                Top = 0;
-                TextColor = Color.Black;
-                ZIndex = 5;
-                Visible = true;
                 Position = "relative";
-                TextAlign = "center";
-                FontSize = GlobalDefaults.LabelFontSize;
-                FontName = GlobalDefaults.LabelFontName;
+                TextAlign = "center";                
+                TextColor = Color.Black;                
+                Top = 0;
+                Visible = true;
+                Width = 64;
+                ZIndex = 5;
             }
             #endregion
             
@@ -601,26 +601,26 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region VisibleStyle
+            #region Visibility
             /// <summary>
-            /// This property gets or sets the value for 'VisibleStyle'.
+            /// This property gets or sets the value for 'Visibility'.
             /// </summary>
-            public string VisibleStyle
+            public string Visibility
             {
                 get 
                 {
                     // initial value
-                    string visibleStyle = "visible";
+                    string visibility = "visible";
 
                     // if the value for Visible is false
                     if (!Visible)
                     {
                         // hide
-                        visibleStyle = "hidden";
+                        visibility = "hidden";
                     }
 
                     // return value
-                    return visibleStyle;
+                    return visibility;
                 }
             }
             #endregion

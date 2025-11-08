@@ -38,8 +38,7 @@ namespace DataJuggler.Blazor.Components
         private string selectedText;        
         private string buttonUrl;
         private CheckedListBox checkedListComponent;
-        private bool checkListMode;
-        private List<IBlazorComponent> children;
+        private bool checkListMode;        
         private string className;
         private string display;
         private string listDisplay;
@@ -148,6 +147,8 @@ namespace DataJuggler.Blazor.Components
         private double checkBoxHeight;
         private double checkBoxWidth;
         private double listContainerHeight;
+        private bool visible;
+        private string visibility;
         #endregion
         
         #region Constructor
@@ -340,37 +341,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region FindChildByName(string name)
-            /// <summary>
-            /// method returns the Child By Name
-            /// </summary>
-            public IBlazorComponent FindChildByName(string name)
-            {
-                // initial value
-                IBlazorComponent child = null;
-                
-                // if the value for HasChildren is true
-                if (HasChildren)
-                {
-                    foreach (IBlazorComponent tempChild in Children)
-                    {
-                        // if this is the item being sought
-                        if (TextHelper.IsEqual(tempChild.Name, name))
-                        {
-                            // set the return value
-                            child = tempChild;
-                            
-                            // break out of loop
-                            break;
-                        }
-                    }
-                }
-                
-                // return value
-                return child;
-            }
-            #endregion
-            
             #region GetCountItemsWithFilter()
             /// <summary>
             /// returns the Count Items With Filter
@@ -413,24 +383,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Hide(bool refresh = true)
-            /// <summary>
-            /// Hide
-            /// </summary>
-            public void Hide(bool refresh = true)
-            {
-                // Set the value
-                Display = "none";
-
-                // if the value for refresh is true
-                if (refresh)
-                {
-                    // Update the UI
-                    Refresh();
-                }
-            }
-            #endregion
-            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -468,7 +420,6 @@ namespace DataJuggler.Blazor.Components
                 CheckedListPosition = "absolute";                
                 CheckedListTop = 24;
                 CheckedListWidth = 132;                
-                Children = new List<IBlazorComponent>();                
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
                 ControlHeight = 28;
@@ -771,10 +722,7 @@ namespace DataJuggler.Blazor.Components
             /// method registers the ComboBoxButton
             /// </summary>
             public void Register(IBlazorComponent component)
-            {
-                // Add this item
-                this.Children.Add(component);
-                    
+            {      
                 // if this is the Button registering
                 if (component is ImageButton)
                 {
@@ -1070,24 +1018,20 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region Show(bool refresh = true)
+            #region SetVisible(bool visible)
             /// <summary>
-            /// Show
+            /// returns the Visible
             /// </summary>
-            public void Show(bool refresh = true)
+            public void SetVisible(bool visible)
             {
-                // Set the value
-                Display = "inline-block";
+                // Set to Visible
+                this.Visible = visible;
 
-                // if the value for refresh is true
-                if (refresh)
-                {
-                    // Update the UI
-                    Refresh();
-                }
+                // Update
+                Refresh();
             }
             #endregion
-                
+    
             #region StoreSelections()
             /// <summary>
             /// Store Selections
@@ -1582,17 +1526,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
-            }
-            #endregion
-                
             #region ClassName
             /// <summary>
             /// This property gets or sets the value for 'ClassName'.
@@ -1943,23 +1876,6 @@ namespace DataJuggler.Blazor.Components
                         
                     // return value
                     return hasCheckedListComponent;
-                }
-            }
-            #endregion
-                
-            #region HasChildren
-            /// <summary>
-            /// This property returns true if this object has a 'Children'.
-            /// </summary>
-            public bool HasChildren
-            {
-                get
-                {
-                    // initial value
-                    bool hasChildren = (this.Children != null);
-                        
-                    // return value
-                    return hasChildren;
                 }
             }
             #endregion
@@ -3267,6 +3183,43 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
                 

@@ -144,6 +144,8 @@ namespace DataJuggler.Blazor.Components
         private string dayRowTextStyle;
         private double dayRowTextLeft;
         private double dayRowTextTop;
+        private bool visible;
+        private string visibility;
         
         // Nav buttons
         private double previousYearButtonLeft;        
@@ -538,24 +540,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Hide(bool refresh = true)
-            /// <summary>
-            /// Hide
-            /// </summary>
-            public void Hide(bool refresh = true)
-            {
-                // Set the value
-                Display = "none";
-
-                // if the value for refresh is true
-                if (refresh)
-                {
-                    // Update the UI
-                    Refresh();
-                }
-            }
-            #endregion
-            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -627,6 +611,7 @@ namespace DataJuggler.Blazor.Components
                 Top = 4;
                 Left = 0;
                 Unit = "px";
+                Visible = true;
                 Width = 228;
                 YearButtonTextColor = Color.Black;
                 YearButtonTextColorSelected = Color.White;
@@ -921,21 +906,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region Show(bool refresh = true)
+            #region SetVisible(bool visible)
             /// <summary>
-            /// Show
+            /// returns the Visible
             /// </summary>
-            public void Show(bool refresh = true)
+            public void SetVisible(bool visible)
             {
-                // Set the value
-                Display = "inline-block";
+                // Set to Visible
+                this.Visible = visible;
 
-                // if the value for refresh is true
-                if (refresh)
-                {
-                    // Update the UI
-                    Refresh();
-                }
+                // Update
+                Refresh();
             }
             #endregion
 
@@ -2834,6 +2815,43 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             

@@ -3,6 +3,12 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+11.8.2025: I spent my Saturday making all the components now display with CSS visibility=@Visibility, which
+if Visible = true will be visible and if false hidden. This makes the components show up in the DOM so
+if you toggle their visibility things do not shift. All the Components should also have a SetVisible method.
+With the exception of the Label, which has a JavaScript Show & Hide, I removed Show and Hide methods
+from the Calendar and ComboBox. Just trying to keep things consistent across all components.
+
 11.3.2025: Breaking Change! - I renamed OffSet to Offset everywhere. Not sure why I spelled it wrong the first
 time. Sorry for any problems this causes, just rename OffSet to Offset everywhere its used.
 I also added a new ImageComponent, and the Grid now has a new property for Columns, IsImage.

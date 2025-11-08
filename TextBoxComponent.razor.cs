@@ -72,8 +72,7 @@ namespace DataJuggler.Blazor.Components
         private bool showCaption;        
         private int externalId;
         private string externalIdDescription;        
-        private ElementReference innerControl;
-        private bool visible;
+        private ElementReference innerControl;        
         private string display;
         private bool sendAllTextToParent;        
         private string fontSizeUnit;
@@ -101,6 +100,8 @@ namespace DataJuggler.Blazor.Components
         private string unit;
         private string heightUnit;
         private bool notifyParentOnBlur;
+        private bool visible;
+        private string visibility;
 
         // Label
         private double labelWidth;
@@ -587,6 +588,20 @@ namespace DataJuggler.Blazor.Components
             {
                 // Set the value
                 this.Text = text;
+            }
+            #endregion
+            
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// returns the Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // Set to Visible
+                this.Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -2453,7 +2468,32 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set { visible = value; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             

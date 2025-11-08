@@ -30,6 +30,7 @@ namespace DataJuggler.Blazor.Components
         private string backgroundWidthPixels;
         private string backgroundImageUrl;
         private string backgroundColor;
+        private string controlStyle;
         private Timer timer;
         private int increment;
         private int interval;
@@ -60,6 +61,7 @@ namespace DataJuggler.Blazor.Components
         private ThemeEnum theme;
         private bool overrideThemeColorForText;
         private string textPercentStyle;
+        private string visibility;
         #endregion
 
         #region Constructor
@@ -161,17 +163,31 @@ namespace DataJuggler.Blazor.Components
                 BackgroundHeight = 64;
                 BackgroundWidth = 64;
                 BackgroundPosition = "relative";
-                Interval = 25;    
-                Increment = 2;
                 BackgroundScale = 1;
-                Max = 100;
-                ShowBackground = false;
                 CloseAtExtraPercent = 12;
                 Color = ColorEnum.Blue;
+                Interval = 25;    
+                Increment = 2;
+                Max = 100;
+                OverrideThemeColorForText = false;
+                ShowBackground = false;
                 Size = SizeEnum.Medium;
                 Theme = ThemeEnum.Dark;
-                Scale = 1.0;
-                OverrideThemeColorForText = false;
+                Scale = 1.0;                
+            }
+            #endregion
+
+            #region Refresh()
+            /// <summary>
+            /// method Refresh
+            /// </summary>
+            public void Refresh()
+            {
+                // Update the UI
+                InvokeAsync(() =>
+                {
+                    StateHasChanged();
+                });
             }
             #endregion
 
@@ -263,6 +279,20 @@ namespace DataJuggler.Blazor.Components
 
                 // Set the new value for ProgressStyle
                 ProgressStyle = sb.ToString();
+            }
+            #endregion
+
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// returns the Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // Set to Visible
+                this.Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -504,6 +534,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return color; }
                 set { color = value; }
+            }
+            #endregion
+            
+            #region ControlStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ControlStyle'.
+            /// </summary>
+            public string ControlStyle
+            {
+                get { return controlStyle; }
+                set { controlStyle = value; }
             }
             #endregion
             
@@ -837,7 +878,32 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set {visible = value; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             

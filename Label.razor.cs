@@ -66,12 +66,13 @@ namespace DataJuggler.Blazor.Components
         private string textAlign;
         private string textBoxClassName;
         private Color textColor;
+        private string textStyle;
         private double top;
         private string unit;
         private bool visible;
+        private string visibility;
         private double width;
-        private int zIndex;
-        private string textStyle;
+        private int zIndex;        
         #endregion
         
         #region Constructor
@@ -313,11 +314,11 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
-            #region SetVisibility(bool visibleValue)
+            #region SetVisible(bool visibleValue)
             /// <summary>
             /// Set Visibility
             /// </summary>
-            public void SetVisibility(bool visibleValue)
+            public void SetVisible(bool visibleValue)
             {
                 // Change the value
                 Visible = visibleValue;
@@ -1122,7 +1123,32 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set { visible = value; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
                 

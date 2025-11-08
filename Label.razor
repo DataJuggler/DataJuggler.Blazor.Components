@@ -13,13 +13,14 @@
     height: 100%;
 </Styled>
 <Styled @bind-Classname=@ControlStyle>
+    background-color: @BackgroundColor.Name;
     display: @DisplayStyle;
-    width: @WidthStyle;
-    position: @Position;
     left: @LeftStyle;
+    position: @Position;    
     top: @TopStyle;
     height: @HeightStyle;    
-    background-color: @BackgroundColor.Name;
+    width: @WidthStyle;
+    visibility: @Visibility;
     z-index: @ZIndex;    
 </Styled>
 <Styled @bind-Classname=@TextStyle>    

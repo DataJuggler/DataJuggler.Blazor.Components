@@ -36,8 +36,7 @@ namespace DataJuggler.Blazor.Components
         private string heightStyle;
         private string textAlign;
         private IBlazorComponentParent parent;
-        private ButtonClickedHandler clickHandler;
-        private List<IBlazorComponent> children;
+        private ButtonClickedHandler clickHandler;        
         private int zIndex;        
         private bool visible;        
         private string position;
@@ -92,22 +91,24 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // default
+                // Units have to be first
                 Unit = "px";                
                 HeightUnit = "px";
+
+                // defaults
                 BorderWidth = 0;
                 BorderColor = Color.Black;
-                Width = 64;
-                Height = 64;
-                Left = 0;
-                Top = 0;
-                TextColor = Color.Black;
-                ZIndex = 5;
-                Visible = true;
-                Position = "relative";
-                TextAlign = "center";
                 FontSize = GlobalDefaults.LabelFontSize;
                 FontName = GlobalDefaults.LabelFontName;
+                Height = 64;
+                Left = 0;
+                Position = "relative";
+                TextAlign = "center";                
+                TextColor = Color.Black;
+                Top = 0;
+                Visible = true;
+                Width = 64;
+                ZIndex = 5;
             }
             #endregion
             
@@ -182,6 +183,9 @@ namespace DataJuggler.Blazor.Components
             {
                 // store
                 Visible = visible;
+
+                // Update the UI
+                Refresh();
             }
             #endregion
             
@@ -302,17 +306,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
-            }
-            #endregion
-            
             #region ClassName
             /// <summary>
             /// This property gets or sets the value for 'ClassName'.
@@ -379,23 +372,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region HasChildren
-            /// <summary>
-            /// This property returns true if this object has a 'Children'.
-            /// </summary>
-            public bool HasChildren
-            {
-                get
-                {
-                    // initial value
-                    bool hasChildren = (this.Children != null);
-                    
-                    // return value
-                    return hasChildren;
-                }
-            }
-            #endregion
-            
             #region HasClickHandler
             /// <summary>
             /// This property returns true if this object has a 'ClickHandler'.

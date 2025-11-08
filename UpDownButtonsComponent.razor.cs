@@ -24,8 +24,7 @@ namespace DataJuggler.Blazor.Components
         
         #region Private Variables
         private string buttonContainerStyle;
-        private string buttonStyle;
-        private List<IBlazorComponent> children;
+        private string buttonStyle;        
         private string heightUnit;
         private string name;
         private IBlazorComponentParent parent;
@@ -247,17 +246,6 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return buttonWidthStyle;
                 }
-            }
-            #endregion
-            
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
             }
             #endregion
                 

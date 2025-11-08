@@ -31,10 +31,7 @@ namespace DataJuggler.Blazor.Components
         private double width;
         private string heightStyle;        
         private IBlazorComponentParent parent;
-        private ButtonClickedHandler clickHandler;
-        private List<IBlazorComponent> children;
-        private int zIndex;        
-        private bool visible;        
+        private ButtonClickedHandler clickHandler;        
         private string position;
         private string unit;
         private double labelWidth;
@@ -45,11 +42,14 @@ namespace DataJuggler.Blazor.Components
         private double fontSize;
         private string fontName;
         private string textAlign;
+        private bool visible; 
+        private string visibility;
+        private int zIndex;
 
         // Reverting back to BlazorStyled
-        private string buttoncontainerStyle;
+        private string buttonContainerStyle;
         private string buttonStyle;
-        private string buttonTextStyle;      
+        private string buttonTextStyle;
         #endregion
 
         #region Constructor
@@ -86,20 +86,21 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public void Init()
             {
-                // default
+                // units have to be first
                 Unit = "px";
                 HeightUnit = "px";
-                Width = 200;
+
+                // defaults                
+                FontName = GlobalDefaults.LabelFontName;
+                FontSize = GlobalDefaults.LabelFontSize;
                 Height = 200;
                 Left = 0;
-                Top = 0;
-                ZIndex = 5;
-                Visible = true;
                 Position = "relative";
-                TextAlign = "center";
-                FontSize = GlobalDefaults.LabelFontSize;
-                FontName = GlobalDefaults.LabelFontName;
-                TextAlign = "center";
+                TextAlign = "center";                
+                Top = 0;
+                Visible = true;
+                Width = 200;
+                ZIndex = 5;                
             }
             #endregion
             
@@ -181,14 +182,14 @@ namespace DataJuggler.Blazor.Components
 
         #region Properties
             
-            #region ButtoncontainerStyle
+            #region ButtonContainerStyle
             /// <summary>
-            /// This property gets or sets the value for 'ButtoncontainerStyle'.
+            /// This property gets or sets the value for 'ButtonContainerStyle'.
             /// </summary>
-            public string ButtoncontainerStyle
+            public string ButtonContainerStyle
             {
-                get { return buttoncontainerStyle; }
-                set { buttoncontainerStyle = value; }
+                get { return buttonContainerStyle; }
+                set { buttonContainerStyle = value; }
             }
             #endregion
             
@@ -223,17 +224,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonTextStyle; }
                 set { buttonTextStyle = value; }
-            }
-            #endregion
-            
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
             }
             #endregion
             
@@ -303,23 +293,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region HasChildren
-            /// <summary>
-            /// This property returns true if this object has a 'Children'.
-            /// </summary>
-            public bool HasChildren
-            {
-                get
-                {
-                    // initial value
-                    bool hasChildren = (this.Children != null);
-                    
-                    // return value
-                    return hasChildren;
-                }
-            }
-            #endregion
-            
             #region HasClickHandler
             /// <summary>
             /// This property returns true if this object has a 'ClickHandler'.
@@ -611,7 +584,32 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set { visible = value; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             

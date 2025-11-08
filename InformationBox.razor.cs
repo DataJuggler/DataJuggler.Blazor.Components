@@ -89,7 +89,9 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private VerticalAlignmentEnum verticalAlignment;
         private RenderFragment bodyContent;
-        private ItemContenteAlignmentEnum itemContenteAlignment;        
+        private ItemContenteAlignmentEnum itemContenteAlignment;
+        private bool visible;
+        private string visibility;
         #endregion
         
         #region Constructor
@@ -172,8 +174,9 @@ namespace DataJuggler.Blazor.Components
                 Overflow = "visible";
                 Position = "relative";
                 Scale = 100;
-                TitleTextColor = Color.White;                
-                VerticalAlignment = VerticalAlignmentEnum.Top;                
+                TitleTextColor = Color.White;
+                VerticalAlignment = VerticalAlignmentEnum.Top;
+                Visible = true;
                 Width = 240;
             }
             #endregion
@@ -253,6 +256,20 @@ namespace DataJuggler.Blazor.Components
             {
                 // Store
                 Items = items;
+            }
+            #endregion
+
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// returns the Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // Set to Visible
+                this.Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -1298,6 +1315,43 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return verticalAlignment; }
                 set { verticalAlignment = value; }
+            }
+            #endregion
+            
+            #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             

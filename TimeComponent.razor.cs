@@ -25,8 +25,7 @@ namespace DataJuggler.Blazor.Components
     public partial class TimeComponent : IBlazorComponent, IBlazorComponentParent, ILabelFont
     {
         
-        #region Private Variables
-        private List<IBlazorComponent> children;        
+        #region Private Variables        
         private string name;
         private IBlazorComponentParent parent;
         private TimeTypeEnum timeType;
@@ -502,17 +501,6 @@ namespace DataJuggler.Blazor.Components
                 set { captionTextAlign = value; }
             }
             #endregion
-            
-            #region Children
-            /// <summary>
-            /// This property gets or sets the value for 'Children'.
-            /// </summary>
-            public List<IBlazorComponent> Children
-            {
-                get { return children; }
-                set { children = value; }
-            }
-            #endregion
                 
             #region ColonTextBoxLeft
             /// <summary>
@@ -638,23 +626,6 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return hasAMPMComponent;
-                }
-            }
-            #endregion
-            
-            #region HasChildren
-            /// <summary>
-            /// This property returns true if this object has a 'Children'.
-            /// </summary>
-            public bool HasChildren
-            {
-                get
-                {
-                    // initial value
-                    bool hasChildren = (this.Children != null);
-                        
-                    // return value
-                    return hasChildren;
                 }
             }
             #endregion

@@ -1,6 +1,6 @@
 ﻿@using BlazorStyled
 
-<Styled @bind-Classname=ButtoncontainerStyle>
+<Styled @bind-Classname=ButtonContainerStyle>
     position: @Position;
     left: @LeftStyle;
     top: @TopStyle;
@@ -11,6 +11,7 @@
     width: auto;
     margin: 0px;
     padding: 0px;
+    visibility: @Visibility;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>    
     display: inline-block;
@@ -56,11 +57,8 @@
         }
 </style>
 
-@if (Visible)
-{
-    <div class="@ButtoncontainerStyle">
-        <button class="linkbutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
-            <span class="@ButtonTextStyle">@Text</span>
-        </button>
-    </div>
-}
+<div class="@ButtonContainerStyle">
+    <button class="linkbutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
+        <span class="@ButtonTextStyle">@Text</span>
+    </button>
+</div>

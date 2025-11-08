@@ -71,7 +71,7 @@ namespace DataJuggler.Blazor.Components
         private double contentLeft;
         private double contentTop;        
         private bool visible;
-        private string visiblity;
+        private string visibility;
         private bool stickyHeader;
         private RenderFragment<Grid> gridColumns;
         private List<GridColumn> gridColumnDefs;
@@ -293,23 +293,19 @@ namespace DataJuggler.Blazor.Components
                 // Create
                 BorderColor = Color.Gray;
                 BorderWidth = 1;
-                BorderStyle = "solid";
-                Position = "relative";
+                BorderStyle = "solid";                
                 Buttons = new List<ImageButton>();
-                Columns = new List<Column>();
-                GridColumnDefs = new List<GridColumn>();
-                
-                Height = 240;
+                Columns = new List<Column>();                
                 FontSize = 12;
                 FontSizeUnit="px";
-                GridBackColor = Color.White;
-               
+                GridBackColor = Color.White;               
+                GridColumnDefs = new List<GridColumn>();
+                Height = 240;                
+                Position = "relative";
+                StickyHeader = true;                                
                 Width = 400;
                 OverflowX = "hidden";
-                OverflowY = "auto";
-                StickyHeader = true;
-                
-                // Set Visibility to visible
+                OverflowY = "auto";                
                 Visible = true;
             }
             #endregion
@@ -465,6 +461,20 @@ namespace DataJuggler.Blazor.Components
                         }
                     }
                 }
+            }
+            #endregion
+
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// returns the Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // Set to Visible
+                this.Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -1316,24 +1326,24 @@ namespace DataJuggler.Blazor.Components
                     // if the value for visible is true
                     if (visible)
                     {
-                        Visiblity = "visible";
+                        Visibility = "visible";
                     }
                     else
                     {
-                        Visiblity = "none";
+                        Visibility = "hidden";
                     }
                 }
             }
             #endregion
             
-            #region Visiblity
+            #region Visibility
             /// <summary>
-            /// This property gets or sets the value for 'Visiblity'.
+            /// This property gets or sets the value for 'Visibility'.
             /// </summary>
-            public string Visiblity
+            public string Visibility
             {
-                get { return visiblity; }
-                set { visiblity = value; }
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             
