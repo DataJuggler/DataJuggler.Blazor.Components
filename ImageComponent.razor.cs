@@ -109,6 +109,20 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region SetImageUrl(string imageUrl)
+            /// <summary>
+            /// Set Image Url
+            /// </summary>
+            public void SetImageUrl(string imageUrl)
+            {
+                // store the arg
+                ImageUrl = imageUrl;
+
+                // Update the UI
+                Refresh();
+            }
+            #endregion
+            
             #region SetVisible(bool visible)
             /// <summary>
             /// Set Visible

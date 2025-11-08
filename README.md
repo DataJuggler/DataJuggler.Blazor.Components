@@ -9,6 +9,9 @@ if you toggle their visibility things do not shift. All the Components should al
 With the exception of the Label, which has a JavaScript Show & Hide, I removed Show and Hide methods
 from the Calendar and ComboBox. Just trying to keep things consistent across all components.
 
+11.8.2025 B - I added SetImageUrl method to the ImageComponent so you can change the image at
+runtime
+
 11.3.2025: Breaking Change! - I renamed OffSet to Offset everywhere. Not sure why I spelled it wrong the first
 time. Sorry for any problems this causes, just rename OffSet to Offset everywhere its used.
 I also added a new ImageComponent, and the Grid now has a new property for Columns, IsImage.
