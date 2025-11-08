@@ -68,6 +68,8 @@ namespace DataJuggler.Blazor.Components
         private string labelClassName;
         private double textBoxTop;
         private double colonTextBoxLeft;
+        private bool visible;
+        private string visibility;
         #endregion
         
         #region Constructor
@@ -194,6 +196,9 @@ namespace DataJuggler.Blazor.Components
 
                 // Default to two 12 hour times
                 TimeType = TimeTypeEnum.Hours12;
+
+                // Default to true
+                Visible = true;
             }
             #endregion
             
@@ -339,6 +344,20 @@ namespace DataJuggler.Blazor.Components
 
                 // Display the CurrentTime
                 DisplayCurrentTime();
+            }
+            #endregion
+
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// returns the Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // Set to Visible
+                this.Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -1157,6 +1176,43 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return unit; }
                 set { unit = value; }
+            }
+            #endregion
+
+             #region Visible
+            /// <summary>
+            /// This property gets or sets the value for 'Visible'.
+            /// </summary>
+            [Parameter]
+            public bool Visible
+            {
+                get { return visible; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             

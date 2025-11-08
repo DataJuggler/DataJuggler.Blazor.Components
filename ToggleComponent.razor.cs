@@ -45,6 +45,8 @@ namespace DataJuggler.Blazor.Components
         private string buttonStyle;
         private bool on;
         private bool previousOn;
+        private bool visible;
+        private string visibility;
         private int zIndex;
         
         // Circle
@@ -86,7 +88,6 @@ namespace DataJuggler.Blazor.Components
         private string labelFontSizeUnit;
         private string labelFontName;
         private string labelStyle;
-        private bool visible;
         #endregion
 
         #region Constructor
@@ -167,6 +168,20 @@ namespace DataJuggler.Blazor.Components
                 
             }
             #endregion
+
+            #region Refresh()
+            /// <summary>
+            /// method Refresh
+            /// </summary>
+            public void Refresh()
+            {
+                // Update the UI
+                InvokeAsync(() =>
+                {
+                    StateHasChanged();
+                });
+            }
+            #endregion
             
             #region SetOnValue(bool onValue)
             /// <summary>
@@ -176,6 +191,20 @@ namespace DataJuggler.Blazor.Components
             {
                 // Set the Value of On
                 On = onValue;
+            }
+            #endregion
+
+            #region SetVisible(bool visible)
+            /// <summary>
+            /// returns the Visible
+            /// </summary>
+            public void SetVisible(bool visible)
+            {
+                // Set to Visible
+                this.Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             
@@ -1313,7 +1342,32 @@ namespace DataJuggler.Blazor.Components
             public bool Visible
             {
                 get { return visible; }
-                set { visible = value; }
+                set 
+                {
+                    // set the value
+                    visible = value;
+
+                    // if the value for visible is true
+                    if (visible)
+                    {
+                        Visibility = "visible";
+                    }
+                    else
+                    {
+                        Visibility = "hidden";
+                    }
+                }
+            }
+            #endregion
+            
+            #region Visibility
+            /// <summary>
+            /// This property gets or sets the value for 'Visibility'.
+            /// </summary>
+            public string Visibility
+            {
+                get { return visibility; }
+                set { visibility = value; }
             }
             #endregion
             
