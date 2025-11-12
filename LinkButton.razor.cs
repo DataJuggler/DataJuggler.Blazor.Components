@@ -175,6 +175,9 @@ namespace DataJuggler.Blazor.Components
             {
                 // store
                 Visible = visible;
+
+                // Update
+                Refresh();
             }
             #endregion
             
