@@ -4,7 +4,7 @@
 
 using DataJuggler.Blazor.Components.Interfaces;
 using Microsoft.AspNetCore.Components;
-using System.Collections.Generic;
+using System;
 using System.Drawing;
 
 #endregion
@@ -45,6 +45,8 @@ namespace DataJuggler.Blazor.Components
         private bool visible; 
         private string visibility;
         private int zIndex;
+        private string downloadPath;
+        private bool handleClick;
 
         // Reverting back to BlazorStyled
         private string buttonContainerStyle;
@@ -69,10 +71,14 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This method Button Clicked
             /// </summary>
-            public void ButtonClicked()
+            public async void ButtonClicked()
             {
-                // if the value for HasClickHandler is true
-                if (HasClickHandler)
+                // if HandleClick and DownloadPath exists
+                if ((HandleClick) && (HasDownloadPath))
+                {
+                    await BlazorJSBridge.DownloadFile(JSRuntime, DownloadPath);
+                }
+                else if (HasClickHandler)
                 {
                     // Notify the handler
                     ClickHandler(ButtonNumber, Text);
@@ -93,6 +99,7 @@ namespace DataJuggler.Blazor.Components
                 // defaults                
                 FontName = GlobalDefaults.LabelFontName;
                 FontSize = GlobalDefaults.LabelFontSize;
+                HandleClick = true;
                 Height = 200;
                 Left = 0;
                 Position = "relative";
@@ -136,6 +143,17 @@ namespace DataJuggler.Blazor.Components
             {
                 // Store the clickHandler
                 ClickHandler = clickHandler;
+            }
+            #endregion
+            
+            #region SetDownloadPath(string downloadPath)
+            /// <summary>
+            /// Set Download Path
+            /// </summary>
+            public void SetDownloadPath(string downloadPath)
+            {
+                // store
+                DownloadPath = downloadPath;
             }
             #endregion
             
@@ -254,6 +272,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DownloadPath
+            /// <summary>
+            /// This property gets or sets the value for 'DownloadPath'.
+            /// </summary>
+            [Parameter]
+            public string DownloadPath
+            {
+                get { return downloadPath; }
+                set { downloadPath = value; }
+            }
+            #endregion
+            
             #region FontName
             /// <summary>
             /// This property gets or sets the value for 'FontName'.
@@ -296,6 +326,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region HandleClick
+            /// <summary>
+            /// This property gets or sets the value for 'HandleClick'.
+            /// </summary>
+            [Parameter]
+            public bool HandleClick
+            {
+                get { return handleClick; }
+                set { handleClick = value; }
+            }
+            #endregion
+            
             #region HasClickHandler
             /// <summary>
             /// This property returns true if this object has a 'ClickHandler'.
@@ -309,6 +351,23 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return hasClickHandler;
+                }
+            }
+            #endregion
+            
+            #region HasDownloadPath
+            /// <summary>
+            /// This property returns true if the 'DownloadPath' exists.
+            /// </summary>
+            public bool HasDownloadPath
+            {
+                get
+                {
+                    // initial value
+                    bool hasDownloadPath = (!String.IsNullOrEmpty(DownloadPath));
+
+                    // return value
+                    return hasDownloadPath;
                 }
             }
             #endregion

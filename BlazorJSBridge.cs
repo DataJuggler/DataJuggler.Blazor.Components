@@ -1,5 +1,3 @@
-
-
 #region using statements
 
 using Microsoft.JSInterop;
@@ -28,7 +26,7 @@ namespace DataJuggler.Blazor.Components
                 return await jsRuntime.InvokeAsync<int>("BlazorJSFunctions.CopyText", textToCopy);
             }
             #endregion
-            
+                        
             #region DeleteCookie(IJSRuntime jsRuntime, string key)
             /// <summary>
             /// method Delete Cookie
@@ -38,7 +36,7 @@ namespace DataJuggler.Blazor.Components
                 return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.DeleteCookie", key);
             }
             #endregion
-            
+                        
             #region GetCookie(IJSRuntime jsRuntime, string key)
             /// <summary>
             /// method Get Cookie
@@ -48,7 +46,7 @@ namespace DataJuggler.Blazor.Components
                 return jsRuntime.InvokeAsync<string>("BlazorJSFunctions.GetCookie", key);
             }
             #endregion
-            
+                        
             #region HideElement(IJSRuntime jsRuntime, string elementId)
             /// <summary>
             /// method Hide Element
@@ -58,7 +56,7 @@ namespace DataJuggler.Blazor.Components
                 return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.HideElement", elementId);
             }
             #endregion
-            
+                        
             #region Prompt(IJSRuntime jsRuntime, string message)
             /// <summary>
             /// method Prompt
@@ -68,7 +66,7 @@ namespace DataJuggler.Blazor.Components
                 return jsRuntime.InvokeAsync<string>("BlazorJSFunctions.ShowPrompt", message);
             }
             #endregion
-            
+                        
             #region SetCookie(IJSRuntime jsRuntime, string key, string value, int expireDays = 30)
             /// <summary>
             /// method Set Cookie
@@ -78,7 +76,7 @@ namespace DataJuggler.Blazor.Components
                 return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.SetCookie", key, value, expireDays);
             }
             #endregion
-            
+                        
             #region ShowElement(IJSRuntime jsRuntime, string elementId)
             /// <summary>
             /// method Show Element
@@ -88,7 +86,7 @@ namespace DataJuggler.Blazor.Components
                 return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.ShowElement", elementId);
             }
             #endregion
-            
+                        
             #region ShowThenHide(IJSRuntime jsRuntime, string elementId, int duration)
             /// <summary>
             /// method Show Then Hide
@@ -96,6 +94,16 @@ namespace DataJuggler.Blazor.Components
             public static ValueTask ShowThenHide(IJSRuntime jsRuntime, string elementId, int duration)
             {
                 return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.ShowThenHide", elementId, duration);
+            }
+            #endregion
+
+            #region DownloadFile(IJSRuntime jsRuntime, string url)
+            /// <summary>
+            /// method Download File
+            /// </summary>
+            public static ValueTask DownloadFile(IJSRuntime jsRuntime, string url)
+            {
+                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.DownloadFile", url);
             }
             #endregion
             

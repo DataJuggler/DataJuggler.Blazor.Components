@@ -57,5 +57,13 @@ window.BlazorJSFunctions = {
     },
     DeleteCookie: function (name) {
         document.cookie = `${name}=; Max-Age=0; path=/`;
+    },
+    DownloadFile: function (url) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 };
