@@ -23,6 +23,7 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private Color borderColor;
         private double borderWidth;
+        private bool hideOnClick;
         private string imageUrl;
         private string text;
         private int buttonNumber;
@@ -49,7 +50,7 @@ namespace DataJuggler.Blazor.Components
         private double fontSize;
         private string fontName;
         private double textOffsetX;
-        private double textOffsetY;        
+        private double textOffsetY;     
 
         // Reverting back to BlazorStyled
         private string buttonContainerStyle;
@@ -81,6 +82,13 @@ namespace DataJuggler.Blazor.Components
                 {
                     // Notify the handler
                     ClickHandler(ButtonNumber, Text);
+
+                    // if the value for HideOnClick is true
+                    if (HideOnClick)
+                    {
+                        // Hide this component
+                        SetVisible(false);
+                    }
                 }
             }
             #endregion
@@ -452,6 +460,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return heightUnit; }
                 set { heightUnit = value; }
+            }
+            #endregion
+            
+            #region HideOnClick
+            /// <summary>
+            /// This property gets or sets the value for 'HideOnClick'.
+            /// </summary>
+            [Parameter]
+            public bool HideOnClick
+            {
+                get { return hideOnClick; }
+                set { hideOnClick = value; }
             }
             #endregion
             

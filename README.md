@@ -3,12 +3,21 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
-11.12.2025: I updated the LinkButton to have a couple of new properties:
+11.12.2025: I updated the LinkButton to have a four new properties:
 
 DownloadPath - The path or url to download
+
 HandleClick (defaults to true) - If HandleClick is true, the components calls the JSInterop method to download the file.
 If HandleClick is false the ClickHandler is used and the user can handle their own click event.
 Also a new method SetDownloadPath.
+
+HandleClick - (defaults to true) - If you set the DownloadPath and HandleClick is true, the file will download
+via JSInterop in this project.
+
+HideOnDownload - If you set the DownloadPath and HandleClick is true (default) then if this property is true
+the component will be hidden after the file is downloaded. 
+
+I also added HideOnClick functionality to the ImageButton that works the same.
 
 11.8.2025: I spent my Saturday making all the components now display with CSS visibility=@Visibility, which
 if Visible = true will be visible and if false hidden. This makes the components show up in the DOM so

@@ -47,6 +47,8 @@ namespace DataJuggler.Blazor.Components
         private int zIndex;
         private string downloadPath;
         private bool handleClick;
+        private bool hideOnDownload;
+        private bool hideOnClick;
 
         // Reverting back to BlazorStyled
         private string buttonContainerStyle;
@@ -76,12 +78,27 @@ namespace DataJuggler.Blazor.Components
                 // if HandleClick and DownloadPath exists
                 if ((HandleClick) && (HasDownloadPath))
                 {
+                    // Use JS to download the file
                     await BlazorJSBridge.DownloadFile(JSRuntime, DownloadPath);
+
+                    // if the user opted in to HideOnDownload
+                    if (HideOnDownload)
+                    {
+                        // Hide this component
+                        SetVisible(false);
+                    }
                 }
                 else if (HasClickHandler)
                 {
                     // Notify the handler
                     ClickHandler(ButtonNumber, Text);
+
+                    // if HideOnClick was opted into
+                    if (HideOnClick)
+                    {
+                        // Hide this component
+                        SetVisible(true);
+                    }
                 }
             }
             #endregion
@@ -429,7 +446,31 @@ namespace DataJuggler.Blazor.Components
                 set { heightUnit = value; }
             }
             #endregion
-           
+            
+            #region HideOnClick
+            /// <summary>
+            /// This property gets or sets the value for 'HideOnClick'.
+            /// </summary>
+            [Parameter]
+            public bool HideOnClick
+            {
+                get { return hideOnClick; }
+                set { hideOnClick = value; }
+            }
+            #endregion
+            
+            #region HideOnDownload
+            /// <summary>
+            /// This property gets or sets the value for 'HideOnDownload'.
+            /// </summary>
+            [Parameter]
+            public bool HideOnDownload
+            {
+                get { return hideOnDownload; }
+                set { hideOnDownload = value; }
+            }
+            #endregion
+            
             #region LabelWidth
             /// <summary>
             /// This property gets or sets the value for 'LabelWidth'.
