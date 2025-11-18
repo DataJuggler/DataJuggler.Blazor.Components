@@ -3,6 +3,26 @@ News
 Request: This project has been stuck on 9 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+# Update 11.18.2025: New Sample Project & Video
+
+I threw together a project over the weekend that creates images like the Jeopardy questions on blue screens.
+
+I also show you some new features using Regionizer 2022 to implement IBlazorComponent and IBlazorComponentParent
+and a new feature Wire Up Components takes your markup and creates the code behind and registers the components.
+It's really cool and a time saver.
+
+### Video Walkthrough
+
+Watch the demo here:
+
+https://youtu.be/P4YvTp9r3Ss
+
+### Sample Project - Not Jeopardy
+
+Check out the NotJeopardy repo here:
+
+https://github.com/DataJuggler/NotJeopardy
+
 11.12.2025: I updated the LinkButton to have a four new properties:
 
 DownloadPath - The path or url to download
