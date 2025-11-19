@@ -1250,7 +1250,6 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public string StickyStyle
             {
-
                 get
                 {
                     // initial value
