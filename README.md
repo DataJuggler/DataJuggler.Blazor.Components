@@ -23,6 +23,10 @@ Check out the NotJeopardy repo here:
 
 https://github.com/DataJuggler/NotJeopardy
 
+11.19.2025: I changed the width of the Grid. I realized my grid was setting the width on a div, but my
+table was not setting the width. Now the table and the header use 100% width, so it's inherited from
+the parent. 
+
 11.12.2025: I updated the LinkButton to have a four new properties:
 
 DownloadPath - The path or url to download

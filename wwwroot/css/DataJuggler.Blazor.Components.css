@@ -32519,6 +32519,7 @@
 .tablelayoutfixed
 {
     table-layout: fixed;
+    width: 100%;
 }
 .textalignleft
 {
