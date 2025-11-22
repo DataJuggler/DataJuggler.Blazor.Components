@@ -25,6 +25,8 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+11.22.2025: I updated this project to .NET 10
+
 11.19.2025: I changed the width of the Grid. I realized my grid was setting the width on a div, but my
 table was not setting the width. Now the table and the header use 100% width, so it's inherited from
 the parent. I also fixed the Sticky CSS class I had wrong. Hopefully this fixes the Grid Sticky header issue.

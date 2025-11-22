@@ -2,9 +2,8 @@
 
 #region using statements
 
-using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
-using DataJuggler.NET9;
+using DataJuggler.NET.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using DataJuggler.Excelerate;
