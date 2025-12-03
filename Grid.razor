@@ -25,6 +25,7 @@
     --scrollbar-thumb: @ScrollBarThumbColor.Name;
     --scrollbar-thumb-hover: @ScrollBarThumbHoverColor.Name;
     --scrollbar-radius: @ScrollBarRadiusStyle;
+    --scrollbar-track-border: @ScrollBarTrackBorderColor.Name;
 </Styled>
 <Styled @bind-Classname=@GridBorderStyle>    
     border-width: @BorderWidthStyle;
@@ -49,6 +50,7 @@
 
     .@(GridStyle)::-webkit-scrollbar-track {
         background: var(--scrollbar-track, LightGray);
+        border: 1px solid var(--scrollbar-track-border);
     }
 
     .@(GridStyle)::-webkit-scrollbar-thumb {

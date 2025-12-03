@@ -25,13 +25,14 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
-12.3.2025: I added 5 new properties to the Grid: (all untested. I will update this once tested).
+12.3.2025: I added 6 new properties to the Grid: (all untested. I will update this once tested).
 
 ScrollBarWidthStyle - Width of the Scrollbar
 ScrollBarTrackColor - Color of the background for the track of the Scrollbar
 ScrollBarThumbColor - Color of the little circle you select with your mouse
 ScrollBarThumbHoverColor - Hover color of same circle
 ScrollBarRadiusStyle - Border radius. Defaults to 6 px.
+ScrollBarTrackBorderColor - The Color of the border for the Scrollbar.
 
 11.22.2025: I updated this project to .NET 10
 

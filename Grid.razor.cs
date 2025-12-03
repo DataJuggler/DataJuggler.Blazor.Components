@@ -77,12 +77,13 @@ namespace DataJuggler.Blazor.Components
         private List<GridColumn> gridColumnDefs;
         private bool columnsBuilt;
 
-        // New Scrollbar Support (attempt - ChatGPT says it will work)
+        // New Scrollbar Support
         private double scrollBarWidth;
         private Color scrollBarTrackColor;
         private Color scrollBarThumbColor;
         private Color scrollBarThumbHoverColor;
         private double scrollBarRadius;
+        private Color scrollBarTrackBorderColor;
         #endregion
 
         #region Constructor
@@ -321,6 +322,7 @@ namespace DataJuggler.Blazor.Components
                 ScrollBarThumbColor = Color.DarkGray;
                 ScrollBarThumbHoverColor = Color.DimGray;
                 ScrollBarRadius = 6;
+                ScrollBarTrackBorderColor = Color.Black;
             }
             #endregion
             
@@ -1263,6 +1265,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return scrollBarThumbHoverColor; }
                 set { scrollBarThumbHoverColor = value; }
+            }
+            #endregion
+            
+            #region ScrollBarTrackBorderColor
+            /// <summary>
+            /// This property gets or sets the value for 'ScrollBarTrackBorderColor'.
+            /// </summary>
+            [Parameter]
+            public Color ScrollBarTrackBorderColor
+            {
+                get { return scrollBarTrackBorderColor; }
+                set { scrollBarTrackBorderColor = value; }
             }
             #endregion
             
