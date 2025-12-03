@@ -19,9 +19,7 @@
     border-width: @BorderWidthStyle;
     border-color: @BorderColor.Name;
     overflow-y: @OverflowY;
-    overflow-x: @OverflowX;    
-
-    /* Add these */
+    overflow-x: @OverflowX;   
     --scrollbar-width: @ScrollBarWidthStyle;
     --scrollbar-track: @ScrollBarTrackColor.Name;
     --scrollbar-thumb: @ScrollBarThumbColor.Name;
@@ -43,6 +41,25 @@
     left: @ContentLeftStyle;
     top: @ContentTopStyle;
 </Styled>
+
+<style>
+    .@(GridStyle)::-webkit-scrollbar {
+        width: var(--scrollbar-width, 10px);
+    }
+
+    .@(GridStyle)::-webkit-scrollbar-track {
+        background: var(--scrollbar-track, LightGray);
+    }
+
+    .@(GridStyle)::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-thumb, DarkGray);
+        border-radius: var(--scrollbar-radius, 6px);
+    }
+
+    .@(GridStyle)::-webkit-scrollbar-thumb:hover {
+        background-color: var(--scrollbar-thumb-hover, DimGray);
+    }
+</style>
 
 <div class="@ContainerStyle">
     @if (ShowHeader)
