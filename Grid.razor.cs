@@ -1246,6 +1246,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ScrollBarThumbColor'.
             /// </summary>
+            [Parameter]
             public Color ScrollBarThumbColor
             {
                 get { return scrollBarThumbColor; }
@@ -1256,7 +1257,8 @@ namespace DataJuggler.Blazor.Components
             #region ScrollBarThumbHoverColor
             /// <summary>
             /// This property gets or sets the value for 'ScrollBarThumbHoverColor'.
-            /// </summary>
+            /// </summary>            
+            [Parameter]
             public Color ScrollBarThumbHoverColor
             {
                 get { return scrollBarThumbHoverColor; }
@@ -1268,6 +1270,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ScrollBarTrackColor'.
             /// </summary>
+            [Parameter]
             public Color ScrollBarTrackColor
             {
                 get { return scrollBarTrackColor; }
@@ -1279,6 +1282,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ScrollBarWidth'.
             /// </summary>
+            [Parameter]
             public double ScrollBarWidth
             {
                 get { return scrollBarWidth; }
