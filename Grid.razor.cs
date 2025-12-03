@@ -76,6 +76,13 @@ namespace DataJuggler.Blazor.Components
         private RenderFragment<Grid> gridColumns;
         private List<GridColumn> gridColumnDefs;
         private bool columnsBuilt;
+
+        // New Scrollbar Support (attempt - ChatGPT says it will work)
+        private double scrollBarWidth;
+        private Color scrollBarTrackColor;
+        private Color scrollBarThumbColor;
+        private Color scrollBarThumbHoverColor;
+        private double scrollBarRadius;
         #endregion
 
         #region Constructor
@@ -307,6 +314,13 @@ namespace DataJuggler.Blazor.Components
                 OverflowX = "hidden";
                 OverflowY = "auto";                
                 Visible = true;
+
+                // default values for the Grid.
+                ScrollBarWidth = 10;
+                ScrollBarTrackColor = Color.LightGray;
+                ScrollBarThumbColor = Color.DarkGray;
+                ScrollBarThumbHoverColor = Color.DimGray;
+                ScrollBarRadius = 6;
             }
             #endregion
             
@@ -1197,6 +1211,99 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ScrollBarRadiusStyle
+            /// <summary>
+            /// This read only property returns the value of ScrollBarRadiius + Unit
+            /// </summary>
+            public string ScrollBarRadiusStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string scrollBarRadiiusStyle = ScrollBarRadius + Unit;
+                    
+
+                    // return value
+                    return scrollBarRadiiusStyle;
+                }
+            }
+            #endregion
+
+            #region ScrollBarRadius
+            /// <summary>
+            /// This property gets or sets the value for 'ScrollBarRadiusStyle'.
+            /// </summary>
+            [Parameter]
+            public double ScrollBarRadius
+            {
+                get { return scrollBarRadius; }
+                set { scrollBarRadius = value; }
+            }
+            #endregion
+            
+            #region ScrollBarThumbColor
+            /// <summary>
+            /// This property gets or sets the value for 'ScrollBarThumbColor'.
+            /// </summary>
+            public Color ScrollBarThumbColor
+            {
+                get { return scrollBarThumbColor; }
+                set { scrollBarThumbColor = value; }
+            }
+            #endregion
+            
+            #region ScrollBarThumbHoverColor
+            /// <summary>
+            /// This property gets or sets the value for 'ScrollBarThumbHoverColor'.
+            /// </summary>
+            public Color ScrollBarThumbHoverColor
+            {
+                get { return scrollBarThumbHoverColor; }
+                set { scrollBarThumbHoverColor = value; }
+            }
+            #endregion
+            
+            #region ScrollBarTrackColor
+            /// <summary>
+            /// This property gets or sets the value for 'ScrollBarTrackColor'.
+            /// </summary>
+            public Color ScrollBarTrackColor
+            {
+                get { return scrollBarTrackColor; }
+                set { scrollBarTrackColor = value; }
+            }
+            #endregion
+            
+            #region ScrollBarWidth
+            /// <summary>
+            /// This property gets or sets the value for 'ScrollBarWidth'.
+            /// </summary>
+            public double ScrollBarWidth
+            {
+                get { return scrollBarWidth; }
+                set { scrollBarWidth = value; }
+            }
+            #endregion
+            
+            #region ScrollBarWidthStyle
+            /// <summary>
+            /// This read only property returns the value of ScrollBarWidth + Unit
+            /// </summary>
+            public string ScrollBarWidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string scrollBarWidthStyle = ScrollBarWidth + Unit;
+                    
+                    // return value
+                    return scrollBarWidthStyle;
+                }
+            }
+            #endregion
+
             #region SetFocusEditor
             /// <summary>
             /// This property gets or sets the value for 'SetFocusEditor'.
