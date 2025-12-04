@@ -27,6 +27,21 @@
     --scrollbar-radius: @ScrollBarRadiusStyle;
     --scrollbar-track-border: @ScrollBarTrackBorderColor.Name;
 </Styled>
+<Styled @bind-Classname=@GridStyle2>
+    background-color: @GridBackColor.Name;
+    height: @HeightStyle;
+    line-height: 2vh;
+    font-size: @FontSizeStyle;
+    width: @WidthStyle;
+    border-width: @BorderWidthStyle;
+    border-color: @BorderColor.Name;    
+    --scrollbar-width: @ScrollBarWidthStyle;
+    --scrollbar-track: @ScrollBarTrackColor.Name;
+    --scrollbar-thumb: @ScrollBarThumbColor.Name;
+    --scrollbar-thumb-hover: @ScrollBarThumbHoverColor.Name;
+    --scrollbar-radius: @ScrollBarRadiusStyle;
+    --scrollbar-track-border: @ScrollBarTrackBorderColor.Name;
+</Styled>
 <Styled @bind-Classname=@GridBorderStyle>    
     border-width: @BorderWidthStyle;
     border-color: @BorderColor.Name;
@@ -41,6 +56,11 @@
     position: @Position;
     left: @ContentLeftStyle;
     top: @ContentTopStyle;
+</Styled>
+<Styled @bind-Classname=@RowContent>
+    position: @Position;
+    overflow-y: @OverflowY;
+    overflow-x: @OverflowX;
 </Styled>
 
 <style>
@@ -61,6 +81,28 @@
     .@(GridStyle)::-webkit-scrollbar-thumb:hover {
         background-color: var(--scrollbar-thumb-hover, DimGray);
     }
+
+    . @(GridStyle2) ::-webkit-scrollbar
+    {
+        width: var(--scrollbar-width, 10px);
+    }
+
+    . @(GridStyle2) ::-webkit-scrollbar-track
+    {
+        background: var(--scrollbar-track, LightGray);
+        border: 1px solid var(--scrollbar-track-border);
+    }
+
+    . @(GridStyle2) ::-webkit-scrollbar-thumb
+    {
+        background-color: var(--scrollbar-thumb, DarkGray);
+        border-radius: var(--scrollbar-radius, 6px);
+    }
+
+    . @(GridStyle2) ::-webkit-scrollbar-thumb:hover
+    {
+        background-color: var(--scrollbar-thumb-hover, DimGray);
+    }
 </style>
 
 <div class="@ContainerStyle">
@@ -70,7 +112,7 @@
             @HeaderText
         </div>
     }
-    <div class="@GridStyle @GridBorderStyle @ClassName">
+    <div class="@GridStyleInUse @GridBorderStyle @ClassName">
         <div class="@ContentStyle">
             <table class="tablelayoutfixed bordercollapse">
                 @if (GridColumns != null)
@@ -100,7 +142,7 @@
                 }
                 @if (HasRows)
                 { 
-                    <tbody>
+                    <tbody class="@RowContentInUse">
                     @foreach (Row row in Rows)
                     {
                         // if the row has columns
@@ -150,8 +192,8 @@
                             </tr>
                         }
                     }
-                </tbody>
-            }
+                    </tbody>
+                }
             </table>
         </div>        
     </div>

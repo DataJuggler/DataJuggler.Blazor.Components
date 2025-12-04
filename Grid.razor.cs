@@ -63,6 +63,7 @@ namespace DataJuggler.Blazor.Components
         private bool enableClick;
         private bool enableDoubleClick;
         private string gridStyle;
+        private string gridStyle2;
         private string overflowX;
         private string overflowY;
         private string headerRowStyle;
@@ -76,6 +77,7 @@ namespace DataJuggler.Blazor.Components
         private RenderFragment<Grid> gridColumns;
         private List<GridColumn> gridColumnDefs;
         private bool columnsBuilt;
+        private string rowContent;
 
         // New Scrollbar Support
         private double scrollBarWidth;
@@ -322,7 +324,7 @@ namespace DataJuggler.Blazor.Components
                 ScrollBarThumbColor = Color.DarkGray;
                 ScrollBarThumbHoverColor = Color.DimGray;
                 ScrollBarRadius = 6;
-                ScrollBarTrackBorderColor = Color.Black;
+                ScrollBarTrackBorderColor = Color.LightSteelBlue;
             }
             #endregion
             
@@ -869,6 +871,42 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region GridStyle2
+            /// <summary>
+            /// This property gets or sets the value for 'GridStyle2'.
+            /// </summary>
+            public string GridStyle2
+            {
+                get { return gridStyle2; }
+                set { gridStyle2 = value; }
+            }
+            #endregion
+            
+            #region GridStyleInUse
+            /// <summary>
+            /// This read only property returns the which GridStyle to use based on StickyHeader.
+            /// </summary>
+            public string GridStyleInUse
+            {
+
+                get
+                {
+                    // initial value
+                    string gridStyleInUse = GridStyle;
+
+                    // if the value for StickyHeader is true
+                    if (StickyHeader)
+                    {
+                        // use GridStyle2
+                        gridStyleInUse = GridStyle2;
+                    }
+
+                    // return value
+                    return gridStyleInUse;
+                }
+            }
+            #endregion
+
             #region HasButtons
             /// <summary>
             /// This property returns true if this object has a 'Buttons'.
@@ -1202,6 +1240,43 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region RowContent
+            /// <summary>
+            /// This property gets or sets the value for 'RowContent'.
+            /// </summary>
+            public string RowContent
+            {
+                get { return rowContent; }
+                set { rowContent = value; }
+            }
+            #endregion
+            
+            #region RowContentInUse
+            /// <summary>
+            /// This read only property returns the value of RowContentInUse. If StickyHeader is False
+            /// then an empty string, else RowContent is used.
+            /// </summary>
+            public string RowContentInUse
+            {
+
+                get
+                {
+                    // initial value
+                    string rowContentInUse = "";
+
+                    // if the value for StickyHeader is true
+                    if (StickyHeader)
+                    {
+                        // set the return value
+                        rowContentInUse = RowContent;
+                    }
+
+                    // return value
+                    return rowContentInUse;
+                }
+            }
+            #endregion
+
             #region Rows
             /// <summary>
             /// This property gets or sets the value for 'Rows'.
