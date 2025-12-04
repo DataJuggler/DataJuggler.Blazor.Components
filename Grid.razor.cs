@@ -66,7 +66,10 @@ namespace DataJuggler.Blazor.Components
         private string gridStyle2;
         private string overflowX;
         private string overflowY;
-        private string headerRowStyle;
+        private double rowContentHeight;
+        private double headerHeight;
+        private double columnHeaderHeight;
+        private string headerStyle;
         private string containerStyle;
         private string contentStyle;
         private double contentLeft;
@@ -78,6 +81,8 @@ namespace DataJuggler.Blazor.Components
         private List<GridColumn> gridColumnDefs;
         private bool columnsBuilt;
         private string rowContent;
+        private string columnHeaderStyle;
+        private string columnHeaderClassName;
 
         // New Scrollbar Support
         private double scrollBarWidth;
@@ -305,19 +310,21 @@ namespace DataJuggler.Blazor.Components
                 BorderWidth = 1;
                 BorderStyle = "solid";                
                 Buttons = new List<ImageButton>();
-                Columns = new List<Column>();                
+                Columns = new List<Column>();
+                ColumnHeaderHeight = 24;
                 FontSize = 12;
                 FontSizeUnit="px";
                 GridBackColor = Color.White;               
                 GridColumnDefs = new List<GridColumn>();
+                HeaderHeight = 24;
                 Height = 240;                
                 Position = "relative";
                 StickyHeader = true;                                
                 Width = 400;
                 OverflowX = "hidden";
-                OverflowY = "auto";                
+                OverflowY = "auto";             
                 Visible = true;
-
+                
                 // default values for the Grid.
                 ScrollBarWidth = 10;
                 ScrollBarTrackColor = Color.LightGray;
@@ -584,6 +591,58 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return buttonClickHandler; }
                 set { buttonClickHandler = value; }
+            }
+            #endregion
+            
+            #region ColumnHeaderClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnHeaderClassName'.
+            /// </summary>
+            public string ColumnHeaderClassName
+            {
+                get { return columnHeaderClassName; }
+                set { columnHeaderClassName = value; }
+            }
+            #endregion
+            
+            #region ColumnHeaderHeight
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnHeaderHeight'.
+            /// </summary>
+            [Parameter]
+            public double ColumnHeaderHeight
+            {
+                get { return columnHeaderHeight; }
+                set { columnHeaderHeight = value; }
+            }
+            #endregion
+            
+            #region ColumnHeaderHeightStyle
+            /// <summary>
+            /// This read only property returns the value of ColumnHeaderHeight + HeightUnit
+            /// </summary>
+            public string ColumnHeaderHeightStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string columnHeaderHeightStyle = ColumnHeaderHeight + HeightUnit;
+
+                    // return value
+                    return columnHeaderHeightStyle;
+                }
+            }
+            #endregion
+
+            #region ColumnHeaderStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnHeaderStyle'.
+            /// </summary>
+            public string ColumnHeaderStyle
+            {
+                get { return columnHeaderStyle; }
+                set { columnHeaderStyle = value; }
             }
             #endregion
             
@@ -1055,14 +1114,44 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region HeaderRowStyle
+            #region HeaderHeight
             /// <summary>
-            /// This property gets or sets the value for 'HeaderRowStyle'.
+            /// This property gets or sets the value for 'HeaderHeight'.
             /// </summary>
-            public string HeaderRowStyle
+            [Parameter]
+            public double HeaderHeight
             {
-                get { return headerRowStyle; }
-                set { headerRowStyle = value; }
+                get { return headerHeight; }
+                set { headerHeight = value; }
+            }
+            #endregion
+            
+            #region HeaderHeightStyle
+            /// <summary>
+            /// This read only property returns the value of HeaderHeight + Unit
+            /// </summary>
+            public string HeaderHeightStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string headerHeightStyle = HeaderHeight + HeightUnit;
+
+                    // return value
+                    return headerHeightStyle;
+                }
+            }
+            #endregion
+
+            #region HeaderStyle
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderStyle'.
+            /// </summary>
+            public string HeaderStyle
+            {
+                get { return headerStyle; }
+                set { headerStyle = value; }
             }
             #endregion
             
@@ -1086,7 +1175,12 @@ namespace DataJuggler.Blazor.Components
             public double Height
             {
                 get { return height; }
-                set { height = value; }
+                set 
+                {
+                    height = value;
+
+                    rowContentHeight = height - TotalHeaderHeight;
+                }
             }
             #endregion
 
@@ -1251,6 +1345,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region RowContentHeight
+            /// <summary>
+            /// This property gets or sets the value for 'RowContentHeight'.
+            /// </summary>
+            [Parameter]
+            public double RowContentHeight
+            {
+                get { return rowContentHeight; }
+                set { rowContentHeight = value; }
+            }
+            #endregion
+            
+            #region RowContentHeightStyle
+            /// <summary>
+            /// This read only property returns the value of RowContentHeight + HeightUnit
+            /// </summary>
+            public string RowContentHeightStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string rowContentHeightStyle = RowContentHeight + HeightUnit;
+
+                    // return value
+                    return rowContentHeightStyle;
+                }
+            }
+            #endregion
+
             #region RowContentInUse
             /// <summary>
             /// This read only property returns the value of RowContentInUse. If StickyHeader is False
@@ -1493,6 +1617,56 @@ namespace DataJuggler.Blazor.Components
 
                     // Set the value
                     return topStyle;
+                }
+            }
+            #endregion
+
+            #region TotalHeaderHeight
+            /// <summary>
+            /// This read only property returns the value of ColumnHeaderHeight + HeaderHeight
+            /// </summary>
+            public double TotalHeaderHeight
+            {
+
+                get
+                {
+                    // initial value
+                    double totalHeaderHeight = 0;
+                    
+                    // if the ColumnHeaders are shown
+                    if (ShowHeader)
+                    {
+                        // Add the HeaderHeight
+                        totalHeaderHeight += HeaderHeight;
+                    }
+
+                    // if the ColumnHeaders are shown
+                    if (ShowColumnHeaders)
+                    {
+                        // Add the ColumnHeaderHeight
+                        totalHeaderHeight += ColumnHeaderHeight;
+                    }
+
+                    // return value
+                    return totalHeaderHeight;
+                }
+            }
+            #endregion
+
+            #region TotalHeaderHeightStyle
+            /// <summary>
+            /// This read only property returns the value of TotalHeaderHeight + HeightUnit
+            /// </summary>
+            public string TotalHeaderHeightStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string totalHeaderHeightStyle = TotalHeaderHeight + HeightUnit;
+
+                    // return value
+                    return totalHeaderHeightStyle;
                 }
             }
             #endregion

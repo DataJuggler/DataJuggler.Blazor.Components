@@ -47,9 +47,15 @@
     border-color: @BorderColor.Name;
     border-style: @BorderStyle;
 </Styled>
-<Styled @bind-Classname=@HeaderRowStyle>    
+<Styled @bind-Classname=@HeaderStyle>    
+    height: @HeaderHeightStyle;
+    clear: both;
+    width: 100%;
+</Styled>
+<Styled @bind-Classname=@ColumnHeaderStyle>
     position: @StickyStyle;
     clear: both;
+    height: @ColumnHeaderHeightStyle;
     width: 100%;
 </Styled>
 <Styled @bind-Classname=@ContentStyle>
@@ -61,6 +67,7 @@
     position: @Position;
     overflow-y: @OverflowY;
     overflow-x: @OverflowX;
+    height: @RowContentHeightStyle;
 </Styled>
 
 <style>
@@ -108,7 +115,7 @@
 <div class="@ContainerStyle">
     @if (ShowHeader)
     {
-        <div class="@HeaderRowStyle @HeaderClassName">
+        <div class="@HeaderStyle @HeaderClassName">
             @HeaderText
         </div>
     }
@@ -132,7 +139,7 @@
                 @if ((ShowColumnHeaders) && (HasColumns))
                 {
                     <thead>
-                    <tr class="@HeaderRowStyle @HeaderClassName">
+                    <tr class="@ColumnHeaderStyle @ColumnHeaderClassName">
                         @foreach (Column column in Columns)
                         {
                             <th class="@column.ClassName">@column.Caption</th>

@@ -25,6 +25,9 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+12.4.2025: I added some new properties to the Grid for ColumnHeaderHeight and HeaderHeight.
+Try to separate ColumnHeader and Header, in case these need to be styled differently. 
+
 12.3.2025: I added 6 new properties to the Grid: (all untested. I will update this once tested).
 
 ScrollBarWidthStyle - Width of the Scrollbar
