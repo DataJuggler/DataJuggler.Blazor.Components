@@ -25,6 +25,10 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+12.6.2025: Update 2. I created a GridHeaderComponent so markup was less duplicated depending on StickyHeader
+setting of true or false. True the header is outside the scroll bar and false the GridHeaderComponent is inside the
+scrollbar. I also learned you can't inherit from Razor components. [Parameter] tags confuse the hell out of razor.
+
 12.6.2025: I figured out StickyHeader. I finally figured out to use two tables. One for the Header and one 
 for the body (rows). I also created an Internal use component called a GridHeaderComponent. This
 saves having to duplicate markup based on if the column headers are inside or outside the scrollable div.
