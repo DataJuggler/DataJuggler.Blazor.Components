@@ -54,8 +54,6 @@
 </Styled>
 <Styled @bind-Classname=@RowContent>
     position: @Position;
-    overflow-y: @OverflowY;
-    overflow-x: @OverflowX;
     height: @RowContentHeightStyle;
 </Styled>
 
@@ -86,7 +84,7 @@
             @HeaderText
         </div>
     }
-    <div class="@GridStyle @GridBorderStyle @ClassName @ScrollStyle">
+    <div class="@GridStyle @GridBorderStyle @ClassName">
         <div class="@ContentStyle">
             <table class="tablelayoutfixed bordercollapse">
                 @if (GridColumns != null)
@@ -116,7 +114,7 @@
                 }
                 @if (HasRows)
                 { 
-                    <tbody class="@RowContentInUse">
+                    <tbody class="@RowContent @ScrollStyle">
                     @foreach (Row row in Rows)
                     {
                         // if the row has columns

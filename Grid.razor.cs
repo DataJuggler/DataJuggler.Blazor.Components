@@ -313,13 +313,13 @@ namespace DataJuggler.Blazor.Components
                 BorderStyle = "solid";                
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
-                ColumnHeaderColor = Color.RoyalBlue;
+                ColumnHeaderColor = Color.LightSteelBlue;
                 ColumnHeaderHeight = 24;
                 FontSize = 12;
                 FontSizeUnit="px";
                 GridBackColor = Color.White;               
                 GridColumnDefs = new List<GridColumn>();
-                HeaderColor = Color.RoyalBlue;
+                HeaderColor = Color.LightSteelBlue;
                 HeaderHeight = 24;
                 Height = 240;                
                 Position = "relative";
@@ -1364,32 +1364,6 @@ namespace DataJuggler.Blazor.Components
 
                     // return value
                     return rowContentHeightStyle;
-                }
-            }
-            #endregion
-
-            #region RowContentInUse
-            /// <summary>
-            /// This read only property returns the value of RowContentInUse. If StickyHeader is False
-            /// then an empty string, else RowContent is used.
-            /// </summary>
-            public string RowContentInUse
-            {
-
-                get
-                {
-                    // initial value
-                    string rowContentInUse = "";
-
-                    // if the value for StickyHeader is true
-                    if (StickyHeader)
-                    {
-                        // set the return value
-                        rowContentInUse = RowContent;
-                    }
-
-                    // return value
-                    return rowContentInUse;
                 }
             }
             #endregion
