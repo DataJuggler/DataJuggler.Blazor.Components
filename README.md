@@ -25,6 +25,11 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+12.6.2025: I figured out StickyHeader. I finally figured out to use two tables. One for the Header and one 
+for the body (rows). I also created an Internal use component called a GridHeaderComponent. This
+saves having to duplicate markup based on if the column headers are inside or outside the scrollable div.
+Testing if this works now.
+
 12.4.2025: I added some new properties to the Grid for ColumnHeaderHeight and HeaderHeight.
 Try to separate ColumnHeader and Header, in case these need to be styled differently. 
 
