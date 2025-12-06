@@ -28,69 +28,71 @@ namespace DataJuggler.Blazor.Components
     {
         
         #region Private Variables
-        private double borderWidth;
         private Color borderColor;
         private string borderStyle;
-        private string gridBorderStyle;
+        private double borderWidth;
+        private ButtonClickedHandler buttonClickHandler;
+        private List<ImageButton> buttons;
+        private string className;
+        private string columnHeaderClassName;
+        private Color columnHeaderColor;
+        private double columnHeaderHeight;
+        private string columnHeaderStyle;
         private List<Column> columns;
-        private List<Row> rows;
-        private bool showHeader;
-        private string headerText;        
-        private string name;
-        private IBlazorComponentParent parent;        
-        private string headerClassName;       
-        private bool showColumnHeaders;
+        private bool columnsBuilt;
+        private string containerStyle;
+        private double contentLeft;
+        private string contentStyle;
+        private double contentTop;
         private bool editMode;
         private Row editRow;
         private Guid editRowId;
-        private string className;
-        private TextBoxComponent setFocusEditor;        
-        private int externalId;
-        private string externalIdDescription;
-        private List<ImageButton> buttons;
-        private ButtonClickedHandler buttonClickHandler;
-        private Color gridBackColor;
-        private double height;
-        private string heightUnit;
-        private double fontSize;        
-        private string fontSizeUnit;
-        private double width;        
-        private double left;
-        private double top;                        
-        private string position;
-        private string unit;
-        private bool notifyParentOnDoubleClick;        
         private bool enableClick;
         private bool enableDoubleClick;
-        private string gridStyle;
-        private string gridStyle2;
-        private string overflowX;
-        private string overflowY;
-        private double rowContentHeight;
-        private double headerHeight;
-        private double columnHeaderHeight;
-        private string headerStyle;
-        private string containerStyle;
-        private string contentStyle;
-        private double contentLeft;
-        private double contentTop;        
-        private bool visible;
-        private string visibility;
-        private bool stickyHeader;
+        private int externalId;
+        private string externalIdDescription;
+        private double fontSize;
+        private string fontSizeUnit;
+        private Color gridBackColor;
+        private string gridBorderStyle;
         private RenderFragment<Grid> gridColumns;
         private List<GridColumn> gridColumnDefs;
-        private bool columnsBuilt;
+        private string gridStyle;
+        private string headerClassName;
+        private Color headerColor;
+        private double headerHeight;
+        private string headerStyle;
+        private string headerText;
+        private double height;
+        private string heightUnit;
+        private double left;
+        private string name;
+        private bool notifyParentOnDoubleClick;
+        private string overflowX;
+        private string overflowY;
+        private IBlazorComponentParent parent;
+        private string position;
         private string rowContent;
-        private string columnHeaderStyle;
-        private string columnHeaderClassName;
+        private double rowContentHeight;
+        private List<Row> rows;
+        private string scrollStyle;
+        private TextBoxComponent setFocusEditor;
+        private bool showColumnHeaders;
+        private bool showHeader;
+        private bool stickyHeader;
+        private double top;
+        private string unit;
+        private bool visible;
+        private string visibility;
+        private double width;
 
         // New Scrollbar Support
-        private double scrollBarWidth;
-        private Color scrollBarTrackColor;
+        private double scrollBarRadius;
         private Color scrollBarThumbColor;
         private Color scrollBarThumbHoverColor;
-        private double scrollBarRadius;
         private Color scrollBarTrackBorderColor;
+        private Color scrollBarTrackColor;
+        private double scrollBarWidth;
         #endregion
 
         #region Constructor
@@ -311,11 +313,13 @@ namespace DataJuggler.Blazor.Components
                 BorderStyle = "solid";                
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
+                ColumnHeaderColor = Color.RoyalBlue;
                 ColumnHeaderHeight = 24;
                 FontSize = 12;
                 FontSizeUnit="px";
                 GridBackColor = Color.White;               
                 GridColumnDefs = new List<GridColumn>();
+                HeaderColor = Color.RoyalBlue;
                 HeaderHeight = 24;
                 Height = 240;                
                 Position = "relative";
@@ -602,6 +606,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return columnHeaderClassName; }
                 set { columnHeaderClassName = value; }
+            }
+            #endregion
+            
+            #region ColumnHeaderColor
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnHeaderColor'.
+            /// </summary>
+            [Parameter]
+            public Color ColumnHeaderColor
+            {
+                get { return columnHeaderColor; }
+                set { columnHeaderColor = value; }
             }
             #endregion
             
@@ -930,42 +946,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region GridStyle2
-            /// <summary>
-            /// This property gets or sets the value for 'GridStyle2'.
-            /// </summary>
-            public string GridStyle2
-            {
-                get { return gridStyle2; }
-                set { gridStyle2 = value; }
-            }
-            #endregion
-            
-            #region GridStyleInUse
-            /// <summary>
-            /// This read only property returns the which GridStyle to use based on StickyHeader.
-            /// </summary>
-            public string GridStyleInUse
-            {
-
-                get
-                {
-                    // initial value
-                    string gridStyleInUse = GridStyle;
-
-                    // if the value for StickyHeader is true
-                    if (StickyHeader)
-                    {
-                        // use GridStyle2
-                        gridStyleInUse = GridStyle2;
-                    }
-
-                    // return value
-                    return gridStyleInUse;
-                }
-            }
-            #endregion
-
             #region HasButtons
             /// <summary>
             /// This property returns true if this object has a 'Buttons'.
@@ -1111,6 +1091,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return headerClassName; }
                 set { headerClassName = value; }
+            }
+            #endregion
+            
+            #region HeaderColor
+            /// <summary>
+            /// This property gets or sets the value for 'HeaderColor'.
+            /// </summary>
+            [Parameter]
+            public Color HeaderColor
+            {
+                get { return headerColor; }
+                set { headerColor = value; }
             }
             #endregion
             
@@ -1521,6 +1513,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ScrollStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ScrollStyle'.
+            /// </summary>
+            public string ScrollStyle
+            {
+                get { return scrollStyle; }
+                set { scrollStyle = value; }
+            }
+            #endregion
+            
             #region SetFocusEditor
             /// <summary>
             /// This property gets or sets the value for 'SetFocusEditor'.
