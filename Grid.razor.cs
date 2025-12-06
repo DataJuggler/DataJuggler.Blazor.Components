@@ -77,6 +77,7 @@ namespace DataJuggler.Blazor.Components
         private bool showColumnHeaders;
         private bool showHeader;
         private bool stickyHeader;
+        private string stickyStyle;
         private double top;
         private string unit;
         private bool visible;
@@ -1472,11 +1473,11 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region StickyStyle
+            #region StickyPosition
             /// <summary>
-            /// This read only property returns the value of StyckyStyle
+            /// This read only property returns the value of StickyPosition
             /// </summary>
-            public string StickyStyle
+            public string StickyPosition
             {
                 get
                 {
@@ -1496,6 +1497,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region StickyStyle
+            /// <summary>
+            /// This property gets or sets the value for 'StickyStyle'.
+            /// </summary>
+            public string StickyStyle
+            {
+                get { return stickyStyle; }
+                set { stickyStyle = value; }
+            }
+            #endregion
+            
             #region Top
             /// <summary>
             /// This property gets or sets the value for 'Top'.
