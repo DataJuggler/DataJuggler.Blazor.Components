@@ -602,6 +602,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'ColumnHeaderClassName'.
             /// </summary>
+            [Parameter]
             public string ColumnHeaderClassName
             {
                 get { return columnHeaderClassName; }
