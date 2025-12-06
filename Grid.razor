@@ -80,22 +80,22 @@
         </div>
     }
     <div class="@GridStyle @GridBorderStyle @ClassName">
-        <table class="tablelayoutfixed bordercollapse">
-            @if (GridColumns != null)
-            {
-                @GridColumns(this)
-            }
-            @if (HasColumns)
-            {
-                <colgroup>
-                    @foreach (Column column in Columns)
-                    {
-                        <col class="@column.ClassName" />
-                    }
-                </colgroup>
-            }
-            @if ((ShowColumnHeaders) && (HasColumns))
-            {
+        @if ((StickyHeader) && (ShowColumnHeaders) && (HasColumns))
+        {
+            <table class="tablelayoutfixed bordercollapse">
+                @if (GridColumns != null)
+                {
+                    @GridColumns(this)
+                }
+                @if (HasColumns)
+                {
+                    <colgroup>
+                        @foreach (Column column in Columns)
+                        {
+                            <col class="@column.ClassName" />
+                        }
+                    </colgroup>
+                }            
                 <thead>
                     <tr class="@ColumnHeaderStyle @ColumnHeaderClassName @StickyStyle">
                         @foreach (Column column in Columns)
@@ -103,66 +103,92 @@
                             <th class="@column.ClassName">@column.Caption</th>
                         }
                     </tr>
-                </thead>
-            }
-        </table>        
-        @if (HasRows)
-        {
-            <div class=" @RowContent @ScrollStyle">
-                <table class="tablelayoutfixed bordercollapse">
-                    <tbody>
-                        @foreach (Row row in Rows)
-                        {
-                            // if the row has columns
-                            if (row.HasColumns)
-                            {
-                                <tr class="@row.ClassName">
-                                    @foreach (Column column in row.Columns)
-                                    {
-                                        if (column.IsImageButton)
-                                        {
-                                            <td>
-                                                <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl"
-                                                    Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.ColumnName"
-                                                    Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
-                                            </td>
-                                        }
-                                        else if (column.IsImage)
-                                        {
-                                            <td>
-                                                <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl"
-                                                    Width="@column.Width" Height="@column.Height" Name="@column.ColumnName"
-                                                    Text="@column.ColumnText" Visible=true Parent="this"></ImageComponent>
-                                            </td>
-                                        }
-                                        else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
-                                        {
-                                            <td class="displayinline @column.ClassName">
-                                                <TextBoxComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width
-                                                    Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
-                                                    SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
-                                                    Text="@column.EditorText" Parent=this></TextBoxComponent>
-                                            </td>
-                                        }
-                                        else if (EnableClick)
-                                        {
-                                            <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</td>
-                                        }
-                                        else if (EnableDoubleClick)
-                                        {
-                                            <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</td>
-                                        }
-                                        else
-                                        {
-                                            <td class="@column.ClassName">@column.ColumnText</td>
-                                        }
-                                    }
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-            </div>
+                </thead>                
+            </table>        
         }        
+        <div class="@GridStyle @RowContent @ScrollStyle">
+            @if ((!StickyHeader) && (ShowColumnHeaders) && (HasColumns))
+            {
+                <table class="tablelayoutfixed bordercollapse">
+                    @if (GridColumns != null)
+                    {
+                        @GridColumns(this)
+                    }
+                    @if (HasColumns)
+                    {
+                        <colgroup>
+                            @foreach (Column column in Columns)
+                            {
+                                <col class="@column.ClassName" />
+                            }
+                        </colgroup>
+                    }
+                    <thead>
+                        <tr class="@ColumnHeaderStyle @ColumnHeaderClassName @StickyStyle">
+                            @foreach (Column column in Columns)
+                            {
+                                <th class="@column.ClassName">@column.Caption</th>
+                            }
+                        </tr>
+                    </thead>
+                </table>
+            }
+            @if (HasRows)
+            {
+                <table class="tablelayoutfixed bordercollapse">
+                <tbody>
+                    @foreach (Row row in Rows)
+                    {
+                        // if the row has columns
+                        if (row.HasColumns)
+                        {
+                            <tr class="@row.ClassName">
+                                @foreach (Column column in row.Columns)
+                                {
+                                    if (column.IsImageButton)
+                                    {
+                                        <td>
+                                            <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl"
+                                                Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.ColumnName"
+                                                Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
+                                        </td>
+                                    }
+                                    else if (column.IsImage)
+                                    {
+                                        <td>
+                                            <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl"
+                                                Width="@column.Width" Height="@column.Height" Name="@column.ColumnName"
+                                                Text="@column.ColumnText" Visible=true Parent="this"></ImageComponent>
+                                        </td>
+                                    }
+                                    else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
+                                    {
+                                        <td class="displayinline @column.ClassName">
+                                            <TextBoxComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width
+                                                Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
+                                                SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
+                                                Text="@column.EditorText" Parent=this></TextBoxComponent>
+                                        </td>
+                                    }
+                                    else if (EnableClick)
+                                    {
+                                        <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</td>
+                                    }
+                                    else if (EnableDoubleClick)
+                                    {
+                                        <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="@column.ClassName">@column.ColumnText</td>
+                                    }
+                                }
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            }
+        </div>
     </div>
 </div>
