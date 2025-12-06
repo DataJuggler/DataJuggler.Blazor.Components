@@ -40,10 +40,7 @@ namespace DataJuggler.Blazor.Components
         private string columnHeaderStyle;
         private List<Column> columns;
         private bool columnsBuilt;
-        private string containerStyle;
-        private double contentLeft;
-        private string contentStyle;
-        private double contentTop;
+        private string containerStyle;        
         private bool editMode;
         private Row editRow;
         private Guid editRowId;
@@ -313,13 +310,13 @@ namespace DataJuggler.Blazor.Components
                 BorderStyle = "solid";                
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
-                ColumnHeaderColor = Color.LightSteelBlue;
+                ColumnHeaderColor = Color.SteelBlue;
                 ColumnHeaderHeight = 24;
                 FontSize = 12;
                 FontSizeUnit="px";
                 GridBackColor = Color.White;               
                 GridColumnDefs = new List<GridColumn>();
-                HeaderColor = Color.LightSteelBlue;
+                HeaderColor = Color.SteelBlue;
                 HeaderHeight = 24;
                 Height = 240;                
                 Position = "relative";
@@ -695,78 +692,7 @@ namespace DataJuggler.Blazor.Components
                 set { containerStyle = value; }
             }
             #endregion
-            
-            #region ContentLeft
-            /// <summary>
-            /// This property gets or sets the value for 'ContentLeft'.
-            /// </summary>
-            [Parameter]
-            public double ContentLeft
-            {
-                get { return contentLeft; }
-                set { contentLeft = value; }
-            }
-            #endregion
-            
-            #region ContentLeftStyle
-            /// <summary>
-            /// This read only property returns the value of ContentLeftStyle + Unit
-            /// </summary>
-            public string ContentLeftStyle
-            {
-
-                get
-                {
-                    // initial value
-                    string contentLeftStyle = ContentLeft + Unit;
-                    
-                    // return value
-                    return contentLeftStyle;
-                }
-            }
-            #endregion
-
-            #region ContentStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ContentStyle'.
-            /// </summary>
-            public string ContentStyle
-            {
-                get { return contentStyle; }
-                set { contentStyle = value; }
-            }
-            #endregion
-            
-            #region ContentTop
-            /// <summary>
-            /// This property gets or sets the value for 'ContentTop'.
-            /// </summary>
-            [Parameter]
-            public double ContentTop
-            {
-                get { return contentTop; }
-                set { contentTop = value; }
-            }
-            #endregion
-            
-            #region ContentTopStyle
-            /// <summary>
-            /// This read only property returns the value of ContentTop + Unit
-            /// </summary>
-            public string ContentTopStyle
-            {
-
-                get
-                {
-                    // initial value
-                    string contentTopStyle = ContentTop + HeightUnit;
-                    
-                    // return value
-                    return contentTopStyle;
-                }
-            }
-            #endregion
-
+           
             #region EditMode
             /// <summary>
             /// This property gets or sets the value for 'EditMode'.

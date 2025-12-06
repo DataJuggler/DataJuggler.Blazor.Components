@@ -47,11 +47,6 @@
     height: @ColumnHeaderHeightStyle;
     width: 100%;
 </Styled>
-<Styled @bind-Classname=@ContentStyle>
-    position: @Position;
-    left: @ContentLeftStyle;
-    top: @ContentTopStyle;
-</Styled>
 <Styled @bind-Classname=@RowContent>
     position: @Position;
     height: @RowContentHeightStyle;
@@ -85,88 +80,85 @@
         </div>
     }
     <div class="@GridStyle @GridBorderStyle @ClassName">
-        <div class="@ContentStyle">
-            <table class="tablelayoutfixed bordercollapse">
-                @if (GridColumns != null)
-                {
-                    @GridColumns(this)
-                }
-
-                @if (HasColumns)
-                {  
-                    <colgroup>
-                        @foreach (Column column in Columns)
-                        {
-                            <col class="@column.ClassName" />
-                        }
-                    </colgroup>
-                }
-                @if ((ShowColumnHeaders) && (HasColumns))
-                {
-                    <thead>
+        <table class="tablelayoutfixed bordercollapse @ScrollStyle">
+            @if (GridColumns != null)
+            {
+                @GridColumns(this)
+            }
+            @if (HasColumns)
+            {
+                <colgroup>
+                    @foreach (Column column in Columns)
+                    {
+                        <col class="@column.ClassName" />
+                    }
+                </colgroup>
+            }
+            @if ((ShowColumnHeaders) && (HasColumns))
+            {
+                <thead>
                     <tr class="@ColumnHeaderStyle @ColumnHeaderClassName">
                         @foreach (Column column in Columns)
                         {
                             <th class="@column.ClassName">@column.Caption</th>
                         }
                     </tr>
-                    </thead>
-                }
-                @if (HasRows)
-                { 
-                    <tbody class="@RowContent @ScrollStyle">
+                </thead>
+            }
+            @if (HasRows)
+            {
+                <tbody class="@RowContent @ScrollStyle">
                     @foreach (Row row in Rows)
                     {
                         // if the row has columns
                         if (row.HasColumns)
                         {
                             <tr class="@row.ClassName">
-                            @foreach (Column column in row.Columns)
-                            {
-                                if (column.IsImageButton)
+                                @foreach (Column column in row.Columns)
                                 {
-                                    <td>
-                                        <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl" 
-                                            Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.ColumnName"
-                                            Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
-                                    </td>
+                                    if (column.IsImageButton)
+                                    {
+                                        <td>
+                                            <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl"
+                                                Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.ColumnName"
+                                                Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
+                                        </td>
+                                    }
+                                    else if (column.IsImage)
+                                    {
+                                        <td>
+                                            <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl"
+                                                Width="@column.Width" Height="@column.Height" Name="@column.ColumnName"
+                                                Text="@column.ColumnText" Visible=true Parent="this"></ImageComponent>
+                                        </td>
+                                    }
+                                    else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
+                                    {
+                                        <td class="displayinline @column.ClassName">
+                                            <TextBoxComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width
+                                                Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
+                                                SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
+                                                Text="@column.EditorText" Parent=this></TextBoxComponent>
+                                        </td>
+                                    }
+                                    else if (EnableClick)
+                                    {
+                                        <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</td>
+                                    }
+                                    else if (EnableDoubleClick)
+                                    {
+                                        <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="@column.ClassName">@column.ColumnText</td>
+                                    }
                                 }
-                                else if (column.IsImage)
-                                {
-                                    <td>
-                                        <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl" 
-                                            Width="@column.Width" Height="@column.Height" Name="@column.ColumnName"
-                                            Text="@column.ColumnText" Visible=true Parent="this"></ImageComponent>
-                                    </td>
-                                }
-                                else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
-                                {
-                                    <td class="displayinline @column.ClassName">
-                                    <TextBoxComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width 
-                                        Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
-                                        SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
-                                        Text="@column.EditorText"  Parent=this></TextBoxComponent>
-                                    </td>
-                                }
-                                else if (EnableClick)
-                                {
-                                    <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</td>
-                                }
-                                else if (EnableDoubleClick)
-                                {
-                                    <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</td>
-                                }
-                                else
-                                {
-                                    <td class="@column.ClassName">@column.ColumnText</td>
-                                }
-                            }
                             </tr>
                         }
                     }
-                    </tbody>
-                }
-            </table>
-        </div>        
+                </tbody>
+            }
+        </table>
     </div>
 </div>
