@@ -75,6 +75,7 @@ namespace DataJuggler.Blazor.Components
         private string scrollStyle;
         private TextBoxComponent setFocusEditor;
         private bool showColumnHeaders;
+        private bool showFilterRow;
         private bool showHeader;
         private bool stickyHeader;
         private string stickyStyle;
@@ -1446,6 +1447,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return showColumnHeaders; }
                 set { showColumnHeaders = value; }
+            }
+            #endregion
+            
+            #region ShowFilterRow
+            /// <summary>
+            /// This property gets or sets the value for 'ShowFilterRow'.
+            /// </summary>
+            [Parameter]
+            public bool ShowFilterRow
+            {
+                get { return showFilterRow; }
+                set { showFilterRow = value; }
             }
             #endregion
             

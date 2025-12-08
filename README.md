@@ -25,6 +25,9 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+12.9.2025: It's not working yet, but I added a parameter to the Grid for ShowFilterRow. Testing being able to filter
+rows in conjunction with GridHelper. This update is just a visual test to see how it looks.
+
 12.6.2025: Update 2. I created a GridHeaderComponent so markup was less duplicated depending on StickyHeader
 setting of true or false. True the header is outside the scroll bar and false the GridHeaderComponent is inside the
 scrollbar. I also learned you can't inherit from Razor components. [Parameter] tags confuse the hell out of razor.

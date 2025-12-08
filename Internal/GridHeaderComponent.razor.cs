@@ -2,13 +2,10 @@
 
 #region using statements
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using DataJuggler.Blazor.Components;
 using DataJuggler.Blazor.Components.Interfaces;
-using Microsoft.AspNetCore.Components;
 using DataJuggler.Excelerate;
+using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
 
 #endregion
 
@@ -21,12 +18,24 @@ namespace DataJuggler.Blazor.Components.Internal
     /// different places depending on the value for StickyHeader, this saved duplicating
     /// markup in two places.
     /// </summary>
-    public partial class GridHeaderComponent : IBlazorComponent
+    public partial class GridHeaderComponent : IBlazorComponent, IBlazorComponentParent
     {
         
         #region Private Variables
+        private List<TextBoxComponent> filterTextBoxes;
         private string name;
         private IBlazorComponentParent parent;
+        #endregion
+        
+        #region Constructor
+        /// <summary>
+        /// Create a new instance of a 'GridHeaderComponent' object.
+        /// </summary>
+        public GridHeaderComponent()
+        {
+            // Create a new collection of 'TextBoxComponent' objects.
+            FilterTextBoxes = new List<TextBoxComponent>();
+        }
         #endregion
         
         #region Events
@@ -41,7 +50,40 @@ namespace DataJuggler.Blazor.Components.Internal
             /// </summary>
             public void ReceiveData(Message message)
             {
-
+                
+            }
+            #endregion
+            
+            #region Refresh()
+            /// <summary>
+            /// This method is used to update the UI after changes
+            /// </summary>
+            public void Refresh()
+            {
+                InvokeAsync(() =>
+                {
+                    // Refresh
+                    StateHasChanged();
+                });
+            }
+            #endregion
+            
+            #region Register(IBlazorComponent component)
+            /// <summary>
+            /// This method is used to store child controls that are on this component or page
+            /// </summary>
+            public void Register(IBlazorComponent component)
+            {
+                // if the value for HasFilterTextBoxes is true
+                if (HasFilterTextBoxes)
+                {
+                    // if this component is a TextBoxComponent
+                    if (component is TextBoxComponent tempTextBoxComponent)
+                    {
+                        // Add this component
+                        FilterTextBoxes.Add(tempTextBoxComponent);                    
+                    }
+                }
             }
             #endregion
             
@@ -73,7 +115,7 @@ namespace DataJuggler.Blazor.Components.Internal
                 }
             }
             #endregion
-
+            
             #region ColumnHeaderStyle
             /// <summary>
             /// This read only property returns the value of ColumnHeaderStyle from the object ParentGrid.
@@ -98,7 +140,7 @@ namespace DataJuggler.Blazor.Components.Internal
                 }
             }
             #endregion
-
+            
             #region Columns
             /// <summary>
             /// This read only property returns the value of Columns from the object ParentGrid.
@@ -123,7 +165,18 @@ namespace DataJuggler.Blazor.Components.Internal
                 }
             }
             #endregion
-
+            
+            #region FilterTextBoxes
+            /// <summary>
+            /// This property gets or sets the value for 'FilterTextBoxes'.
+            /// </summary>
+            public List<TextBoxComponent> FilterTextBoxes
+            {
+                get { return filterTextBoxes; }
+                set { filterTextBoxes = value; }
+            }
+            #endregion
+            
             #region GridColumns
             /// <summary>
             /// This read only property returns the value of GridColumns from the object ParentGrid.
@@ -157,7 +210,7 @@ namespace DataJuggler.Blazor.Components.Internal
                 }
             }
             #endregion
-
+            
             #region HasColumns
             /// <summary>
             /// This property returns true if this object has a 'Columns'.
@@ -171,6 +224,23 @@ namespace DataJuggler.Blazor.Components.Internal
 
                     // return value
                     return hasColumns;
+                }
+            }
+            #endregion
+            
+            #region HasFilterTextBoxes
+            /// <summary>
+            /// This property returns true if this object has a 'FilterTextBoxes'.
+            /// </summary>
+            public bool HasFilterTextBoxes
+            {
+                get
+                {
+                    // initial value
+                    bool hasFilterTextBoxes = (FilterTextBoxes != null);
+
+                    // return value
+                    return hasFilterTextBoxes;
                 }
             }
             #endregion
@@ -246,7 +316,7 @@ namespace DataJuggler.Blazor.Components.Internal
             #region Parent
             /// <summary>
             /// This property gets or sets the value for Parent
-            /// </summary>            
+            /// </summary>
             [Parameter]
             public IBlazorComponentParent Parent
             {
@@ -295,7 +365,32 @@ namespace DataJuggler.Blazor.Components.Internal
                 }
             }
             #endregion
+            
+            #region ShowFilterRow
+            /// <summary>
+            /// This read only property returns the value of ShowFilterRow from the object ParentGrid.
+            /// </summary>
+            public bool ShowFilterRow
+            {
 
+                get
+                {
+                    // initial value
+                    bool showFilterRow = false;
+
+                    // if ParentGrid exists
+                    if (HasParentGrid)
+                    {
+                        // set the return value
+                        showFilterRow = ParentGrid.ShowFilterRow;
+                    }
+
+                    // return value
+                    return showFilterRow;
+                }
+            }
+            #endregion
+            
             #region ShowHeader
             /// <summary>
             /// This read only property returns the value of ShowHeader from the object ParentGrid.
@@ -320,7 +415,7 @@ namespace DataJuggler.Blazor.Components.Internal
                 }
             }
             #endregion
-
+            
             #region StickyStyle
             /// <summary>
             /// This read only property returns the value of StickyStyle from the object ParentGrid.
@@ -345,7 +440,7 @@ namespace DataJuggler.Blazor.Components.Internal
                 }
             }
             #endregion
-
+            
         #endregion
         
     }
