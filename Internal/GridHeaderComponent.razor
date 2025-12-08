@@ -20,17 +20,19 @@
             @foreach (Column column in Columns)
             {
                 <th class="@column.ClassName">@column.Caption</th>
-            }
-            @if (ShowFilterRow)
-            {
-                @foreach (Column column in Columns)
-                {
-                    <TextBoxComponent Name="@column.ColumnName" Caption="Name:" Parent="this" 
-                        Height="24" LabelClassName="down3" Column1Width="0" Column2Width="@column.Width" 
-                        Width="@column.Width" TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
-                    </TextBoxComponent>
-                }
-            }
+            }            
         </tr>
     </thead>
+    @if (ShowFilterRow)
+    {
+        <tr class="textdonotwrap">
+        @foreach (Column column in Columns)
+        {
+            <TextBoxComponent Name="@column.ColumnName" Caption="Name:" Parent="this"
+                                Height="24" LabelClassName="down3" Column1Width="0" Column2Width="@column.Width"
+                                Width="@column.Width" TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
+            </TextBoxComponent>
+        }
+        </tr>
+    }
 </table>        
