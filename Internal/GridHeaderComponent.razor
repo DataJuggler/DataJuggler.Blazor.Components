@@ -25,14 +25,16 @@
     </thead>
     @if (ShowFilterRow)
     {
-        <tr class="textdonotwrap">
-        @foreach (Column column in Columns)
-        {
-            <TextBoxComponent Name="@column.ColumnName" Caption="Name:" Parent="this"
-                                Height="24" LabelClassName="down3" Column1Width="0" Column2Width="@column.Width"
-                                Width="@column.Width" TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
-            </TextBoxComponent>
-        }
+        <tr class="displayinline textdonotwrap">
+            <td>
+                @foreach (Column column in Columns)
+                {
+                    <TextBoxComponent Name="@column.ColumnName" Caption="" Parent="this"
+                        Height="24" LabelClassName="down3" Column1Width="0" Column2Width="@column.Width"
+                        Width="@column.Width" TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
+                    </TextBoxComponent>
+                }
+            </td>
         </tr>
     }
 </table>        
