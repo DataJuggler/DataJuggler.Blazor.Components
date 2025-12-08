@@ -48,6 +48,7 @@ namespace DataJuggler.Blazor.Components
         private bool enableDoubleClick;
         private int externalId;
         private string externalIdDescription;
+        private Color filterRowBackgroundColor;
         private double fontSize;
         private string fontSizeUnit;
         private Color gridBackColor;
@@ -314,6 +315,7 @@ namespace DataJuggler.Blazor.Components
                 Columns = new List<Column>();
                 ColumnHeaderColor = Color.SteelBlue;
                 ColumnHeaderHeight = 24;
+                FilterRowBackgroundColor = Color.DarkSlateGray;
                 FontSize = 12;
                 FontSizeUnit="px";
                 GridBackColor = Color.White;               
@@ -773,6 +775,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return externalIdDescription; }
                 set { externalIdDescription = value; }
+            }
+            #endregion
+            
+            #region FilterRowBackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'FilterRowBackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public Color FilterRowBackgroundColor
+            {
+                get { return filterRowBackgroundColor; }
+                set { filterRowBackgroundColor = value; }
             }
             #endregion
             

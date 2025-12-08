@@ -25,6 +25,7 @@ namespace DataJuggler.Blazor.Components.Internal
         private List<TextBoxComponent> filterTextBoxes;
         private string name;
         private IBlazorComponentParent parent;
+        private string filterRowStyle;
         #endregion
         
         #region Constructor
@@ -36,10 +37,6 @@ namespace DataJuggler.Blazor.Components.Internal
             // Create a new collection of 'TextBoxComponent' objects.
             FilterTextBoxes = new List<TextBoxComponent>();
         }
-        #endregion
-        
-        #region Events
-            
         #endregion
         
         #region Methods
@@ -163,6 +160,17 @@ namespace DataJuggler.Blazor.Components.Internal
                     // return value
                     return columns;
                 }
+            }
+            #endregion
+            
+            #region FilterRowStyle
+            /// <summary>
+            /// This property gets or sets the value for 'FilterRowStyle'.
+            /// </summary>
+            public string FilterRowStyle
+            {
+                get { return filterRowStyle; }
+                set { filterRowStyle = value; }
             }
             #endregion
             
@@ -441,6 +449,31 @@ namespace DataJuggler.Blazor.Components.Internal
             }
             #endregion
             
+            #region WidthStyle
+            /// <summary>
+            /// This read only property returns the value of WidthStyle from the object ParentGrid.
+            /// </summary>
+            public string WidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string widthStyle = "";
+
+                    // if ParentGrid exists
+                    if (HasParentGrid)
+                    {
+                        // set the return value
+                        widthStyle = ParentGrid.WidthStyle;
+                    }
+
+                    // return value
+                    return widthStyle;
+                }
+            }
+            #endregion
+
         #endregion
         
     }

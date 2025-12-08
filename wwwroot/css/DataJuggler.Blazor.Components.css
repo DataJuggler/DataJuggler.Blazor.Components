@@ -43554,6 +43554,12 @@
     min-width: 1000px;
     max-width: 1000px;
 }
+.widthonehundredpercent
+{
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
 .zindex0
 {  
     z-index: 0 !important;    
