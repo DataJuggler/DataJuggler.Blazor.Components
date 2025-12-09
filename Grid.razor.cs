@@ -38,6 +38,7 @@ namespace DataJuggler.Blazor.Components
         private Color columnHeaderColor;
         private double columnHeaderHeight;
         private string columnHeaderStyle;
+        private double columnHeaderTextOffsetY;
         private List<Column> columns;
         private bool columnsBuilt;
         private string containerStyle;        
@@ -47,8 +48,7 @@ namespace DataJuggler.Blazor.Components
         private bool enableClick;
         private bool enableDoubleClick;
         private int externalId;
-        private string externalIdDescription;
-        private Color filterRowBackgroundColor;
+        private string externalIdDescription;        
         private double fontSize;
         private string fontSizeUnit;
         private Color gridBackColor;
@@ -314,8 +314,8 @@ namespace DataJuggler.Blazor.Components
                 Buttons = new List<ImageButton>();
                 Columns = new List<Column>();
                 ColumnHeaderColor = Color.SteelBlue;
-                ColumnHeaderHeight = 24;
-                FilterRowBackgroundColor = Color.DarkSlateGray;
+                ColumnHeaderHeight = 32;
+                ColumnHeaderTextOffsetY = 8;
                 FontSize = 12;
                 FontSizeUnit="px";
                 GridBackColor = Color.White;               
@@ -333,10 +333,10 @@ namespace DataJuggler.Blazor.Components
                 // default values for the Grid.
                 ScrollBarWidth = 10;
                 ScrollBarTrackColor = Color.LightGray;
-                ScrollBarThumbColor = Color.DarkGray;
+                ScrollBarThumbColor = Color.LightSteelBlue;
                 ScrollBarThumbHoverColor = Color.DimGray;
                 ScrollBarRadius = 6;
-                ScrollBarTrackBorderColor = Color.LightSteelBlue;
+                ScrollBarTrackBorderColor = Color.DarkSlateBlue;
             }
             #endregion
             
@@ -664,6 +664,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ColumnHeaderTextOffsetY
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnHeaderTextOffsetY'.
+            /// </summary>
+            [Parameter]
+            public double ColumnHeaderTextOffsetY
+            {
+                get { return columnHeaderTextOffsetY; }
+                set { columnHeaderTextOffsetY = value; }
+            }
+            #endregion
+            
+            #region ColumnHeaderTextOffsetYStyle
+            /// <summary>
+            /// This read only property returns the value of ColumnHeaderTextOffsetY + HeightUnit
+            /// </summary>
+            public string ColumnHeaderTextOffsetYStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string columnHeaderTextOffsetYStyle = ColumnHeaderTextOffsetY + HeightUnit;
+
+                    // return value
+                    return columnHeaderTextOffsetYStyle;
+                }
+            }
+            #endregion
+
             #region Columns
             /// <summary>
             /// This property gets or sets the value for 'Columns'.
@@ -776,19 +806,7 @@ namespace DataJuggler.Blazor.Components
                 get { return externalIdDescription; }
                 set { externalIdDescription = value; }
             }
-            #endregion
-            
-            #region FilterRowBackgroundColor
-            /// <summary>
-            /// This property gets or sets the value for 'FilterRowBackgroundColor'.
-            /// </summary>
-            [Parameter]
-            public Color FilterRowBackgroundColor
-            {
-                get { return filterRowBackgroundColor; }
-                set { filterRowBackgroundColor = value; }
-            }
-            #endregion
+            #endregion            
             
             #region FontSize
             /// <summary>

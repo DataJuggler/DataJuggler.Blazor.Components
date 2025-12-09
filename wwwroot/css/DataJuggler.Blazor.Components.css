@@ -37544,9 +37544,7 @@
 }
 .vertical-center 
 {
-    display: flex;
-    align-items: center; /* Centers the content vertically */
-    height: 100%; /* Ensure full height is available */
+    vertical-align: middle;
 }
 .width0
 {

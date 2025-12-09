@@ -26,7 +26,7 @@ namespace DataJuggler.Blazor.Components.Internal
         private List<TextBoxComponent> filterTextBoxes;
         private string name;
         private IBlazorComponentParent parent;
-        private string filterRowStyle;
+        private string columnHeaderTextStyle;
         #endregion
         
         #region Constructor
@@ -139,6 +139,42 @@ namespace DataJuggler.Blazor.Components.Internal
             }
             #endregion
             
+            #region ColumnHeaderTextOffsetYStyle
+            /// <summary>
+            /// This read only property returns the value of ColumnHeaderTextOffsetYStyle from the object ParentGrid
+            /// </summary>
+            public string ColumnHeaderTextOffsetYStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string columnHeaderTextOffsetYStyle = "";
+
+                    // if the value for HasParentGrid is true
+                    if (HasParentGrid)
+                    {
+                        // set the return value
+                        columnHeaderTextOffsetYStyle = ParentGrid.ColumnHeaderTextOffsetYStyle;
+                    }
+
+                    // return value
+                    return columnHeaderTextOffsetYStyle;
+                }
+            }
+            #endregion
+
+            #region ColumnHeaderTextStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ColumnHeaderTextStyle'.
+            /// </summary>
+            public string ColumnHeaderTextStyle
+            {
+                get { return columnHeaderTextStyle; }
+                set { columnHeaderTextStyle = value; }
+            }
+            #endregion
+            
             #region Columns
             /// <summary>
             /// This read only property returns the value of Columns from the object ParentGrid.
@@ -162,43 +198,7 @@ namespace DataJuggler.Blazor.Components.Internal
                     return columns;
                 }
             }
-            #endregion
-            
-            #region FilterRowBackgroundColor
-            /// <summary>
-            /// This read only property returns the value of FilterRowBackgroundColor from the object ParentGrid.
-            /// </summary>
-            public Color FilterRowBackgroundColor
-            {
-
-                get
-                {
-                    // initial value
-                    Color filterRowBackgroundColor = Color.Transparent;
-
-                    // if ParentGrid exists
-                    if (HasParentGrid)
-                    {
-                        // set the return value
-                        filterRowBackgroundColor = ParentGrid.FilterRowBackgroundColor;
-                    }
-
-                    // return value
-                    return filterRowBackgroundColor;
-                }
-            }
-            #endregion
-
-            #region FilterRowStyle
-            /// <summary>
-            /// This property gets or sets the value for 'FilterRowStyle'.
-            /// </summary>
-            public string FilterRowStyle
-            {
-                get { return filterRowStyle; }
-                set { filterRowStyle = value; }
-            }
-            #endregion
+            #endregion            
             
             #region FilterTextBoxes
             /// <summary>
