@@ -3,8 +3,9 @@
 @using BlazorStyled
 
 <Styled @bind-Classname=@FilterRowStyle>
+    background-color: @FilterRowBackgroundColor.Name;
     width: @WidthStyle;
-    
+    height: 32px;
 </Styled>
 
 <table class="tablelayoutfixed bordercollapse">
@@ -25,23 +26,23 @@
         <tr class="@ColumnHeaderStyle @ColumnHeaderClassName @StickyStyle">
             @foreach (Column column in Columns)
             {
-                <th class="@column.ClassName">@column.Caption</th>
+                <th class="@column.ClassName">
+                    
+                    @if (ShowFilterRow)
+                    {
+                        @column.Caption<br/>
+                        <TextBoxComponent Name="@column.ColumnName" Caption="" Parent="this"
+                            Height="24" Column1Width="0" Column2Width="@column.Width"
+                            Display="inline" ClassName="displayinline" Width="@column.Width"
+                            TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
+                        </TextBoxComponent>
+                    }
+                    else
+                    {
+                        @column.Caption
+                    }
+                </th>
             }            
         </tr>
-    </thead>
-    @if (ShowFilterRow)
-    {
-        <tr class="@FilterRowStyle displayinline textdonotwrap">            
-            @foreach (Column column in Columns)
-            {
-                <td class="displayinline textdonotwrap">
-                    <TextBoxComponent Name="@column.ColumnName" Caption="" Parent="this"
-                        Height="24" LabelClassName="down3" Column1Width="0" Column2Width="@column.Width"
-                        Display="inline" ClassName="displayinline"
-                        Width="@column.Width" TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
-                    </TextBoxComponent>
-                </td>   
-            }
-        </tr>
-    }
+    </thead>    
 </table>        

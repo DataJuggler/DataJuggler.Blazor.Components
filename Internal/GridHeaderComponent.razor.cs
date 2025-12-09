@@ -6,6 +6,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Excelerate;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
+using System.Drawing;
 
 #endregion
 
@@ -163,6 +164,31 @@ namespace DataJuggler.Blazor.Components.Internal
             }
             #endregion
             
+            #region FilterRowBackgroundColor
+            /// <summary>
+            /// This read only property returns the value of FilterRowBackgroundColor from the object ParentGrid.
+            /// </summary>
+            public Color FilterRowBackgroundColor
+            {
+
+                get
+                {
+                    // initial value
+                    Color filterRowBackgroundColor = Color.Transparent;
+
+                    // if ParentGrid exists
+                    if (HasParentGrid)
+                    {
+                        // set the return value
+                        filterRowBackgroundColor = ParentGrid.FilterRowBackgroundColor;
+                    }
+
+                    // return value
+                    return filterRowBackgroundColor;
+                }
+            }
+            #endregion
+
             #region FilterRowStyle
             /// <summary>
             /// This property gets or sets the value for 'FilterRowStyle'.
