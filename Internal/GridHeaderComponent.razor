@@ -1,13 +1,7 @@
 ﻿@using DataJuggler.Excelerate
 @using System.Drawing
-@using BlazorStyled
 
-<Styled @bind-Classname=@ColumnHeaderTextStyle >
-    position: relative;
-    top: @ColumnHeaderTextOffsetYStyle;
-</Styled>
-
-<table class="tablelayoutfixed bordercollapse">
+<table class="tablelayoutfixed">
     @if (GridColumns != null)
     {
         @GridColumns(this.ParentGrid)
@@ -28,7 +22,7 @@
                 <th class="@column.ClassName">                    
                     @if (ShowFilterRow)
                     {
-                        <span class="@ColumnHeaderTextStyle">
+                        <span class="@ColumnHeaderTextClassName">
                             @column.Caption
                         </span><br />                        
                         <TextBoxComponent Name="@column.ColumnName" Caption="" Parent="this"
@@ -39,7 +33,7 @@
                     }
                     else
                     {
-                        <span class="@ColumnHeaderTextStyle">
+                        <span class="@ColumnHeaderTextClassName">
                             @column.Caption
                         </span>
                     }

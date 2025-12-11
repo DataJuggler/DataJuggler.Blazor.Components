@@ -139,42 +139,31 @@ namespace DataJuggler.Blazor.Components.Internal
             }
             #endregion
             
-            #region ColumnHeaderTextOffsetYStyle
+            #region ColumnHeaderTextClassName
             /// <summary>
-            /// This read only property returns the value of ColumnHeaderTextOffsetYStyle from the object ParentGrid
+            /// This read only property returns the value of ColumnHeaderTextClassName from the object ParentGrid.
             /// </summary>
-            public string ColumnHeaderTextOffsetYStyle
+            public string ColumnHeaderTextClassName
             {
 
                 get
                 {
                     // initial value
-                    string columnHeaderTextOffsetYStyle = "";
+                    string columnHeaderTextClassName = "";
 
-                    // if the value for HasParentGrid is true
+                    // if ParentGrid exists
                     if (HasParentGrid)
                     {
                         // set the return value
-                        columnHeaderTextOffsetYStyle = ParentGrid.ColumnHeaderTextOffsetYStyle;
+                        columnHeaderTextClassName = ParentGrid.ColumnHeaderTextClassName;
                     }
 
                     // return value
-                    return columnHeaderTextOffsetYStyle;
+                    return columnHeaderTextClassName;
                 }
             }
             #endregion
 
-            #region ColumnHeaderTextStyle
-            /// <summary>
-            /// This property gets or sets the value for 'ColumnHeaderTextStyle'.
-            /// </summary>
-            public string ColumnHeaderTextStyle
-            {
-                get { return columnHeaderTextStyle; }
-                set { columnHeaderTextStyle = value; }
-            }
-            #endregion
-            
             #region Columns
             /// <summary>
             /// This read only property returns the value of Columns from the object ParentGrid.

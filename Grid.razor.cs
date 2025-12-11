@@ -38,7 +38,7 @@ namespace DataJuggler.Blazor.Components
         private Color columnHeaderColor;
         private double columnHeaderHeight;
         private string columnHeaderStyle;
-        private double columnHeaderTextOffsetY;
+        private string columnHeaderTextClassName;
         private List<Column> columns;
         private bool columnsBuilt;
         private string containerStyle;        
@@ -315,7 +315,7 @@ namespace DataJuggler.Blazor.Components
                 Columns = new List<Column>();
                 ColumnHeaderColor = Color.SteelBlue;
                 ColumnHeaderHeight = 32;
-                ColumnHeaderTextOffsetY = 8;
+                ColumnHeaderTextClassName = "down6";
                 FontSize = 12;
                 FontSizeUnit="px";
                 GridBackColor = Color.White;               
@@ -664,33 +664,15 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ColumnHeaderTextOffsetY
+            #region ColumnHeaderTextClassName
             /// <summary>
-            /// This property gets or sets the value for 'ColumnHeaderTextOffsetY'.
+            /// This property gets or sets the value for 'ColumnHeaderTextClassName'.
             /// </summary>
             [Parameter]
-            public double ColumnHeaderTextOffsetY
+            public string ColumnHeaderTextClassName
             {
-                get { return columnHeaderTextOffsetY; }
-                set { columnHeaderTextOffsetY = value; }
-            }
-            #endregion
-            
-            #region ColumnHeaderTextOffsetYStyle
-            /// <summary>
-            /// This read only property returns the value of ColumnHeaderTextOffsetY + HeightUnit
-            /// </summary>
-            public string ColumnHeaderTextOffsetYStyle
-            {
-
-                get
-                {
-                    // initial value
-                    string columnHeaderTextOffsetYStyle = ColumnHeaderTextOffsetY + HeightUnit;
-
-                    // return value
-                    return columnHeaderTextOffsetYStyle;
-                }
+                get { return columnHeaderTextClassName; }
+                set { columnHeaderTextClassName = value; }
             }
             #endregion
 
