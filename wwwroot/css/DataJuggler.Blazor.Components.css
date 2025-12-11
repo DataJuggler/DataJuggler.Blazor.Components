@@ -596,6 +596,12 @@
     border-color: gray;
     border-style: solid;    
 }
+.border1white
+{
+    border-width: 1px;    
+    border-color: white;
+    border-style: solid;    
+}
 .border2
 {
     border-width: 2px; 
@@ -608,6 +614,12 @@
     border-color: gray;
     border-style: solid;    
 }
+.border2white
+{
+    border-width: 2px;    
+    border-color: white;
+    border-style: solid;    
+}
 .border3
 {
     border-width: 3px;
@@ -618,6 +630,12 @@
 {
     border-width:3px;    
     border-color: gray;
+    border-style: solid;    
+}
+.border3white
+{
+    border-width: 3px;    
+    border-color: white;
     border-style: solid;    
 }
 .borderleft1
