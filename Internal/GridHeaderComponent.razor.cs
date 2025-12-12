@@ -27,6 +27,7 @@ namespace DataJuggler.Blazor.Components.Internal
         private string name;
         private IBlazorComponentParent parent;
         private string columnHeaderTextStyle;
+        private string borderStyle;
         #endregion
         
         #region Constructor
@@ -88,6 +89,42 @@ namespace DataJuggler.Blazor.Components.Internal
         #endregion
         
         #region Properties
+            
+            #region BorderColor
+            /// <summary>
+            /// This read only property returns the value of BorderColor from the object ParentGrid.
+            /// </summary>
+            public Color BorderColor
+            {
+
+                get
+                {
+                    // initial value
+                    Color borderColor = Color.Transparent;
+
+                    // if ParentGrid exists
+                    if (HasParentGrid)
+                    {
+                        // set the return value
+                        borderColor = ParentGrid.BorderColor;
+                    }
+
+                    // return value
+                    return borderColor;
+                }
+            }
+            #endregion
+
+            #region BorderStyle
+            /// <summary>
+            /// This property gets or sets the value for 'BorderStyle'.
+            /// </summary>
+            public string BorderStyle
+            {
+                get { return borderStyle; }
+                set { borderStyle = value; }
+            }
+            #endregion
             
             #region ColumnHeaderClassName
             /// <summary>
@@ -435,31 +472,6 @@ namespace DataJuggler.Blazor.Components.Internal
 
                     // return value
                     return showHeader;
-                }
-            }
-            #endregion
-            
-            #region StickyStyle
-            /// <summary>
-            /// This read only property returns the value of StickyStyle from the object ParentGrid.
-            /// </summary>
-            public string StickyStyle
-            {
-
-                get
-                {
-                    // initial value
-                    string stickyStyle = "";
-
-                    // if ParentGrid exists
-                    if (HasParentGrid)
-                    {
-                        // set the return value
-                        stickyStyle = ParentGrid.StickyStyle;
-                    }
-
-                    // return value
-                    return stickyStyle;
                 }
             }
             #endregion

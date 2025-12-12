@@ -24,6 +24,7 @@ namespace DataJuggler.Blazor.Components.Objects
         private string caption;
         private string className;
         private int columnNumber;
+        private int borderWidth;
         private DataManager.DataTypeEnum dataType;
         private string fieldName;
         private int height;
@@ -106,6 +107,18 @@ namespace DataJuggler.Blazor.Components.Objects
         #endregion
         
         #region Properties
+            
+            #region BorderWidth
+            /// <summary>
+            /// This property gets or sets the value for 'BorderWidth'.
+            /// </summary>
+            [Parameter]
+            public int BorderWidth
+            {
+                get { return borderWidth; }
+                set { borderWidth = value; }
+            }
+            #endregion
             
             #region Caption
             /// <summary>

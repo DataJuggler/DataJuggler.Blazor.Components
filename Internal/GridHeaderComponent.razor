@@ -1,5 +1,6 @@
 ﻿@using DataJuggler.Excelerate
 @using System.Drawing
+@using BlazorStyled
 
 <table class="tablelayoutfixed">
     @if (GridColumns != null)
@@ -16,10 +17,15 @@
         </colgroup>
     }
     <thead>
-        <tr class="@ColumnHeaderStyle @ColumnHeaderClassName @StickyStyle">
+        <tr class="@ColumnHeaderStyle @ColumnHeaderClassName">
             @foreach (Column column in Columns)
             {
-                <th class="@column.ClassName">                    
+                <Styled @bind-Classname=@BorderStyle>
+                    border-width: @column.BorderWidthStyle;
+                    border-color: @BorderColor.Name;
+                </Styled>
+
+                <th class="@column.ClassName @BorderStyle">
                     @if (ShowFilterRow)
                     {
                         <span class="@ColumnHeaderTextClassName">

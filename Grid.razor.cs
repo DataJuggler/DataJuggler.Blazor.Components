@@ -78,8 +78,7 @@ namespace DataJuggler.Blazor.Components
         private bool showColumnHeaders;
         private bool showFilterRow;
         private bool showHeader;
-        private bool stickyHeader;
-        private string stickyStyle;
+        private bool stickyHeader;        
         private double top;
         private string unit;
         private bool visible;
@@ -272,6 +271,7 @@ namespace DataJuggler.Blazor.Components
                         column = new Column();
 
                         // map properties
+                        column.BorderWidth = gridColumn.BorderWidth;
                         column.ColumnName = gridColumn.Name;
                         column.ColumnNumber = gridColumn.ColumnNumber;
                         column.Caption = gridColumn.Caption;
@@ -1497,41 +1497,6 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return stickyHeader; }
                 set { stickyHeader = value; }
-            }
-            #endregion
-            
-            #region StickyPosition
-            /// <summary>
-            /// This read only property returns the value of StickyPosition
-            /// </summary>
-            public string StickyPosition
-            {
-                get
-                {
-                    // initial value
-                    string styckyStyle = "sticky";
-
-                    // if StickyHeader exists
-                    if (!StickyHeader)
-                    {
-                        // set the return value
-                        styckyStyle = Position;
-                    }
-
-                    // return value
-                    return styckyStyle;
-                }
-            }
-            #endregion
-
-            #region StickyStyle
-            /// <summary>
-            /// This property gets or sets the value for 'StickyStyle'.
-            /// </summary>
-            public string StickyStyle
-            {
-                get { return stickyStyle; }
-                set { stickyStyle = value; }
             }
             #endregion
             
