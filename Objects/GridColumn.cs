@@ -21,26 +21,27 @@ namespace DataJuggler.Blazor.Components.Objects
     {
         
         #region Private Variables
+        private int borderWidth;
         private string caption;
         private string className;
         private int columnNumber;
-        private int borderWidth;
         private DataManager.DataTypeEnum dataType;
         private string fieldName;
-        private int height;
-        private int index;
-        private string name;
-        private IBlazorComponentParent parent;
-        private bool readOnly;
-        private int width;
-        private bool lastColumn;
-        private bool visible;
-        private string format;
         private string fontName;
         private double fontSize;
         private bool fontBold;
+        private string format;
+        private int height;
+        private int index;
         private bool isImage;
         private bool isImageButton;
+        private bool lastColumn;
+        private string name;
+        private IBlazorComponentParent parent;
+        private bool primaryKey;
+        private bool readOnly;
+        private bool visible;
+        private int width;
         #endregion
         
         #region Events
@@ -328,6 +329,18 @@ namespace DataJuggler.Blazor.Components.Objects
                         parent.Register(this);
                     }
                 }
+            }
+            #endregion
+            
+            #region PrimaryKey
+            /// <summary>
+            /// This property gets or sets the value for 'PrimaryKey'.
+            /// </summary>
+            [Parameter]
+            public bool PrimaryKey
+            {
+                get { return primaryKey; }
+                set { primaryKey = value; }
             }
             #endregion
             

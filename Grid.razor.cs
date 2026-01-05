@@ -69,7 +69,7 @@ namespace DataJuggler.Blazor.Components
         private string overflowX;
         private string overflowY;
         private IBlazorComponentParent parent;
-        private string position;
+        private string position;        
         private string rowContent;
         private double rowContentHeight;
         private List<Row> rows;
@@ -277,8 +277,10 @@ namespace DataJuggler.Blazor.Components
                         column.Caption = gridColumn.Caption;
                         column.ClassName = gridColumn.ClassName;
                         column.DataType = gridColumn.DataType;
-                        column.Width = gridColumn.Width;
+                        column.Format = gridColumn.Format;
                         column.Height = gridColumn.Height;
+                        column.PrimaryKey = gridColumn.PrimaryKey;
+                        column.Width = gridColumn.Width;
                         
                         // Set these values
                         column.Index = index;
@@ -991,6 +993,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region HasPrimaryKey
+            /// <summary>
+            /// This property returns true if this object has a 'PrimaryKey'.
+            /// </summary>
+            public bool HasPrimaryKey
+            {
+                get
+                {
+                    // initial value
+                    bool hasPrimaryKey = (PrimaryKey != null);
+
+                    // return value
+                    return hasPrimaryKey;
+                }
+            }
+            #endregion
+            
             #region HasRows
             /// <summary>
             /// This property returns true if this object has a 'Rows'.
@@ -1269,6 +1288,31 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region PrimaryKey
+            /// <summary>
+            /// This read only property returns the value of PrimaryKey from the object Columns.
+            /// </summary>
+            public Column PrimaryKey
+            {
+
+                get
+                {
+                    // initial value
+                    Column primaryKey = null;
+
+                    // if Columns exists
+                    if (HasColumns)
+                    {
+                        // set the return value
+                        primaryKey = Columns.Find(x => x.PrimaryKey);
+                    }
+
+                    // return value
+                    return primaryKey;
+                }
+            }
+            #endregion
+
             #region RowContent
             /// <summary>
             /// This property gets or sets the value for 'RowContent'.
