@@ -4,13 +4,10 @@
 
 using DataJuggler.Blazor.Components.Objects;
 using DataJuggler.Excelerate;
+using DataJuggler.NET.Data.Interfaces;
 using DataJuggler.UltimateHelper;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 #endregion
 
@@ -58,14 +55,17 @@ namespace DataJuggler.Blazor.Components.Util
             }
             #endregion
             
-            #region GetPage<T>(List<T> items, int itemsPerPage = 0, int currentPage = -1)
+            #region GetPage<IGridValueProvider>(List<IGridValueProvider> items, , List<Column> columns, int itemsPerPage = 0, int currentPage = -1)
             /// <summary>
-            /// method returns the Page <T>
+            /// method returns a PageResponse
             /// </summary>
-            public static PageResponse GetPage<T>(List<T> items, int itemsPerPage = 0, int currentPage = -1)
+            public static PageResponse GetPage<IGridValueProvider>(List<IGridValueProvider> items, List<Column> columns, int itemsPerPage = 0, int currentPage = -1)
             {
                 // initial value
                 PageResponse response = new PageResponse();
+
+                // set the columns, so the PageResponse object can create Rows
+                response.Columns = columns;
 
                 // create the list
                 response.Items = new List<object>();

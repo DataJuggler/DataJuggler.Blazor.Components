@@ -5,6 +5,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DataJuggler.Excelerate;
 using DataJuggler.UltimateHelper;
 
 #endregion
@@ -14,7 +15,8 @@ namespace DataJuggler.Blazor.Components.Objects
 
     #region class PageResponse
     /// <summary>
-    /// This class [Enter Class Description]
+    /// This class is the response from the GridHelper.GetPage, which either returns all the rows,
+    /// or automatically handles paging and returns the items for a particular page. 
     /// </summary>
     public class PageResponse
     {
@@ -26,6 +28,7 @@ namespace DataJuggler.Blazor.Components.Objects
         private int startIndex;
         private int totalCount;
         private int totalPages;
+        private List<Column> columns;
         #endregion
         
         #region Events
@@ -68,6 +71,17 @@ namespace DataJuggler.Blazor.Components.Objects
         
         #region Properties
             
+            #region Columns
+            /// <summary>
+            /// This property gets or sets the value for 'Columns'.
+            /// </summary>
+            public List<Column> Columns
+            {
+                get { return columns; }
+                set { columns = value; }
+            }
+            #endregion
+            
             #region CurrentPage
             /// <summary>
             /// This property gets or sets the value for 'CurrentPage'.
@@ -76,6 +90,23 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return currentPage; }
                 set { currentPage = value; }
+            }
+            #endregion
+            
+            #region HasColumns
+            /// <summary>
+            /// This property returns true if this object has a 'Columns'.
+            /// </summary>
+            public bool HasColumns
+            {
+                get
+                {
+                    // initial value
+                    bool hasColumns = (Columns != null);
+
+                    // return value
+                    return hasColumns;
+                }
             }
             #endregion
             

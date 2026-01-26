@@ -25,6 +25,8 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+1.26.2026: I changed the CheckedListBoxZIndex to be the ZIndex of the ComboBox Plus 20. It was Plus 10 and I am getting an overlap.
+
 12.9.2025: It's not working yet, but I added a parameter to the Grid for ShowFilterRow. Testing being able to filter
 rows in conjunction with GridHelper. This update is just a visual test to see how it looks.
 

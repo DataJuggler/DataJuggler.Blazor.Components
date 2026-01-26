@@ -277,6 +277,7 @@ namespace DataJuggler.Blazor.Components
                         column.Caption = gridColumn.Caption;
                         column.ClassName = gridColumn.ClassName;
                         column.DataType = gridColumn.DataType;
+                        column.FieldName = gridColumn.FieldName;
                         column.Format = gridColumn.Format;
                         column.Height = gridColumn.Height;
                         column.PrimaryKey = gridColumn.PrimaryKey;
