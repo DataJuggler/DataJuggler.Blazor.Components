@@ -21,6 +21,7 @@ namespace DataJuggler.Blazor.Components
         
         #region Private Variables
         private Color borderColor;
+        private Color backgroundColor;
         private double borderWidth;
         private string fontName;
         private double fontSize;
@@ -76,7 +77,8 @@ namespace DataJuggler.Blazor.Components
                 Height = 64;
                 Left = 0;
                 Position = "relative";
-                TextAlign = "center";                
+                TextAlign = "center"; 
+                BackgroundColor = Color.Transparent;
                 TextColor = Color.Black;                
                 Top = 0;
                 Visible = true;
@@ -140,6 +142,18 @@ namespace DataJuggler.Blazor.Components
         #endregion
         
         #region Properties
+            
+            #region BackgroundColor
+            /// <summary>
+            /// This property gets or sets the value for 'BackgroundColor'.
+            /// </summary>
+            [Parameter]
+            public Color BackgroundColor
+            {
+                get { return backgroundColor; }
+                set { backgroundColor = value; }
+            }
+            #endregion
             
             #region BorderColor
             /// <summary>

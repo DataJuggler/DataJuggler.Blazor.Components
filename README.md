@@ -25,6 +25,10 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+6.11.2026: ImageButton has a new method SetImageUrl and some Microsoft components were updated.
+
+6.9.2026: I updated 3 Microsoft NuGet packages for Microsoft.AspNetCore.Components. I also updated the ImageComponent.
+
 1.26.2026: I changed the CheckedListBoxZIndex to be the ZIndex of the ComboBox Plus 20. It was Plus 10 and I am getting an overlap.
 
 12.9.2025: It's not working yet, but I added a parameter to the Grid for ShowFilterRow. Testing being able to filter
@@ -346,13 +350,6 @@ per year on it.
 
 Please leave a star if you think this project is worth the price.
 https://github.com/DataJuggler/DataJuggler.Blazor.Components
-
-# Upcoming News
-I will start testing the previews for .NET 9, so I expect to have a working version for .NET 9 by release date
-in Mid November or soon thereafter.
-
-# New Website Coming
-I plan on building a new site just for this project, so you can find the information you need faster about each component.
 
 # Major Update Version 8.11.0
 10.1.2024: This release contains a few major updates, and one breaking change, but it's an easy fix in most cases.
