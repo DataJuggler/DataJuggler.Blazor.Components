@@ -25,8 +25,35 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+# Breaking Change!
+
 6.16.2026: Breaking Change. TextOffsetX and TextOffSetY were renamed to TextLeft and TextTop.
 It was confusing calling them offsets. Sorry for the breaking change.
+
+# New Feature! ImageComponent and ImageButton have a new method, SetImageUrlWithDelay:
+
+    #region SetImageUrlWithDelay(string imageUrl, int delayMs)
+    /// <summary>
+    /// Sets the ImageUrl after a delay in milliseconds.
+    /// </summary>
+    public async Task SetImageUrlWithDelay(string imageUrl, int delayMs)
+    {
+        // delay for a short while
+        await Task.Delay(delayMs);
+        
+        // store the arg
+        this.ImageUrl = imageUrl;
+        
+        // Refresh the UI
+        Refresh();
+    }
+    #endregion
+
+Note: This method can be called using fire and forget (_ =), meaning the caller does 
+not wait for the delay to complete. The UI remains fully responsive during the delay. 
+
+	// The card will flip back to the card back image after 1.5 seconds
+	button.SetImageUrlWithDelay("../images/cardback.png", 1500);
 
 6.11.2026: ImageButton has a new method SetImageUrl and some Microsoft components were updated.
 

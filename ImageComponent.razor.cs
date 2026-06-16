@@ -6,6 +6,7 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using System.Drawing;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -118,9 +119,26 @@ namespace DataJuggler.Blazor.Components
             public void SetImageUrl(string imageUrl)
             {
                 // store the arg
-                ImageUrl = imageUrl;
+                this.ImageUrl = imageUrl;
 
-                // Update the UI
+                 // Update
+                Refresh();
+            }
+            #endregion
+
+            #region SetImageUrlWithDelay(string imageUrl, int delayMs)
+            /// <summary>
+            /// Sets the ImageUrl after a delay in milliseconds.
+            /// </summary>
+            public async Task SetImageUrlWithDelay(string imageUrl, int delayMs)
+            {
+                // delay for a short while
+                await Task.Delay(delayMs);
+
+                // store the arg
+                this.ImageUrl = imageUrl;
+
+                // Refresh the UI
                 Refresh();
             }
             #endregion
