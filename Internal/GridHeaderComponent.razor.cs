@@ -26,7 +26,6 @@ namespace DataJuggler.Blazor.Components.Internal
         private List<TextBoxComponent> filterTextBoxes;
         private string name;
         private IBlazorComponentParent parent;
-        private string columnHeaderTextStyle;
         private string borderStyle;
         #endregion
         

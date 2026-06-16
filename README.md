@@ -25,6 +25,9 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+6.16.2026: Breaking Change. TextOffsetX and TextOffSetY were renamed to TextLeft and TextTop.
+It was confusing calling them offsets. Sorry for the breaking change.
+
 6.11.2026: ImageButton has a new method SetImageUrl and some Microsoft components were updated.
 
 6.9.2026: I updated 3 Microsoft NuGet packages for Microsoft.AspNetCore.Components. I also updated the ImageComponent.

@@ -29,12 +29,9 @@ namespace DataJuggler.Blazor.Components
         private int buttonNumber;
         private double left;
         private double top;
-        private string leftStyle;
-        private string topStyle;
         private string name;
         private double height;
         private double width;
-        private string heightStyle;
         private string textAlign;
         private IBlazorComponentParent parent;
         private ButtonClickedHandler clickHandler;        
@@ -49,8 +46,8 @@ namespace DataJuggler.Blazor.Components
         private string title;
         private double fontSize;
         private string fontName;
-        private double textOffsetX;
-        private double textOffsetY;     
+        private double textLeft;
+        private double textTop;     
 
         // Reverting back to BlazorStyled
         private string buttonContainerStyle;
@@ -683,62 +680,62 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region TextOffsetX
+            #region TextLeft
             /// <summary>
-            /// This property gets or sets the value for 'TextOffsetX'.
+            /// This property gets or sets the value for 'TextLeft'.
             /// </summary>
             [Parameter]
-            public double TextOffsetX
+            public double TextLeft
             {
-                get { return textOffsetX; }
-                set { textOffsetX = value; }
+                get { return textLeft; }
+                set { textLeft = value; }
             }
             #endregion
             
-            #region TextOffsetXStyle
+            #region TextLeftStyle
             /// <summary>
-            /// This read only property returns the value of TextOffsetX + Unit
+            /// This read only property returns the value of TextLeft + Unit
             /// </summary>
-            public string TextOffsetXStyle
+            public string TextLeftStyle
             {
 
                 get
                 {
                     // initial value
-                    string textOffsetXStyle = TextOffsetX + Unit;
+                    string textLeftStyle = TextLeft + Unit;
                     
                     // return value
-                    return textOffsetXStyle;
+                    return textLeftStyle;
                 }
             }
             #endregion
 
-            #region TextOffsetY
+            #region TextTop
             /// <summary>
-            /// This property gets or sets the value for 'TextOffsetY'.
+            /// This property gets or sets the value for 'TextTop'.
             /// </summary>
             [Parameter]
-            public double TextOffsetY
+            public double TextTop
             {
-                get { return textOffsetY; }
-                set { textOffsetY = value; }
+                get { return textTop; }
+                set { textTop = value; }
             }
             #endregion
             
-            #region TextOffsetYStyle
+            #region TextTopStyle
             /// <summary>
-            /// This read only property returns the value of TextOffsetY + HeightUnit
+            /// This read only property returns the value of TextTop + HeightUnit
             /// </summary>
-            public string TextOffsetYStyle
+            public string TextTopStyle
             {
 
                 get
                 {
                     // initial value
-                    string textOffsetYStyle = TextOffsetY + HeightUnit;
+                    string textTop = TextTop + HeightUnit;
                     
                     // return value
-                    return textOffsetYStyle;
+                    return textTop;
                 }
             }
             #endregion

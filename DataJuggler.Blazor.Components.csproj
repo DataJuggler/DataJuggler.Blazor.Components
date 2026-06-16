@@ -24,7 +24,7 @@
 		<RepositoryType>Git - Git Hub</RepositoryType>
 		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
 		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-		<Version>10.0.55</Version>
+		<Version>10.0.56</Version>
 		<AssemblyVersion>9.11.6</AssemblyVersion>
 		<FileVersion>9.11.6</FileVersion>
 		<Nullable>disable</Nullable>
@@ -49,11 +49,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0031;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0031;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -84,7 +84,7 @@
   <ItemGroup>
     <PackageReference Include="DataJuggler.BlazorStyled" Version="9.0.0" />
     <PackageReference Include="DataJuggler.Excelerate" Version="10.0.15" />
-    <PackageReference Include="DataJuggler.UltimateHelper" Version="10.0.4" />
+    <PackageReference Include="DataJuggler.UltimateHelper" Version="10.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.11" />

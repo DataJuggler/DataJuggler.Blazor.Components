@@ -58,7 +58,6 @@ namespace DataJuggler.Blazor.Components
         private double borderRadius;
         private string saveButtonClassName;
         private string cancelButtonClassName;
-        private string cancelButtonStyle;
         private bool visible;
         private string display;
         private int zIndex;
