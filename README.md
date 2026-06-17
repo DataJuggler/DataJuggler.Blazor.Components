@@ -25,6 +25,14 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+6.17.2026: I finally solved why the SaveCancelComponent was installing itself as content
+when you installed this package. The Project File had
+
+    <Content Include="SaveCancelComponent.razor.cs" /> 
+
+I took this out. This wasn't supposed to be installing as content. I guess a misclick in Visual Studio
+created this.
+
 # Breaking Change!
 
 6.16.2026: Breaking Change. TextOffsetX and TextOffSetY were renamed to TextLeft and TextTop.
