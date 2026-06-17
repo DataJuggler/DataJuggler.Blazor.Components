@@ -26,7 +26,7 @@ https://github.com/DataJuggler/NotJeopardy
 # Updates
 
 6.17.2026: I finally solved why the SaveCancelComponent was installing itself as content
-when you installed this package. The Project File had
+when you installed this package. The Project File had this.
 
     <Content Include="SaveCancelComponent.razor.cs" /> 
 
