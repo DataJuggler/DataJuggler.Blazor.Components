@@ -30,6 +30,7 @@ namespace DataJuggler.Blazor.Components
         private string backgroundWidthPixels;
         private string backgroundImageUrl;
         private string backgroundColor;
+        private string className;
         private string controlStyle;
         private Timer timer;
         private int increment;
@@ -498,6 +499,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return backgroundWidthPixels; }
                 set { backgroundWidthPixels = value; }
+            }
+            #endregion
+            
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
             }
             #endregion
             

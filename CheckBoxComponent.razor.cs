@@ -31,6 +31,7 @@ namespace DataJuggler.Blazor.Components
         private Color borderColor;
         private double borderWidth;
         private string caption;
+        private string className;
         private string checkBoxControlStyle;
         private string checkBoxStyle;
         private bool checkBoxValue;
@@ -40,7 +41,6 @@ namespace DataJuggler.Blazor.Components
         private string checkBoxXStyle;
         private double checkBoxY;
         private string checkBoxYStyle;
-        private string className;
         private double column1Width;
         private string column1Style;
         private double column2Width;
@@ -276,18 +276,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region ClassName
-            /// <summary>
-            /// This property gets or sets the value for 'ClassName'.
-            /// </summary>
-            [Parameter]
-            public string ClassName
-            {
-                get { return className; }
-                set { className = value; }
-            }
-            #endregion
-            
             #region CheckBoxStyle
             /// <summary>
             /// This property gets or sets the value for 'CheckBoxStyle'.
@@ -446,6 +434,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return checkBoxYStyle; }
                 set { checkBoxYStyle = value; }
+            }
+            #endregion
+
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
             }
             #endregion
             

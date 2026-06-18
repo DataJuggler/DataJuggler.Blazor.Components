@@ -27,6 +27,7 @@ namespace DataJuggler.Blazor.Components
         private string buttonStyle;        
         private string heightUnit;
         private string name;
+        private string className;
         private IBlazorComponentParent parent;
         private string unit;
         private ImageButton upButton;
@@ -249,6 +250,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
+            }
+            #endregion
+            
             #region DownButton
             /// <summary>
             /// This property gets or sets the value for 'DownButton'.

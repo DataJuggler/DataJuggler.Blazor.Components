@@ -24,6 +24,7 @@ namespace DataJuggler.Blazor.Components
         #region Private Variables
         private int borderWidth;
         private Color borderColor;
+        private string className;
         private string display;
         private Color backgroundColor;                
         private double labelFontSize;
@@ -490,6 +491,18 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return circleWidthStyle;
                 }
+            }
+            #endregion
+
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
             }
             #endregion
             

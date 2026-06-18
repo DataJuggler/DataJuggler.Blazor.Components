@@ -9,12 +9,11 @@
   top: @TopStyle;
   z-index: 200;
 </Styled>
-
 <Styled @bind-Classname=@ButtonStyle>   
     margin-bottom: @GapStyle;
 </Styled>
 
-<div class="@ButtonContainerStyle">
+<div class="@ButtonContainerStyle @ClassName">
     <ImageButton Name="UpButton" Parent="this" ButtonNumber="1" ClassName="@ButtonStyle"
         Width="ButtonWidth" Height="ButtonHeight"
         ClickHandler="ButtonClicked" ImageUrl="_content/DataJuggler.Blazor.Components/Images/Buttons/BlueUpArrowGray32.png">

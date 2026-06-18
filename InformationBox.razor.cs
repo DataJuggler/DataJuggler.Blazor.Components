@@ -33,6 +33,7 @@ namespace DataJuggler.Blazor.Components
         private double headerHeight;
         private string headerHeightStyle;
         private string heightUnit;
+        private string className;
         private string infoBoxHeaderStyle;
         private string infoBoxStyle;
         private double left;
@@ -342,6 +343,18 @@ namespace DataJuggler.Blazor.Components
                 }
             }
             #endregion            
+            
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
+            }
+            #endregion
             
             #region Column1ClassName
             /// <summary>

@@ -68,6 +68,7 @@ namespace DataJuggler.Blazor.Components
         private double cancelButtonLeft;
         private double saveButtonleft;
         private double buttonTop;
+        private string className;
         #endregion
         
         #region Constructor
@@ -586,6 +587,18 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return cancelButtonWidth; }
                 set { cancelButtonWidth = value; }
+            }
+            #endregion
+            
+            #region ClassName
+            /// <summary>
+            /// This property gets or sets the value for 'ClassName'.
+            /// </summary>
+            [Parameter]
+            public string ClassName
+            {
+                get { return className; }
+                set { className = value; }
             }
             #endregion
             

@@ -25,6 +25,10 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+6.18.2026: I found four components that didn't have a ClassName property. InformationBox, TimeComponent,
+Toggle Component and the UpDownComponent. All of the components should have a ClassName parameter
+property that you can set to an external CSS class name or classes names.
+
 6.17.2026: I finally solved why the SaveCancelComponent was installing itself as content
 when you installed this package. The Project File had this.
 
