@@ -48,7 +48,8 @@
 <Styled @bind-Classname="@OvalMiddleButtonStyle">
     width: @OvalWidthStyle;
     min-width: @OvalWidthStyle;
-    height: @HeightStyle;
+    height: @OvalHeightStyle;
+    min-height: @OvalHeightStyle;
     border: none;
     outline: none;
     background-color: @OvalBackgroundColor.Name;
@@ -71,7 +72,7 @@
     width: @CircleWidthStyle;
     height: @CircleHeightStyle;
     z-index: @ZIndexPlus2;
-    border-radius: 50%;
+    border-radius: @OvalRadiusStyle;
     cursor: pointer;
     border: none;
     outline: none;

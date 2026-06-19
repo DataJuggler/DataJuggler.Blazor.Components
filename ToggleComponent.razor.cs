@@ -69,6 +69,7 @@ namespace DataJuggler.Blazor.Components
         private double column2Width;
         private double ovalEndWidth;
         private double ovalWidth;
+        private double ovalHeight;
         private double ovalRadius;
         private string ovalPosition;
         private double ovalLeft;
@@ -1053,6 +1054,36 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region OvalHeight
+            /// <summary>
+            /// This property gets or sets the value for 'OvalHeight'.
+            /// </summary>
+            [Parameter]
+            public double OvalHeight
+            {
+                get { return ovalHeight; }
+                set { ovalHeight = value; }
+            }
+            #endregion
+
+            #region OvalHeightStyle
+            /// <summary>
+            /// This read only property returns the value of OvalHeight + Unit
+            /// </summary>
+            public string OvalHeightStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string ovalHeightStyle = OvalHeight + Unit;
+                    
+                    // return value
+                    return ovalHeightStyle;
+                }
+            }
+            #endregion
+            
             #region OvalLeft
             /// <summary>
             /// This property gets or sets the value for 'OvalLeft'.
@@ -1229,7 +1260,7 @@ namespace DataJuggler.Blazor.Components
             
             #region OvalWidthStyle
             /// <summary>
-            /// This read only property returns the value of OvalWidthStyle from the object OvalWidth.
+            /// This read only property returns the value of OvalWidth + Unit
             /// </summary>
             public string OvalWidthStyle
             {

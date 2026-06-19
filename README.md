@@ -26,6 +26,7 @@ https://github.com/DataJuggler/NotJeopardy
 # Updates
 
 6.19.2026: I added a new property Column2Width to the ToggleComponent. This width setting is for the Oval.
+I also added OvalHeight parameter property to the ToggleComponent. 
 
 6.18.2026: I found four components that didn't have a ClassName property. InformationBox, TimeComponent,
 Toggle Component and the UpDownComponent. All of the components should have a ClassName parameter
