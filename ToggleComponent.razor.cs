@@ -66,6 +66,7 @@ namespace DataJuggler.Blazor.Components
         private double left;
         
         // Oval and Oval Ends
+        private double column2Width;
         private double ovalEndWidth;
         private double ovalWidth;
         private double ovalRadius;
@@ -543,6 +544,36 @@ namespace DataJuggler.Blazor.Components
                     
                     // return value
                     return column1WidthStyle;
+                }
+            }
+            #endregion
+            
+            #region Column2Width
+            /// <summary>
+            /// This property gets or sets the value for 'Column2Width'.
+            /// </summary>
+            [Parameter]
+            public double Column2Width
+            {
+                get { return column2Width; }
+                set { column2Width = value; }
+            }
+            #endregion
+
+            #region Column2WidthStyle
+            /// <summary>
+            /// This read only property returns the value of Column2Width + Unit
+            /// </summary>
+            public string Column2WidthStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string column2WidthStyle = Column2Width + Unit;
+                    
+                    // return value
+                    return column2WidthStyle;
                 }
             }
             #endregion

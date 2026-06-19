@@ -1,6 +1,6 @@
 News
 
-Request: This project has been stuck on 9 stars for a long time. 
+Request: This project has been stuck on 10 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
 # Update 11.18.2025: New Sample Project & Video
@@ -24,6 +24,8 @@ Check out the NotJeopardy repo here:
 https://github.com/DataJuggler/NotJeopardy
 
 # Updates
+
+6.19.2026: I added a new property Column2Width to the ToggleComponent. This width setting is for the Oval.
 
 6.18.2026: I found four components that didn't have a ClassName property. InformationBox, TimeComponent,
 Toggle Component and the UpDownComponent. All of the components should have a ClassName parameter
