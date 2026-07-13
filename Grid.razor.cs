@@ -245,60 +245,7 @@ namespace DataJuggler.Blazor.Components
 
         #region Methods
             
-            #region ConvertGridColumnsToColumns()
-            /// <summary>
-            /// Converts the Grid Columns To Columns
-            /// </summary>
-            public void ConvertGridColumnsToColumns()
-            {
-                // locals
-                Column column = null;
-                int index = -1;
-
-                // if the Columns exist
-                if (HasGridColumnDefs)
-                {
-                    // Create the Columns object
-                    Columns = new List<Column>();
-
-                    // Iterate the collection of GridColumn objects
-                    foreach (GridColumn gridColumn in GridColumnDefs)
-                    {
-                        // Increment the value for index
-                        index++;
-
-                        // Create a new instance of a 'column' object.
-                        column = new Column();
-
-                        // map properties
-                        column.BorderWidth = gridColumn.BorderWidth;
-                        column.ColumnName = gridColumn.Name;
-                        column.ColumnNumber = gridColumn.ColumnNumber;
-                        column.Caption = gridColumn.Caption;
-                        column.ClassName = gridColumn.ClassName;
-                        column.DataType = gridColumn.DataType;
-                        column.FieldName = gridColumn.FieldName;
-                        column.Format = gridColumn.Format;
-                        column.Height = gridColumn.Height;
-                        column.PrimaryKey = gridColumn.PrimaryKey;
-                        column.Width = gridColumn.Width;
-                        
-                        // Set these values
-                        column.Index = index;
-                        column.ColumnNumber = index + 1;
-
-                        // Column.Visible doesn’t exist — use Hidden instead
-                        column.Hidden = !gridColumn.Visible;
-
-                        // Add this column to the collection
-                        Columns.Add(column);
-                    }
-
-                    // So this doesn't fire again
-                    ColumnsBuilt = true;
-                }
-            }
-            #endregion
+            
             
             #region Init()
             /// <summary>
@@ -489,7 +436,7 @@ namespace DataJuggler.Blazor.Components
                             if (tempGridColumn.LastColumn)
                             {
                                 // Create the HeaderColumns from the GridColumns
-                                ConvertGridColumnsToColumns();
+                                this.Columns = GridHelper.ConvertGridColumnsToColumns(GridColumnDefs);
                             }
                         }
                     }

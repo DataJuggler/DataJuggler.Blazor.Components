@@ -25,6 +25,8 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+7.13.2026: I moved a method from the grid to GridHelper - ConvertColumnHeaders. 
+
 6.19.2026: I added a new property Column2Width to the ToggleComponent. This width setting is for the Oval.
 I also added OvalHeight parameter property to the ToggleComponent. 
 
