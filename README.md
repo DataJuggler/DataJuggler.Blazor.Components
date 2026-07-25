@@ -25,6 +25,9 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+7.24.2026: A vulnerable package was updated and Microsoft.AspNetCore.Components and 
+Microsoft.AspNetCore.Components.Web were updated. 
+
 7.13.2026: I moved a method from the grid to GridHelper - ConvertColumnHeaders. 
 
 6.19.2026: I added a new property Column2Width to the ToggleComponent. This width setting is for the Oval.
