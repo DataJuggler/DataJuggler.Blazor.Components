@@ -25,6 +25,9 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+9.12.2026: A vulnerable package Microsoft.Builds.Tasks was listed as vulnerable and had to be updated.
+Some other Packages were also updated. 
+
 7.24.2026: A vulnerable package was updated and Microsoft.AspNetCore.Components and 
 Microsoft.AspNetCore.Components.Web were updated. 
 
