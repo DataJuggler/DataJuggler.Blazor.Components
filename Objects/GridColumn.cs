@@ -6,7 +6,8 @@ using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.NET.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using DataJuggler.Excelerate;
+using System;
+using System.Reflection;
 
 #endregion
 
@@ -22,15 +23,22 @@ namespace DataJuggler.Blazor.Components.Objects
         
         #region Private Variables
         private int borderWidth;
+        private int buttonNumber;
+        private string buttonUrl;
         private string caption;
-        private string className;
+        private string className;        
         private int columnNumber;
         private DataManager.DataTypeEnum dataType;
+        private bool editMode;
+        private string editorClassName;
+        private string editorText;
         private string fieldName;
         private string fontName;
         private double fontSize;
         private bool fontBold;
         private string format;
+        private Guid id;
+        private string imageUrl;
         private int height;
         private int index;
         private bool isImage;
@@ -40,14 +48,29 @@ namespace DataJuggler.Blazor.Components.Objects
         private IBlazorComponentParent parent;
         private bool primaryKey;
         private bool readOnly;
+        private bool setFocusOnFirstRender;
+        private string text;
+        private string unit;
         private bool visible;
         private int width;
+        private int zIndex;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Create a new instance of a GridColumn object
+        /// </summary>
+        public GridColumn()
+        {
+            // Perform initializations for this object
+            Init();
+        }
         #endregion
         
         #region Events
             
         #endregion
-        
+
         #region Methods
 
             #region BuildRenderTree(RenderTreeBuilder builder)
@@ -60,39 +83,19 @@ namespace DataJuggler.Blazor.Components.Objects
             }
             #endregion
             
-            #region ExportAsColumn()
+            #region Init()
             /// <summary>
-            /// returns the As Column
+            ///  This method performs initializations for this object.
             /// </summary>
-            #region ExportAsColumn()
-            /// <summary>
-            /// Exports this GridColumn as a Column object for Excelerate.
-            /// </summary>
-            public Column ExportAsColumn()
+            public void Init()
             {
-                // initial value
-                Column column = new Column();
+                // Create defaults
+                Id = new Guid();
+                Unit = "px";
 
-                // set each property
-                column.Caption = this.Caption;
-                column.ClassName = this.ClassName;
-                column.ColumnNumber = this.ColumnNumber;
-                column.DataType = this.DataType;
-                column.Height = this.Height;
-                column.Index = this.Index;
-                column.Width = this.Width;
-
-                // The Column class uses Hidden instead of Visible (reverse mapping)
-                column.Hidden = !this.Visible;
-
-                // GridColumn uses FieldName; Column uses ColumnName
-                column.ColumnName = this.FieldName;
-
-                // return value
-                return column;
+                // Editors need to be in front
+                ZIndex = 100;
             }
-            #endregion
-
             #endregion
             
             #region ReceiveData(Message message)
@@ -118,6 +121,47 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return borderWidth; }
                 set { borderWidth = value; }
+            }
+            #endregion
+
+            #region BorderWidthStyle
+            /// <summary>
+            /// This read only property returns the value of BorderWidth + "px";
+            /// </summary>
+            public string BorderWidthStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string borderWidthStyle = BorderWidth + Unit;
+                    
+                    // return value
+                    return borderWidthStyle;
+                }
+            }
+            #endregion
+            
+            #region ButtonNumber
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonNumber'.
+            /// </summary>
+            [Parameter]
+            public int ButtonNumber
+            {
+                get { return buttonNumber; }
+                set { buttonNumber = value; }
+            }
+            #endregion
+
+            #region ButtonUrl
+            /// <summary>
+            /// This property gets or sets the value for 'ButtonUrl'.
+            /// </summary>
+            public string ButtonUrl
+            {
+                get { return buttonUrl; }
+                set { buttonUrl = value; }
             }
             #endregion
             
@@ -166,6 +210,41 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return dataType; }
                 set { dataType = value; }
+            }
+            #endregion
+
+            #region EditorClassName
+            /// <summary>
+            /// This property gets or sets the value for 'EditorClassName'.
+            /// </summary>            
+            [Parameter]
+            public string EditorClassName
+            {
+                get { return editorClassName; }
+                set { editorClassName = value; }
+            }
+            #endregion
+            
+            #region EditMode
+            /// <summary>
+            /// This property gets or sets the value for 'EditMode'.
+            /// </summary>
+            [Parameter]
+            public bool EditMode
+            {
+                get { return editMode; }
+                set { editMode = value; }
+            }
+            #endregion
+            
+            #region EditorText
+            /// <summary>
+            /// This property gets or sets the value for 'EditorText'.
+            /// </summary>
+            public string EditorText
+            {
+                get { return editorText; }
+                set { editorText = value; }
             }
             #endregion
             
@@ -238,6 +317,29 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return height; }
                 set { height = value; }
+            }
+            #endregion
+            
+            #region Id
+            /// <summary>
+            /// This property gets or sets the value for 'Id'.
+            /// </summary>
+            public Guid Id
+            {
+                get { return id; }
+                set { id = value; }
+            }
+            #endregion
+            
+            #region ImageUrl
+            /// <summary>
+            /// This property gets or sets the value for 'ImageUrl'.
+            /// </summary>
+            [Parameter]
+            public string ImageUrl
+            {
+                get { return imageUrl; }
+                set { imageUrl = value; }
             }
             #endregion
             
@@ -356,6 +458,42 @@ namespace DataJuggler.Blazor.Components.Objects
             }
             #endregion
             
+            #region SetFocusOnFirstRender
+            /// <summary>
+            /// This property gets or sets the value for 'SetFocusOnFirstRender'.
+            /// </summary>
+            [Parameter]
+            public bool SetFocusOnFirstRender
+            {
+                get { return setFocusOnFirstRender; }
+                set { setFocusOnFirstRender = value; }
+            }
+            #endregion
+            
+            #region Text
+            /// <summary>
+            /// This property gets or sets the value for 'Text'.
+            /// </summary>
+            [Parameter]
+            public string Text
+            {
+                get { return text; }
+                set { text = value; }
+            }
+            #endregion
+            
+            #region Unit
+            /// <summary>
+            /// This property gets or sets the value for 'Unit'.
+            /// </summary>
+            [Parameter]
+            public string Unit
+            {
+                get { return unit; }
+                set { unit = value; }
+            }
+            #endregion
+            
             #region Visible
             /// <summary>
             /// This property gets or sets the value for 'Visible'.
@@ -377,6 +515,18 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return width; }
                 set { width = value; }
+            }
+            #endregion
+            
+            #region ZIndex
+            /// <summary>
+            /// This property gets or sets the value for 'ZIndex'.
+            /// </summary>
+            [Parameter]
+            public int ZIndex
+            {
+                get { return zIndex; }
+                set { zIndex = value; }
             }
             #endregion
             

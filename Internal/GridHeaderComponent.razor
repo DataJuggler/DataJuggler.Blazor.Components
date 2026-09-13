@@ -1,6 +1,6 @@
-﻿@using DataJuggler.Excelerate
-@using System.Drawing
+﻿@using System.Drawing
 @using BlazorStyled
+@using DataJuggler.Blazor.Components.Objects
 
 <table class="tablelayoutfixed">
     @if (GridColumns != null)
@@ -10,7 +10,7 @@
     @if (HasColumns)
     {
         <colgroup>
-            @foreach (Column column in Columns)
+            @foreach (GridColumn column in Columns)
             {
                 <col class="@column.ClassName" />
             }
@@ -18,7 +18,7 @@
     }
     <thead>
         <tr class="@ColumnHeaderStyle @ColumnHeaderClassName">
-            @foreach (Column column in Columns)
+            @foreach (GridColumn column in Columns)
             {
                 <Styled @bind-Classname=@BorderStyle>
                     border-width: @column.BorderWidthStyle;
@@ -31,7 +31,7 @@
                         <span class="@ColumnHeaderTextClassName">
                             @column.Caption
                         </span><br />                        
-                        <TextBoxComponent Name="@column.ColumnName" Caption="" Parent="this"
+                        <TextBoxComponent Name="@column.Name" Caption="" Parent="this"
                             Height="24" Column1Width="0" Column2Width="@column.Width"
                             Display="inline" ClassName="displayinline" Width="@column.Width"
                             TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">

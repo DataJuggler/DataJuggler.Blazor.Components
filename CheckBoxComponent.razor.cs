@@ -11,8 +11,6 @@ using System.Threading.Tasks;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
-using NPOI.SS.Formula.Functions;
-using NPOI.XWPF.UserModel;
 
 #endregion
 

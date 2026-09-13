@@ -2,11 +2,7 @@
 
 #region using statements
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using DataJuggler.Excelerate;
-using DataJuggler.UltimateHelper;
 
 #endregion
 
@@ -28,7 +24,7 @@ namespace DataJuggler.Blazor.Components.Objects
         private int startIndex;
         private int totalCount;
         private int totalPages;
-        private List<Column> columns;
+        private List<GridColumn> columns;
         #endregion
         
         #region Events
@@ -75,7 +71,7 @@ namespace DataJuggler.Blazor.Components.Objects
             /// <summary>
             /// This property gets or sets the value for 'Columns'.
             /// </summary>
-            public List<Column> Columns
+            public List<GridColumn> Columns
             {
                 get { return columns; }
                 set { columns = value; }

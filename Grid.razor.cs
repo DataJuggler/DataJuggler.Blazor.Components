@@ -4,8 +4,6 @@
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.Blazor.Components.Objects;
 using DataJuggler.Blazor.Components.Util;
-using DataJuggler.Cryptography;
-using DataJuggler.Excelerate;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -13,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
-using System.Reflection;
 
 #endregion
 
@@ -39,7 +36,7 @@ namespace DataJuggler.Blazor.Components
         private double columnHeaderHeight;
         private string columnHeaderStyle;
         private string columnHeaderTextClassName;
-        private List<Column> columns;
+        private List<GridColumn> columns;
         private bool columnsBuilt;
         private string containerStyle;        
         private bool editMode;
@@ -215,7 +212,7 @@ namespace DataJuggler.Blazor.Components
                     else
                     {
                         // Find the column
-                        Column column = row.FindColumnByNumber(columnNumber);
+                        GridColumn column = row.FindColumnByNumber(columnNumber);
 
                         // If the column object exists
                         if (NullHelper.Exists(column))
@@ -245,8 +242,6 @@ namespace DataJuggler.Blazor.Components
 
         #region Methods
             
-            
-            
             #region Init()
             /// <summary>
             ///  This method performs initializations for this object.
@@ -262,7 +257,7 @@ namespace DataJuggler.Blazor.Components
                 BorderWidth = 1;
                 BorderStyle = "solid";                
                 Buttons = new List<ImageButton>();
-                Columns = new List<Column>();
+                Columns = new List<GridColumn>();
                 ColumnHeaderColor = Color.SteelBlue;
                 ColumnHeaderHeight = 32;
                 ColumnHeaderTextClassName = "down6";
@@ -347,7 +342,7 @@ namespace DataJuggler.Blazor.Components
                             if (parameter.Name == "Columns")
                             {
                                 // cast the value as a List of Row objects.
-                                Columns = parameter.Value as List<Column>;
+                                Columns = parameter.Value as List<GridColumn>;
                             }                           
                         }
                     }
@@ -436,7 +431,7 @@ namespace DataJuggler.Blazor.Components
                             if (tempGridColumn.LastColumn)
                             {
                                 // Create the HeaderColumns from the GridColumns
-                                this.Columns = GridHelper.ConvertGridColumnsToColumns(GridColumnDefs);
+                                this.Columns = GridColumnDefs;
                             }
                         }
                     }
@@ -630,7 +625,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This property gets or sets the value for 'Columns'.
             /// </summary>            
-            public List<Column> Columns
+            public List<GridColumn> Columns
             {
                 get { return columns; }
                 set { columns = value; }
@@ -1240,13 +1235,13 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// This read only property returns the value of PrimaryKey from the object Columns.
             /// </summary>
-            public Column PrimaryKey
+            public GridColumn PrimaryKey
             {
 
                 get
                 {
                     // initial value
-                    Column primaryKey = null;
+                    GridColumn primaryKey = null;
 
                     // if Columns exists
                     if (HasColumns)

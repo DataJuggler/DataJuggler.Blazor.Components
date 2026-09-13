@@ -1,9 +1,8 @@
 ﻿
-
 #region using statements
 
 using DataJuggler.Blazor.Components.Interfaces;
-using DataJuggler.Excelerate;
+using DataJuggler.Blazor.Components.Objects;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Drawing;
@@ -204,13 +203,13 @@ namespace DataJuggler.Blazor.Components.Internal
             /// <summary>
             /// This read only property returns the value of Columns from the object ParentGrid.
             /// </summary>
-            public List<Column> Columns
+            public List<GridColumn> Columns
             {
 
                 get
                 {
                     // initial value
-                    List<Column> columns = null;
+                    List<GridColumn> columns = null;
 
                     // if ParentGrid exists
                     if (ParentGrid != null)

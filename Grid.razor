@@ -1,9 +1,7 @@
 ﻿@namespace DataJuggler.Blazor.Components
-@using DataJuggler.UltimateHelper
-@using DataJuggler.Excelerate;
-@using DataJuggler.Blazor.Components.Objects
 @using BlazorStyled
 @using DataJuggler.Blazor.Components.Internal
+@using DataJuggler.Blazor.Components.Objects
 
 <Styled @bind-Classname=@ContainerStyle>    
     visibility: @Visibility;
@@ -111,22 +109,22 @@
                         if (row.HasColumns)
                         {
                             <tr class="@row.ClassName">
-                                @foreach (Column column in row.Columns)
+                                @foreach (GridColumn column in row.Columns)
                                 {
                                     if (column.IsImageButton)
                                     {
                                         <td>
                                             <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl"
-                                                Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.ColumnName"
-                                                Text="@column.ColumnText" Visible=true Parent="this"></ImageButton>
+                                                Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.Name"
+                                                Text="@column.Text" Visible=true Parent="this"></ImageButton>
                                         </td>
                                     }
                                     else if (column.IsImage)
                                     {
                                         <td>
                                             <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl"
-                                                Width="@column.Width" Height="@column.Height" Name="@column.ColumnName"
-                                                Text="@column.ColumnText" Visible=true Parent="this"></ImageComponent>
+                                                Width="@column.Width" Height="@column.Height" Name="@column.Name"
+                                                Text="@column.Text" Visible=true Parent="this"></ImageComponent>
                                         </td>
                                     }
                                     else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
@@ -140,15 +138,15 @@
                                     }
                                     else if (EnableClick)
                                     {
-                                        <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.ColumnText</td>
+                                        <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.Text</td>
                                     }
                                     else if (EnableDoubleClick)
                                     {
-                                        <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.ColumnText</td>
+                                        <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.Text</td>
                                     }
                                     else
                                     {
-                                        <td class="@column.ClassName">@column.ColumnText</td>
+                                        <td class="@column.ClassName">@column.Text</td>
                                     }
                                 }
                             </tr>

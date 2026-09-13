@@ -26,7 +26,9 @@ https://github.com/DataJuggler/NotJeopardy
 # Updates
 
 9.12.2026: A vulnerable package Microsoft.Builds.Tasks was listed as vulnerable and had to be updated.
-Some other Packages were also updated. 
+Some other Packages were also updated. Upon further testing, the offending package is NPOI, which is 
+used by my Excel library. I spent my Sunday removing my Excel library from this package. 
+It should all stil work (famous last words). 
 
 7.24.2026: A vulnerable package was updated and Microsoft.AspNetCore.Components and 
 Microsoft.AspNetCore.Components.Web were updated. 
