@@ -2,6 +2,7 @@
 
 #region using statements
 
+using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
@@ -48,12 +49,22 @@ namespace DataJuggler.Blazor.Components
         private double fontSize;
         private string fontName;
         private double textLeft;
-        private double textTop;     
-
-        // Reverting back to BlazorStyled
+        private double textTop;
         private string buttonContainerStyle;
         private string buttonStyle;
         private string buttonTextStyle;
+
+        // animation related
+        private double animationDuration;
+        private double animationDelay;
+        private bool animatable;
+        private bool hideOnAnimationEnd;
+        private bool isAnimating;
+        private string slideOutKeyframes;
+        private double slideDistance;
+        private string animationStyle;
+        private bool animateOnLoad;
+        private AnimationDirectionEnum animationDirection;
         #endregion
 
         #region Constructor
@@ -65,6 +76,47 @@ namespace DataJuggler.Blazor.Components
             // Perform initializations for this object
             Init();
         }
+        #endregion
+
+        #region Events
+
+            #region OnInitialized()
+            /// <summary>
+            /// This method is called when the component is initialized
+            /// </summary>
+            protected override void OnInitialized()
+            {
+                // if this button should start animating as soon as it loads
+                if ((Animatable) && (AnimateOnLoad))
+                {
+                    // start
+                    IsAnimating = true;
+                }
+
+                // call the base
+                base.OnInitialized();
+            }
+            #endregion
+
+            #region OnAnimationEnd()
+            /// <summary>
+            /// This event is fired when the animation for this button completes.
+            /// If HideOnAnimationEnd is true, the button is hidden.
+            /// </summary>
+            public void OnAnimationEnd()
+            {
+                // if this button should be hidden when the animation ends
+                if (HideOnAnimationEnd)
+                {
+                    // hide this button
+                    SetVisible(false);
+                }
+
+                // no longer animating
+                IsAnimating = false;
+            }
+            #endregion
+
         #endregion
 
         #region Methods
@@ -115,9 +167,12 @@ namespace DataJuggler.Blazor.Components
                 Visible = true;
                 Width = 64;
                 ZIndex = 5;
+
+                // animation default
+                AnimationDuration = 3;
             }
             #endregion
-            
+
             #region ReceiveData(Message message)
             /// <summary>
             /// method returns the Data
@@ -225,10 +280,171 @@ namespace DataJuggler.Blazor.Components
                 Refresh();
             }
             #endregion
+
+            #region StartAnimation()
+            /// <summary>
+            /// This method starts the animation if Animatable is true
+            /// </summary>
+            public void StartAnimation()
+            {
+                // if this button is allowed to animate
+                if (Animatable)
+                {
+                    // start
+                    IsAnimating = true;
+
+                    // update the UI
+                    Refresh();
+                }
+            }
+            #endregion
+
+            #region StopAnimation()
+            /// <summary>
+            /// This method stops the animation and returns the button to its original position
+            /// </summary>
+            public void StopAnimation()
+            {
+                // no longer animating
+                IsAnimating = false;
+
+                // update the UI
+                Refresh();
+            }
+            #endregion
             
         #endregion
 
         #region Properties
+            
+            #region Animatable
+            /// <summary>
+            /// This property gets or sets the value for 'Animatable'.
+            /// </summary>
+            [Parameter]
+            public bool Animatable
+            {
+                get { return animatable; }
+                set { animatable = value; }
+            }
+            #endregion
+            
+            #region AnimateOnLoad
+            /// <summary>
+            /// This property gets or sets the value for 'AnimateOnLoad'.
+            /// </summary>
+            [Parameter]
+            public bool AnimateOnLoad
+            {
+                get { return animateOnLoad; }
+                set { animateOnLoad = value; }
+            }
+            #endregion
+            
+            #region AnimationDelay
+            /// <summary>
+            /// This property gets or sets the value for 'AnimationDelay'.
+            /// </summary>
+            [Parameter]
+            public double AnimationDelay
+            {
+                get { return animationDelay; }
+                set { animationDelay = value; }
+            }
+            #endregion
+
+            #region AnimationDelayStyle
+            /// <summary>
+            /// This read only property returns the AnimationDelay with s appended
+            /// </summary>
+            public string AnimationDelayStyle
+            {
+                get
+                {
+                    // initial value
+                    string animationDelayStyle = AnimationDelay + "s";
+
+                    // return value
+                    return animationDelayStyle;
+                }
+            }
+            #endregion
+            
+            #region AnimationDirection
+            /// <summary>
+            /// This property gets or sets the value for 'AnimationDirection'.
+            /// </summary>
+            [Parameter]
+            public AnimationDirectionEnum AnimationDirection
+            {
+                get { return animationDirection; }
+                set { animationDirection = value; }
+            }
+            #endregion
+            
+            #region AnimationDuration
+            /// <summary>
+            /// This property gets or sets the value for 'AnimationDuration'.
+            /// </summary>
+            [Parameter]
+            public double AnimationDuration
+            {
+                get { return animationDuration; }
+                set { animationDuration = value; }
+            }
+            #endregion
+
+            #region AnimationDurationStyle
+            /// <summary>
+            /// This read only property returns the AnimationDuration with s appended
+            /// </summary>
+            public string AnimationDurationStyle
+            {
+                get
+                {
+                    // initial value
+                    string animationDurationStyle = AnimationDuration + "s";
+
+                    // return value
+                    return animationDurationStyle;
+                }
+            }
+            #endregion
+
+            #region AnimatingStyle
+            /// <summary>
+            /// This read only property returns the AnimationStyle if IsAnimating is true, else an empty string.
+            /// </summary>
+            public string AnimatingStyle
+            {
+                get
+                {
+                    // initial value
+                    string animatingStyle = "";
+
+                    // if the value for IsAnimating is true
+                    if (IsAnimating)
+                    {
+                        // set the return value
+                        animatingStyle = AnimationStyle;
+                    }
+
+                    // return value
+                    return animatingStyle;
+                }
+            }
+            #endregion
+            
+            #region AnimationStyle
+            /// <summary>
+            /// This property gets or sets the value for 'AnimationStyle'.
+            /// </summary>
+            public string AnimationStyle
+            {
+                get { return animationStyle; }
+                set { animationStyle = value; }
+            }
+            #endregion
             
             #region BorderColor
             /// <summary>
@@ -492,6 +708,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HideOnAnimationEnd
+            /// <summary>
+            /// This property gets or sets the value for 'HideOnAnimationEnd'.
+            /// </summary>
+            [Parameter]
+            public bool HideOnAnimationEnd
+            {
+                get { return hideOnAnimationEnd; }
+                set { hideOnAnimationEnd = value; }
+            }
+            #endregion
+            
             #region HideOnClick
             /// <summary>
             /// This property gets or sets the value for 'HideOnClick'.
@@ -522,6 +750,17 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region IsAnimating
+            /// <summary>
+            /// This property gets or sets the value for 'IsAnimating'.
+            /// </summary>
+            public bool IsAnimating
+            {
+                get { return isAnimating; }
+                set { isAnimating = value; }
+            }
+            #endregion
+            
             #region LabelWidth
             /// <summary>
             /// This property gets or sets the value for 'LabelWidth'.
@@ -649,6 +888,46 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return position; }
                 set { position = value; }
+            }
+            #endregion
+            
+            #region SlideDistance
+            /// <summary>
+            /// This property gets or sets the value for 'SlideDistance'.
+            /// </summary>
+            [Parameter]
+            public double SlideDistance
+            {
+                get { return slideDistance; }
+                set { slideDistance = value; }
+            }
+            #endregion
+
+            #region SlideDistanceStyle
+            /// <summary>
+            /// This read only property returns the SlideDistance with vw appended
+            /// </summary>
+            public string SlideDistanceStyle
+            {
+                get
+                {
+                    // initial value
+                    string slideDistanceStyle = SlideDistance + "vw";
+
+                    // return value
+                    return slideDistanceStyle;
+                }
+            }
+            #endregion
+            
+            #region SlideOutKeyframes
+            /// <summary>
+            /// This property gets or sets the value for 'SlideOutKeyframes'.
+            /// </summary>
+            public string SlideOutKeyframes
+            {
+                get { return slideOutKeyframes; }
+                set { slideOutKeyframes = value; }
             }
             #endregion
             
@@ -798,6 +1077,82 @@ namespace DataJuggler.Blazor.Components
 
                     // Set the value
                     return topStyle;
+                }
+            }
+            #endregion
+
+            #region TransformStyle
+            /// <summary>
+            /// This read only property returns the transform for the AnimationDirection and SlideDistance
+            /// </summary>
+            public string TransformStyle
+            {
+                get
+                {
+                    // initial value
+                    string transformStyle = "translateX(" + SlideDistance + "vw)";
+
+                    switch (AnimationDirection)
+                    {
+                        case AnimationDirectionEnum.Left:
+
+                            // set the return value
+                            transformStyle = "translateX(-" + SlideDistance + "vw)";
+
+                            // required
+                            break;
+
+                        case AnimationDirectionEnum.Up:
+
+                            // set the return value
+                            transformStyle = "translateY(-" + SlideDistance + "vh)";
+
+                            // required
+                            break;
+
+                        case AnimationDirectionEnum.Down:
+
+                            // set the return value
+                            transformStyle = "translateY(" + SlideDistance + "vh)";
+
+                            // required
+                            break;
+
+                        case AnimationDirectionEnum.UpRight:
+
+                            // set the return value
+                            transformStyle = "translate(" + SlideDistance + "vw, -" + SlideDistance + "vh)";
+
+                            // required
+                            break;
+
+                        case AnimationDirectionEnum.UpLeft:
+
+                            // set the return value
+                            transformStyle = "translate(-" + SlideDistance + "vw, -" + SlideDistance + "vh)";
+
+                            // required
+                            break;
+
+                        case AnimationDirectionEnum.DownRight:
+
+                            // set the return value
+                            transformStyle = "translate(" + SlideDistance + "vw, " + SlideDistance + "vh)";
+
+                            // required
+                            break;
+
+                        case AnimationDirectionEnum.DownLeft:
+
+                            // set the return value
+                            transformStyle = "translate(-" + SlideDistance + "vw, " + SlideDistance + "vh)";
+
+                            // required
+                            break;
+                    }
+
+                    // return value
+                    return transformStyle;
                 }
             }
             #endregion

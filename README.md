@@ -25,6 +25,37 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+10.7.2026: I added a new feature to the ImageComponent to make it animatable.
+
+## ImageButton Animation
+
+ImageButton can slide in any of 8 directions. Set `Animatable="true"`, then call
+`StartAnimation()`, or set `AnimateOnLoad="true"` to start it as soon as the button renders.
+
+```razor
+	<ImageButton Name="CardButton1" Parent="this" ClickHandler="@ButtonClicked"
+		Animatable="true" AnimationDirection="AnimationDirectionEnum.Right"
+		SlideDistance="110" AnimationDuration="3" HideOnAnimationEnd="true">
+	</ImageButton>
+```
+
+```csharp
+// start the animation
+CardButton1.StartAnimation();
+```
+
+### Parameters
+
+- **Animatable** (bool, default false) - Must be true for the button to animate.
+- **AnimateOnLoad** (bool, default false) - Starts the animation as soon as the button renders.
+- **AnimationDirection** (AnimationDirectionEnum, default Right) - Right, Left, Up, Down, UpRight, UpLeft, DownRight, DownLeft.
+- **SlideDistance** (double, required) - How far the button travels. vw horizontally, vh vertically.
+- **AnimationDuration** (double, default 3) - Seconds the slide takes.
+- **AnimationDelay** (double, default 0) - Seconds to wait before starting.
+- **HideOnAnimationEnd** (bool, default false) - Hides the button when the animation finishes. When false, the button returns to its starting position.
+
+Call `StopAnimation()` to cancel an animation in progress.
+
 9.12.2026: A vulnerable package Microsoft.Builds.Tasks was listed as vulnerable and had to be updated.
 Some other Packages were also updated. Upon further testing, the offending package is NPOI, which is 
 used by my Excel library. I spent my Sunday removing my Excel library from this package. 

@@ -33,7 +33,24 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
-    #region enum ButtonThemeEnum : int
+    #region AnimationDirectionEnum
+    /// <summary>
+    /// This enum is used to set the direction a component moves when it is animated
+    /// </summary>
+    public enum AnimationDirectionEnum
+    {
+        Right = 0,
+        Left = 1,
+        Up = 2,
+        Down = 3,
+        UpRight = 4,
+        UpLeft = 5,
+        DownRight = 6,
+        DownLeft = 7
+    }
+    #endregion
+
+    #region ButtonThemeEnum : int
     /// <summary>
     /// This enumeration is used by the SaveCancelComponent to 
     /// allow setting button Image Url's by selecting a theme.
