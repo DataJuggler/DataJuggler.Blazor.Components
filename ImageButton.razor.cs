@@ -87,33 +87,14 @@ namespace DataJuggler.Blazor.Components
             protected override void OnInitialized()
             {
                 // if this button should start animating as soon as it loads
-                if ((Animatable) && (AnimateOnLoad))
+                if (AnimateOnLoad)
                 {
                     // start
-                    IsAnimating = true;
+                    StartAnimation();
                 }
 
                 // call the base
                 base.OnInitialized();
-            }
-            #endregion
-
-            #region OnAnimationEnd()
-            /// <summary>
-            /// This event is fired when the animation for this button completes.
-            /// If HideOnAnimationEnd is true, the button is hidden.
-            /// </summary>
-            public void OnAnimationEnd()
-            {
-                // if this button should be hidden when the animation ends
-                if (HideOnAnimationEnd)
-                {
-                    // hide this button
-                    SetVisible(false);
-                }
-
-                // no longer animating
-                IsAnimating = false;
             }
             #endregion
 
@@ -140,6 +121,33 @@ namespace DataJuggler.Blazor.Components
                         SetVisible(false);
                     }
                 }
+            }
+            #endregion
+
+            #region FinishAnimation()
+            /// <summary>
+            /// This method waits for the animation to finish, then hides the button if HideOnAnimationEnd is true
+            /// </summary>
+            public async Task FinishAnimation()
+            {
+                // the total time is the delay plus the duration, in milliseconds
+                int milliseconds = (int) ((AnimationDelay + AnimationDuration) * 1000);
+
+                // wait for the animation to finish
+                await Task.Delay(milliseconds);
+
+                // if this button should be hidden when the animation ends
+                if (HideOnAnimationEnd)
+                {
+                    // hide this button
+                    SetVisible(false);
+                }
+
+                // no longer animating
+                IsAnimating = false;
+
+                // update the UI
+                Refresh();
             }
             #endregion
             
@@ -361,6 +369,9 @@ namespace DataJuggler.Blazor.Components
 
                     // update the UI
                     Refresh();
+
+                    // clean up when the animation is done
+                    _ = FinishAnimation();
                 }
             }
             #endregion
