@@ -197,6 +197,50 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region SetAnimatable(bool animatable)
+            /// <summary>
+            /// This method sets the value for Animatable
+            /// </summary>
+            public void SetAnimatable(bool animatable)
+            {
+                // set the value
+                Animatable = animatable;
+            }
+            #endregion
+
+            #region SetAnimationDelay(double animationDelay)
+            /// <summary>
+            /// This method sets the value for AnimationDelay
+            /// </summary>
+            public void SetAnimationDelay(double animationDelay)
+            {
+                // set the value
+                AnimationDelay = animationDelay;
+            }
+            #endregion
+
+            #region SetAnimationDirection(AnimationDirectionEnum animationDirection)
+            /// <summary>
+            /// This method sets the value for AnimationDirection
+            /// </summary>
+            public void SetAnimationDirection(AnimationDirectionEnum animationDirection)
+            {
+                // set the value
+                AnimationDirection = animationDirection;
+            }
+            #endregion
+
+            #region SetAnimationDuration(double animationDuration)
+            /// <summary>
+            /// This method sets the value for AnimationDuration
+            /// </summary>
+            public void SetAnimationDuration(double animationDuration)
+            {
+                // set the value
+                AnimationDuration = animationDuration;
+            }
+            #endregion
+
             #region SetClickHandler(ButtonClickedHandler clickHandler)
             /// <summary>
             /// Set Click Handler
@@ -205,6 +249,17 @@ namespace DataJuggler.Blazor.Components
             {
                 // Store the clickHandler
                 ClickHandler = clickHandler;
+            }
+            #endregion
+
+            #region SetHideOnAnimationEnd(bool hideOnAnimationEnd)
+            /// <summary>
+            /// This method sets the value for HideOnAnimationEnd
+            /// </summary>
+            public void SetHideOnAnimationEnd(bool hideOnAnimationEnd)
+            {
+                // set the value
+                HideOnAnimationEnd = hideOnAnimationEnd;
             }
             #endregion
             
@@ -238,7 +293,18 @@ namespace DataJuggler.Blazor.Components
                 Refresh();
             }
             #endregion
-            
+
+            #region SetSlideDistance(double slideDistance)
+            /// <summary>
+            /// This method sets the value for SlideDistance
+            /// </summary>
+            public void SetSlideDistance(double slideDistance)
+            {
+                // set the value
+                SlideDistance = slideDistance;
+            }
+            #endregion
+
             #region SetText(string text)
             /// <summary>
             /// Set Text
