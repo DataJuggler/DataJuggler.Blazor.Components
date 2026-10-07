@@ -12,6 +12,8 @@
     margin: 0px;
     padding: 0px;
     visibility: @VisibleStyle;
+    transform: @CurrentTransformStyle;
+    transition: @TransitionStyle;
 </Styled>
 <Styled @bind-Classname=@ButtonStyle>
     background-image: url('@ImageUrl');
@@ -39,20 +41,6 @@
     font-size: @FontSizeStyle;
     color: @TextColorName;
 </Styled>
-<Styled @bind-Classname=@SlideOutKeyframes>
-    @@keyframes {
-    from { transform: translateX(0); }
-    to   { transform: @TransformStyle; }
-    }
-</Styled>
-<Styled @bind-Classname=@AnimationStyle>
-    animation-name: @SlideOutKeyframes;
-    animation-duration: @AnimationDurationStyle;
-    animation-delay: @AnimationDelayStyle;
-    animation-timing-function: ease-in;
-    animation-fill-mode: forwards;
-    pointer-events: none;
-</Styled>
 
 <style>
     .imagebutton
@@ -65,7 +53,7 @@
     }
 </style>
 
-<div class="@ButtonContainerStyle @ClassName @AnimatingStyle">
+<div class="@ButtonContainerStyle @ClassName">
     <button class="imagebutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
         <span class="@ButtonTextStyle">@Text</span>
     </button>    

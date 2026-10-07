@@ -60,9 +60,7 @@ namespace DataJuggler.Blazor.Components
         private bool animatable;
         private bool hideOnAnimationEnd;
         private bool isAnimating;
-        private string slideOutKeyframes;
         private double slideDistance;
-        private string animationStyle;
         private bool animateOnLoad;
         private AnimationDirectionEnum animationDirection;
         #endregion
@@ -488,41 +486,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
-            #region AnimatingStyle
-            /// <summary>
-            /// This read only property returns the AnimationStyle if IsAnimating is true, else an empty string.
-            /// </summary>
-            public string AnimatingStyle
-            {
-                get
-                {
-                    // initial value
-                    string animatingStyle = "";
-
-                    // if the value for IsAnimating is true
-                    if (IsAnimating)
-                    {
-                        // set the return value
-                        animatingStyle = AnimationStyle;
-                    }
-
-                    // return value
-                    return animatingStyle;
-                }
-            }
-            #endregion
-            
-            #region AnimationStyle
-            /// <summary>
-            /// This property gets or sets the value for 'AnimationStyle'.
-            /// </summary>
-            public string AnimationStyle
-            {
-                get { return animationStyle; }
-                set { animationStyle = value; }
-            }
-            #endregion
-            
             #region BorderColor
             /// <summary>
             /// This property gets or sets the value for 'BorderColor'.
@@ -657,6 +620,30 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return clickHandler; }
                 set { clickHandler = value; }
+            }
+            #endregion
+
+            #region CurrentTransformStyle
+            /// <summary>
+            /// This read only property returns the TransformStyle if IsAnimating is true, else none.
+            /// </summary>
+            public string CurrentTransformStyle
+            {
+                get
+                {
+                    // initial value
+                    string currentTransformStyle = "none";
+
+                    // if the value for IsAnimating is true
+                    if (IsAnimating)
+                    {
+                        // set the return value
+                        currentTransformStyle = TransformStyle;
+                    }
+
+                    // return value
+                    return currentTransformStyle;
+                }
             }
             #endregion
             
@@ -997,17 +984,6 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region SlideOutKeyframes
-            /// <summary>
-            /// This property gets or sets the value for 'SlideOutKeyframes'.
-            /// </summary>
-            public string SlideOutKeyframes
-            {
-                get { return slideOutKeyframes; }
-                set { slideOutKeyframes = value; }
-            }
-            #endregion
-            
             #region Text
             /// <summary>
             /// This property gets or sets the value for 'Text'.
@@ -1230,6 +1206,30 @@ namespace DataJuggler.Blazor.Components
 
                     // return value
                     return transformStyle;
+                }
+            }
+            #endregion
+
+            #region TransitionStyle
+            /// <summary>
+            /// This read only property returns the transition if IsAnimating is true, else none.
+            /// </summary>
+            public string TransitionStyle
+            {
+                get
+                {
+                    // initial value
+                    string transitionStyle = "none";
+
+                    // if the value for IsAnimating is true
+                    if (IsAnimating)
+                    {
+                        // set the return value
+                        transitionStyle = "transform " + AnimationDurationStyle + " ease-in " + AnimationDelayStyle;
+                    }
+
+                    // return value
+                    return transitionStyle;
                 }
             }
             #endregion
