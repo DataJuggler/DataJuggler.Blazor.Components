@@ -3,6 +3,9 @@ News
 Request: This project has been stuck on 10 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+# Update 10.21.2026: 5 NuGet projects were updated, including Microsoft.Cryptography.Security.xml that
+caused a security warning. 
+
 # Update 11.18.2025: New Sample Project & Video
 
 I threw together a project over the weekend that creates images like the Jeopardy questions on blue screens.
