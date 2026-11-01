@@ -28,6 +28,9 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+11.1.2026: I added a Tag property (object) to the ImageButton. This is used to attach an object
+such as a Card to an ImageButton. 
+
 10.7.2026: I added a new feature to the ImageComponent to make it animatable.
 
 ## ImageButton Animation

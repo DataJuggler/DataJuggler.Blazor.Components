@@ -53,6 +53,7 @@ namespace DataJuggler.Blazor.Components
         private string buttonContainerStyle;
         private string buttonStyle;
         private string buttonTextStyle;
+        private object tag;
 
         // animation related
         private double animationDuration;
@@ -723,6 +724,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasTag
+            /// <summary>
+            /// This property returns true if this object has a 'Tag'.
+            /// </summary>
+            public bool HasTag
+            {
+                get
+                {
+                    // initial value
+                    bool hasTag = (Tag != null);
+
+                    // return value
+                    return hasTag;
+                }
+            }
+            #endregion
+            
             #region Height
             /// <summary>
             /// This property gets or sets the value for 'Height'.
@@ -981,6 +999,17 @@ namespace DataJuggler.Blazor.Components
                     // return value
                     return slideDistanceStyle;
                 }
+            }
+            #endregion
+            
+            #region Tag
+            /// <summary>
+            /// This property gets or sets the value for 'Tag'.
+            /// </summary>
+            public object Tag
+            {
+                get { return tag; }
+                set { tag = value; }
             }
             #endregion
             
