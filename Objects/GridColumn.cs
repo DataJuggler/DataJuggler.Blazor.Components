@@ -45,6 +45,7 @@ namespace DataJuggler.Blazor.Components.Objects
         private bool isImageButton;
         private bool lastColumn;
         private string name;
+        private Row row;
         private IBlazorComponentParent parent;
         private bool primaryKey;
         private bool readOnly;
@@ -308,6 +309,23 @@ namespace DataJuggler.Blazor.Components.Objects
             }
             #endregion
             
+            #region HasRow
+            /// <summary>
+            /// This property returns true if this object has a 'Row'.
+            /// </summary>
+            public bool HasRow
+            {
+                get
+                {
+                    // initial value
+                    bool hasRow = (Row != null);
+
+                    // return value
+                    return hasRow;
+                }
+            }
+            #endregion
+            
             #region Height
             /// <summary>
             /// This property gets or sets the value for 'Height'.
@@ -455,6 +473,17 @@ namespace DataJuggler.Blazor.Components.Objects
             {
                 get { return readOnly; }
                 set { readOnly = value; }
+            }
+            #endregion
+            
+            #region Row
+            /// <summary>
+            /// This property gets or sets the value for 'Row'.
+            /// </summary>
+            public Row Row
+            {
+                get { return row; }
+                set { row = value; }
             }
             #endregion
             

@@ -81,7 +81,7 @@
 
   <ItemGroup>
     <PackageReference Include="DataJuggler.BlazorStyled" Version="10.0.0" />
-    <PackageReference Include="DataJuggler.NET.Data" Version="10.3.0" />
+    <PackageReference Include="DataJuggler.NET.Data" Version="10.3.1" />
     <PackageReference Include="DataJuggler.UltimateHelper" Version="10.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="10.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.14" />
