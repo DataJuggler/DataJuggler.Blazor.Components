@@ -235,40 +235,6 @@ namespace DataJuggler.Blazor.Components.Internal
             }
             #endregion
             
-            #region GridColumns
-            /// <summary>
-            /// This read only property returns the value of GridColumns from the object ParentGrid.
-            /// </summary>
-            public RenderFragment<Grid> GridColumns
-            {
-
-                get
-                {
-                    // initial value
-                    RenderFragment<Grid> gridColumns = null;
-
-                    // if ParentGrid exists
-                    if (HasParentGrid)
-                    {
-                        // set the return value
-                        gridColumns = ParentGrid.GridColumns;
-                    }
-
-                    // return value
-                    return gridColumns;
-                }
-                set
-                {
-                    // if the value for HasParentGrid is true
-                    if (HasParentGrid)
-                    {
-                        // Set the GridColumns on the Parent
-                        ParentGrid.GridColumns(this.ParentGrid);
-                    }
-                }
-            }
-            #endregion
-            
             #region HasColumns
             /// <summary>
             /// This property returns true if this object has a 'Columns'.
@@ -299,23 +265,6 @@ namespace DataJuggler.Blazor.Components.Internal
 
                     // return value
                     return hasFilterTextBoxes;
-                }
-            }
-            #endregion
-            
-            #region HasGridColumns
-            /// <summary>
-            /// This property returns true if this object has a 'GridColumns'.
-            /// </summary>
-            public bool HasGridColumns
-            {
-                get
-                {
-                    // initial value
-                    bool hasGridColumns = (GridColumns != null);
-
-                    // return value
-                    return hasGridColumns;
                 }
             }
             #endregion

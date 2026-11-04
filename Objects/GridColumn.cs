@@ -91,7 +91,7 @@ namespace DataJuggler.Blazor.Components.Objects
             public void Init()
             {
                 // Create defaults
-                Id = new Guid();
+                Id = Guid.NewGuid();
                 Unit = "px";
 
                 // Editors need to be in front

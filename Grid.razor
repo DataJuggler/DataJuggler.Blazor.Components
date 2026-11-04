@@ -3,13 +3,13 @@
 @using DataJuggler.Blazor.Components.Internal
 @using DataJuggler.Blazor.Components.Objects
 
-<Styled @bind-Classname=@ContainerStyle>    
+<Styled @bind-Classname=@ContainerStyle>
     visibility: @Visibility;
     position: @Position;
     left: @LeftStyle;
-    top: @TopStyle;    
+    top: @TopStyle;
 </Styled>
-<Styled @bind-Classname=@GridStyle>    
+<Styled @bind-Classname=@GridStyle>
     background-color: @GridBackColor.Name;
     height: @HeightStyle;
     line-height: 2vh;
@@ -28,7 +28,7 @@
     overflow-y: @OverflowY;
     overflow-x: @OverflowX;
 </Styled>
-<Styled @bind-Classname=@GridBorderStyle>    
+<Styled @bind-Classname=@GridBorderStyle>
     border-width: @BorderWidthStyle;
     border-color: @BorderColor.Name;
     border-style: @BorderStyle;
@@ -39,11 +39,11 @@
     clear: both;
     width: 100%;
 </Styled>
-<Styled @bind-Classname=@ColumnHeaderStyle>    
+<Styled @bind-Classname=@ColumnHeaderStyle>
     background-color: @ColumnHeaderColor.Name;
     clear: both;
     height: @ColumnHeaderHeightStyle;
-    width: 100%;    
+    width: 100%;
 </Styled>
 <Styled @bind-Classname=@RowContent>
     position: @Position;
@@ -51,26 +51,36 @@
 </Styled>
 
 <style>
-    .@(GridStyle)::-webkit-scrollbar {
+    . @(GridStyle) ::-webkit-scrollbar
+    {
         width: var(--scrollbar-width, 10px);
     }
 
-    .@(GridStyle)::-webkit-scrollbar-track {
+    . @(GridStyle) ::-webkit-scrollbar-track
+    {
         background: var(--scrollbar-track, LightGray);
         border: 1px solid var(--scrollbar-track-border);
     }
 
-    .@(GridStyle)::-webkit-scrollbar-thumb {
+    . @(GridStyle) ::-webkit-scrollbar-thumb
+    {
         background-color: var(--scrollbar-thumb, DarkGray);
         border-radius: var(--scrollbar-radius, 6px);
     }
 
-    .@(GridStyle)::-webkit-scrollbar-thumb:hover {
+    . @(GridStyle) ::-webkit-scrollbar-thumb:hover
+    {
         background-color: var(--scrollbar-thumb-hover, DimGray);
-    }    
+    }
 </style>
 
-<div class="@ContainerStyle">    
+@* Render the GridColumn definitions so they register with this Grid. GridColumn renders no markup. *@
+@if (HasGridColumns)
+{
+    @GridColumns(this)
+}
+
+<div class="@ContainerStyle">
     <div class="@GridStyle @GridBorderStyle @ClassName">
         @if (StickyHeader)
         {
@@ -84,7 +94,7 @@
             {
                 <GridHeaderComponent Parent="this"></GridHeaderComponent>
             }
-        }        
+        }
         <div class="@GridStyle @RowContent @ScrollStyle">
             @if (!StickyHeader)
             {
@@ -102,58 +112,58 @@
             @if (HasRows)
             {
                 <table class="tablelayoutfixed bordercollapse">
-                <tbody>
-                    @foreach (Row row in Rows)
-                    {
-                        // if the row has columns
-                        if (row.HasColumns)
+                    <tbody>
+                        @foreach (Row row in Rows)
                         {
-                            <tr class="@row.ClassName">
-                                @foreach (GridColumn column in row.Columns)
-                                {
-                                    if (column.IsImageButton)
+                            // if the row has columns
+                            if (row.HasColumns)
+                            {
+                                <tr class="@row.ClassName">
+                                    @foreach (GridColumn column in row.Columns)
                                     {
-                                        <td>
-                                            <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl"
-                                                Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.Name"
-                                                Text="@column.Text" Visible=true Parent="this"></ImageButton>
-                                        </td>
+                                        if (column.IsImageButton)
+                                        {
+                                            <td>
+                                                <ImageButton ClickHandler=@ButtonClickHandler Unit="@column.Unit" ImageUrl="@column.ButtonUrl"
+                                                             Width="@column.Width" Height="@column.Height" ButtonNumber=@column.ButtonNumber Name="@column.Name"
+                                                             Text="@column.Text" Visible=true Parent="this"></ImageButton>
+                                            </td>
+                                        }
+                                        else if (column.IsImage)
+                                        {
+                                            <td>
+                                                <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl"
+                                                                Width="@column.Width" Height="@column.Height" Name="@column.Name"
+                                                                Text="@column.Text" Visible=true Parent="this"></ImageComponent>
+                                            </td>
+                                        }
+                                        else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
+                                        {
+                                            <td class="displayinline @column.ClassName">
+                                                <TextBoxComponent Name="@column.Name" Unit="@column.Unit" Width=column.Width
+                                                                  Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
+                                                                  SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
+                                                                  Text="@column.EditorText" Parent=this></TextBoxComponent>
+                                            </td>
+                                        }
+                                        else if (EnableClick)
+                                        {
+                                            <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.Text</td>
+                                        }
+                                        else if (EnableDoubleClick)
+                                        {
+                                            <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.Text</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="@column.ClassName">@column.Text</td>
+                                        }
                                     }
-                                    else if (column.IsImage)
-                                    {
-                                        <td>
-                                            <ImageComponent Unit="@column.Unit" ImageUrl="@column.ImageUrl"
-                                                Width="@column.Width" Height="@column.Height" Name="@column.Name"
-                                                Text="@column.Text" Visible=true Parent="this"></ImageComponent>
-                                        </td>
-                                    }
-                                    else if ((row.EditMode) && (!column.ReadOnly) && (column.EditMode))
-                                    {
-                                        <td class="displayinline @column.ClassName">
-                                            <TextBoxComponent Name=column.ColumnName Unit="@column.Unit" Width=column.Width
-                                                Height=column.Height RowId=row.Id ColumnId=column.Id ZIndex="@column.ZIndex"
-                                                SetFocusOnFirstRender=column.SetFocusOnFirstRender ClassName="@column.EditorClassName"
-                                                Text="@column.EditorText" Parent=this></TextBoxComponent>
-                                        </td>
-                                    }
-                                    else if (EnableClick)
-                                    {
-                                        <td class="@column.ClassName" @onclick="() => OnClick(row, column.ColumnNumber)">@column.Text</td>
-                                    }
-                                    else if (EnableDoubleClick)
-                                    {
-                                        <td class="@column.ClassName" @ondblclick="() => OnDoubleClick(row, column.ColumnNumber)">@column.Text</td>
-                                    }
-                                    else
-                                    {
-                                        <td class="@column.ClassName">@column.Text</td>
-                                    }
-                                }
-                            </tr>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
             }
         </div>
     </div>

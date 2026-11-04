@@ -3,10 +3,6 @@
 @using DataJuggler.Blazor.Components.Objects
 
 <table class="tablelayoutfixed">
-    @if (GridColumns != null)
-    {
-        @GridColumns(this.ParentGrid)
-    }
     @if (HasColumns)
     {
         <colgroup>
@@ -30,11 +26,11 @@
                     {
                         <span class="@ColumnHeaderTextClassName">
                             @column.Caption
-                        </span><br />                        
+                        </span><br />
                         <TextBoxComponent Name="@column.Name" Caption="" Parent="this"
-                            Height="24" Column1Width="0" Column2Width="@column.Width"
-                            Display="inline" ClassName="displayinline" Width="@column.Width"
-                            TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
+                                Height="24" Column1Width="0" Column2Width="@column.Width"
+                                Display="inline" ClassName="displayinline" Width="@column.Width"
+                                TextBoxWidth="@column.Width" TextBoxBackColor="@Color.LightSteelBlue">
                         </TextBoxComponent>
                     }
                     else
@@ -44,7 +40,7 @@
                         </span>
                     }
                 </th>
-            }            
+            }
         </tr>
-    </thead>    
+    </thead>
 </table>        

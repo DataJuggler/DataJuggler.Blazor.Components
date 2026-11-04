@@ -432,6 +432,12 @@ namespace DataJuggler.Blazor.Components
                             {
                                 // Create the HeaderColumns from the GridColumns
                                 this.Columns = GridColumnDefs;
+
+                                // The columns are built, so this only happens once
+                                ColumnsBuilt = true;
+
+                                // Render again so the column headers display
+                                Refresh();
                             }
                         }
                     }
@@ -885,9 +891,9 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
-            #region HasGridColumns
+            #region HasGridColumnDefs
             /// <summary>
-            /// This property returns true if this object has a 'GridColumns'.
+            /// This property returns true if this object has one or more 'GridColumnDefs'.
             /// </summary>
             public bool HasGridColumnDefs
             {
@@ -902,6 +908,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region HasGridColumns
+            /// <summary>
+            /// This property returns true if this object has a 'GridColumns' RenderFragment.
+            /// </summary>
+            public bool HasGridColumns
+            {
+                get
+                {
+                    // initial value
+                    bool hasGridColumns = (NullHelper.Exists(GridColumns));
+
+                    // return value
+                    return hasGridColumns;
+                }
+            }
+            #endregion
+
             #region HasHeaderText
             /// <summary>
             /// This property returns true if the 'HeaderText' exists.
