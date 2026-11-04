@@ -28,6 +28,20 @@ https://github.com/DataJuggler/NotJeopardy
 
 # Updates
 
+Update 10.3.10
+
+11.4.2026: The Grid no longer uses DataJuggler.Excelerate. Columns are now defined
+in markup with GridColumn inside a GridColumns tag, and the column headers are
+built from those definitions. Set Parent="@context" on each GridColumn and set
+LastColumn="true" on the final column.
+
+Rows are created in code with GridColumn objects for the cells. Use Name and Text
+in place of the old ColumnName and ColumnText.
+
+Fixed: the GridColumns defined in markup never registered with the Grid, so the
+column headers did not display without building them in code.
+Fixed: each GridColumn now gets a unique Id.
+
 11.1.2026: I added a Tag property (object) to the ImageButton. This is used to attach an object
 such as a Card to an ImageButton. 
 
