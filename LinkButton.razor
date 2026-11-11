@@ -18,12 +18,14 @@
     display: inline-block;
     outline: none;
     border: none;
-    background-repeat: no-repeat;
-    background-color: transparent;
+    background: none;
     width: @WidthStyle;
     height: @HeightStyle;
     white-space: nowrap;
     color: @TextColorName;
+    font-size: @FontSizeStyle;
+    cursor: pointer;
+    text-decoration: none;
     vertical-align: central;
     margin: 0px;
     padding: 0px;
@@ -34,31 +36,7 @@
     font-size: @FontSizeStyle;
 </Styled>
 
-<style>
-    .linkbutton {
-        background: none !important;
-        border: none;
-        padding: 0 !important;        
-        color: @TextColor;
-        text-decoration: none;
-        cursor: pointer;
-        height: @HeightStyle;        
-        font-size: @FontSizeStyle;        
-        outline: none;        
-    }
-
-        .linkbutton:visited {
-            color: @TextColor;
-            text-decoration: none;
-            outline: none;
-        }
-
-        .linkbutton:focus {
-            outline: none;
-        }
-</style>
-
-<div class="@ButtonContainerStyle">
+<div class="@ButtonContainerStyle @ClassName">
     <button class="linkbutton @ButtonStyle" @onclick="ButtonClicked" title="@Title">
         <span class="@ButtonTextStyle">@Text</span>
     </button>

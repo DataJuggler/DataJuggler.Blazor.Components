@@ -3,6 +3,7 @@
 #region using statements
 
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Drawing;
@@ -614,13 +615,17 @@ namespace DataJuggler.Blazor.Components
 
             #region TextColorName
             /// <summary>
-            /// This read only property returns the name from the 'TextColor'.
+            /// This read only property returns the CSS color value for the 'TextColor'.
             /// </summary>            
             public string TextColorName
             {
                 get 
                 {
-                    return textColor.Name;
+                    // initial value
+                    string textColorName = ColorHelper.GetCssColor(TextColor);
+
+                    // return value
+                    return textColorName;
                 }
             }
             #endregion

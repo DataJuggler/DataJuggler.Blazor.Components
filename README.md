@@ -3,7 +3,14 @@ News
 Request: This project has been stuck on 10 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
-# Update 11.11.2026: This project has been updated to .NET 11. Some NuGet packages were updated also. 
+# Update 11.11.2026: This project has been updated to .NET 11. 
+
+Some NuGet packages were updated also.
+Also LinkButton had some changes: ClassName is now applied to the button's container, TextColor
+now supports any color (named colors output the name, custom colors such as Color.FromArgb(51, 122, 183)
+output rgb() or rgba()), and all styles are now isolated per instance through BlazorStyled, so multiple
+LinkButtons on the same page no longer share a color or font size. A new ColorHelper.GetCssColor
+method was added in the Util folder. The default favicon.ico was removed from wwwroot.
 
 # Update 10.21.2026: 5 NuGet projects were updated, including Microsoft.Cryptography.Security.xml that
 caused a security warning. 
