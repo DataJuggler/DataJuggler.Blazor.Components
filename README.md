@@ -3,6 +3,8 @@ News
 Request: This project has been stuck on 10 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+# Update 11.11.2026: This project has been updated to .NET 11. Some NuGet packages were updated also. 
+
 # Update 10.21.2026: 5 NuGet projects were updated, including Microsoft.Cryptography.Security.xml that
 caused a security warning. 
 
