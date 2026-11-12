@@ -6,6 +6,7 @@ using System;
 using Microsoft.AspNetCore.Components;
 using System.Timers;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using DataJuggler.Blazor.Components.Enumerations;
 using System.Text;
 using System.Drawing;
@@ -56,7 +57,6 @@ namespace DataJuggler.Blazor.Components
         private int closeAtExtraPercent;
         private bool clientHandledIncrement;
         private Color textColor;
-        private string textColorStyle;
         private SizeEnum size;
         private ColorEnum color;
         private ThemeEnum theme;
@@ -834,12 +834,18 @@ namespace DataJuggler.Blazor.Components
             
             #region TextColorStyle
             /// <summary>
-            /// This property gets or sets the value for 'TextColorStyle'.
+            /// This read only property returns the CSS color value for the 'TextColor'.
             /// </summary>
             public string TextColorStyle
             {
-                get { return textColorStyle; }
-                set { textColorStyle = value; }
+                get
+                {
+                    // initial value
+                    string textColorStyle = ColorHelper.GetCssColor(TextColor);
+
+                    // return value
+                    return textColorStyle;
+                }
             }
             #endregion
             

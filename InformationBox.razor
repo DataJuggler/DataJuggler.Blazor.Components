@@ -4,14 +4,14 @@
 @using DataJuggler.Blazor.Components.Enumerations
 
 <Styled @bind-Classname=@InfoBoxStyle>
-    background-color: @BackgroundColor.Name;
+    background-color: @BackgroundColorStyle;
     display: @Display;
     position: @Position;
     left: @LeftStyle;
     height: @HeightStyle;
     top: @TopStyle;
     Width: @WidthStyle;
-    border-color: @BorderColor.Name;
+    border-color: @BorderColorStyle;
     border-width: 1px;
     border-style: solid;
     border-radius: @BorderRadiusStyle;
@@ -24,11 +24,11 @@
     text-align: center;
     border-bottom-width: 1px;
     border-bottom-style: solid;
-    border-bottom-color: @BorderColor.Name;
+    border-bottom-color: @BorderColorStyle;
     height: @HeaderHeightStyle;
     background-size: 100% 100%;
     background-image: url('@HeaderImageUrl');
-    color: @TitleTextColor.Name;    
+    color: @TitleTextColorStyle;    
 </Styled>
 <Styled @bind-Classname=@Column1Style>
     position: @ListItemPosition;

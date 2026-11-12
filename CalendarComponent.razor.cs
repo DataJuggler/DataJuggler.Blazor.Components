@@ -1608,6 +1608,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region DayButtonBackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'DayButtonBackgroundColor'.
+            /// </summary>
+            public string DayButtonBackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string dayButtonBackgroundColorStyle = ColorHelper.GetCssColor(DayButtonBackgroundColor);
+
+                    // return value
+                    return dayButtonBackgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region DayButtonContainerLeft
             /// <summary>
             /// This property gets or sets the value for 'DayButtonContainerLeft'.
@@ -1764,7 +1781,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string dayRowColorName = DayRowColor.Name;
+                    string dayRowColorName = ColorHelper.GetCssColor(DayRowColor);
                     
                     // return value
                     return dayRowColorName;
@@ -1870,7 +1887,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string dayRowTextColorName = DayRowTextColor.Name;
+                    string dayRowTextColorName = ColorHelper.GetCssColor(DayRowTextColor);
                     
                     // return value
                     return dayRowTextColorName;
@@ -2623,7 +2640,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string selectedColorName = SelectedColor.Name;
+                    string selectedColorName = ColorHelper.GetCssColor(SelectedColor);
                     
                     // return value
                     return selectedColorName;
@@ -2939,7 +2956,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string yearButtonTextColorName = YearButtonTextColor.Name;
+                    string yearButtonTextColorName = ColorHelper.GetCssColor(YearButtonTextColor);
                     
                     // return value
                     return yearButtonTextColorName;
@@ -2969,7 +2986,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string yearButtonTextColorSelectedName = YearButtonTextColorSelected.Name;
+                    string yearButtonTextColorSelectedName = ColorHelper.GetCssColor(YearButtonTextColorSelected);
                     
                     // return value
                     return yearButtonTextColorSelectedName;

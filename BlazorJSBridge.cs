@@ -1,6 +1,8 @@
 #region using statements
 
+using DataJuggler.UltimateHelper;
 using Microsoft.JSInterop;
+using System;
 using System.Threading.Tasks;
 
 #endregion
@@ -10,7 +12,8 @@ namespace DataJuggler.Blazor.Components
 
     #region class BlazorJSBridge
     /// <summary>
-    /// This class [Enter Class Description]
+    /// This class is used to call the JavaScript functions in BlazorJSInterop.js.
+    /// Each call is wrapped in a try / catch so a disconnected circuit or missing function does not crash the component.
     /// </summary>
     public static class BlazorJSBridge
     {  
@@ -23,87 +26,186 @@ namespace DataJuggler.Blazor.Components
             /// </summary>
             public static async Task<int> CopyToClipboard(IJSRuntime jsRuntime, string textToCopy)
             {
-                return await jsRuntime.InvokeAsync<int>("BlazorJSFunctions.CopyText", textToCopy);
+                // initial value
+                int result = 0;
+
+                try
+                {
+                    // Copy the text to the clipboard
+                    result = await jsRuntime.InvokeAsync<int>("BlazorJSFunctions.CopyText", textToCopy);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("CopyToClipboard", "BlazorJSBridge", error);
+                }
+
+                // return value
+                return result;
             }
             #endregion
-                        
+            
             #region DeleteCookie(IJSRuntime jsRuntime, string key)
             /// <summary>
             /// method Delete Cookie
             /// </summary>
-            public static ValueTask DeleteCookie(IJSRuntime jsRuntime, string key)
+            public static async ValueTask DeleteCookie(IJSRuntime jsRuntime, string key)
             {
-                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.DeleteCookie", key);
+                try
+                {
+                    // Delete the cookie
+                    await jsRuntime.InvokeVoidAsync("BlazorJSFunctions.DeleteCookie", key);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("DeleteCookie", "BlazorJSBridge", error);
+                }
             }
             #endregion
-                        
+            
             #region GetCookie(IJSRuntime jsRuntime, string key)
             /// <summary>
             /// method Get Cookie
             /// </summary>
-            public static ValueTask<string> GetCookie(IJSRuntime jsRuntime, string key)
+            public static async ValueTask<string> GetCookie(IJSRuntime jsRuntime, string key)
             {
-                return jsRuntime.InvokeAsync<string>("BlazorJSFunctions.GetCookie", key);
+                // initial value
+                string result = "";
+
+                try
+                {
+                    // Get the cookie
+                    result = await jsRuntime.InvokeAsync<string>("BlazorJSFunctions.GetCookie", key);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("GetCookie", "BlazorJSBridge", error);
+                }
+
+                // return value
+                return result;
             }
             #endregion
-                        
+            
             #region HideElement(IJSRuntime jsRuntime, string elementId)
             /// <summary>
             /// method Hide Element
             /// </summary>
-            public static ValueTask HideElement(IJSRuntime jsRuntime, string elementId)
+            public static async ValueTask HideElement(IJSRuntime jsRuntime, string elementId)
             {
-                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.HideElement", elementId);
+                try
+                {
+                    // Hide the element
+                    await jsRuntime.InvokeVoidAsync("BlazorJSFunctions.HideElement", elementId);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("HideElement", "BlazorJSBridge", error);
+                }
             }
             #endregion
-                        
+            
             #region Prompt(IJSRuntime jsRuntime, string message)
             /// <summary>
             /// method Prompt
             /// </summary>
-            public static ValueTask<string> Prompt(IJSRuntime jsRuntime, string message)
+            public static async ValueTask<string> Prompt(IJSRuntime jsRuntime, string message)
             {
-                return jsRuntime.InvokeAsync<string>("BlazorJSFunctions.ShowPrompt", message);
+                // initial value
+                string result = "";
+
+                try
+                {
+                    // Show the prompt
+                    result = await jsRuntime.InvokeAsync<string>("BlazorJSFunctions.ShowPrompt", message);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("Prompt", "BlazorJSBridge", error);
+                }
+
+                // return value
+                return result;
             }
             #endregion
-                        
+            
             #region SetCookie(IJSRuntime jsRuntime, string key, string value, int expireDays = 30)
             /// <summary>
             /// method Set Cookie
             /// </summary>
-            public static ValueTask SetCookie(IJSRuntime jsRuntime, string key, string value, int expireDays = 30)
+            public static async ValueTask SetCookie(IJSRuntime jsRuntime, string key, string value, int expireDays = 30)
             {
-                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.SetCookie", key, value, expireDays);
+                try
+                {
+                    // Set the cookie
+                    await jsRuntime.InvokeVoidAsync("BlazorJSFunctions.SetCookie", key, value, expireDays);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("SetCookie", "BlazorJSBridge", error);
+                }
             }
             #endregion
-                        
+            
             #region ShowElement(IJSRuntime jsRuntime, string elementId)
             /// <summary>
             /// method Show Element
             /// </summary>
-            public static ValueTask ShowElement(IJSRuntime jsRuntime, string elementId)
+            public static async ValueTask ShowElement(IJSRuntime jsRuntime, string elementId)
             {
-                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.ShowElement", elementId);
+                try
+                {
+                    // Show the element
+                    await jsRuntime.InvokeVoidAsync("BlazorJSFunctions.ShowElement", elementId);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("ShowElement", "BlazorJSBridge", error);
+                }
             }
             #endregion
-                        
+            
             #region ShowThenHide(IJSRuntime jsRuntime, string elementId, int duration)
             /// <summary>
             /// method Show Then Hide
             /// </summary>
-            public static ValueTask ShowThenHide(IJSRuntime jsRuntime, string elementId, int duration)
+            public static async ValueTask ShowThenHide(IJSRuntime jsRuntime, string elementId, int duration)
             {
-                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.ShowThenHide", elementId, duration);
+                try
+                {
+                    // Show the element, then hide it
+                    await jsRuntime.InvokeVoidAsync("BlazorJSFunctions.ShowThenHide", elementId, duration);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("ShowThenHide", "BlazorJSBridge", error);
+                }
             }
             #endregion
-
+            
             #region DownloadFile(IJSRuntime jsRuntime, string url)
             /// <summary>
             /// method Download File
             /// </summary>
-            public static ValueTask DownloadFile(IJSRuntime jsRuntime, string url)
+            public static async ValueTask DownloadFile(IJSRuntime jsRuntime, string url)
             {
-                return jsRuntime.InvokeVoidAsync("BlazorJSFunctions.DownloadFile", url);
+                try
+                {
+                    // Download the file
+                    await jsRuntime.InvokeVoidAsync("BlazorJSFunctions.DownloadFile", url);
+                }
+                catch (Exception error)
+                {
+                    // for debugging only
+                    DebugHelper.WriteDebugError("DownloadFile", "BlazorJSBridge", error);
+                }
             }
             #endregion
             

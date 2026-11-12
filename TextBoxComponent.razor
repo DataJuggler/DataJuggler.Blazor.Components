@@ -21,20 +21,20 @@
     display: inline-block;
     width: @ImageWidthStyle;
     height: 100%;
-    background-color: @ImageBackColor;
+    background-color: @ImageBackColorStyle;
     width: @Column3WidthStyle;
 </Styled>
 <Styled @bind-Classname=@TextBoxStyle>
-    background-color: @TextBoxBackColor;
+    background-color: @TextBoxBackColorStyle;
     height: @HeightStyle;    
     font-size: @TextBoxFontSizeStyle;
     font-family: @TextBoxFontName;
     width: @TextBoxWidthStyle;
     overflow: hidden;
     z-index: @ZIndex;
-    color: @TextBoxTextColor;
+    color: @TextBoxTextColorStyle;
     border-width: @BorderWidthStyle;
-    border-color: @BorderColor;
+    border-color: @BorderColorStyle;
 </Styled>
 <Styled @bind-Classname=@ImageStyle>
     background-image: url('@ImageUrl');
@@ -47,8 +47,8 @@
     height: 100%;
 </Styled>
 <Styled @bind-Classname=@LabelStyle>
-    background-color: @LabelBackgroundColor;
-    color: @LabelColor.Name;
+    background-color: @LabelBackgroundColorStyle;
+    color: @LabelColorStyle;
     font-size: @LabelFontSizeStyle;
     font-family: @LabelFontName;
     text-align: @LabelTextAlign;
@@ -62,7 +62,7 @@
     left: @LeftStyle;
     top: @TopStyle;
     height: @HeightStyle;
-    background-color: @BackgroundColor;
+    background-color: @BackgroundColorStyle;
     z-index: @ZIndex;
     visibility: @Visibility;
 </Styled>

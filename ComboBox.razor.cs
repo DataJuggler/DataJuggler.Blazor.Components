@@ -2134,7 +2134,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string labelColorName = LabelColor.Name;
+                    string labelColorName = ColorHelper.GetCssColor(LabelColor);
                         
                     // return value
                     return labelColorName;
@@ -2433,7 +2433,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string listBackgroundColorName = ListBackgroundColor.Name;
+                    string listBackgroundColorName = ColorHelper.GetCssColor(ListBackgroundColor);
                         
                     // return value
                     return listBackgroundColorName;
@@ -2746,7 +2746,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string listItemTextColorName = ListItemTextColor.Name;
+                    string listItemTextColorName = ColorHelper.GetCssColor(ListItemTextColor);
                         
                     // return value
                     return listItemTextColorName;

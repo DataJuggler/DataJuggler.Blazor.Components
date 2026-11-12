@@ -74,6 +74,20 @@ namespace DataJuggler.Blazor.Components.Objects
 
         #region Methods
 
+            #region BeginEdit()
+            /// <summary>
+            /// This method puts this column into EditMode and sets focus to the editor on the first render.
+            /// </summary>
+            public void BeginEdit()
+            {
+                // Set focus to the editor on the first render
+                setFocusOnFirstRender = true;
+
+                // Turn on EditMode
+                editMode = true;
+            }
+            #endregion
+            
             #region BuildRenderTree(RenderTreeBuilder builder)
             /// <summary>
             /// method returns the Render Tree

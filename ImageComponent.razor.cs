@@ -3,6 +3,7 @@
 #region using statements
 
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using System.Drawing;
@@ -80,7 +81,7 @@ namespace DataJuggler.Blazor.Components
                 Position = "relative";
                 TextAlign = "center"; 
                 BackgroundColor = Color.Transparent;
-                TextColor = Color.Black;                
+                TextColor = Color.Empty;
                 Top = 0;
                 Visible = true;
                 Width = 64;
@@ -173,6 +174,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BackgroundColor'.
+            /// </summary>
+            public string BackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string backgroundColorStyle = ColorHelper.GetCssColor(BackgroundColor);
+
+                    // return value
+                    return backgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region BorderColor
             /// <summary>
             /// This property gets or sets the value for 'BorderColor'.
@@ -182,6 +200,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return borderColor; }
                 set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BorderColor'.
+            /// </summary>
+            public string BorderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string borderColorStyle = ColorHelper.GetCssColor(BorderColor);
+
+                    // return value
+                    return borderColorStyle;
+                }
             }
             #endregion
             
@@ -202,7 +237,7 @@ namespace DataJuggler.Blazor.Components
                     if (BorderWidth > 0)
                     {
                         // Set the return value
-                        borderStyle = BorderWidthStyle + " solid " + BorderColor.Name;
+                        borderStyle = BorderWidthStyle + " solid " + ColorHelper.GetCssColor(BorderColor);
                     }
 
                     // return value
@@ -434,7 +469,7 @@ namespace DataJuggler.Blazor.Components
                     if (BorderWidth > 0)
                     {
                         // set the return value
-                        outlineStyle = BorderWidth + Unit + " solid " + BorderColor.Name;
+                        outlineStyle = BorderWidth + Unit + " solid " + ColorHelper.GetCssColor(BorderColor);
                     }
 
                     // return value
@@ -531,6 +566,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textColor; }
                 set { textColor = value; }
+            }
+            #endregion
+            
+            #region TextColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'TextColor'.
+            /// </summary>
+            public string TextColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string textColorStyle = ColorHelper.GetCssColor(TextColor);
+
+                    // return value
+                    return textColorStyle;
+                }
             }
             #endregion
             

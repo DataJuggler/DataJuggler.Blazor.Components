@@ -4,6 +4,7 @@
 
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -267,7 +268,7 @@ namespace DataJuggler.Blazor.Components
                 // Default Values
                 AllowWrapping = false;
                 AutoComplete = false;
-                BackgroundColor = Color.White;
+                BackgroundColor = Color.Transparent;
                 BorderColor = Color.Gray;
                 BorderWidth = 1;
                 Caption = "";
@@ -288,7 +289,7 @@ namespace DataJuggler.Blazor.Components
                 InputType = "text";
                 InvalidLabelColor = Color.Tomato;
                 IsUnique = true;
-                LabelBackgroundColor = Color.White;
+                LabelBackgroundColor = Color.Transparent;
                 LabelClassName = GlobalDefaults.LabelClassName;
                 LabelColor = Color.Black;
                 LabelFontName = GlobalDefaults.LabelFontName;
@@ -781,6 +782,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BackgroundColor'.
+            /// </summary>
+            public string BackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string backgroundColorStyle = ColorHelper.GetCssColor(BackgroundColor);
+
+                    // return value
+                    return backgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region BorderColor
             /// <summary>
             /// This property gets or sets the value for 'BorderColor'.
@@ -790,6 +808,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return borderColor; }
                 set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BorderColor'.
+            /// </summary>
+            public string BorderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string borderColorStyle = ColorHelper.GetCssColor(BorderColor);
+
+                    // return value
+                    return borderColorStyle;
+                }
             }
             #endregion
             
@@ -1335,6 +1370,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ImageBackColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ImageBackColor'.
+            /// </summary>
+            public string ImageBackColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string imageBackColorStyle = ColorHelper.GetCssColor(ImageBackColor);
+
+                    // return value
+                    return imageBackColorStyle;
+                }
+            }
+            #endregion
+            
             #region ImageClassName
             /// <summary>
             /// This property gets or sets the value for 'ImageClassName'.
@@ -1556,6 +1608,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelBackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'LabelBackgroundColor'.
+            /// </summary>
+            public string LabelBackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string labelBackgroundColorStyle = ColorHelper.GetCssColor(LabelBackgroundColor);
+
+                    // return value
+                    return labelBackgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region LabelClassName
             /// <summary>
             /// This property gets or sets the value for 'LabelClassName'.
@@ -1577,6 +1646,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelColor; }
                 set { labelColor = value; }
+            }
+            #endregion
+            
+            #region LabelColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'LabelColor'.
+            /// </summary>
+            public string LabelColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string labelColorStyle = ColorHelper.GetCssColor(LabelColor);
+
+                    // return value
+                    return labelColorStyle;
+                }
             }
             #endregion
             
@@ -2206,6 +2292,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region TextBoxBackColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'TextBoxBackColor'.
+            /// </summary>
+            public string TextBoxBackColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string textBoxBackColorStyle = ColorHelper.GetCssColor(TextBoxBackColor);
+
+                    // return value
+                    return textBoxBackColorStyle;
+                }
+            }
+            #endregion
+            
             #region TextBoxClassName
             /// <summary>
             /// This property gets or sets the value for 'TextBoxClassName'.
@@ -2321,6 +2424,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return textBoxTextColor; }
                 set { textBoxTextColor = value; }
+            }
+            #endregion
+            
+            #region TextBoxTextColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'TextBoxTextColor'.
+            /// </summary>
+            public string TextBoxTextColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string textBoxTextColorStyle = ColorHelper.GetCssColor(TextBoxTextColor);
+
+                    // return value
+                    return textBoxTextColorStyle;
+                }
             }
             #endregion
             

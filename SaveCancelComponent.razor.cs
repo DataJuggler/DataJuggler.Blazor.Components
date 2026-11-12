@@ -3,6 +3,7 @@
 #region using statements
 
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using Microsoft.AspNetCore.Components;
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Delegates;
@@ -349,6 +350,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BackgroundColor'.
+            /// </summary>
+            public string BackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string backgroundColorStyle = ColorHelper.GetCssColor(BackgroundColor);
+
+                    // return value
+                    return backgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region BackgroundImageUrl
             /// <summary>
             /// This property gets or sets the value for 'BackgroundImageUrl'.
@@ -370,6 +388,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return borderColor; }
                 set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BorderColor'.
+            /// </summary>
+            public string BorderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string borderColorStyle = ColorHelper.GetCssColor(BorderColor);
+
+                    // return value
+                    return borderColorStyle;
+                }
             }
             #endregion
             

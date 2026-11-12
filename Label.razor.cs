@@ -3,6 +3,7 @@
 #region using statements
 
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -397,6 +398,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region BackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BackgroundColor'.
+            /// </summary>
+            public string BackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string backgroundColorStyle = ColorHelper.GetCssColor(BackgroundColor);
+
+                    // return value
+                    return backgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region BottomMarginStyle
             /// <summary>
             /// This property gets or sets the value for 'BottomMarginStyle'.
@@ -1062,6 +1080,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region TextColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'TextColor'.
+            /// </summary>
+            public string TextColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string textColorStyle = ColorHelper.GetCssColor(TextColor);
+
+                    // return value
+                    return textColorStyle;
+                }
+            }
+            #endregion
+            
             #region TextStyle
             /// <summary>
             /// This property gets or sets the value for 'TextStyle'.

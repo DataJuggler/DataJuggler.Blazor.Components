@@ -217,11 +217,8 @@ namespace DataJuggler.Blazor.Components
                         // If the column object exists
                         if (NullHelper.Exists(column))
                         {
-                            // Set the column to focus
-                            column.SetFocusOnFirstRender = true;
-
-                            // Set the column to EditMode
-                            column.EditMode = true;
+                            // Set the column to EditMode and set focus to the editor
+                            column.BeginEdit();
                         }
 
                         // Set the row into EditMode so the edit control is displayed.
@@ -475,6 +472,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BorderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BorderColor'.
+            /// </summary>
+            public string BorderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string borderColorStyle = ColorHelper.GetCssColor(BorderColor);
+
+                    // return value
+                    return borderColorStyle;
+                }
+            }
+            #endregion
+            
             #region BorderStyle
             /// <summary>
             /// This property gets or sets the value for 'BorderStyle'.
@@ -571,6 +585,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return columnHeaderColor; }
                 set { columnHeaderColor = value; }
+            }
+            #endregion
+            
+            #region ColumnHeaderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ColumnHeaderColor'.
+            /// </summary>
+            public string ColumnHeaderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string columnHeaderColorStyle = ColorHelper.GetCssColor(ColumnHeaderColor);
+
+                    // return value
+                    return columnHeaderColorStyle;
+                }
             }
             #endregion
             
@@ -791,6 +822,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return gridBackColor; }
                 set { gridBackColor = value; }
+            }
+            #endregion
+            
+            #region GridBackColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'GridBackColor'.
+            /// </summary>
+            public string GridBackColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string gridBackColorStyle = ColorHelper.GetCssColor(GridBackColor);
+
+                    // return value
+                    return gridBackColorStyle;
+                }
             }
             #endregion
             
@@ -1031,6 +1079,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return headerColor; }
                 set { headerColor = value; }
+            }
+            #endregion
+            
+            #region HeaderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'HeaderColor'.
+            /// </summary>
+            public string HeaderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string headerColorStyle = ColorHelper.GetCssColor(HeaderColor);
+
+                    // return value
+                    return headerColorStyle;
+                }
             }
             #endregion
             
@@ -1374,6 +1439,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ScrollBarThumbColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ScrollBarThumbColor'.
+            /// </summary>
+            public string ScrollBarThumbColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string scrollBarThumbColorStyle = ColorHelper.GetCssColor(ScrollBarThumbColor);
+
+                    // return value
+                    return scrollBarThumbColorStyle;
+                }
+            }
+            #endregion
+            
             #region ScrollBarThumbHoverColor
             /// <summary>
             /// This property gets or sets the value for 'ScrollBarThumbHoverColor'.
@@ -1383,6 +1465,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return scrollBarThumbHoverColor; }
                 set { scrollBarThumbHoverColor = value; }
+            }
+            #endregion
+            
+            #region ScrollBarThumbHoverColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ScrollBarThumbHoverColor'.
+            /// </summary>
+            public string ScrollBarThumbHoverColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string scrollBarThumbHoverColorStyle = ColorHelper.GetCssColor(ScrollBarThumbHoverColor);
+
+                    // return value
+                    return scrollBarThumbHoverColorStyle;
+                }
             }
             #endregion
             
@@ -1398,6 +1497,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ScrollBarTrackBorderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ScrollBarTrackBorderColor'.
+            /// </summary>
+            public string ScrollBarTrackBorderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string scrollBarTrackBorderColorStyle = ColorHelper.GetCssColor(ScrollBarTrackBorderColor);
+
+                    // return value
+                    return scrollBarTrackBorderColorStyle;
+                }
+            }
+            #endregion
+            
             #region ScrollBarTrackColor
             /// <summary>
             /// This property gets or sets the value for 'ScrollBarTrackColor'.
@@ -1407,6 +1523,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return scrollBarTrackColor; }
                 set { scrollBarTrackColor = value; }
+            }
+            #endregion
+            
+            #region ScrollBarTrackColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ScrollBarTrackColor'.
+            /// </summary>
+            public string ScrollBarTrackColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string scrollBarTrackColorStyle = ColorHelper.GetCssColor(ScrollBarTrackColor);
+
+                    // return value
+                    return scrollBarTrackColorStyle;
+                }
             }
             #endregion
             

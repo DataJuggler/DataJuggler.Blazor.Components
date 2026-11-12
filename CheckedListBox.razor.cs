@@ -761,6 +761,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ListBackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ListBackgroundColor'.
+            /// </summary>
+            public string ListBackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string listBackgroundColorStyle = ColorHelper.GetCssColor(ListBackgroundColor);
+
+                    // return value
+                    return listBackgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region ListItemBackgroundColor
             /// <summary>
             /// This property gets or sets the value for 'ListItemBackgroundColor'.
@@ -773,6 +790,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ListItemBackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'ListItemBackgroundColor'.
+            /// </summary>
+            public string ListItemBackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string listItemBackgroundColorStyle = ColorHelper.GetCssColor(ListItemBackgroundColor);
+
+                    // return value
+                    return listItemBackgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region ListItemBackgroundColorName
             /// <summary>
             /// This read only property returns the value of listItemBackgroundColor from the object ListBackgroundColor.
@@ -783,7 +817,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string listBackgroundColorName = listItemBackgroundColor.Name;
+                    string listBackgroundColorName = ColorHelper.GetCssColor(listItemBackgroundColor);
                         
                     // return value
                     return listBackgroundColorName;
@@ -938,7 +972,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string listItemTextColorName = ListItemTextColor.Name;
+                    string listItemTextColorName = ColorHelper.GetCssColor(ListItemTextColor);
                         
                     // return value
                     return listItemTextColorName;

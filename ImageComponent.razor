@@ -16,7 +16,7 @@
 <Styled @bind-Classname=@ImageStyle>    
     background-size: 100% 100%;
     background-repeat: no-repeat;
-    background-color: transparent;
+    background-color: @BackgroundColorStyle;
     display: inline-block;
     justify-content: center;
     align-items: center;
@@ -24,7 +24,7 @@
     border: @BorderStyle;
     width: @WidthStyle;
     height: @HeightStyle;
-    border-color: @BorderColor.Name;
+    border-color: @BorderColorStyle;
     white-space: nowrap;
     vertical-align: central;
     margin: 0px;
@@ -37,6 +37,7 @@
     text-align: @TextAlign;
     font-family: @FontName;
     font-size: @FontSizeStyle;
+    color: @TextColorStyle;
 </Styled>
 
 <div class="@ImageContainerStyle @ClassName">

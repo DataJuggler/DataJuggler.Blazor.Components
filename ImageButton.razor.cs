@@ -4,6 +4,7 @@
 
 using DataJuggler.Blazor.Components.Enumerations;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
@@ -516,7 +517,7 @@ namespace DataJuggler.Blazor.Components
                     if (BorderWidth > 0)
                     {
                         // Set the return value
-                        borderStyle = BorderWidthStyle + " solid " + BorderColor.Name;
+                        borderStyle = BorderWidthStyle + " solid " + ColorHelper.GetCssColor(BorderColor);
                     }
 
                     // return value
@@ -929,7 +930,7 @@ namespace DataJuggler.Blazor.Components
                     if (BorderWidth > 0)
                     {
                         // set the return value
-                        outlineStyle = BorderWidth + Unit + " solid " + BorderColor.Name;
+                        outlineStyle = BorderWidth + Unit + " solid " + ColorHelper.GetCssColor(BorderColor);
                     }
 
                     // return value
@@ -1051,13 +1052,17 @@ namespace DataJuggler.Blazor.Components
 
             #region TextColorName
             /// <summary>
-            /// This read only property returns the name from the 'TextColor'.
+            /// This read only property returns the CSS color value for the 'TextColor'.
             /// </summary>            
             public string TextColorName
             {
                 get 
                 {
-                    return textColor.Name;
+                    // initial value
+                    string textColorName = ColorHelper.GetCssColor(TextColor);
+
+                    // return value
+                    return textColorName;
                 }
             }
             #endregion

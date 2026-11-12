@@ -3,6 +3,30 @@ News
 Request: This project has been stuck on 10 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+# Update 11.12.2026: Color support updated across all components.
+
+All color properties now support any color, not just named colors. A new ColorHelper.GetCssColor
+method (in the Util folder) converts a Color to CSS: named colors output the name, custom colors
+such as Color.FromArgb(51, 122, 183) output rgb(), and partially transparent colors output rgba().
+Hex colors can be used with ColorTranslator.FromHtml("#337AB7"). Color.Empty outputs nothing, so the
+inherited color is used.
+
+Each component now has read only ...Style properties (BorderColorStyle, TextColorStyle, etc.) that
+are used in the .razor files in place of .Name.
+
+Fixes:
+- TextBoxComponent: BorderColor, TextBoxBackColor, TextBoxTextColor, BackgroundColor and
+  LabelBackgroundColor were not being applied. They are now. BackgroundColor and
+  LabelBackgroundColor now default to Transparent.
+- ImageComponent: BackgroundColor and TextColor are now applied. TextColor defaults to Empty.
+- Grid: Fixed the scrollbar style selectors so the scrollbar colors are applied.
+
+Breaking change:
+- ToggleComponent: LabelBackgroundColor is now a Color instead of a string.
+  Change LabelBackgroundColor="White" to LabelBackgroundColor="Color.White".
+
+- BlazorJSBridge: All JavaScript calls are now wrapped in try/catch (fixes the .NET 11 BL0016 warnings).
+
 # Update 11.11.2026: This project has been updated to .NET 11. 
 
 Some NuGet packages were updated also.

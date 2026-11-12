@@ -3,6 +3,7 @@
 #region using statements
 
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 using System.Drawing;
@@ -290,6 +291,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BackgroundColor'.
+            /// </summary>
+            public string BackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string backgroundColorStyle = ColorHelper.GetCssColor(BackgroundColor);
+
+                    // return value
+                    return backgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region BodyContent
             /// <summary>
             /// This property gets or sets the value for 'BodyContent'.
@@ -311,6 +329,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return borderColor; }
                 set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BorderColor'.
+            /// </summary>
+            public string BorderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string borderColorStyle = ColorHelper.GetCssColor(BorderColor);
+
+                    // return value
+                    return borderColorStyle;
+                }
             }
             #endregion
             
@@ -1274,6 +1309,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return titleTextColor; }
                 set { titleTextColor = value; }
+            }
+            #endregion
+            
+            #region TitleTextColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'TitleTextColor'.
+            /// </summary>
+            public string TitleTextColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string titleTextColorStyle = ColorHelper.GetCssColor(TitleTextColor);
+
+                    // return value
+                    return titleTextColorStyle;
+                }
             }
             #endregion
             

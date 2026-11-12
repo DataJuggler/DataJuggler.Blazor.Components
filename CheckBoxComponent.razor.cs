@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataJuggler.Blazor.Components.Interfaces;
+using DataJuggler.Blazor.Components.Util;
 using DataJuggler.UltimateHelper;
 using Microsoft.AspNetCore.Components;
 
@@ -204,6 +205,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region BackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BackgroundColor'.
+            /// </summary>
+            public string BackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string backgroundColorStyle = ColorHelper.GetCssColor(BackgroundColor);
+
+                    // return value
+                    return backgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region BorderColor
             /// <summary>
             /// This property gets or sets the value for 'BorderColor'.
@@ -212,6 +230,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return borderColor; }
                 set { borderColor = value; }
+            }
+            #endregion
+            
+            #region BorderColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'BorderColor'.
+            /// </summary>
+            public string BorderColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string borderColorStyle = ColorHelper.GetCssColor(BorderColor);
+
+                    // return value
+                    return borderColorStyle;
+                }
             }
             #endregion
             
@@ -708,6 +743,23 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region LabelBackgroundColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'LabelBackgroundColor'.
+            /// </summary>
+            public string LabelBackgroundColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string labelBackgroundColorStyle = ColorHelper.GetCssColor(LabelBackgroundColor);
+
+                    // return value
+                    return labelBackgroundColorStyle;
+                }
+            }
+            #endregion
+            
             #region LabelClassName
             /// <summary>
             /// This property gets or sets the value for 'LabelClassName'.
@@ -729,6 +781,23 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return labelColor; }
                 set { labelColor = value; }
+            }
+            #endregion
+            
+            #region LabelColorStyle
+            /// <summary>
+            /// This read only property returns the CSS color value for the 'LabelColor'.
+            /// </summary>
+            public string LabelColorStyle
+            {
+                get
+                {
+                    // initial value
+                    string labelColorStyle = ColorHelper.GetCssColor(LabelColor);
+
+                    // return value
+                    return labelColorStyle;
+                }
             }
             #endregion
             
