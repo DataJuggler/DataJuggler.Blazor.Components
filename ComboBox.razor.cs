@@ -2309,6 +2309,18 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
                 
+            #region LabelTextAlign
+            /// <summary>
+            /// This property gets or sets the value for 'LabelTextAlign'.
+            /// </summary>
+            [Parameter]
+            public string LabelTextAlign
+            {
+                get { return labelTextAlign; }
+                set { labelTextAlign = value; }
+            }
+            #endregion
+            
             #region LabelTop
             /// <summary>
             /// This property gets or sets the value for 'LabelTop'.
@@ -2380,6 +2392,32 @@ namespace DataJuggler.Blazor.Components
                         
                     // return value
                     return labelWidthStyle;
+                }
+            }
+            #endregion
+                
+            #region LabelWidthValue
+            /// <summary>
+            /// This read only property returns the LabelWidth if set, else the Column1Width,
+            /// so the label fills the caption column and LabelTextAlign right works.
+            /// </summary>
+            public double LabelWidthValue
+            {
+                
+                get
+                {
+                    // initial value
+                    double labelWidthValue = Column1Width;
+                    
+                    // if the LabelWidth was set
+                    if (LabelWidth > 0)
+                    {
+                        // use the LabelWidth
+                        labelWidthValue = LabelWidth;
+                    }
+                    
+                    // return value
+                    return labelWidthValue;
                 }
             }
             #endregion
