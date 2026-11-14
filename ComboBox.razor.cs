@@ -61,6 +61,7 @@ namespace DataJuggler.Blazor.Components
         private string labelMarginRightStyle;
         private string labelPosition;
         private string labelText;
+        private string labelTextAlign;
         private double labelTop;
         private double labelWidth;
         private double left;
@@ -438,6 +439,7 @@ namespace DataJuggler.Blazor.Components
                 LabelMarginRight = 0;
                 LabelMarginRightList = 0;
                 LabelPosition = "relative";
+                LabelTextAlign = "left";
                 Left = 0;
                 ListBackgroundColor = Color.White;
                 ListContainerLeft = 36;

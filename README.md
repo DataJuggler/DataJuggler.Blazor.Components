@@ -3,6 +3,13 @@ News
 Request: This project has been stuck on 10 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+11.14.2026: TextBoxComponent LabelWidth now defaults to Column1Width,
+so LabelTextAlign="right" works (set LabelWidth="30" for the old size).
+ComboBox now draws its own Label, separate from the TextBox,
+so TextBoxLeft moves only the textbox.
+Added a LabelTextAlign parameter to ComboBox.
+Existing ComboBox layouts may shift slightly.
+
 # Update 11.12.2026: Color support updated across all components.
 
 All color properties now support any color, not just named colors. A new ColorHelper.GetCssColor

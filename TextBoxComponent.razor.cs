@@ -295,8 +295,8 @@ namespace DataJuggler.Blazor.Components
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelHeight = GlobalDefaults.LabelHeight;
-                LabelTextAlign = "right";
-                LabelWidth = 30;
+                LabelTextAlign = "left";
+                LabelWidth = 0;
                 Left = 0;
                 MarginBottom = 8;
                 MarginLeft = 1.2;
@@ -718,17 +718,11 @@ namespace DataJuggler.Blazor.Components
                     {
                         // do not wrap
                         TextWrapping = "";
-
-                        // Use left
-                        LabelTextAlign = "left";
                     }
                     else
                     {
                         // do not wrap
                         TextWrapping = "textdonotwrap";
-
-                        // Use right
-                        LabelTextAlign = "right";
                     }
                 }
             }
@@ -1841,6 +1835,32 @@ namespace DataJuggler.Blazor.Components
 
                     // return value
                     return labelWidthStyle;
+                }
+            }
+            #endregion
+            
+            #region LabelWidthValue
+            /// <summary>
+            /// This read only property returns the LabelWidth if set, else the Column1Width,
+            /// so the label fills the caption column and LabelTextAlign right works.
+            /// </summary>
+            public double LabelWidthValue
+            {
+                
+                get
+                {
+                    // initial value
+                    double labelWidthValue = Column1Width;
+                    
+                    // if the LabelWidth was set
+                    if (LabelWidth > 0)
+                    {
+                        // use the LabelWidth
+                        labelWidthValue = LabelWidth;
+                    }
+                    
+                    // return value
+                    return labelWidthValue;
                 }
             }
             #endregion
