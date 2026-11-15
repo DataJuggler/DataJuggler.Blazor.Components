@@ -38,8 +38,7 @@
     border-width: @ListBorderWidthStyle;
     border-color: gray;
     border-style: solid;
-    overflow-y: @OverflowY;
-    overflow-x: @OverflowX;
+    overflow: hidden;
 </Styled>
 <Styled @bind-Classname=@ListItemStyle>
     position: @Position;
@@ -67,8 +66,8 @@
     width: @CheckedListWidthStyle;
     max-width: @CheckedListWidthStyle;
     min-width: @CheckedListWidthStyle;    
-    left: @CheckedListLeftStyle;
-    top: @CheckedListTopStyle;    
+    left: @ListItemLeftStyle;
+    top: @ListItemTopStyle;
     overflow: visible;
 </Styled>
 <Styled @bind-Classname=@ListContainerStyle>
@@ -84,21 +83,38 @@
     min-height: @ListContainerHeightStyle;
     max-height: @ListContainerHeightStyle;
 </Styled>
+<Styled @bind-Classname=@ListItemSeparatorStyle>
+    height: @ListItemsTopMarginStyle;
+</Styled>
+<Styled @bind-Classname=@ListItemBottomSeparatorStyle>
+    height: @ListItemsBottomMarginStyle;
+</Styled>
+<Styled @bind-Classname=@SelectStyle>
+    overflow-y: @OverflowYStyle;
+    overflow-x: @OverflowXStyle;
+</Styled>
 
 <div class="@ContainerStyle @ClassName textdonotwrap" tabindex="0" @onblur="HandleOnBlur">
     <table>
         <tr class="textdonotwrap">
+            @if (ShowLabel)
+            {
+                <td width="@LabelWidthValue">
+                    <Label Name="ComboBoxLabel" Text="@LabelText" Width="@LabelWidthValue" Height="@TextBoxHeight"
+                        Left="@LabelLeft" Top="@LabelTop" TextAlign="@LabelTextAlign" TextColor="@LabelColor"
+                        FontName="@LabelFontName" FontSize="@LabelFontSize" MarginBottom="0"
+                        ClassName="@LabelClassName">
+                    </Label>
+                </td>
+            }
             <td width="@TextBoxWidth">
-                <TextBoxComponent Name="DisplayTextBox" Caption="@LabelText" Parent="this" 
-                    ClassName="displayinline" Column1Width="@Column1Width" 
-                    LabelLeft="@LabelLeft" LabelTop="@labelTop" NotifyParentOnBlur="@NotifyParentOnBlur"
+                <TextBoxComponent Name="DisplayTextBox" Caption="" Parent="this" 
+                    ClassName="displayinline" NotifyParentOnBlur="@NotifyParentOnBlur"
                     Column2Width="@Column2Width" TextBoxWidth="@TextBoxWidth" Height="@TextBoxHeight"
-                    LabelFontName="@LabelFontName" LabelFontSize ="@LabelFontSize" Left="@TextBoxLeft"
-                    LabelColor="@LabelColor" OnTextChangedCallback="OnTextChanged" Top="@TextBoxTop"
+                    Left="@TextBoxLeft" OnTextChangedCallback="OnTextChanged" Top="@TextBoxTop"
                     TextBoxFontSize="@TextBoxFontSize" TextBoxFontName="@TextBoxFontName"
                     SendAllTextToParent=true Text="@SelectedText" Enabled="@TextBoxEnabled"
-                    Width="@Width" LabelClassName="@LabelClassName" ZIndex="@ZIndexPlus20"
-                    LabelWidth="@LabelWidth" LabelTextAlign="@LabelTextAlign">
+                    Width="@TextBoxWidth" ZIndex="@ZIndexPlus20">
                 </TextBoxComponent>
             </td>
             @if (ShowButton)
@@ -118,15 +134,15 @@
         @if (CheckListMode)
         {
             <div class="@CheckedListBoxStyle">
-                <CheckedListBox Parent="this" HeightUnit="@CheckedListHeightUnit" Height="@CheckedListheight" 
+                <CheckedListBox Parent="this" HeightUnit="@CheckedListHeightUnit" Height="@CheckedListHeightValue" 
                     Position="@CheckedListPosition" Unit="@CheckedListUnit" Width=@CheckedListWidth 
-                    ListItemWidth=@ListItemWidth  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
+                    ListItemWidth=@CheckedListItemWidthValue  ListItemHeight="@ListItemHeight" ListItemLeft=@CheckedListItemLeft 
                     ListItemTop="@CheckedListItemTop" ListItemBackgroundColor=@ListItemBackgroundColor                    
                     CheckBoxTextX="@CheckBoxTextX" CheckBoxTextY="@CheckBoxTextY"
                     Top="0" ZIndex="@ZIndexPlus20" ListItemMarginBottom="@ListItemMarginBottom"
                     NotifyParentOnBlur="true" CheckBoxHeight="@CheckBoxHeight" CheckBoxwidth="@CheckBoxWidth"
                     CheckBoxX=@CheckBoxX  CheckBoxY="@CheckBoxY"
-                    Left=@CheckedListLeft  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
+                    Left="0"  ListItemClassName="@ListItemClassName"  ClassName="@CheckedListClassName">
                 </CheckedListBox>
             </div>                
         }
@@ -135,13 +151,15 @@
             <div class="@ListItemContainer @DropdownClassName">
                 @if (Loaded)
                 {
-                    <select class="form-control border0" name="ListBox" size="@VisibleCount"
+                    <div class="@ListItemSeparatorStyle"></div>
+                    <select class="form-control border0 @SelectStyle" name="ListBox" size="@VisibleCount"
                             id="ComboBoxListBox" @onchange="SelectionChanged">
                         @foreach (Item item in Items)
                         {
                             <option class="@ListItemStyle nopadding" >@item.Text</option>
                         }
                     </select>
+                    <div class="@ListItemBottomSeparatorStyle"></div>
                 }
             </div>               
         }

@@ -26,7 +26,7 @@ namespace DataJuggler.Blazor.Components
             /// <summary>
             /// The default column width for the 1st column, usually labels
             /// </summary>
-            public const int Column1Width = 100;
+            public const int Column1Width = 140;
             #endregion
 
             #region Column2Width

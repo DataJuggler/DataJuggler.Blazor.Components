@@ -116,6 +116,19 @@ namespace DataJuggler.Blazor.Components.Enumerations
     }
     #endregion
 
+    #region OverflowEnum : int
+    /// <summary>
+    /// The choices for CSS overflow. Auto only shows a scrollbar when the content does not fit.
+    /// </summary>
+    public enum OverflowEnum : int
+    {
+        Auto = 0,
+        Hidden = 1,
+        Scroll = 2,
+        Visible = 3
+    }
+    #endregion
+
     #region SaveCancelResultEnum : int
     /// <summary>
     /// This enum is used by the SaveCancelControl. This result 

@@ -3,6 +3,19 @@ News
 Request: This project has been stuck on 10 stars for a long time. 
 Please take 1 minute and leave a star: https://github.com/DataJuggler/DataJuggler.Blazor.Components
 
+# Updates
+
+11.15.2026: ComboBox now lines up with TextBoxComponent out of the box.
+New Init defaults for height, button, list position and font size.
+GlobalDefaults.Column1Width changed from 100 to 140.
+Added ListItemsTopMargin and ListItemsBottomMargin; list heights are now
+calculated from VisibleCount (set ListContainerHeight or CheckedListheight to override).
+OverflowX and OverflowY are now OverflowEnum and apply to the list's select;
+the scrollbar only shows when needed.
+CheckListMode: list now lines up under the textbox using ListItemLeft and ListItemTop
+(CheckedListLeft and CheckedListTop are no longer used), rows fit inside the list,
+and new checkbox spacing defaults.
+
 11.14.2026: TextBoxComponent LabelWidth now defaults to Column1Width,
 so LabelTextAlign works (set LabelWidth="30" for the old size).
 LabelTextAlign now defaults to right for TextBoxComponent and ComboBox

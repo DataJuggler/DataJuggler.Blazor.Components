@@ -69,6 +69,8 @@ namespace DataJuggler.Blazor.Components
         private Color listBackgroundColor;
         private double listBorderWidth;
         private string listContainerPosition;
+        private double listItemsBottomMargin;
+        private double listItemsTopMargin;
         private double listItemHeight;
         private string listItemClassName;
         private double listItemLeft;        
@@ -130,8 +132,8 @@ namespace DataJuggler.Blazor.Components
         private string fontName;
         private bool showButton;
         private int dropDownZIndex;
-        private string overflowX;
-        private string overflowY;
+        private OverflowEnum overflowX;
+        private OverflowEnum overflowY;
         private bool loaded;
         
         // Had to bring back BlazorStyled        
@@ -148,6 +150,9 @@ namespace DataJuggler.Blazor.Components
         private double checkBoxHeight;
         private double checkBoxWidth;
         private double listContainerHeight;
+        private string listItemBottomSeparatorStyle;
+        private string listItemSeparatorStyle;
+        private string selectStyle;
         private bool visible;
         private string visibility;
         #endregion
@@ -401,26 +406,26 @@ namespace DataJuggler.Blazor.Components
                 CheckedListHeightUnit = "px";
                 ButtonBorderColor = Color.Black;
                 ButtonBorderWidth = 1;
-                ButtonHeight = 24;
-                ButtonLeft = 8;
+                ButtonHeight = 22;
+                ButtonLeft = 1;
                 ButtonPosition = "relative";
-                ButtonTop = 0;
+                ButtonTop = -1;
                 ButtonUrl = "_content/DataJuggler.Blazor.Components/Images/Buttons/ComboBoxBlack.png";
                 ButtonWidth = 24;
                 CheckBoxHeight = 16;
                 CheckBoxWidth = 16;
-                CheckBoxTextX = 16;
-                CheckBoxTextY = 0;
+                CheckBoxTextX = 4;
+                CheckBoxTextY = 3;
                 CheckBoxX = 0;
                 CheckBoxY = 2;
                 CheckedListClassName = "container border1gray textdonotwrap";
-                CheckedListItemLeft = 8;
+                CheckedListItemLeft = 2;
                 CheckedListItemTop = 0;
-                CheckedListheight = 72;
-                CheckedListLeft = 36;
+                CheckedListheight = 0;
+                CheckedListLeft = 113;
                 CheckedListPosition = "absolute";                
-                CheckedListTop = 24;
-                CheckedListWidth = 132;                
+                CheckedListTop = 29;
+                CheckedListWidth = 136;                
                 Column1Width = GlobalDefaults.Column1Width;
                 Column2Width = GlobalDefaults.Column2Width;
                 ControlHeight = 28;
@@ -429,17 +434,17 @@ namespace DataJuggler.Blazor.Components
                 DropDownZIndex = GlobalDefaults.ListZIndex;
                 FontSize = GlobalDefaults.TextBoxFontSize;
                 FontUnit = "px";
-                Height = 24; 
+                Height = 28; 
                 Items = new List<Item>();
                 LabelBackColor = Color.Transparent;
                 LabelColor = Color.LightSkyBlue;
                 LabelClassName = GlobalDefaults.LabelClassName;
                 LabelFontName = "Calibri"; 
-                LabelFontSize = GlobalDefaults.LabelFontSize;
+                LabelFontSize = 14;
                 LabelMarginRight = 0;
                 LabelMarginRightList = 0;
                 LabelPosition = "relative";
-                LabelTextAlign = "left";
+                LabelTextAlign = "right";
                 Left = 0;
                 ListBackgroundColor = Color.White;
                 ListContainerLeft = 36;
@@ -447,14 +452,17 @@ namespace DataJuggler.Blazor.Components
                 ListContainerPosition = "absolute";
                 ListDisplay = "none";
                 ListItemBackgroundColor = Color.White;                
-                ListContainerHeight = 120;
-                ListItemHeight = GlobalDefaults.ListItemHeight;            
-                ListItemLeft = -12;
+                ListContainerHeight = 0;
+                ListItemHeight = 20;            
+                ListItemLeft = 114;
+                ListItemMarginBottom = 1;
                 ListItemPosition = "relative";
-                ListItemTop = -2;
-                ListItemWidth = 80;
-                OverflowX = "hidden";
-                OverflowY = "auto";
+                ListItemTop = 29;
+                ListItemWidth = GlobalDefaults.TextBoxWidth;
+                ListItemsBottomMargin = 4;
+                ListItemsTopMargin = 2;
+                OverflowX = OverflowEnum.Hidden;
+                OverflowY = OverflowEnum.Auto;
                 Position = "relative";
                 SelectedText = "";
                 ShowButton = true;
@@ -462,7 +470,8 @@ namespace DataJuggler.Blazor.Components
                 TextBoxFontName = GlobalDefaults.TextBoxFontName;
                 TextBoxFontSize = GlobalDefaults.TextBoxFontSize;
                 TextBoxHeight = 21;
-                TextBoxLeft = 0;
+                TextBoxLeft = 1;
+                TextBoxTop = 2;
                 TextBoxWidth = GlobalDefaults.TextBoxWidth;
                 Top = 2;
                 VisibleCount = 5;
@@ -1358,10 +1367,36 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string checkedListheightStyle = CheckedListheight + HeightUnit;
+                    string checkedListheightStyle = CheckedListHeightValue + HeightUnit;
                     
                     // return value
                     return checkedListheightStyle;
+                }
+            }
+            #endregion
+            
+            #region CheckedListHeightValue
+            /// <summary>
+            /// This read only property returns CheckedListheight if set, else the height
+            /// needed to show VisibleCount items, plus 4 for the padding and border.
+            /// </summary>
+            public double CheckedListHeightValue
+            {
+                
+                get
+                {
+                    // initial value
+                    double checkedListHeightValue = (VisibleCount * ListItemHeight) + 4;
+                    
+                    // if the CheckedListheight was set
+                    if (CheckedListheight > 0)
+                    {
+                        // use the CheckedListheight
+                        checkedListHeightValue = CheckedListheight;
+                    }
+                    
+                    // return value
+                    return checkedListHeightValue;
                 }
             }
             #endregion
@@ -1399,6 +1434,25 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return checkedListItemTop; }
                 set { checkedListItemTop = value; }
+            }
+            #endregion
+
+            #region CheckedListItemWidthValue
+            /// <summary>
+            /// This read only property returns the width of each row in the CheckedListBox,
+            /// so the rows fit inside the list: CheckedListWidth minus CheckedListItemLeft.
+            /// </summary>
+            public double CheckedListItemWidthValue
+            {
+                
+                get
+                {
+                    // initial value
+                    double checkedListItemWidthValue = CheckedListWidth - CheckedListItemLeft;
+                    
+                    // return value
+                    return checkedListItemWidthValue;
+                }
             }
             #endregion
             
@@ -2533,7 +2587,7 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string listContainerHeightStyle = ListContainerHeight + HeightUnit;
+                    string listContainerHeightStyle = ListContainerHeightValue + HeightUnit;
                     
                     // return value
                     return listContainerHeightStyle;
@@ -2541,6 +2595,32 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
 
+            #region ListContainerHeightValue
+            /// <summary>
+            /// This read only property returns ListContainerHeight if set, else the top margin,
+            /// the VisibleCount items and the bottom margin.
+            /// </summary>
+            public double ListContainerHeightValue
+            {
+                
+                get
+                {
+                    // initial value
+                    double listContainerHeightValue = ListItemsTopMargin + (VisibleCount * ListItemHeight) + ListItemsBottomMargin;
+                    
+                    // if the ListContainerHeight was set
+                    if (ListContainerHeight > 0)
+                    {
+                        // use the ListContainerHeight
+                        listContainerHeightValue = ListContainerHeight;
+                    }
+                    
+                    // return value
+                    return listContainerHeightValue;
+                }
+            }
+            #endregion
+            
             #region ListContainerLeft
             /// <summary>
             /// This property gets or sets the value for 'ListContainerLeft'.
@@ -2644,6 +2724,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return listItemBackgroundColor; }
                 set { listItemBackgroundColor = value; }
+            }
+            #endregion
+            
+            #region ListItemBottomSeparatorStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemBottomSeparatorStyle'.
+            /// </summary>
+            public string ListItemBottomSeparatorStyle
+            {
+                get { return listItemBottomSeparatorStyle; }
+                set { listItemBottomSeparatorStyle = value; }
             }
             #endregion
             
@@ -2753,6 +2844,77 @@ namespace DataJuggler.Blazor.Components
             }
             #endregion
             
+            #region ListItemSeparatorStyle
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemSeparatorStyle'.
+            /// </summary>
+            public string ListItemSeparatorStyle
+            {
+                get { return listItemSeparatorStyle; }
+                set { listItemSeparatorStyle = value; }
+            }
+            #endregion
+            
+            #region ListItemsBottomMargin
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemsBottomMargin'.
+            /// </summary>
+            [Parameter]
+            public double ListItemsBottomMargin
+            {
+                get { return listItemsBottomMargin; }
+                set { listItemsBottomMargin = value; }
+            }
+            #endregion
+            
+            #region ListItemsBottomMarginStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemsBottomMargin + HeightUnit
+            /// </summary>
+            public string ListItemsBottomMarginStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string listItemsBottomMarginStyle = ListItemsBottomMargin + HeightUnit;
+
+                    // return value
+                    return listItemsBottomMarginStyle;
+                }
+            }
+            #endregion
+            
+            #region ListItemsTopMargin
+            /// <summary>
+            /// This property gets or sets the value for 'ListItemsTopMargin'.
+            /// </summary>
+            [Parameter]
+            public double ListItemsTopMargin
+            {
+                get { return listItemsTopMargin; }
+                set { listItemsTopMargin = value; }
+            }
+            #endregion
+            
+            #region ListItemsTopMarginStyle
+            /// <summary>
+            /// This read only property returns the value of ListItemsTopMargin + HeightUnit
+            /// </summary>
+            public string ListItemsTopMarginStyle
+            {
+
+                get
+                {
+                    // initial value
+                    string listItemsTopMarginStyle = ListItemsTopMargin + HeightUnit;
+
+                    // return value
+                    return listItemsTopMarginStyle;
+                }
+            }
+            #endregion
+
             #region ListItemStyle
             /// <summary>
             /// This property gets or sets the value for 'ListItemStyle'.
@@ -2901,10 +3063,28 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'OverflowX'.
             /// </summary>
             [Parameter]
-            public string OverflowX
+            public OverflowEnum OverflowX
             {
                 get { return overflowX; }
                 set { overflowX = value; }
+            }
+            #endregion
+            
+            #region OverflowXStyle
+            /// <summary>
+            /// This read only property returns the CSS value for OverflowX
+            /// </summary>
+            public string OverflowXStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string overflowXStyle = OverflowX.ToString().ToLower();
+                    
+                    // return value
+                    return overflowXStyle;
+                }
             }
             #endregion
             
@@ -2913,10 +3093,28 @@ namespace DataJuggler.Blazor.Components
             /// This property gets or sets the value for 'OverflowY'.
             /// </summary>
             [Parameter]
-            public string OverflowY
+            public OverflowEnum OverflowY
             {
                 get { return overflowY; }
                 set { overflowY = value; }
+            }
+            #endregion
+            
+            #region OverflowYStyle
+            /// <summary>
+            /// This read only property returns the CSS value for OverflowY
+            /// </summary>
+            public string OverflowYStyle
+            {
+                
+                get
+                {
+                    // initial value
+                    string overflowYStyle = OverflowY.ToString().ToLower();
+                    
+                    // return value
+                    return overflowYStyle;
+                }
             }
             #endregion
             
@@ -3000,6 +3198,17 @@ namespace DataJuggler.Blazor.Components
             {
                 get { return selectedText; }
                 set { selectedText = value; }
+            }
+            #endregion
+            
+            #region SelectStyle
+            /// <summary>
+            /// This property gets or sets the value for 'SelectStyle'.
+            /// </summary>
+            public string SelectStyle
+            {
+                get { return selectStyle; }
+                set { selectStyle = value; }
             }
             #endregion
             
@@ -3271,16 +3480,7 @@ namespace DataJuggler.Blazor.Components
             public int VisibleCount
             {
                 get { return visibleCount; }
-                set 
-                {
-                    visibleCount = value;
-
-                    if (VisibleCount > 0)
-                    {
-                        // Guess at row height
-                        CheckedListheight = VisibleCount * ListItemHeight;
-                    }
-                }
+                set { visibleCount = value; }
             }
             #endregion
                 

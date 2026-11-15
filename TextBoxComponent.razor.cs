@@ -295,7 +295,7 @@ namespace DataJuggler.Blazor.Components
                 LabelFontName = GlobalDefaults.LabelFontName;
                 LabelFontSize = GlobalDefaults.LabelFontSize;
                 LabelHeight = GlobalDefaults.LabelHeight;
-                LabelTextAlign = "left";
+                LabelTextAlign = "right";
                 LabelWidth = 0;
                 Left = 0;
                 MarginBottom = 8;
