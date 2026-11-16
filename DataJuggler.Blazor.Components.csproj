@@ -23,7 +23,7 @@
 		<RepositoryType>Git - Git Hub</RepositoryType>
 		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
 		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-		<Version>11.1.0</Version>
+		<Version>11.1.2</Version>
 		<AssemblyVersion>9.11.6</AssemblyVersion>
 		<FileVersion>9.11.6</FileVersion>
 		<Nullable>disable</Nullable>
@@ -48,11 +48,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0031;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0031;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;BL0005;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <NoWarn>1701;1702;IDE0059;IDE0031;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;</NoWarn>
+    <NoWarn>1701;1702;IDE0059;IDE0031;IDE0017;IDE0090;BL0007;IDE0028;IDE0300;BL0005;</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
