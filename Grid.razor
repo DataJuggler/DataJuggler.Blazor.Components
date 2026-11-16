@@ -23,6 +23,7 @@
     --scrollbar-thumb-hover: @ScrollBarThumbHoverColorStyle;
     --scrollbar-radius: @ScrollBarRadiusStyle;
     --scrollbar-track-border: @ScrollBarTrackBorderColorStyle;
+    overflow: hidden;
 </Styled>
 <Styled @bind-Classname=@ScrollStyle>
     overflow-y: @OverflowY;
@@ -51,24 +52,24 @@
 </Styled>
 
 <style>
-    .@(GridStyle) ::-webkit-scrollbar
+    . @(GridStyle) ::-webkit-scrollbar
     {
         width: var(--scrollbar-width, 10px);
     }
 
-    .@(GridStyle) ::-webkit-scrollbar-track
+    . @(GridStyle) ::-webkit-scrollbar-track
     {
         background: var(--scrollbar-track, LightGray);
         border: 1px solid var(--scrollbar-track-border);
     }
 
-    .@(GridStyle) ::-webkit-scrollbar-thumb
+    . @(GridStyle) ::-webkit-scrollbar-thumb
     {
         background-color: var(--scrollbar-thumb, DarkGray);
         border-radius: var(--scrollbar-radius, 6px);
     }
 
-    .@(GridStyle) ::-webkit-scrollbar-thumb:hover
+    . @(GridStyle) ::-webkit-scrollbar-thumb:hover
     {
         background-color: var(--scrollbar-thumb-hover, DimGray);
     }
@@ -95,7 +96,7 @@
                 <GridHeaderComponent Parent="this"></GridHeaderComponent>
             }
         }
-        <div class="@GridStyle @RowContent @ScrollStyle">
+        <div class="@RowContent @ScrollStyle">
             @if (!StickyHeader)
             {
                 @if (ShowHeader)

@@ -559,7 +559,7 @@ namespace DataJuggler.Blazor.Components
                 AllowYearSelector = false;
                 ButtonBorderColor = Color.Black;
                 ButtonBorderWidth = 1;
-                BottomNavButtonTop = 2;
+                BottomNavButtonTop = -2;
                 BottomRowBottom = 3;
                 BottomRowClassName = "right12 up4 width220";                
                 BottomRowFontName = "Calibri";

@@ -135,6 +135,7 @@ namespace DataJuggler.Blazor.Components
                 // The end of the oval have their own width
                 OvalEndWidth = 16;
                 OvalWidth = 16;
+                OvalHeight = 16;
                 OvalRadius = 50;
                 OvalPosition = "relative";
                 OvalLeft = 35;
@@ -145,8 +146,6 @@ namespace DataJuggler.Blazor.Components
                 // Circle
                 CircleHeight = 12;
                 CircleWidth = 12; 
-                CircleColorOn = Color.GhostWhite;
-                CircleColorOff = Color.GhostWhite;
                 CircleColor = Color.GhostWhite;
                 CircleLeftOff = -35;
                 CircleLeftOn = -14;

@@ -1163,8 +1163,6 @@ namespace DataJuggler.Blazor.Components
                 set 
                 {
                     height = value;
-
-                    rowContentHeight = height - TotalHeaderHeight;
                 }
             }
             #endregion
@@ -1369,7 +1367,8 @@ namespace DataJuggler.Blazor.Components
             
             #region RowContentHeightStyle
             /// <summary>
-            /// This read only property returns the value of RowContentHeight + HeightUnit
+            /// This read only property returns the height of the scrolling rows area.
+            /// If RowContentHeight is set it is used, else Height minus the headers when StickyHeader is true.
             /// </summary>
             public string RowContentHeightStyle
             {
@@ -1377,7 +1376,27 @@ namespace DataJuggler.Blazor.Components
                 get
                 {
                     // initial value
-                    string rowContentHeightStyle = RowContentHeight + HeightUnit;
+                    string rowContentHeightStyle = "";
+
+                    // locals
+                    double rowContentHeightValue = RowContentHeight;
+
+                    // if the RowContentHeight was not set
+                    if (rowContentHeightValue <= 0)
+                    {
+                        // Start with the full Height
+                        rowContentHeightValue = Height;
+
+                        // if the headers sit above the scrolling area
+                        if (StickyHeader)
+                        {
+                            // Subtract the headers
+                            rowContentHeightValue = Height - TotalHeaderHeight;
+                        }
+                    }
+
+                    // Set the return value
+                    rowContentHeightStyle = rowContentHeightValue + HeightUnit;
 
                     // return value
                     return rowContentHeightStyle;
@@ -1692,7 +1711,7 @@ namespace DataJuggler.Blazor.Components
                     }
 
                     // if the ColumnHeaders are shown
-                    if (ShowColumnHeaders)
+                    if ((ShowColumnHeaders) && (HasColumns))
                     {
                         // Add the ColumnHeaderHeight
                         totalHeaderHeight += ColumnHeaderHeight;

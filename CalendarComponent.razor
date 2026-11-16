@@ -100,7 +100,7 @@
 </Styled>
 <Styled @bind-Classname=@DayRowStyle>
     background-color: @DayRowColorName;    
-    width: @WidthStyle;
+    width: 100%;
     height: @DayRowHeightStyle;
     z-index: @ZIndex;
     position: relative;    
@@ -176,7 +176,9 @@
 <Styled @bind-Classname=@YearSelectorButtonStyle>
     border: 0px;
     background-color: white;
-    font-size: 10px;
+    font-family: @BottomRowFontName;
+    font-size: @BottomRowFontSizeStyle;
+    line-height: @RowHeightStyle;
     font-weight: bold;
     width: 80px;
     min-width: 80px;
@@ -189,7 +191,7 @@
     margin: 0px;
     padding: 0px;
     position: relative;
-    top: @DateTitleTopStyle;
+    top: calc(@DateTitleTopStyle - 4px);
     left: @DateTitleLeftStyle;
     cursor: pointer;
 </Styled>
@@ -248,6 +250,7 @@
     min-width: 182px;
     max-width: 182px;
     height: 68px;
+    vertical-align: top;
     min-height: 68px;
     max-height: 68px;
     z-index: @ZIndexPlus1;
@@ -353,16 +356,16 @@
                         <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="2" HeightUnit="px" Height="8"
                                     Unit="px" Width="8" Name="PrevYearButton" Position="relative" Title="Move back one year."
-                                    Left="@PreviousMonthButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevYearButtonUrl" 
+                                    Left="@PreviousYearButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevYearButtonUrl" 
                                     Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
                         </td>
                         <td width="32">
                             <ImageButton ClassName="@NavButtonStyle" ButtonNumber="3" HeightUnit="px" Height="8"
                                     Unit="px" Width="8" Name="PrevMonthButton" Position="relative" Title="Move back one month."
-                                    Left="@PreviousYearButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
+                                    Left="@PreviousMonthButtonLeft" Top="@bottomNavButtonTop" ImageUrl="@PrevMonthButtonUrl" Parent="this" ClickHandler="@ButtonClicked">
                             </ImageButton>
-                        </td>                        
+                        </td>           
                         <td class="textdonotwrap" width="80">
                             @if (AllowYearSelector)
                             {  

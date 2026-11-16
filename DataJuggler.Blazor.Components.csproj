@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>net11.0</TargetFramework>
 		<EnableRazorComponentAuthoring>true</EnableRazorComponentAuthoring>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>		
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>		
 		<Authors>DataJuggler</Authors>
 		<Description>
 			This project consists of a TextBoxComponent, Multiline TextBox, Calendar, CheckBox, ComboBox,
@@ -17,13 +17,13 @@
 		<Copyright>2019 - 2026 - Data Juggler - Use For Anything You Want, No Warranty.</Copyright>
 		<PackageLicenseFile>License.txt</PackageLicenseFile>
 		<PackageProjectUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components</PackageProjectUrl>
-		<PackageIcon>Merge Boxes Small.png</PackageIcon>
+    <PackageIcon>MergeBoxesSmall.png</PackageIcon>
 		<PackageIconUrl />
 		<RepositoryUrl>https://github.com/DataJuggler/DataJuggler.Blazor.Components.git</RepositoryUrl>
 		<RepositoryType>Git - Git Hub</RepositoryType>
 		<PackageTags>Blazor,C#,UI,Components,ProgressBar,Animation,TextBoxComponent</PackageTags>
 		<PackageReleaseNotes>See Read Me.</PackageReleaseNotes>
-		<Version>11.1.2</Version>
+		<Version>11.1.19</Version>
 		<AssemblyVersion>9.11.6</AssemblyVersion>
 		<FileVersion>9.11.6</FileVersion>
 		<Nullable>disable</Nullable>
@@ -72,7 +72,7 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-    <None Include="..\..\..\Graphics\Merge Boxes Small.png">
+    <None Include="License\MergeBoxesSmall.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>

@@ -437,7 +437,7 @@ namespace DataJuggler.Blazor.Components
                 Height = 28; 
                 Items = new List<Item>();
                 LabelBackColor = Color.Transparent;
-                LabelColor = Color.LightSkyBlue;
+                LabelColor = Color.Black;
                 LabelClassName = GlobalDefaults.LabelClassName;
                 LabelFontName = "Calibri"; 
                 LabelFontSize = 14;
